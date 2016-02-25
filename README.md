@@ -24,7 +24,7 @@ For install node modules Run
 
 For install bower modules Run
 
-- `sudo bower install`
+- `bower install`
 
 For install compass gem
 - `sudo gem update --system`
