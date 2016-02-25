@@ -18,9 +18,13 @@ For install necessary packages in case do not exist it
 Verify that packages are installed
 - `yo --version && bower --version && grunt --version`
 
-For install node module Run
+For install node modules Run
 
 - `sudo npm install`
+
+For install bower modules Run
+
+- `sudo bower install`
 
 For install compass gem
 - `sudo gem update --system`
