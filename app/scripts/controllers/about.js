@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name voyHoyEropeFrontApp.controller:AboutCtrl
+ * @name vhEurope.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the voyHoyEropeFrontApp
+ * Controller of the vhEurope
  */
-angular.module('voyHoyEropeFrontApp')
+angular.module('vhEurope')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

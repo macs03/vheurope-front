@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name voyHoyEropeFrontApp.controller:MainCtrl
+ * @name vhEurope.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the voyHoyEropeFrontApp
+ * Controller of the vhEurope
  */
 angular.module('voyHoyEropeFrontApp')
   .controller('MainCtrl', function () {

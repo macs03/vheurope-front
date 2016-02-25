@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('voyHoyEropeFrontApp', [
+  .module('vhEurope', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
