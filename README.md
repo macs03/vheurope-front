@@ -20,11 +20,11 @@ Verify that packages are installed
 
 For install node module Run
 
-- `npm install`
+- `sudo npm install`
 
 For install compass gem
-- `gem update --system`
-- `gem install compass`
+- `sudo gem update --system`
+- `sudo gem install compass`
 
 Run `grunt` for building and `grunt serve` for preview.
 
