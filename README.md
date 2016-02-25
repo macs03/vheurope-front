@@ -36,4 +36,5 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
+## Notes
 Note: This commands are for run on MacOS OX
