@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the vhEurope
  */
-angular.module('vhEurope')
-  .controller('MainController', function ($scope) {
+
+app.controller('MainController', function ($scope) {
   	$scope.origin = 0;
   	$scope.destination = 0;
 
@@ -30,11 +30,11 @@ angular.module('vhEurope')
   		maxItems: 1
 	};
 
-	 $scope.dates = {
-        departureDate: moment.tz('UTC'), //12:00 UTC, today.
-        arrivalDate: moment.tz('UTC').add(1, 'd'), //12:00 UTC, in four days.
-        minDate: moment.tz('UTC'),
-        maxDate: moment.tz('UTC').add(20, 'd')
+	  $scope.dates = {
+        departureDate: '26-02-2016',
+        arrivalDate: '', 
+        minDate: '02-26-2016',
+        maxDate: '03-26-2016'
       };
 
 	$scope.searchTrips = function () {
@@ -43,10 +43,26 @@ angular.module('vhEurope')
     	}else{
     		console.log($scope.origin);
     		console.log($scope.destination);
-    		console.log($scope.dates.departure);
+    		console.log($scope.dates.departureDate);
+    		console.log($scope.dates.arrivalDate);
     	}
     	
     };
     
    	$('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');
+  	var dateObject = pikadayResponsive($('#date'),{
+    format: "DD-MM-YYYY",
+    outputFormat: "x",
+    checkIfNativeDate: function() {
+        // return true if native date field should be used
+    },
+    placeholder: "Selecciona una fecha",
+    classes: "",
+    dayOffset: 0,
+    pikadayOptions: {
+    	minDate: new Date()
+    }
+});
   });
+
+
