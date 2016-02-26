@@ -12,14 +12,14 @@ angular.module('vhEurope')
     .controller('SearchController',SearchController);
     SearchController.$inject =['travelsFactory','$scope'];
 
-    function SearchController (travelsFactory,$scope,$filter) {
+    function SearchController (travelsFactory,$scope) {
         var vm = this;
-        vm.trips = [];
         vm.searchTrip = searchTrip;
         vm.searching = false;
         vm.error = false;
 
     function searchTrip() {
+        vm.trips = [];
         vm.searching = true;
         vm.error = false;
         travelsFactory
