@@ -21,7 +21,12 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/index', {
+        templateUrl: 'views/main.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
+      .when('/search', {
         templateUrl: 'views/search.tpl.html',
         controller: 'SearchController',
         controllerAs: 'search'

@@ -48,6 +48,5 @@ angular.module('vhEurope')
     	
     };
     
-   	
    	$('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');
   });
