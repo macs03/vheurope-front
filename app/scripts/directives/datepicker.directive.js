@@ -16,10 +16,14 @@ app.directive('vhdatepicker', function ($parse) {
             var newElem = $(html);
             element.replaceWith(newElem);
 
-            console.log(element);
-            console.log(attrs);
+           
 
             return function (scope, element, attrs, controller) {
+              console.log(scope);
+              console.log(element);
+              console.log(attrs);
+              console.log(controller);
+
                   var processChange = function () {
                      var date = new Date(element.datepicker("getDate"));
 
@@ -29,7 +33,7 @@ app.directive('vhdatepicker', function ($parse) {
                      });
                   };
 
-                  var dateObject = pikadayResponsive(element,{
+                  var dateObject = pikadayResponsive(element[0],{
                    format: "DD-MM-YYYY",
                    outputFormat: "x",
                    checkIfNativeDate: function() {
