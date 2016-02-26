@@ -1,0 +1,778 @@
+body { background: #F1F1F1 }
+
+.header-home.chile {
+    background: #fff;
+    background-size: cover;
+}
+
+#cta {
+    background: #29abe5;
+    min-height: 100px;
+    color: #fff;
+    max-height: 380px;
+}
+
+.iphone_holder {
+    width: 300px;
+    height: 526px;
+    overflow: hidden;
+    position: relative;
+    background-image: url('http://bootstraplovers.com/templates/assan-2.1.01/app-landing/images/iphone-holder.png');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    background-position: center top;
+    margin-top: -50px !important;
+}
+
+.iphone_holder .iphone_inner {
+    position: absolute;
+    width: 203px;
+    height: 355px;
+    left: 45px;
+    top: 59px;
+    background-color: #fff;
+    padding: 0px;
+    border: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+#cta .container-text { padding: 80px 20px }
+
+#cta .container-text h3 {
+    font-size: 40px;
+    text-align: right;
+    margin-bottom: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: lighter;
+}
+
+#cta .container-text h1 {
+    font-size: 120px;
+    text-align: right;
+    font-weight: bolder;
+    margin-top: 5px;
+    line-height: 110px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.toast { opacity: 1 !important }
+
+#popular-trips {
+    padding: 20px;
+    margin-bottom: 80px;
+}
+
+#popular-trips h2 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.popular-trip {
+    position: relative;
+    margin: 0 auto;
+    padding: 1em 0 4em;
+    max-width: 1000px;
+    list-style: none;
+    text-align: center;
+}
+
+.popular-trip figure {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 10px 1%;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 160px;
+    min-height: 160px;
+    cursor: pointer;
+}
+
+.popular-trip figure img {
+    position: relative;
+    display: block;
+    max-height: 120px;
+    min-height: 120px;
+    width: 100%;
+    opacity: 1;
+}
+
+.popular-trip figure img {
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    -webkit-transform: translate3d(0,0,300px);
+    transform: translate3d(0,0,300px);
+}
+
+.popular-trip figure {
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.popular-trip figure:hover img {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.popular-trip figure figcaption {
+    padding: 10px 10px;
+    color: #999;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: #fff !important;
+}
+
+.popular-trip figure figcaption::before,
+.popular-trip figure figcaption::after { pointer-events: none }
+
+.popular-trip figure figcaption,
+.popular-trip figure figcaption > a {
+    position: absolute;
+    top: 120px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+}
+
+/* ===[ Anchor will cover the whole item by default ]=== */
+
+/* ===[ For some effects it will show as a button ]=== */
+
+.popular-trip figure figcaption > a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+
+.popular-trip figure h2 {
+    font-family: "Ubuntu", sans-serif;
+    word-spacing: -0.15em;
+    font-weight: 300 !important;
+    font-size: .9em !important;
+    width: 50%;
+    margin-top: 3px !important;
+    text-align: left;
+}
+
+.popular-trip span {
+    font-family: "Ubuntu", sans-serif;
+    color: #29abe5;
+    font-weight: bolder;
+    text-align: right;
+    display: inline;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.popular-trip span small { font-weight: lighter }
+
+.popular-trip figure h2,
+.popular-trip figure p { margin: 0 }
+
+.img-logo {
+    max-width: 100px;
+    text-align: center;
+}
+
+ul.social-links li {
+    font-size: 20px;
+    margin: 40px 0 20px 0;
+}
+
+ul.social-links li a {
+    font-family: "Ubuntu", sans-serif;
+    color: #333;
+}
+
+ul.social-links li a:hover {
+    color: #666;
+    text-decoration: none;
+}
+
+ul.footer-links li {
+    text-align: center;
+    border-right: 1px solid #999;
+    margin-right: 10px;
+    padding-right: 20px;
+}
+
+ul.footer-links li a, ul.footer-links li span {
+    font-family: "Ubuntu", sans-serif !important;
+    color: #666;
+}
+
+ul.footer-links li a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+ul.footer-links li:last-child { border-right: none }
+
+ul.pasajes li a {
+    font-family: "Ubuntu", sans-serif;
+    color: #666;
+}
+
+.bus h3 {
+    font-family: "Ubuntu", sans-serif;
+    color: #666;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: left;
+}
+
+*:focus { outline: 0 }
+
+.header.header-home { height: 100vh !important }
+
+.home-mask-white { height: 100% }
+
+.type-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+}
+
+.type-text a { text-decoration: none }
+
+#search-form-wrapper {
+    background: none;
+    padding: 20px 20px;
+    position: absolute;
+    top: 60%;
+    margin-top: -172px;
+    width: 860px;
+    left: 50%;
+    right: 50%;
+    margin-left: -430px;
+    margin-right: -430px;
+}
+
+#search-form-wrapper h1,
+h3 {
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search-form-wrapper h1 {
+    font-weight: bolder;
+    font-size: 40px !important;
+}
+
+#search-form-wrapper h3 {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+#search-form-wrapper  form { font-family: 'Ubuntu', sans-serif }
+
+#search-form-wrapper .btn-blue:hover,
+.btn-blue:focus {
+    color: #fff;
+    background: #2285D1;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    max-height: 900px !important;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.item.active { background-color: transparent }
+
+.ui-datepicker.ui-widget {
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    box-shadow: 0 1px 3px #252525;
+}
+
+.ui-datepicker { padding: 0 }
+
+.ui-datepicker-header {
+    border: none;
+    border-bottom: none;
+    background: #fff;
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.ui-datepicker-header .ui-state-hover {
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #666 !important;
+    font-size: 1.15em;
+}
+
+.ui-datepicker .ui-datepicker-title .ui-datepicker-month {
+    color: #333 !important;
+    font-weight: bold;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover,
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-prev {
+    top: 1.7em;
+    border: none;
+}
+
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-prev { color: #333 }
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover { color: #29aae3 }
+
+.ui-datepicker .ui-datepicker-prev { left: 10px }
+
+.ui-datepicker .ui-datepicker-next { right: 10px }
+
+.ui-datepicker table {
+    margin: 0;
+    border: 0;
+}
+
+.ui-datepicker th {
+    padding: 1em 0;
+    color: #999;
+    background: #fff;
+    font-size: 10px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border: none;
+    border-top: none;
+}
+
+.ui-datepicker table { background: #fff }
+
+.ui-datepicker table td {
+    border: none !important;
+    padding: 0;
+}
+
+td .ui-state-default {
+    background: #EEEEEE !important;
+    border: 1px solid #fff !important;
+    text-align: center !important;
+    padding: 2em 0;
+    margin: 0;
+    font-weight: normal;
+    color: #666 !important;
+    font-size: 12px;
+}
+
+td .ui-state-active,
+td .ui-state-hover {
+    background: #29aae3 !important;
+    text-align: center;
+    color: #fff !important;
+}
+
+.ui-state-disabled .ui-state-default {
+    background: #F8F8F8 !important;
+    color: #999 !important;
+}
+
+.ui-datepicker td a {
+    display: block;
+    padding: .2em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+    opacity: 1;
+    filter: Alpha(Opacity=1);
+    background-image: none;
+}
+
+.ui-datepicker-calendar .ui-state-hover {
+    background: #fff !important;
+    border: 1px solid #29aae3 !important;
+    text-align: center;
+    color: #29aae3 !important;
+}
+
+.ui-datepicker-calendar .ui-state-active,
+.ui-datepicker-calendar .ui-datepicker-current-day a {
+    background: #29aae3 !important;
+    text-align: center;
+    color: #fff !important;
+}
+
+#ui-datepicker-div {
+    background: #FFFFFF;
+    position: relative;
+    margin-top: 15px;
+    border-radius: 6px;
+}
+
+#ui-datepicker-div:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 15%;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent #ffffff transparent;
+    border-style: solid;
+    border-width: 10px;
+}
+
+#ui-datepicker-div.return:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 25%;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent #ffffff transparent;
+    border-style: solid;
+    border-width: 10px;
+}
+
+#ui-datepicker-div.return-mobile:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 65% !important;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent #ffffff transparent;
+    border-style: solid;
+    border-width: 10px;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default { border: none }
+
+.ui-state-default:focus,
+.ui-widget-content .ui-state-default:focus,
+.ui-widget-header .ui-state-default:focus {
+    border: none;
+    outline: none;
+}
+
+.ui-datepicker table td {
+    height: 30px !important;
+    width: 30px !important;
+    max-width: 30px !important;
+    overflow: hidden !important;
+}
+
+a.ui-state-default {
+    background: #fff !important;
+    height: 30px !important;
+    width: 30px !important;
+    overflow: hidden !important;
+    margin: 0 auto;
+    padding-top: 5px  !important;
+}
+
+a.ui-state-default.ui-state-active {
+    background: #1AC634 !important;
+    color: #fff !important;
+    border-radius: 100%;
+}
+
+td.ui-datepicker-unselectable.ui-state-disabled  span { background: #fff !important }
+
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    border: 1px solid #ccc !important;
+    border-radius: 100%;
+}
+
+table tr.even,
+table tr.alt,
+table tr:nth-of-type(even) { background: none }
+
+.ui-datepicker .ui-datepicker-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px !important;
+}
+
+td .ui-state-hover {
+    background: #dedede !important;
+    border: 1px solid #dedede !important;
+    text-align: center;
+    color: #333 !important;
+    border-radius: 100%;
+}
+
+select {
+    height: 48px !important;
+    min-height: 48px !important;
+    background-color: transparent;
+    width: 99% !important;
+    border: none;
+}
+
+input[type="text"] {
+    border-radius: 0px !important;
+    min-height: 48px !important;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 1px solid #dedede;
+    border-left: 0;
+    box-shadow: none;
+    padding-left: 10px;
+    width: 99%;
+}
+
+.selectize-input {
+    padding: 4px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+}
+
+.selectize-control.single .selectize-input:after { right: 10px !important }
+
+.selectize-input input { margin-top: 3px !important }
+
+.selectize-input  .item { margin-top: 4px !important }
+
+.selectize-control.single .selectize-input:after { right: 20px !important }
+
+.selectize-input input {
+    margin-top: -5px !important;
+    margin-left: 16px !important;
+}
+
+.selectize-input.items { }
+
+.selectize-input .item {
+    margin-top: 8px !important;
+    margin-left: 16px !important;
+}
+
+.selectize-control.single .selectize-input,
+.selectize-control.single .selectize-input input {
+    min-height: 48px !important;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+#open-calendar-return,
+#open-calendar-departure { cursor: pointer }
+
+.destination-search {
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    min-height: 50px;
+    max-height: 50px;
+}
+
+.destination-search  .switcheroo {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    top: 45%;
+    right: 66.58%;
+    margin-top: -12.5px;
+    margin-right: -12.5px;
+    cursor: pointer;
+    background-image: url(https://53cd8d70252dd54517d6-c706c137decf6f248ae663ae4fcfd4d4.ssl.cf1.rackcdn.com/img/switcheroo.png);
+    z-index: 10;
+}
+
+.np { padding: 0 !important }
+
+.nbr { border-right: 0 !important }
+
+.vh-calendar {
+    position: absolute;
+    top: 36%;
+    right: 10px;
+    color: #999;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+.clear-calendar {
+    opacity: 0;
+    color: #ff2929;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+.btn-search {
+    min-height: 48px;
+    border-radius: 0;
+    border: 0;
+    padding: 14px 12px;
+    background: #f3424c;
+}
+
+.btn-search:hover {
+    background: #ed0000;
+}
+
+
+.logo-container{
+    max-width: 100%;
+    min-height: 75px;
+    background: #fff;
+    text-align: center !important;
+    vertical-align: middle;
+}
+@media (min-width: 769px) { 
+    #search-form-wrapper {
+        width: 90%;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -172px;
+    }
+
+    .bus h2 { font-size: 35px !important }
+}
+
+@media (max-width: 768px) { 
+    #search-form-wrapper {
+        width: 90%;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -172px;
+    }
+
+    #search-form-wrapper h1 { font-size: 20px !important }
+
+    .bus h2 { font-size: 30px !important }
+}
+
+@media (max-width: 767px) { 
+    #search-form-wrapper h1 { font-size: 20px !important }
+
+    #search-form-wrapper {
+        width: 90%;
+        position: absolute;
+        top: 60%;
+        margin-top: -172px;
+    }
+}
+
+@media (max-width: 450px) { 
+    #search-form-wrapper h1 { font-size: 20px !important }
+
+    #search-form-wrapper {
+        width: 90%;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -192px;
+    }
+
+    .bus h2 { font-size: 24px !important }
+
+    .home-mask-white {
+        height: 100%;
+        background: none;
+    }
+}
+
+@media (max-width: 320px) { 
+    #search-form-wrapper h1 { font-size: 20px !important }
+
+    #search-form-wrapper {
+        width: 90%;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -192px;
+    }
+
+    .bus h2 { font-size: 22px !important }
+
+    .home-mask-white {
+        height: 100%;
+        background: none;
+    }
+}
+
+/* ===[ Medium devices (desktops, 992px and up) ]=== */
+@media (min-width: 992px) { 
+    .chile,
+    .colombia,
+    .peru { height: 800px }
+
+    #search-form-wrapper { width: 860px !important }
+}
+
+@media only screen and (max-width: 40em) { 
+    .vh-calendar { right: 20px !important }
+
+    .np { padding: 5px 5px !important }
+
+    .selectize-control.single .selectize-input {
+        border: 1px solid  #d0d0d0 !important;
+        margin-bottom: 5px;
+    }
+
+    .destination-search {
+        background: transparent !important;
+        border: 0 !important;
+    }
+
+    .vh-calendar { right: 20px !important }
+}
