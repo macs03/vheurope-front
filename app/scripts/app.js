@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('vhEurope', [
     'ngAnimate',
     'ngCookies',
@@ -17,9 +17,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'selectize',
-    'datePicker'
-  ])
-  .config(function ($routeProvider) {
+    '720kb.datepicker'
+  ]);
+  
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/index', {
         templateUrl: 'views/main.html',
@@ -40,3 +41,5 @@ angular
         redirectTo: '/'
       });
   });
+
+

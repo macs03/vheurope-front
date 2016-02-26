@@ -20,6 +20,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
+      'bower_components/modernizr/modernizr.js',
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
@@ -33,10 +34,10 @@ module.exports = function(config) {
       'bower_components/microplugin/src/microplugin.js',
       'bower_components/selectize/dist/js/selectize.js',
       'bower_components/angular-selectize2/dist/angular-selectize.js',
-      'bower_components/moment/moment.js',
-      'bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
-      'bower_components/angular-datepicker/dist/angular-datepicker.js',
-      'bower_components/angular-moment/angular-moment.js',
+      'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',
+      'bower_components/momentjs/moment.js',
+      'bower_components/pikaday/pikaday.js',
+      'bower_components/pikaday-responsive/dist/pikaday-responsive.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
