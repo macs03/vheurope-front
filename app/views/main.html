@@ -1,23 +1,386 @@
-<div class="jumbotron">
-  <h1>'HOla, 'Mundo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div class="header header-home row-fluid chile spain">
+    <div class="home-mask-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"></div>
+                    <div id="search-form-wrapper">
+                        <h1>VIAJA INTELIGENTE CON VOYHOY</h1>
+                        <h3 class="hidden-xs">La manera más facil de comprar y comparar pasajes de bus</h3>
+                        <form role="form" ng-submit="searchTrips()"> 
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 ">
+                                    <div class="row destination-search">
+                                        <div class="col-md-4 col-xs-12 np">
+                                            <selectize config='myConfig' options='myOptions' ng-model="origin"></selectize>
+                                        </div>
+                                        <div class="switcheroo hidden-xs"></div>
+                                        <div class="col-md-3 col-xs-12  np">
+                                            <selectize config='myConfig' options='myOptions' ng-model="destination"></selectize>
+                                        </div>
+                                        <div class="col-md-2 col-xs-6  np">
+                                            <input date-time id="departure" type="text" placeholder="Ida"  format="DD-MM-YYYY" ng-model="dates.departureDate" min-date="dates.minDate" max-date="dates.maxDate" view="date" min-view="date">
+                                            
+                                            <span class="fa fa-calendar departure-calendar vh-calendar"></span>
+                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                        </div>
+                                        <div class="col-md-2 col-xs-6 np">
+                                            <input date-time id="arrival" type="text"  class="" placeholder="Vuelta"  ng-model="dates.arrivalDate" min-date="minDate" max-date="maxDate" view="date" min-view="date" format="DD-MM-YYYY">
+
+                                            <span class="fa fa-calendar return-calendar vh-calendar"></span>
+                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                        </div>
+                                        <div class="col-md-1 col-xs-12 np">
+                                            <button class="btn btn-block btn-success btn-search hidden-xs"><i class="fa fa-search"></i></button>
+                                            <button class="btn btn-block btn-success btn-search visible-xs" >Buscar</button>  
+                                        </div>
+                                    </div> <!-- end .row -->
+                                </div> <!-- End Destination Search -->
+                            </div>
+                         </form>
+                    </div>
+                </div>
+    
+        </div>
+    </div>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+
+
+
+
+
+<div class="container hidden-xs" id="popular-trips">
+    <h2>Encuentra tu pasaje de bus en España</h2>
+    <div class="row-fluid ">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/barcelona.jpg" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Barcelona </h2>
+                        <span><small>desde</small> $8.700</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/bilbao.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Bilbao </h2>
+                        <span><small>desde</small> $7.900</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/madrid.jpg" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Madrid</h2>
+                        <span><small>desde</small> $8.900</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/malaga.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Malaga</h2>
+                        <span><small>desde</small> $9.700</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/salamanca.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Salamanca</h2>
+                        <span><small>desde</small> $5.700</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/sevilla.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Sevilla</h2>
+                        <span><small>desde</small> $6.100</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/valencia.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Valencia</h2>
+                        <span><small>desde</small> $9.900</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="popular-trip">
+                <figure>
+                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/zaragoza.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <figcaption>
+                        <h2>Zaragoza</h2>
+                        <span><small>desde</small> $4.700</span>
+                        <a href="#">View more</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cta" class="hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container-text">
+                    <h3>Compra desde tu</h3>
+                    <h1>CELULAR</h1>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="iphone_holder">
+                    <div class="iphone_inner ">
+                        <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/mobile-home.jpg" alt="" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="bus row-fluid hidden-xs">
+            <div class="container">
+                <h3>Empresas de buses en España</h3>
+                <div class="row wow fadeInDown">
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                            <a href="http://www.voyhoy.com/buses/empresas/buses-atacama-vip/" target="_blank" class="bw">
+                                <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/AGREDA.png" alt="Atacama Vip Empresa de Buses Chile" title="Atacama Vip Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-bio-bio-jota-ewert/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/ALSA.png" alt="Bio Bio Empresa de Buses Chile" title="Bio Bio Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-cidher/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/DAIBUS.png" alt="Cidher   Empresa de Buses Chile" title="Cidher Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-ciktur/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/DAICO.png" alt="Ciktur Empresa de Buses Chile" title="Ciktur Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-etm/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/DAMAS.png" alt="ETM Empresa de Buses Chile" title="ETM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-jac/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/HIFE.png" alt="Jac Empresa de Buses Chile" title="Jac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row wow fadeInDown">
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-jm/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/Linebus.png" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-libac/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/LYCAR.png" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-los-conquistadores/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/subus.png" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-los-corsarios/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/TGCOMES.png" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-los-libertadores/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/THERPASA.png" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="logo-container">
+                        <a href="http://www.voyhoy.com/buses/empresas/buses-romani/" target="_blank" class="bw">
+                            <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/movelia_logos/AU.png" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><small class="pull-right">Y muchas más</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="bus row-fluid hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Buscar boleto</a></li>
+                    <li><a href="#">Opinión Viajes en Autobús</a></li>
+                    <li><a href="#">Contáctenos</a></li>
+                    <li><a href="#">Acerca de nosotros</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Rutas de Autobús</a></li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'la-serena',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Santiago <g:message code="home.popular_searches.to" /> La Serena
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'pichilemu',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Antofagasta <g:message code="home.popular_searches.to" /> Copiapo
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'coquimbo',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Arica <g:message code="home.popular_searches.to" /> Santiago
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'osorno',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Santiago <g:message code="home.popular_searches.to" /> Calama
+                        </g:link>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Terminales de Bus</a></li>
+                    <li><a href="#">Estación Central</a></li>
+                    <li><a href="#">San Borja</a></li>
+                    <li><a href="#">Los Heroes</a></li>
+                    <li><a href="#">Alameda</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Ciudad Guías de Vieja</a></li>
+                    <li><a href="#">Booking</a></li>
+                    <li><a href="#">Denomades</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container hidden-xs">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="list-inline social-links">
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="list-inline footer-links">
+                <li><a href="#">Terminos y Condiciones</a></li>
+                <li><a href="#">Aviso de Privacidad</a></li>
+                <li><span>2016 Voyhoy. Todos los derechos reservados.</span></li>
+            </ul>
+        </div>
+    </div>
 </div>
