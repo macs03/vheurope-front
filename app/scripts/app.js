@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'selectize',
+    'datePicker'
   ])
   .config(function ($routeProvider) {
     $routeProvider
