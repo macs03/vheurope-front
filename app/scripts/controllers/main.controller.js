@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the vhEurope
  */
-
-app.controller('MainController', function ($scope) {
+angular.module('vhEurope')
+  .controller('MainController', function ($scope,utilityService) {
   	$scope.origin = 0;
   	$scope.destination = 0;
 
@@ -32,7 +32,7 @@ app.controller('MainController', function ($scope) {
 
 	  $scope.dates = {
         departureDate: '26-02-2016',
-        arrivalDate: '', 
+        arrivalDate: '',
         minDate: '02-26-2016',
         maxDate: '03-26-2016'
       };
@@ -43,12 +43,13 @@ app.controller('MainController', function ($scope) {
     	}else{
     		console.log($scope.origin);
     		console.log($scope.destination);
-    		console.log($scope.dates.departureDate);
-    		console.log($scope.dates.arrivalDate);
+    		console.log($scope.dates.departure);
+            console.log($scope.dates.arrivalDate);
+            utilityService.setData($scope.origin,$scope.destination,$scope.dates.departure,$scope.dates.departure);
     	}
-    	
+
     };
-    
+
    	$('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');
   	var dateObject = pikadayResponsive($('#date'),{
     format: "DD-MM-YYYY",
@@ -64,5 +65,3 @@ app.controller('MainController', function ($scope) {
     }
 });
   });
-
-

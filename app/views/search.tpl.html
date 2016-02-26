@@ -8,7 +8,7 @@
       <input type="submit" name="name" value="buscar">
   </form>
   <span ng-if="search.searching">Buscando.....</span>
-  <span ng-if="search.error">faltan datos para la busqueda!!!</span>
+  <span ng-if="search.error">{{search.msgError}}</span>
   <ul>
       <li ng-repeat="trip in search.trips.viajesDirectos" class="row">
           <div class="col-md-3">
