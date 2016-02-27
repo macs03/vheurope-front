@@ -1,13 +1,11 @@
-
 'use strict';
 
-
 app.directive('vhdatepicker', function ($parse) {
-      return {
-         restrict: "E",
-         replace: true,
-         transclude: false,
-         compile: function (element, attrs) {
+    return {
+        restrict: "E",
+        replace: true,
+        transclude: false,
+        compile: function (element, attrs) {
             var modelAccessor = $parse(attrs.ngModel);
 
             var html = "<input type='text' id='" + attrs.id + "' >" +
@@ -16,41 +14,68 @@ app.directive('vhdatepicker', function ($parse) {
             var newElem = $(html);
             element.replaceWith(newElem);
 
-           
-
             return function (scope, element, attrs, controller) {
-              console.log(scope);
-              console.log(element);
-              console.log(attrs);
-              console.log(controller);
 
-                  var processChange = function () {
-                     var date = new Date(element.datepicker("getDate"));
+                
 
-                     scope.$apply(function (scope) {
+                var el = element[0];
+                var minDate = null;
+                var maxDate = null;
+                var placeholder = "Selecciona un día";
+                var dateFormat = "DD-MM-YYYY";
+
+                //Inicializo la configuracion del detapicker en funcion de los atributos
+                if (attrs.hasOwnProperty('minDate')){
+                    minDate = attrs.minDate;
+                }
+
+                if (attrs.hasOwnProperty('maxDate')){
+                    maxDate = attrs.maxDate;
+                }
+
+                if (attrs.hasOwnProperty('placeholder')){
+                    placeholder = attrs.placeholder;
+                }
+
+                if (attrs.hasOwnProperty('dateFormat')){
+                    dateFormat = attrs.dateFormat;
+                }
+
+                var processChange = function (dateObject) {
+                    var date = new Date(dateObject.value);
+                    scope.$apply(function (scope) {
                         // Change bound variable
-                        modelAccessor.assign(scope, date);
-                     });
-                  };
+                        modelAccessor.assign(scope, moment(dateObject.value).format(dateFormat));
+                    });
+                };
 
-                  var dateObject = pikadayResponsive(element[0],{
-                   format: "DD-MM-YYYY",
-                   outputFormat: "x",
-                   checkIfNativeDate: function() {
+                var dateObject = pikadayResponsive(el,{
+                    format: dateFormat,
+                    outputFormat: "x",
+                    checkIfNativeDate: function() {
                        // return true if native date field should be used
-                   },
-                   placeholder: "Selecciona una fecha",
-                   classes: "",
-                   dayOffset: 0,
-                   pikadayOptions: {
-                     minDate: new Date()
-                   }
-               });
-               
+                    },
+                    placeholder: placeholder,
+                    classes: "",
+                    dayOffset: 0,
+                    pikadayOptions: {
+                        minDate: new Date(minDate),
+                        maxDate: new Date(maxDate),
+                    }
+                });
+
+                $(el).on("change-date", function(e, dateObject) {
+                    processChange(dateObject);
+                });
+
+                if (attrs.setDate == "true"){
+                dateObject.setDate(new Date())
+
+                }  
 
                scope.$watch(modelAccessor, function (val) {
                   var date = new Date(val);
-                 // element.datepicker("setDate", date);
+                  dateObject.setDate(date)
                });
 
             };
