@@ -13,15 +13,16 @@ angular.module('vhEurope')
   	$scope.destination = 0;
 
 	$scope.myOptions = [
-  		{id: 1, title: 'Spectrometer'},
-  		{id: 2, title: 'Star Chart'},
-  		{id: 3, title: 'Laser Pointer'}
+  		{id: 1, city: 'Barcelona', country: 'España', label: 'Barcelona, España'},
+  		{id: 1, city: 'Madrid', country: 'España', label: 'Madrid, España'},
+      {id: 1, city: 'Bercena', country: 'España', label: 'Barcena, España'},
+
 	];
 
 	$scope.myConfig = {
   		create: true,
-  		valueField: 'id',
-  		labelField: 'title',
+  		valueField: 'city',
+  		labelField: 'label',
   		delimiter: '|',
   		placeholder: 'Pick something',
   		onInitialize: function(selectize){
@@ -31,37 +32,23 @@ angular.module('vhEurope')
 	};
 
 	  $scope.dates = {
-        departureDate: '26-02-2016',
-        arrivalDate: '',
-        minDate: '02-26-2016',
-        maxDate: '03-26-2016'
+        departureDate: moment().format('DD/MM/YYYY'),
+        returnDate: '',
+        minDate: moment().format('MM-DD-YYYY'),
+        maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
       };
 
 	$scope.searchTrips = function () {
-    	if($scope.origin === 0 || $scope.destination === 0){
-    		console.log('Debes seleccionar las ciudades de ida y vuelta');
-    	}else{
-    		console.log($scope.origin);
-    		console.log($scope.destination);
-    		console.log($scope.dates.departure);
-            console.log($scope.dates.arrivalDate);
-            utilityService.setData($scope.origin,$scope.destination,$scope.dates.departure,$scope.dates.departure);
-    	}
+    	
+    	console.log($scope.origin);
+    	console.log($scope.destination);
+    	console.log('departure: '+$scope.dates.departureDate);
+      console.log('returns: '+$scope.dates.returnDate);
+      utilityService.setData($scope.origin, $scope.destination, $scope.dates.departureDate, $scope.dates.returnDate);
+    	
 
     };
 
    	$('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');
-  	var dateObject = pikadayResponsive($('#date'),{
-    format: "DD-MM-YYYY",
-    outputFormat: "x",
-    checkIfNativeDate: function() {
-        // return true if native date field should be used
-    },
-    placeholder: "Selecciona una fecha",
-    classes: "",
-    dayOffset: 0,
-    pikadayOptions: {
-    	minDate: new Date()
-    }
-});
+  	
   });
