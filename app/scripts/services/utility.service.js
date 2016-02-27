@@ -14,11 +14,11 @@ angular.module('vhEurope')
 
   function utilityService() {
     return {
-        self:this,
-        origin:"",
-        destiny:"",
-        departure:"",
-        returns:"",
+        self: this,
+        origin: "",
+        destination: "",
+        departure: "",
+        returns: "",
         passengers: "",
         getData: getData,
         setData: setData
@@ -27,17 +27,17 @@ angular.module('vhEurope')
     function getData(){
         return {
             origin:self.origin,
-            destiny:self.destiny,
+            destination:self.destination,
             departure:self.departure,
             returns:self.returns,
             passengers:self.passengers
         }
     }
 
-    function setData(origin,destiny,departure,returns){
+    function setData(origin, destination, departure, returns){
         self.origin = origin;
-        self.destiny = destiny;
-        self.departure = "05/03/2016"//departure;
+        self.destination = destination;
+        self.departure = departure;
         self.returns = returns;
         self.passengers = "1";
     }
