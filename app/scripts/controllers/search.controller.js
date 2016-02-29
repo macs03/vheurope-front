@@ -25,7 +25,7 @@ angular.module('vhEurope')
             vm.searching = true;
             vm.error = false;
             travelsFactory
-                .getAll(indexParams.origin,indexParams.destiny,indexParams.departure,indexParams.returns,indexParams.passengers)
+                .getAll(indexParams.origin,indexParams.destination,indexParams.departure,indexParams.returns,indexParams.passengers)
                 .then((data)=>{
                     vm.trips = data;
                     vm.searching = false;

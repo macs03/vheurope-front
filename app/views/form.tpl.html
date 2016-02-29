@@ -1,4 +1,4 @@
-<form role="form" ng-submit="searchTrips()" >
+<form role="form" >
     <div class="row">
         <div class="col-xs-12 col-md-12 ">
             <div class="row destination-search">
@@ -20,8 +20,9 @@
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-                    <button  class="btn btn-block btn-success btn-search hidden-xs"><i class="fa fa-search"></i></button>
-                    <button  class="btn btn-block btn-success btn-search visible-xs" >Buscar</button>
+                    <a href="#/search" class="btn btn-block btn-success btn-search hidden-xs" ng-click="searchTrips()"><i class="fa fa-search"></i></a>
+                    <a href="#/search" class="btn btn-block btn-success btn-search visible-xs" ng-click="searchTrips()" >Buscar</a>
+
                 </div>
             </div> <!-- end .row -->
         </div> <!-- End Destination Search -->
