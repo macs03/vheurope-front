@@ -27,11 +27,11 @@ angular.module('vhEurope')
                 method:'GET',
                 url:'http://localhost:8080/vheurope-api/v1/trips',
                 params: {
-                    salida:origin,
-                    destino:destiny,
-                    fechaIda:departureFormated,
-                    fechaVuelta:returnsFormated,
-                    personas:passengers
+                    departure:origin,
+                    arrival:destiny,
+                    departureDate:departureFormated,
+                    returnDate:returnsFormated,
+                    totalPeople:passengers
                 },
 
             })

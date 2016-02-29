@@ -10,7 +10,7 @@
   <span ng-if="search.searching">Buscando.....</span>
   <span ng-if="search.error">{{search.msgError}}</span>
   <ul>
-      <li ng-repeat="trip in search.trips.viajesDirectos" class="row">
+      <li ng-repeat="trip in search.trips.directDepartureTrips" class="row">
           <div class="col-md-3">
               <strong>Compañia: </strong>
               <span>{{trip.companyName}}</span>
