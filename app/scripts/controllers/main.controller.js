@@ -49,7 +49,7 @@ angular.module('vhEurope')
     	console.log($scope.destination);
     	console.log('departure: '+$scope.dates.departureDate);
         console.log('returns: '+$scope.dates.returnDate);
-        utilityService.setData($scope.origin, $scope.destination, $scope.dates.departureDate, $scope.dates.returnDate);
+        utilityService.setData($scope.origin,"España", $scope.destination,"España", $scope.dates.departureDate, $scope.dates.returnDate);
 
 
     };
