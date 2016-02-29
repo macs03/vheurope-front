@@ -7,7 +7,10 @@
       <input type="number" name="name" value="" ng-model="search.pasajeros">
       <input type="submit" name="name" value="buscar">
   </form> -->
-  <form-directive></form-directive>
+  <div class="">
+        <form-directive></form-directive>
+  </div>
+
   <span ng-if="search.searching">Buscando.....</span>
   <span ng-if="search.error">{{search.msgError}}</span>
   <ul>
