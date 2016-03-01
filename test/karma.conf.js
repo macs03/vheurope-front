@@ -38,6 +38,7 @@ module.exports = function(config) {
       'bower_components/momentjs/moment.js',
       'bower_components/pikaday/pikaday.js',
       'bower_components/pikaday-responsive/dist/pikaday-responsive.js',
+      'bower_components/angularjs-slider/dist/rzslider.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
