@@ -57,7 +57,9 @@ angular
                 console.log("error cities");
                 vm.good = false;
             } else {
-                if (vm.dates.returnDate) {
+                if(vm.dates.returnDate=="Invalid date") vm.dates.returnDate=""
+
+                if (vm.dates.returnDate != "" && vm.dates.returnDate!="Invalid date") {
                     var date1 = vm.dates.departureDate;
                     var date2 = vm.dates.returnDate;
                     var vD1 = date1.split("/")
