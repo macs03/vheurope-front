@@ -17,7 +17,8 @@ var app = angular
     'ngSanitize',
     'ngTouch',
     'selectize',
-    '720kb.datepicker'
+    '720kb.datepicker',
+    'rzModule'
   ]);
   
   app.config(function ($routeProvider) {
