@@ -1,5 +1,4 @@
- 
-    <div id="results-container">
+<div id="results-container">
     <!-- Start Hero -->
     <div class="hero" id="search-page">
         <div class="hero-img">
@@ -9,35 +8,14 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <div class="row destination-search">
-                                <div class="col-md-4 col-xs-12 np">
-                                    <input class="${origenpais}" class="form-control" name="origin" id="origin" type="hidden" value="${origen}" data-city="${origen}" data-country="${origenpais}">
-                                    <select name="origen" id="origen"></select>
-                                </div>
-                                
-                                <div class="switcheroo hidden-xs"></div>
-                                
-                                <div class="col-md-4 col-xs-12 np">
-                                    <input class="${destinopais}" name="destination" id="destination" type="hidden" value="${destino}" data-city="${destino}" data-country="${destinopais}">
-                                    <select name="destino" id="destino"></select>
-                                </div>
-                                
-                                <div class="col-md-2 col-xs-6 np">
-                                    <input name="date" id="date" type="text" value="${date}" class="nbr" placeholder="" >
-                                    <span class="fa fa-calendar departure-calendar vh-calendar"></span>
-                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
-                                    <input name="viaje" id="viaje" type="hidden" value="${roundTrip}">
-                                </div>
-                                
-                                <div class="col-md-2 col-xs-6 np">
-                                    <input name="date-return" id="date-return" type="text" value="" class="" placeholder="" style="padding-top: 10px;" >
-                                    <span class="fa fa-calendar return-calendar vh-calendar"></span>
-                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
-                                </div>
-                            </div> 
-                        </div> 
+                                <form-directive></form-directive>
+                            </div>
+                        </div>
+                        <div class="bg-info col-xs-12 col-md-12" ng-if="search.searching"><span>Buscando.....</span></div>
+                        <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div>
                     </div> <!-- end .row-->
 
-                    <div class="row header hidden-xs">
+                    <div class="row header hidden-xs" ng-show="search.results">
                         <div class="col-md-3 col-xs-5 sort text-center">
                             <span>Ordenar por:</span>
                         </div>
@@ -133,9 +111,9 @@
 
                     <div class="filter-module">
                         <ul class="list-unstyled">
-                            <li>
-                                <input class="seatType" id="1" data="1" type="checkbox" ${checked} name="semi-cama" data-value="1">
-                                <label for="semi-cama" class="capitalize" >Semi-Cama</label>
+                            <li ng-repeat="typeSeat in search.trips.typeServices">
+                                <input class="seatType" id="{{typeSeat}}" data="{{typeSeat}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}">
+                                <label for="{{typeSeat}}" class="capitalize" >{{typeSeat}}</label>
                             </li>
                         </ul>
                     </div>
@@ -150,9 +128,9 @@
 
                     <div class="filter-module">
                         <ul class="list-unstyled">
-                            <li>
-                                <input id="pullman" type="checkbox"  name="e2" data="1" class="company">
-                                <label for="pullman" class="capitalize" >Pullman</label>
+                            <li ng-repeat="company in search.trips.companies">
+                                <input id="{{company}}" type="checkbox"  name="{{company}}" data="{{company}}" class="company">
+                                <label for="{{company}}" class="capitalize" >{{company}}</label>
                             </li>
                         </ul>
                     </div>

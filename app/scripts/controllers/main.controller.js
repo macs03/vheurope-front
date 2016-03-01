@@ -21,7 +21,7 @@ angular
       	vm.destination = 0;
     	vm.myOptions = [];
     	vm.myConfig = {
-      		create: true,
+      		//create: true,
       		valueField: 'label',
       		labelField: 'label',
             searchField: ['label'],

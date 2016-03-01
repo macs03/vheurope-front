@@ -10,7 +10,7 @@
 angular
     .module('vhEurope')
     .controller('SearchController',SearchController);
-    
+
     SearchController.$inject =['travelsFactory','utilityService','$scope','$interval'];
 
     function SearchController (travelsFactory,utilityService,$scope,$interval) {
@@ -18,6 +18,7 @@ angular
         vm.searchTrip = searchTrip;
         vm.searching = false;
         vm.error = false;
+
         var indexParams = utilityService.getData();
         var search = $interval(function () {
             indexParams = utilityService.getData()
@@ -26,6 +27,7 @@ angular
 
         function searchTrip() {
             if(indexParams.origin){
+                vm.results = false;
                 vm.trips = [];
                 vm.searching = true;
                 vm.error = false;
@@ -34,6 +36,7 @@ angular
                     .then((data)=>{
                         vm.trips = data;
                         vm.searching = false;
+                        vm.results = true;
                     })
                     .catch((err)=>{
                         console.log(err);
