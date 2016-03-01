@@ -95,10 +95,13 @@
 
                     <div class="filter-module">
                         <input type="hidden" id="mount" readonly>
-                        <div class="small-font" id="price-container">
-                            <div class="right slider-price-to">$0.00 <small>CPL</small></div>
+                        <div>
+                            <rzslider
+                                rz-slider-model="priceSlider.value"
+                                rz-slider-options="priceSlider.options">
+                            </rzslider>
                         </div>
-                        <div id="slider-range-price" style=""></div>
+
                     </div>
                     <!-- End Filter Price -->
 
