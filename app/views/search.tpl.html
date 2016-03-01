@@ -1,39 +1,355 @@
-<div class="jumbotron">
-  <!-- <form ng-submit="search.searchTrip()">
-      <input type="text" name="name" value="" placeholder="origin" ng-model="search.origen">
-      <input type="text" name="name" value="" placeholder="destino" ng-model="search.destino">
-      <input type="date" name="name" value="" ng-model="search.ida">
-      <input type="date" name="name" value="" ng-model="search.vuelta">
-      <input type="number" name="name" value="" ng-model="search.pasajeros">
-      <input type="submit" name="name" value="buscar">
-  </form> -->
-  <div class="">
-        <form-directive></form-directive>
-  </div>
+ 
+    <div id="results-container">
+    <!-- Start Hero -->
+    <div class="hero" id="search-page">
+        <div class="hero-img">
+            <div class="hero-content">
+                <!-- Start Destination Search -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="row destination-search">
+                                <div class="col-md-4 col-xs-12 np">
+                                    <input class="${origenpais}" class="form-control" name="origin" id="origin" type="hidden" value="${origen}" data-city="${origen}" data-country="${origenpais}">
+                                    <select name="origen" id="origen"></select>
+                                </div>
+                                
+                                <div class="switcheroo hidden-xs"></div>
+                                
+                                <div class="col-md-4 col-xs-12 np">
+                                    <input class="${destinopais}" name="destination" id="destination" type="hidden" value="${destino}" data-city="${destino}" data-country="${destinopais}">
+                                    <select name="destino" id="destino"></select>
+                                </div>
+                                
+                                <div class="col-md-2 col-xs-6 np">
+                                    <input name="date" id="date" type="text" value="${date}" class="nbr" placeholder="" >
+                                    <span class="fa fa-calendar departure-calendar vh-calendar"></span>
+                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                    <input name="viaje" id="viaje" type="hidden" value="${roundTrip}">
+                                </div>
+                                
+                                <div class="col-md-2 col-xs-6 np">
+                                    <input name="date-return" id="date-return" type="text" value="" class="" placeholder="" style="padding-top: 10px;" >
+                                    <span class="fa fa-calendar return-calendar vh-calendar"></span>
+                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> <!-- end .row-->
 
-  <span ng-if="search.searching">Buscando.....</span>
-  <span ng-if="search.error">{{search.msgError}}</span>
-  <ul>
-      <li ng-repeat="trip in search.trips.directDepartureTrips" class="row">
-          <div class="col-md-3">
-              <strong>Compañia: </strong>
-              <span>{{trip.companyName}}</span>
-          </div>
-          <div class="col-md-2">
-              <strong>Salida: </strong>
-              <span>{{trip.salida}}</span>
-          </div>
-          <div class="col-md-2">
-              <strong>Llegada: </strong>
-              <span>{{trip.llegada}}</span>
-          </div>
-          <div class="col-md-2">
-              <strong>Precio: </strong>
-              <span>{{trip.price}}</span>
-          </div>
-          <div class="col-md-2">
-              <img ng-src="{{trip.logo}}" alt="{{trip.companyName}}" />
-          </div>
-      </li>
-  </ul>
+                    <div class="row header hidden-xs">
+                        <div class="col-md-3 col-xs-5 sort text-center">
+                            <span>Ordenar por:</span>
+                        </div>
+                        <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company">
+                            <span style="margin-left:6px;">Empresa</span>
+                        </div>
+                        <div class="col-md-3 col-xs-3 sort asc sort-trips" data-sort="departure">Horario</div>
+                        <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price">
+                            Precio 
+                        </div>
+                        <div class="col-md-2 col-xs-4"></div>
+                    </div> <!-- end .row -->
+                </div> <!-- end container-->
+            </div> <!-- end .hero-content-->
+        </div> <!-- end .hero-img-->
+    </div> <!-- end .hero -->
+    
+    <!-- Start Main content -->
+    <div class="container">
+        <div class="row container-responsive" id="ida-results">
+            <!-- Start Filter -->
+            <div class="col-xs-12 col-md-3 no-margin no-padding">
+                <div class="filter-btn-content visible-xs">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <span class="text-muted smallest-font">12 resultados</span>   
+                        </div>
+                        <div class="col-xs-5">
+                            <button class="btn btn-block btn-xs theme-gray outline" id="filtros"> FILTROS</button>
+                        </div>
+                    </div>
+                </div> <!-- end .filter-btn-content -->
+                <br>
+                <div class="filter hidden-xs">
+                    <div class="filter-title visible-xs">
+                        <i class="fa fa-filter"></i> Filtros 
+                        <i class="fa fa-times right hide-filters" style="font-weigth: 300; margin-top: 4px;"></i>
+                    </div>
+                    
+                    <div id="map_canvas" class="show-for-medium-up"></div>
+                    <div class="trip-info show-for-medium-up">
+                        <span class="title"><i class="fa fa-info-circle"></i> INFORMACIÓN DEL VIAJE</span><br>
+                        <span>Distancia:</span> <span class="content">234 Km.</span><br>
+                        <span>Duración:</span> <span class="content">3h 34min.</span>
+                    </div>
+                </div>
+
+                <div class="filter hidden-xs">
+                    <div class="filter-header">
+                        <h3 class="pull-left">FILTROS</h3>
+                        <span class="smallest-font text-muted pull-right">12 resultados</span>
+                    </div>
+                    
+                    <!-- Start Filter Time -->
+                    <div class="contrast-title">
+                        <h3>
+                           HORA DE SALIDA
+                        </h3>
+                    </div>
+
+                    <div class="filter-module">
+                        <input type="hidden" id="amount" readonly>
+                        <div class="small-font" id="hour-container">
+                            <div class="left slider-time-from">0:00 <span class="text-muted smallest-font">HRS</span></div>
+                            <div class="right slider-time-to">24:00 <span class="text-muted smallest-font">HRS</span></div>
+                        </div>
+                        <div id="slider-range" style=""></div>
+                    </div>
+                    <!-- End Filter Time -->
+
+                    <!-- Start Filter Price -->
+                    <div class="contrast-title">
+                        <h3>
+                            PRECIO
+                        </h3>
+                    </div>
+
+                    <div class="filter-module">
+                        <input type="hidden" id="mount" readonly>
+                        <div class="small-font" id="price-container">
+                            <div class="right slider-price-to">$0.00 <small>CPL</small></div>
+                        </div>
+                        <div id="slider-range-price" style=""></div>
+                    </div>
+                    <!-- End Filter Price -->
+
+                    <!-- Start Filter Seats -->
+                    <div class="contrast-title">
+                        <h3>
+                            TIPO DE ASIENTO
+                        </h3>
+                    </div>
+
+                    <div class="filter-module">
+                        <ul class="list-unstyled">
+                            <li>
+                                <input class="seatType" id="1" data="1" type="checkbox" ${checked} name="semi-cama" data-value="1">
+                                <label for="semi-cama" class="capitalize" >Semi-Cama</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Filter Seats -->
+
+                    <!-- Start Filter Companies -->
+                    <div class="contrast-title">
+                        <h3>
+                            EMPRESAS
+                        </h3>
+                    </div>
+
+                    <div class="filter-module">
+                        <ul class="list-unstyled">
+                            <li>
+                                <input id="pullman" type="checkbox"  name="e2" data="1" class="company">
+                                <label for="pullman" class="capitalize" >Pullman</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Filter Companies -->
+                    <!-- Btn Close Filters -->
+                    <button class="btn btn-block hide-filters button theme-blue visible-xs"></i> FILTROS</button>
+                </div>
+                <!-- End Filter -->
+            </div>
+            <!-- End colums -->
+            
+
+            <!-- Start Results -->
+            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:0">
+                <div id="single-results">
+                    <h5 class="hidden-xs">
+                        Ida: 12 viajes <span class="capitalize trip-date"></span>
+                    </h5>
+
+                    <div class="new-results" id="new-results-tickeables">
+                        <div class="results list" id="trips_tickeables" >
+                            <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
+
+                                <div class="col-md-4 col-xs-4 c-departure">
+                                    <strong>23:00</strong>
+                                    <small class="smallest-font text-fucsia">Barcelona</small>
+                                    <br>
+                                    <small class="text-muted-dark smallest-font hidden-xs capitalize"  style="display:block;">Terminal Barajas</small>
+                                </div>
+                              
+                                <div class="col-xs-4 c-approximate-time visible-xs nbt text-center" style="border-top: 1px solid #bbb;">
+                                    <p class="approximate-time text-muted smallest-font">3h 23min</p>
+                                </div>
+
+                                <div class="col-md-4 col-xs-4 c-arrival">
+                                    <strong>12:00</strong>
+                                    <small class="smallest-font dbm text-fucsia">Madrid</small>
+                                    <small class="text-muted-dark smallest-font hidden-xs capitalize" style="display:block;">Terminal La Vuelta</small>
+                                </div>
+                            
+                                <div class="col-md-2 col-xs-4 c-seat-type">
+                                    <strong>$12.000</strong>
+                                    <small class="text-muted smallest-font hidden-xs" style="display:block;">Semi-Cama</small>
+                                </div>
+                            
+                                <div class="col-md-2 col-xs-4 c-price">
+                                    <a href="#" class="btn btn-block theme-fucsia addTicket-button">COMPRAR</a>
+                                    <span class="hidden sort-price">12.000</span>
+                                    <span class="hidden sort-departure">1200</span>
+                                    <span class="hidden sort-company">pullman</span>
+                                </div>
+
+                                <div class="col-md-4 col-xs-4 c-company nbt" style="border-top: 1px solid #bbb;">
+                                    <small class="text-muted smallest-font company">Pullman Bus</small>
+                                    <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title="Pullman Bus" class="logo_small hidden-xs float-right">
+                                </div>
+
+                                <div class="col-md-8 col-xs-3 c-approximate-time hidden-xs nbt" style="border-top: 1px solid #bbb;">
+                                    <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> 3h 23min</p>
+                                </div>
+                            </div> <!-- end .row .result-->
+                        </div>  <!-- end .results-->
+                    </div>   <!-- end .new-results -->
+                </div> <!-- end #single-results -->
+
+                <div class="row  container-responsive" id="ida-vuelta-results">
+                    <div class="col-xs-12 col-md-6 conttainer-results">
+                        <div class="new-results-selected">
+                            <div class="results" id="selected-trip-container" >
+                            </div>
+                        </div>
+                        <h5 class="hidden-xs">
+                            <span class="way">Ida</span>: 12 resultados para el jueves, 25 de marzo<span class="capitalize trip-date"></span>
+                        </h5>
+            
+                        <div class="new-results">
+                            <div class="results list" >
+                                <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
+                        
+                                    <div class="col-md-5 col-xs-4 c-departure">
+                                        <strong>12:00</strong>
+                                        <span class="smallest-font nowrap text-fucsia">Barcelona</span>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">Terminal Barajas</small>
+                                    </div>
+                                    
+                                    <div class="col-xs-4 c-approximate-time visible-xs nbt text-center" style="border-top: 1px solid #bbb;">
+                                        <p class="approximate-time text-muted smallest-font">3h 23min.</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-4 c-arrival">
+                                        <strong>18:00</strong>
+                                        <small class="smallest-font dbm text-fucsia">Madrid</small>
+                                        <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">La Coruña</small>
+                                    </div>
+                                    
+                                    <div class="col-md-3 col-xs-4 c-seat-type">
+                                        <strong class="text-fucsia">$12.000</strong>
+                                        <small class="text-muted smallest-font hidden-xs" style="display:block;">Semi Cama</small>
+                                    </div>
+                                    <div class="col-xs-4 nbt visible-xs" style="border-top: 1px solid #bbb;">
+                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
+                                    </div>
+
+                                    <div class="col-md-5 col-xs-4 c-company nbt" style="border-top: 1px solid #bbb;">
+                                        <small class="text-muted smallest-font company">Pullman Bus</small>
+                                        <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title="Pullman Bus" class="logo-iv hidden-xs float-right">
+                                    </div>
+                          
+                                    <div class="col-md-4 col-xs-3 c-approximate-time hidden-xs nbt" style="border-top: 1px solid #bbb;">
+                                        <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> 3h 23min.</p>
+                                    </div>
+                                    
+                                    <div class="col-md-3 nbt hidden-xs" style="border-top: 1px solid #bbb;">
+                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
+                                        <span class="hidden sort-price">${trip.price}</span>
+                                        <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
+                                        <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div> 
+
+
+                    </div>
+
+                       <div class="col-xs-12 col-md-6 conttainer-results">
+                        <div class="new-results-selected">
+                            <div class="results" id="selected-trip-container" >
+                            </div>
+                        </div>
+                        <h5 class="hidden-xs">
+                            <span class="way">Vuelta</span>: 12 resultados para el jueves, 25 de marzo<span class="capitalize trip-date"></span>
+                        </h5>
+            
+                        <div class="new-results">
+                            <div class="results list" >
+                                <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
+                        
+                                    <div class="col-md-5 col-xs-4 c-departure">
+                                        <strong>12:00</strong>
+                                        <span class="smallest-font nowrap text-fucsia">Barcelona</span>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">Terminal Barajas</small>
+                                    </div>
+                                    
+                                    <div class="col-xs-4 c-approximate-time visible-xs nbt text-center" style="border-top: 1px solid #bbb;">
+                                        <p class="approximate-time text-muted smallest-font">3h 23min.</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-4 c-arrival">
+                                        <strong>18:00</strong>
+                                        <small class="smallest-font dbm text-fucsia">Madrid</small>
+                                        <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">La Coruña</small>
+                                    </div>
+                                    
+                                    <div class="col-md-3 col-xs-4 c-seat-type">
+                                        <strong class="text-fucsia">$12.000</strong>
+                                        <small class="text-muted smallest-font hidden-xs" style="display:block;">Semi Cama</small>
+                                    </div>
+                                    <div class="col-xs-4 nbt visible-xs" style="border-top: 1px solid #bbb;">
+                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
+                                    </div>
+
+                                    <div class="col-md-5 col-xs-4 c-company nbt" style="border-top: 1px solid #bbb;">
+                                        <small class="text-muted smallest-font company">Pullman Bus</small>
+                                        <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title="Pullman Bus" class="logo-iv hidden-xs float-right">
+                                    </div>
+                          
+                                    <div class="col-md-4 col-xs-3 c-approximate-time hidden-xs nbt" style="border-top: 1px solid #bbb;">
+                                        <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> 3h 23min.</p>
+                                    </div>
+                                    
+                                    <div class="col-md-3 nbt hidden-xs" style="border-top: 1px solid #bbb;">
+                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
+                                        <span class="hidden sort-price">${trip.price}</span>
+                                        <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
+                                        <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div> 
+
+                        
+                    </div>
+
+
+ 
+
+
+
+
+
+            </div>
+
+            </div> <!-- end columns results -->
+           
+        </div>
+    </div>
 </div>
