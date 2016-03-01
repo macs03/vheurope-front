@@ -7,9 +7,10 @@
  * # SearchController
  * Controller of the vhEurope
  */
-angular.module('vhEurope')
-
+angular
+    .module('vhEurope')
     .controller('SearchController',SearchController);
+    
     SearchController.$inject =['travelsFactory','utilityService','$scope','$interval'];
 
     function SearchController (travelsFactory,utilityService,$scope,$interval) {
