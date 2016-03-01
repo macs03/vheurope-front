@@ -21,7 +21,7 @@ angular.module('vhEurope')
         var search = $interval(function () {
             indexParams = utilityService.getData()
             searchTrip();
-        }, 1000);
+        }, 100);
 
         function searchTrip() {
             if(indexParams.origin){
@@ -40,7 +40,7 @@ angular.module('vhEurope')
                         vm.error = true;
                         vm.msgError = err;
                     })
-                utilityService.setData(null,null,null,null);
+                utilityService.setData(null,null,null,null,null,null);
                 indexParams = null;
             }
         }

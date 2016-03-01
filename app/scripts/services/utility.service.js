@@ -16,7 +16,9 @@ angular.module('vhEurope')
     return {
         self: this,
         origin: "",
+        countryOrigin:"",
         destination: "",
+        countryDestination:"",
         departure: "",
         returns: "",
         passengers: "",
@@ -27,16 +29,20 @@ angular.module('vhEurope')
     function getData(){
         return {
             origin:self.origin,
+            countryOrigin: self.countryOrigin,
             destination:self.destination,
+            countryDestination: self.countryDestination,
             departure:self.departure,
             returns:self.returns,
             passengers:self.passengers
         }
     }
 
-    function setData(origin, destination, departure, returns){
+    function setData(origin, countryOrigin, destination, countryDestination, departure, returns){
         self.origin = origin;
-        self.destination = destination;
+        self.countryOrigin = countryOrigin,
+        self.destination = destination,
+        self.countryDestination = countryDestination,
         self.departure = departure;
         self.returns = returns;
         self.passengers = "1";
