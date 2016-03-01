@@ -13,13 +13,19 @@ angular.module('vhEurope')
   	$scope.origin = 0;
   	$scope.destination = 0;
 
-	$scope.myOptions = [];
+	
+  $scope.myOptions = [
+      {id: 1, city: 'Barcelona', country: 'España', label: 'Barcelona, España'},
+      {id: 1, city: 'Madrid', country: 'España', label: 'Madrid, España'},
+      {id: 1, city: 'Bercena', country: 'España', label: 'Barcena, España'},
+
+  ];
+
 
 	$scope.myConfig = {
-  		create: true,
+  		create: false,
   		valueField: 'city',
   		labelField: 'label',
-  		delimiter: '|',
   		placeholder: 'Pick something',
   		onInitialize: function(selectize){
     		// receives the selectize object as an argument
@@ -34,14 +40,16 @@ angular.module('vhEurope')
         maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
       };
 
-      locationsFactory
+      /*locationsFactory
         .getAll()
         .then(function (data) {
+          console.log(data);
             $scope.myOptions = data;
         })
         .catch(function (err) {
             console.log(err);
         });
+        */
 
 	$scope.searchTrips = function () {
 
