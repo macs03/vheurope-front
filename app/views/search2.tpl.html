@@ -1,0 +1,39 @@
+<div class="jumbotron">
+  <!-- <form ng-submit="search.searchTrip()">
+      <input type="text" name="name" value="" placeholder="origin" ng-model="search.origen">
+      <input type="text" name="name" value="" placeholder="destino" ng-model="search.destino">
+      <input type="date" name="name" value="" ng-model="search.ida">
+      <input type="date" name="name" value="" ng-model="search.vuelta">
+      <input type="number" name="name" value="" ng-model="search.pasajeros">
+      <input type="submit" name="name" value="buscar">
+  </form> -->
+  <div class="">
+        <form-directive></form-directive>
+  </div>
+
+  <span ng-if="search.searching">Buscando.....</span>
+  <span ng-if="search.error">{{search.msgError}}</span>
+  <ul>
+      <li ng-repeat="trip in search.trips.directDepartureTrips" class="row">
+          <div class="col-md-3">
+              <strong>Compañia: </strong>
+              <span>{{trip.companyName}}</span>
+          </div>
+          <div class="col-md-2">
+              <strong>Salida: </strong>
+              <span>{{trip.salida}}</span>
+          </div>
+          <div class="col-md-2">
+              <strong>Llegada: </strong>
+              <span>{{trip.llegada}}</span>
+          </div>
+          <div class="col-md-2">
+              <strong>Precio: </strong>
+              <span>{{trip.price}}</span>
+          </div>
+          <div class="col-md-2">
+              <img ng-src="{{trip.logo}}" alt="{{trip.companyName}}" />
+          </div>
+      </li>
+  </ul>
+</div>
