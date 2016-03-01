@@ -5,7 +5,17 @@ $fa-font-path:   "../bower_components/font-awesome/fonts" !default;
 @import "font-awesome/scss/font-awesome.scss";
 // endbower
 
+
+
+
+
+@import "views/variables.scss";
+@import "views/mixins.scss";
+
 @import "views/homepage.scss";
+@import "views/search.scss";
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,4 +29,13 @@ body {
 
 .navbar-default {
     margin-bottom: 0;
+}
+
+.text-muted {
+	color: #999 !important;
+}
+
+.text-muted-dark {
+	color: #333 !important;
+	font-weight: bold;
 }

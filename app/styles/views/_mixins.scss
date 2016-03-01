@@ -1,0 +1,19 @@
+$bpoints: (
+    'small' : ( min-width: 34.375em ),
+    'smalll' : ( max-width: 34.375em ),
+    'medium' : ( min-width: 48.063em ),
+    'large'  : ( min-width: 64.063em )
+);
+
+@mixin breakpoint($mq) {
+    @if map-has-key($bpoints, $mq) {
+        @media #{inspect(map-get($bpoints, $mq))} {
+            @content;
+        }
+    }
+ 
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+            + "Please make sure it is defined in `$breakpoints` map.";
+    }
+}
