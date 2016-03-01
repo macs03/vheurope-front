@@ -21,8 +21,9 @@ angular
     	vm.myOptions = [];
     	vm.myConfig = {
       		create: true,
-      		valueField: 'city',
+      		valueField: 'label',
       		labelField: 'label',
+            searchField: ['label'],
       		delimiter: '|',
       		placeholder: 'Pick something',
       		onInitialize: function(selectize){
@@ -47,7 +48,8 @@ angular
             });
 
     	vm.searchTrips = function () {
-
+            var origin = vm.origin.split(",");
+            var destination = vm.destination.split(",");
             if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
                 console.log("error cities");
                 vm.good = false;
@@ -66,7 +68,7 @@ angular
                     	console.log(vm.destination);
                     	console.log('departure: '+vm.dates.departureDate);
                         console.log('returns: '+vm.dates.returnDate);
-                        utilityService.setData(vm.origin,"España", vm.destination,"España", vm.dates.departureDate, vm.dates.returnDate);
+                        utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
                         vm.good = true;
 
                     }else {
@@ -78,7 +80,7 @@ angular
                 	console.log(vm.destination);
                 	console.log('departure: '+vm.dates.departureDate);
                     console.log('returns: '+vm.dates.returnDate);
-                    utilityService.setData(vm.origin,"España", vm.destination,"España", vm.dates.departureDate, vm.dates.returnDate);
+                    utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
                     vm.good = true;
                 }
             }
