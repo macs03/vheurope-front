@@ -19,6 +19,16 @@ angular
         vm.searching = false;
         vm.error = false;
 
+       $scope.priceSlider = {
+            value: 10,
+            options: {
+                showSelectionBar: true,
+                translate: function(value) {
+                    return '$' + value;
+                }
+            }
+        };
+
         var indexParams = utilityService.getData();
         var search = $interval(function () {
             indexParams = utilityService.getData()
