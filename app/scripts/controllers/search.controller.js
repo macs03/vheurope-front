@@ -19,7 +19,7 @@ angular
         vm.searching = false;
         vm.error = false;
 
-       $scope.priceSlider = {
+       vm.priceSlider = {
             value: 10,
             options: {
                 showSelectionBar: true,
