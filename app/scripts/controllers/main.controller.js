@@ -17,8 +17,9 @@ angular
     function MainController ($scope,utilityService,locationsFactory) {
 
         var vm = this;
-      	vm.origin = 0;
-      	vm.destination = 0;
+        var params = utilityService.getData();
+      	vm.origin = params.origin+","+params.countryOrigin;
+      	vm.destination = params.destination+","+params.countryDestination;
     	vm.myOptions = [];
     	vm.myConfig = {
       		//create: true,
@@ -39,7 +40,6 @@ angular
             maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
         };
 
-
         locationsFactory
             .getAll()
             .then(function (data) {
@@ -57,7 +57,7 @@ angular
                 console.log("error cities");
                 vm.good = false;
             } else {
-                if(vm.dates.returnDate=="Invalid date") vm.dates.returnDate=""
+                if(vm.dates.returnDate=="Invalid date" || vm.dates.returnDate==undefined) vm.dates.returnDate=""
 
                 if (vm.dates.returnDate != "" && vm.dates.returnDate!="Invalid date") {
                     var date1 = vm.dates.departureDate;
