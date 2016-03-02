@@ -33,6 +33,11 @@ var app = angular
         controller: 'SearchController',
         controllerAs: 'search'
       })
+      .when('/seat', {
+        templateUrl: 'views/seat.tpl.html',
+        controller: 'SeatController',
+        controllerAs: 'seat'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
