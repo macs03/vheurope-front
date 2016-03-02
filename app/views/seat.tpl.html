@@ -1,0 +1,319 @@
+<div class="container">
+    <div class="row">
+        <!--  El de abajo es el enlace original al controlador de pagos -->
+        <div id="form-seat-selection" data-action="#"></div>
+        <div class="col-md-6 col-xs-12" id="container-trip-ida">
+            <h5 class="hidden-xs">Pasaje ida: <span class="text-muted">Barcelona a Madrid</span></h5>
+            <br>
+            <div class="new-results" id="new-results-tickeables">
+                <div class="results list" id="trips_tickeables" >
+                    <div class="row result">
+                        <div class="col-md-6 col-xs-6 c-departure">
+                            <strong>12:00 hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">Barcelona</small>
+                            <br>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">Terminal Barajas 14C</small>
+                        </div>
+                        <div class="col-md-6 col-xs-6 c-arrival">
+                            <strong>23:00 hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">Madrid</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">Terminal Madrid 12C</small>
+                        </div>
+                        <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
+                            <small class="text-muted smallest-font company"> Alsa</small>
+                            <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title=" ${idaCompanyName}" class="logo_small">
+                        </div>
+                        <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> 3h 23min.</p>
+                        </div>
+                    </div>  
+                </div>  
+            </div>
+
+            <div class="box" id="box-ida">
+                <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
+                    <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
+                    <div class="col-md-6 col-xs-12" id="seat_map_ida" style="padding-left:0;">
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist" id="seats-ida">
+                                <li role="presentation" class="active"><a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
+                                <li role="presentation"><a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="panel1">
+                                    <h4>Piso 1</h4>
+                                    <div class="wrapper">
+                                        <div class="container-seats">
+                                            <div id="seat-map-1">
+                                                <div class="front-indicator">Frente</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="panel2">
+                                    <h4>Piso 2</h4>
+                                    <div class="wrapper">
+                                        <div class="container-seats">
+                                            <div id="seat-map-2">
+                                                <div class="front-indicator">Frente</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- LEGEND -->                  
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-avaible.png" alt="Disponible">
+                                <span class="text-muted smallest-font">Disponible</span>
+                            </div>
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
+                                <span class="text-muted smallest-font">Ocupado</span>
+                            </div>
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
+                                <span class="text-muted smallest-font">Seleccionado</span>
+                            </div>
+                        </div>
+                    </div> <!-- end .col-md-6 .col-xs-12 -->
+
+                    <div class="col-md-6 col-xs-12"  id="forms_ida" style="padding-right:0;">
+                        <div class="select-seat">
+                            <p class="select-seat-title">Tu(s) asiento(s):</p>
+                            <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
+                        </div>
+                        <div id="seats-ida"></div>
+                        <br>
+                        <p class="smallest-font more-info select-more hidden">Puede agregar otro asiento</p>
+                        <br>
+                    </div> <!-- end .col-md-6 .col-xs-12 -->
+                </div> <!-- end .box-content -->
+            </div> <!-- end .box #box-ida -->
+        </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
+        
+        <div class="col-md-6 col-xs-12" id="container-trip-vuelta">
+            <h5 class="hidden-xs">Pasaje vuelta: <span class="text-muted">Madrid  a Barcelona</span></h5>
+            <br>
+            <div class="new-results">
+                <div class="results list" id="trips_tickeables" >
+                    <div class="row result">
+                        <div class="col-md-6 col-xs-6 c-departure">
+                            <strong>06:00 hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">Madrid</small>
+                            <br>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">Terminal Madrid 12C</small>
+                        </div>
+                        <div class="col-md-6 col-xs-6 c-arrival">
+                            <strong>23:00 hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">Barcelona</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">Terminal Barajas 14C</small>
+                        </div>
+                        <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
+                            <small class="text-muted smallest-font company">  Alsa</small>
+                            <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title="${vueltaCompanyName}" class="logo_small">
+                        </div>
+                        <div class="col-md-6 col-xs-6 columns c-approximate-time nbt" style="border-top: 1px solid #bbb;">
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i>  3h 23min.</p>
+                        </div>
+                    </div>  
+                </div>  
+            </div> <!-- end .new-results  -->
+            
+            <div class="box" id="box-vuelta">
+                <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;">
+                    <div class="col-xs-12 col-md-6" id="seat_map_vuelta" style="padding-left:0;">
+                        <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
+                        <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
+                            <li role="presentation" class="active"><a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
+                            <li role="presentation"><a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="panel3">
+                                <h4>Piso 1</h4>
+                                <div class="wrapper">
+                                    <div class="container-seats">
+                                        <div id="seat-map-3">
+                                            <div class="front-indicator">Frente</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="panel4">
+                                <h4>Piso 2</h4>
+                                <div class="wrapper">
+                                    <div class="container-seats">
+                                        <div id="seat-map-4">
+                                            <div class="front-indicator">Frente</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end .tab-content -->
+                       
+                        <div class="row">
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-avaible.png" alt="Disponible">
+                                <span class="text-muted smallest-font">Disponible</span>
+                            </div>
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
+                                <span class="text-muted smallest-font">Ocupado</span>
+                            </div>
+                            <div class="col-md-4 col-xs-4 seat-legend">
+                                <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
+                                <span class="text-muted smallest-font">Seleccionado</span>
+                            </div>
+                        </div>
+                    </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
+                    
+                    <div class="col-xs-12 col-md-6" style="padding: 0;" id="forms_vuelta">
+                        <div class="select-seat">
+                            <p class="select-seat-title">Tu(s) asiento(s):</p>
+                            <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
+                        </div>
+                        <div id="seats-vuelta"></div>
+                    </div>
+                </div> <!-- end .box-content -->
+            </div> <!-- end .box #box-vuelta -->
+        </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
+
+        <div class="col-md-12 col-xs-12">
+            <div class="box" id="purchase-resumen" style="background: #fff;">
+                <div class="box-content">
+                    <h5><span class="text-muted">RESÚMEN DE COMPRA</span></h5>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4 col-md-offset-8">
+                            <div id="resumen_seats"></div>
+                            <p>
+                                <span class="smallest-font">Asientos(<span id="seatsQuantity">0</span>)</span> 
+                                <span class="small-font pull-right"><span id="totalPrice">$ 0</span></span>
+                            </p>
+                            <p>
+                                <span class="small-font"><strong>Total</strong></span>
+                                <span class="small-font pull-right"> <span id="total">$ 0</span></span>
+                            </p>
+                            <br>
+                            <br>
+                            <a href="javascript:void(0)"  class="btn btn-block btn-success btn-lg theme-green btn-pay">Pagar ahora</a>
+                            <button type="button" class="btn btn-succes btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+                                Modal de Pasajeros
+                            </button>
+                        </div>
+                    </div> <!-- end .row -->
+                </div> <!-- end .box-content -->
+            </div> <!-- end .box -->
+        </div> <!-- end .col-md-12 .col-xs-12 -->
+    </div> <!-- end .row -->
+</div> <!-- end .container -->
+
+
+<!-- MODALES REUSABLES -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      <form action="#" id="form_data" method="post">    
+        <fieldset class="" >
+            <legend class="collapse-form collapse">
+                <strong>Pasaje <span class="viaje"></span></strong>
+                Asiento <span class="passenger_no">1</span>
+            </legend>
+            <div class="form-content">
+
+                <input type="hidden" name="form_data_trip" id="form_data_trip" value="99"/>
+                <input type="hidden" name="form_data_floor" id="form_data_floor" value="99"/>
+                <input type="hidden" name="form_data_seat" id="form_data_seat" value="99"/>
+                <input type="hidden" name="form_data_seat_rsrv" id="form_data_seat_rsrv" value="99"/>
+                <input type="hidden" name="form_data_id_trip" id="form_data_id_trip" value="0"/>
+                <input type="hidden" name="form_data_price_trip" id="form_data_price_trip" value="0"/>
+                <input type="hidden" name="form_data_seat_type" id="form_data_seat_type" value="vacio"/>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_name">Nombre</label>
+                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_lastname">Apellido</label>
+                            <input type="text" placeholder="apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_country">Nacionalidad</label>
+                            <select name="form_data_country" id="form_data_country"  class="country"></select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked><label for="rut-radio" class="rutpass smallest-font"> RUT
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio"><label for="pass-radio" class="rutpass smallest-font"> PASAPORTE
+                            </label>
+                            <div class="form-group rut-container">
+                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required />
+                            </div>
+                            <div class="form-group hidden pass-container">
+                                <input type="text" placeholder="Pasaporte" name="form_data_passport" id="form_data_passport" value=""  class="passport" required/>
+                            </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="small-12 large-6 columns">
+                        <label>
+                            <g:message code="seat.form.nationality"/>
+                            <select name="form_data_country" id="form_data_country"  class="country"></select>
+                        </label>
+                    </div>
+                    <div class="small-12 large-6 columns">
+                        <g:message code="seat.form.rut"/></label>
+                        <g:message code="seat.form.passport"/></label>
+
+                        <label class="rut-container">
+                            
+                        </label>
+                        <label class="passport-container hidden">
+                            <input type="text" placeholder="<g:message code="seat.form.passport"/>" name="form_data_passport" id="form_data_passport" value=""  class="passport" required/>
+                        </label>
+                    </div>
+                </div>
+                                   
+                <div class="row">
+                    <div class="small-12 large-6 columns">
+                        <label>
+                            <g:message code="seat.form.phone"/>
+                            <input type="text" placeholder="<g:message code="seat.form.phone"/>" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" />
+                        </label>
+                    </div>
+                    <div class="small-12 large-6 columns">
+                        <button type="submit" class="button expand" id="save-passenger-data" style="margin-top: 20px;">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
