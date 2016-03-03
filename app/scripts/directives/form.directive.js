@@ -19,7 +19,7 @@ angular.module('vhEurope')
             busqueda: '@'
         },
         templateUrl: 'views/form.tpl.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+        controller: 'FormDirectiveController',
+        controllerAs: 'form'
     }
 }

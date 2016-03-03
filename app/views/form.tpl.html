@@ -3,25 +3,25 @@
         <div class="col-xs-12 col-md-12 ">
             <div class="row destination-search">
                 <div class="col-md-4 col-xs-12 np">
-                    <selectize config='main.myConfig' options='main.myOptions' ng-model="main.origin"></selectize>
+                    <selectize config='form.myConfig' options='form.myOptions' ng-model="form.origin"></selectize>
                 </div>
                 <div class="switcheroo hidden-xs"></div>
                 <div class="col-md-3 col-xs-12  np">
-                    <selectize config='main.myConfig' options='main.myOptions' ng-model="main.destination"></selectize>
+                    <selectize config='form.myConfig' options='form.myOptions' ng-model="form.destination"></selectize>
                 </div>
                 <div class="col-md-2 col-xs-6  np">
-                   <vhdatepicker id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                   <vhdatepicker id="departureDate" ng-model="form.dates.departureDate" data-set-date="true" data-min-date="{{ form.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD-MM-YYYY"></vhdatepicker>
                     <span class="fa fa-calendar departure-calendar vh-calendar"></span>
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-2 col-xs-6 np">
-                    <vhdatepicker id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                    <vhdatepicker id="returnDate" ng-model="form.dates.returnDate" data-min-date="{{ form.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD-MM-YYYY"></vhdatepicker>
                     <span class="fa fa-calendar return-calendar vh-calendar"></span>
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-                    <a href="#/search" class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()"><i class="fa fa-search"></i></a>
-                    <a href="#/search" class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" >Buscar</a>
+                    <a href="#/search" class="btn btn-block btn-success btn-search hidden-xs" ng-click="form.searchTrips()"><i class="fa fa-search"></i></a>
+                    <a href="#/search" class="btn btn-block btn-success btn-search visible-xs" ng-click="form.searchTrips()" >Buscar</a>
 
                 </div>
             </div> <!-- end .row -->
