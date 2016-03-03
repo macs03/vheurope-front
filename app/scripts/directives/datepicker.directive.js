@@ -16,8 +16,6 @@ app.directive('vhdatepicker', function ($parse) {
 
             return function (scope, element, attrs, controller) {
 
-                
-
                 var el = element[0];
                 var minDate = null;
                 var maxDate = null;
@@ -69,17 +67,9 @@ app.directive('vhdatepicker', function ($parse) {
                 });
 
                 if (attrs.setDate == "true"){
-                dateObject.setDate(new Date())
-
+                    dateObject.setDate(new Date())
                 }  
-
-               scope.$watch(modelAccessor, function (val) {
-                  var date = new Date(val);
-                  dateObject.setDate(date)
-               });
-
             };
-
          }
       };
 });
