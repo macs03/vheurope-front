@@ -1,3 +1,43 @@
+<style>
+    input[type="text"] {
+        border-radius: 0px !important;
+        min-height: 48px !important;
+        border: 1px solid #d0d0d0;
+}
+
+select {
+    height: 48px !important;
+    min-height: 48px !important;
+    background-color: transparent;
+    width: 99% !important;
+    border: 1px solid #d0d0d0;
+
+}
+.rut-container, .pass-container {
+    margin-top: 5px;
+}
+
+.nav-tabs {
+    background: #ccc;
+}
+.nav-tabs li {
+    width: 50%;
+}
+
+.nav-tabs li > a{
+    text-align: center;
+    color: #222;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background: #aaa;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+</style>
 <div class="container">
     <div class="row">
         <!--  El de abajo es el enlace original al controlador de pagos -->
@@ -217,15 +257,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+         <strong>Pasaje <span class="viaje"></span></strong>
+                Asiento <span class="passenger_no">1</span>
       </div>
       <div class="modal-body">
       <form action="#" id="form_data" method="post">    
         <fieldset class="" >
-            <legend class="collapse-form collapse">
-                <strong>Pasaje <span class="viaje"></span></strong>
-                Asiento <span class="passenger_no">1</span>
-            </legend>
+           
             <div class="form-content">
 
                 <input type="hidden" name="form_data_trip" id="form_data_trip" value="99"/>
@@ -245,7 +283,7 @@
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_lastname">Apellido</label>
-                            <input type="text" placeholder="apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  />
+                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  />
                         </div>
                     </div>
                 </div>
@@ -258,10 +296,10 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked><label for="rut-radio" class="rutpass smallest-font"> RUT
+                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked> <small>RUT</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio"><label for="pass-radio" class="rutpass smallest-font"> PASAPORTE
+                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio"> <small>PASAPORTE</small>
                             </label>
                             <div class="form-group rut-container">
                                 <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required />
@@ -271,49 +309,22 @@
                             </div>
                     </div>
                 </div>
-
-
-
                 <div class="row">
-                    <div class="small-12 large-6 columns">
-                        <label>
-                            <g:message code="seat.form.nationality"/>
-                            <select name="form_data_country" id="form_data_country"  class="country"></select>
-                        </label>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form_data_phone">
+                            <label for="form_data_lastname">Teléfono</label>
+                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" />
+                        </div>
                     </div>
-                    <div class="small-12 large-6 columns">
-                        <g:message code="seat.form.rut"/></label>
-                        <g:message code="seat.form.passport"/></label>
-
-                        <label class="rut-container">
-                            
-                        </label>
-                        <label class="passport-container hidden">
-                            <input type="text" placeholder="<g:message code="seat.form.passport"/>" name="form_data_passport" id="form_data_passport" value=""  class="passport" required/>
-                        </label>
-                    </div>
-                </div>
-                                   
-                <div class="row">
-                    <div class="small-12 large-6 columns">
-                        <label>
-                            <g:message code="seat.form.phone"/>
-                            <input type="text" placeholder="<g:message code="seat.form.phone"/>" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" />
-                        </label>
-                    </div>
-                    <div class="small-12 large-6 columns">
-                        <button type="submit" class="button expand" id="save-passenger-data" style="margin-top: 20px;">Seleccionar</button>
+                    <div class="col-xs-12 col-md-6">
+                        <button type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;">Seleccionar</button>
                     </div>
                 </div>
             </div>
         </fieldset>
     </form>
-        ...
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
