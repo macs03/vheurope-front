@@ -28,13 +28,13 @@ angular.module('vhEurope')
     var origin = ""
     function getData(){
         return {
-            origin:self.origin,
+            origin: self.origin,
             countryOrigin: self.countryOrigin,
-            destination:self.destination,
+            destination: self.destination,
             countryDestination: self.countryDestination,
-            departure:self.departure,
-            returns:self.returns,
-            passengers:self.passengers
+            departure: self.departure,
+            returns: self.returns,
+            passengers: self.passengers
         }
     }
 
@@ -46,6 +46,14 @@ angular.module('vhEurope')
         self.departure = departure;
         self.returns = returns;
         self.passengers = "1";
+       // localStorage.setItem("origin", origin);
+       // localStorage.setItem("countryOrigin", countryOrigin);
+       // localStorage.setItem("destination", destination);
+       // localStorage.setItem("countryDestination", countryDestination);
+       // localStorage.setItem("departure", departure);
+       // localStorage.setItem("returns", returns);
+       // localStorage.setItem("passengers", "1");
+
     }
 
   }
