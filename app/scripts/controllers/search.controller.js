@@ -19,6 +19,7 @@ angular
         vm.searching = false;
         vm.error = false;
 
+
        vm.priceSlider = {
             value: 10,
             options: {
@@ -47,6 +48,7 @@ angular
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
+
                     })
                     .catch((err)=>{
                         console.log(err);
