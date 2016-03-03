@@ -20,6 +20,7 @@ angular
         var params = utilityService.getData();
       	vm.origin = params.origin+","+params.countryOrigin;
       	vm.destination = params.destination+","+params.countryDestination;
+        vm.changeDate = changeDate;
     	vm.myOptions = [];
     	vm.myConfig = {
       		//create: true,
@@ -39,6 +40,8 @@ angular
             minDate: moment().format('MM-DD-YYYY'),
             maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
         };
+        vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
+        vm.returnDateUnix = new Date(vm.dates.returnDate).getTime()/1000;
 
         locationsFactory
             .getAll()
@@ -64,8 +67,8 @@ angular
                     var date2 = vm.dates.returnDate;
                     var vD1 = date1.split("/")
                     var vD2 = date2.split("/")
-
-
+                    vm.returnDateUnix = new Date(vm.dates.returnDate).getTime()/1000;
+                    changeDate();
                     var newDate1 = new Date(vD1[2],vD1[1],vD1[0]);
                     var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
@@ -90,6 +93,10 @@ angular
                     vm.good = true;
                 }
             }
+        }
+
+        function changeDate(){
+            vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
         }
 
    	    $('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');

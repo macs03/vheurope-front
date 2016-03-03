@@ -20,8 +20,8 @@
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-                    <a href="#/search" class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()"><i class="fa fa-search"></i></a>
-                    <a href="#/search" class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" >Buscar</a>
+                    <a ng-href="#/search/{{main.origin}}/{{main.destination}}/{{main.departureDateUnix}}/{{main.returnDateUnix}}" class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
+                    <a ng-href="#/search/{{main.origin}}/{{main.destination}}/{{main.departureDateUnix}}/{{main.returnDateUnix}}"  class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" >Buscar</a>
 
                 </div>
             </div> <!-- end .row -->
