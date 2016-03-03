@@ -20,7 +20,7 @@ var app = angular
     '720kb.datepicker',
     'rzModule'
   ]);
-  
+
   app.config(function ($routeProvider) {
     $routeProvider
       .when('/index', {
@@ -28,7 +28,7 @@ var app = angular
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .when('/search', {
+      .when('/search/:origin/:destination/:departureDate/:returnDate', {
         templateUrl: 'views/search.tpl.html',
         controller: 'SearchController',
         controllerAs: 'search'
@@ -47,5 +47,3 @@ var app = angular
         redirectTo: '/'
       });
   });
-
-
