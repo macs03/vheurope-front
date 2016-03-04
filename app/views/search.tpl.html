@@ -176,7 +176,7 @@
 
 
             <!-- Start Results -->
-            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:0">
+            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:0" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
                     <h5 class="hidden-xs">
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
@@ -187,7 +187,7 @@
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 
                                 <div class="col-md-4 col-xs-4 c-departure">
-                                    <strong>{{trip.salida| date:'HH:mm:ss'}}</strong>
+                                    <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -198,7 +198,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 c-arrival">
-                                    <strong>{{trip.llegada| date:'HH:mm:ss'}}</strong>
+                                    <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                 </div>
@@ -243,7 +243,7 @@
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
                                     <div class="col-md-5 col-xs-4 c-departure">
-                                        <strong>{{trip.salida}}</strong>
+                                        <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.origin}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -254,7 +254,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 c-arrival">
-                                        <strong>{{trip.llegada}}</strong>
+                                        <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                         <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                     </div>
@@ -303,7 +303,7 @@
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
                                     <div class="col-md-5 col-xs-4 c-departure">
-                                        <strong>{{trip.salida}}</strong>
+                                        <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.destination}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -314,7 +314,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 c-arrival">
-                                        <strong>{{trip.llegada}}</strong>
+                                        <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.origin}}</small>
                                         <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                     </div>
