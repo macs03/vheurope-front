@@ -35,36 +35,34 @@ select {
     text-align: center;
 }
 
-
-
 </style>
 <div class="container">
     <div class="row">
         <!--  El de abajo es el enlace original al controlador de pagos -->
         <div id="form-seat-selection" data-action="#"></div>
         <div class="col-md-6 col-xs-12" id="container-trip-ida">
-            <h5 class="hidden-xs">Pasaje ida: <span class="text-muted">Barcelona a Madrid</span></h5>
+            <h5 class="hidden-xs">Pasaje ida: <span class="text-muted">{{ seat.trips.round.origin }} a {{ seat.trips.round.destination }}</span></h5>
             <br>
-            <div class="new-results" id="new-results-tickeables">
-                <div class="results list" id="trips_tickeables" >
+            <div class="new-results">
+                <div class="results list" >
                     <div class="row result">
                         <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>12:00 hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">Barcelona</small>
+                            <strong>{{ seat.trips.round.departureHour }} hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round.origin }}</small>
                             <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">Terminal Barajas 14C</small>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.round.terminalOrigin }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>23:00 hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">Madrid</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">Terminal Madrid 12C</small>
+                            <strong>{{ seat.trips.round.arrivalHour }} hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.round.destination }}</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.round.terminalDestination }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company"> Alsa</small>
-                            <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title=" ${idaCompanyName}" class="logo_small">
+                            <small class="text-muted smallest-font company"> {{ seat.trips.round.company }}</small>
+                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
                         </div>
                         <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> 3h 23min.</p>
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round.duration }}</p>
                         </div>
                     </div>  
                 </div>  
@@ -137,29 +135,29 @@ select {
             <h5 class="hidden-xs">Pasaje vuelta: <span class="text-muted">Madrid  a Barcelona</span></h5>
             <br>
             <div class="new-results">
-                <div class="results list" id="trips_tickeables" >
+                <div class="results list" >
                     <div class="row result">
                         <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>06:00 hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">Madrid</small>
+                            <strong>{{ seat.trips.return.departureHour }} hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.return.origin }}</small>
                             <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">Terminal Madrid 12C</small>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.return.terminalOrigin }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>23:00 hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">Barcelona</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">Terminal Barajas 14C</small>
+                            <strong>{{ seat.trips.return.arrivalHour }} hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.return.destination }}</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.return.terminalDestination }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company">  Alsa</small>
-                            <img src="https://www.voyhoy.com/static/images/60x60/new/bus-logo/chile/expreso-norte.jpg" title="${vueltaCompanyName}" class="logo_small">
+                            <small class="text-muted smallest-font company"> {{ seat.trips.return.company }}</small>
+                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
                         </div>
-                        <div class="col-md-6 col-xs-6 columns c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i>  3h 23min.</p>
+                        <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return.duration }}</p>
                         </div>
                     </div>  
                 </div>  
-            </div> <!-- end .new-results  -->
+            </div>
             
             <div class="box" id="box-vuelta">
                 <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;">
@@ -261,18 +259,18 @@ select {
                 Asiento <span class="passenger_no">1</span>
       </div>
       <div class="modal-body">
-      <form action="#" id="form_data" method="post">    
+      <form role="form" id="form_data" ng-submit="addSeat()">    
         <fieldset class="" >
            
             <div class="form-content">
 
-                <input type="hidden" name="form_data_trip" id="form_data_trip" value="99"/>
-                <input type="hidden" name="form_data_floor" id="form_data_floor" value="99"/>
-                <input type="hidden" name="form_data_seat" id="form_data_seat" value="99"/>
-                <input type="hidden" name="form_data_seat_rsrv" id="form_data_seat_rsrv" value="99"/>
-                <input type="hidden" name="form_data_id_trip" id="form_data_id_trip" value="0"/>
-                <input type="hidden" name="form_data_price_trip" id="form_data_price_trip" value="0"/>
-                <input type="hidden" name="form_data_seat_type" id="form_data_seat_type" value="vacio"/>
+                <input type="hidden" name="form_data_trip" id="form_data_trip" value="99" ng-model="dataTrip"/>
+                <input type="hidden" name="form_data_floor" id="form_data_floor" value="99" ng-model="dataFloor/>
+                <input type="hidden" name="form_data_seat" id="form_data_seat" value="99" ng-model="dataSeat"/>
+                <input type="hidden" name="form_data_seat_rsrv" id="form_data_seat_rsrv" value="99" ng-model="dataSeatRsrv"/>
+                <input type="hidden" name="form_data_id_trip" id="form_data_id_trip" value="0" ng-model="dataIdTrip"/>
+                <input type="hidden" name="form_data_price_trip" id="form_data_price_trip" value="0" ng-model="dataPriceTrip"/>
+                <input type="hidden" name="form_data_seat_type" id="form_data_seat_type" value="vacio" ng-model="dataSeatType"/>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
