@@ -10,12 +10,12 @@
                     <selectize config='main.myConfig' options='main.myOptions' ng-model="main.destination"></selectize>
                 </div>
                 <div class="col-md-2 col-xs-6  np">
-                   <vhdatepicker id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                   <vhdatepicker id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
                     <span class="fa fa-calendar departure-calendar vh-calendar"></span>
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-2 col-xs-6 np">
-                    <vhdatepicker id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                    <vhdatepicker id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
                     <span class="fa fa-calendar return-calendar vh-calendar"></span>
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>

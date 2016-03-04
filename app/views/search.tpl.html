@@ -20,12 +20,12 @@
                                                     <selectize config='search.myConfig' options='search.myOptions' ng-model="search.destination"></selectize>
                                                 </div>
                                                 <div class="col-md-2 col-xs-6  np">
-                                                   <vhdatepicker id="departureDate" ng-model="search.dates.departureDate" data-set-date="true" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                                                   <vhdatepicker id="departureDate" ng-model="search.dates.departureDate" data-set-date="true" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
                                                     <span class="fa fa-calendar departure-calendar vh-calendar"></span>
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-6 np">
-                                                    <vhdatepicker id="returnDate" ng-model="search.dates.returnDate" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                                                    <vhdatepicker id="returnDate" ng-model="search.dates.returnDate" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
                                                     <span class="fa fa-calendar return-calendar vh-calendar"></span>
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
@@ -187,7 +187,7 @@
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 
                                 <div class="col-md-4 col-xs-4 c-departure">
-                                    <strong>{{trip.salida}}</strong>
+                                    <strong>{{trip.salida| date:'HH:mm:ss'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -198,7 +198,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 c-arrival">
-                                    <strong>{{trip.llegada}}</strong>
+                                    <strong>{{trip.llegada| date:'HH:mm:ss'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                 </div>
