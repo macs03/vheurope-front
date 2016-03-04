@@ -238,7 +238,7 @@
                             <span class="way">Ida</span>: {{search.trips.directDepartureTrips.length}} resultados para el {{search.trips.departureDate}}<span class="capitalize trip-date"></span>
                         </h5>
 
-                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips">
+                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips| orderBy:search.type:search.reverse">
                             <div class="results list" >
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
@@ -298,7 +298,7 @@
                             <span class="way">Vuelta</span>: {{search.trips.directReturnTrips.length}} resultados para el jueves el, {{search.trips.returnDate}}<span class="capitalize trip-date"></span>
                         </h5>
 
-                        <div class="new-results" ng-repeat="trip in search.trips.directReturnTrips">
+                        <div class="new-results" ng-repeat="trip in search.trips.directReturnTrips| orderBy:search.type:search.reverse">
                             <div class="results list" >
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
