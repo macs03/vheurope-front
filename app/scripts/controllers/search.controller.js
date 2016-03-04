@@ -124,7 +124,6 @@
             }, true);
 
             function searchTrip() {
-                console.log("vamos a buscar");
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
