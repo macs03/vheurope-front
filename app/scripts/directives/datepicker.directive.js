@@ -71,6 +71,18 @@
                     if (attrs.setDate == "true"){
                         dateObject.setDate(new Date())
                     }
+
+                    if (attrs.hasOwnProperty('departureDate')) {
+                        var vD = attrs.departureDate.split("/");
+                        var newDate = new Date(vD[1]+"/"+vD[0]+"/"+vD[2]);
+                        dateObject.setDate(newDate);
+                    }
+
+                    if (attrs.hasOwnProperty('returnDate')) {
+                        var vD = attrs.returnDate.split("/");
+                        var newDate = new Date(vD[1]+"/"+vD[0]+"/"+vD[2]);
+                        dateObject.setDate(newDate);
+                    }
                 };
              }
           };

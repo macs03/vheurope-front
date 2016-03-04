@@ -37,7 +37,7 @@
           		maxItems: 1
         	};
             vm.dates = {
-                departureDate: moment().format('DD/MM/YYYY'),
+                departureDate: '',
                 returnDate: '',
                 minDate: moment().format('MM-DD-YYYY'),
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
@@ -65,6 +65,8 @@
             var params = utilityService.getData();
           	vm.origin = params.origin+","+params.countryOrigin;
           	vm.destination = params.destination+","+params.countryDestination;
+            vm.dates.departureDate = params.departure;
+            vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
 
