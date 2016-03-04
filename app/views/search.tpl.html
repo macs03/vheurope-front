@@ -19,12 +19,17 @@
                         <div class="col-md-3 col-xs-5 sort text-center">
                             <span>Ordenar por:</span>
                         </div>
-                        <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company">
+                        <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company" ng-click="search.order('companyName')">
                             <span style="margin-left:6px;">Empresa</span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
                         </div>
-                        <div class="col-md-3 col-xs-3 sort asc sort-trips" data-sort="departure">Horario</div>
-                        <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price">
+                        <div class="col-md-3 col-xs-3 sort sort-trips" data-sort="departure" ng-click="search.order('salida')">
+                            Horario
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
+                        </div>
+                        <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price" ng-click="search.order('price')">
                             Precio
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
                         </div>
                         <div class="col-md-2 col-xs-4"></div>
                     </div> <!-- end .row -->
@@ -153,7 +158,7 @@
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 

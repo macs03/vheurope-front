@@ -18,6 +18,9 @@ angular
         //vm.searchTrip = searchTrip;
         vm.searching = false;
         vm.error = false;
+        vm.order = order;
+        vm.type = 'price';
+        vm.reverse = true;
 
 
        vm.priceSlider = {
@@ -32,7 +35,6 @@ angular
 
         var indexParams = utilityService.getData();
 
-        
         if(indexParams.origin){
             vm.results = false;
             vm.trips = [];
@@ -52,5 +54,14 @@ angular
                     vm.msgError = err;
                 })
 
+        }
+
+        function order(type) {
+             if(vm.type === type) {
+                 vm.reverse =!vm.reverse
+            } else{
+                vm.reverse = false
+            }
+            vm.type = type;
         }
     }
