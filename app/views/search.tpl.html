@@ -8,7 +8,31 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <div class="row destination-search">
-                                <form-directive></form-directive>
+                                <form role="form" >
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 ">
+                                            <div class="row destination-search">
+                                                <div class="col-md-4 col-xs-12 np">
+                                                    <selectize config='search.myConfig' options='search.myOptions' ng-model="search.origin"></selectize>
+                                                </div>
+                                                <div class="switcheroo hidden-xs"></div>
+                                                <div class="col-md-4 col-xs-12  np">
+                                                    <selectize config='search.myConfig' options='search.myOptions' ng-model="search.destination"></selectize>
+                                                </div>
+                                                <div class="col-md-2 col-xs-6  np">
+                                                   <vhdatepicker id="departureDate" ng-model="search.dates.departureDate" data-set-date="true" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                                                    <span class="fa fa-calendar departure-calendar vh-calendar"></span>
+                                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                                </div>
+                                                <div class="col-md-2 col-xs-6 np">
+                                                    <vhdatepicker id="returnDate" ng-model="search.dates.returnDate" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD-MM-YYYY"></vhdatepicker>
+                                                    <span class="fa fa-calendar return-calendar vh-calendar"></span>
+                                                    <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                                </div>
+                                            </div> <!-- end .row -->
+                                        </div> <!-- End Destination Search -->
+                                    </div>
+                                 </form>
                             </div>
                         </div>
                         <div class="bg-info col-xs-12 col-md-12" ng-if="search.searching"><span>Buscando.....</span></div>
