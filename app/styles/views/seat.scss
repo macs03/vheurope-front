@@ -496,6 +496,7 @@ fieldset legend {
 }  
 
 .seat-legend {
+    margin-top: 10px;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -506,6 +507,8 @@ fieldset legend {
 }
 
 .seat-legend span {
+    margin-top: 10px;
     color: #666;
-    font-size: .60em !important;
+    font-size: .70em !important;
+    display: block;
 }

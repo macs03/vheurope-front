@@ -19,6 +19,8 @@ select {
 
 .nav-tabs {
     background: #ccc;
+    width: 230px;
+    margin-left: 16px;
 }
 .nav-tabs li {
     width: 50%;
@@ -34,6 +36,15 @@ select {
     color: #fff;
     text-align: center;
 }
+
+
+input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
 
 </style>
 <div class="container">
@@ -79,7 +90,6 @@ select {
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="panel1">
-                                    <h4>Piso 1</h4>
                                     <div class="wrapper">
                                         <div class="container-seats">
                                             <div id="seat-map-1">
@@ -89,7 +99,6 @@ select {
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="panel2">
-                                    <h4>Piso 2</h4>
                                     <div class="wrapper">
                                         <div class="container-seats">
                                             <div id="seat-map-2">
@@ -250,38 +259,31 @@ select {
 <!-- MODALES REUSABLES -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <strong>Pasaje <span class="viaje"></span></strong>
-                Asiento <span class="passenger_no">1</span>
+                Asiento <span class="passenger_no">{{ seat.selectSeat.seatNumber }}</span>
       </div>
       <div class="modal-body">
-      <form role="form" id="form_data" ng-submit="addSeat()">    
+      <form role="form" id="form_data"  ng-submit="seat.addSeat()">    
         <fieldset class="" >
            
             <div class="form-content">
 
-                <input type="hidden" name="form_data_trip" id="form_data_trip" value="99" ng-model="dataTrip"/>
-                <input type="hidden" name="form_data_floor" id="form_data_floor" value="99" ng-model="dataFloor/>
-                <input type="hidden" name="form_data_seat" id="form_data_seat" value="99" ng-model="dataSeat"/>
-                <input type="hidden" name="form_data_seat_rsrv" id="form_data_seat_rsrv" value="99" ng-model="dataSeatRsrv"/>
-                <input type="hidden" name="form_data_id_trip" id="form_data_id_trip" value="0" ng-model="dataIdTrip"/>
-                <input type="hidden" name="form_data_price_trip" id="form_data_price_trip" value="0" ng-model="dataPriceTrip"/>
-                <input type="hidden" name="form_data_seat_type" id="form_data_seat_type" value="vacio" ng-model="dataSeatType"/>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_name">Nombre</label>
-                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name"/>
+                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.selectSeat.name"/>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_lastname">Apellido</label>
-                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  />
+                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.selectSeat.lastname" />
                         </div>
                     </div>
                 </div>
@@ -289,33 +291,33 @@ select {
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_country">Nacionalidad</label>
-                            <select name="form_data_country" id="form_data_country"  class="country"></select>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.selectSeat.country">
+                                <option value="VE">Venezuela</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked> <small>RUT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.selectSeat.document"> <small>RUT</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio"> <small>PASAPORTE</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.selectSeat.document" > <small>PASAPORTE</small>
                             </label>
                             <div class="form-group rut-container">
-                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required />
+                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.selectSeat.rut" />
                             </div>
-                            <div class="form-group hidden pass-container">
-                                <input type="text" placeholder="Pasaporte" name="form_data_passport" id="form_data_passport" value=""  class="passport" required/>
-                            </div>
+                            
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form_data_phone">
                             <label for="form_data_lastname">Teléfono</label>
-                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" />
+                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.selectSeat.phone" />
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                        <button type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;">Seleccionar</button>
+                        <button type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;" >Seleccionar</button>
                     </div>
                 </div>
             </div>
@@ -326,3 +328,4 @@ select {
     </div>
   </div>
 </div>
+
