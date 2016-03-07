@@ -1,4 +1,5 @@
-'use strict';
+(function () {
+    'use strict';
 
 /**
  * @ngdoc function
@@ -11,12 +12,11 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SearchController.$inject = ['travelsFactory','utilityService','$scope','$interval'];
+    SeatController.$inject = ['travelsFactory','utilityService','$scope','$interval'];
 
     function SeatController (travelsFactory, utilityService, $scope, $interval) {
         var vm = this;
         var sc, sc2, sc3, sc4;
-        
         vm.seatsSelected = [];
 
         //Inicializo objeto seat
@@ -102,37 +102,118 @@ angular
         vm.addSeat = function () {
         	console.log('SEAT');
   			console.log(vm.selectSeat);
-  			vm.seatsSelected.push(vm.selectSeat);
+  			var data = vm.selectSeat;
+  			if(vm.selectSeat.update != true){
+  				vm.seatsSelected.push(angular.copy(vm.selectSeat));
+  			}
   			console.log(vm.seatsSelected);
+  			$('#formSeat').modal('hide');
+
 		};
 
-		vm.selectSeat2 = function (seatNumber, trip, floor) {
+		vm.releaseSeat = function (trip, floor, seatNumber) {
+			console.log(seatNumber+'-'+trip);
+        	if(trip === 0){
+              			if(floor === 1){
+              				 sc.status(seatNumber.toString(), 'available');
+              			}else{
+              				sc2.status(seatNumber.toString(), 'available');
+
+              			}
+              		}else{
+              			console.log('Vuelta');
+              			if(floor === 1){
+              				 sc3.status(seatNumber.toString(), 'available');
+              			}else{
+              				sc4.status(seatNumber.toString(), 'available');
+
+              			}
+
+              		}
+
+  			$('#formSeat').modal('hide');
+
+		};
+
+		vm.deleteSeat = function (trip, floor, seatNumber) {
+			for(var i = vm.seatsSelected.length; i--;) {
+           		if(vm.seatsSelected[i].trip === trip && vm.seatsSelected[i].seatNumber === seatNumber) {
+              		vm.seatsSelected.splice(i, 1);
+              		if(trip === 0){
+              			if(floor === 1){
+              				 sc.status(seatNumber.toString(), 'available');
+              			}else{
+              				sc2.status(seatNumber.toString(), 'available');
+
+              			}
+              		}else{
+              			if(floor === 1){
+              				 sc3.status(seatNumber.toString(), 'available');
+              			}else{
+              				sc4.status(seatNumber.toString(), 'available');
+
+              			}
+
+              		}
+              		$scope.$apply();
+              		break;
+            }
+
+        }
+		};
+
+
+		vm.selectSeat2 = function (seatNumber, trip, floor, item) {
 			//seatNUmber = Numero de asiento
 			//trip => 0 = ida, 2= vuelta
 			//floor = Numero de piso
 
-			vm.selectSeat.seatNumber = seatNumber;
-            vm.selectSeat.trip = trip;
-            vm.selectSeat.floor = floor;
-			if (trip === 0 && floor === 1){
-				if(floor === 1){
-					vm.selectSeat.tripId = vm.trips.round.tripIdFloorOne;
-				}else{
-					vm.selectSeat.tripId = vm.trips.round.tripIdFloorTwo;
+				 console.log(item);
+
+				 if(item != null ){
+				 	vm.selectSeat = item;
+				 	vm.selectSeat.update = true;
+				 }else{
+
+
+			
+
+				vm.selectSeat.seatNumber = seatNumber;
+	            vm.selectSeat.trip = trip;
+	            vm.selectSeat.floor = floor;
+
+				if (trip === 0){
+					if(floor === 1){
+						vm.selectSeat.tripId = vm.trips.round.tripIdFloorOne;
+					}else{
+						vm.selectSeat.tripId = vm.trips.round.tripIdFloorTwo;
+					}
+						
+				}else {
+					if(floor === 1){
+						vm.selectSeat.tripId = vm.trips.return.tripIdFloorOne;
+					}else{
+						vm.selectSeat.tripId = vm.trips.return.tripIdFloorTwo;
+					}
 				}
-					
-			}else {
-				if(floor === 1){
-					vm.selectSeat.tripId = vm.trips.return.tripIdFloorOne;
-				}else{
-					vm.selectSeat.tripId = vm.trips.return.tripIdFloorTwo;
+
 				}
-			}
+			
             
 
             $('#formSeat').modal('show');
+            $scope.$apply(); 	
 
 		};
+
+		vm.filterRoundTrips = function(item){
+			return item.trip === 0;
+		}
+
+		vm.filterReturnTrips = function(item){
+			console.log(item);
+			return item.trip === 1;
+		}
 
 
     	//Inicializacion de los tabs
@@ -140,6 +221,16 @@ angular
             e.preventDefault()
             $(this).tab('show')
         });
+
+        $('#formSeat').on('hidden.bs.modal', function (e) {
+  			vm.selectSeat = {
+        	name: '',
+        	lastname: '',
+        	tripId: '',
+        	floor: 'algo',
+        	seatNumber: 0
+        };
+		})
 
         sc = $('#seat-map-1').seatCharts({
         map: vm.trips.round.seatMap,
@@ -157,13 +248,15 @@ angular
         click: function () {
             if (this.status() == 'available') {
             	var seatNumber = this.settings.label;
-            	vm.selectSeat2(seatNumber, 0, 1);
+            	vm.selectSeat2(seatNumber, 0, 1, null);
                 //do some stuff, i.e. add to the cart
                
 
                 
-                return 'selected';
+               return 'selected';
             } else if (this.status() == 'selected') {
+            	var seatNumber = this.settings.label;
+            	vm.deleteSeat(0, 1, seatNumber);
                 //seat has been vacated
                 return 'available';
             } else if (this.status() == 'unavailable') {
@@ -175,11 +268,54 @@ angular
         }
     });
 
+
+
+        sc3 = $('#seat-map-3').seatCharts({
+        map: vm.trips.round.seatMap,
+        seats: {
+            a: {
+                price   : 99.99,
+                classes : 'front-seat' //your custom CSS class
+            }
+
+        },
+        naming : {
+                        top : false,
+                        left: false
+         },
+        click: function () {
+            if (this.status() == 'available') {
+            	var seatNumber = this.settings.label;
+            	vm.selectSeat2(seatNumber, 1, 1, null);
+                //do some stuff, i.e. add to the cart
+               
+
+                
+                return 'selected';
+            } else if (this.status() == 'selected') {
+            	var seatNumber = this.settings.label;
+            	vm.deleteSeat(1, 1, seatNumber);
+                //seat has been vacated
+                return 'available';
+            } else if (this.status() == 'unavailable') {
+                //seat has been already booked
+                return 'unavailable';
+            } else {
+                return this.style();
+            }
+        }
+    });
+
+       sc.status('01', 'unavailable');
+
     
 
 
         
     }
+
+
+})();
 
 
 

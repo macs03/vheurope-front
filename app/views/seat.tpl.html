@@ -131,7 +131,27 @@ input.ng-valid.ng-touched {
                             <p class="select-seat-title">Tu(s) asiento(s):</p>
                             <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
                         </div>
-                        <div id="seats-ida"></div>
+                        <div id="seats-ida">
+
+                            <div ng-repeat="item in seat.seatsSelected | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font text-muted">{{ item.passport }}</p>
+                                        <small class="text-muted smallest-font">{{ item.country }}</small>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">
+                                        <div class="seat-actions">
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat2(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber);"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <br>
                         <p class="smallest-font more-info select-more hidden">Puede agregar otro asiento</p>
                         <br>
@@ -178,7 +198,6 @@ input.ng-valid.ng-touched {
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="panel3">
-                                <h4>Piso 1</h4>
                                 <div class="wrapper">
                                     <div class="container-seats">
                                         <div id="seat-map-3">
@@ -220,7 +239,28 @@ input.ng-valid.ng-touched {
                             <p class="select-seat-title">Tu(s) asiento(s):</p>
                             <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
                         </div>
-                        <div id="seats-vuelta"></div>
+                        <div id="seats-vuelta">
+                            
+                            <div ng-repeat="item in seat.seatsSelected | filter: { trip: 1}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font text-muted">{{ item.passport }}</p>
+                                        <small class="text-muted smallest-font">{{ item.country }}</small>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">
+                                        <div class="seat-actions">
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat2(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber);"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div> <!-- end .box-content -->
             </div> <!-- end .box #box-vuelta -->
@@ -259,11 +299,12 @@ input.ng-valid.ng-touched {
 <!-- MODALES REUSABLES -->
 
 <!-- Modal -->
-<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" 
+   data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" ng-click="seat.releaseSeat(seat.selectSeat.trip, seat.selectSeat.floor,  seat.selectSeat.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <strong>Pasaje <span class="viaje"></span></strong>
                 Asiento <span class="passenger_no">{{ seat.selectSeat.seatNumber }}</span>
       </div>
@@ -293,6 +334,7 @@ input.ng-valid.ng-touched {
                             <label for="form_data_country">Nacionalidad</label>
                             <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.selectSeat.country">
                                 <option value="VE">Venezuela</option>
+                                <option value="CO">Colombia</option>
                             </select>
                         </div>
                     </div>
