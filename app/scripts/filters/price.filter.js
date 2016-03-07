@@ -17,10 +17,7 @@
         return function(input,price) {
             var salida = [];
             angular.forEach(input, function(value,key) {
-                console.log(input[key].price);
-                console.log(price);
                if (input[key].price > 0 && input[key].price <= price) {
-                   console.log("cumple");
                    salida.push(value)
                }
             })
