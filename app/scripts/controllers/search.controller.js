@@ -45,16 +45,27 @@
                 minDate: moment().format('MM-DD-YYYY'),
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
+            function setDateFilterRange(maxprice){
+                vm.priceSlider = {
+                     price: maxprice+1,
+                     options: {
+                         showSelectionBar: true,
+                         translate: function(value) {
+                             return '€' + value;
+                         }
+                     }
+                 };
+            }
 
-           vm.priceSlider = {
-                price: 100,
+            vm.hourSlider = {
+                minValue: 0,
+                maxValue: 23,
                 options: {
-                    showSelectionBar: true,
-                    translate: function(value) {
-                        return '€' + value;
-                    }
+                    floor: 0,
+                    ceil: 23,
+                    step: 1
                 }
-            };
+             };
 
             locationsFactory
                 .getAll()
@@ -91,6 +102,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        setDateFilterRange(data.maxPrice);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -185,6 +197,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        setDateFilterRange(data.maxPrice);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -197,19 +210,19 @@
             }
 
             function companyFilter(company) {
-                //if (company.checked) {
-                   vm.company = company;
-                // }else{
-                //     vm.company ={};
-                // }
+                if (company.checked) {
+                   vm.company = company.name;
+                }else{
+                    vm.company ={};
+                }
             }
 
             function seatFilter(seat) {
-                //if (seat.checked) {
-                   vm.seat = seat;
-                // }else{
-                //     vm.seat ={};
-                // }
+                if (seat.checked) {
+                   vm.seat = seat.name;
+                }else{
+                    vm.seat ={};
+                }
             }
 
         }

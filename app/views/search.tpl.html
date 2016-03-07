@@ -111,7 +111,13 @@
                             <div class="left slider-time-from">0:00 <span class="text-muted smallest-font">HRS</span></div>
                             <div class="right slider-time-to">24:00 <span class="text-muted smallest-font">HRS</span></div>
                         </div>
-                        <div id="slider-range" style=""></div>
+                        <div id="slider-range" style="">
+                            <rzslider
+                                rz-slider-model="search.hourSlider.minValue"
+                                rz-slider-high="search.hourSlider.maxValue"
+                                rz-slider-options="search.hourSlider.options">
+                            </rzslider>
+                        </div>
                     </div>
                     <!-- End Filter Time -->
 
@@ -144,8 +150,8 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="typeSeat in search.trips.typeServices">
-                                <input class="seatType" id="{{typeSeat}}" data="{{typeSeat}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat)" ng-model="typeSeat.checked">
-                                <label for="{{typeSeat}}" class="capitalize" >{{typeSeat}}</label>
+                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat)" ng-model="typeSeat.checked">
+                                <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -161,8 +167,8 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="company in search.trips.companies">
-                                <input id="{{company}}" type="checkbox"  name="{{company}}" data="{{company}}" class="company" ng-click="search.companyFilter(company)" ng-model="company.checked">
-                                <label for="{{company}}" class="capitalize" >{{company}}</label>
+                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company)" ng-model="company.checked">
+                                <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -182,7 +188,7 @@
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat | priceFilter: search.priceSlider.price">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 
