@@ -79,7 +79,10 @@
                 vm.searching = true;
                 vm.error = false;
                 vm.disabled = true;
-                $('.pikaday__display').prop('disabled', true);
+                setTimeout(function () {
+                        $('.pikaday__display').prop('disabled', true);
+                }, 100);
+
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
