@@ -22,6 +22,9 @@
             vm.order = order;
             vm.type = 'price';
             vm.reverse = true;
+            vm.companyFilter = companyFilter;
+            vm.seatFilter = seatFilter;
+            vm.disabled = false;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -75,18 +78,27 @@
                 vm.trips = [];
                 vm.searching = true;
                 vm.error = false;
+                vm.disabled = true;
+                setTimeout(function () {
+                        $('.pikaday__display').prop('disabled', true);
+                }, 100);
+
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
                         vm.error = true;
                         vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
 
             }
@@ -163,19 +175,42 @@
                 vm.trips = [];
                 vm.searching = true;
                 vm.error = false;
+                vm.disabled = true;
+                $('.pikaday__display').prop('disabled', true);
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,1)
                     .then(function(data){
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
                         vm.error = true;
                         vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
             }
+
+            function companyFilter(company) {
+                //if (company.checked) {
+                   vm.company = company;
+                // }else{
+                //     vm.company ={};
+                // }
+            }
+
+            function seatFilter(seat) {
+                //if (seat.checked) {
+                   vm.seat = seat;
+                // }else{
+                //     vm.seat ={};
+                // }
+            }
+
         }
 })();
