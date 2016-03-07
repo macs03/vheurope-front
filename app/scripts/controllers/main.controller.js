@@ -43,6 +43,8 @@
                 minDate: moment().format('MM-DD-YYYY'),
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
+
+            console.log(vm.dates);
             vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
             vm.returnDateUnix = new Date(vm.dates.returnDate).getTime()/1000;
 
