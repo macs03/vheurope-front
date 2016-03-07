@@ -144,7 +144,7 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="typeSeat in search.trips.typeServices">
-                                <input class="seatType" id="{{typeSeat}}" data="{{typeSeat}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}">
+                                <input class="seatType" id="{{typeSeat}}" data="{{typeSeat}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat}}" class="capitalize" >{{typeSeat}}</label>
                             </li>
                         </ul>
@@ -161,7 +161,7 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="company in search.trips.companies">
-                                <input id="{{company}}" type="checkbox"  name="{{company}}" data="{{company}}" class="company">
+                                <input id="{{company}}" type="checkbox"  name="{{company}}" data="{{company}}" class="company" ng-click="search.companyFilter(company)" ng-model="company.checked">
                                 <label for="{{company}}" class="capitalize" >{{company}}</label>
                             </li>
                         </ul>
@@ -182,7 +182,7 @@
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 

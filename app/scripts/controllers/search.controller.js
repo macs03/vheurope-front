@@ -22,6 +22,8 @@
             vm.order = order;
             vm.type = 'price';
             vm.reverse = true;
+            vm.companyFilter = companyFilter;
+            vm.seatFilter = seatFilter;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -177,5 +179,22 @@
                         vm.msgError = err;
                     })
             }
+
+            function companyFilter(company) {
+                //if (company.checked) {
+                   vm.company = company;
+                // }else{
+                //     vm.company ={};
+                // }
+            }
+
+            function seatFilter(seat) {
+                //if (seat.checked) {
+                   vm.seat = seat;
+                // }else{
+                //     vm.seat ={};
+                // }
+            }
+
         }
 })();
