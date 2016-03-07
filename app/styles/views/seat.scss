@@ -1,4 +1,6 @@
 // BOX ASIENTOS, PAGOS
+
+
 .box {
     border-color: #efefef;
     min-height: 20px;
@@ -26,7 +28,7 @@
     }
 
     .box-footer {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Ubuntu', sans-serif;
         color: #333333 !important;
         line-height: 35px;
         font-size: 12px;
@@ -66,7 +68,7 @@
     }
   
     .box-content {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Ubuntu', sans-serif;
         padding: 18px;
         overflow: hidden;
         background: #fff;
@@ -315,32 +317,33 @@ legend.collapse-form.collapse span.edit { display: inline-block }
     font-size: .8em;
 }
 button.theme-green,
-.button.theme-green {
+.btn.theme-green {
     background: #00A837;
     border: 0;
     color: #fff;
     transition: background-color 300ms ease-out;
-    text-transform: uppercase;
-    padding: 2px auto !important;
+    text-transform: capitalize;
+    padding: 12px 20px !important;
     margin-bottom: 20px;
+    border-radius: 0;
 }
 button.theme-green:hover,
-.button.theme-green:hover { background: #1AC634 }
+.btn.theme-green:hover { background: #1AC634 }
 label.error { font-size: .7555432em }
 .select-seat {
     min-height: 50px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     padding: 10px 5px;
     border-left: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
 .select-seat-title {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     margin-bottom: 0 !important;
     line-height: 15px;
 }
 .select-seat-subtitle {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #29aae3;
 }
 div.seat-passenger-cell {
@@ -475,7 +478,7 @@ li.seatCharts-legendItem {
 }
 
 #form_data {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 } 
 
 fieldset  {
@@ -483,7 +486,7 @@ fieldset  {
 }
 
 fieldset legend {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background: #f1f1f1;
     color: #29abe5;
     font-weight: 300;
@@ -511,4 +514,24 @@ fieldset legend {
     color: #666;
     font-size: .70em !important;
     display: block;
+}
+
+.tabs-container {
+    float: left;
+}
+
+@media only screen and (max-width: 40em) { 
+    .nav-tabs {
+        width: 100% !important;
+    }
+
+    div.seatCharts-container {
+        width: 100% !important;
+        padding: 10px 60px !important;
+    }
+
+    .tabs-container {
+        float: none !important;
+    }
+   
 }

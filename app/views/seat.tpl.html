@@ -11,6 +11,8 @@ select {
     background-color: transparent;
     width: 99% !important;
     border: 1px solid #d0d0d0;
+    border-radius: 0px !important;
+
 
 }
 .rut-container, .pass-container {
@@ -20,7 +22,6 @@ select {
 .nav-tabs {
     background: #ccc;
     width: 230px;
-    margin-left: 16px;
 }
 .nav-tabs li {
     width: 50%;
@@ -39,12 +40,12 @@ select {
 
 
 input.ng-invalid.ng-touched {
-    background-color: #FA787E;
+    border: 1px solid #FA787E;
   }
 
 input.ng-valid.ng-touched {
-    background-color: #78FA89;
-  }
+    border: 1px solid #78FA89;
+}
 
 </style>
 <div class="container">
@@ -83,7 +84,7 @@ input.ng-valid.ng-touched {
                 <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
                     <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
                     <div class="col-md-6 col-xs-12" id="seat_map_ida" style="padding-left:0;">
-                        <div>
+                        <div class="tabs-container">
                             <ul class="nav nav-tabs" role="tablist" id="seats-ida">
                                 <li role="presentation" class="active"><a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
                                 <li role="presentation"><a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
@@ -108,7 +109,7 @@ input.ng-valid.ng-touched {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                       
                         <!-- LEGEND -->                  
                         <div class="row">
                             <div class="col-md-4 col-xs-4 seat-legend">
@@ -124,6 +125,7 @@ input.ng-valid.ng-touched {
                                 <span class="text-muted smallest-font">Seleccionado</span>
                             </div>
                         </div>
+                         </div>
                     </div> <!-- end .col-md-6 .col-xs-12 -->
 
                     <div class="col-md-6 col-xs-12"  id="forms_ida" style="padding-right:0;">
@@ -192,6 +194,7 @@ input.ng-valid.ng-touched {
                 <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;">
                     <div class="col-xs-12 col-md-6" id="seat_map_vuelta" style="padding-left:0;">
                         <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
+                        <div class="tabs-container">
                         <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
                             <li role="presentation" class="active"><a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
                             <li role="presentation"><a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
@@ -216,6 +219,7 @@ input.ng-valid.ng-touched {
                                 </div>
                             </div>
                         </div> <!-- end .tab-content -->
+
                        
                         <div class="row">
                             <div class="col-md-4 col-xs-4 seat-legend">
@@ -230,6 +234,7 @@ input.ng-valid.ng-touched {
                                 <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
                                 <span class="text-muted smallest-font">Seleccionado</span>
                             </div>
+                        </div>
                         </div>
                     </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
                     
@@ -303,12 +308,14 @@ input.ng-valid.ng-touched {
 <!-- Modal -->
 <div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" 
    data-keyboard="false">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <strong>Pasaje <span class="viaje"></span></strong>
-                Asiento <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
+         <p class="text-fucsia">
+            <strong>Pasaje</strong>
+            Asiento <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
+        </p>
       </div>
       <div class="modal-body">
       <form role="form" id="form_data"  ng-submit="seat.addSeat()">    
@@ -331,15 +338,7 @@ input.ng-valid.ng-touched {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="form_data_country">Nacionalidad</label>
-                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
-                                <option value="VE">Venezuela</option>
-                                <option value="CO">Colombia</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
                                 <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small>RUT</small>
@@ -352,6 +351,15 @@ input.ng-valid.ng-touched {
                             </div>
                             
                     </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_country">Nacionalidad</label>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
+                                <option value="VE">Venezuela</option>
+                                <option value="CO">Colombia</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
@@ -361,7 +369,7 @@ input.ng-valid.ng-touched {
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                        <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;" >
+                        <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >
                             <div ng-switch-when="true">
                                 Actualizar
                             </div>
