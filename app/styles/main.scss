@@ -37,3 +37,12 @@ body {
 	color: #333 !important;
 	font-weight: bold;
 }
+
+.modal-content {
+    border-radius: 0;
+    padding: 15px 20px;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
