@@ -45,14 +45,16 @@
                 minDate: moment().format('MM-DD-YYYY'),
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
-            function setDateFilterRange(maxprice){
+            function setDateFilterRange(maxprice,minprice){
                 vm.priceSlider = {
                      price: maxprice+1,
                      options: {
                          showSelectionBar: true,
                          translate: function(value) {
                              return '€' + value;
-                         }
+                         },
+                         floor: minprice,
+                         ceil: maxprice+1,
                      }
                  };
             }
@@ -102,7 +104,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setDateFilterRange(data.maxPrice);
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -197,7 +199,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setDateFilterRange(data.maxPrice);
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                     })
                     .catch(function(err){
                         console.log(err);
