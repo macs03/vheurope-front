@@ -19,14 +19,32 @@
                 return function (scope, element, attrs, controller) {
 
                     var el = element[0];
-                    var minDate = null;
-                    var maxDate = null;
+                    var minDate = new Date(attrs.minDate.toString());
+                    var maxDate = new Date(attrs.maxDate);
                     var placeholder = "Selecciona un día";
                     var dateFormat = "DD-MM-YYYY";
+                    var daysNames = {
+                        previousMonth : 'Anterior',
+                        nextMonth     : 'Siguiente',
+                        months        : ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                        weekdays      : ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sábado'],
+                        weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
+                    }
 
                     //Inicializo la configuracion del detapicker en funcion de los atributos
                     if (attrs.hasOwnProperty('minDate')){
-                        minDate = attrs.minDate;
+                        minDate = new Date(attrs.minDate.toString());
+                    }
+                    if (attrs.hasOwnProperty('language')){
+                        if(attr.language === 'EN'){
+                            daysNames= {
+                                previousMonth : 'Previous Month',
+                                nextMonth     : 'Next Month',
+                                months        : ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                                weekdays      : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+                                weekdaysShort : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+                            }
+                        }
                     }
 
                     if (attrs.hasOwnProperty('maxDate')){
@@ -57,10 +75,10 @@
                         },
                         placeholder: placeholder,
                         classes: "",
-                        dayOffset: 0,
                         pikadayOptions: {
                             minDate: new Date(minDate),
                             maxDate: new Date(maxDate),
+                            i18n: daysNames
                         }
                     });
 
