@@ -78,18 +78,24 @@
                 vm.trips = [];
                 vm.searching = true;
                 vm.error = false;
+                vm.disabled = true;
+                $('.pikaday__display').prop('disabled', true);
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
                         vm.error = true;
                         vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
 
             }
@@ -167,6 +173,7 @@
                 vm.searching = true;
                 vm.error = false;
                 vm.disabled = true;
+                $('.pikaday__display').prop('disabled', true);
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,1)
                     .then(function(data){
@@ -174,6 +181,7 @@
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -181,6 +189,7 @@
                         vm.error = true;
                         vm.msgError = err;
                         vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
                     })
             }
 
