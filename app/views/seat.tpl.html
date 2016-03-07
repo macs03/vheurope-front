@@ -140,13 +140,13 @@ input.ng-valid.ng-touched {
                                         <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
                                     </div>
                                     <div class="col-md-5 col-xs-5">
-                                        <p class="smallest-font text-muted">{{ item.passport }}</p>
+                                        <p class="smallest-font text-muted">{{ item.rut }}</p>
                                         <small class="text-muted smallest-font">{{ item.country }}</small>
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat2(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
-                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber);"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@ input.ng-valid.ng-touched {
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
         
         <div class="col-md-6 col-xs-12" id="container-trip-vuelta">
-            <h5 class="hidden-xs">Pasaje vuelta: <span class="text-muted">Madrid  a Barcelona</span></h5>
+            <h5 class="hidden-xs">Pasaje vuelta: <span class="text-muted">{{ seat.trips.return.origin }} a {{ seat.trips.return.destination }}</span></h5>
             <br>
             <div class="new-results">
                 <div class="results list" >
@@ -207,7 +207,6 @@ input.ng-valid.ng-touched {
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="panel4">
-                                <h4>Piso 2</h4>
                                 <div class="wrapper">
                                     <div class="container-seats">
                                         <div id="seat-map-4">
@@ -248,13 +247,13 @@ input.ng-valid.ng-touched {
                                         <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
                                     </div>
                                     <div class="col-md-5 col-xs-5">
-                                        <p class="smallest-font text-muted">{{ item.passport }}</p>
+                                        <p class="smallest-font text-muted">{{ item.rut }}</p>
                                         <small class="text-muted smallest-font">{{ item.country }}</small>
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat2(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
-                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber);"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -272,21 +271,24 @@ input.ng-valid.ng-touched {
                     <h5><span class="text-muted">RESÚMEN DE COMPRA</span></h5>
                     <div class="row">
                         <div class="col-xs-12 col-md-4 col-md-offset-8">
-                            <div id="resumen_seats"></div>
+                            <div id="resumen_seats">
+                               
+                                <p ng-repeat="item in seat.seatsSelected">
+                                    <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatNumber }}</b></span>
+                                    <span class="small-font pull-right"><strong>{{ item.price }}</strong></span>
+                                </p>
+                            </div>
                             <p>
-                                <span class="smallest-font">Asientos(<span id="seatsQuantity">0</span>)</span> 
-                                <span class="small-font pull-right"><span id="totalPrice">$ 0</span></span>
+                                <span class="smallest-font">Asientos(<span id="seatsQuantity">{{ seat.totalSeats }}</span>)</span> 
+                                <span class="small-font pull-right"><span id="totalPrice">$ {{ seat.totalMount }}</span></span>
                             </p>
                             <p>
                                 <span class="small-font"><strong>Total</strong></span>
-                                <span class="small-font pull-right"> <span id="total">$ 0</span></span>
+                                <span class="small-font pull-right"> <span id="total">$ {{ seat.totalMount }}</span></span>
                             </p>
                             <br>
                             <br>
                             <a href="javascript:void(0)"  class="btn btn-block btn-success btn-lg theme-green btn-pay">Pagar ahora</a>
-                            <button type="button" class="btn btn-succes btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-                                Modal de Pasajeros
-                            </button>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .box-content -->
@@ -304,9 +306,9 @@ input.ng-valid.ng-touched {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" ng-click="seat.releaseSeat(seat.selectSeat.trip, seat.selectSeat.floor,  seat.selectSeat.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <strong>Pasaje <span class="viaje"></span></strong>
-                Asiento <span class="passenger_no">{{ seat.selectSeat.seatNumber }}</span>
+                Asiento <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
       </div>
       <div class="modal-body">
       <form role="form" id="form_data"  ng-submit="seat.addSeat()">    
@@ -318,13 +320,13 @@ input.ng-valid.ng-touched {
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_name">Nombre</label>
-                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.selectSeat.name"/>
+                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.seatInSelection.name"/>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_lastname">Apellido</label>
-                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.selectSeat.lastname" />
+                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.seatInSelection.lastname" />
                         </div>
                     </div>
                 </div>
@@ -332,7 +334,7 @@ input.ng-valid.ng-touched {
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_country">Nacionalidad</label>
-                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.selectSeat.country">
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
                                 <option value="VE">Venezuela</option>
                                 <option value="CO">Colombia</option>
                             </select>
@@ -340,13 +342,13 @@ input.ng-valid.ng-touched {
                     </div>
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.selectSeat.document"> <small>RUT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small>RUT</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.selectSeat.document" > <small>PASAPORTE</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.seatInSelection.document" > <small>PASAPORTE</small>
                             </label>
                             <div class="form-group rut-container">
-                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.selectSeat.rut" />
+                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.rut" />
                             </div>
                             
                     </div>
@@ -355,11 +357,19 @@ input.ng-valid.ng-touched {
                     <div class="col-xs-12 col-md-6">
                         <div class="form_data_phone">
                             <label for="form_data_lastname">Teléfono</label>
-                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.selectSeat.phone" />
+                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                        <button type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;" >Seleccionar</button>
+                        <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block btn-success btn-lg" id="save-passenger-data" style="margin-top: 20px;" >
+                            <div ng-switch-when="true">
+                                Actualizar
+                            </div>
+                            <div ng-switch-default>
+                                Seleccionar
+                            </div>
+
+                        </button>
                     </div>
                 </div>
             </div>
