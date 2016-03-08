@@ -58,6 +58,109 @@
 
     <div ng-view=""></div>
 
+<br><br>
+<div class="bus row-fluid hidden-xs" style="background: #fff; padding-top: 40px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Buscar boleto</a></li>
+                    <li><a href="#">Opinión Viajes en Autobús</a></li>
+                    <li><a href="#">Contáctenos</a></li>
+                    <li><a href="#">Acerca de nosotros</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Rutas de Autobús</a></li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'la-serena',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Santiago <g:message code="home.popular_searches.to" /> La Serena
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'pichilemu',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Antofagasta <g:message code="home.popular_searches.to" /> Copiapo
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'coquimbo',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Arica <g:message code="home.popular_searches.to" /> Santiago
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'osorno',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
+                            Santiago <g:message code="home.popular_searches.to" /> Calama
+                        </g:link>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Terminales de Bus</a></li>
+                    <li><a href="#">Estación Central</a></li>
+                    <li><a href="#">San Borja</a></li>
+                    <li><a href="#">Los Heroes</a></li>
+                    <li><a href="#">Alameda</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <ul class="list-unstyled pasajes">
+                    <li><a href="#">Ciudad Guías de Vieja</a></li>
+                    <li><a href="#">Booking</a></li>
+                    <li><a href="#">Denomades</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bus  hidden-xs row-fluid" style="background: #fff; padding-top: 40px; padding-bottom: 40px;">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="list-inline social-links">
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="list-inline footer-links">
+                <li><a href="#">Terminos y Condiciones</a></li>
+                <li><a href="#">Aviso de Privacidad</a></li>
+                <li><span>2016 Voyhoy. Todos los derechos reservados.</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+  
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
