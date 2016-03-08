@@ -9,6 +9,10 @@
      *
      * Main module of the application.
      */
+
+    
+
+
     var app = angular
       .module('vhEurope', [
         'ngAnimate',
@@ -19,7 +23,8 @@
         'ngTouch',
         'selectize',
         '720kb.datepicker',
-        'rzModule'
+        'rzModule',
+        'pascalprecht.translate'
       ]);
 
       app.config(function ($routeProvider) {
@@ -52,5 +57,17 @@
           .otherwise({
             redirectTo: '/'
           });
+    });
+
+    app.config(['$translateProvider', function ($translateProvider) {
+      // agregar tabla de traducción
+      $translateProvider.useStaticFilesLoader({
+        prefix: 'languages/locale-',
+        suffix: '.json'
       });
+      $translateProvider.preferredLanguage('en');
+      //$translateProvider.translations('es', translations);
+      $translateProvider.useSanitizeValueStrategy('sanitize');
+    }]);
+
 })();
