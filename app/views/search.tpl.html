@@ -39,7 +39,7 @@
                         <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div>
                     </div> <!-- end .row-->
 
-                    <div class="row header hidden-xs" ng-show="search.results">
+                    <div class="row header hidden-xs" ng-show="search.results && search.trips.alternativeTrips.length == 0">
                         <div class="col-md-3 col-xs-5 sort text-center">
                             <span>Ordenar por:</span>
                         </div>
@@ -66,7 +66,7 @@
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->
-            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.trips.directReturnTrips.length > 0">
+            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0">
                 <div class="filter-btn-content visible-xs">
                     <div class="row">
                         <div class="col-xs-7">
@@ -179,8 +179,8 @@
 
             <!-- Start Results -->
             <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:0" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
-                <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
-                    <h5 class="hidden-xs">
+                <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0 ">
+                    <h5 class="hidden-xs" ng-hide="search.trips.alternativeTrips.length > 0">
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
 
@@ -361,6 +361,38 @@
             </div>
 
             </div> <!-- end columns results -->
+            <div class="row  container-responsive" id="alternative-results" ng-show="search.trips.alternativeTrips.length > 0">
+                <div class="col-xs-12 col-md-12">
+                    <h5 class="hidden-xs" >
+                        Viajes Alternativos: {{search.trips.alternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
+                    </h5>
+                    <div class="new-results" ng-repeat="trip in search.trips.alternativeTrips">
+                        <div class="results list" >
+                            <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
+
+                                <div class="col-md-5 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.origin}}</span>
+                                </div>
+
+                                <div class="col-md-4 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.destination}}</span>
+                                </div>
+
+                                <div class="col-xs-4 nbt visible-xs">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.destination)">SELECCIONAR</a>
+                                </div>
+
+                                <div class="col-md-3 nbt hidden-xs alternativeBox">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.destination)">SELECCIONAR</a>
+                                    <span class="hidden sort-price">${trip.price}</span>
+                                    <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
+                                    <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

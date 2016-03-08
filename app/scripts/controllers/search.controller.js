@@ -25,6 +25,7 @@
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
             vm.disabled = false;
+            vm.alternativeSearch = alternativeSearch;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -235,6 +236,12 @@
                 }else{
                     vm.seat ={};
                 }
+            }
+
+            function alternativeSearch(origin, destination) {
+                vm.origin = origin+", España";
+                vm.destination = destination+", España";
+                callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
             }
 
         }
