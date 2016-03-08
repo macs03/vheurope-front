@@ -106,12 +106,8 @@
                     </div>
 
                     <div class="filter-module">
-                        <input type="hidden" id="amount" readonly>
-                        <div class="small-font" id="hour-container">
-                            <div class="left slider-time-from">0:00 <span class="text-muted smallest-font">HRS</span></div>
-                            <div class="right slider-time-to">24:00 <span class="text-muted smallest-font">HRS</span></div>
-                        </div>
-                        <div id="slider-range" style="">
+                         <input type="hidden" id="amount" readonly>
+                        <div style="">
                             <rzslider
                                 rz-slider-model="search.hourSlider.minValue"
                                 rz-slider-high="search.hourSlider.maxValue"
@@ -188,12 +184,12 @@
                         Ida: {{search.trips.directDepartureTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat | priceFilter: search.priceSlider.price">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result" data-company="pullmam" data-company-id="1" data-price="12000" data-seat="1" data-salida="12:00" data-departure="1200" data-trip-id="1" data-internal-id="2" data-sort-price="18000" data-sort-departure="1200" data-sort-company="pullmam">
 
                                 <div class="col-md-4 col-xs-4 c-departure">
-                                    <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
+                                    <strong>{{trip.departure| date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -204,7 +200,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 c-arrival">
-                                    <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
+                                    <strong>{{trip.arrival| date:'HH:mm'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                 </div>
@@ -249,7 +245,7 @@
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
                                     <div class="col-md-5 col-xs-4 c-departure">
-                                        <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
+                                        <strong>{{trip.departure| date:'HH:mm'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.origin}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -260,7 +256,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 c-arrival">
-                                        <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
+                                        <strong>{{trip.arrival| date:'HH:mm'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                         <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                     </div>
@@ -309,7 +305,7 @@
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
                                     <div class="col-md-5 col-xs-4 c-departure">
-                                        <strong>{{trip.salida| date:'HH:mm': '+0'}}</strong>
+                                        <strong>{{trip.departure| date:'HH:mm'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.destination}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">{{trip.origin}}</small>
@@ -320,7 +316,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 c-arrival">
-                                        <strong>{{trip.llegada| date:'HH:mm': '+0'}}</strong>
+                                        <strong>{{trip.arrival| date:'HH:mm'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.origin}}</small>
                                         <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">{{trip.destination}}</small>
                                     </div>
