@@ -1,0 +1,428 @@
+<style>
+	body { background: #f1f1f1 }
+
+.hidden { display: none }
+
+input[type="text"] {
+        border-radius: 0px !important;
+        min-height: 48px !important;
+        border: 1px solid #d0d0d0;
+}
+
+#blog,
+#busology,
+#passages,
+.width-ingresar { display: none }
+
+#clock-container { margin-right: 20em }
+
+input[type='radio'] { margin-top: 30px }
+
+.logo-pay {
+    margin-top: 10px;
+    max-height: 35px;
+    cursor: pointer;
+}
+
+.option-pay {
+    border: 1px solid #dedede;
+    padding: 10px;
+    min-height: 170px;
+}
+
+.option-pay  p {
+    color: #29abe5;
+    text-align: center;
+}
+
+.text-justify { text-align: justify }
+
+button.theme-green,
+.btn.theme-green {
+    background: #00A837;
+    border: 0;
+    color: #fff;
+    transition: background-color 300ms ease-out;
+    text-transform: uppercase;
+    padding: 2px auto !important;
+    margin-bottom: 20px;
+}
+
+button.theme-green:hover,
+.btn.theme-green:hover { background: #1AC634 }
+
+button.theme-blue,
+.btn.theme-blue {
+    background: #29abe5;
+    border: 0;
+    color: #fff;
+    transition: background-color 300ms ease-out;
+    text-transform: uppercase;
+    padding: 2px auto !important;
+    margin-bottom: 20px;
+    border-radius: 0 !important;
+}
+
+button.theme-blue:hover,
+.btn.theme-blue:hover { background: #55b6e0 }
+
+@media only screen and (max-width: 40em) { 
+    .option-pay { border-right: none }
+
+    .date { display: none !important }
+}
+
+.green { color: #32F01F }
+
+.alert {
+    padding: 13px;
+    background-color: rgba(255, 254, 171, 1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.error {
+    padding: 13px;
+    background-color: rgba(255, 171, 171, 1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.text-capitalize { text-transform: capitalize }
+
+.input-error { border: 1px solid red !important }
+
+.pl0 { padding-left: 0 !important }
+
+.pr0 { padding-right: 0 !important }
+
+.box {
+    border-color: #f1f1f1;
+    min-height: 20px;
+    position: relative;
+    min-height: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.box .box-header {
+    color: #333 !important;
+    line-height: 35px;
+    font-size: 12px;
+    background: #f1f1f1;
+    height: 35px;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+
+.box .box-header.open i.show-down:before {
+    font-family: 'FontAwesome';
+    content: "\f077";
+}
+
+.box .box-footer {
+    font-family: 'Ubuntu', sans-serif;
+    color: #333333 !important;
+    line-height: 35px;
+    font-size: 12px;
+    background: #fff;
+    height: 35px;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+
+.box .box-header .title {
+    font-size: 12px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    float: left;
+    max-height: 35px;
+    color: #333 !important;
+}
+
+.box .box-header h3 {
+    line-height: 35px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.box .box-header .title i {
+    background: #29aae3;
+    color: #fff;
+    padding: 10px 0;
+    width: 32px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    margin: 0px 0px -20px -10px;
+    font-size: 14px;
+}
+
+.box .box-content {
+    font-family: 'Ubuntu', sans-serif;
+    padding: 20px 20px 20px 20px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.box .box-content p { margin-bottom: 5px }
+
+.box .box-content.inversed {
+    background: #29aae3;
+    color: #fff;
+}
+
+
+hr.add-passenger {
+    padding: 0;
+    text-align: center;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+hr.add-passenger:after {
+    font-family: 'FontAwesome';
+    content: "\f055";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+    color: #29abe5;
+}
+
+hr.add-passenger:hover:after {
+    color: #555;
+    cursor: pointer;
+}
+
+.trip-container-title {
+    border-bottom: 1px solid #dedede;
+    padding: 10px;
+}
+
+.trip-container-title .price {
+    color: #29abe5;
+    float: right;
+    font-size: 1.4em;
+    font-weight: bolder;
+}
+
+.trip-container { padding: 10px 10px }
+
+.trip-container p { line-height: 12px }
+
+.trip-container.odd {
+    background: #f1f1f1;
+    padding: 16px 10px !important;
+}
+
+.no-padding { padding: 0 }
+
+.text-blue { color: #29abe5 }
+
+#promoCode,
+#validate-prom { margin-bottom: 0 }
+</style>
+<div class="container">
+	<br>
+	<div class="row">
+        <div class="col-xs-12 col-md-7">
+            <form id="form-pay" name="form-pay" ng-submit="payment.validatePayment();">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="title">Informacion del Pagador</h3>
+                    </div>
+
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                            	<div class="form-group">
+                            		<label for="form_payment_name">Nombre</label>
+                            		<input type="text" placeholder="Nombre" required name="form_payment_name" id="form_payment_name" value="" class="name"  ng-model="payment.pay.name" title="Ingresa tu nombre" />
+                        		</div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                            		<label for="form_payment_lastname">Apellido</label>
+                            		<input type="text" placeholder="Apellido" required name="form_payment_lastname" id="form_payment_lastname" value="" class="lastname"  ng-model="payment.pay.lastname"  title="Ingresa tu apellido"/>
+                        		</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="form-group">
+                            		<label for="form_payment_email">Correo electrónico</label>
+                            		<input type="text" placeholder="Correo electrónico" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu correo electronico" />
+                        		</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer hidden-xs">
+                            <input class="" id="notification"  type="checkbox" checked="checked" name="notifications" ng-model="payment.pay.notifications">
+                            <label for="notification">
+                                Recibir notificaciones de ofertas
+                            </label>
+                        </div>
+                </div> <!--  End box-->
+                <div class="box">
+                        <div class="box-header">
+                            <h3 class="title">
+                                Formas de Pago
+                            </h3>
+                        </div>
+                        <div class="box-content">
+                            <label>Selecciona tu forma de pago</label>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-4 text-center">
+                                    <div class="option-pay">
+                                        <img src="https://www.voyhoy.com/static/images/paymentmethods/webpay.jpg" alt="${WebPay}"  height="80" class="logo-pay" data-pasarela-pago="webpay"/>
+                                        <br>
+                                        <input type="radio" name="pago" value="webpay" checked="checked" ng-model="payment.pay.type" required title="Selecciona una forma de pago de las opciones disponibles">
+                                        <p class="smallest-font">WebPay Plus (para chilenos)</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 text-center">
+                                    <div class="option-pay">
+                                        <img src="https://s3-sa-east-1.amazonaws.com/voyhoy-content/logo-purple-large-ec196e63097b7238528b3999de0c18f9.png" alt="khipu"  height="35" class="logo-pay" data-pasarela-pago="khipu">
+                                        <br>
+                                        <input type="radio" name="pago" value="khipu" ng-model="payment.pay.type">
+                                        <p class="smallest-font">Forma facil de pago</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 text-center">
+                                    <div class="option-pay">
+                                         <img src="https://s3-sa-east-1.amazonaws.com/voyhoy-content/paypal-new-logo.jpg" border="0" alt="PayPal - The safer, easier way to pay online!" class="logo-pay" data-pasarela-pago="paypal"/>
+                                        <br>
+                                        <input type="radio" name="pago" value="paypal" ng-model="payment.pay.type">
+                                        <p class="smallest-font">Paypal (pago en USD)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>    
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 text-center">
+                                    <p class="smallest-font">Al comprar estás aceptando nuestros <a href="#" target="_blank" title="Términos y condiciones" >Términos y Condiciones</a>.</p>
+                                    <br>
+                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit">Pagar ahora</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </form>
+            
+        </div> <!-- End col-7 -->
+
+        <div class="col-xs-12 col-md-5">
+            <div class="box">
+    			<div class="box-header">
+        			<h3 class="title">Información de compra</h3>
+    			</div>
+    			<div class="box-content no-padding">
+        			<div class="trip-container-title">
+			            <div class="row">
+			               
+			                <div class="col-md-4 col-xs-12 col-md-push-8">
+			                    <span class="price">{{ payment.pay.total | currency:"$":0 }}</span>
+			                </div>
+			                <div class="col-xs-12 col-md-8 col-md-pull-4">
+			                    <p class="smallest-font">Precio total no incluye impuestos ni recargos </p>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="trip-container">
+			            Ida
+			        </div>
+			        <div class="trip-container odd">
+			            <div class="row">
+			                <div class="col-md-1 hidden-xs">
+			                    <i class="fa fa-bus"></i>
+			                </div>
+			                <div class="col-md-8 col-xs-6">
+			                    <p class="smallest-font">
+			                    	<b>{{ payment.trips.round.origin }} - {{ payment.trips.round.destination }}</b>
+			                    	<span class="text-muted date"> {{ payment.trips.round.departureDate }}</span>
+			                    </p>
+			                    <p class="small-font hidden-xs">
+			                    	<small class="text-muted">{{ payment.trips.round.company }}</small>
+			                    </p>
+			                </div>
+			                <div class="col-xs-6 visible-xs">
+			                    <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.round.departureDate }}</span></p>
+			                </div>
+			                <div class="col-xs-4 visible-xs">
+			                    <p class="small-font">
+			                    	<small class="text-muted">{{ payment.trips.round.company }}</small>
+			                    </p>
+			                </div>
+			                <div class="col-md-4 visible-xs text-center">
+			                    <p class="smallest-font pull-right">{{ payment.trips.round.departureHour }} hrs.</p>
+			                </div>
+			                <div class="col-xs-4 col-md-3 hidden-xs">
+			                    <p class="smallest-font pull-right hidden-xs">{{ payment.trips.round.departureHour }} hrs.</p>
+			                    <p class="smallest-font pull-right">{{ payment.trips.round.typeService }}</p>
+			                </div>
+			            </div>
+			        </div>
+
+            		<div class="trip-container">
+                		Vuelta
+            		</div>
+          			<div class="trip-container odd">
+			            <div class="row">
+			                <div class="col-md-1 hidden-xs">
+			                    <i class="fa fa-bus"></i>
+			                </div>
+			                <div class="col-md-8 col-xs-6">
+			                    <p class="smallest-font">
+			                    	<b>{{ payment.trips.return.origin }} - {{ payment.trips.return.destination }}</b>
+			                    	<span class="text-muted date"> {{ payment.trips.return.departureDate }}</span>
+			                    </p>
+			                    <p class="small-font hidden-xs">
+			                    	<small class="text-muted">{{ payment.trips.return.company }}</small>
+			                    </p>
+			                </div>
+			                <div class="col-xs-6 visible-xs">
+			                    <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.return.departureDate }}</span></p>
+			                </div>
+			                <div class="col-xs-4 visible-xs">
+			                    <p class="small-font">
+			                    	<small class="text-muted">{{ payment.trips.return.company }}</small>
+			                    </p>
+			                </div>
+			                <div class="col-md-4 visible-xs text-center">
+			                    <p class="smallest-font pull-right">{{ payment.trips.return.departureHour }} hrs.</p>
+			                </div>
+			                <div class="col-xs-4 col-md-3 hidden-xs">
+			                    <p class="smallest-font pull-right hidden-xs">{{ payment.trips.return.departureHour }} hrs.</p>
+			                    <p class="smallest-font pull-right">{{ payment.trips.return.typeService }}</p>
+			                </div>
+			            </div>
+			        </div>
+    			</div>
+			</div>
+
+			<div class="box">
+    			<div class="box-header">
+        			<h3 class="title">Cupon de Promoción</h3>
+    			</div>
+    			<div class="box-content">
+    				<form id="form-promo" name="form-promo" ng-submit="payment.validatePromo();">
+	        			<div class="row">
+	            			<div class="col-xs-12 col-md-8">
+	               				<input type="text" name="promoCode" id="promoCode" title="Ingresa un código de promoción" placeholder="Código de la promoción" ng-model="payment.promo.code" required>
+	           				</div>
+	           				<div class="col-xs-12 col-md-4">
+	            				<button class="btn theme-blue btn-lg btn-block" type="submit" style="margin-bottom: 0;">Validar</button>
+	        				</div>
+	    				</div>
+    				</form>
+				</div>
+			</div>    
+        </div>
+	</div>

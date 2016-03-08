@@ -39,6 +39,11 @@
             controller: 'SeatController',
             controllerAs: 'seat'
           })
+          .when('/payment', {
+            templateUrl: 'views/payment.tpl.html',
+            controller: 'PaymentController',
+            controllerAs: 'payment'
+          })
           .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutCtrl',
