@@ -1202,15 +1202,16 @@ td .ui-state-hover {
     transition: opacity .5s;
 }
 
+.alternativeBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px;
+}
 
-@media only screen and (max-width: 40em) { 
+
+@media only screen and (max-width: 40em) {
     .vh-calendar {
         right: 20px !important;
     }
 }
-
-
-
-
-
-
