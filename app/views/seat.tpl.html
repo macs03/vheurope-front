@@ -281,20 +281,20 @@ input.ng-valid.ng-touched {
                                
                                 <p ng-repeat="item in seat.seatsSelected">
                                     <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatNumber }}</b></span>
-                                    <span class="small-font pull-right"><strong>{{ item.price }}</strong></span>
+                                    <span class="small-font pull-right"><strong>{{ item.price | currency:"$":0 }}</strong></span>
                                 </p>
                             </div>
                             <p>
                                 <span class="smallest-font">Asientos(<span id="seatsQuantity">{{ seat.totalSeats }}</span>)</span> 
-                                <span class="small-font pull-right"><span id="totalPrice">$ {{ seat.totalMount }}</span></span>
+                                <span class="small-font pull-right"><span id="totalPrice">{{ seat.totalMount | currency:"$":0 }}</span></span>
                             </p>
                             <p>
                                 <span class="small-font"><strong>Total</strong></span>
-                                <span class="small-font pull-right"> <span id="total">$ {{ seat.totalMount }}</span></span>
+                                <span class="small-font pull-right"> <span id="total">{{ seat.totalMount | currency:"$":0 }}</span></span>
                             </p>
                             <br>
                             <br>
-                            <a href="javascript:void(0)"  class="btn btn-block btn-success btn-lg theme-green btn-pay">Pagar ahora</a>
+                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay">Pagar ahora</a>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .box-content -->
