@@ -65,6 +65,16 @@
                 options: {
                     floor: 0,
                     ceil: 23,
+                    translate: function(value, sliderId, label) {
+                        switch (label) {
+                            case 'model':
+                              return value+':00 HRS';
+                            case 'high':
+                              return value+':59 HRS';
+                            default:
+                              return value+':HRS'
+                          }
+                    },
                     step: 1
                 }
              };
