@@ -21,12 +21,18 @@
         function getAll (idDeparture,idReturn) {
             var defered = $q.defer();
             var promise = defered.promise;
+            var returnId = null;
+            if(idReturn == '-1'){
+                returnId = '';
+            }else{
+                returnId = idReturn;
+            }
             $http({
                     method:'POST',
                     url:'http://localhost:8080/vheurope-api/v1/seats',
                     data: {
                         idIda:idDeparture,
-                        idVuelta:idReturn,
+                        idVuelta:returnId,
                     },
                 })
                 .success(function(data) {
