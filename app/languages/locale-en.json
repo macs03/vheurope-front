@@ -1,7 +1,7 @@
 {
 	"MAIN": {
-		"TITLE": "TRAVELS WITH INTELLIGENT VOYHOY",
-		"SUBTITLE": "The easiest way to buy and buy bus tickets",
+		"TITLE": "TRAVELS WITH INTELLIGENT RESERTRIP",
+		"SUBTITLE": "The easiest way to buy and compare bus tickets",
 		"FIND_PASSAGES": "Find your bus ticket in Spain",
 		"CTA_BUY": "Purchase from your",
 		"CTA_PHONE": "MOBILE",
@@ -16,7 +16,8 @@
 		"BUSOLOGY": "Busologia",
 		"BLOG": "Blog",
 		"SPANISH": "Spanish",
-		"ENGLISH": "English"
+		"ENGLISH": "English",
+		"MESSAGE": "Purchase bus tickets, train, plane and boat in Spain"
 	},
 	"FOOTER": {
 		"TERMINOS": "Terms and Conditions",
@@ -47,5 +48,33 @@
 			"RESULTS": "results",
 			"BUTTON": "BUY"
 		}
+	},
+	"SEATS": {
+		"PASSAGE_ROUND": "Round Passage:",
+		"PASSAGE_RETURN": "Return Passage:",
+		"FLOOR_1": "FLOOR 1",
+		"FLOOR_2": "FLOOR 2",
+		"SELECTION_LABEL": "Your seats:",
+		"SELECTION_SUBLABEL": "Please select a maximum of 7 seats",
+		"LEGEND_AVAILABLE": "Available",
+		"LEGEND_UNAVAILABLE": "Occupied",
+		"LEGEND_SELECTED": "Selected",
+		"PURCHASE_SUMMARY": "PURCHASE SUMMARY",
+		"PURCHASE_BUTTON": "PAY NOW",
+		"PURCHASE_TOTAL": "Total",
+		"PURCHASE_SEATS": "Seats",
+		"PURCHASE_SEAT": "Seat",
+		"PURCHASE_ROUND": "Round",
+		"PURCHASE_RETURN": "Return",
+		"FORM_LABEL_PASSAGE": "Passage",
+		"FORM_LABEL_SEAT": "Seat",
+		"FORM_NAME": "Name",
+		"FORM_LASTNAME": "Lastname",
+		"FORM_RUT": "RUT",
+		"FORM_PASSPORT": "PASSPORT",
+		"FORM_COUNTRY": "Country",
+		"FORM_PHONE": "Phone",
+		"FORM_BTN_SELECT": "Select",
+		"FORM_BTN_UPDATE": "Update"
 	}
 }

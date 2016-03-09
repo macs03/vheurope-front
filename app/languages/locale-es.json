@@ -1,6 +1,6 @@
 {
 	"MAIN": {
-		"TITLE": "VIAJA INTELIGENTE CON VOYHOY",
+		"TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
 		"SUBTITLE": "La manera más facil de comprar y comparar pasajes de bus",
 		"FIND_PASSAGES": "Encuentra tu pasaje de bus en España",
 		"CTA_BUY": "Compra desde tu",
@@ -12,11 +12,12 @@
 		"FROM": "desde"
 	},
 	"NAVBAR": {
-		"PASSAGES": "Pasages",
+		"PASSAGES": "Pasajes",
 		"BUSOLOGY": "Busologia",
 		"BLOG": "Blog",
 		"SPANISH": "Español",
-		"ENGLISH": "Ingles"
+		"ENGLISH": "Ingles",
+		"MESSAGE": "Compra pasajes de bus, tren, avion y barco en España"
 	},
 	"FOOTER": {
 		"TERMINOS": "Terminos y Condiciones",
@@ -47,5 +48,33 @@
 			"RESULTS": "resultados",
 			"BUTTON": "COMPRAR"
 		}
+	},
+	"SEATS": {
+		"PASSAGE_ROUND": "Pasaje Ida:",
+		"PASSAGE_RETURN": "Pasaje Vuelta:",
+		"FLOOR_1": "PISO 1",
+		"FLOOR_2": "PISO 2",
+		"SELECTION_LABEL": "Tu(s) asiento(s):",
+		"SELECTION_SUBLABEL": "Por favor seleccione un máximo de 7 asientos",
+		"LEGEND_AVAILABLE": "Disponible",
+		"LEGEND_UNAVAILABLE": "Ocupado",
+		"LEGEND_SELECTED": "Seleccionado",
+		"PURCHASE_SUMMARY": "RESÚMEN DE COMPRA",
+		"PURCHASE_BUTTON": "PAGAR AHORA",
+		"PURCHASE_TOTAL": "Total",
+		"PURCHASE_SEATS": "Asientos",
+		"PURCHASE_SEAT": "Asiento",
+		"PURCHASE_ROUND": "Ida",
+		"PURCHASE_RETURN": "Vuelta",
+		"FORM_LABEL_PASSAGE": "Pasaje",
+		"FORM_LABEL_SEAT": "Asiento",
+		"FORM_NAME": "Nombre",
+		"FORM_LASTNAME": "Apellido",
+		"FORM_RUT": "RUT",
+		"FORM_PASSPORT": "PASAPORTE",
+		"FORM_COUNTRY": "País",
+		"FORM_PHONE": "Teléfono",
+		"FORM_BTN_SELECT": "Seleccionar",
+		"FORM_BTN_UPDATE": "Actualizar"
 	}
 }
