@@ -47,10 +47,13 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/index">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#/index" translate>NAVBAR.PASSAGES</a></li>
+              <switch-language-directive></switch-language-directive>
+            </ul>
+            
           </div>
         </div>
       </div>
@@ -151,9 +154,9 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <ul class="list-inline footer-links">
-                <li><a href="#">Terminos y Condiciones</a></li>
-                <li><a href="#">Aviso de Privacidad</a></li>
-                <li><span>2016 Voyhoy. Todos los derechos reservados.</span></li>
+                <li><a href="#" translate>FOOTER.TERMINOS</a></li>
+                <li><a href="#" translate>FOOTER.PRIVACITY</a></li>
+                <li><span translate>FOOTER.COPYRIGHT</span></li>
             </ul>
         </div>
     </div>
@@ -197,6 +200,7 @@
     <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -204,6 +208,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/directives/form.directive.js"></script>
         <script src="scripts/directives/datepicker.directive.js"></script>
+        <script src="scripts/directives/switchLanguage.directive.js"></script>
         <script src="scripts/services/locations.factory.js"></script>
         <script src="scripts/services/travels.factory.js"></script>
         <script src="scripts/services/utility.service.js"></script>
@@ -211,6 +216,7 @@
         <script src="scripts/filters/hour.filter.js"></script>
         <script src="scripts/controllers/main.controller.js"></script>
         <script src="scripts/controllers/form.directive.controller.js"></script>
+        <script src="scripts/controllers/switchLanguage.controller.js"></script>
         <script src="scripts/controllers/search.controller.js"></script>
         <script src="http://dropshare.jesuscolmenares.com.ve/jquery.seat-charts.min.js"></script>
         <script src="scripts/controllers/seat.controller.js"></script>
