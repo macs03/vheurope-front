@@ -54,7 +54,7 @@ input.ng-valid.ng-touched {
         <!--  El de abajo es el enlace original al controlador de pagos -->
         <div id="form-seat-selection" data-action="#"></div>
         <div class="col-md-6 col-xs-12" id="container-trip-ida">
-            <h5 class="hidden-xs">Pasaje ida: <span class="text-muted">{{ seat.trips.round.origin }} a {{ seat.trips.round.destination }}</span></h5>
+            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_ROUND</span> <span class="text-muted">{{ seat.trips.round.origin }} a {{ seat.trips.round.destination }}</span></h5>
             <br>
             <div class="new-results">
                 <div class="results list" >
@@ -87,8 +87,12 @@ input.ng-valid.ng-touched {
                     <div class="col-md-6 col-xs-12" id="seat_map_ida" style="padding-left:0;">
                         <div class="tabs-container">
                             <ul class="nav nav-tabs" role="tablist" id="seats-ida">
-                                <li role="presentation" class="active"><a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
-                                <li role="presentation"><a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
+                                <li role="presentation" class="active">
+                                    <a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="panel1">
@@ -115,15 +119,15 @@ input.ng-valid.ng-touched {
                         <div class="row">
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-avaible.png" alt="Disponible">
-                                <span class="text-muted smallest-font">Disponible</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
                             </div>
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
-                                <span class="text-muted smallest-font">Ocupado</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
                             </div>
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
-                                <span class="text-muted smallest-font">Seleccionado</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
                             </div>
                         </div>
                          </div>
@@ -131,8 +135,8 @@ input.ng-valid.ng-touched {
 
                     <div class="col-md-6 col-xs-12"  id="forms_ida" style="padding-right:0;">
                         <div class="select-seat">
-                            <p class="select-seat-title">Tu(s) asiento(s):</p>
-                            <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
+                            <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
+                            <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
                         </div>
                         <div id="seats-ida">
 
@@ -197,8 +201,12 @@ input.ng-valid.ng-touched {
                         <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
                         <div class="tabs-container">
                         <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
-                            <li role="presentation" class="active"><a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab">PISO 1</a></li>
-                            <li role="presentation"><a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab">PISO 2</a></li>
+                            <li role="presentation" class="active">
+                                <a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="panel3">
@@ -222,18 +230,18 @@ input.ng-valid.ng-touched {
                         </div> <!-- end .tab-content -->
 
                        
-                        <div class="row">
+                         <div class="row">
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-avaible.png" alt="Disponible">
-                                <span class="text-muted smallest-font">Disponible</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
                             </div>
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
-                                <span class="text-muted smallest-font">Ocupado</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
                             </div>
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
-                                <span class="text-muted smallest-font">Seleccionado</span>
+                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
                             </div>
                         </div>
                         </div>
@@ -241,8 +249,8 @@ input.ng-valid.ng-touched {
                     
                     <div class="col-xs-12 col-md-6" style="padding: 0;" id="forms_vuelta">
                         <div class="select-seat">
-                            <p class="select-seat-title">Tu(s) asiento(s):</p>
-                            <small class="select-seat-subtitle">Por favor seleccione un máximo de 7 asientos</small>
+                            <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
+                            <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
                         </div>
                         <div id="seats-vuelta">
                             
@@ -274,7 +282,7 @@ input.ng-valid.ng-touched {
         <div class="col-md-12 col-xs-12">
             <div class="box" id="purchase-resumen" style="background: #fff;">
                 <div class="box-content">
-                    <h5><span class="text-muted">RESÚMEN DE COMPRA</span></h5>
+                    <h5><span class="text-muted" translate>SEATS.PURCHASE_SUMMARY</span></h5>
                     <div class="row">
                         <div class="col-xs-12 col-md-4 col-md-offset-8">
                             <div id="resumen_seats">
@@ -285,16 +293,16 @@ input.ng-valid.ng-touched {
                                 </p>
                             </div>
                             <p>
-                                <span class="smallest-font">Asientos(<span id="seatsQuantity">{{ seat.totalSeats }}</span>)</span> 
+                                <span class="smallest-font"><span translate>SEATS.PURCHASE_SEATS</span>(<span id="seatsQuantity">{{ seat.totalSeats }}</span>)</span> 
                                 <span class="small-font pull-right"><span id="totalPrice">{{ seat.totalMount | currency:"$":0 }}</span></span>
                             </p>
                             <p>
-                                <span class="small-font"><strong>Total</strong></span>
+                                <span class="small-font"><strong translate>SEATS.PURCHASE_TOTAL</strong></span>
                                 <span class="small-font pull-right"> <span id="total">{{ seat.totalMount | currency:"$":0 }}</span></span>
                             </p>
                             <br>
                             <br>
-                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay">Pagar ahora</a>
+                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay" translate>SEATS.PURCHASE_BUTTON</a>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .box-content -->
@@ -314,8 +322,8 @@ input.ng-valid.ng-touched {
       <div class="modal-header">
         <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <p class="text-fucsia">
-            <strong>Pasaje</strong>
-            Asiento <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
+            <strong translate>SEATS.FORM_LABEL_PASSAGE</strong>
+            <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
         </p>
       </div>
       <div class="modal-body">
@@ -327,14 +335,14 @@ input.ng-valid.ng-touched {
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label for="form_data_name">Nombre</label>
-                            <input type="text" placeholder="Nombre" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.seatInSelection.name"/>
+                            <label for="form_data_name" translate>SEATS.FORM_NAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_NAME' | translate}}" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.seatInSelection.name"/>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label for="form_data_lastname">Apellido</label>
-                            <input type="text" placeholder="Apellido" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.seatInSelection.lastname" />
+                            <label for="form_data_lastname" translate>SEATS.FORM_LASTNAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_LASTNAME' | translate}}" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.seatInSelection.lastname" />
                         </div>
                     </div>
                 </div>
@@ -342,19 +350,19 @@ input.ng-valid.ng-touched {
                     
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small>RUT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small translate>SEATS.FORM_RUT</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.seatInSelection.document" > <small>PASAPORTE</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>SEATS.FORM_PASSPORT</small>
                             </label>
                             <div class="form-group rut-container">
-                                <input type="text" placeholder="RUT" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.rut" />
+                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.rut" />
                             </div>
                             
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label for="form_data_country">Nacionalidad</label>
+                            <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
                             <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
                                 <option value="VE">Venezuela</option>
                                 <option value="CO">Colombia</option>
@@ -365,17 +373,17 @@ input.ng-valid.ng-touched {
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form_data_phone">
-                            <label for="form_data_lastname">Teléfono</label>
-                           <input type="text" placeholder="Teléfono" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
+                            <label for="form_data_lastname" translate>SEATS.FORM_PHONE</label>
+                           <input type="text" placeholder="{{ 'SEATS.FORM_PHONE' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >
                             <div ng-switch-when="true">
-                                Actualizar
+                                <span translate>SEATS.FORM_BTN_UPDATE</span>
                             </div>
                             <div ng-switch-default>
-                                Seleccionar
+                                <span translate>SEATS.FORM_BTN_SELECT</span>
                             </div>
 
                         </button>
