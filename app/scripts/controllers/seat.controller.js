@@ -12,15 +12,23 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','$scope','$interval'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','$scope','$interval','$routeParams'];
 
-    function SeatController (travelsFactory, utilityService, $scope, $interval) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, $scope, $interval, $routeParams) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelected = [];
         vm.seatInSelection = {};
         vm.totalSeats = 0;
         vm.totalMount = 0;
+        seatsFactory
+            .getAll($routeParams.idDeparture,$routeParams.idReturn)
+            .then(function (data) {
+                console.log(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 
         vm.trips = {};
         vm.trips.round = {
