@@ -1,9 +1,51 @@
 {
-	"HEADLINE": "Que modulo asombroso",
-	"PARAGRAPH": "¡En serio!",
 	"MAIN": {
 		"TITLE": "VIAJA INTELIGENTE CON VOYHOY",
 		"SUBTITLE": "La manera más facil de comprar y comparar pasajes de bus",
-		"FIND_PASSAGES": "Encuentra tu pasaje de bus en España"
+		"FIND_PASSAGES": "Encuentra tu pasaje de bus en España",
+		"CTA_BUY": "Compra desde tu",
+		"CTA_PHONE": "CELULAR",
+		"BUS_COMPANIES": "Empresas de buses en España",
+		"MUCH_MORE": "Y muchas más."
+	},
+	"POPULAR_TRIPS": {
+		"FROM": "desde"
+	},
+	"NAVBAR": {
+		"PASSAGES": "Pasages",
+		"BUSOLOGY": "Busologia",
+		"BLOG": "Blog",
+		"SPANISH": "Español",
+		"ENGLISH": "Ingles"
+	},
+	"FOOTER": {
+		"TERMINOS": "Terminos y Condiciones",
+		"PRIVACITY": "Avisos de Privacidad",
+		"COPYRIGHT": "2016 Voyhoy. Todos los derechos reservados."
+	},
+	"SEARCH": {
+		"SORT": {
+			"ORDER_BY": "Ordenar por:",
+			"COMPANY": "Empresa",
+			"HORARY": "Horario",
+			"PRICE": "Precio"
+		},
+		"FILTERS": {
+			"MAP_TITLE": "INFORMACIÓN DEL VIAJE",
+			"MAP_DISTANCE": "Distancia:",
+			"MAP_DURATION": "Duración:",
+			"TITLE": "FILTROS",
+			"RESULTS": "resultados",
+			"DEPARTURE_HOUR": "HORA DE SALIDA",
+			"PRICE": "PRECIO",
+			"SEAT_TYPE": "TIPO DE ASIENTO",
+			"COMPANIES": "EMPRESAS"
+		},
+		"TRIPS": {
+			"ROUND": "Ida",
+			"RETURN": "Vuelta",
+			"RESULTS": "resultados",
+			"BUTTON": "COMPRAR"
+		}
 	}
 }

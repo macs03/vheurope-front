@@ -1,9 +1,51 @@
 {
-	"HEADLINE": "Que modulo asombroso",
-	"PARAGRAPH": "¡En serio!",
 	"MAIN": {
-		"TITLE": "VIAJA INTELIGENTE CON VOYHOY",
-		"SUBTITLE": "La manera más facil de comprar y comparar pasajes de bus",
-		"FIND_PASSAGES": "Encuentra tu pasaje de bus en España"
+		"TITLE": "TRAVELS WITH INTELLIGENT VOYHOY",
+		"SUBTITLE": "The easiest way to buy and buy bus tickets",
+		"FIND_PASSAGES": "Find your bus ticket in Spain",
+		"CTA_BUY": "Purchase from your",
+		"CTA_PHONE": "MOBILE",
+		"BUS_COMPANIES": "Bus companies in Spain",
+		"MUCH_MORE": "And many more."
+	},
+	"POPULAR_TRIPS": {
+		"FROM": "from"
+	},
+	"NAVBAR": {
+		"PASSAGES": "Passages",
+		"BUSOLOGY": "Busologia",
+		"BLOG": "Blog",
+		"SPANISH": "Spanish",
+		"ENGLISH": "English"
+	},
+	"FOOTER": {
+		"TERMINOS": "Terms and Conditions",
+		"PRIVACITY": "Privacy Notices",
+		"COPYRIGHT": "2016 Voyhoy. All rights reserved."
+	},
+	"SEARCH": {
+		"SORT": {
+			"ORDER_BY": "Order by:",
+			"COMPANY": "Company",
+			"HORARY": "Horary",
+			"PRICE": "Price"
+		},
+		"FILTERS": {
+			"MAP_TITLE": "TRIP INFORMATION",
+			"MAP_DISTANCE": "Distance:",
+			"MAP_DURATION": "Duration:",
+			"TITLE": "FILTERS",
+			"RESULTS": "results",
+			"DEPARTURE_HOUR": "DEPARTURE HOUR",
+			"PRICE": "PRICE",
+			"SEAT_TYPE": "SEAT TYPE",
+			"COMPANIES": "COMPANIES"
+		},
+		"TRIPS": {
+			"ROUND": "Round",
+			"RETURN": "Return",
+			"RESULTS": "results",
+			"BUTTON": "BUY"
+		}
 	}
 }
