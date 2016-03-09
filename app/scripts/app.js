@@ -60,14 +60,15 @@
     });
 
     app.config(['$translateProvider', function ($translateProvider) {
-      // agregar tabla de traducción
       $translateProvider.useStaticFilesLoader({
         prefix: 'languages/locale-',
         suffix: '.json'
       });
-      $translateProvider.preferredLanguage('en');
-      //$translateProvider.translations('es', translations);
+
+      $translateProvider.preferredLanguage('es');
       $translateProvider.useSanitizeValueStrategy('sanitize');
+      $translateProvider.useCookieStorage();
+      
     }]);
 
 })();
