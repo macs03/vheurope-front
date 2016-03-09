@@ -211,7 +211,7 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-4 c-price">
-                                    <a href="#" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    <a href="#/seat/{{trip.id}}/0" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     <span class="hidden sort-price">12.000</span>
                                     <span class="hidden sort-departure">1200</span>
                                     <span class="hidden sort-company">pullman</span>
@@ -231,16 +231,57 @@
                 </div> <!-- end #single-results -->
 
                 <div class="row  container-responsive" id="ida-vuelta-results" ng-show="search.trips.directReturnTrips.length > 0">
+                    <h2 class="text-fucsia" ng-show="search.selectDeparture">Selecciona tu Ida <small class="text-fucsia">antes de seleccionar tu Vuelta</small></h2>
+                    <h2 class="text-fucsia" ng-show="!search.selectDeparture">Selecciona tu Vuelta <small class="text-fucsia">para poder seleccionar tus asientos</small></h2>
                     <div class="col-xs-12 col-md-6 conttainer-results">
-                        <div class="new-results-selected">
+                        <h5 class="hidden-xs" ng-show="!search.selectDeparture">
+                            <span class="way">Tu Pasaje Seleccionado</span>
+                        </h5>
+                        <div class="new-results-selected" style="margin-bottom:2em;" ng-show="!search.selectDeparture">
                             <div class="results" id="selected-trip-container" >
+                                <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
+
+                                    <div class="col-md-5 col-xs-4 c-departure" style="border-bottom: 1px solid #bbb; height:70px;">
+                                        <strong>{{search.departureDeparture| date:'HH:mm'}}</strong>
+                                        <span class="smallest-font nowrap text-fucsia">{{search.search.trips.origin}}</span>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs capitalize"  style="display:block;">{{search.departureOrigin}}</small>
+                                    </div>
+
+                                    <div class="col-xs-4 c-approximate-time visible-xs nbt text-center">
+                                        <p class="approximate-time text-muted smallest-font">{{search.departureDuration}}.</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-4 c-arrival" style="border-bottom: 1px solid #bbb;">
+                                        <strong>{{search.departureArrival| date:'HH:mm'}}</strong>
+                                        <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
+                                        <small class="text-muted smallest-font hidden-xs capitalize" style="display:block;">{{search.departureDestination}}</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 c-seat-type" style="border-bottom: 1px solid #bbb;">
+                                        <strong class="text-fucsia">{{search.departurePrice}} €</strong>
+                                        <small class="text-muted smallest-font hidden-xs" style="display:block;">{{search.departureTypeService}}</small>
+                                    </div>
+
+                                    <div class="col-md-5 col-xs-4 c-company nbt">
+                                        <small class="text-muted smallest-font company">{{search.departureCompanyName}}</small>
+                                        <img ng-src={{search.departureLogo}} title="Pullman Bus" class="logo-iv hidden-xs float-right">
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-3 c-approximate-time hidden-xs nbt">
+                                        <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i>{{search.departureDuration}}.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="change-departure">
+                                <a class="text-fucsia" style="cursor:pointer;" ng-click="search.departureSelect()"><strong>Cambia pasaje de IDA</strong></a>
                             </div>
                         </div>
-                        <h5 class="hidden-xs">
+                        <h5 class="hidden-xs" ng-class="{'disable-box':!search.selectDeparture}">
                             <span class="way" translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}}  <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                         </h5>
 
-                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips| orderBy:search.type:search.reverse">
+                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips| orderBy:search.type:search.reverse" ng-class="{'disable-box':!search.selectDeparture}">
                             <div class="results list" >
                                 <div class="row result result-iv" data-company="pullman" data-company-id="1" data-price="12.000" data-seat="2" data-salida="12:00" data-departure="1200" data-trip-id="123" data-internal-id="int111" data-sort-price="12000" data-sort-departure="1200" data-sort-company="pullman">
 
@@ -266,7 +307,7 @@
                                         <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
                                     </div>
                                     <div class="col-xs-4 nbt visible-xs" style="border-top: 1px solid #bbb;">
-                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
                                     <div class="col-md-5 col-xs-4 c-company nbt" style="border-top: 1px solid #bbb;">
@@ -279,7 +320,7 @@
                                     </div>
 
                                     <div class="col-md-3 nbt hidden-xs" style="border-top: 1px solid #bbb;">
-                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         <span class="hidden sort-price">${trip.price}</span>
                                         <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
                                         <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
@@ -291,7 +332,7 @@
 
                     </div>
 
-                       <div class="col-xs-12 col-md-6 conttainer-results">
+                       <div class="col-xs-12 col-md-6 conttainer-results" ng-class="{'disable-box':search.selectDeparture}">
                         <div class="new-results-selected">
                             <div class="results" id="selected-trip-container" >
                             </div>
@@ -326,7 +367,7 @@
                                         <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
                                     </div>
                                     <div class="col-xs-4 nbt visible-xs" style="border-top: 1px solid #bbb;">
-                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
+                                        <a href="#/seat/{{search.departureId}}/{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button">COMPRAR</a>
                                     </div>
 
                                     <div class="col-md-5 col-xs-4 c-company nbt" style="border-top: 1px solid #bbb;">
@@ -339,7 +380,7 @@
                                     </div>
 
                                     <div class="col-md-3 nbt hidden-xs" style="border-top: 1px solid #bbb;">
-                                        <a href="#" class="btn btn-block theme-fucsia-iv addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a href="#/seat/{{search.departureId}}/{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                         <span class="hidden sort-price">${trip.price}</span>
                                         <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
                                         <span class="hidden sort-company">${trip.companyRoute.company.name}</span>

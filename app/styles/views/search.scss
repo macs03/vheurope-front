@@ -1209,6 +1209,19 @@ td .ui-state-hover {
     min-height: 70px;
 }
 
+.disable-box{
+    opacity: .5;
+}
+
+.disable-box a{
+    pointer-events: none;
+    cursor: default;
+}
+.change-departure{
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 @media only screen and (max-width: 40em) {
     .vh-calendar {
