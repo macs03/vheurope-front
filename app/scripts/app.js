@@ -66,7 +66,7 @@
       });
 
       $translateProvider.preferredLanguage('es');
-      $translateProvider.useSanitizeValueStrategy('sanitize');
+      $translateProvider.useSanitizeValueStrategy('escape');
       $translateProvider.useCookieStorage();
       
     }]);
