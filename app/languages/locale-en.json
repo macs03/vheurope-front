@@ -76,5 +76,32 @@
 		"FORM_PHONE": "Phone",
 		"FORM_BTN_SELECT": "Select",
 		"FORM_BTN_UPDATE": "Update"
+	},
+	"PAYMENT": {
+		"INFORMATION": {
+			"TITLE": "PAYER INFORMATION",
+			"FORM_NAME": "Name",
+			"FORM_LASTNAME": "Lastname",
+			"FORM_EMAIL": "Email",
+			"FORM_NOTIFICATIONS": "Receive notifications deals." 
+		},
+		"PAY": {
+			"TITLE": "PAYMENT METHODS",
+			"SUBTITLE": "Select a payment method",
+			"TERMS": "When buying you agree to our",
+			"TERMS_LINK": "Terms and Conditions",
+			"BUTTON": "PAY NOW"
+		},
+		"PURCHASE": {
+			"TITLE": "PURCHASE INFORMATION",
+			"SUBTITLE": "Total price excludes taxes and surcharges",
+			"ROUND": "Round",
+			"RETURN": "Return"
+		},
+		"PROMOTION": {
+			"LABEL": "VOUCHER PROMOTION",
+			"PLACEHOLDER": "Promotion Code",
+			"VALIDATE": "VALIDATE" 
+		}	
 	}
 }

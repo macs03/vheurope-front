@@ -76,5 +76,33 @@
 		"FORM_PHONE": "Teléfono",
 		"FORM_BTN_SELECT": "Seleccionar",
 		"FORM_BTN_UPDATE": "Actualizar"
+	},
+	"PAYMENT": {
+		"INFORMATION": {
+			"TITLE": "INFORMACION DEL PAGADOR",
+			"FORM_NAME": "Nombre",
+			"FORM_LASTNAME": "Apellido",
+			"FORM_EMAIL": "Correo electrónico",
+			"FORM_NOTIFICATIONS": "Recibir notificaciones de ofertas." 
+		},
+		"PAY": {
+			"TITLE": "FORMAS DE PAGO",
+			"SUBTITLE": "Selecciona una forma de pago",
+			"TERMINOS": "Al comprar estás aceptando nuestros",
+			"TERMINOS_LINK": "Términos y Condiciones",
+			"BUTTON": "PAGAR AHORA"
+		},
+		"PURCHASE": {
+			"TITLE": "INFORMACIÓN DE COMPRA",
+			"SUBTITLE": "Precio total no incluye impuestos ni recargos",
+			"ROUND": "Ida",
+			"RETURN": "Vuelta"
+		},
+		"PROMOTION": {
+			"LABEL": "CUPON DE PROMOCIÓN",
+			"PLACEHOLDER": "Código de la promoción",
+			"VALIDATE": "VALIDAR" 
+		}
+
 	}
 }
