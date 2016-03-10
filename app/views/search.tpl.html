@@ -1,12 +1,11 @@
 <style>
-    rzslider .rz-pointer {
-    background-color: #666;
-}
-rzslider .rz-bar.rz-selection {
-    background: #666;
-}
-rzslider .rz-pointer.rz-active:after{
-    background-color: #d0d0d0;
+#gmaps {
+    width: 100%;
+    height: 240px;
+    min-height: 240px;
+    display: block;
+    margin-bottom: 0px;
+    margin-top: -20px;
 }
 </style>
 <div id="results-container">
@@ -103,7 +102,9 @@ rzslider .rz-pointer.rz-active:after{
                         <i class="fa fa-times right hide-filters" style="font-weigth: 300; margin-top: 4px;"></i>
                     </div>
 
-                    <div id="map_canvas" class="show-for-medium-up"></div>
+                    <div id="map_canvas" class="show-for-medium-up">
+                         <div gmap data-origin="Barcelona, España" data-destination="Madrid, España"></div>
+                    </div>
                     <div class="trip-info show-for-medium-up">
                         <span class="title"><i class="fa fa-info-circle"></i> <span translate>SEARCH.FILTERS.MAP_TITLE</span></span><br>
                         <span translate>SEARCH.FILTERS.MAP_DISTANCE</span> <span class="content">234 Km.</span><br>

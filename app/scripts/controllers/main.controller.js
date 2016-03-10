@@ -31,7 +31,7 @@
           		labelField: 'label',
                 searchField: ['label'],
           		delimiter: '|',
-          		placeholder: 'Pick something',
+          		placeholder: 'Elige tu ciudad',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
