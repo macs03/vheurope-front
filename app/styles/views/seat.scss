@@ -323,7 +323,7 @@ button.theme-green,
     color: #fff;
     transition: background-color 300ms ease-out;
     text-transform: capitalize;
-    padding: 12px 20px !important;
+    padding: .8em !important;
     margin-bottom: 20px;
     border-radius: 0;
 }
@@ -535,3 +535,43 @@ fieldset legend {
     }
    
 }
+
+#seat-container {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
