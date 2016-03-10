@@ -144,7 +144,7 @@ input.ng-valid.ng-touched {
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
-                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
                                     </div>
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font text-muted">{{ item.rut }}</p>
@@ -152,7 +152,7 @@ input.ng-valid.ng-touched {
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
                                             <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
@@ -167,8 +167,8 @@ input.ng-valid.ng-touched {
             </div> <!-- end .box #box-ida -->
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
         
-        <div class="col-md-6 col-xs-12" id="container-trip-vuelta">
-            <h5 class="hidden-xs">Pasaje vuelta: <span class="text-muted">{{ seat.trips.return.origin }} a {{ seat.trips.return.destination }}</span></h5>
+        <div class="col-md-6 col-xs-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip">
+            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_RETURN</span> <span class="text-muted">{{ seat.trips.return.origin }} a {{ seat.trips.return.destination }}</span></h5>
             <br>
             <div class="new-results">
                 <div class="results list" >
@@ -258,7 +258,7 @@ input.ng-valid.ng-touched {
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
-                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatNumber }}</small>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
                                     </div>
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font text-muted">{{ item.rut }}</p>
@@ -266,7 +266,7 @@ input.ng-valid.ng-touched {
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
                                             <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
@@ -279,7 +279,8 @@ input.ng-valid.ng-touched {
             </div> <!-- end .box #box-vuelta -->
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
 
-        <div class="col-md-12 col-xs-12">
+        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip}">
+            <div ng-show="!seat.trips.isRoundTrip"><br><br><br></div>
             <div class="box" id="purchase-resumen" style="background: #fff;">
                 <div class="box-content">
                     <h5><span class="text-muted" translate>SEATS.PURCHASE_SUMMARY</span></h5>
@@ -288,7 +289,7 @@ input.ng-valid.ng-touched {
                             <div id="resumen_seats">
                                
                                 <p ng-repeat="item in seat.seatsSelected">
-                                    <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatNumber }}</b></span>
+                                    <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatLabel }}</b></span>
                                     <span class="small-font pull-right"><strong>{{ item.price | currency:"$":0 }}</strong></span>
                                 </p>
                             </div>
@@ -323,7 +324,7 @@ input.ng-valid.ng-touched {
         <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
          <p class="text-fucsia">
             <strong translate>SEATS.FORM_LABEL_PASSAGE</strong>
-            <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatNumber }}</span>
+            <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatLabel }}</span>
         </p>
       </div>
       <div class="modal-body">
