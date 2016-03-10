@@ -19,12 +19,14 @@ angular
         var sc, sc2, sc3, sc4;
         vm.seatsSelected = [];
         vm.seatInSelection = {};
+        vm.isLoading = true;
         vm.totalSeats = 0;
         vm.totalMount = 0;
         vm.trips = {};
         seatsFactory
             .getAll($routeParams.idDeparture,$routeParams.idReturn)
             .then(function (data) {
+                vm.isLoading = false;
                 console.log(data);
                 vm.trips.isRoundTrip = data.isRoundTrip;
                 vm.trips.round = data.departure;

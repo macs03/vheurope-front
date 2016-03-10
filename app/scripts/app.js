@@ -20,7 +20,8 @@
        'selectize',
        '720kb.datepicker',
        'rzModule',
-       'pascalprecht.translate'
+       'pascalprecht.translate',
+       'angular-loading-bar'
      ]);
 
       app.config(function ($routeProvider) {
