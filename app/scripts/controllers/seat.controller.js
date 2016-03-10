@@ -119,7 +119,8 @@ angular
                 }else{
 
                     $.each(vm.trips.round.unavailableSeats[0], function(index, item){
-                        sc.status(item.toString(), 'available');
+                        
+                        sc.status(item.toString(), 'unavailable');
                     });
                 } 
 
@@ -210,7 +211,7 @@ angular
                     }else{
 
                         $.each(vm.trips.return.unavailableSeats[0], function(index, item){
-                            sc3.status(item.toString(), 'available');
+                            sc3.status(item.toString(), 'unavailable');
                         });
                     }
 
