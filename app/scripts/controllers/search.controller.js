@@ -56,7 +56,7 @@
                          translate: function(value) {
                              return '€' + value;
                          },
-                         floor: minprice,
+                         floor: 0,
                          ceil: maxprice+1,
                      }
                  };
@@ -117,7 +117,10 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setDateFilterRange(data.maxPrice,data.minPrice);
+                        setTimeout(function () {
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+
                     })
                     .catch(function(err){
                         console.log(err);
@@ -212,7 +215,9 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setDateFilterRange(data.maxPrice,data.minPrice);
+                        setTimeout(function () {
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
                     })
                     .catch(function(err){
                         console.log(err);

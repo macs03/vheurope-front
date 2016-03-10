@@ -25,7 +25,7 @@
 
       app.config(function ($routeProvider) {
         $routeProvider
-          .when('/index', {
+          .when('/', {
             templateUrl: 'views/main.html',
             controller: 'MainController',
             controllerAs: 'main'
