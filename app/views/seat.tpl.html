@@ -24,7 +24,7 @@ select {
     width: 230px;
 }
 .nav-tabs li {
-    width: 50%;
+    width: 100%;
 }
 
 .nav-tabs li > a{
@@ -46,7 +46,11 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
     border: 1px solid #78FA89;
 }
- 
+
+.new-results .results .result img,
+.new-results-selected .results .result img {
+    margin-top: 5px;
+}
 </style>
 <div class="container" ng-show="seat.isLoading" style="margin-top: 80px; margin-bottom: 80px;">
     <div class="row">
@@ -98,7 +102,7 @@ input.ng-valid.ng-touched {
                                 <li role="presentation" class="active">
                                     <a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
                                 </li>
-                                <li role="presentation">
+                                <li role="presentation" class="hidden">
                                     <a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
                                 </li>
                             </ul>
@@ -212,7 +216,7 @@ input.ng-valid.ng-touched {
                             <li role="presentation" class="active">
                                 <a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
                             </li>
-                            <li role="presentation">
+                            <li role="presentation" class="hidden">
                                 <a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
                             </li>
                         </ul>

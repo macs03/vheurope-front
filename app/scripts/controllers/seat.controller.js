@@ -69,7 +69,7 @@ angular
                 });
 
                 if(vm.trips.round.size === 2){
-        
+                    
                     sc2 = $('#seat-map-2').seatCharts({
                         map: vm.trips.round.seatMap[1],
                         seats: {
