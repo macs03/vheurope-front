@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$routeParams'];
+        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$routeParams','$timeout'];
 
-        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$routeParams) {
+        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$routeParams,$timeout) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -117,10 +117,9 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setTimeout(function () {
+                        var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
-
                     })
                     .catch(function(err){
                         console.log(err);
@@ -215,7 +214,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
-                        setTimeout(function () {
+                        var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
                     })
