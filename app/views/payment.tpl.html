@@ -1,5 +1,5 @@
 <style>
-	body { background: #f1f1f1 }
+    body { background: #f1f1f1 }
 
 .hidden { display: none }
 
@@ -228,54 +228,54 @@ hr.add-passenger:hover:after {
 #validate-prom { margin-bottom: 0 }
 </style>
 <div class="container">
-	<br>
-	<div class="row">
+    <br>
+    <div class="row">
         <div class="col-xs-12 col-md-7">
             <form id="form-pay" name="form-pay" ng-submit="payment.validatePayment();">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="title">Informacion del Pagador</h3>
+                        <h3 class="title" translate>PAYMENT.INFORMATION.TITLE</h3>
                     </div>
 
                     <div class="box-content">
                         <div class="row">
                             <div class="col-md-6 col-xs-12">
-                            	<div class="form-group">
-                            		<label for="form_payment_name">Nombre</label>
-                            		<input type="text" placeholder="Nombre" required name="form_payment_name" id="form_payment_name" value="" class="name"  ng-model="payment.pay.name" title="Ingresa tu nombre" />
-                        		</div>
+                                <div class="form-group">
+                                    <label for="form_payment_name" translate>PAYMENT.INFORMATION.FORM_NAME</label>
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_NAME' |translate }}" required name="form_payment_name" id="form_payment_name" value="" class="name"  ng-model="payment.pay.name" title="Ingresa tu nombre" />
+                                </div>
                             </div>
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
-                            		<label for="form_payment_lastname">Apellido</label>
-                            		<input type="text" placeholder="Apellido" required name="form_payment_lastname" id="form_payment_lastname" value="" class="lastname"  ng-model="payment.pay.lastname"  title="Ingresa tu apellido"/>
-                        		</div>
+                                    <label for="form_payment_lastname" translate>PAYMENT.INFORMATION.FORM_LASTNAME</label>
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_LASTNAME' | translate }}" required name="form_payment_lastname" id="form_payment_lastname" value="" class="lastname"  ng-model="payment.pay.lastname"  title="Ingresa tu apellido"/>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-xs-12">
                                 <div class="form-group">
-                            		<label for="form_payment_email">Correo electrónico</label>
-                            		<input type="text" placeholder="Correo electrónico" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu correo electronico" />
-                        		</div>
+                                    <label for="form_payment_email" translate>PAYMENT.INFORMATION.FORM_EMAIL</label>
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu correo electronico" />
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="box-footer hidden-xs">
                             <input class="" id="notification"  type="checkbox" checked="checked" name="notifications" ng-model="payment.pay.notifications">
-                            <label for="notification">
-                                Recibir notificaciones de ofertas
+                            <label for="notification" translate>
+                                PAYMENT.INFORMATION.FORM_NOTIFICATIONS
                             </label>
                         </div>
                 </div> <!--  End box-->
                 <div class="box">
                         <div class="box-header">
-                            <h3 class="title">
-                                Formas de Pago
+                            <h3 class="title" translate>
+                                PAYMENT.PAY.TITLE
                             </h3>
                         </div>
                         <div class="box-content">
-                            <label>Selecciona tu forma de pago</label>
+                            <label translate>PAYMENT.PAY.SUBTITLE</label>
                             <br>
                             <div class="row">
                                 <div class="col-xs-12 col-md-4 text-center">
@@ -306,9 +306,9 @@ hr.add-passenger:hover:after {
                             <br>    
                             <div class="row">
                                 <div class="col-xs-12 col-md-12 text-center">
-                                    <p class="smallest-font">Al comprar estás aceptando nuestros <a href="#" target="_blank" title="Términos y condiciones" >Términos y Condiciones</a>.</p>
+                                    <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
                                     <br>
-                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit">Pagar ahora</button>
+                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" translate>PAYMENT.PAY.BUTTON</button>
                                 </div>
                             </div>
                         </div>
@@ -320,109 +320,109 @@ hr.add-passenger:hover:after {
 
         <div class="col-xs-12 col-md-5">
             <div class="box">
-    			<div class="box-header">
-        			<h3 class="title">Información de compra</h3>
-    			</div>
-    			<div class="box-content no-padding">
-        			<div class="trip-container-title">
-			            <div class="row">
-			               
-			                <div class="col-md-4 col-xs-12 col-md-push-8">
-			                    <span class="price">{{ payment.pay.total | currency:"$":0 }}</span>
-			                </div>
-			                <div class="col-xs-12 col-md-8 col-md-pull-4">
-			                    <p class="smallest-font">Precio total no incluye impuestos ni recargos </p>
-			                </div>
-			            </div>
-			        </div>
-			        <div class="trip-container">
-			            Ida
-			        </div>
-			        <div class="trip-container odd">
-			            <div class="row">
-			                <div class="col-md-1 hidden-xs">
-			                    <i class="fa fa-bus"></i>
-			                </div>
-			                <div class="col-md-8 col-xs-6">
-			                    <p class="smallest-font">
-			                    	<b>{{ payment.trips.round.origin }} - {{ payment.trips.round.destination }}</b>
-			                    	<span class="text-muted date"> {{ payment.trips.round.departureDate }}</span>
-			                    </p>
-			                    <p class="small-font hidden-xs">
-			                    	<small class="text-muted">{{ payment.trips.round.company }}</small>
-			                    </p>
-			                </div>
-			                <div class="col-xs-6 visible-xs">
-			                    <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.round.departureDate }}</span></p>
-			                </div>
-			                <div class="col-xs-4 visible-xs">
-			                    <p class="small-font">
-			                    	<small class="text-muted">{{ payment.trips.round.company }}</small>
-			                    </p>
-			                </div>
-			                <div class="col-md-4 visible-xs text-center">
-			                    <p class="smallest-font pull-right">{{ payment.trips.round.departureHour }} hrs.</p>
-			                </div>
-			                <div class="col-xs-4 col-md-3 hidden-xs">
-			                    <p class="smallest-font pull-right hidden-xs">{{ payment.trips.round.departureHour }} hrs.</p>
-			                    <p class="smallest-font pull-right">{{ payment.trips.round.typeService }}</p>
-			                </div>
-			            </div>
-			        </div>
+                <div class="box-header">
+                    <h3 class="title" translate>PAYMENT.PURCHASE.TITLE</h3>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="trip-container-title">
+                        <div class="row">
+                           
+                            <div class="col-md-4 col-xs-12 col-md-push-8">
+                                <span class="price">{{ payment.pay.total | currency:"$":0 }}</span>
+                            </div>
+                            <div class="col-xs-12 col-md-8 col-md-pull-4">
+                                <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTITLE</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trip-container" translate>
+                        PAYMENT.PURCHASE.ROUND
+                    </div>
+                    <div class="trip-container odd">
+                        <div class="row">
+                            <div class="col-md-1 hidden-xs">
+                                <i class="fa fa-bus"></i>
+                            </div>
+                            <div class="col-md-8 col-xs-6">
+                                <p class="smallest-font">
+                                    <b>{{ payment.trips.round.origin }} - {{ payment.trips.round.destination }}</b>
+                                    <span class="text-muted date"> {{ payment.trips.round.departureDate }}</span>
+                                </p>
+                                <p class="small-font hidden-xs">
+                                    <small class="text-muted">{{ payment.trips.round.company }}</small>
+                                </p>
+                            </div>
+                            <div class="col-xs-6 visible-xs">
+                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.round.departureDate }}</span></p>
+                            </div>
+                            <div class="col-xs-4 visible-xs">
+                                <p class="small-font">
+                                    <small class="text-muted">{{ payment.trips.round.company }}</small>
+                                </p>
+                            </div>
+                            <div class="col-md-4 visible-xs text-center">
+                                <p class="smallest-font pull-right">{{ payment.trips.round.departureHour }} hrs.</p>
+                            </div>
+                            <div class="col-xs-4 col-md-3 hidden-xs">
+                                <p class="smallest-font pull-right hidden-xs">{{ payment.trips.round.departureHour }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.trips.round.typeService }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-            		<div class="trip-container">
-                		Vuelta
-            		</div>
-          			<div class="trip-container odd">
-			            <div class="row">
-			                <div class="col-md-1 hidden-xs">
-			                    <i class="fa fa-bus"></i>
-			                </div>
-			                <div class="col-md-8 col-xs-6">
-			                    <p class="smallest-font">
-			                    	<b>{{ payment.trips.return.origin }} - {{ payment.trips.return.destination }}</b>
-			                    	<span class="text-muted date"> {{ payment.trips.return.departureDate }}</span>
-			                    </p>
-			                    <p class="small-font hidden-xs">
-			                    	<small class="text-muted">{{ payment.trips.return.company }}</small>
-			                    </p>
-			                </div>
-			                <div class="col-xs-6 visible-xs">
-			                    <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.return.departureDate }}</span></p>
-			                </div>
-			                <div class="col-xs-4 visible-xs">
-			                    <p class="small-font">
-			                    	<small class="text-muted">{{ payment.trips.return.company }}</small>
-			                    </p>
-			                </div>
-			                <div class="col-md-4 visible-xs text-center">
-			                    <p class="smallest-font pull-right">{{ payment.trips.return.departureHour }} hrs.</p>
-			                </div>
-			                <div class="col-xs-4 col-md-3 hidden-xs">
-			                    <p class="smallest-font pull-right hidden-xs">{{ payment.trips.return.departureHour }} hrs.</p>
-			                    <p class="smallest-font pull-right">{{ payment.trips.return.typeService }}</p>
-			                </div>
-			            </div>
-			        </div>
-    			</div>
-			</div>
+                    <div class="trip-container" translate>
+                        PAYMENT.PURCHASE.RETURN
+                    </div>
+                    <div class="trip-container odd">
+                        <div class="row">
+                            <div class="col-md-1 hidden-xs">
+                                <i class="fa fa-bus"></i>
+                            </div>
+                            <div class="col-md-8 col-xs-6">
+                                <p class="smallest-font">
+                                    <b>{{ payment.trips.return.origin }} - {{ payment.trips.return.destination }}</b>
+                                    <span class="text-muted date"> {{ payment.trips.return.departureDate }}</span>
+                                </p>
+                                <p class="small-font hidden-xs">
+                                    <small class="text-muted">{{ payment.trips.return.company }}</small>
+                                </p>
+                            </div>
+                            <div class="col-xs-6 visible-xs">
+                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.return.departureDate }}</span></p>
+                            </div>
+                            <div class="col-xs-4 visible-xs">
+                                <p class="small-font">
+                                    <small class="text-muted">{{ payment.trips.return.company }}</small>
+                                </p>
+                            </div>
+                            <div class="col-md-4 visible-xs text-center">
+                                <p class="smallest-font pull-right">{{ payment.trips.return.departureHour }} hrs.</p>
+                            </div>
+                            <div class="col-xs-4 col-md-3 hidden-xs">
+                                <p class="smallest-font pull-right hidden-xs">{{ payment.trips.return.departureHour }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.trips.return.typeService }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<div class="box">
-    			<div class="box-header">
-        			<h3 class="title">Cupon de Promoción</h3>
-    			</div>
-    			<div class="box-content">
-    				<form id="form-promo" name="form-promo" ng-submit="payment.validatePromo();">
-	        			<div class="row">
-	            			<div class="col-xs-12 col-md-8">
-	               				<input type="text" name="promoCode" id="promoCode" title="Ingresa un código de promoción" placeholder="Código de la promoción" ng-model="payment.promo.code" required>
-	           				</div>
-	           				<div class="col-xs-12 col-md-4">
-	            				<button class="btn theme-blue btn-lg btn-block" type="submit" style="margin-bottom: 0;">Validar</button>
-	        				</div>
-	    				</div>
-    				</form>
-				</div>
-			</div>    
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="title" translate>PAYMENT.PROMOTION.LABEL</h3>
+                </div>
+                <div class="box-content">
+                    <form id="form-promo" name="form-promo" ng-submit="payment.validatePromo();">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <input type="text" name="promoCode" id="promoCode" title="Ingresa un código de promoción" placeholder="{{ 'PAYMENT.PROMOTION.PLACEHOLDER' | translate }}" ng-model="payment.promo.code" required>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <button class="btn theme-blue btn-lg btn-block" type="submit" style="margin-bottom: 0;" translate>PAYMENT.PROMOTION.VALIDATE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>    
         </div>
-	</div>
+    </div>
