@@ -26,6 +26,8 @@
             vm.seatFilter = seatFilter;
             vm.disabled = false;
             vm.alternativeSearch = alternativeSearch;
+            vm.selectDeparture = true;
+            vm.departureSelect = departureSelect;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -242,6 +244,31 @@
                 vm.origin = origin+", España";
                 vm.destination = destination+", España";
                 callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
+            }
+
+            function departureSelect(id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                vm.selectDeparture = !vm.selectDeparture;
+                if(!vm.selectDeparture){
+                    vm.departureId = id;
+                    vm.departureOrigin = origin;
+                    vm.departureDestination = destination;
+                    vm.departureDeparture = departure;
+                    vm.departureDuration = duration;
+                    vm.departureArrival = arrival;
+                    vm.departurePrice = price;
+                    vm.departureTypeService = typeService;
+                    vm.departureCompanyName = companyName;
+                    vm.departureLogo = logo;
+                }else{
+                    vm.departureId = "";
+                    vm.departureDeparture = "";
+                    vm.departureDuration = "";
+                    vm.departureArrival = "";
+                    vm.departurePrice = "";
+                    vm.departureTypeService = "";
+                    vm.departureCompanyName = "";
+                    vm.departureLogo = "";
+                }
             }
 
         }

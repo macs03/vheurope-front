@@ -9,23 +9,19 @@
      *
      * Main module of the application.
      */
-
-    
-
-
     var app = angular
       .module('vhEurope', [
-        'ngAnimate',
-        'ngCookies',
-        'ngResource',
-        'ngRoute',
-        'ngSanitize',
-        'ngTouch',
-        'selectize',
-        '720kb.datepicker',
-        'rzModule',
-        'pascalprecht.translate'
-      ]);
+       'ngAnimate',
+       'ngCookies',
+       'ngResource',
+       'ngRoute',
+       'ngSanitize',
+       'ngTouch',
+       'selectize',
+       '720kb.datepicker',
+       'rzModule',
+       'pascalprecht.translate'
+     ]);
 
       app.config(function ($routeProvider) {
         $routeProvider
@@ -39,7 +35,7 @@
             controller: 'SearchController',
             controllerAs: 'search'
           })
-          .when('/seat', {
+          .when('/seat/:idDeparture/:idReturn', {
             templateUrl: 'views/seat.tpl.html',
             controller: 'SeatController',
             controllerAs: 'seat'
@@ -68,7 +64,7 @@
       $translateProvider.preferredLanguage('es');
       $translateProvider.useSanitizeValueStrategy('escape');
       $translateProvider.useCookieStorage();
-      
+
     }]);
 
 })();
