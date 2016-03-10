@@ -41,7 +41,7 @@
             controller: 'SeatController',
             controllerAs: 'seat'
           })
-          .when('/payment', {
+          .when('/payment/:idDeparture/:idReturn', {
             templateUrl: 'views/payment.tpl.html',
             controller: 'PaymentController',
             controllerAs: 'payment'

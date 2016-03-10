@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('PaymentController', PaymentController)
 
-        PaymentController.$inject = ['$scope','utilityService'];
+        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$routeParams'];
 
-        function PaymentController ($scope, utilityService) {
+        function PaymentController ($scope, utilityService, paymentFactory,$routeParams) {
 
             var vm = this;
             // La informacion de inicializacion debe ser obtenida a traves de un servicio
@@ -24,8 +24,8 @@
 
             vm.promo = {
                 code: ''
-            }; 
-
+            };
+            vm.paying = paying;
             vm.trips = {};
             vm.trips.round = {
                 origin: 'Barcelona', 
@@ -54,6 +54,17 @@
 
             vm.validatePayment = function(){
                 console.log('Agregar logica de validacion de pago');
-            };          
+            };
+
+            function paying(name,lastname,dni,card,month,year,cvv) {
+                paymentFactory
+                    .getAll($routeParams.idDeparture,$routeParams.idReturn,name,lastname,dni,card,month,year,cvv)
+                    .then(function(data){
+                        alert("Compra Exitosa");
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+            }
         }
 })();

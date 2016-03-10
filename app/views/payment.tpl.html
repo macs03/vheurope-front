@@ -253,10 +253,42 @@ hr.add-passenger:hover:after {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 col-xs-12">
+                            <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="form_payment_email" translate>PAYMENT.INFORMATION.FORM_EMAIL</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu correo electronico" />
+                                    <label for="form_payment_dni" translate>DNI</label>
+                                    <input type="text" placeholder="DNI" required name="form_payment_dni" id="form_payment_dni" value="" class="email"  ng-model="payment.pay.dni" title="Ingresa tu dni" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="form_payment_card" translate>Número de tarjeta</label>
+                                    <input type="text" placeholder="Tarjeta de credito" required name="form_payment_card" id="form_payment_card" value="" class="email"  ng-model="payment.pay.card" title="Ingresa tu numero de tarjeta" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="form_payment_month" translate>Mes</label>
+                                    <select name="form_payment_month" id="form_payment_month"  class="country" ng-model="payment.pay.month">
+                                        <option value="01" selected>Enero</option>
+                                        <option value="02">Febrero</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="form_payment_year" translate>Año</label>
+                                    <select name="form_payment_year" id="form_payment_year"  class="country" ng-model="payment.pay.year">
+                                        <option value="2016" selected>2016</option>
+                                        <option value="2017">2017</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="form_payment_cvv" translate>CVV</label>
+                                    <input type="text" placeholder="CVV" required name="form_payment_cvv" id="form_payment_cvv" value="" class="email"  ng-model="payment.pay.cvv" title="CVV" maxlength="3"/>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +340,7 @@ hr.add-passenger:hover:after {
                                 <div class="col-xs-12 col-md-12 text-center">
                                     <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
                                     <br>
-                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" translate>PAYMENT.PAY.BUTTON</button>
+                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
                                 </div>
                             </div>
                         </div>
