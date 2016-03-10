@@ -440,11 +440,11 @@
                                 </div>
 
                                 <div class="col-xs-4 nbt visible-xs">
-                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.destination)">SELECCIONAR</a>
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
                                 </div>
 
                                 <div class="col-md-3 nbt hidden-xs alternativeBox">
-                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.destination)">SELECCIONAR</a>
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
                                     <span class="hidden sort-price">${trip.price}</span>
                                     <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
                                     <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
