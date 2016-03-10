@@ -63,6 +63,14 @@
     </div> <!-- end .hero -->
 
     <!-- Start Main content -->
+    <div class="container" ng-show="!search.results" style="margin-top: 80px; margin-bottom: 80px;">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 text-center">
+                <p>Cargando resultados ...</p><br>
+                <img src="https://s3.amazonaws.com/api.voyhoy.com/resources/loader.gif" alt="Buscando pasajes ...">
+            </div>
+        </div> 
+    </div>
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->

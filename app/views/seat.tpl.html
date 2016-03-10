@@ -46,12 +46,55 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
     border: 1px solid #78FA89;
 }
+ #seat-container {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 </style>
-<div class="container" ng-show="seat.isLoading">
-    <h1>Contenido a mostrar durante la carga</h1>
+<div class="container" ng-show="seat.isLoading" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="row">
+        <div class="col-md-12 col-xs-12 text-center">
+            <p>Cargando mapa de asientos ...</p><br>
+            <img src="https://s3.amazonaws.com/api.voyhoy.com/resources/loader.gif" alt="Buscando pasajes ...">
+        </div>
+    </div> 
 </div>
-<div class="container" ng-show="!seat.isLoading">
+<div class="container" ng-show="!seat.isLoading" id="seat-container">
     <br>
     <div class="row">
         <!--  El de abajo es el enlace original al controlador de pagos -->

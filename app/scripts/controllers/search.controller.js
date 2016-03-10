@@ -28,6 +28,7 @@
             vm.alternativeSearch = alternativeSearch;
             vm.selectDeparture = true;
             vm.departureSelect = departureSelect;
+            vm.isLoading = true;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -112,6 +113,7 @@
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
+                        vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
@@ -167,6 +169,7 @@
             }, true);
 
             function searchTrip() {
+
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
@@ -200,6 +203,7 @@
             }
 
             function callSearch(origin,destination,departureDate,returnDate) {
+                vm.isLoading = true;
                 vm.results = false;
                 vm.trips = [];
                 vm.searching = true;
@@ -209,6 +213,7 @@
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,1)
                     .then(function(data){
+                        vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
