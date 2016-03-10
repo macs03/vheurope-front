@@ -249,9 +249,9 @@
                 }
             }
 
-            function alternativeSearch(origin, destination) {
-                vm.origin = origin+", España";
-                vm.destination = destination+", España";
+            function alternativeSearch(origin, countryOrigin, destination, countryDestination) {
+                vm.origin = origin+", "+countryOrigin;
+                vm.destination = destination+", "+countryDestination;
                 callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
             }
 
