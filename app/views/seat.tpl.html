@@ -315,7 +315,7 @@ input.ng-valid.ng-touched {
                             </p>
                             <br>
                             <br>
-                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay" translate>SEATS.PURCHASE_BUTTON</a>
+                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay" ng-click = "seat.reserve()" translate>SEATS.PURCHASE_BUTTON</a>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .box-content -->
@@ -360,18 +360,21 @@ input.ng-valid.ng-touched {
                     </div>
                 </div>
                 <div class="row">
-                    
+
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="rut" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small translate>SEATS.FORM_RUT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small translate>DNI/NIF</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="passport" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>SEATS.FORM_PASSPORT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="2" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>NIF</small>
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" value="3" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>SEATS.FORM_PASSPORT</small>
                             </label>
                             <div class="form-group rut-container">
-                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.rut" />
+                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" />
                             </div>
-                            
+
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
@@ -390,6 +393,15 @@ input.ng-valid.ng-touched {
                            <input type="text" placeholder="{{ 'SEATS.FORM_PHONE' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form_data_phone">
+                            <label for="form_data_email" translate>Email</label>
+                           <input type="email" placeholder="e-mail" name="form_data_email" id="form_data_email" value=""  class="phone" required maxlength="35" ng-model="seat.seatInSelection.email" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >
                             <div ng-switch-when="true">

@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','$scope','$interval','$routeParams'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$routeParams','$location'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, $scope, $interval, $routeParams) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $routeParams,$location) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelected = [];
@@ -23,6 +23,8 @@ angular
         vm.totalSeats = 0;
         vm.totalMount = 0;
         vm.trips = {};
+        vm.reserve = reserve;
+
         seatsFactory
             .getAll($routeParams.idDeparture,$routeParams.idReturn)
             .then(function (data) {
@@ -333,6 +335,17 @@ angular
 				vm.totalMount += vm.seatsSelected[i].price;
         	}
 		};
+
+        function reserve() {
+            reserveFactory
+                .getAll(vm.seatsSelected,$routeParams.idDeparture,$routeParams.idReturn)
+                .then(function(data){
+                    $location.path ("/payment")
+                })
+                .catch(function(err){
+                    console.log(err);
+                })
+        }
 
 		//jQuery Plugins & Code
     	//Inicializacion de los tabs
