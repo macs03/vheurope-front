@@ -24,7 +24,14 @@
             returns: "",
             passengers: "",
             getData: getData,
-            setData: setData
+            setData: setData,
+            setPaymentData: setPaymentData,
+            getPaymentData : getPaymentData,
+            objDeparture : {},
+            objReturn: {},
+            idIda : "",
+            idVuelta: "",
+            totalPayment : ""
         }
         var origin = ""
         function getData(){
@@ -55,6 +62,24 @@
            // localStorage.setItem("returns", returns);
            // localStorage.setItem("passengers", "1");
 
+        }
+
+        function setPaymentData(idIda,idVuelta,totalPayment,departure, returns) {
+            self.idIda = idIda;
+            self.idVuelta = idVuelta;
+            self.totalPayment = totalPayment
+            self.objDeparture = departure;
+            self.objReturn = returns;
+        }
+
+        function getPaymentData(){
+            return {
+                idIda : self.idIda,
+                idVuelta: self.idVuelta,
+                totalPayment : self.totalPayment,
+                departure : self.objDeparture,
+                returns : self.objReturn
+            }
         }
 
       }

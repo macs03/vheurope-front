@@ -12,15 +12,15 @@
         .module('vhEurope')
         .controller('PaymentController', PaymentController)
 
-        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$routeParams'];
+        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$routeParams','$location'];
 
-        function PaymentController ($scope, utilityService, paymentFactory,$routeParams) {
+        function PaymentController ($scope, utilityService, paymentFactory,$routeParams,$location) {
 
             var vm = this;
             // La informacion de inicializacion debe ser obtenida a traves de un servicio
             vm.pay = {
                 total: 23000
-            }; 
+            };
 
             vm.promo = {
                 code: ''
@@ -46,7 +46,12 @@
                 departureDate: 'Julio, 25 2016',
                 company: 'Alsa',
                 typeService: 'Semi-cama'
-            }; 
+            };
+
+            var paymentData = utilityService.getPaymentData();
+            vm.totalPrice = paymentData.totalPayment;
+            vm.departureData = paymentData.departure;
+            vm.returnData = paymentData.returns;
 
             vm.validatePromo = function(){
                 console.log('Agregar logica de validacion de promociones');
@@ -60,7 +65,8 @@
                 paymentFactory
                     .getAll($routeParams.idDeparture,$routeParams.idReturn,name,lastname,dni,card,month,year,cvv)
                     .then(function(data){
-                        alert("Compra Exitosa");
+                        //$location.path ("/payment/"+$routeParams.idDeparture+"/"+$routeParams.idReturn);
+                        $location.path ("/success/");
                     })
                     .catch(function(err){
                         console.log(err);
