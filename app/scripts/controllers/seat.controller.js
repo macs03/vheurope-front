@@ -35,7 +35,7 @@ angular
                 vm.trips.return = data.return;
                 console.log(vm.trips.round);
                 console.log(vm.trips.return);
-
+                vm.passengers = data.totalPeople;
                 sc = $('#seat-map-1').seatCharts({
                     map: vm.trips.round.seatMap[0],
                     seats: {
