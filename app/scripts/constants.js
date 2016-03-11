@@ -1,5 +1,5 @@
 (function () {
     'use strict';
     angular.module('constants', [])
-    .constant('apiUrl', ' http://localhost:8080/vheurope-api/v1/');
+    .constant('apiUrl', ' http://vheurope.cfapps.io/v1/');
 })();
