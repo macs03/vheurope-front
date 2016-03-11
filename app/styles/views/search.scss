@@ -42,18 +42,18 @@
     width: 80%;
     height: 100%;
     padding-top: 20px;
-    color: $white;
-    background: $oil;
+    color: #fff;
+    background: #666;
 }
 
 .filter {
     margin: 0 0 20px;
     border: none;
-    color: $oil;
-    background: $white;
+    color: #666;
+    background: #fff;
     //border-left: 1px solid $base;
     h3, label {
-        color: $oil;
+        color: #666;
     }
 
     .filter-module {
