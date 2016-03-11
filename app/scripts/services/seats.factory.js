@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('seatsFactory', seatsFactory);
 
-      seatsFactory.$inject =['$http','$q'];
+      seatsFactory.$inject =['$http','$q','apiUrl'];
 
-      function seatsFactory($http,$q) {
+      function seatsFactory($http,$q,apiUrl) {
         return {
             getAll: getAll
         }
@@ -29,7 +29,7 @@
             }
             $http({
                     method:'POST',
-                    url:'http://localhost:8080/vheurope-api/v1/seats',
+                    url: apiUrl + 'seats',
                     data: {
                         idIda:idDeparture,
                         idVuelta:returnId,

@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('paymentFactory', paymentFactory);
 
-      paymentFactory.$inject =['$http','$q'];
+      paymentFactory.$inject =['$http','$q','apiUrl'];
 
-      function paymentFactory($http,$q) {
+      function paymentFactory($http,$q,apiUrl) {
         return {
             getAll: getAll
         }
@@ -31,8 +31,7 @@
 
             $http({
                     method:'POST',
-                    url:'http://localhost:8080/vheurope-api/v1/purchase',
-                    //url:'http://vheurope.cfapps.io/v1/purchase',
+                    url: apiUrl + 'purchase',
                     data: {
                         idIda : departureId,
                         idVuelta: idReturn,

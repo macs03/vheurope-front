@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('travelsFactory', travelsFactory);
 
-      travelsFactory.$inject =['$http','$q','$filter'];
+      travelsFactory.$inject =['$http','$q','$filter','apiUrl'];
 
-      function travelsFactory($http,$q,$filter) {
+      function travelsFactory($http,$q,$filter,apiUrl) {
         return {
             getAll: getAll
         }
@@ -26,7 +26,7 @@
 
             $http({
                     method:'GET',
-                    url:'http://localhost:8080/vheurope-api/v1/trips',
+                    url: apiUrl + 'trips',
                     params: {
                         departure:origin,
                         arrival:destiny,
