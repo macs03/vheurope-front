@@ -55,7 +55,7 @@
 		"FLOOR_1": "PISO 1",
 		"FLOOR_2": "PISO 2",
 		"SELECTION_LABEL": "Tu(s) asiento(s):",
-		"SELECTION_SUBLABEL": "Por favor seleccione un máximo de ",
+		"SELECTION_SUBLABEL": "Por favor seleccione un máximo de 7 asientos.",
 		"SELECTION_SUBLABEL_NUMBER": " asiento(s)",
 		"LEGEND_AVAILABLE": "Disponible",
 		"LEGEND_UNAVAILABLE": "Ocupado",
