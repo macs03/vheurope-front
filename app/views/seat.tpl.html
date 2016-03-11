@@ -20,16 +20,17 @@ select {
 }
 
 .nav-tabs {
-    background: #ccc;
+    background: transparent;
     width: 230px;
 }
 .nav-tabs li {
-    width: 100%;
+    width: 101%;
 }
 
 .nav-tabs li > a{
     text-align: center;
     color: #222;
+    border-radius: 0;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
@@ -51,12 +52,15 @@ input.ng-valid.ng-touched {
 .new-results-selected .results .result img {
     margin-top: 5px;
 }
+.mt5 {
+    margin-top: -5px;
+}
 </style>
 <div class="container" ng-show="seat.isLoading" style="margin-top: 80px; margin-bottom: 80px;">
     <div class="row">
         <div class="col-md-12 col-xs-12 text-center">
             <p>Cargando mapa de asientos ...</p><br>
-            <img src="https://s3.amazonaws.com/api.voyhoy.com/resources/loader.gif" alt="Buscando pasajes ...">
+            <img src="http://dropshare.jesuscolmenares.com.ve/bus1_2x.gif" alt="Buscando pasajes ...">
         </div>
     </div> 
 </div>
@@ -70,7 +74,7 @@ input.ng-valid.ng-touched {
             <br>
             <div class="new-results">
                 <div class="results list" >
-                    <div class="row result">
+                    <div class="row result seat">
                         <div class="col-md-6 col-xs-6 c-departure">
                             <strong>{{ seat.trips.round.departureHour }} hrs.</strong>
                             <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round.origin }}</small>
@@ -291,7 +295,7 @@ input.ng-valid.ng-touched {
             </div> <!-- end .box #box-vuelta -->
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
 
-        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip}">
+        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'mt5':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip}">
             <div ng-show="!seat.trips.isRoundTrip"><br><br><br></div>
             <div class="box" id="purchase-resumen" style="background: #fff;">
                 <div class="box-content">
@@ -361,6 +365,16 @@ input.ng-valid.ng-touched {
                 </div>
                 <div class="row">
 
+                    
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
+                                <option value="VE">Venezuela</option>
+                                <option value="CO">Colombia</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
                                 <input type="radio" name="form_data_document" id="form_data_document" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small translate>DNI/NIF</small>
@@ -376,15 +390,6 @@ input.ng-valid.ng-touched {
                             </div>
 
                     </div>
-                    <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
-                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country">
-                                <option value="VE">Venezuela</option>
-                                <option value="CO">Colombia</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
@@ -395,8 +400,8 @@ input.ng-valid.ng-touched {
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form_data_phone">
-                            <label for="form_data_email" translate>Email</label>
-                           <input type="text" placeholder="e-mail" name="form_data_email" id="form_data_email" value=""  class="phone" required maxlength="35" ng-model="seat.seatInSelection.email" />
+                            <label for="form_data_email" translate>SEATS.FORM_EMAIL</label>
+                           <input type="text" placeholder="{{ 'SEATS.FORM_EMAIL' | translate}}" name="form_data_email" id="form_data_email" value=""  class="phone" required maxlength="35" ng-model="seat.seatInSelection.email" />
                         </div>
                     </div>
 
