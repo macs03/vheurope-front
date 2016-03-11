@@ -48,12 +48,16 @@ body {
 }
 
 rzslider .rz-pointer {
-    background-color: #666;
+  top: -6px;
+  z-index: 3;
+  width: 16px;
+  height: 16px;
+  background-color: #666;
 }
 rzslider .rz-bar.rz-selection {
     background: #666;
 }
 rzslider .rz-pointer.rz-active:after{
-    background-color: #d0d0d0;
+    background-color: transparent;
 }
 

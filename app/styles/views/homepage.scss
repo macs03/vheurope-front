@@ -608,7 +608,7 @@ input[type="text"] {
 
 .destination-search {
     background: #fff;
-    border: 1px solid #c0c0c0;
+    border: none;
     min-height: 50px;
     max-height: 50px;
 }
@@ -632,7 +632,7 @@ input[type="text"] {
 
 .vh-calendar {
     position: absolute;
-    top: 36%;
+    top: 40%;
     right: 10px;
     color: #999;
     -webkit-transition: opacity .5s;
@@ -647,7 +647,7 @@ input[type="text"] {
 }
 
 .btn-search {
-    min-height: 48px;
+    min-height: 50px;
     border-radius: 0;
     border: 0;
     padding: 14px 12px;
