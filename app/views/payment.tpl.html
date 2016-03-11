@@ -324,14 +324,27 @@ select {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="box-footer hidden-xs">
-                            <input class="" id="notification"  type="checkbox" checked="checked" name="notifications" ng-model="payment.pay.notifications">
+                          <br>  
+                           <input class="" id="notification"  type="checkbox" checked="checked" name="notifications" ng-model="payment.pay.notifications">
                             <label for="notification" translate>
                                 PAYMENT.INFORMATION.FORM_NOTIFICATIONS
                             </label>
-                        </div>
+                            <br>
+                            <br>
+                              
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 text-center">
+                                    <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
+                                    <br>
+                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="box-footer hidden-xs">
+                           
+                    </div>
                 </div> <!--  End box-->
+                <!--
                 <div class="box">
                         <div class="box-header">
                             <h3 class="title" translate>
@@ -377,6 +390,9 @@ select {
                             </div>
                         </div>
                     </div>
+
+
+                    -->
 
             </form>
             
