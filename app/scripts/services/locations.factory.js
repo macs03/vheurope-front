@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('locationsFactory', locationsFactory);
 
-      locationsFactory.$inject =['$http','$q'];
+      locationsFactory.$inject =['$http','$q','apiUrl'];
 
-      function locationsFactory($http,$q) {
+      function locationsFactory($http,$q,apiUrl) {
         return {
             getAll: getAll
         }
@@ -24,7 +24,7 @@
 
             $http({
                     method:'GET',
-                    url:'http://localhost:8080/vheurope-api/v1/locations',
+                    url: apiUrl + 'locations',
                 })
                 .success(function(data) {
                     defered.resolve(data);

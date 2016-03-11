@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('reserveFactory', reserveFactory);
 
-      reserveFactory.$inject =['$http','$q'];
+      reserveFactory.$inject =['$http','$q','apiUrl'];
 
-      function reserveFactory($http,$q) {
+      function reserveFactory($http,$q,apiUrl) {
         return {
             getAll: getAll
         }
@@ -45,7 +45,7 @@
 
             $http({
                     method:'POST',
-                    url:'http://localhost:8080/vheurope-api/v1/reserves',
+                    url: apiUrl + 'reserves',
                     //url:'http://vheurope.cfapps.io/v1/reserves',
                     data: {
                         idIda : departureId,
