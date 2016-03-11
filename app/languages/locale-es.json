@@ -70,10 +70,11 @@
 		"FORM_LABEL_SEAT": "Asiento",
 		"FORM_NAME": "Nombre",
 		"FORM_LASTNAME": "Apellido",
-		"FORM_RUT": "RUT",
+		"FORM_RUT": "No. de documento",
 		"FORM_PASSPORT": "PASAPORTE",
 		"FORM_COUNTRY": "País",
 		"FORM_PHONE": "Teléfono",
+		"FORM_EMAIL": "Correo electrónico",
 		"FORM_BTN_SELECT": "Seleccionar",
 		"FORM_BTN_UPDATE": "Actualizar"
 	},

@@ -70,10 +70,11 @@
 		"FORM_LABEL_SEAT": "Seat",
 		"FORM_NAME": "Name",
 		"FORM_LASTNAME": "Lastname",
-		"FORM_RUT": "RUT",
+		"FORM_RUT": "Document No.",
 		"FORM_PASSPORT": "PASSPORT",
 		"FORM_COUNTRY": "Country",
 		"FORM_PHONE": "Phone",
+		"FORM_EMAIL": "Email",
 		"FORM_BTN_SELECT": "Select",
 		"FORM_BTN_UPDATE": "Update"
 	},
