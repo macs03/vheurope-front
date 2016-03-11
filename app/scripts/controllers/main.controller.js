@@ -44,9 +44,6 @@
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
 
-            console.log(vm.dates);
-            vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
-            vm.returnDateUnix = new Date(vm.dates.returnDate).getTime()/1000;
 
             locationsFactory
                 .getAll()
@@ -72,10 +69,13 @@
                         var date2 = vm.dates.returnDate;
                         var vD1 = date1.split("/")
                         var vD2 = date2.split("/")
-                        vm.returnDateUnix = new Date(vm.dates.returnDate).getTime()/1000;
                         changeDate();
                         var newDate1 = new Date(vD1[2],vD1[1],vD1[0]);
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
+                        var newDate3 = new Date(vD1[2],vD1[1]-1,vD1[0]);
+                        var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
+                        vm.departureDateUnix = new Date(newDate3).getTime();
+                        vm.returnDateUnix = new Date(newDate4).getTime();
 
                         if ( newDate1 <= newDate2) {
                             console.log(vm.origin);
@@ -90,10 +90,18 @@
                             vm.good = false;
                         }
                     }else{
+                        var date1 = vm.dates.departureDate;
+                        var date2 = vm.dates.returnDate;
+                        var vD1 = date1.split("/")
+                        var vD2 = date2.split("/")
                         console.log(vm.origin);
                     	console.log(vm.destination);
                     	console.log('departure: '+vm.dates.departureDate);
                         console.log('returns: '+vm.dates.returnDate);
+                        var newDate3 = new Date(vD1[2],vD1[1]-1,vD1[0]);
+                        var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
+                        vm.departureDateUnix = new Date(newDate3).getTime();
+                        vm.returnDateUnix = new Date(newDate4).getTime();
                         utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
                         vm.good = true;
                     }

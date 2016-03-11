@@ -132,6 +132,78 @@
                         $('.pikaday__display').prop('disabled', false);
                     })
 
+            }else{
+                var origin = $routeParams.origin.split(",");
+                var destination = $routeParams.destination.split(",");
+                var dateDeparture = new Date(parseInt($routeParams.departureDate));
+                var dateReturn = ""
+                var returnDateFormat = ""
+
+                if($routeParams.returnDate ==  "NaN"){
+                    returnDateFormat = "";
+                }else{
+                    dateReturn = new Date(parseInt($routeParams.returnDate));
+                    var returnDay = dateReturn.getDate();
+                    var returnMonth = dateReturn.getMonth()+1;
+                    var returnYear = dateReturn.getFullYear();
+
+                    if(parseInt(returnDay) < 10){
+                        returnDay = '0'+returnDay;
+                    }
+                    if(parseInt(returnMonth) < 10){
+                        returnMonth = '0'+returnMonth;
+                    }
+                    returnDateFormat = returnDay+"/"+returnMonth+"/"+returnYear;
+                }
+                var departureDay = dateDeparture.getDate();
+                var departureMonth = dateDeparture.getMonth()+1;
+                var departureYear = dateDeparture.getFullYear();
+
+                if(parseInt(departureDay) < 10){
+                    departureDay = '0'+departureDay;
+                }
+                if(parseInt(departureMonth) < 10){
+                    departureMonth = '0'+departureMonth;
+                }
+                var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
+
+                vm.origin = $routeParams.origin;
+                vm.destination = $routeParams.destination;
+                vm.dates.departureDate = departureDateFormat;
+                vm.dates.returnDate = returnDateFormat;
+                vm.countryOrigin = origin[1];
+                vm.countryDestination = destination[1];
+
+                vm.results = false;
+                vm.trips = [];
+                vm.searching = true;
+                vm.error = false;
+                vm.disabled = true;
+                setTimeout(function () {
+                        $('.pikaday__display').prop('disabled', true);
+                }, 100);
+
+                travelsFactory
+                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,1)
+                    .then(function(data){
+                        vm.isLoading = false;
+                        vm.trips = data;
+                        vm.searching = false;
+                        vm.results = true;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        var time = $timeout(function () {
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.searching = false;
+                        vm.error = true;
+                        vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
+                    })
             }
 
             function order(type) {
