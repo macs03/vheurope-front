@@ -90,8 +90,8 @@
 		"PAY": {
 			"TITLE": "FORMAS DE PAGO",
 			"SUBTITLE": "Selecciona una forma de pago",
-			"TERMINOS": "Al comprar estás aceptando nuestros",
-			"TERMINOS_LINK": "Términos y Condiciones",
+			"TERMS": "Al comprar estás aceptando nuestros",
+			"TERMS_LINK": "Términos y Condiciones",
 			"BUTTON": "PAGAR AHORA"
 		},
 		"PURCHASE": {
