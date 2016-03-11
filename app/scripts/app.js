@@ -47,6 +47,11 @@
             controller: 'PaymentController',
             controllerAs: 'payment'
           })
+          .when('/success', {
+            templateUrl: 'views/success.tpl.html',
+            controller: 'SuccessController',
+            controllerAs: 'success'
+          })
           .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutCtrl',

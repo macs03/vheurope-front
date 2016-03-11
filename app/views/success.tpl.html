@@ -1,0 +1,401 @@
+<style>
+	<style type="text/css">
+        .hidden {
+            display: none;
+        }
+
+        .vh-blue {
+            color: #29aae3 !important;
+        }
+
+        .ttu {
+            text-decoration: underline;
+        }
+
+        .facebook {
+            color: #3b5998;
+        }
+
+        .twitter {
+            color: #55acee;
+        }
+
+        .facebook:hover, .twitter:hover {
+            color: #dedede;
+        }
+
+        .tickets {
+            border: 1px solid #cecece;
+        }
+
+        .tickets .header-tickets {
+            color: #666;
+            border-bottom: 1px solid #cecece;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+        }
+
+        .tickets .ticket.list  {
+            max-height: 50px;
+
+        }
+
+        .tickets .ticket.list p  {
+            font-size: .85em;
+
+        }
+
+         .tickets .header.list-tickets  {
+            background: #fdfdfd;
+        }
+
+        .tickets .header.list-tickets p {
+            font-size: .85em !important;
+        }
+        .tickets .header .company,
+        .tickets .header .name,
+        .tickets .header .dni,
+        .tickets .header .seat {
+            margin-left: 10px;
+        }
+
+        .tickets .header .dni,
+        .tickets .header .seat{
+            margin-left: 5px;
+        }
+
+        .tickets .header .trip {
+            margin-left: -5px;
+        }
+
+        .tickets .sub-header {
+            background: #cecece;
+            color:  #666;
+            padding: 4px 0 4px 12px;
+            margin-bottom: 8px;
+        }
+
+        .tickets .ticket {
+            border-bottom: 1px solid #cecece;
+            padding-bottom: 8px;
+            margin: 0 0 10px 0;
+        }
+        .nbb {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+
+        }
+
+        .tickets .ticket.list-tickets p {
+            font-size: .85em !important;
+        }
+
+
+        .tickets .ticket:last-child {
+            border-bottom: none;
+        }
+
+
+        .tickets .ticket  img {
+            max-width: 50px;
+            max-height: 50px;
+            margin-top: 10px;
+        }
+
+        .tickets .ticket .company h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .95rem !important;
+            text-transform: capitalize;
+            margin-top: 15px;
+            font-weight: 600;
+            line-height: 1em;
+        }
+
+
+
+        button.theme-blue-2,
+        .button.theme-blue-2 {
+            background: #29aae3;
+            border: 0;
+            color: #fff;
+            transition: background-color 300ms ease-out;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            margin-top: 10px !important;
+        }
+
+        button.theme-blue-2:hover,
+        .button.theme-blue-2:hover {
+            background: #58bef2;
+            color: #fff;
+        }
+
+        @media only screen and (max-width: 40em) {
+            button.theme-blue-2,
+            .button.theme-blue-2 {
+                margin-top: 10px !important;
+            }
+        }
+
+        @media (max-width: 400px){
+            .company{
+                max-width: 80px !important;
+                overflow: scroll !important;
+            }
+        }
+    </style>
+</style>
+<div class="container">
+	    <div class="row">
+	    <br>
+		<br>
+        <!-- start pay info-->
+        <div class="col-xs-12 col-md-12">
+            <div class="box">
+                <div class="box-content">
+                    <h2 class="center vh-blue">Tu compra ha sido exitosa</h2>
+                    <br>
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li>
+                            <a href="https://twitter.com/yovoyhoy" class="" title="Síguenos en  Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://es-es.facebook.com/yovoyhoy" class="" title="Síguenos en  Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-content">
+                    <p class="vh-blue">Estimado(a) Jake,</p>
+                    <p>Muchas gracias por confiar en <strong>Resertrip</strong></p>
+                    <p>Te enviamos un e-mail con los detalles de tu viaje y tu pasaje adjunto a <a href="mailto:jake@resertrip.com">jake@resertrip.com</a></p>
+                    
+                    
+                            <p>Para obtener tu pasaje físico (en papel), basta que te dirijas al terminal de salida y muestres tu código de reserva en la boleteria de la compañia que hayas elegido</p>
+                      
+                  
+                    <br>
+                    <div class="tickets">
+                        <div class="sub-header" style="background: #2BB3F0;color:#fff;">
+                            <p>IDA <small>No. VIAJE: 12121212</small></p>
+                        </div>
+                        <div class="header-tickets">
+                            <div class="row">
+                                <div class="col-xs-4 col-md-3">
+                                    <p class="company">Empresa</p>
+                                </div>
+                                <div class="col-xs-4 col-md-3">
+                                    <p class="departure">Salida</p>
+                                </div>
+                                <div class="col-xs-4 col-md-3">
+                                    <p class="arrival">Llegada</p>
+                                </div>
+                                <div class="col-xs-4 col-md-3 text-center hidden-xs">
+                                    <p class="service">Servicios</p>
+                                </div>
+                            </div>
+                        </div> <!-- end header -->
+                        <div class="row ticket nbb">
+                            <div class="col-xs-4 col-md-2 company">
+                                <h4><a href="#" class="company-name" target="_blank" title="Alsa">Alsa</a></h4>
+                            </div>
+
+                            <div class="col-xs-12 col-md-1 hidden-xs">
+                                <img src="http://fakeimg.pl/50x50/" style="height: 50px;width: 50px;"/>
+                            </div>
+
+                            <div class="col-xs-4 col-md-3">
+                                <span>Barcelona</span><br>
+                                <span class="smallest-font text-muted">22, Julio 2016,</span>
+                                <span class="smallest-font vh-blue">22:00 hrs</span><br>
+                                <span class="smallest-font text-muted">Terminal Barajas</span>
+                            </div>
+
+                            <div class="col-xs-4 col-md-3">
+                                <span>Madrid</span><br>
+                                <span class="smallest-font text-muted">23, Julio 2016,</span>
+                                <span class="smallest-font vh-blue">12:00 hrs</span><br>
+                                <span class="smallest-font text-muted">Terminal Madrid</span>
+                            </div>
+                            <div class="col-xs-12 col-md-3 text-center hidden-xs">
+                                   
+                                        <span class="smallest-font text-muted">3 x Semi-Cama</span>
+                                        <br>
+                                   
+                                </div>
+
+                            
+                                
+                                
+                           
+                        </div>
+
+                        <div class="sub-header">
+                            <p>TICKETS</p>
+                        </div>
+
+                       
+                            <div class="header-tickets list-tickets">
+                                <div class="row">
+                                    <div class="col-xs-8 col-md-4">
+                                        <p class="name">NOMBRE</p>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p class="dni">DNI</p>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p class="seat">ASIENTO</p>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p class="trip">CÓDIGO DE RETIRO</p>
+                                    </div>
+                                    <div class="col-xs-4 col-md-2">
+                                        <p class="download">DESCARGA</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end header -->
+                            
+                                <div class="row ticket list">
+                                    <div class="col-xs-8 col-md-4">
+                                        <p>Jake Moskowitz</p>
+                                    </div>
+
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p>12.321.234-6</p>
+                                    </div>
+
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p>Semi-Cama (02)</p>
+                                    </div>
+
+                                    <div class="col-xs-2 col-md-2 hidden-xs">
+                                        <p>12324354</p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-2">
+                                        <a href="">TICKET</a>
+                                    </div>
+                                </div>
+                            
+                      
+                        
+                       
+
+                       
+                            <div class="sub-header" style="background: #2BB3F0;color:#fff;">
+                                <p>VUELTA <small>No. VIAJE: 12323457</small></p>
+                            </div>
+                            <div class="header-tickets">
+                                <div class="row">
+                                    <div class="col-xs-4 col-md-3">
+                                        <p class="company">Empresa</p>
+                                    </div>
+                                    <div class="col-xs-4 col-md-3">
+                                        <p class="departure">Salida</p>
+                                    </div>
+                                    <div class="col-xs-4 col-md-3">
+                                        <p class="arrival">Llegada</p>
+                                    </div>
+                                    <div class="col-xs-4 col-md-3 text-center hidden-dx">
+                                        <p class="service">Servicios</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end header -->
+                            <div class="row ticket nbb">
+                                <div class="col-xs-4 col-md-2 company">
+                                    <h4><a href="#" class="company-name" target="_blank" title="${vuelta.companyName}">Alsa</a></h4>
+                                </div>
+
+                                <div class="col-xs-12 col-md-1 hidden-xs">
+                                    <img src="http://fakeimg.pl/50x50/" style="height: 50px;width: 50px;"/>
+                                </div>
+
+                                <div class="col-xs-4 col-md-3">
+                                    <span>Madrid</span><br>
+                                    <span class="smallest-font text-muted">26, Julio 2016</span>
+                                    <span class="smallest-font vh-blue">23:00 hrs</span><br>
+                                    <span class="smallest-font text-muted">Terminal Madrid</span>
+                                </div>
+
+                                <div class="col-xs-4 col-md-3">
+                                    <span>Barcelona</span><br>
+                                    <span class="smallest-font text-muted">27, Julio 2016</span>
+                                    <span class="smallest-font vh-blue">23:00 hrs</span><br>
+                                    <span class="smallest-font text-muted">Terminal Barajas</span>
+                                </div>
+
+                                <div class="col-xs-12 col-md-3 text-center hidden-xs">
+                                   
+                                        <span class="smallest-font text-muted">3 x Semi-Cama</span>
+                                        <br>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="sub-header">
+                                <p>TICKETS</p>
+                            </div>
+                           
+                                <div class="header-tickets list-tickets">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-md-4">
+                                            <p class="name">NOMBRE</p>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p class="dni">DNI</p>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p class="seat">ASIENTO</p>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p class="trip">CÓDIGO DE RETIRO</p>
+                                        </div>
+                                        <div class="col-xs-4 col-md-2">
+                                            <p class="download">DESCARGA</p>
+                                        </div>
+                                    </div>
+                                </div> <!-- end header -->
+                               
+                                    <div class="row ticket list">
+                                        <div class="col-xs-8 col-md-4">
+                                            <p>Jake Moskowitz</p>
+                                        </div>
+
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p>12.123.123-0</p>
+                                        </div>
+
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p>Semi-Cama (02)</p>
+                                        </div>
+
+                                        <div class="col-xs-2 col-md-2 hidden-xs">
+                                            <p>12121212</p>
+                                        </div>
+
+                                        <div class="col-xs-2 col-md-2">
+                                            <a href="">TICKET</a>
+                                        </div>
+                                    </div>
+                               
+                    </div> <!-- end tickets -->
+                    <br/>
+                    <br/>
+                  
+                 
+                </div> <!-- end box -->
+            </div>
+            <div class="box">
+                <div class="box-content">
+                    <h6 class=" vh-blue">DETALLE DE PAGO</h6>
+                    <p>Método de pago: <span class="vh-blue">Movelia Pagos</span></p>
+                    <p>TOTAL: <strong>23.000</strong></p>
+                    <p class="ttu smallest-font"><a href="#" target="_blank" title="Términos y condiciones" >Términos y Condiciones</a></p>
+
+                </div>
+            </div>
+        </div>
+        <!-- end pay info-->
+    </div>
+</div>
