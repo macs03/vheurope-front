@@ -358,6 +358,10 @@ angular
   			vm.resetSeatInSelection();
 		})
 
+        $('.country').countrySelector({
+            language: 'ES'
+        });
+
         /*
 
     
