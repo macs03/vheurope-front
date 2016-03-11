@@ -226,6 +226,24 @@ hr.add-passenger:hover:after {
 
 #promoCode,
 #validate-prom { margin-bottom: 0 }
+
+ input[type="text"] {
+        border-radius: 0px !important;
+        min-height: 48px !important;
+        border: 1px solid #d0d0d0;
+}
+
+select {
+    height: 48px !important;
+    min-height: 48px !important;
+    background-color: transparent;
+    width: 99% !important;
+    border: 1px solid #d0d0d0;
+    border-radius: 0px !important;
+
+
+}
+
 </style>
 <div class="container">
     <br>
@@ -271,8 +289,18 @@ hr.add-passenger:hover:after {
                                 <div class="form-group">
                                     <label for="form_payment_month" translate>Mes</label>
                                     <select name="form_payment_month" id="form_payment_month"  class="country" ng-model="payment.pay.month">
-                                        <option value="01" selected>Enero</option>
-                                        <option value="02">Febrero</option>
+                                        <option value="01" selected>01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
                                     </select>
                                 </div>
                             </div>
@@ -282,6 +310,10 @@ hr.add-passenger:hover:after {
                                     <select name="form_payment_year" id="form_payment_year"  class="country" ng-model="payment.pay.year">
                                         <option value="2016" selected>2016</option>
                                         <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
                                     </select>
                                 </div>
                             </div>
