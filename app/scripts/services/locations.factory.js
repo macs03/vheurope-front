@@ -23,6 +23,7 @@
             var promise = defered.promise;
 
             $http({
+                    cache: true,
                     method:'GET',
                     url: apiUrl + 'locations',
                 })
