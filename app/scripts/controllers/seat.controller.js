@@ -340,6 +340,7 @@ angular
             reserveFactory
                 .getAll(vm.seatsSelected,$routeParams.idDeparture,$routeParams.idReturn)
                 .then(function(data){
+                    utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPayment,data.departure,data.return);
                     $location.path ("/payment/"+$routeParams.idDeparture+"/"+$routeParams.idReturn);
                 })
                 .catch(function(err){

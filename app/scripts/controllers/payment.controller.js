@@ -46,7 +46,12 @@
                 departureDate: 'Julio, 25 2016',
                 company: 'Alsa',
                 typeService: 'Semi-cama'
-            }; 
+            };
+
+            var paymentData = utilityService.getPaymentData();
+            vm.totalPrice = paymentData.totalPayment;
+            vm.departureData = paymentData.departure;
+            vm.returnData = paymentData.returns;
 
             vm.validatePromo = function(){
                 console.log('Agregar logica de validacion de promociones');

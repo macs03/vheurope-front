@@ -406,9 +406,9 @@ select {
                 <div class="box-content no-padding">
                     <div class="trip-container-title">
                         <div class="row">
-                           
+
                             <div class="col-md-4 col-xs-12 col-md-push-8">
-                                <span class="price">{{ payment.pay.total | currency:"$":0 }}</span>
+                                <span class="price">{{payment.totalPrice}} €</span>
                             </div>
                             <div class="col-xs-12 col-md-8 col-md-pull-4">
                                 <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTITLE</p>
@@ -425,62 +425,62 @@ select {
                             </div>
                             <div class="col-md-8 col-xs-6">
                                 <p class="smallest-font">
-                                    <b>{{ payment.trips.round.origin }} - {{ payment.trips.round.destination }}</b>
-                                    <span class="text-muted date"> {{ payment.trips.round.departureDate }}</span>
+                                    <b>{{ payment.departureData.origin }} - {{ payment.departureData.destination }}</b>
+                                    <span class="text-muted date"> {{ payment.departureData.date }}</span>
                                 </p>
                                 <p class="small-font hidden-xs">
-                                    <small class="text-muted">{{ payment.trips.round.company }}</small>
+                                    <small class="text-muted">{{ payment.departureData.company }}</small>
                                 </p>
                             </div>
                             <div class="col-xs-6 visible-xs">
-                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.round.departureDate }}</span></p>
+                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.departureData.date }}</span></p>
                             </div>
                             <div class="col-xs-4 visible-xs">
                                 <p class="small-font">
-                                    <small class="text-muted">{{ payment.trips.round.company }}</small>
+                                    <small class="text-muted">{{ payment.departureData.company }}</small>
                                 </p>
                             </div>
                             <div class="col-md-4 visible-xs text-center">
-                                <p class="smallest-font pull-right">{{ payment.trips.round.departureHour }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.departureData.time }} hrs.</p>
                             </div>
                             <div class="col-xs-4 col-md-3 hidden-xs">
-                                <p class="smallest-font pull-right hidden-xs">{{ payment.trips.round.departureHour }} hrs.</p>
-                                <p class="smallest-font pull-right">{{ payment.trips.round.typeService }}</p>
+                                <p class="smallest-font pull-right hidden-xs">{{ payment.departureData.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.departureData.typeService }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="trip-container" translate>
+                    <div class="trip-container" translate ng-show="payment.returnData.length > 0">
                         PAYMENT.PURCHASE.RETURN
                     </div>
-                    <div class="trip-container odd">
+                    <div class="trip-container odd" ng-show="payment.returnData.length > 0">
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
                                 <i class="fa fa-bus"></i>
                             </div>
                             <div class="col-md-8 col-xs-6">
                                 <p class="smallest-font">
-                                    <b>{{ payment.trips.return.origin }} - {{ payment.trips.return.destination }}</b>
-                                    <span class="text-muted date"> {{ payment.trips.return.departureDate }}</span>
+                                    <b>{{ payment.returnData.origin }} - {{ payment.returnData.destination }}</b>
+                                    <span class="text-muted date"> {{ payment.returnData.date }}</span>
                                 </p>
                                 <p class="small-font hidden-xs">
-                                    <small class="text-muted">{{ payment.trips.return.company }}</small>
+                                    <small class="text-muted">{{ payment.returnData.company }}</small>
                                 </p>
                             </div>
                             <div class="col-xs-6 visible-xs">
-                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.trips.return.departureDate }}</span></p>
+                                <p class="smallest-font pull-right"><span class="text-muted"> J{{ payment.returnData.date }}</span></p>
                             </div>
                             <div class="col-xs-4 visible-xs">
                                 <p class="small-font">
-                                    <small class="text-muted">{{ payment.trips.return.company }}</small>
+                                    <small class="text-muted">{{ payment.returnData.company }}</small>
                                 </p>
                             </div>
                             <div class="col-md-4 visible-xs text-center">
-                                <p class="smallest-font pull-right">{{ payment.trips.return.departureHour }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.returnData.time }} hrs.</p>
                             </div>
                             <div class="col-xs-4 col-md-3 hidden-xs">
-                                <p class="smallest-font pull-right hidden-xs">{{ payment.trips.return.departureHour }} hrs.</p>
-                                <p class="smallest-font pull-right">{{ payment.trips.return.typeService }}</p>
+                                <p class="smallest-font pull-right hidden-xs">{{ payment.returnData.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ payment.returnData.typeService }}</p>
                             </div>
                         </div>
                     </div>
