@@ -2,17 +2,6 @@
     //display: none;
     position: relative;
     height: 220px;
-    @include breakpoint(medium) {
-        height: 130px;
-    }
-    @include breakpoint(smalll) {
-        height: 120px;
-    }
-    @include breakpoint(large) {
-        display: block;
-        height: 200px;
-        margin-bottom: $spacingDouble;
-    }
     .hero-img {
         position: absolute;
         top: 0;
@@ -33,10 +22,7 @@
             text-align: center;
         }
     }
-    .search-trigger & {
-        display: block;
-        border-bottom: solid 1px $borderColor;
-    }
+    
 }
 
 #search-page.hero  .hero-img  {
@@ -55,56 +41,19 @@
     transform: translate3d(100%,0,0);
     width: 80%;
     height: 100%;
-    padding-top: $spacing;
+    padding-top: 20px;
     color: $white;
     background: $oil;
-    @include breakpoint(medium) {
-        width: 280px;
-    }
-    @include breakpoint(large) {
-        position: static;
-        top: auto;
-        right: auto;
-        -webkit-transform: none;
-        transform: none;
-        width: 25%;
-        height: auto;
-        padding-top: 0;
-        color: inherit;
-        background: none;
-    }
-    .filter-trigger & {
-        display: block;
-        overflow-x: scroll;
-        z-index: 9999;
-        padding-bottom: 60px;
-    }
-    & .switch {
-        cursor: auto;
-        label {
-            color: inherit;
-            text-indent: $spacingDouble;
-        }
-    }
 }
 
 .filter {
-    margin: 0 0 $spacing;
+    margin: 0 0 20px;
     border: none;
     color: $oil;
     background: $white;
     //border-left: 1px solid $base;
     h3, label {
         color: $oil;
-    }
-    @include breakpoint(large) {
-        margin: 10px 0 0;
-       // border: solid 1px $borderColor;
-        color: inherit;
-        background: $white;
-        h3, label {
-            color: inherit;
-        }
     }
 
     .filter-module {
@@ -114,22 +63,12 @@
         &:first-child {
             border-top: none;
         }
-        @include breakpoint(large) {
-            padding: 10px 10px;
-            margin-left: 0;
-            margin-right: 0;
-        }
     }
 
     button {
         margin: 0;
     }
 }
-
-
-
-
-
 
 body { 
     font-family: 'Montserrat', sans-serif;
