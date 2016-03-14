@@ -27,7 +27,7 @@
         	vm.myOptions = [];
         	vm.myConfig = {
           		//create: true,
-          		valueField: 'label',
+          		valueField: 'id',
           		labelField: 'label',
                 searchField: ['label'],
           		delimiter: '|',
@@ -56,9 +56,21 @@
 
 
         	vm.searchTrips = function () {
+                angular.forEach(vm.myOptions, function(value, key) {
+                    if(vm.myOptions[key].id === vm.origin){
+                        vm.originCity = vm.myOptions[key].city;
+                        vm.originCountryCode = vm.myOptions[key].countryCode;
+                        vm.originCountry = vm.myOptions[key].country;
+                    }
+                    if(vm.myOptions[key].id === vm.destination){
+                        vm.destinationCity = vm.myOptions[key].city;
+                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
+                        vm.destinationCountry = vm.myOptions[key].country;
+                    }
+                });
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
-                if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
+                if (vm.originCity === vm.destinationCity || vm.originCity =="" || vm.destinationCity =="" ) {
                     console.log("error cities");
                     vm.good = false;
                 } else {
@@ -78,11 +90,11 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
 
                         if ( newDate1 <= newDate2) {
-                            console.log(vm.origin);
-                        	console.log(vm.destination);
+                            console.log(vm.originCity);
+                        	console.log(vm.destinationCity);
                         	console.log('departure: '+vm.dates.departureDate);
                             console.log('returns: '+vm.dates.returnDate);
-                            utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
+                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
                             vm.good = true;
 
                         }else {
@@ -94,15 +106,15 @@
                         var date2 = vm.dates.returnDate;
                         var vD1 = date1.split("/")
                         var vD2 = date2.split("/")
-                        console.log(vm.origin);
-                    	console.log(vm.destination);
+                        console.log(vm.originCity);
+                    	console.log(vm.destinationCity);
                     	console.log('departure: '+vm.dates.departureDate);
                         console.log('returns: '+vm.dates.returnDate);
                         var newDate3 = new Date(vD1[2],vD1[1]-1,vD1[0]);
                         var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
                         vm.departureDateUnix = new Date(newDate3).getTime();
                         vm.returnDateUnix = new Date(newDate4).getTime();
-                        utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
+                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
                         vm.good = true;
                     }
                 }

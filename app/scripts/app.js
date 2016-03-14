@@ -22,45 +22,46 @@
        'rzModule',
        'pascalprecht.translate',
        'angular-loading-bar',
-       'constants'
+       'constants',
+       'ui.router'
      ]);
 
-      app.config(function ($routeProvider) {
-        $routeProvider
-          .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainController',
-            controllerAs: 'main'
-          })
-          .when('/search/:origin/:destination/:departureDate/:returnDate', {
-            templateUrl: 'views/search.tpl.html',
-            controller: 'SearchController',
-            controllerAs: 'search'
-          })
-          .when('/seat/:idDeparture/:idReturn', {
-            templateUrl: 'views/seat.tpl.html',
-            controller: 'SeatController',
-            controllerAs: 'seat'
-          })
-          .when('/payment/:idDeparture/:idReturn', {
-            templateUrl: 'views/payment.tpl.html',
-            controller: 'PaymentController',
-            controllerAs: 'payment'
-          })
-          .when('/success', {
-            templateUrl: 'views/success.tpl.html',
-            controller: 'SuccessController',
-            controllerAs: 'success'
-          })
-          .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl',
-            controllerAs: 'about'
-          })
-          .otherwise({
-            redirectTo: '/'
-          });
-    });
+     app.config(function ($stateProvider, $urlRouterProvider) {
+         // For any unmatched url, send to /
+             $urlRouterProvider.otherwise('/');
+
+             $stateProvider
+                 .state('main', {
+                     url: '/',
+                     templateUrl: 'views/main.html',
+                     controller: 'MainController',
+                     controllerAs: 'main'
+                 })
+                 .state('search', {
+                     url: '/search/:origin/:originCountryCode/:destination/:destinationCountryCode/:departureDate/:returnDate',
+                     templateUrl: 'views/search.tpl.html',
+                     controller: 'SearchController',
+                     controllerAs: 'search'
+                 })
+                 .state('seat', {
+                     url: '/seat/:idDeparture/:idReturn',
+                     templateUrl: 'views/seat.tpl.html',
+                     controller: 'SeatController',
+                     controllerAs: 'seat'
+                 })
+                 .state('payment', {
+                     url: '/payment/:idDeparture/:idReturn',
+                     templateUrl: 'views/payment.tpl.html',
+                     controller: 'PaymentController',
+                     controllerAs: 'payment'
+                 })
+                 .state('success', {
+                     url: '/success',
+                     templateUrl: 'views/success.tpl.html',
+                     controller: 'SuccessController',
+                     controllerAs: 'success'
+                 })
+     });
 
     app.config(['$translateProvider', function ($translateProvider) {
       $translateProvider.useStaticFilesLoader({
