@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$routeParams','$timeout'];
+        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout'];
 
-        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$routeParams,$timeout) {
+        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -93,8 +93,8 @@
                 });
 
             var params = utilityService.getData();
-          	vm.origin = params.origin+","+params.countryOrigin;
-          	vm.destination = params.destination+","+params.countryDestination;
+          	vm.origin = params.origin+", "+params.countryOrigin;
+          	vm.destination = params.destination+", "+params.countryDestination;
             vm.dates.departureDate = params.departure;
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
@@ -133,13 +133,13 @@
                     })
 
             }else{
-                var origin = $routeParams.origin.split(",");
-                var destination = $routeParams.destination.split(",");
-                var dateDeparture = new Date(parseInt($routeParams.departureDate));
+                var origin = $stateParams.origin.split(",");
+                var destination = $stateParams.destination.split(",");
+                var dateDeparture = new Date(parseInt($stateParams.departureDate));
                 var dateReturn = ""
                 var returnDateFormat = ""
 
-                if($routeParams.returnDate ==  "NaN"){
+                if($stateParams.returnDate ==  "NaN"){
                     returnDateFormat = "";
                 }else{
                     dateReturn = new Date(parseInt($routeParams.returnDate));
@@ -167,8 +167,8 @@
                 }
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
 
-                vm.origin = $routeParams.origin;
-                vm.destination = $routeParams.destination;
+                vm.origin = $stateParams.origin;
+                vm.destination = $stateParams.destination;
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];

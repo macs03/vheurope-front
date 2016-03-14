@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$routeParams','$location'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $routeParams,$location) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelected = [];
@@ -26,7 +26,7 @@ angular
         vm.reserve = reserve;
 
         seatsFactory
-            .getAll($routeParams.idDeparture,$routeParams.idReturn)
+            .getAll($stateParams.idDeparture,$stateParams.idReturn)
             .then(function (data) {
                 vm.isLoading = false;
                 console.log(data);
@@ -338,10 +338,10 @@ angular
 
         function reserve() {
             reserveFactory
-                .getAll(vm.seatsSelected,$routeParams.idDeparture,$routeParams.idReturn)
+                .getAll(vm.seatsSelected,$stateParams.idDeparture,$stateParams.idReturn)
                 .then(function(data){
                     utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPayment,data.departure,data.return);
-                    $location.path ("/payment/"+$routeParams.idDeparture+"/"+$routeParams.idReturn);
+                    $location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                 })
                 .catch(function(err){
                     console.log(err);
