@@ -18,7 +18,7 @@
             getAll: getAll
         }
 
-        function getAll (departureId,returnId,name, lastname, dni, card, month, year, cvv) {
+        function getAll (departureId,returnId,name, lastname, dni, email, card, month, year, cvv) {
             var defered = $q.defer();
             var promise = defered.promise;
             var expirationDate = year + month;
@@ -38,6 +38,7 @@
                         name : name,
                         surname : lastname,
                         dni : dni,
+                        email : email,
                         card : card,
                         expirationDate : expirationDate,
                         cvv : cvv
