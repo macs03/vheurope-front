@@ -61,12 +61,13 @@
                 console.log('Agregar logica de validacion de pago');
             };
 
-            function paying(name,lastname,dni,card,month,year,cvv) {
+            function paying(name,lastname,dni,email,card,month,year,cvv) {
                 paymentFactory
-                    .getAll($stateParams.idDeparture,$stateParams.idReturn,name,lastname,dni,card,month,year,cvv)
+                    .getAll($stateParams.idDeparture,$stateParams.idReturn,name,lastname,dni,email,card,month,year,cvv)
                     .then(function(data){
                         //$location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
-                        $location.path ("/success/");
+                        utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departure,data.return);
+                        $location.path ("/success");
                     })
                     .catch(function(err){
                         console.log(err);

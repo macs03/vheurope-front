@@ -167,8 +167,8 @@
                 }
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
 
-                vm.origin = $stateParams.origin;
-                vm.destination = $stateParams.destination;
+                vm.origin = $stateParams.origin+", España";
+                vm.destination = $stateParams.destination+", España";
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
