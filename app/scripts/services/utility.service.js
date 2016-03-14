@@ -31,7 +31,16 @@
             objReturn: {},
             idIda : "",
             idVuelta: "",
-            totalPayment : ""
+            totalPayment : "",
+            setSuccessData : setSuccessData,
+            getSuccessData : getSuccessData,
+            customer : "",
+            customerEmail : "",
+            providerName : "",
+            purchaseId : "",
+            total : "",
+            objDepartureSuccess: {},
+            objReturnSuccess: {}
         }
         var origin = ""
         function getData(){
@@ -79,6 +88,28 @@
                 totalPayment : self.totalPayment,
                 departure : self.objDeparture,
                 returns : self.objReturn
+            }
+        }
+
+        function setSuccessData(customer, customerEmail, providerName, purchaseId, total, departure, returns) {
+            self.customer = customer;
+            self.customerEmail = customerEmail;
+            self.providerName = providerName;
+            self.purchaseId = purchaseId;
+            self.total = total;
+            self.objDepartureSuccess = departure;
+            self.objReturnSuccess = returns;
+        }
+
+        function getSuccessData() {
+            return {
+                customer : self.customer,
+                customerEmail: self.customerEmail,
+                providerName: self.providerName,
+                purchaseId: self.purchaseId,
+                total: self.total,
+                departure: self.objDepartureSuccess,
+                returns : self.objReturnSuccess
             }
         }
 

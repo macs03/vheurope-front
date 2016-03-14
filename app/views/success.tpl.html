@@ -171,7 +171,7 @@
         <div class="box">
             <div class="box-content np">
                 <div class="text-container">
-                    <p class="vh-blue"><b>Estimado(a)</b> Jake Moskowtiz,</p>
+                    <p class="vh-blue"><b>Estimado(a)</b> {{success.customer}},</p>
                     <p><b>Muchas gracias por confiar en <span class="vh-blue">Resertrip</span></b></p>
                     <p class="smallest-font">Te enviamos un e-mail con los detalles de tu viaje y tu pasaje adjunto a <a href="mailto:jake@resertrip.com">jake@resertrip.com</a></p>
                 </div>
@@ -182,34 +182,34 @@
                         </div>
                         <div class="row ticket " style="border-bottom: 1px solid #bbb;">
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>23:55</strong> 
-                                    <small class="smallest-font vh-blue">Barcelona</small>
+                                <p>
+                                    <strong>{{success.departureData.arrivalDate}} {{success.departureData.arrivalTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{success.departureData.origin}}</small>
                                     <br>
-                                    <small class="smallest-font text-muted">Terminal Barajas 14C</small>
+                                    <small class="smallest-font text-muted">{{success.departureData.terminalOrigin}}</small>
 
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>23:55</strong> 
-                                    <small class="smallest-font vh-blue">Barcelona</small>
+                                <p>
+                                    <strong>{{success.departureData.departureDate}} {{success.departureData.departureTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{success.departureData.destination}}</small>
                                     <br>
-                                    <small class="smallest-font text-muted">Terminal Barajas 14C</small>
+                                    <small class="smallest-font text-muted">{{success.departureData.terminalDestination}}</small>
 
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>$6.700</strong> 
+                                <p>
+                                    <strong>{{success.departureData.price}} €</strong>
                                     <br>
-                                    <small class="smallest-font text-muted">Semi-Cama</small>
+                                    <small class="smallest-font text-muted">{{success.departureData.typeService}}</small>
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
+                                <p>
                                     <br>
-                                    <small class="smallest-font vh-blue">No. DE VIAJE: BU423</small>
+                                    <small class="smallest-font vh-blue">No. DE VIAJE: {{success.departureData.numTrip}}</small>
                                     <br>
                                 </p>
                             </div>
@@ -217,11 +217,11 @@
                         <div class="row">
                              <!-- PARTE INFERIOR -->
                             <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                                <small class="smallest-font vh-blue">Artesa</small>
-                                <img src="http://fakeimg.pl/30x30/" title="Pullman Bus" class="logo_small hidden-xs pull-right">
+                                <small class="smallest-font vh-blue">{{success.departureData.companyName}}</small>
+                                <img ng-src="{{success.departureData.companyLogo}}" title="{{success.departureData.companyLogo}}" class="logo_small hidden-xs pull-right">
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                                <small class="smallest-font text-muted">6h 30min</small>
+                                <small class="smallest-font text-muted">{{success.departureData.duration}}</small>
                             </div>
                             <br><br>
                         </div>
@@ -229,144 +229,106 @@
                             <p>TICKETS</p>
                         </div>
                         <div class="row ticket list last">
-                            <div class="col-md-6">
+                            <div class="col-md-6" ng-repeat="seat in success.departureData.seats">
                                 <div class="row">
                                     <div class="col-md-1 hidden-xs">
                                         <span class="label label-default">1</span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">24.300.234-4</span></span>
+                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">{{seat.dni}}</span></span>
                                     </div>
                                     <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">JAKE MOSKOWITZ</span></span>
+                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">{{seat.name}}</span></span>
                                     </div>
                                     <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">23</span></span>
+                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">{{seat.seatNumber}}</span></span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">INT005529</span></span>
+                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">{{seat.code}}</span></span>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-1 hidden-xs">
-                                        <span class="label label-default">2</span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">24.300.234-4</span></span>
-                                    </div>
-                                    <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">JAKE MOSKOWITZ</span></span>
-                                    </div>
-                                    <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">23</span></span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">INT005529</span></span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
-                       
-                            <div class="sub-header" style="background: #2BB3F0;color:#fff;">
+
+                            <div class="sub-header" style="background: #2BB3F0;color:#fff;" ng-show="success.returnData != ''">
                                 <p><strong>VUELTA</strong></p>
                             </div>
-                            <div class="row ticket " style="border-bottom: 1px solid #bbb;">
-                            <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>23:55</strong> 
-                                    <small class="smallest-font vh-blue">Barcelona</small>
-                                    <br>
-                                    <small class="smallest-font text-muted">Terminal Barajas 14C</small>
+                            <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="success.returnData != ''">
+								<div class="col-xs-4 col-md-2 col-md-offset-1">
+	                                <p>
+	                                    <strong>{{success.returnData.arrivalDate}} {{success.returnData.arrivalTime}}</strong>
+	                                    <small class="smallest-font vh-blue">{{success.returnData.origin}}</small>
+	                                    <br>
+	                                    <small class="smallest-font text-muted">{{success.returnData.terminalOrigin}}</small>
 
-                                </p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>23:55</strong> 
-                                    <small class="smallest-font vh-blue">Barcelona</small>
-                                    <br>
-                                    <small class="smallest-font text-muted">Terminal Barajas 14C</small>
+	                                </p>
+	                            </div>
+	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+	                                <p>
+	                                    <strong>{{success.returnData.departureDate}} {{success.returnData.departureTime}}</strong>
+	                                    <small class="smallest-font vh-blue">{{success.returnData.destination}}</small>
+	                                    <br>
+	                                    <small class="smallest-font text-muted">{{success.returnData.terminalDestination}}</small>
 
-                                </p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <strong>$6.700</strong> 
-                                    <br>
-                                    <small class="smallest-font text-muted">Semi-Cama</small>
-                                </p>
-                            </div>
-                            <div class="col-xs-4 col-md-2 col-md-offset-1">
-                                <p> 
-                                    <br>
-                                    <small class="smallest-font vh-blue">No. DE VIAJE: BU423</small>
-                                    <br>
-                                </p>
-                            </div>
+	                                </p>
+	                            </div>
+	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+	                                <p>
+	                                    <strong>{{success.returnData.price}} €</strong>
+	                                    <br>
+	                                    <small class="smallest-font text-muted">{{success.returnData.typeService}}</small>
+	                                </p>
+	                            </div>
+	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+	                                <p>
+	                                    <br>
+	                                    <small class="smallest-font vh-blue">No. DE VIAJE: {{success.returnData.numTrip}}</small>
+	                                    <br>
+	                                </p>
+	                            </div>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-show="success.returnData != ''">
                              <!-- PARTE INFERIOR -->
-                            <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                                <small class="smallest-font vh-blue">Artesa</small>
-                                <img src="http://fakeimg.pl/30x30/" title="Pullman Bus" class="logo_small hidden-xs pull-right">
-                            </div>
-                            <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                                <small class="smallest-font text-muted">6h 30min</small>
-                            </div>
+							 <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                 <small class="smallest-font vh-blue">{{success.returnData.companyName}}</small>
+                                 <img ng-src="{{success.returnData.companyLogo}}" title="{{success.returnData.companyLogo}}" class="logo_small hidden-xs pull-right">
+                             </div>
+                             <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                 <small class="smallest-font text-muted">{{success.returnData.duration}}</small>
+                             </div>
                             <br><br>
                         </div>
-                         <div class="sub-header">
+                         <div class="sub-header" ng-show="success.returnData != ''">
                             <p>TICKETS</p>
                         </div>
-                        <div class="row ticket list">
-                            <div class="col-md-6">
+                        <div class="row ticket list" ng-show="success.returnData != ''">
+							<div class="col-md-6" ng-repeat="seat in success.returnData.seats">
                                 <div class="row">
                                     <div class="col-md-1 hidden-xs">
                                         <span class="label label-default">1</span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">24.300.234-4</span></span>
+                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">{{seat.dni}}</span></span>
                                     </div>
                                     <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">JAKE MOSKOWITZ</span></span>
+                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">{{seat.name}}</span></span>
                                     </div>
                                     <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">23</span></span>
+                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">{{seat.seatNumber}}</span></span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">INT005529</span></span>
+                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">{{seat.code}}</span></span>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-1 hidden-xs">
-                                        <span class="label label-default">2</span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">24.300.234-4</span></span>
-                                    </div>
-                                    <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">JAKE MOSKOWITZ</span></span>
-                                    </div>
-                                    <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">23</span></span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">INT005529</span></span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="row  text-center">
                             <div class="col-xs-12 col-md-12">
                                 <br>
-                                <a href="#" class="btn  theme-blue btn-lg" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank">
+                                <a ng-href="{{success.pdf}}invoice/{{success.purchaseId}}" target="_blank" class="btn  theme-blue btn-lg" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank">
                                     TICKET <i class="fa fa-download"></i>
                                 </a>
                                 <br><br><br>
@@ -384,9 +346,9 @@
                         </div>
                         <div class="col-md-6">
                             <p>
-                                <span class="pull-right smallest-font">Método de pago: <span class="vh-blue">Movelia Pagos</span></span>
+                                <span class="pull-right smallest-font">Método de pago: <span class="vh-blue">{{success.providerName}}</span></span>
                                 <br>
-                                <span class="pull-right">TOTAL: <strong>23.000</strong></span>
+                                <span class="pull-right">TOTAL: <strong>{{success.total}} €</strong></span>
                                 <br>
                                 <span class="pull-right smallest-font">
                                     <a href="#" target="_blank" title="Términos y condiciones" >Términos y Condiciones</a>
