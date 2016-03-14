@@ -1,11 +1,10 @@
-   <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
    <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lenguaje<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdown_title">		Lenguaje<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" id="divNewNotifications">
             <li ng-class="{active: selectedLanguage == 'es'}"><a ng-click="changeLanguage('es')" ><small translate>NAVBAR.SPANISH</small></a></li>
-    <li ng-class="{active: selectedLanguage == 'en'}"><a ng-click="changeLanguage('en')" ><small translate>NAVBAR.ENGLISH</small></a></li>
-          </ul>
-        </li>
-
-   
+    		<li ng-class="{active: selectedLanguage == 'en'}"><a ng-click="changeLanguage('en')" ><small translate>NAVBAR.ENGLISH</small></a></li>
+        </ul>
+ 	</li>
 </ul>
