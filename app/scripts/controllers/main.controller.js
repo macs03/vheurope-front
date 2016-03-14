@@ -176,6 +176,11 @@
 
             }
 
+              $('#divNewNotifications li').on('click', function() {
+                console.log('Entre');
+                $('#dropdown_title').html($(this).find('a').html());
+            });
+
        	    $('.header-home.spain').attr('style','background: url("https://s3.eu-central-1.amazonaws.com/vheurope/gugenheim.jpg") no-repeat center center fixed; background-size: cover;');
 
         }
