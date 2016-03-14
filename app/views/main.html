@@ -18,106 +18,13 @@
 <div class="container hidden-xs" id="popular-trips">
     <h2 translate>MAIN.FIND_PASSAGES</h2>
     <div class="row-fluid ">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div ng-repeat="ps in main.popular_searches" class="col-md-3 col-sm-6 col-xs-12">
             <div class="popular-trip">
                 <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/barcelona.jpg" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <img ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
                     <figcaption>
-                        <h2>Barcelona </h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $8.700</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/bilbao.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Bilbao </h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $7.900</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/madrid.jpg" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Madrid</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $8.900</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/malaga.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Malaga</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $9.700</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/salamanca.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Salamanca</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $5.700</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/sevilla.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Sevilla</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $6.100</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/valencia.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Valencia</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $9.900</span>
-                        <a href="#">View more</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="popular-trip">
-                <figure>
-                    <img src="https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/zaragoza.png" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h2>Zaragoza</h2>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> $4.700</span>
+                        <h2>{{ ps.origin }}&nbsp; a &nbsp; {{ ps.destination }}</h2>
+                        <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
                         <a href="#">View more</a>
                     </figcaption>
                 </figure>

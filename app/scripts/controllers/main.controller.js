@@ -19,6 +19,56 @@
 
             var vm = this;
             var params = utilityService.getData();
+            vm.popular_searches = [];
+            vm.popular_searches.push({
+                origin: 'Madrid',
+                destination: 'Barcelona',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/barcelona.jpg',
+                price: '8700'
+            });
+            vm.popular_searches.push({
+                origin: 'Madrid',
+                destination: 'Bilbao',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/bilbao.png',
+                price: '8700'
+            });
+            vm.popular_searches.push({
+                origin: 'Barcelona',
+                destination: 'Madrid',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/madrid.jpg',
+                price: '8900'
+            });
+            vm.popular_searches.push({
+                origin: 'Sevilla',
+                destination: 'Málaga',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/malaga.png',
+                price: '9700'
+            });
+            vm.popular_searches.push({
+                origin: 'Madrid',
+                destination: 'Salamanca',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/salamanca.png',
+                price: '5700'
+            });
+            vm.popular_searches.push({
+                origin: 'Málaga',
+                destination: 'Sevilla',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/sevilla.png',
+                price: '8700'
+            });
+            vm.popular_searches.push({
+                origin: 'Barcelona',
+                destination: 'Valencia',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/valencia.png',
+                price: '9900'
+            });
+            vm.popular_searches.push({
+                origin: 'Barcelona',
+                destination: 'Zaragoza',
+                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/zaragoza.png',
+                price: '4700'
+            });
+           
           	vm.origin = params.origin+","+params.countryOrigin;
           	vm.destination = params.destination+","+params.countryDestination;
             vm.countryOrigin = params.countryOrigin;
@@ -126,7 +176,7 @@
 
             }
 
-       	    $('.header-home.spain').attr('style','background: url("https://dl.dropboxusercontent.com/u/993466/voyhoy/gugenheim.png") no-repeat center center fixed; background-size: cover;');
+       	    $('.header-home.spain').attr('style','background: url("https://s3.eu-central-1.amazonaws.com/vheurope/gugenheim.jpg") no-repeat center center fixed; background-size: cover;');
 
         }
 })();
