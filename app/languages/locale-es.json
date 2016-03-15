@@ -85,8 +85,13 @@
 			"TITLE": "INFORMACION DEL PAGADOR",
 			"FORM_NAME": "Nombre",
 			"FORM_LASTNAME": "Apellido",
+			"FORM_DNI": "DNI",
+			"FORM_CREDIT_CARD": "Número de tarjeta de crédito",
+			"FORM_CVV": "CVV",
+			"FORM_MONTH": "Mes",
+			"FORM_YEAR": "Año",
 			"FORM_EMAIL": "Correo electrónico",
-			"FORM_NOTIFICATIONS": "Recibir notificaciones de ofertas." 
+			"FORM_NOTIFICATIONS": "Recibir notificaciones de ofertas."
 		},
 		"PAY": {
 			"TITLE": "FORMAS DE PAGO",

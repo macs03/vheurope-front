@@ -85,6 +85,11 @@
 			"TITLE": "PAYER INFORMATION",
 			"FORM_NAME": "Name",
 			"FORM_LASTNAME": "Lastname",
+			"FORM_DNI": "DNI",
+			"FORM_CREDIT_CARD": "Credit Card Number",
+			"FORM_CVV": "CVV",
+			"FORM_MONTH": "Month",
+			"FORM_YEAR": "Year",
 			"FORM_EMAIL": "Email",
 			"FORM_NOTIFICATIONS": "Receive notifications deals." 
 		},
