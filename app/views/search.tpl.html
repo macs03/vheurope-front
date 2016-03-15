@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <!-- <div class="bg-info col-xs-12 col-md-12" ng-if="search.searching"><span>Buscando.....</span></div> -->
-                        <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div>
+                        <!-- <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div> -->
                     </div> <!-- end .row-->
 
                     <div class="row header hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0">
@@ -428,17 +428,7 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
-
-
-
-
-
-
             </div>
 
             </div> <!-- end columns results -->
@@ -473,6 +463,56 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="error-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+               data-keyboard="false">
+               <div class="modal-dialog modal-lg" role="document">
+                 <div class="modal-content" style="background-color: #F2DEDD !important;">
+                   <div class="modal-header">
+                       <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                       <h2>Error</h2>
+                   </div>
+                   <div class="modal-body">
+                       <p>
+                           {{search.msgError}}
+                       </p>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+               data-keyboard="false">
+               <div class="modal-dialog modal-lg" role="document">
+                 <div class="modal-content" style="background-color: #F2DEDD !important;">
+                   <div class="modal-header">
+                       <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                       <h2>Error</h2>
+                   </div>
+                   <div class="modal-body">
+                       <p>
+                           Revise su seleccion de ciudades
+                       </p>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+               data-keyboard="false">
+               <div class="modal-dialog modal-lg" role="document">
+                 <div class="modal-content" style="background-color: #F2DEDD !important;">
+                   <div class="modal-header">
+                       <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                       <h2>Error</h2>
+                   </div>
+                   <div class="modal-body">
+                       <p>
+                           Revise su seleccion de fechas
+                       </p>
+                   </div>
+                 </div>
+               </div>
             </div>
 
         </div>

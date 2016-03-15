@@ -24,6 +24,8 @@ angular
         vm.totalMount = 0;
         vm.trips = {};
         vm.reserve = reserve;
+        vm.errorSeat = false;
+        vm.errorReserve = false;
 
         seatsFactory
             .getAll($stateParams.idDeparture,$stateParams.idReturn)
@@ -223,6 +225,9 @@ angular
             })
             .catch(function (err) {
                 console.log(err);
+                vm.msgError = err;
+                vm.errorSeat = true;
+                seatError();
             });
 
         vm.resetSeatInSelection = function () {
@@ -345,6 +350,9 @@ angular
                 })
                 .catch(function(err){
                     console.log(err);
+                    vm.msgErrorReserve = err;
+                    vm.errorReserve = true;
+                    reserveError();
                 })
         }
 
@@ -363,6 +371,18 @@ angular
             language: 'ES'
         });
 
+        function seatError() {
+            if(vm.errorSeat){
+                $('#error-seat').modal('show');
+            }
+        }
+
+        function reserveError() {
+            if(vm.errorReserve){
+                $('#error-reserve').modal('show');
+            }
+        }
+
         /*
 
     
@@ -372,6 +392,3 @@ angular
 
 
 })();
-
-
-
