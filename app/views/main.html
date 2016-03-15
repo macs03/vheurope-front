@@ -19,16 +19,18 @@
     <h2 translate>MAIN.FIND_PASSAGES</h2>
     <div class="row-fluid ">
         <div ng-repeat="ps in main.popular_searches" class="col-md-3 col-sm-6 col-xs-12">
+            <a href="{{ ps.href }}">
             <div class="popular-trip">
                 <figure>
                     <img ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
                     <figcaption>
                         <h2>{{ ps.origin }}&nbsp; a &nbsp; {{ ps.destination }}</h2>
                         <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
-                        <a href="#">View more</a>
+                        
                     </figcaption>
                 </figure>
             </div>
+            </a>
         </div>
     </div>
 </div>
