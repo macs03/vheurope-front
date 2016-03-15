@@ -164,7 +164,7 @@ div.seatCharts-seat.focused {
 }
 div.seatCharts-seat.available {
     background-color: #fff !important;
-    background: url('../images/seat-charts/seat-avaible.png') transparent no-repeat;
+    background: url('../images/seat-charts/seat-available.png') transparent no-repeat;
     color: #666 !important;
     background-size: cover;
 }
@@ -173,6 +173,7 @@ div.seatCharts-seat.unavailable {
     background: url('../images/seat-charts/seat-taken.png') transparent no-repeat;
     cursor: not-allowed;
     background-size: cover;
+    color: #333;
 }
 ul.seatCharts-legendList { list-style: none }
 li.seatCharts-legendItem {
