@@ -175,11 +175,11 @@
                 vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
 
             }
+            $('#switch_language_title').html($('#switch_language li.active').find('a').html() + '<span class="caret"></span>');
 
-              $('#divNewNotifications li').on('click', function() {
-                console.log('Entre');
-                $('#dropdown_title').html($(this).find('a').html());
-            });
+            $('#switch_language li').on('click', function() {
+                $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
+            }); 
 
        	    $('.header-home.spain').attr('style','background: url("https://s3.eu-central-1.amazonaws.com/vheurope/gugenheim.jpg") no-repeat center center fixed; background-size: cover;');
 
