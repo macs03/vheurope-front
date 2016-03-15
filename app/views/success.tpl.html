@@ -163,7 +163,7 @@
         <div class="box">
             <div class="box-content">
                 <br>
-                <h2 class="text-center vh-blue">Tu compra ha sido <span style="font-weight: 900">exitosa</span></h2>
+                <h2 class="text-center vh-blue" translate>SUCCESS.TITLE </h2>
                 <br>
             </div>
         </div>
@@ -171,14 +171,14 @@
         <div class="box">
             <div class="box-content np">
                 <div class="text-container">
-                    <p class="vh-blue"><b>Estimado(a)</b> {{success.customer}},</p>
-                    <p><b>Muchas gracias por confiar en <span class="vh-blue">Resertrip</span></b></p>
-                    <p class="smallest-font">Te enviamos un e-mail con los detalles de tu viaje y tu pasaje adjunto a <a href="mailto:{{success.customerEmail}}">{{success.customerEmail}}</a></p>
+                    <p class="vh-blue"><b translate>SUCCESS.SUBTITLE</b> {{success.customer}},</p>
+                    <p><b><span translate>SUCCESS.TEXT_1</span> <span class="vh-blue" translate>SUCCESS.TEXT_2</span></b></p>
+                    <p class="smallest-font"><span translate>SUCCESS.TEXT_3</span> <a href="mailto:{{success.customerEmail}}">{{success.customerEmail}}</a></p>
                 </div>
                 <br>
                 <div class="tickets">
                     <div class="sub-header" style="background: #2BB3F0;color:#fff;">
-                            <p><strong>IDA</strong></p>
+                            <p><strong translate>SUCCESS.ROUND.TITLE</strong></p>
                         </div>
                         <div class="row ticket " style="border-bottom: 1px solid #bbb;">
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
@@ -209,7 +209,7 @@
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
                                     <br>
-                                    <small class="smallest-font vh-blue">No. DE VIAJE: {{success.departureData.numTrip}}</small>
+                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.ROUND.NO_TRIPS</span> {{success.departureData.numTrip}}</small>
                                     <br>
                                 </p>
                             </div>
@@ -226,7 +226,7 @@
                             <br><br>
                         </div>
                         <div class="sub-header">
-                            <p>TICKETS</p>
+                            <p translate>SUCCESS.ROUND.TICKETS.TITLE</p>
                         </div>
                         <div class="row ticket list last">
                             <div class="col-md-6" ng-repeat="seat in success.departureData.seats">
@@ -235,16 +235,16 @@
                                         <span class="label label-default">1</span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">{{seat.dni}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
                                     </div>
                                     <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">{{seat.name}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
                                     </div>
                                     <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">{{seat.seatNumber}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.ROUND.TICKETS.SEAT</span><span class="vh-blue">{{seat.seatNumber}}</span></span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">{{seat.code}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
                                     </div>
                                 </div>
 
@@ -253,7 +253,7 @@
 
 
                             <div class="sub-header" style="background: #2BB3F0;color:#fff;" ng-show="success.returnData != ''">
-                                <p><strong>VUELTA</strong></p>
+                                <p><strong translate>SUCCESS.RETURN.TITLE</strong></p>
                             </div>
                             <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="success.returnData != ''">
 								<div class="col-xs-4 col-md-2 col-md-offset-1">
@@ -284,7 +284,7 @@
 	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
 	                                <p>
 	                                    <br>
-	                                    <small class="smallest-font vh-blue">No. DE VIAJE: {{success.returnData.numTrip}}</small>
+	                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.RETURN.NO_TRIPS</span> {{success.returnData.numTrip}}</small>
 	                                    <br>
 	                                </p>
 	                            </div>
@@ -301,7 +301,7 @@
                             <br><br>
                         </div>
                          <div class="sub-header" ng-show="success.returnData != ''">
-                            <p>TICKETS</p>
+                            <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
                         </div>
                         <div class="row ticket list" ng-show="success.returnData != ''">
 							<div class="col-md-6" ng-repeat="seat in success.returnData.seats">
@@ -310,16 +310,16 @@
                                         <span class="label label-default">1</span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">DNI: <span class="vh-blue">{{seat.dni}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
                                     </div>
                                     <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font">NOMBRE: <span class="vh-blue">{{seat.name}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
                                     </div>
                                     <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font">AS:<span class="vh-blue">{{seat.seatNumber}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.RETURN.TICKETS.SEAT</span><span class="vh-blue">{{seat.seatNumber}}</span></span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font">COD: <span class="vh-blue">{{seat.code}}</span></span>
+                                        <span class="ticket-smallest-font"><span>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
                                     </div>
                                 </div>
 
@@ -342,16 +342,16 @@
                 <div class="box-content">
                     <div class="row">
                         <div class="col-md-6">
-                            <h5 class="text-muted">DETALLE DE PAGO</h5>
+                            <h5 class="text-muted" translate>SUCCESS.PAYMENT.TITLE</h5>
                         </div>
                         <div class="col-md-6">
                             <p>
-                                <span class="pull-right smallest-font">Método de pago: <span class="vh-blue">{{success.providerName}}</span></span>
+                                <span class="pull-right smallest-font"><span translate>SUCCESS.PAYMENT.TYPE</span> <span class="vh-blue">{{success.providerName}}</span></span>
                                 <br>
-                                <span class="pull-right">TOTAL: <strong>{{success.total}} €</strong></span>
+                                <span class="pull-right"><span translate>SUCCESS.PAYMENT.TOTAL</span> <strong>{{success.total}} €</strong></span>
                                 <br>
                                 <span class="pull-right smallest-font">
-                                    <a href="#" target="_blank" title="Términos y condiciones" >Términos y Condiciones</a>
+                                    <a href="#" target="_blank" title="Términos y condiciones" translate>SUCCESS.PAYMENT.LINK</a>
                                 </span>
 
                             </p>

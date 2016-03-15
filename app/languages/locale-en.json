@@ -17,7 +17,8 @@
 		"BLOG": "Blog",
 		"SPANISH": "Spanish",
 		"ENGLISH": "English",
-		"MESSAGE": "Purchase bus tickets, train, plane and boat in Spain"
+		"MESSAGE": "Purchase bus tickets, train, plane and boat in Spain",
+		"LANGUAGE": "Language"
 	},
 	"FOOTER": {
 		"TERMINOS": "Terms and Conditions",
@@ -105,5 +106,41 @@
 			"PLACEHOLDER": "Promotion Code",
 			"VALIDATE": "VALIDATE" 
 		}	
+	},
+	"SUCCESS": {
+		"TITLE": "Your purchase was successful",
+		"SUBTITLE": "Dear ",
+		"TEXT_1": "Thank you very much for trusting in",
+		"TEXT_2": "Resertrip",
+		"TEXT_3": "We send an email with the details of your trip and your attachment passage",
+		"ROUND": {
+			"TITLE": "ROUND",
+			"NO_TRIPS": "No. OF PASSAGES:",
+			"TICKETS": {
+				"TITLE": "TICKETS",
+				"DNI": "DNI:",
+				"NAME": "NAME:",
+				"SEAT": "AS:",
+				"CODE": "COD:"
+				} 
+		},
+		"RETURN": {
+			"TITLE": "RETURN",
+			"NO_TRIPS": "No. OF PASSAGES:",
+			"TICKETS": {
+				"TITLE": "TICKETS",
+				"DNI": "DNI:",
+				"NAME": "NAME:",
+				"SEAT": "AS:",
+				"CODE": "COD:"
+				} 
+		},
+		"PAYMENT": {
+			"TITLE": "PAYMENT DETAIL",
+			"TYPE": "Payment method:",
+			"TOTAL": "TOTAL:",
+			"LINK": "Terms and Conditions"
+
+		}
 	}
 }

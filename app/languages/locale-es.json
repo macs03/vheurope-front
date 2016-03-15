@@ -17,7 +17,8 @@
 		"BLOG": "Blog",
 		"SPANISH": "Español",
 		"ENGLISH": "Ingles",
-		"MESSAGE": "Compra pasajes de bus, tren, avion y barco en España"
+		"MESSAGE": "Compra pasajes de bus, tren, avion y barco en España",
+		"LANGUAGE": "Idioma"
 	},
 	"FOOTER": {
 		"TERMINOS": "Terminos y Condiciones",
@@ -105,6 +106,41 @@
 			"PLACEHOLDER": "Código de la promoción",
 			"VALIDATE": "VALIDAR" 
 		}
+	},
+	"SUCCESS": {
+		"TITLE": "Tu compra ha sido exitosa",
+		"SUBTITLE": "Estimado(a) ",
+		"TEXT_1": "Muchas gracias por confiar en",
+		"TEXT_2": "Resertrip",
+		"TEXT_3": "Te enviamos un e-mail con los detalles de tu viaje y tu pasaje adjunto a",
+		"ROUND": {
+			"TITLE": "IDA",
+			"NO_TRIPS": "No. DE VIAJES:",
+			"TICKETS": {
+				"TITLE": "TICKETS",
+				"DNI": "DNI:",
+				"NAME": "NOMBRE:",
+				"SEAT": "AS:",
+				"CODE": "COD:"
+				} 
+		},
+		"RETURN": {
+			"TITLE": "VUELTA",
+			"NO_TRIPS": "No. DE VIAJES:",
+			"TICKETS": {
+				"TITLE": "TICKETS",
+				"DNI": "DNI:",
+				"NAME": "NOMBRE:",
+				"SEAT": "AS:",
+				"CODE": "COD:"
+				} 
+		},
+		"PAYMENT": {
+			"TITLE": "DETALLE DE PAGO",
+			"TYPE": "Método de pago:",
+			"TOTAL": "TOTAL:",
+			"LINK": "Terminos y condiciones"
 
+		}
 	}
 }
