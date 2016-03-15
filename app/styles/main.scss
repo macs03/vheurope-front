@@ -61,3 +61,13 @@ rzslider .rz-pointer.rz-active:after{
     background-color: transparent;
 }
 
+.selectize-dropdown [data-selectable] .highlight {
+  background: #29abe5;
+  color: #fff;
+}
+
+.selectize-dropdown .active {
+  background-color: #29abe5;
+  color: #fff;
+}
+
