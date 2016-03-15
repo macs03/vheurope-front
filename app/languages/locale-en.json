@@ -26,6 +26,7 @@
 		"COPYRIGHT": "2016 Voyhoy. All rights reserved."
 	},
 	"SEARCH": {
+		"LOADING_MESSAGE": "Loading results...",
 		"SORT": {
 			"ORDER_BY": "Order by:",
 			"COMPANY": "Company",
@@ -51,6 +52,7 @@
 		}
 	},
 	"SEATS": {
+		"LOADING_MESSAGE": "Loading seat map...",
 		"PASSAGE_ROUND": "Round Passage:",
 		"PASSAGE_RETURN": "Return Passage:",
 		"FLOOR_1": "FLOOR 1",

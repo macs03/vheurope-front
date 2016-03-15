@@ -26,6 +26,7 @@
 		"COPYRIGHT": "2016 Voyhoy. Todos los derechos reservados."
 	},
 	"SEARCH": {
+		"LOADING_MESSAGE": "Cargando resultados...",
 		"SORT": {
 			"ORDER_BY": "Ordenar por:",
 			"COMPANY": "Empresa",
@@ -51,6 +52,7 @@
 		}
 	},
 	"SEATS": {
+		"LOADING_MESSAGE": "Cargando mapa de asientos...",
 		"PASSAGE_ROUND": "Pasaje Ida:",
 		"PASSAGE_RETURN": "Pasaje Vuelta:",
 		"FLOOR_1": "PISO 1",
