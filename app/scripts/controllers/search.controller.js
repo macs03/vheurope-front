@@ -29,6 +29,7 @@
             vm.selectDeparture = true;
             vm.departureSelect = departureSelect;
             vm.isLoading = true;
+            vm.good = true;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -130,6 +131,7 @@
                         vm.msgError = err;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        apiError();
                     })
 
             }else{
@@ -142,7 +144,7 @@
                 if($stateParams.returnDate ==  "NaN"){
                     returnDateFormat = "";
                 }else{
-                    dateReturn = new Date(parseInt($routeParams.returnDate));
+                    dateReturn = new Date(parseInt($stateParams.returnDate));
                     var returnDay = dateReturn.getDate();
                     var returnMonth = dateReturn.getMonth()+1;
                     var returnYear = dateReturn.getFullYear();
@@ -203,6 +205,7 @@
                         vm.msgError = err;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        apiError();
                     })
             }
 
@@ -247,6 +250,7 @@
                 if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
                     console.log("error cities");
                     vm.good = false;
+                    cityError();
                 } else {
                     if(vm.dates.returnDate=="Invalid date" || vm.dates.returnDate==undefined) vm.dates.returnDate=""
 
@@ -265,6 +269,7 @@
                         }else {
                             console.log("error dates");
                             vm.good = false;
+                            dateError();
                         }
                     }else{
                         callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate);
@@ -302,6 +307,7 @@
                         vm.msgError = err;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        apiError();
                     })
             }
 
@@ -349,6 +355,24 @@
                     vm.departureTypeService = "";
                     vm.departureCompanyName = "";
                     vm.departureLogo = "";
+                }
+            }
+
+            function apiError() {
+                if(vm.error){
+                    $('#error-box').modal('show');
+                }
+            }
+
+            function cityError() {
+                if(!vm.good){
+                    $('#error-cities').modal('show');
+                }
+            }
+
+            function dateError() {
+                if(!vm.good){
+                    $('#error-date').modal('show');
                 }
             }
 

@@ -12,10 +12,10 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService'];
+        MainController.$inject =['$scope','locationsFactory','utilityService','$location'];
 
 
-        function MainController ($scope,locationsFactory,utilityService) {
+        function MainController ($scope,locationsFactory,utilityService,$location) {
 
             var vm = this;
             var params = utilityService.getData();
@@ -123,6 +123,7 @@
                 if (vm.originCity === vm.destinationCity || vm.originCity =="" || vm.destinationCity =="" ) {
                     console.log("error cities");
                     vm.good = false;
+                    cityError();
                 } else {
                     if(vm.dates.returnDate=="Invalid date" || vm.dates.returnDate==undefined) vm.dates.returnDate=""
 
@@ -146,10 +147,12 @@
                             console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
                             vm.good = true;
+                            $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
                         }else {
                             console.log("error dates");
                             vm.good = false;
+                            dateError();
                         }
                     }else{
                         var date1 = vm.dates.departureDate;
@@ -166,6 +169,7 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
                         utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
                         vm.good = true;
+                        $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
                 }
             }
@@ -179,7 +183,24 @@
 
             $('#switch_language li').on('click', function() {
                 $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
-            }); 
+            });
+
+            function cityError() {
+                if(!vm.good){
+                    $('#error-cities').modal('show');
+                }
+            }
+
+            function dateError() {
+                if(!vm.good){
+                    $('#error-date').modal('show');
+                }
+            }
+
+              $('#divNewNotifications li').on('click', function() {
+                console.log('Entre');
+                $('#dropdown_title').html($(this).find('a').html());
+            });
 
        	    $('.header-home.spain').attr('style','background: url("https://s3.eu-central-1.amazonaws.com/vheurope/gugenheim.jpg") no-repeat center center fixed; background-size: cover;');
 

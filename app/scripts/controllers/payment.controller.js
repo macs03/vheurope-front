@@ -71,7 +71,17 @@
                     })
                     .catch(function(err){
                         console.log(err);
+                        vm.msgError = err;
+                        vm.errorPayment = true;
+                        paymentError();
                     })
             }
+
+            function paymentError() {
+                if(vm.errorPayment){
+                    $('#error-payment').modal('show');
+                }
+            }
+
         }
 })();

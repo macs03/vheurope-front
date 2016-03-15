@@ -21,8 +21,8 @@
                 </div>
                 <div class="col-md-1 col-xs-12 np">
 
-                    <a ng-href="#/search/{{main.originCity}}/{{main.originCountryCode}}/{{main.destinationCity}}/{{main.destinationCountryCode}}/{{main.departureDateUnix}}/{{main.returnDateUnix}}" class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
-                    <a ng-href="#/search/{{main.originCity}}/{{main.originCountryCode}}/{{main.destinationCity}}/{{main.destinationCountryCode}}/{{main.departureDateUnix}}/{{main.returnDateUnix}}"  class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" >Buscar</a>
+                    <a class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
+                    <a class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" >Buscar</a>
 
 
                 </div>
@@ -30,3 +30,36 @@
         </div> <!-- End Destination Search -->
     </div>
  </form>
+
+ <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="background-color: #F2DEDD !important;">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h2>Error</h2>
+        </div>
+        <div class="modal-body">
+            <p>
+                Revise su seleccion de ciudades
+            </p>
+        </div>
+      </div>
+    </div>
+ </div>
+ <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="background-color: #F2DEDD !important;">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h2>Error</h2>
+        </div>
+        <div class="modal-body">
+            <p>
+                Revise su seleccion de fechas
+            </p>
+        </div>
+      </div>
+    </div>
+ </div>
