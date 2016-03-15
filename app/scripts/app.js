@@ -72,7 +72,7 @@
       $translateProvider.preferredLanguage('es');
       $translateProvider.useSanitizeValueStrategy('escape');
       $translateProvider.useCookieStorage();
-
+      $translateProvider.fallbackLanguage('es');
     }]);
 
     app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
