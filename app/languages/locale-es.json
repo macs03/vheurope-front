@@ -77,6 +77,7 @@
 		"FORM_RUT": "No. de documento",
 		"FORM_PASSPORT": "PASAPORTE",
 		"FORM_COUNTRY": "País",
+		"FORM_COUNTRY_TEXT": "Seleccione un país",
 		"FORM_PHONE": "Teléfono",
 		"FORM_EMAIL": "Correo electrónico",
 		"FORM_BTN_SELECT": "Seleccionar",
