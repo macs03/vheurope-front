@@ -348,7 +348,7 @@
                             <p>
                                 <span class="pull-right smallest-font"><span translate>SUCCESS.PAYMENT.TYPE</span> <span class="vh-blue">{{success.providerName}}</span></span>
                                 <br>
-                                <span class="pull-right"><span translate>SUCCESS.PAYMENT.TOTAL</span> <strong>{{success.total}} €</strong></span>
+                                <span class="pull-right"><span translate>SUCCESS.PAYMENT.TOTAL</span> <strong>{{success.total | currency : '' }} €</strong></span>
                                 <br>
                                 <span class="pull-right smallest-font">
                                     <a href="#" target="_blank" title="Términos y condiciones" translate>SUCCESS.PAYMENT.LINK</a>

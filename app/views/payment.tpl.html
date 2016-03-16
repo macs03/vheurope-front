@@ -420,7 +420,7 @@ select {
                         <div class="row">
 
                             <div class="col-md-4 col-xs-12 col-md-push-8">
-                                <span class="price">{{payment.totalPrice}} €</span>
+                                <span class="price">{{payment.totalPrice | currency : '' }} €</span>
                             </div>
                             <div class="col-xs-12 col-md-8 col-md-pull-4">
                                 <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTITLE</p>
