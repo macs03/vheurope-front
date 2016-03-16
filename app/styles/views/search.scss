@@ -1166,6 +1166,12 @@ td .ui-state-hover {
     pointer-events: none;
     cursor: default;
 }
+
+.disable-box div{
+    pointer-events: none;
+    cursor: default;
+}
+
 .change-departure{
     display: flex;
     justify-content: flex-end;
