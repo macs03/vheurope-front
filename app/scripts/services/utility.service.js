@@ -73,9 +73,11 @@
 
         }
 
-        function setPaymentData(idIda,idVuelta,totalPayment,departure, returns) {
+        function setPaymentData(idIda,idVuelta,totalWithDiscount,totalFee,totalPayment,departure, returns) {
             self.idIda = idIda;
             self.idVuelta = idVuelta;
+            self.totalWithDiscount = totalWithDiscount;
+            self.totalFee = totalFee;
             self.totalPayment = totalPayment
             self.objDeparture = departure;
             self.objReturn = returns;
@@ -85,6 +87,8 @@
             return {
                 idIda : self.idIda,
                 idVuelta: self.idVuelta,
+                totalWithDiscount: self.totalWithDiscount,
+                totalFee: self.totalFee,
                 totalPayment : self.totalPayment,
                 departure : self.objDeparture,
                 returns : self.objReturn

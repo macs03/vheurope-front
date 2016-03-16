@@ -528,7 +528,7 @@ angular
   			console.log(vm.seatsSelectedDeparture);
             console.log(vm.seatsSelectedReturn);
   			$('#formSeat').modal('hide');
-            vm.resetSeatInSelection();
+            //vm.resetSeatInSelection();
   			vm.updateTotals();
 		};
 
@@ -680,7 +680,7 @@ angular
             reserveFactory
                 .getAll(vm.seatsSelectedDeparture,vm.seatsSelectedReturn,$stateParams.idDeparture,$stateParams.idReturn)
                 .then(function(data){
-                    utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPayment,data.departure,data.return);
+                    utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalWithDiscount, data.totalFee, data.totalPayment, data.departure,data.return);
                     $location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                 })
                 .catch(function(err){

@@ -49,7 +49,10 @@
             };
 
             var paymentData = utilityService.getPaymentData();
-            vm.totalPrice = paymentData.totalPayment;
+
+            vm.totalWithDiscount = paymentData.totalWithDiscount;
+            vm.totalFee = paymentData.totalFee,
+            vm.totalPayment = paymentData.totalPayment;
             vm.departureData = paymentData.departure;
             vm.returnData = paymentData.returns;
 
