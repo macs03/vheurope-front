@@ -132,8 +132,9 @@
 				"TITLE": "TICKETS",
 				"DNI": "DNI:",
 				"NAME": "NAME:",
-				"SEAT": "AS:",
-				"CODE": "COD:"
+				"SEAT": "SEAT:",
+				"CODE": "CODE:",
+				"PRICE": "PRICE:"
 				} 
 		},
 		"RETURN": {
@@ -143,8 +144,9 @@
 				"TITLE": "TICKETS",
 				"DNI": "DNI:",
 				"NAME": "NAME:",
-				"SEAT": "AS:",
-				"CODE": "COD:"
+				"SEAT": "SEAT:",
+				"CODE": "CODE:",
+				"PRICE": "PRICE:"
 				} 
 		},
 		"PAYMENT": {
