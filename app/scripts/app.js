@@ -22,7 +22,8 @@
        'pascalprecht.translate',
        'angular-loading-bar',
        'constants',
-       'ui.router'
+       'ui.router',
+       'ui.mask'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {
