@@ -383,7 +383,7 @@ input.ng-valid.ng-touched {
                         <div class="form-group">
                             <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
                             <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country" ng-options="country.name as country.value for country in seat.cnames_es" ng-init="seat.seatInSelection.country='ESP'">
-                                <option value="">Select A Color</option>
+                                <option value="" translate>SEATS.FORM_COUNTRY_TEXT</option>
                             </select>
                         </div>
                     </div>
