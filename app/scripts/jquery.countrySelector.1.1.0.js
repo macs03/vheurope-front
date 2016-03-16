@@ -560,9 +560,8 @@
                         var cname = cnames[cc];
                         if (!cname)
                             cname = cc;
-
-                        if(i === 'CHL'){
-                            $this.append('<option selected value="' + i + '">' + cname + '</option>');
+                        if(i === 'ESP'){
+                            $this.append('<option  value="' + i + '" ng-selected="ESP" >' + cname + '</option>');
                         }else{
                             $this.append('<option value="' + i + '">' + cname + '</option>');
                         }
