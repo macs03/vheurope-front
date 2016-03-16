@@ -107,7 +107,9 @@
 		},
 		"PURCHASE": {
 			"TITLE": "PURCHASE INFORMATION",
-			"SUBTITLE": "Total price excludes taxes and surcharges",
+			"SUBTOTAL": "Subtotal",
+			"FEES": "Service Charge",
+			"TOTAL": "TOTAL",
 			"ROUND": "Round",
 			"RETURN": "Return"
 		},

@@ -2,7 +2,7 @@
 	"MAIN": {
 		"TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
 		"SUBTITLE": "La manera más fácil de comprar y comparar billetes de autobus",
-		"FIND_PASSAGES": "Encuentra tu billetes de autobus en España",
+		"FIND_PASSAGES": "Encuentra tus billetes de autobus en España",
 		"CTA_BUY": "Compra desde tu",
 		"CTA_PHONE": "MOVIL",
 		"BUS_COMPANIES": "Empresas de autobuses en España",
@@ -107,7 +107,9 @@
 		},
 		"PURCHASE": {
 			"TITLE": "INFORMACIÓN DE COMPRA",
-			"SUBTITLE": "Precio total no incluye impuestos ni recargos",
+			"SUBTOTAL": "Subtotal",
+			"FEES": "Impuestos",
+			"TOTAL": "TOTAL",
 			"ROUND": "Ida",
 			"RETURN": "Vuelta"
 		},
