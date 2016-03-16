@@ -528,6 +528,7 @@ angular
   			console.log(vm.seatsSelectedDeparture);
             console.log(vm.seatsSelectedReturn);
   			$('#formSeat').modal('hide');
+            vm.resetSeatInSelection();
   			vm.updateTotals();
 		};
 
