@@ -34,7 +34,6 @@ module.exports = function(config) {
       'bower_components/microplugin/src/microplugin.js',
       'bower_components/selectize/dist/js/selectize.js',
       'bower_components/angular-selectize2/dist/angular-selectize.js',
-      'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',
       'bower_components/momentjs/moment.js',
       'bower_components/pikaday/pikaday.js',
       'bower_components/pikaday-responsive/dist/pikaday-responsive.js',

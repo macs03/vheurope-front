@@ -21,21 +21,18 @@
                       var dateObject = pikadayResponsive(element,{
                        format: "DD-MM-YYYY",
                        outputFormat: "x",
-                       checkIfNativeDate: function() {
-                           // return true if native date field should be used
-                       },
                        placeholder: "Selecciona una fecha",
-                       classes: "",
                        dayOffset: 0,
+                      checkIfNativeDate: function () {
+                        return Modernizr.inputtypes.date && (Modernizr.touch && navigator.appVersion.indexOf("Win") === -1);
+                      },
                        pikadayOptions: {
                          minDate: new Date()
                        }
                    });
 
-
                    scope.$watch(modelAccessor, function (val) {
                       var date = new Date(val);
-                     // element.datepicker("setDate", date);
                    });
 
                 };

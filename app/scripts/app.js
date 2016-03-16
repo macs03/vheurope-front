@@ -18,7 +18,6 @@
        'ngSanitize',
        'ngTouch',
        'selectize',
-       '720kb.datepicker',
        'rzModule',
        'pascalprecht.translate',
        'angular-loading-bar',
