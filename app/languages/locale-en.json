@@ -21,9 +21,11 @@
 		"LANGUAGE": "Language"
 	},
 	"FOOTER": {
-		"TERMINOS": "Terms and Conditions",
-		"PRIVACITY": "Privacy Notices",
-		"COPYRIGHT": "2016 Voyhoy. All rights reserved."
+		"TERMS": "General Conditions",
+		"PRIVACITY": "Privacy Policies",
+		"LEGAL_TEXT": "Legal Text",
+		"COOKIES": "Cookies Policy",
+		"COPYRIGHT": "2016 Resertrip. All rights reserved."
 	},
 	"SEARCH": {
 		"LOADING_MESSAGE": "Loading results...",

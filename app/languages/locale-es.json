@@ -1,29 +1,31 @@
 {
 	"MAIN": {
 		"TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
-		"SUBTITLE": "La manera más facil de comprar y comparar pasajes de bus",
-		"FIND_PASSAGES": "Encuentra tu pasaje de bus en España",
+		"SUBTITLE": "La manera más fácil de comprar y comparar billetes de autobus",
+		"FIND_PASSAGES": "Encuentra tu billetes de autobus en España",
 		"CTA_BUY": "Compra desde tu",
-		"CTA_PHONE": "CELULAR",
-		"BUS_COMPANIES": "Empresas de buses en España",
+		"CTA_PHONE": "MOVIL",
+		"BUS_COMPANIES": "Empresas de autobuses en España",
 		"MUCH_MORE": "Y muchas más."
 	},
 	"POPULAR_TRIPS": {
 		"FROM": "desde"
 	},
 	"NAVBAR": {
-		"PASSAGES": "Pasajes",
+		"PASSAGES": "Billetes",
 		"BUSOLOGY": "Busologia",
 		"BLOG": "Blog",
 		"SPANISH": "Español",
 		"ENGLISH": "Ingles",
-		"MESSAGE": "Compra pasajes de bus, tren, avion y barco en España",
+		"MESSAGE": "Compra billetes de autobus, tren, avion y barco en España",
 		"LANGUAGE": "Idioma"
 	},
 	"FOOTER": {
-		"TERMINOS": "Terminos y Condiciones",
-		"PRIVACITY": "Avisos de Privacidad",
-		"COPYRIGHT": "2016 Voyhoy. Todos los derechos reservados."
+		"TERMS": "Condiciones Generales",
+		"PRIVACITY": "Políticas de Privacidad",
+		"LEGAL_TEXT": "Texto Legal",
+		"COOKIES": "Políticas de Cookies",
+		"COPYRIGHT": "2016 Resertrip. Todos los derechos reservados."
 	},
 	"SEARCH": {
 		"LOADING_MESSAGE": "Cargando resultados...",
