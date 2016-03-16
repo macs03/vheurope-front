@@ -55,6 +55,13 @@
             vm.totalPayment = paymentData.totalPayment;
             vm.departureData = paymentData.departure;
             vm.returnData = paymentData.returns;
+            vm.isRoundTrip = false;
+            
+            if (vm.returnData != undefined){
+                if(vm.returnData.hasOwnProperty('company')){
+                     vm.isRoundTrip = true;
+                }
+            }
 
             vm.validatePromo = function(){
                 console.log('Agregar logica de validacion de promociones');

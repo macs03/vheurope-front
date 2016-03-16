@@ -481,10 +481,10 @@ select {
                         </div>
                     </div>
 
-                    <div class="trip-container" translate ng-show="payment.returnData.length > 0">
+                    <div class="trip-container" translate ng-show="payment.isRoundTrip">
                         PAYMENT.PURCHASE.RETURN
                     </div>
-                    <div class="trip-container odd" ng-show="payment.returnData.length > 0">
+                    <div class="trip-container odd" ng-show="payment.isRoundTrip">
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
                                 <i class="fa fa-bus"></i>
