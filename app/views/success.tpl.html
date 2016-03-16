@@ -201,7 +201,6 @@
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
-                                    <strong>{{success.departureData.price}} €</strong>
                                     <br>
                                     <small class="smallest-font text-muted">{{success.departureData.typeService}}</small>
                                 </p>
@@ -228,26 +227,21 @@
                         <div class="sub-header">
                             <p translate>SUCCESS.ROUND.TICKETS.TITLE</p>
                         </div>
-                        <div class="row ticket list last">
-                            <div class="col-md-6" ng-repeat="seat in success.departureData.seats">
-                                <div class="row">
-                                    <div class="col-md-1 hidden-xs">
-                                        <span class="label label-default">1</span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
-                                    </div>
-                                    <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
-                                    </div>
-                                    <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span><span class="vh-blue">{{seat.seatNumber}}</span></span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
-                                    </div>
-                                </div>
-
+                        <div class="row ticket list last" ng-repeat="seat in success.departureData.seats">
+                            <div class="col-md-2 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                            </div>
+                            <div class="col-md-3 col-xs-8">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
+                            </div>
+                            <div class="col-md-3 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
+                            </div>
+                            <div class="col-md-2 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price  | currency : '' }} &euro;</span></span>
                             </div>
                         </div>
 
@@ -276,7 +270,6 @@
 	                            </div>
 	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
 	                                <p>
-	                                    <strong>{{success.returnData.price}} €</strong>
 	                                    <br>
 	                                    <small class="smallest-font text-muted">{{success.returnData.typeService}}</small>
 	                                </p>
@@ -303,27 +296,22 @@
                          <div class="sub-header" ng-show="success.returnData != ''">
                             <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
                         </div>
-                        <div class="row ticket list" ng-show="success.returnData != ''">
-							<div class="col-md-6" ng-repeat="seat in success.returnData.seats">
-                                <div class="row">
-                                    <div class="col-md-1 hidden-xs">
-                                        <span class="label label-default">1</span>
+                        <div class="row ticket list" ng-show="success.returnData != ''" ng-repeat="seat in success.returnData.seats">
+                                    <div class="col-md-2 hidden-xs">
+                                        <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                                    </div>
+                                    <div class="col-md-3 col-xs-8">
+                                        <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                                    </div>
+                                    <div class="col-md-2 col-xs-4">
+                                        <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
                                     </div>
                                     <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                                        <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
                                     </div>
-                                    <div class="col-md-4 col-xs-8">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                                    <div class="col-md-2 hidden-xs">
+                                        <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
                                     </div>
-                                    <div class="col-md-1 col-xs-4">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.RETURN.TICKETS.SEAT</span><span class="vh-blue">{{seat.seatNumber}}</span></span>
-                                    </div>
-                                    <div class="col-md-3 hidden-xs">
-                                        <span class="ticket-smallest-font"><span translate>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                         <div class="row  text-center">
                             <div class="col-xs-12 col-md-12">
