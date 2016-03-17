@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('vhEurope')
-        .directive('gmap', function() {
+        .directive('gmap', function($interval) {
         // directive link function
         var link = function(scope, element, attrs) {
             var map, infoWindow;
@@ -11,10 +11,11 @@
             var markers = [];
             // map config
             var mapOptions = {
-                center: new google.maps.LatLng(-33.44656, -70.45815),
-                zoom: 7,
+                center: new google.maps.LatLng(40.45740, -3.70424),
+                zoom: 20,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                scrollwheel: false
+                scrollwheel: false,
+                disableDefaultUI: true
             };
         
             // init the map
@@ -38,6 +39,8 @@
                             directionsDisplay.setDirections(response);
                         } 
                     });
+
+
                 }
             }    
         
@@ -69,7 +72,16 @@
             }
         
             // show the map and place some markers
-            initMap();
+            
+            $interval(updateMap, 2000);
+
+             function updateMap() {
+                initMap();
+                var center = map.getCenter();
+                google.maps.event.trigger(map, "resize");
+                map.setCenter(center);
+                map.setZoom(5);
+            }
         
             //setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
         };
