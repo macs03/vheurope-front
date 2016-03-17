@@ -25,56 +25,56 @@
             vm.popular_searches.push({
                 origin: 'Madrid',
                 destination: 'Barcelona',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/barcelona.jpg',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
                 price: '32.41',
                 href: "/#/search/Madrid/ES/Barcelona/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Madrid',
                 destination: 'Bilbao',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/bilbao.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
                 price: '31.27',
                 href: "/#/search/Madrid/ES/Bilbao/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Barcelona',
                 destination: 'Madrid',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/madrid.jpg',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
                 price: '32.41',
                 href: "/#/search/Barcelona/ES/Madrid/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Sevilla',
                 destination: 'Málaga',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/malaga.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
                 price: '18.57',
                 href: "/#/search/Sevilla/ES/Malaga/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Madrid',
                 destination: 'Salamanca',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/salamanca.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
                 price: '32.41',
                 href: "/#/search/Madrid/ES/Salamanca/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Málaga',
                 destination: 'Sevilla',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/sevilla.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
                 price: '18.57',
                 href: "/#/search/Malaga/ES/Sevilla/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Barcelona',
                 destination: 'Valencia',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/valencia.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
                 price: '29.16',
                 href: "/#/search/Barcelona/ES/Valencia/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 origin: 'Barcelona',
                 destination: 'Zaragoza',
-                image: 'https://dl.dropboxusercontent.com/u/993466/voyhoy/new-home/zaragoza.png',
+                image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
                 price: '15.77',
                 href: "/#/search/Barcelona/ES/Zaragoza/ES/"+vm.today+"/NaN"
             });
