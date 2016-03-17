@@ -513,7 +513,7 @@ angular
                             vm.allSeats = true;
                         }
                     }else{
-                        if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain){
+                        if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain  && vm.seatsSelectedReturn.length == vm.passengers){
                             console.log("seats full");
                             vm.allSeats = true;
                         }
@@ -523,7 +523,6 @@ angular
                     console.log("return");
                     vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
                     vm.selectDepartureSeat = true;
-                    // vm.resetSeatInSelection();
                     if(vm.seatsSelectedDeparture.length == vm.passengers){
                         console.log("seats full");
                         vm.allSeats = true;
@@ -542,7 +541,7 @@ angular
                     if($stateParams.idReturn == "-1"){
                         vm.resetSeatInSelection();
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
-                            console.log("se llenaron los asientos");
+                            console.log("full seats");
                             vm.allSeats = true;
                         }
                     }
@@ -553,7 +552,7 @@ angular
                     vm.selectDepartureSeat = true;
                     vm.resetSeatInSelection();
                     if(vm.seatsSelectedDeparture.length == vm.passengers){
-                        console.log("se llenaron los asientos");
+                        console.log("full seats");
                         vm.allSeats = true;
                     }
                 }
@@ -632,6 +631,7 @@ angular
                 if($stateParams.idReturn != "-1"){
                     if(vm.seatInSelection.trip === 1){
                         vm.selectAgain = true;
+                        vm.resetSeatInSelection();
                     }
                 }
 				vm.seatInSelection.seatNumber = seatNumber;
