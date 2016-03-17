@@ -533,10 +533,14 @@ angular
                 vm.selectDepartureSeat = false;
                 console.log(vm.seatInSelection.trip);
                 if(vm.seatInSelection.trip === 0){
-                    console.log("Departure");
-                    // vm.seatsSelectedDeparture.push(angular.copy(vm.seatInSelection));
-                    vm.seatsSelectedReturn.splice(0, 1);
-                    vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
+                    //vm.seatsSelectedReturn.splice(0, 1,vm.seatInSelection);
+                    vm.seatsSelectedReturn[0].country = angular.copy(vm.seatsSelectedDeparture[0].country);
+                    vm.seatsSelectedReturn[0].dni = angular.copy(vm.seatsSelectedDeparture[0].dni);
+                    vm.seatsSelectedReturn[0].document = angular.copy(vm.seatsSelectedDeparture[0].document);
+                    vm.seatsSelectedReturn[0].email = angular.copy(vm.seatsSelectedDeparture[0].email);
+                    vm.seatsSelectedReturn[0].lastname = angular.copy(vm.seatsSelectedDeparture[0].lastname);
+                    vm.seatsSelectedReturn[0].phone = angular.copy(vm.seatsSelectedDeparture[0].phone);
+                    vm.seatsSelectedReturn[0].name = angular.copy(vm.seatsSelectedDeparture[0].name);
                     vm.selectDepartureSeat = false;
                     if($stateParams.idReturn == "-1"){
                         vm.resetSeatInSelection();
@@ -544,16 +548,11 @@ angular
                             console.log("full seats");
                             vm.allSeats = true;
                         }
-                    }
-                }
-                if(vm.seatInSelection.trip === 1){
-                    console.log("return");
-                    vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
-                    vm.selectDepartureSeat = true;
-                    vm.resetSeatInSelection();
-                    if(vm.seatsSelectedDeparture.length == vm.passengers){
-                        console.log("full seats");
-                        vm.allSeats = true;
+                    }else{
+                        if(vm.seatsSelectedDeparture.length == vm.passengers){
+                                console.log("full seats");
+                                vm.allSeats = true;
+                            }
                     }
                 }
             }
@@ -568,12 +567,16 @@ angular
 
 		vm.releaseSeat = function (trip, floor, seatNumber, update) {
             console.log(seatNumber+'-'+trip);
-            console.log(vm.seatsSelectedDeparture.length);
-            console.log(vm.seatsSelectedReturn.length);
             if(trip === 0){
                 console.log('IDA');
-                vm.selectDepartureSeat = true;
-                vm.allSeats = false;
+                if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
+                    vm.allSeats = false;
+                    vm.selectDepartureSeat = true;
+                    console.log("reset");
+                }else{
+                    vm.selectDepartureSeat = true;
+                    vm.allSeats = false;
+                }
                 if(floor === 1){
                     sc.status(seatNumber.toString(), 'available');
                 }else{
@@ -581,8 +584,14 @@ angular
                 }
             }else{
                 console.log('VUELTA');
-                vm.selectDepartureSeat = false;
-                vm.allSeats = false;
+                if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
+                    vm.allSeats = false;
+                    vm.selectDepartureSeat = true;
+                    console.log("reset");
+                }else{
+                    vm.selectDepartureSeat = false;
+                    vm.allSeats = false;
+                }
                 if(floor === 1){
                     sc3.status(seatNumber.toString(), 'available');
                 }else{
