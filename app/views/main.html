@@ -24,9 +24,8 @@
                 <figure>
                     <img ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
                     <figcaption>
-                        <h2>{{ ps.origin }}&nbsp; a &nbsp; {{ ps.destination }}</h2>
+                        <h2>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h2>
                         <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
-                        
                     </figcaption>
                 </figure>
             </div>
