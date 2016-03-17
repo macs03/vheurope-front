@@ -76,7 +76,7 @@
                     .getAll($stateParams.idDeparture,$stateParams.idReturn,name,lastname,dni,email,card,month,year,cvv)
                     .then(function(data){
                         //$location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
-                        utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departure,data.return);
+                        utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
                         $location.path ("/success");
                     })
                     .catch(function(err){
