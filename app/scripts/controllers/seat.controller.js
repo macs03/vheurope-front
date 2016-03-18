@@ -279,7 +279,7 @@ angular
     ];
 
         vm.selectDepartureSeat = true;
-
+        vm.validateDni = validateDni;
 
         seatsFactory
             .getAll($stateParams.idDeparture,$stateParams.idReturn)
@@ -725,10 +725,99 @@ angular
             }
         }
 
-        /*
+        function validateDni() {
+            vm.dniEdit = true;
+            vm.errorDni = true;
+            if(vm.seatInSelection.document == 1){
+                if(vm.seatInSelection.dni != undefined){
+                    if(isDNI(vm.seatInSelection.dni)){
+                        vm.errorDni = false;
+                    }else{
+                        vm.errorDni = true;
+                    }
+                }
+            }else
+            if(vm.seatInSelection.document == 2){
+                if(vm.seatInSelection.dni != undefined){
+                    if(validateNif(vm.seatInSelection.dni)){
+                        vm.errorDni = false;
+                    }else{
+                        vm.errorDni = true;
+                    }
+                }
+            }else
+            if(vm.seatInSelection.document == 3){
+                if(vm.seatInSelection.dni != undefined){
+                    if(validatePassport(vm.seatInSelection.dni)){
+                        vm.errorDni = false;
+                    }else{
+                        vm.errorDni = true;
+                    }
+                }
+            }else{
+                if(vm.seatInSelection.dni != undefined){
+                    if(isDNI(vm.seatInSelection.dni)){
+                        vm.errorDni = false;
+                    }else{
+                        vm.errorDni = true;
+                    }
+                }
+            }
+        }
 
-    
-    */
+        function isDNI(dni) {
+        	var numero, le, letra;
+        	var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+
+        	dni = dni.toUpperCase();
+
+        	if(expresion_regular_dni.test(dni) === true){
+        		numero = dni.substr(0,dni.length-1);
+        		numero = numero.replace('X', 0);
+        		numero = numero.replace('Y', 1);
+        		numero = numero.replace('Z', 2);
+        		le = dni.substr(dni.length-1, 1);
+        		numero = numero % 23;
+        		letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+        		letra = letra.substring(numero, numero+1);
+        		if (letra != le) {
+        			return false;
+        		}else{
+        			return true;
+        		}
+        	}else{
+        		return false;
+        	}
+        }
+
+        function validateNif(value) {
+            value = value.toUpperCase();
+            // Basic format test
+            if (!value.match('((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)')) {
+                return false;
+            }
+            // Test NIF
+            if (/^[0-9]{8}[A-Z]{1}$/.test(value)) {
+                return ("TRWAGMYFPDXBNJZSQVHLCKE".charAt(value.substring(8, 0) % 23) === value.charAt(8));
+            }
+            // Test specials NIF (starts with K, L or M)
+            if (/^[KLM]{1}/.test(value)) {
+                return (value[8] === String.fromCharCode(64));
+            }
+            return false;
+        }
+
+        function validatePassport(value) {
+            value = value.toUpperCase();
+            var expresion_regular_passport = /^[A-Z]{3}[1-9]\d{5}$|^[0-9]\d{6,8}$|^[A-Z]{1,2}[0-9]{5,6}$/;
+
+            if(expresion_regular_passport.test(value) === true){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
 
 }
 

@@ -61,6 +61,12 @@ input.ng-valid.ng-touched {
 #passages_link {
     display: none;
 }
+.invalid{
+    border: 1px solid #FA787E !important;
+}
+.valid{
+    border: 1px solid #78FA89 !important;
+}
 </style>
 <div class="container" ng-show="seat.isLoading" style="margin-top: 80px; margin-bottom: 80px;">
     <div class="row">
@@ -389,16 +395,16 @@ input.ng-valid.ng-touched {
                     </div>
                     <div class="col-xs-12 col-md-6">
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" ng-checked="true" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document"> <small translate>DNI/NIF</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" ng-checked="true" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>DNI/NIF</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="2" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>NIF</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="2" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>NIF</small>
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="3" class="pass-radio" ng-model="seat.seatInSelection.document" > <small translate>SEATS.FORM_PASSPORT</small>
+                                <input type="radio" name="form_data_document" id="form_data_document" value="3" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>SEATS.FORM_PASSPORT</small>
                             </label>
-                            <div class="form-group rut-container">
-                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" />
+                            <div class=" rut-container">
+                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
                             </div>
 
                     </div>
