@@ -40,7 +40,10 @@
             purchaseId : "",
             total : "",
             objDepartureSuccess: {},
-            objReturnSuccess: {}
+            objReturnSuccess: {},
+            setPayer : setPayer,
+            getPayer : getPayer,
+            payer : {}
         }
         var origin = ""
         function getData(){
@@ -114,6 +117,16 @@
                 total: self.total,
                 departure: self.objDepartureSuccess,
                 returns : self.objReturnSuccess
+            }
+        }
+
+        function setPayer(payer) {
+            self.payer = payer;
+        }
+
+        function getPayer() {
+            return {
+                payer : self.payer
             }
         }
 

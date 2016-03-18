@@ -63,6 +63,14 @@
                 }
             }
 
+            var payer = utilityService.getPayer();
+            if (payer.payer != undefined) {
+                vm.pay.name = payer.payer.name;
+                vm.pay.lastname = payer.payer.lastname;
+                vm.pay.dni = payer.payer.dni;
+                vm.pay.email = payer.payer.email;
+            }
+
             vm.validatePromo = function(){
                 console.log('Agregar logica de validacion de promociones');
             }; 
