@@ -189,7 +189,7 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="typeSeat in search.trips.typeServices">
-                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat)" ng-model="typeSeat.checked">
+                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                         </ul>
@@ -227,7 +227,7 @@
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | filter:search.seat | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">

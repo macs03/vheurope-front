@@ -30,6 +30,8 @@
             vm.departureSelect = departureSelect;
             vm.isLoading = true;
             vm.good = true;
+            vm.seats = [];
+            vm.seatsReset = [];
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -123,6 +125,10 @@
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
+                        for (var i = 0; i < data.typeServices.length; i++) {
+                            vm.seats.push(data.typeServices[i].name)
+                        }
+                        vm.seatsReset = vm.seats;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -197,6 +203,10 @@
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
+                        for (var i = 0; i < data.typeServices.length; i++) {
+                            vm.seats.push(data.typeServices[i].name)
+                        }
+                        vm.seatsReset = vm.seats;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -299,6 +309,10 @@
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
+                        for (var i = 0; i < data.typeServices.length; i++) {
+                            vm.seats.push(data.typeServices[i].name)
+                        }
+                        vm.seatsReset = vm.seats;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -319,11 +333,24 @@
                 }
             }
 
-            function seatFilter(seat) {
+            function seatFilter(seat,long) {
                 if (seat.checked) {
                    vm.seat = seat.name;
+                   if (vm.seats.length === long) {
+                       vm.seats = [];
+                       vm.seats.push(seat.name);
+                   }else{
+                       vm.seats.push(seat.name);
+                   }
                 }else{
-                    vm.seat ={};
+                    for (var i = vm.seats.length; i--;) {
+                        if (vm.seats[i] === seat.name) {
+                            vm.seats.splice(i, 1);
+                        }
+                    }
+                    if(vm.seats.length === 0){
+                        vm.seats = vm.seatsReset;
+                    }
                 }
             }
 
