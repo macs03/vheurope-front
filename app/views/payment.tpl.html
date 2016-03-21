@@ -3,12 +3,6 @@
 
 .hidden { display: none }
 
-input[type="text"] {
-        border-radius: 0px !important;
-        min-height: 48px !important;
-        border: 1px solid #d0d0d0;
-}
-
 #blog,
 #busology,
 #passages,
@@ -233,6 +227,14 @@ hr.add-passenger:hover:after {
         border: 1px solid #d0d0d0;
 }
 
+input[type="email"] {
+       border-radius: 0px !important;
+       min-height: 48px !important;
+       border: 1px solid #d0d0d0;
+       width: 99%;
+       padding-left: 10px;
+}
+
 select {
     height: 48px !important;
     min-height: 48px !important;
@@ -242,6 +244,14 @@ select {
     border-radius: 0px !important;
 
 
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid #FA787E;
+  }
+
+input.ng-valid.ng-touched {
+    border: 1px solid #78FA89;
 }
 
 #passages_link {
@@ -284,7 +294,7 @@ select {
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_email" translate>PAYMENT.INFORMATION.FORM_EMAIL</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu email" />
+                                    <input type="email" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu email" />
                                 </div>
                             </div>
                         </div>
@@ -292,7 +302,7 @@ select {
                             <div class="col-md-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_card" translate>PAYMENT.INFORMATION.FORM_CREDIT_CARD</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_CREDIT_CARD' | translate }}" required name="form_payment_card" id="form_payment_card" value="" class="email"  ng-model="payment.pay.card" title="Ingresa tu numero de tarjeta" maxlength="16" />
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_CREDIT_CARD' | translate }}" required name="form_payment_card" id="form_payment_card" value="" class="email"  ng-model="payment.pay.card" title="Ingresa tu numero de tarjeta" maxlength="16" minlength="16"/>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +310,7 @@ select {
                             <div class="col-md-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_month" translate>PAYMENT.INFORMATION.FORM_MONTH</label>
-                                    <select name="form_payment_month" id="form_payment_month"  class="country" ng-model="payment.pay.month">
+                                    <select name="form_payment_month" id="form_payment_month" required class="country" ng-model="payment.pay.month">
                                         <option value="01" selected>01</option>
                                         <option value="02">02</option>
                                         <option value="03">03</option>
@@ -319,7 +329,7 @@ select {
                             <div class="col-md-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_year" translate>PAYMENT.INFORMATION.FORM_YEAR</label>
-                                    <select name="form_payment_year" id="form_payment_year"  class="country" ng-model="payment.pay.year">
+                                    <select name="form_payment_year" id="form_payment_year" required  class="country" ng-model="payment.pay.year">
                                         <option value="2016" selected>2016</option>
                                         <option value="2017">2017</option>
                                         <option value="2018">2018</option>

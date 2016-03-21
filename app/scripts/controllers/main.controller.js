@@ -23,6 +23,7 @@
             vm.today = String(new Date().getTime()/1000).replace('.',''); 
 
             vm.popular_searches.push({
+                id: 0,
                 origin: 'Madrid',
                 destination: 'Barcelona',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
@@ -30,6 +31,7 @@
                 href: "/#/search/Madrid/ES/Barcelona/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 1,
                 origin: 'Madrid',
                 destination: 'Bilbao',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
@@ -37,6 +39,7 @@
                 href: "/#/search/Madrid/ES/Bilbao/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 2,
                 origin: 'Barcelona',
                 destination: 'Madrid',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
@@ -44,13 +47,15 @@
                 href: "/#/search/Barcelona/ES/Madrid/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 3,
                 origin: 'Sevilla',
-                destination: 'Málaga',
+                destination: 'Malaga',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
                 price: '18.57',
                 href: "/#/search/Sevilla/ES/Malaga/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 4,
                 origin: 'Madrid',
                 destination: 'Salamanca',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
@@ -58,13 +63,15 @@
                 href: "/#/search/Madrid/ES/Salamanca/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
-                origin: 'Málaga',
+                id: 5,
+                origin: 'Malaga',
                 destination: 'Sevilla',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
                 price: '18.57',
                 href: "/#/search/Malaga/ES/Sevilla/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 6,
                 origin: 'Barcelona',
                 destination: 'Valencia',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
@@ -72,6 +79,7 @@
                 href: "/#/search/Barcelona/ES/Valencia/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
+                id: 7,
                 origin: 'Barcelona',
                 destination: 'Zaragoza',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
@@ -84,6 +92,7 @@
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
             vm.changeDate = changeDate;
+            vm.quickSearch = quickSearch;
         	vm.myOptions = [];
         	vm.myConfig = {
           		//create: true,
@@ -201,6 +210,13 @@
                 if(!vm.good){
                     $('#error-date').modal('show');
                 }
+            }
+
+            function quickSearch(origin, destination, id) {
+                $('#departureDate-quick-'+id).change(function () {
+                    var departureDate = $('#departureDate-quick-'+id).val();
+                    $location.path ("/search/"+origin+"/ES/"+destination+"/ES/"+departureDate+"/NaN");
+                })
             }
 
             //$('#switch_language_title').html($('#switch_language li.active').find('a').html() + '<span class="caret"></span>');
