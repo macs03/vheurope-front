@@ -10,7 +10,7 @@
             compile: function (element, attrs) {
                 var modelAccessor = $parse(attrs.ngModel);
 
-                var html = "<input type='text' id='" + attrs.id + "' >" +
+                var html = "<input type='text' id='" + attrs.id + "' class='"+attrs.class+"' >" +
                    "</input>";
 
                 var newElem = $(html);

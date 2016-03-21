@@ -14,15 +14,15 @@
     </div>
 </div>
 
-
 <div class="container hidden-xs" id="popular-trips">
     <h2 translate>MAIN.FIND_PASSAGES</h2>
     <div class="row-fluid ">
         <div ng-repeat="ps in main.popular_searches" class="col-md-3 col-sm-6 col-xs-12">
-            <a href="{{ ps.href }}">
+            <a ng-click="main.quickSearch(ps.origin, ps.destination, ps.id)">
             <div class="popular-trip">
                 <figure>
-                    <img ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                    <vhdatepicker id="departureDate-quick-{{ps.id}}" class="quickDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                    <img class="img-destinny" ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
                     <figcaption>
                         <h2>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h2>
                         <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
