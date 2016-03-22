@@ -206,7 +206,7 @@
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="company in search.trips.companies">
-                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company)" ng-model="company.checked">
+                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
                         </ul>
@@ -227,7 +227,7 @@
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | filter:search.company | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue track by $index">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">

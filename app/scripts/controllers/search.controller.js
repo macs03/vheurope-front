@@ -32,6 +32,8 @@
             vm.good = true;
             vm.seats = [];
             vm.seatsReset = [];
+            vm.companies = [];
+            vm.companiesReset = [];
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -129,6 +131,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -207,6 +213,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -313,6 +323,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -325,11 +339,24 @@
                     })
             }
 
-            function companyFilter(company) {
+            function companyFilter(company,long) {
                 if (company.checked) {
                    vm.company = company.name;
+                   if (vm.companies.length === long) {
+                       vm.companies = [];
+                       vm.companies.push(company.name);
+                   }else{
+                       vm.companies.push(company.name);
+                   }
                 }else{
-                    vm.company ={};
+                    for (var i = vm.companies.length; i--;) {
+                        if (vm.companies[i] === company.name) {
+                            vm.companies.splice(i, 1);
+                        }
+                    }
+                    if(vm.companies.length === 0){
+                        vm.companies = vm.companiesReset;
+                    }
                 }
             }
 
