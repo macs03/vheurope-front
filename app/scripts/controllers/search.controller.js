@@ -230,12 +230,21 @@
             }
 
             function order(type) {
-                if(vm.type === type) {
-                     vm.reverse =!vm.reverse
-                } else{
-                    vm.reverse = false
+                if(vm.selectDeparture == true){
+                    if(vm.typeDeparture === type) {
+                        vm.reverseDeparture =!vm.reverseDeparture
+                    } else{
+                        vm.reverseDeparture = false
+                    }
+                    vm.typeDeparture = type;
+                }else {
+                    if(vm.typeReturn === type) {
+                        vm.reverseReturn =!vm.reverseReturn
+                    } else{
+                        vm.reverseReturn = false
+                    }
+                    vm.typeReturn = type;
                 }
-                vm.type = type;
             }
 
             $scope.$watch('search.origin', function(newVal, oldVal){
@@ -271,11 +280,13 @@
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
-                    vm.seats = [];
-                    vm.seatsReset = [];
-                    vm.companies = [];
-                    vm.companiesReset = [];
-                    searchTrip();
+                    if (oldVal != "Invalid date") {
+                        vm.seats = [];
+                        vm.seatsReset = [];
+                        vm.companies = [];
+                        vm.companiesReset = [];
+                        searchTrip();
+                    }
                 }
             }, true);
 

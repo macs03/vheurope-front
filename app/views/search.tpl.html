@@ -78,15 +78,15 @@
                         </div>
                         <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company" ng-click="search.order('companyName')">
                             <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
+                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'companyName'"></span>
                         </div>
                         <div class="col-md-3 col-xs-3 sort sort-trips" data-sort="departure" ng-click="search.order('salida')">
                             <span translate>SEARCH.SORT.HORARY</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
+                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'salida'"></span>
                         </div>
                         <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price" ng-click="search.order('price')">
                             <span translate>SEARCH.SORT.PRICE</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
+                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'price'"></span>
                         </div>
                         <div class="col-md-2 col-xs-4"></div>
                     </div> <!-- end .row -->
@@ -227,7 +227,7 @@
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                     </h5>
 
-                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.type:search.reverse | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
+                    <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter: search.hourSlider.minValue : search.hourSlider.maxValue">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
@@ -321,8 +321,7 @@
                         <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}">
                             <span class="way" translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}}  <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                         </h5>
-
-                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips| orderBy:search.type:search.reverse" ng-class="{'disable-box':!search.selectDeparture}">
+                        <div class="new-results" ng-repeat="trip in search.trips.directDepartureTrips| orderBy: search.typeDeparture : search.reverseDeparture" ng-class="{'disable-box':!search.selectDeparture}">
                             <div class="results list" >
                                 <div class="row result result-iv">
 
@@ -382,7 +381,7 @@
                             <span class="way" translate>SEARCH.TRIPS.RETURN</span>: {{search.trips.directReturnTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.returnDate | date: 'EEE, MMM dd' }}
                         </h5>
 
-                        <div class="new-results" ng-repeat="trip in search.trips.directReturnTrips| orderBy:search.type:search.reverse">
+                        <div class="new-results" ng-repeat="trip in search.trips.directReturnTrips| orderBy: search.typeReturn : search.reverseReturn">
                             <div class="results list" >
                                 <div class="row result result-iv">
 
