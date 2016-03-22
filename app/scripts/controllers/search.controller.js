@@ -241,24 +241,40 @@
             $scope.$watch('search.origin', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
