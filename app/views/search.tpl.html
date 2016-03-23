@@ -78,15 +78,15 @@
                         </div>
                         <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company" ng-click="search.order('companyName')">
                             <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
-                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'companyName'"></span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
                         </div>
                         <div class="col-md-3 col-xs-3 sort sort-trips" data-sort="departure" ng-click="search.order('salida')">
                             <span translate>SEARCH.SORT.HORARY</span>
-                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'salida'"></span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
                         </div>
                         <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price" ng-click="search.order('price')">
                             <span translate>SEARCH.SORT.PRICE</span>
-                            <span class="sort" ng-class="{desc:search.reverseDeparture,asc:!search.reverseDeparture}" ng-show="search.typeDeparture === 'price'"></span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
                         </div>
                         <div class="col-md-2 col-xs-4"></div>
                     </div> <!-- end .row -->

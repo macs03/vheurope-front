@@ -236,18 +236,24 @@
             function order(type) {
                 if(vm.selectDeparture == true){
                     if(vm.typeDeparture === type) {
-                        vm.reverseDeparture =!vm.reverseDeparture
+                        vm.reverseDeparture =!vm.reverseDeparture;
+                        vm.reverse = !vm.reverse;
                     } else{
                         vm.reverseDeparture = false
+                        vm.reverse = false;
                     }
                     vm.typeDeparture = type;
+                    vm.type = type;
                 }else {
                     if(vm.typeReturn === type) {
-                        vm.reverseReturn =!vm.reverseReturn
+                        vm.reverseReturn =!vm.reverseReturn;
+                        vm.reverse = !vm.reverse;
                     } else{
-                        vm.reverseReturn = false
+                        vm.reverseReturn = false;
+                        vm.reverse = false;
                     }
                     vm.typeReturn = type;
+                    vm.type = type;
                 }
             }
 
