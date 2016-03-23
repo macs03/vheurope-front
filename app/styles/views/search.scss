@@ -440,9 +440,9 @@ input[type="radio"] { margin-bottom: 10px !important }
 }
 
 .new-results .results .result:hover {
-    -webkit-box-shadow: 2px 6px 12px 0px rgba(135,133,135,1);
-    -moz-box-shadow: 2px 6px 12px 0px rgba(135,133,135,1);
-    box-shadow: 2px 6px 12px 0px rgba(135,133,135,1);
+    -webkit-box-shadow: 2px 6px 12px 0px rgba(135,133,135,.5);
+    -moz-box-shadow: 2px 6px 12px 0px rgba(135,133,135,.5);
+    box-shadow: 2px 6px 12px 0px rgba(135,133,135,.5);
 }
 
 .new-results .results .result.seat:hover {
