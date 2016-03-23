@@ -32,10 +32,10 @@
 
              $stateProvider
                  .state('main', {
-                     url: '/',
-                     templateUrl: 'views/main.html',
-                     controller: 'MainController',
-                     controllerAs: 'main'
+                      url: '/',
+                      templateUrl: 'views/main.html',
+                      controller: 'MainController',
+                      controllerAs: 'main'
                  })
                  .state('search', {
                      url: '/search/:origin/:originCountryCode/:destination/:destinationCountryCode/:departureDate/:returnDate',
@@ -61,6 +61,22 @@
                      controller: 'SuccessController',
                      controllerAs: 'success'
                  })
+                 .state('legal-text', {
+                     url: '/legal-text',
+                     templateUrl: 'views/legal-text.tpl.html',
+                 })
+                 .state('privacy-policy', {
+                     url: '/privacy-policy',
+                     templateUrl: 'views/privacy-policy.tpl.html',
+                 })
+                 .state('cookies-policy', {
+                     url: '/cookies-policy',
+                     templateUrl: 'views/cookies-policy.tpl.html',
+                 })
+                 .state('terms', {
+                     url: '/terms',
+                     templateUrl: 'views/terms.tpl.html',
+                 })
      });
 
     app.config(['$translateProvider', function ($translateProvider) {
@@ -70,7 +86,7 @@
       });
 
       $translateProvider.preferredLanguage('es');
-      $translateProvider.useSanitizeValueStrategy('escape');
+      $translateProvider.useSanitizeValueStrategy('sanitize');
       $translateProvider.useCookieStorage();
       $translateProvider.fallbackLanguage('es');
     }]);
