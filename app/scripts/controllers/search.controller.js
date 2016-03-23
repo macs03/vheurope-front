@@ -32,6 +32,8 @@
             vm.good = true;
             vm.seats = [];
             vm.seatsReset = [];
+            vm.companies = [];
+            vm.companiesReset = [];
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -129,6 +131,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -207,6 +213,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -220,36 +230,63 @@
             }
 
             function order(type) {
-                if(vm.type === type) {
-                     vm.reverse =!vm.reverse
-                } else{
-                    vm.reverse = false
+                if(vm.selectDeparture == true){
+                    if(vm.typeDeparture === type) {
+                        vm.reverseDeparture =!vm.reverseDeparture
+                    } else{
+                        vm.reverseDeparture = false
+                    }
+                    vm.typeDeparture = type;
+                }else {
+                    if(vm.typeReturn === type) {
+                        vm.reverseReturn =!vm.reverseReturn
+                    } else{
+                        vm.reverseReturn = false
+                    }
+                    vm.typeReturn = type;
                 }
-                vm.type = type;
             }
 
             $scope.$watch('search.origin', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
                     searchTrip();
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
-                    searchTrip();
+                    if (oldVal != "Invalid date") {
+                        vm.seats = [];
+                        vm.seatsReset = [];
+                        vm.companies = [];
+                        vm.companiesReset = [];
+                        searchTrip();
+                    }
                 }
             }, true);
 
@@ -313,6 +350,10 @@
                             vm.seats.push(data.typeServices[i].name)
                         }
                         vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -325,11 +366,24 @@
                     })
             }
 
-            function companyFilter(company) {
+            function companyFilter(company,long) {
                 if (company.checked) {
                    vm.company = company.name;
+                   if (vm.companies.length === long) {
+                       vm.companies = [];
+                       vm.companies.push(company.name);
+                   }else{
+                       vm.companies.push(company.name);
+                   }
                 }else{
-                    vm.company ={};
+                    for (var i = vm.companies.length; i--;) {
+                        if (vm.companies[i] === company.name) {
+                            vm.companies.splice(i, 1);
+                        }
+                    }
+                    if(vm.companies.length === 0){
+                        vm.companies = vm.companiesReset;
+                    }
                 }
             }
 
