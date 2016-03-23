@@ -20,7 +20,7 @@
             vm.searching = false;
             vm.error = false;
             vm.order = order;
-            vm.type = 'price';
+            vm.type = '';
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
