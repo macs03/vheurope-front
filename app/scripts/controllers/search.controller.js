@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout'];
+        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope'];
 
-        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout) {
+        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -106,6 +106,8 @@
             vm.countryDestination = params.countryDestination;
 
             if(params.origin){
+                var title = "Resertrip "+params.origin+"-"+params.destination;
+                $rootScope.$broadcast('titleEvent', title);
                 vm.results = false;
                 vm.trips = [];
                 vm.searching = true;
@@ -196,6 +198,8 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
+                var title = "Resertrip "+$stateParams.origin+"-"+$stateParams.destination;
+                $rootScope.$broadcast('titleEvent', title);
 
                 travelsFactory
                     .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,1)
@@ -334,6 +338,8 @@
                 vm.error = false;
                 vm.disabled = true;
                 $('.pikaday__display').prop('disabled', true);
+                var title = "Resertrip "+origin+"-"+destination;
+                $rootScope.$broadcast('titleEvent', title);
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,1)
                     .then(function(data){
