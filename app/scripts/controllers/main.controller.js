@@ -12,15 +12,17 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService','$location'];
+        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope'];
 
 
-        function MainController ($scope,locationsFactory,utilityService,$location) {
+        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope) {
 
             var vm = this;
             var params = utilityService.getData();
             vm.popular_searches = [];
-            vm.today = String(new Date().getTime()/1000).replace('.',''); 
+            vm.today = String(new Date().getTime()/1000).replace('.','');
+            var title = "Resertrip Viaja inteligente";
+            $rootScope.$broadcast('titleEvent', title);
 
             vm.popular_searches.push({
                 id: 0,

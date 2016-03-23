@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelectedDeparture = [];
@@ -291,6 +291,8 @@ angular
                 vm.trips.return = data.return;
                 console.log(vm.trips.round);
                 console.log(vm.trips.return);
+                var title = "Resertrip "+data.departure.origin+"-"+data.departure.destination;
+                $rootScope.$broadcast('titleEvent', title);
                 vm.passengers = data.totalPeople;
                 sc = $('#seat-map-1').seatCharts({
                     map: vm.trips.round.seatMap[0],

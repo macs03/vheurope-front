@@ -27,8 +27,4 @@ angular
         vm.pdf = apiUrl;
     }
 
-
 })();
-
-
-
