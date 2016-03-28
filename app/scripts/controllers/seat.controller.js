@@ -694,7 +694,7 @@ angular
                 .getAll(vm.seatsSelectedDeparture,vm.seatsSelectedReturn,$stateParams.idDeparture,$stateParams.idReturn)
                 .then(function(data){
                     utilityService.setPayer(vm.seatsSelectedDeparture[0]);
-                    utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalWithDiscount, data.totalFee, data.totalPayment, data.departure,data.return);
+                    utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPrice, data.totalFee, data.totalPayment, data.departure,data.return);
                     $location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                 })
                 .catch(function(err){
