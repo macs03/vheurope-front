@@ -501,6 +501,8 @@ angular
 
         vm.addSeat = function () {
         	console.log('SEAT');
+            var counter = 5;
+            $rootScope.$broadcast('counterEvent', counter, true);
   			console.log(vm.seatInSelection);
   			if(vm.seatInSelection.update != true){
                 console.log(vm.seatInSelection.trip);

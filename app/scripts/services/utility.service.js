@@ -43,7 +43,10 @@
             objReturnSuccess: {},
             setPayer : setPayer,
             getPayer : getPayer,
-            payer : {}
+            payer : {},
+            setSearch : setSearch,
+            getSearch : getSearch,
+            url : ""
         }
         var origin = ""
         function getData(){
@@ -127,6 +130,16 @@
         function getPayer() {
             return {
                 payer : self.payer
+            }
+        }
+
+        function setSearch(url) {
+            self.url = url;
+        }
+
+        function getSearch() {
+            return {
+                url : self.url
             }
         }
 

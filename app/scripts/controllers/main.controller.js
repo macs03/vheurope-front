@@ -23,6 +23,7 @@
             vm.today = String(new Date().getTime()/1000).replace('.','');
             var title = "Resertrip Viaja inteligente";
             $rootScope.$broadcast('titleEvent', title);
+            $rootScope.$broadcast('counterEvent', 1, false);
 
             vm.popular_searches.push({
                 id: 0,

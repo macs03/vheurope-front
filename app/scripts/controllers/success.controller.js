@@ -25,6 +25,7 @@ angular
         vm.departureData = successData.departure;
         vm.returnData = successData.returns;
         vm.pdf = apiUrl;
+        $rootScope.$broadcast('counterEvent', 1, false);
     }
 
 })();

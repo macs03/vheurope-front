@@ -105,6 +105,10 @@
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
 
+            var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
+            utilityService.setSearch(url);
+            $rootScope.$broadcast('counterEvent', 1, false);
+
             if(params.origin){
                 var title = "Resertrip "+params.origin+"-"+params.destination;
                 $rootScope.$broadcast('titleEvent', title);
