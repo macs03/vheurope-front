@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SuccessController',SuccessController);
 
-    SuccessController.$inject = ['utilityService','$scope','$interval','$stateParams','$location','apiUrl'];
+    SuccessController.$inject = ['utilityService','$scope','$rootScope','$interval','$stateParams','$location','apiUrl'];
 
-    function SuccessController (utilityService, $scope, $interval, $stateParams,$location,apiUrl) {
+    function SuccessController (utilityService, $scope, $rootScope, $interval, $stateParams,$location,apiUrl) {
         var vm = this;
         var successData = utilityService.getSuccessData();
         vm.customer = successData.customer;
