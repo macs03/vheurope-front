@@ -164,7 +164,7 @@ display: none;
         <div class="box-content np">
             <div class="text-container">
                 <p class="vh-blue"><b translate>SUCCESS.SUBTITLE</b> {{cancel.cancelData.customer}},</p>
-                <p><b><span translate>Te presentamos tu lista de pasasjes</span> <span class="vh-blue" translate>SUCCESS.TEXT_2</span></b></p>
+                <p><b><span translate>CANCEL.TITLE</span> <span class="vh-blue" translate>SUCCESS.TEXT_2</span></b></p>
             </div>
             <br>
             <div class="tickets">
@@ -310,8 +310,8 @@ display: none;
                             <a ng-show="cancel.cancelData.paymentOrderStatus != 'CANCELED' && cancel.cancelOk != 'OK'" ng-click="cancel.cancelTrip(cancel.cancelData.paymentOrderUuid)" target="_blank" class="btn  theme-red btn-lg" data-tooltip aria-haspopup="true"  title="Cancelar Pasaje">
                                 CANCEL <i class="fa fa-ban"></i>
                             </a>
-                            <p ng-show="cancel.cancelData.paymentOrderStatus == 'CANCELED' || cancel.cancelOk == 'OK'">
-                                Esta lista de pasajes ya se encuentran cancelados
+                            <p ng-show="cancel.cancelData.paymentOrderStatus == 'CANCELED' || cancel.cancelOk == 'OK'" translate>
+                                CANCEL.CANCELMSG
                             </p>
                             <br><br><br>
                         </div>

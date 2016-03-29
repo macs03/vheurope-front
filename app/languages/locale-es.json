@@ -160,5 +160,9 @@
 			"LINK": "Terminos y condiciones"
 
 		}
+	},
+	"CANCEL": {
+		"TITLE": "Te presentamos tu lista de pasajes",
+		"CANCELMSG": "Esta lista de pasajes ya se encuentran cancelados"
 	}
 }

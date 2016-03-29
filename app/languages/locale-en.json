@@ -160,5 +160,9 @@
 			"LINK": "Terms and Conditions"
 
 		}
+	},
+	"CANCEL": {
+		"TITLE": "We present your list of passages",
+		"CANCELMSG": "This list of passages already canceled"
 	}
 }
