@@ -308,7 +308,7 @@ display: none;
                         <div class="col-xs-12 col-md-12">
                             <br>
                             <a ng-show="cancel.cancelData.paymentOrderStatus != 'CANCELED' && cancel.cancelOk != 'OK'" ng-click="cancel.cancelTrip(cancel.cancelData.paymentOrderUuid)" target="_blank" class="btn  theme-red btn-lg" data-tooltip aria-haspopup="true"  title="Cancelar Pasaje">
-                                CANCEL <i class="fa fa-ban"></i>
+                                <span translate>CANCEL.BUTTON</span> <i class="fa fa-ban"></i>
                             </a>
                             <p ng-show="cancel.cancelData.paymentOrderStatus == 'CANCELED' || cancel.cancelOk == 'OK'" translate>
                                 CANCEL.CANCELMSG
