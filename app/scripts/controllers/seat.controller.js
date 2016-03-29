@@ -515,6 +515,9 @@ angular
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
                             console.log("seats full");
                             vm.allSeats = true;
+                        }else{
+                            vm.allSeats = false;
+                            vm.selectDepartureSeat = true;
                         }
                     }else{
                         if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain  && vm.seatsSelectedReturn.length == vm.passengers){
@@ -683,11 +686,13 @@ angular
 			for(var i = vm.seatsSelectedDeparture.length; i--;) {
 				vm.totalSeats ++;
 				vm.totalMount += vm.seatsSelectedDeparture[i].price;
+                vm.totalMount = Math.round(vm.totalMount * 100) / 100;
         	}
 
             for(var i = vm.seatsSelectedReturn.length; i--;) {
 				vm.totalSeats ++;
 				vm.totalMount += vm.seatsSelectedReturn[i].price;
+                vm.totalMount = Math.round(vm.totalMount * 100) / 100;
         	}
 		};
 
