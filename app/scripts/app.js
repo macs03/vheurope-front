@@ -77,6 +77,12 @@
                      url: '/terms',
                      templateUrl: 'views/terms.tpl.html',
                  })
+                 .state('cancel', {
+                     url: '/cancel/:uuid',
+                     templateUrl: 'views/cancel.tpl.html',
+                     controller: 'CancelController',
+                     controllerAs: 'cancel'
+                 })
      });
 
     app.config(['$translateProvider', function ($translateProvider) {

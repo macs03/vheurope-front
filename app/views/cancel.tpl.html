@@ -1,0 +1,324 @@
+<style type="text/css">
+    .hidden {
+        display: none;
+    }
+
+    .vh-blue {
+        color: #29aae3 !important;
+    }
+
+    .ttu {
+        text-decoration: underline;
+    }
+
+    .facebook {
+        color: #3b5998;
+    }
+
+    .twitter {
+        color: #55acee;
+    }
+
+    .facebook:hover, .twitter:hover {
+        color: #dedede;
+    }
+
+    .tickets {
+        border: none;
+    }
+
+    .tickets .header-tickets {
+        color: #666;
+        border-bottom: 1px solid #cecece;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+    }
+
+    .tickets .ticket.list  {
+        max-height: 50px;
+
+    }
+
+    .tickets .ticket.list p  {
+        font-size: .85em;
+
+    }
+
+     .tickets .header.list-tickets  {
+        background: #fdfdfd;
+    }
+
+    .tickets .header.list-tickets p {
+        font-size: .85em !important;
+    }
+    .tickets .header .company,
+    .tickets .header .name,
+    .tickets .header .dni,
+    .tickets .header .seat {
+        margin-left: 10px;
+    }
+
+    .tickets .header .dni,
+    .tickets .header .seat{
+        margin-left: 5px;
+    }
+
+    .tickets .header .trip {
+        margin-left: -5px;
+    }
+
+    .tickets .sub-header {
+        background: #cecece;
+        color:  #666;
+        padding: 4px 0 4px 12px;
+        margin-bottom: 8px;
+    }
+
+    .tickets .ticket {
+        border-bottom: 1px solid  #cecece;
+        padding-bottom: 8px;
+        margin: 0 0 10px 0;
+    }
+
+     .tickets .ticket.last {
+        border-bottom: none;
+    }
+    .nbb {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+
+    }
+
+    .tickets .ticket.list-tickets p {
+        font-size: .85em !important;
+    }
+
+
+    .tickets .ticket  img {
+        max-width: 30px;
+        max-height: 30px;
+        margin-top: 10px;
+    }
+
+    .tickets .ticket .company h4 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: .95rem !important;
+        text-transform: capitalize;
+        margin-top: 15px;
+        font-weight: 600;
+        line-height: 1em;
+    }
+
+
+
+    button.theme-red,
+    .btn.theme-red{
+        background: #e35029;
+        border: 0;
+        color: #fff;
+        transition: background-color 300ms ease-out;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        margin-top: 10px !important;
+        border-radius: 0;
+    }
+
+    button.theme-red:hover,
+    .btn.theme-red:hover {
+        background: #f52828;
+        color: #fff;
+    }
+
+    @media only screen and (max-width: 40em) {
+        button.theme-blue,
+        .btn.theme-blue {
+            margin-top: 10px !important;
+        }
+    }
+
+    @media (max-width: 400px){
+        .company{
+            max-width: 80px !important;
+            overflow: scroll !important;
+        }
+    }
+
+    .text-container {
+        padding: 20px 30px;
+    }
+    .ticket-smallest-font {
+        font-size: 0.6555em !important;
+    }
+
+    #passages_link {
+display: none;
+}
+</style>
+
+<div class="container">
+<div class="row">
+<br>
+<br>
+<div class="col-xs-12 col-md-12">
+    <div class="box">
+        <div class="box-content np">
+            <div class="text-container">
+                <p class="vh-blue"><b translate>SUCCESS.SUBTITLE</b> {{cancel.cancelData.customer}},</p>
+                <p><b><span translate>Te presentamos tu lista de pasasjes</span> <span class="vh-blue" translate>SUCCESS.TEXT_2</span></b></p>
+            </div>
+            <br>
+            <div class="tickets">
+                <div class="sub-header" style="background: #2BB3F0;color:#fff;">
+                        <p><strong translate>SUCCESS.ROUND.TITLE</strong></p>
+                    </div>
+                    <div class="row ticket " style="border-bottom: 1px solid #bbb;">
+                        <div class="col-xs-4 col-md-2 col-md-offset-1">
+                            <p>
+                                <strong>{{cancel.cancelData.departureData.departureDate}} {{cancel.cancelData.departureData.departureTime}}</strong>
+                                <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.origin}}</small>
+                                <br>
+                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.terminalOrigin}}</small>
+
+                            </p>
+                        </div>
+                        <div class="col-xs-4 col-md-2 col-md-offset-1">
+                            <p>
+                                <strong>{{cancel.cancelData.departureData.arrivalDate}} {{cancel.cancelData.departureData.arrivalTime}}</strong>
+                                <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.destination}}</small>
+                                <br>
+                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.terminalDestination}}</small>
+
+                            </p>
+                        </div>
+                        <div class="col-xs-4 col-md-2 col-md-offset-1">
+                            <p>
+                                <br>
+                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.typeService}}</small>
+                            </p>
+                        </div>
+                        <div class="col-xs-4 col-md-2 col-md-offset-1">
+                            <p>
+                                <br>
+                                <small class="smallest-font vh-blue"><span translate>SUCCESS.ROUND.NO_TRIPS</span> {{cancel.cancelData.departureData.numTrip}}</small>
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                         <!-- PARTE INFERIOR -->
+                        <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                            <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.companyName}}</small>
+                            <img ng-src="{{cancel.cancelData.departureData.companyLogo}}" title="{{success.departureData.companyLogo}}" class="logo_small hidden-xs pull-right">
+                        </div>
+                        <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                            <small class="smallest-font text-muted">{{cancel.cancelData.departureData.duration}}</small>
+                        </div>
+                        <br><br>
+                    </div>
+                    <div class="sub-header">
+                        <p translate>SUCCESS.ROUND.TICKETS.TITLE</p>
+                    </div>
+                    <div class="row ticket list last" ng-repeat="seat in cancel.cancelData.departureData.seats">
+                        <div class="col-md-2 hidden-xs">
+                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                        </div>
+                        <div class="col-md-3 col-xs-8">
+                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                        </div>
+                        <div class="col-md-2 col-xs-4">
+                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
+                        </div>
+                        <div class="col-md-3 hidden-xs">
+                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
+                        </div>
+                        <div class="col-md-2 hidden-xs">
+                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price  | currency : '' }} &euro;</span></span>
+                        </div>
+                    </div>
+
+
+                        <div class="sub-header" style="background: #2BB3F0;color:#fff;" ng-show="cancel.cancelData.returnData != ''">
+                            <p><strong translate>SUCCESS.RETURN.TITLE</strong></p>
+                        </div>
+                        <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="cancel.cancelData.returnData != ''">
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <strong>{{cancel.cancelData.returnData.departureDate}} {{cancel.cancelData.returnData.departureTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.origin}}</small>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.terminalOrigin}}</small>
+
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <strong>{{cancel.cancelData.returnData.arrivalDate}} {{cancel.cancelData.returnData.arrivalTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.destination}}</small>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.terminalDestination}}</small>
+
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.typeService}}</small>
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <br>
+                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.RETURN.NO_TRIPS</span> {{cancel.cancelData.returnData.numTrip}}</small>
+                                    <br>
+                                </p>
+                            </div>
+                    </div>
+                    <div class="row" ng-show="cancel.cancelData.returnData != ''">
+                         <!-- PARTE INFERIOR -->
+                         <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                             <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.companyName}}</small>
+                             <img ng-src="{{cancel.cancelData.returnData.companyLogo}}" title="{{cancel.cancelData.returnData.companyLogo}}" class="logo_small hidden-xs pull-right">
+                         </div>
+                         <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                             <small class="smallest-font text-muted">{{cancel.cancelData.returnData.duration}}</small>
+                         </div>
+                        <br><br>
+                    </div>
+                     <div class="sub-header" ng-show="cancel.cancelData.returnData != ''">
+                        <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
+                    </div>
+                    <div class="row ticket list" ng-show="cancel.cancelData.returnData != ''" ng-repeat="seat in cancel.cancelData.returnData.seats">
+                                <div class="col-md-2 hidden-xs">
+                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                                </div>
+                                <div class="col-md-3 col-xs-8">
+                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                                </div>
+                                <div class="col-md-2 col-xs-4">
+                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
+                                </div>
+                                <div class="col-md-3 hidden-xs">
+                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
+                                </div>
+                                <div class="col-md-2 hidden-xs">
+                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
+                                </div>
+                    </div>
+                    <div class="row  text-center">
+                        <div class="col-xs-12 col-md-12">
+                            <br>
+                            <a ng-show="cancel.cancelData.paymentOrderStatus != 'CANCELED' && cancel.cancelOk != 'OK'" ng-click="cancel.cancelTrip(cancel.cancelData.paymentOrderUuid)" target="_blank" class="btn  theme-red btn-lg" data-tooltip aria-haspopup="true"  title="Cancelar Pasaje">
+                                CANCEL <i class="fa fa-ban"></i>
+                            </a>
+                            <p ng-show="cancel.cancelData.paymentOrderStatus == 'CANCELED' || cancel.cancelOk == 'OK'">
+                                Esta lista de pasajes ya se encuentran cancelados
+                            </p>
+                            <br><br><br>
+                        </div>
+                    </div>
+                </div> <!-- end tickets -->
+            </div> <!-- end box -->
+        </div>
+    </div> <!-- end .col-md-12 -->
+</div> <!-- end .row -->
+</div> <!-- end .container -->

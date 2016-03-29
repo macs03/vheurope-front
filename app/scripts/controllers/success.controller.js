@@ -3,9 +3,9 @@
 
 /**
  * @ngdoc function
- * @name vhEurope.controller:SeatController
+ * @name vhEurope.controller:SuccessController
  * @description
- * # SeatController
+ * # SuccessController
  * Controller of the vhEurope
  */
 angular
