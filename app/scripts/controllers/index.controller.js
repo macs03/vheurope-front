@@ -12,10 +12,10 @@
         .module('vhEurope')
         .controller('indexController', indexController)
 
-        indexController.$inject =['$scope','$interval','utilityService','$location','localStorageService'];
+        indexController.$inject =['$scope','$interval','utilityService','$location','sessionStorageService'];
 
 
-        function indexController ($scope,$interval,utilityService,$location,localStorageService) {
+        function indexController ($scope,$interval,utilityService,$location,sessionStorageService) {
             $scope.pageTitle = "Resertrip Viaja inteligente";
             $scope.showCLock = false;
             $scope.completeTime = false;
@@ -23,7 +23,6 @@
                 $scope.pageTitle = title;
             }
             $scope.$on('titleEvent', changeTitle)
-
             function counterClock(ev, counter,flag){
                 if(flag){
                     if ( angular.isDefined($scope.time) ) {
@@ -55,7 +54,7 @@
                                 $('#time-complete').modal('show');
                             }
                             $scope.showCLock = false;
-                            var url = localStorageService.get('url');
+                            var url = sessionStorageService.getUrl();
                             $location.path(url);
                         }
                     }, 1000);

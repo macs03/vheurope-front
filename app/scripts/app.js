@@ -103,7 +103,9 @@
     }]);
 
     app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-        localStorageServiceProvider.setPrefix('resertrip');
+        localStorageServiceProvider
+            .setPrefix('resertrip')
+            .setStorageType('sessionStorage');
     }]);
 
 })();
