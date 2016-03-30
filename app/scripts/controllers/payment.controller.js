@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('PaymentController', PaymentController)
 
-        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$stateParams','$location'];
+        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$stateParams','$location','$rootScope'];
 
-        function PaymentController ($scope, utilityService, paymentFactory,$stateParams,$location) {
+        function PaymentController ($scope, utilityService, paymentFactory,$stateParams,$location,$rootScope) {
 
             var vm = this;
             // La informacion de inicializacion debe ser obtenida a traves de un servicio
@@ -80,6 +80,7 @@
             };
 
             function paying(name,lastname,dni,email,card,month,year,cvv) {
+                $rootScope.$broadcast('counterEvent', 1, false);
                 paymentFactory
                     .getAll($stateParams.idDeparture,$stateParams.idReturn,name,lastname,dni,email,card,month,year,cvv)
                     .then(function(data){
