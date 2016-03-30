@@ -40,25 +40,21 @@
                 totalPayment : totalPayment,
                 departure : departure,
                 returns : returns
-            }
-            console.log(payment);
+            };
             localStorageService.set('payment',JSON.stringify(payment));
         }
 
         function getPayment() {
             var data = JSON.parse(localStorageService.get("payment"));
-            console.log(data);
             return data;
         }
 
         function setPayer(payer) {
-            console.log(payer);
             localStorageService.set('payer',JSON.stringify(payer));
         }
 
         function getPayer() {
             var data = JSON.parse(localStorageService.get("payer"));
-            console.log(data);
             return data;
         }
 
