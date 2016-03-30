@@ -12,18 +12,18 @@ angular
     .module('vhEurope')
     .controller('SuccessController',SuccessController);
 
-    SuccessController.$inject = ['utilityService','$scope','$rootScope','$interval','$stateParams','$location','apiUrl'];
+    SuccessController.$inject = ['utilityService','$scope','$rootScope','$interval','$stateParams','$location','apiUrl','sessionStorageService'];
 
-    function SuccessController (utilityService, $scope, $rootScope, $interval, $stateParams,$location,apiUrl) {
+    function SuccessController (utilityService, $scope, $rootScope, $interval, $stateParams,$location,apiUrl,sessionStorageService) {
         var vm = this;
-        var successData = utilityService.getSuccessData();
+        var successData = sessionStorageService.getSuccessData();
         vm.customer = successData.customer;
         vm.customerEmail = successData.customerEmail;
         vm.providerName = successData.providerName;
         vm.purchaseId = successData.purchaseId;
         vm.total = successData.total;
-        vm.departureData = successData.departure;
-        vm.returnData = successData.returns;
+        vm.departureData = successData.departureData;
+        vm.returnData = successData.returnData;
         vm.pdf = apiUrl;
         $rootScope.$broadcast('counterEvent', 1, false);
     }

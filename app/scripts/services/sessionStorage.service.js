@@ -20,7 +20,9 @@
             setPayment : setPayment,
             getPayment : getPayment,
             setPayer : setPayer,
-            getPayer : getPayer
+            getPayer : getPayer,
+            setSuccessData : setSuccessData,
+            getSuccessData : getSuccessData
         }
 
         function setUrl(url) {
@@ -55,6 +57,24 @@
 
         function getPayer() {
             var data = JSON.parse(localStorageService.get("payer"));
+            return data;
+        }
+
+        function setSuccessData(customer,customerEmail,providerName,purchaseId,total,departureData,returnData) {
+            var success = {
+                customer : customer,
+                customerEmail : customerEmail,
+                providerName : providerName,
+                purchaseId : purchaseId,
+                total : total,
+                departureData : departureData,
+                returnData : returnData
+            };
+            localStorageService.set('success',JSON.stringify(success));
+        }
+
+        function getSuccessData() {
+            var data = JSON.parse(localStorageService.get('success'));
             return data;
         }
 
