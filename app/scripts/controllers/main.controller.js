@@ -12,18 +12,21 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope'];
+        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope','$translate','$cookieStore'];
 
 
-        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope) {
+        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope,$translate,$cookieStore) {
 
             var vm = this;
             var params = utilityService.getData();
             vm.popular_searches = [];
             vm.today = String(new Date().getTime()/1000).replace('.','');
+            $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
             var title = "Resertrip Viaja inteligente";
             $rootScope.$broadcast('titleEvent', title);
             $rootScope.$broadcast('counterEvent', 1, false);
+
+           
 
             vm.popular_searches.push({
                 id: 0,
@@ -99,18 +102,33 @@
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
-        	vm.myConfig = {
+
+        	vm.configOrigin = {
           		//create: true,
           		valueField: 'id',
           		labelField: 'label',
                 searchField: ['label'],
           		delimiter: '|',
-          		placeholder: 'Elige tu ciudad',
+          		placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
           		maxItems: 1
         	};
+
+            vm.configDestination = {
+                //create: true,
+                valueField: 'id',
+                labelField: 'label',
+                searchField: ['label'],
+                delimiter: '|',
+                placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu destino' : 'Choose your destination',
+                onInitialize: function(selectize){
+                    // receives the selectize object as an argument
+                },
+                maxItems: 1
+            };
+
             vm.dates = {
                 departureDate: moment().format('DD/MM/YYYY'),
                 returnDate: '',

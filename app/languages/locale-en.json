@@ -1,18 +1,21 @@
 {
 	"MAIN": {
-		"TITLE": "TRAVELS WITH INTELLIGENT RESERTRIP",
+		"TITLE": "TRAVEL INTELLIGENTLY WITH RESERTRIP",
 		"SUBTITLE": "The easiest way to buy and compare bus tickets",
 		"FIND_PASSAGES": "Find your bus ticket in Spain",
 		"CTA_BUY": "Purchase from your",
 		"CTA_PHONE": "MOBILE",
 		"BUS_COMPANIES": "Bus companies in Spain",
-		"MUCH_MORE": "And many more."
+		"MUCH_MORE": "And many more.",
+		"CHOOSE_ORIGIN": "Choose your origin",
+		"CHOOSE_DESTINATION": "Choose your destination",
+		"RETURN": "Return"
 	},
 	"POPULAR_TRIPS": {
 		"FROM": "from"
 	},
 	"NAVBAR": {
-		"PASSAGES": "Passages",
+		"PASSAGES": "Tickets",
 		"BUSOLOGY": "Busologia",
 		"BLOG": "Blog",
 		"SPANISH": "Spanish",
@@ -36,7 +39,7 @@
 		"SORT": {
 			"ORDER_BY": "Order by:",
 			"COMPANY": "Company",
-			"HORARY": "Horary",
+			"HORARY": "Departure Time",
 			"PRICE": "Price"
 		},
 		"FILTERS": {
@@ -59,8 +62,8 @@
 	},
 	"SEATS": {
 		"LOADING_MESSAGE": "Loading seat map...",
-		"PASSAGE_ROUND": "Round Passage:",
-		"PASSAGE_RETURN": "Return Passage:",
+		"PASSAGE_ROUND": "Round Trip:",
+		"PASSAGE_RETURN": "Return Trip:",
 		"FLOOR_1": "FLOOR 1",
 		"FLOOR_2": "FLOOR 2",
 		"SELECTION_LABEL": "Your seats:",
@@ -76,7 +79,7 @@
 		"PURCHASE_SEAT": "Seat",
 		"PURCHASE_ROUND": "Round",
 		"PURCHASE_RETURN": "Return",
-		"FORM_LABEL_PASSAGE": "Passage",
+		"FORM_LABEL_PASSAGE": "Ticket",
 		"FORM_LABEL_SEAT": "Seat",
 		"FORM_NAME": "Name",
 		"FORM_LASTNAME": "Lastname",
@@ -118,7 +121,7 @@
 			"SUBTOTAL": "Subtotal",
 			"FEES": "Service Charge",
 			"TOTAL": "TOTAL",
-			"ROUND": "Round",
+			"ROUND": "Trip",
 			"RETURN": "Return"
 		},
 		"PROMOTION": {

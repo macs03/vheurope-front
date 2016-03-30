@@ -1,12 +1,15 @@
 {
 	"MAIN": {
 		"TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
-		"SUBTITLE": "La manera más fácil de comprar y comparar billetes de autobus",
-		"FIND_PASSAGES": "Encuentra tus billetes de autobus en España",
+		"SUBTITLE": "La manera más fácil de comprar y comparar billetes de autobús",
+		"FIND_PASSAGES": "Encuentra tus billetes de autobús en España",
 		"CTA_BUY": "Compra desde tu",
 		"CTA_PHONE": "MOVIL",
 		"BUS_COMPANIES": "Empresas de autobuses en España",
-		"MUCH_MORE": "Y muchas más."
+		"MUCH_MORE": "Y muchas más.",
+		"CHOOSE_ORIGIN": "Elige tu origen",
+		"CHOOSE_DESTINATION": "Elige tu destino",
+		"RETURN": "Vuelta"
 	},
 	"POPULAR_TRIPS": {
 		"FROM": "desde"
@@ -16,8 +19,8 @@
 		"BUSOLOGY": "Busologia",
 		"BLOG": "Blog",
 		"SPANISH": "Español",
-		"ENGLISH": "Ingles",
-		"MESSAGE": "Compra billetes de autobus, tren, avion y barco en España",
+		"ENGLISH": "Inglés",
+		"MESSAGE": "Compra billetes de autobús, tren, avion y barco en España",
 		"LANGUAGE": "Idioma"
 	},
 	"FOOTER": {
@@ -59,8 +62,8 @@
 	},
 	"SEATS": {
 		"LOADING_MESSAGE": "Cargando mapa de asientos...",
-		"PASSAGE_ROUND": "Pasaje Ida:",
-		"PASSAGE_RETURN": "Pasaje Vuelta:",
+		"PASSAGE_ROUND": "Billete Ida:",
+		"PASSAGE_RETURN": "Billete Vuelta:",
 		"FLOOR_1": "PISO 1",
 		"FLOOR_2": "PISO 2",
 		"SELECTION_LABEL": "Tu(s) asiento(s):",
@@ -76,7 +79,7 @@
 		"PURCHASE_SEAT": "Asiento",
 		"PURCHASE_ROUND": "Ida",
 		"PURCHASE_RETURN": "Vuelta",
-		"FORM_LABEL_PASSAGE": "Pasaje",
+		"FORM_LABEL_PASSAGE": "Billete",
 		"FORM_LABEL_SEAT": "Asiento",
 		"FORM_NAME": "Nombre",
 		"FORM_LASTNAME": "Apellido",
@@ -128,11 +131,11 @@
 		}
 	},
 	"SUCCESS": {
-		"TITLE": "Tu compra ha sido exitosa",
+		"TITLE": "Tu compra se ha realizado con éxito",
 		"SUBTITLE": "Estimado(a) ",
 		"TEXT_1": "Muchas gracias por confiar en",
 		"TEXT_2": "Resertrip",
-		"TEXT_3": "Te enviamos un e-mail con los detalles de tu viaje y tu pasaje adjunto a",
+		"TEXT_3": "Te enviamos un e-mail con los detalles de tu viaje y tu billete adjunto a",
 		"ROUND": {
 			"TITLE": "IDA",
 			"NO_TRIPS": "No. DE VIAJES:",

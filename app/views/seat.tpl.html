@@ -320,11 +320,11 @@ input.ng-valid.ng-touched {
                             <div id="resumen_seats">
 
                                 <p ng-repeat="item in seat.seatsSelectedDeparture">
-                                    <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatLabel }}</b></span>
+                                    <span class="smallest-font"><span translate>SEATS.PURCHASE_SEAT</span> <b><span ng-if="0 == item.trip"><span translate>SEATS.PURCHASE_ROUND</span></span><span ng-if="1 == item.trip"><span translate>SEATS.PURCHASE_RETURN</span></span> {{ item.seatLabel }}</b></span>
                                     <span class="small-font pull-right"><strong>{{ item.price  }} €</strong></span>
                                 </p>
                                 <p ng-repeat="item in seat.seatsSelectedReturn">
-                                    <span class="smallest-font">Asiento <b><span ng-if="0 == item.trip">Ida</span><span ng-if="1 == item.trip">Vuelta</span> {{ item.seatLabel }}</b></span>
+                                    <span class="smallest-font"><span translate>SEATS.PURCHASE_SEAT</span> <b><span ng-if="0 == item.trip"><span translate>SEATS.PURCHASE_ROUND</span></span><span ng-if="1 == item.trip"><span translate>SEATS.PURCHASE_RETURN</span></span> {{ item.seatLabel }}</b></span>
                                     <span class="small-font pull-right"><strong>{{ item.price  }} €</strong></span>
                                 </p>
                             </div>
@@ -413,7 +413,7 @@ input.ng-valid.ng-touched {
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_phone" translate>SEATS.FORM_PHONE</label>
-                           <input type="text" placeholder="{{ 'SEATS.FORM_PHONE_PLACEHOLDER' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" ui-mask="(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_"/>
+                           <input type="text" placeholder="{{ 'SEATS.FORM_PHONE_PLACEHOLDER' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
