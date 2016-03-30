@@ -914,12 +914,12 @@ td .ui-state-hover {
 
     .nbt {
         border-top: 0 !important;
-      border-bottom: 0 !important;
+        border-bottom: 0 !important;
 
     }
 
     .np {
-        padding: 0px 10px !important;
+        /*padding: 0px 10px !important;*/
     }
 
     .selectize-control.single .selectize-input {
@@ -1037,7 +1037,7 @@ td .ui-state-hover {
     height: 25px;
     width: 25px;
     top: 48%;
-    right: 66.58%;
+    right: 74.58%;
     margin-top: -12.5px;
     margin-right: -12.5px;
     cursor: pointer;
@@ -1048,13 +1048,17 @@ td .ui-state-hover {
 
 @media only screen and (max-width: 40.063em) {
     .hero {
-    height: 200px !important;
+    height: 320px !important;
 
     }
 
     #search-page.hero .hero-img {
-    border-bottom: 0;
-}
+        border-bottom: 0;
+    }
+
+    .nbrr {
+        border-right: 0 !important;
+    }
 
 }
 
