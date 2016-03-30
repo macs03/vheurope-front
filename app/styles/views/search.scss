@@ -104,7 +104,10 @@ select {
   min-height: 48px !important;
   background-color: transparent; 
   width: 99% !important;
-  border: none
+  border: none;
+  -webkit-border-radius: 1px;
+-moz-border-radius: 1px;
+border-radius: 1px;
 
 
 }
