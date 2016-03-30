@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope'];
+        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','localStorageService'];
 
-        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope) {
+        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,localStorageService) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -108,6 +108,7 @@
 
             var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
             utilityService.setSearch(url);
+            localStorageService.set('url',url);
             $rootScope.$broadcast('counterEvent', 1, false);
 
             if(params.origin){

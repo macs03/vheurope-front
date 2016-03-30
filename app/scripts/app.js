@@ -23,7 +23,8 @@
        'angular-loading-bar',
        'constants',
        'ui.router',
-       'ui.mask'
+       'ui.mask',
+       'LocalStorageModule'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {
@@ -99,6 +100,10 @@
 
     app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
       cfpLoadingBarProvider.includeSpinner = false;
+    }]);
+
+    app.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+        localStorageServiceProvider.setPrefix('resertrip');
     }]);
 
 })();
