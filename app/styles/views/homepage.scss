@@ -346,6 +346,7 @@ input[type="text"] {
     max-height: 36px !important;
 }
 
+.selectize-control { max-height: 48px !important }
 .selectize-control.single .selectize-input:after { right: 10px !important }
 
 .selectize-input  .item { margin-top: 4px !important }
@@ -489,7 +490,7 @@ input[type="text"] {
     #search-form-wrapper {
         width: 90%;
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 0;
         right: 0;
         margin-left: auto;
