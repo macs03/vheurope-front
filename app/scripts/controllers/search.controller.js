@@ -104,6 +104,7 @@
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
+            vm.passengers = params.passengers;
 
             var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
             utilityService.setSearch(url);
@@ -193,6 +194,8 @@
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
+                vm.passengers_options  = ['1', '2', '3', '4', '5'];
+                vm.passengers  = vm.passengers_options [0];
 
                 vm.results = false;
                 vm.trips = [];
@@ -304,6 +307,17 @@
                 }
             }, true);
 
+            $scope.$watch('search.passengers', function(newVal, oldVal){
+                if (newVal != oldVal && newVal != undefined) {
+                    console.log('changed '+oldVal+" to "+newVal);
+                    vm.seats = [];
+                    vm.seatsReset = [];
+                    vm.companies = [];
+                    vm.companiesReset = [];
+                    searchTrip();
+                }
+            }, true);
+
             function searchTrip() {
 
                 var origin = vm.origin.split(",");
@@ -324,7 +338,10 @@
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
                         if ( newDate1 <= newDate2) {
-                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate);
+                        console.log('ENTEE');
+
+                            console.log(vm.passengers);
+                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                             vm.good = true;
 
                         }else {
@@ -333,14 +350,16 @@
                             dateError();
                         }
                     }else{
-                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate);
+                        console.log('ENTEE');
+                        console.log(vm.passengers);
+                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                         vm.good = true;
                     }
                 }
 
             }
 
-            function callSearch(origin,destination,departureDate,returnDate) {
+            function callSearch(origin,destination,departureDate,returnDate,passengers) {
                 vm.isLoading = true;
                 vm.results = false;
                 vm.trips = [];
@@ -351,7 +370,7 @@
                 var title = "Resertrip "+origin+"-"+destination;
                 $rootScope.$broadcast('titleEvent', title);
                 travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,1)
+                    .getAll(origin,destination,departureDate,returnDate,passengers)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;

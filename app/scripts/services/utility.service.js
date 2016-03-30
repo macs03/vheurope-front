@@ -61,22 +61,14 @@
             }
         }
 
-        function setData(origin, countryOrigin, destination, countryDestination, departure, returns){
+        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers){
             self.origin = origin;
             self.countryOrigin = countryOrigin,
             self.destination = destination,
             self.countryDestination = countryDestination,
             self.departure = departure;
             self.returns = returns;
-            self.passengers = "1";
-           // localStorage.setItem("origin", origin);
-           // localStorage.setItem("countryOrigin", countryOrigin);
-           // localStorage.setItem("destination", destination);
-           // localStorage.setItem("countryDestination", countryDestination);
-           // localStorage.setItem("departure", departure);
-           // localStorage.setItem("returns", returns);
-           // localStorage.setItem("passengers", "1");
-
+            self.passengers = passengers;
         }
 
         function setPaymentData(idIda,idVuelta,totalWithDiscount,totalFee,totalPayment,departure, returns) {

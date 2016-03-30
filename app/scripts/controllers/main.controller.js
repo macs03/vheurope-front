@@ -94,6 +94,8 @@
           	vm.destination = params.destination+","+params.countryDestination;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
+            vm.passengers_options  = ['1', '2', '3', '4', '5'];
+            vm.passengers  = vm.passengers_options [0];
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
@@ -167,7 +169,7 @@
                         	console.log(vm.destinationCity);
                         	console.log('departure: '+vm.dates.departureDate);
                             console.log('returns: '+vm.dates.returnDate);
-                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
+                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers);
                             vm.good = true;
                             $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
@@ -189,7 +191,7 @@
                         var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
                         vm.departureDateUnix = new Date(newDate3).getTime();
                         vm.returnDateUnix = new Date(newDate4).getTime();
-                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate);
+                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers);
                         vm.good = true;
                         $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }

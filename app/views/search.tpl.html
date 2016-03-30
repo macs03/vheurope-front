@@ -45,23 +45,36 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 ">
                                             <div class="row destination-search">
-                                                <div class="col-md-4 col-xs-12 np">
+                                                <div class="col-md-3 col-xs-12 np">
                                                     <selectize config='search.myConfig' options='search.myOptions' ng-model="search.origin" ng-disabled="search.disabled"></selectize>
                                                 </div>
                                                 <div class="switcheroo hidden-xs hidden-sm"></div>
-                                                <div class="col-md-4 col-xs-12  np">
+                                                <div class="col-md-3 col-xs-12  np">
                                                     <selectize config='search.myConfig' options='search.myOptions' ng-model="search.destination" ng-disabled="search.disabled"></selectize>
                                                 </div>
-                                                <div class="col-md-2 col-xs-6  np" style="border-right: 1px solid #c1c1c1;">
+                                                <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
                                                    <vhdatepicker id="departureDate" class="form-departure" ng-model="search.dates.departureDate" data-set-date="false" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY" data-departure-date="{{search.dates.departureDate}}" ng-disabled="search.disabled"></vhdatepicker>
                                                     <span class="fa fa-calendar departure-calendar vh-calendar"></span>
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
-                                                <div class="col-md-2 col-xs-6 np">
+                                                <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
                                                     <vhdatepicker id="returnDate" class="form-return" ng-model="search.dates.returnDate" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD/MM/YYYY" data-return-date="{{search.dates.returnDate}}" ng-disabled="search.disabled"></vhdatepicker>
                                                     <span class="fa fa-calendar return-calendar vh-calendar"></span>
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
+                                                <div class="col-md-2 col-xs-12 np">
+                                                     <select name="passengers" id="passengers" ng-model="search.passengers">
+                                                       <option value="1">1</option>
+                                                       <option value="2">2</option>
+                                                       <option value="3">3</option>
+                                                       <option value="4">4</option>
+                                                       <option value="5">5</option>
+                                                       <option value="6">6</option>
+                                                       <option value="7">7</option>
+                                                   </select>
+                                                   <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
+                                                </div>
+
                                             </div> <!-- end .row -->
                                         </div> <!-- End Destination Search -->
                                     </div>
