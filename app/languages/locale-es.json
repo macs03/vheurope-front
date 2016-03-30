@@ -85,7 +85,9 @@
 		"FORM_COUNTRY": "País",
 		"FORM_COUNTRY_TEXT": "Seleccione un país",
 		"FORM_PHONE": "Teléfono",
+		"FORM_PHONE_PLACEHOLDER": "Telefono",
 		"FORM_EMAIL": "Correo electrónico",
+		"FORM_EMAIL_PLACEHOLDER": "Correo electronico",
 		"FORM_BTN_SELECT": "Seleccionar",
 		"FORM_BTN_UPDATE": "Actualizar"
 	},
@@ -96,10 +98,12 @@
 			"FORM_LASTNAME": "Apellido",
 			"FORM_DNI": "DNI",
 			"FORM_CREDIT_CARD": "Número de tarjeta de crédito",
+			"FORM_CREDIT_CARD_PLACEHOLDER": "Numero de tarjeta de credito",
 			"FORM_CVV": "CVV",
 			"FORM_MONTH": "Mes",
 			"FORM_YEAR": "Año",
 			"FORM_EMAIL": "Correo electrónico",
+			"FORM_EMAIL_PLACEHOLDER": "Correo electronico",
 			"FORM_NOTIFICATIONS": "Recibir notificaciones de ofertas."
 		},
 		"PAY": {
@@ -119,7 +123,7 @@
 		},
 		"PROMOTION": {
 			"LABEL": "CUPON DE PROMOCIÓN",
-			"PLACEHOLDER": "Código de la promoción",
+			"PLACEHOLDER": "Codigo de la promocion",
 			"VALIDATE": "VALIDAR" 
 		}
 	},

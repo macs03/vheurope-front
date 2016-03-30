@@ -85,7 +85,9 @@
 		"FORM_COUNTRY": "Country",
 		"FORM_COUNTRY_TEXT": "Select a country",
 		"FORM_PHONE": "Phone",
+		"FORM_PHONE_PLACEHOLDER": "Phone",
 		"FORM_EMAIL": "Email",
+		"FORM_EMAIL_PLACEHOLDER": "Email",
 		"FORM_BTN_SELECT": "Select",
 		"FORM_BTN_UPDATE": "Update"
 	},
@@ -96,10 +98,12 @@
 			"FORM_LASTNAME": "Lastname",
 			"FORM_DNI": "DNI",
 			"FORM_CREDIT_CARD": "Credit Card Number",
+			"FORM_CREDIT_CARD_PLACEHOLDER": "Credit Card Number",
 			"FORM_CVV": "CVV",
 			"FORM_MONTH": "Month",
 			"FORM_YEAR": "Year",
 			"FORM_EMAIL": "Email",
+			"FORM_EMAIL_PLACEHOLDER": "Email",
 			"FORM_NOTIFICATIONS": "Receive notifications deals." 
 		},
 		"PAY": {
