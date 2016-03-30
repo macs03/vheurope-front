@@ -104,6 +104,7 @@
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
+            vm.passengers_options  = ['1', '2', '3', '4', '5'];
             vm.passengers = params.passengers;
 
             var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
@@ -210,7 +211,7 @@
                 $rootScope.$broadcast('titleEvent', title);
 
                 travelsFactory
-                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,1)
+                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -339,9 +340,6 @@
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
                         if ( newDate1 <= newDate2) {
-                        console.log('ENTEE');
-
-                            console.log(vm.passengers);
                             callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                             vm.good = true;
 
@@ -351,8 +349,6 @@
                             dateError();
                         }
                     }else{
-                        console.log('ENTEE');
-                        console.log(vm.passengers);
                         callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                         vm.good = true;
                     }

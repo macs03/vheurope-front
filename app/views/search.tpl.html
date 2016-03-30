@@ -63,15 +63,7 @@
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-12 np">
-                                                     <select name="passengers" id="passengers" ng-model="search.passengers">
-                                                       <option value="1">1</option>
-                                                       <option value="2">2</option>
-                                                       <option value="3">3</option>
-                                                       <option value="4">4</option>
-                                                       <option value="5">5</option>
-                                                       <option value="6">6</option>
-                                                       <option value="7">7</option>
-                                                   </select>
+                                                    <select ng-model="search.passengers" ng-options="opt for opt in search.passengers_options"></select>
                                                    <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
                                                 </div>
 
