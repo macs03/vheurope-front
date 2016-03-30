@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelectedDeparture = [];
@@ -702,6 +702,8 @@ angular
                 .then(function(data){
                     utilityService.setPayer(vm.seatsSelectedDeparture[0]);
                     utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPrice, data.totalFee, data.totalPayment, data.departure,data.return);
+                    sessionStorageService.setPayer(vm.seatsSelectedDeparture[0]);
+                    sessionStorageService.setPayment(data.idIda,data.idVuelta,data.totalPrice, data.totalFee, data.totalPayment, data.departure,data.return);
                     $location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                 })
                 .catch(function(err){
