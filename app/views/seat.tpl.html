@@ -112,7 +112,7 @@ input.ng-valid.ng-touched {
             <div class="box" id="box-ida">
                 <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
                     <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
-                    <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}">
+                    <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}" ng-show="!seat.trips.round.automaticSeat">
                         <div class="tabs-container">
                             <ul class="nav nav-tabs" role="tablist" id="seats-ida">
                                 <li role="presentation" class="active">
@@ -147,7 +147,16 @@ input.ng-valid.ng-touched {
                        
                          </div>
                     </div> <!-- end .col-md-6 .col-xs-12 -->
-
+                    <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round.automaticSeat" style="background:#fff;">
+                        <div class="tabs-container">
+                            <h5 class="text-muted">Asientos Automaticos</h5>
+                         </div>
+                         <div class="addSeat-automatic">
+                             <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0)" ng-hide = "seat.allSeats">
+                                 Añadir Pasajero
+                             </button>
+                         </div>
+                    </div>
                     <div class="col-md-6 col-xs-12 col-sm-6"  id="forms_ida" style="padding-right:0;">
                         <div class="select-seat">
                             <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
@@ -177,7 +186,7 @@ input.ng-valid.ng-touched {
                             </div>
                         </div>
                         <br>
-                        <div class="row">
+                        <div class="row" ng-show="!seat.trips.round.automaticSeat">
                             <div class="col-md-4 col-xs-4 seat-legend">
                                 <img src="images/seat-charts/seat-available.png" alt="Disponible">
                                 <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>

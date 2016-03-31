@@ -281,6 +281,8 @@ angular
         vm.selectDepartureSeat = true;
         vm.validateDni = validateDni;
 
+        vm.selectSeatAutomatic = selectSeatAutomatic;
+
         seatsFactory
             .getAll($stateParams.idDeparture,$stateParams.idReturn)
             .then(function (data) {
@@ -294,6 +296,20 @@ angular
                 var title = "Resertrip "+data.departure.origin+"-"+data.departure.destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.passengers = data.totalPeople;
+                vm.autoPassengers = vm.passengers - 1;
+                if (vm.trips.round.automaticSeat) {
+                    vm.roundSeats = [];
+                    for (var i = 0; i < vm.passengers; i++) {
+                        var seatAuto = {};
+                        var seatsRound = vm.trips.round.seatMap[0][i]
+                        var split1 = seatsRound.split('[');
+                        var split2 = split1[1].split(']');
+                        var split3 = split2[0].split(',');
+                        seatAuto.label = split3[1];
+                        seatAuto.number = split3[0];
+                        vm.roundSeats.push(seatAuto);
+                    }
+                }
                 sc = $('#seat-map-1').seatCharts({
                     map: vm.trips.round.seatMap[0],
                     seats: {
@@ -567,6 +583,9 @@ angular
             console.log(vm.seatsSelectedDeparture);
             console.log("return");
             console.log(vm.seatsSelectedReturn);
+            if (vm.trips.round.automaticSeat) {
+                vm.autoPassengers --;
+            }
 
 			$('#formSeat').modal('hide');
 			vm.updateTotals();
@@ -631,6 +650,19 @@ angular
                 }
             }
 		};
+
+        function selectSeatAutomatic(trip) {
+            console.log("Automatic Seat");
+            if (trip == 0) {
+                vm.seatInSelection.trip = trip;
+                vm.seatInSelection.price = vm.trips.round.priceFloorOne;
+                vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
+                vm.seatInSelection.seatLabel = vm.roundSeats[vm.autoPassengers].label;
+                vm.seatInSelection.seatNumber = vm.roundSeats[vm.autoPassengers].number;
+                $('#formSeat').modal('show');
+            }
+
+        }
 
 		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item) {
 			//seatNUmber = Numero de asiento
