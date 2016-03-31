@@ -21,8 +21,13 @@
                 var day = date.getDate();
                 var month = date.getUTCMonth();
                 var year = date.getFullYear();
-                var firstTime = new Date(year,month,day,minValue,0,0);
-                var secondTime = new Date(year,month,day,maxValue,59,59);
+                if (day != 31){
+                    var firstTime = new Date(year,month,day,minValue,0,0);
+                    var secondTime = new Date(year,month,day,maxValue,59,59);
+                }else{
+                    var firstTime = new Date(year,month-1,day,minValue,0,0);
+                    var secondTime = new Date(year,month-1,day,maxValue,59,59);
+                }
                 var initialTime = firstTime.getTime();
                 var finalTime = secondTime.getTime();
 
