@@ -248,7 +248,22 @@
                 $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
             });
 
-       	    $('.header-home.spain').attr('style','background: url("https://s3.eu-central-1.amazonaws.com/vheurope/gugenheim.jpg") no-repeat center center fixed; background-size: cover;');
-
+            var bg_images = [
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/barcelona_desde_arriba.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/ciudad_barcelona.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/cordoba.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/costa_brava_catalonia.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espana.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espania.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/girona.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/madrid.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla_andalusia.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/velika.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/vlc.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/gugenheim.jpg"
+                ];
+                
+                $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 12) + 1)]+') no-repeat center center fixed; background-size: cover;');
         }
 })();
