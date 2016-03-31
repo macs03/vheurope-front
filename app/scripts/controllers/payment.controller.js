@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('PaymentController', PaymentController)
 
-        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$stateParams','$location','$rootScope'];
+        PaymentController.$inject = ['$scope','utilityService','paymentFactory','$stateParams','$location','$rootScope','sessionStorageService'];
 
-        function PaymentController ($scope, utilityService, paymentFactory,$stateParams,$location,$rootScope) {
+        function PaymentController ($scope, utilityService, paymentFactory,$stateParams,$location,$rootScope,sessionStorageService) {
 
             var vm = this;
             // La informacion de inicializacion debe ser obtenida a traves de un servicio
@@ -48,9 +48,9 @@
                 typeService: 'Semi-cama'
             };
 
-            var paymentData = utilityService.getPaymentData();
+            var paymentData = sessionStorageService.getPayment();;
 
-            vm.totalWithDiscount = paymentData.totalWithDiscount;
+            vm.totalWithDiscount = paymentData.totalPrice;
             vm.totalFee = paymentData.totalFee,
             vm.totalPayment = paymentData.totalPayment;
             vm.departureData = paymentData.departure;
@@ -63,12 +63,12 @@
                 }
             }
 
-            var payer = utilityService.getPayer();
-            if (payer.payer != undefined) {
-                vm.pay.name = payer.payer.name;
-                vm.pay.lastname = payer.payer.lastname;
-                vm.pay.dni = payer.payer.dni;
-                vm.pay.email = payer.payer.email;
+            var payer = sessionStorageService.getPayer();
+            if (payer != undefined) {
+                vm.pay.name = payer.name;
+                vm.pay.lastname = payer.lastname;
+                vm.pay.dni = payer.dni;
+                vm.pay.email = payer.email;
             }
 
             vm.validatePromo = function(){
@@ -86,6 +86,7 @@
                     .then(function(data){
                         //$location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                         utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
+                        sessionStorageService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
                         $location.path ("/success");
                     })
                     .catch(function(err){
