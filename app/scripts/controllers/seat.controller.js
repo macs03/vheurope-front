@@ -299,6 +299,7 @@ angular
                 vm.autoPassengers = vm.passengers - 1;
                 if (vm.trips.round.automaticSeat) {
                     vm.roundSeats = [];
+                    vm.returnSeats = [];
                     for (var i = 0; i < vm.passengers; i++) {
                         var seatAuto = {};
                         var seatsRound = vm.trips.round.seatMap[0][i]
@@ -308,6 +309,16 @@ angular
                         seatAuto.label = split3[1];
                         seatAuto.number = split3[0];
                         vm.roundSeats.push(seatAuto);
+                        if (vm.trips.return != undefined && vm.trips.return.length != 0) {
+                            var seatAuto = {};
+                            var seatsReturn = vm.trips.return.seatMap[0][i]
+                            var split1 = seatsReturn.split('[');
+                            var split2 = split1[1].split(']');
+                            var split3 = split2[0].split(',');
+                            seatAuto.label = split3[1];
+                            seatAuto.number = split3[0];
+                            vm.returnSeats.push(seatAuto);
+                        }
                     }
                 }
                 sc = $('#seat-map-1').seatCharts({
@@ -549,6 +560,20 @@ angular
                     if(vm.seatsSelectedDeparture.length == vm.passengers){
                         console.log("seats full");
                         vm.allSeats = true;
+                    }
+                }
+                if (vm.automaticSeat) {
+                    if (vm.returnSeats.length > 0) {
+                        vm.seatInSelection.trip = 1;
+                        vm.seatInSelection.price = vm.trips.round.priceFloorOne;
+                        vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
+                        vm.seatInSelection.seatLabel = vm.returnSeats[vm.autoPassengers].label;
+                        vm.seatInSelection.seatNumber = vm.returnSeats[vm.autoPassengers].number;
+                        vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
+                        if(vm.seatsSelectedDeparture.length == vm.passengers){
+                            console.log("seats full");
+                            vm.allSeats = true;
+                        }
                     }
                 }
 			}else{
