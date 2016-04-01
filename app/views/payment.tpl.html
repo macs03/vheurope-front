@@ -336,6 +336,10 @@ input.ng-valid.ng-touched {
                                         <option value="2019">2019</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
+                                        <option value="2021">2022</option>
+                                        <option value="2021">2023</option>
+                                        <option value="2021">2024</option>
+                                        <option value="2021">2025</option>
                                     </select>
                                 </div>
                             </div>
@@ -428,29 +432,29 @@ input.ng-valid.ng-touched {
                 <div class="box-content no-padding">
                     <div class="trip-container-title">
                         <div class="row">
-                            <div class="col-xs-8 col-md-8">
+                            <div class="col-xs-6 col-md-8">
                                 <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTOTAL</p>
                             </div>
 
-                            <div class="col-md-4 col-xs-4">
+                            <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalWithDiscount | currency : '' }} €</span>
                             </div>
                             
                         </div>
                         <div class="row">
-                            <div class="col-xs-8 col-md-8">
+                            <div class="col-xs-6 col-md-8">
                                 <p class="smallest-font" translate>PAYMENT.PURCHASE.FEES</p>
                             </div>
-                            <div class="col-md-4 col-xs-4">
+                            <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalFee | currency : '' }} €</span>
                             </div>
                            
                         </div>
                         <div class="row">
-                            <div class="col-xs-8 col-md-8">
+                            <div class="col-xs-6 col-md-8">
                                 <p class="smallest-font" ><strong translate>PAYMENT.PURCHASE.TOTAL</strong></p>
                             </div>
-                            <div class="col-md-4 col-xs-4">
+                            <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalPayment | currency : '' }} €</span>
                             </div>
                             

@@ -63,7 +63,7 @@
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-12 np">
-                                                    <select ng-model="search.passengers" ng-options="opt for opt in search.passengers_options"></select>
+                                                    <select ng-model="search.passengers" ng-options="opt for opt in search.passengers_options" class="cth"></select>
                                                    <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
                                                 </div>
 
@@ -135,8 +135,8 @@
                     </div>
                     <div class="trip-info hidde-xs hidden-sm">
                         <span class="title"><i class="fa fa-info-circle"></i> <span translate>SEARCH.FILTERS.MAP_TITLE</span></span><br>
-                        <span translate>SEARCH.FILTERS.MAP_DISTANCE</span> <span class="content">234 Km.</span><br>
-                        <span translate>SEARCH.FILTERS.MAP_DURATION</span> <span class="content">3h 34min.</span>
+                        <span translate>SEARCH.FILTERS.MAP_DISTANCE</span> <span class="content" id="distance_gm"></span><br>
+                        <span translate>SEARCH.FILTERS.MAP_DURATION</span> <span class="content" id="duration_gm"></span>
                     </div>
                 </div>
 
