@@ -82,62 +82,9 @@
     <div ui-view></div>
 
 <br><br>
-<div class="bus row-fluid hidden-xs" style="background: #fff; padding-top: 40px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-xs-12">
-                <ul class="list-unstyled pasajes">
-                    <li><a href="#">Buscar billete</a></li>
-                    <li><a href="#">Opiniones</a></li>
-                    <li><a href="#">Contáctenos</a></li>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <ul class="list-unstyled pasajes">
-                    <li><a href="#">Rutas de Autobús</a></li>
-                    <li>
-                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'la-serena',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
-                            Santiago <g:message code="home.popular_searches.to" /> La Serena
-                        </g:link>
-                    </li>
-                    <li>
-                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'pichilemu',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
-                            Antofagasta <g:message code="home.popular_searches.to" /> Copiapo
-                        </g:link>
-                    </li>
-                    <li>
-                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'coquimbo',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
-                            Arica <g:message code="home.popular_searches.to" /> Santiago
-                        </g:link>
-                    </li>
-                    <li>
-                        <g:link mapping="resultados" params="[lang:lang,origen:'santiago',origenpais:'cl',destino:'osorno',destinopais:'cl',fecha:(lang == 'es' ? tomorrow.format('dd-MM-yyyy'): tomorrow.format('MM-dd-yyyy')),trange:'0-24']">
-                            Santiago <g:message code="home.popular_searches.to" /> Calama
-                        </g:link>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <ul class="list-unstyled pasajes">
-                    <li><a href="#">Terminales de Bus</a></li>
-                    <li><a href="#">Estación Central</a></li>
-                    <li><a href="#">San Borja</a></li>
-                    <li><a href="#">Los Heroes</a></li>
-                    <li><a href="#">Alameda</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <ul class="list-unstyled pasajes">
-                    <li><a href="#">Ciudad Guías de Vieja</a></li>
-                    <li><a href="#">Booking</a></li>
-                    <li><a href="#">Denomades</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- FOOTER AQUI -->
+<vhfooter-directive></vhfooter-directive> 
+
 
 <div class="bus  hidden-xs row-fluid" style="background: #fff; padding-top: 40px; padding-bottom: 40px;">
     <div class="row" style="margin: 0 !important">
@@ -233,6 +180,7 @@
         <script src="scripts/constants.js"></script>
         <script src="scripts/directives/form.directive.js"></script>
         <script src="scripts/directives/gmap.directive.js"></script>
+        <script src="scripts/directives/footer.directive.js"></script>
         <script src="scripts/directives/datepicker.directive.js"></script>
         <script src="scripts/directives/switchLanguage.directive.js"></script>
         <script src="scripts/services/locations.factory.js"></script>
@@ -257,6 +205,7 @@
         <script src="scripts/controllers/payment.controller.js"></script>
         <script src="scripts/controllers/success.controller.js"></script>
         <script src="scripts/controllers/cancel.controller.js"></script>
+          <script src="scripts/controllers/footer.controller.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>
