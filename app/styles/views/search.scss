@@ -1180,6 +1180,11 @@ td .ui-state-hover {
     cursor: default;
 }
 
+.disable-box button{
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 .change-departure{
     display: flex;
     justify-content: flex-end;
