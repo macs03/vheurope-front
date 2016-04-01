@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService'];
+        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService) {
+        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -118,6 +118,7 @@
                 $rootScope.$broadcast('titleEvent', title);
                 vm.results = false;
                 vm.trips = [];
+                vm.scraperTrips = [];
                 vm.searching = true;
                 vm.error = false;
                 vm.disabled = true;
@@ -145,6 +146,33 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        scraperFactory
+                            .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
+                            vm.scraperFlag = true;
+                            var scraperTime = $timeout(function () {
+                                var scraperData = scraperFactory.getData()
+                                console.log(scraperData.data);
+                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
+                                    var scraperTime2 = $timeout(function () {
+                                        console.log("2");
+                                        console.log(scraperData.data);
+                                        vm.scraperTrips = scraperData.data;
+                                        if (scraperData.data.tickets.length ==0) {
+                                            vm.scraperFlag = false;
+                                        }else{
+                                            vm.scraperFlag = false;
+                                        }
+                                    }, 20000);
+                                }
+                                vm.scraperTrips = scraperData.data;
+                                if (scraperData.data.tickets != undefined) {
+                                    if (scraperData.data.tickets.length != 0) {
+                                        vm.scraperFlag = false;
+                                    }else{
+                                        vm.scraperFlag = false;
+                                    }
+                                }
+                            }, 15000);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -202,6 +230,7 @@
 
                 vm.results = false;
                 vm.trips = [];
+                vm.scraperTrips = [];
                 vm.searching = true;
                 vm.error = false;
                 vm.disabled = true;
@@ -233,6 +262,33 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        scraperFactory
+                            .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers);
+                            vm.scraperFlag = true;
+                            var scraperTime = $timeout(function () {
+                                var scraperData = scraperFactory.getData()
+                                console.log(scraperData.data);
+                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
+                                    var scraperTime2 = $timeout(function () {
+                                        console.log("2");
+                                        console.log(scraperData.data);
+                                        vm.scraperTrips = scraperData.data;
+                                        if (scraperData.data.tickets.length ==0) {
+                                            vm.scraperFlag = false;
+                                        }else{
+                                            vm.scraperFlag = false;
+                                        }
+                                    }, 20000);
+                                }
+                                vm.scraperTrips = scraperData.data;
+                                if (scraperData.data.tickets != undefined) {
+                                    if (scraperData.data.tickets.length != 0) {
+                                        vm.scraperFlag = false;
+                                    }else{
+                                        vm.scraperFlag = false;
+                                    }
+                                }
+                            }, 15000);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -363,6 +419,7 @@
                 vm.isLoading = true;
                 vm.results = false;
                 vm.trips = [];
+                vm.scraperTrips = [];
                 vm.searching = true;
                 vm.error = false;
                 vm.disabled = true;
@@ -389,6 +446,33 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        scraperFactory
+                            .getAll(origin,destination,departureDate,returnDate,passengers)
+                            vm.scraperFlag = true;
+                            var scraperTime = $timeout(function () {
+                                var scraperData = scraperFactory.getData()
+                                console.log(scraperData.data);
+                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
+                                    var scraperTime2 = $timeout(function () {
+                                        console.log("2");
+                                        console.log(scraperData.data);
+                                        vm.scraperTrips = scraperData.data;
+                                        if (scraperData.data.tickets.length ==0) {
+                                            vm.scraperFlag = false;
+                                        }else{
+                                            vm.scraperFlag = false;
+                                        }
+                                    }, 20000);
+                                }
+                                vm.scraperTrips = scraperData.data;
+                                if (scraperData.data.tickets != undefined) {
+                                    if (scraperData.data.tickets.length != 0) {
+                                        vm.scraperFlag = false;
+                                    }else{
+                                        vm.scraperFlag = false;
+                                    }
+                                }
+                            }, 15000);
                     })
                     .catch(function(err){
                         console.log(err);
