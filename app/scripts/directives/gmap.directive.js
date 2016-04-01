@@ -37,8 +37,12 @@
                         if (status == google.maps.DirectionsStatus.OK) {
                             directionsDisplay.setMap(map);
                             directionsDisplay.setDirections(response);
+                            $('#distance_gm').html(response.routes[0].legs[0].distance.text);
+                            $('#duration_gm').html(response.routes[0].legs[0].duration.text);
+
                         } 
                     });
+
 
 
                 }
