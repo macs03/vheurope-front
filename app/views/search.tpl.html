@@ -101,11 +101,50 @@
     </div> <!-- end .hero -->
 
     <!-- Start Main content -->
-    <div class="container" ng-show="!search.results" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="container" ng-show="!search.results"  style="margin-top: 80px; margin-bottom: 80px;">
         <div class="row">
-            <div class="col-md-12 col-xs-12 text-center">
-                <p translate>SEARCH.LOADING_MESSAGE</p><br>
-                <img src="http://dropshare.jesuscolmenares.com.ve/bus1_2x.gif"  class="" alt="Buscando pasajes ..." width="80">
+            <div class="col-md-5 col-xs-12 col-md-offset-4">
+                <p class="text-center" translate>SEARCH.LOADING_MESSAGE</p><br>
+                <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
+                    <h2>{{ search.destination }}</h2>
+                    <div class="wiToday">
+                        <div class="wiIconGroup">
+                            <div class="wi wi802"></div>
+                            <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
+                        </div>
+                        <p class="wiTemperature">{{ search.weather.temp.current  }}<sup>°C</sup></p>
+                        <div class="wiDetail">
+                            <div class="row">
+                                <div class="col-md-4">
+                                     <ul class="astronomy">
+                                <li> <i class="wi sunrise"></i> {{ search.weather.sys.sunrise  }}</li>
+                                <li> <i class="wi sunset"></i>{{ search.weather.sys.sunset  }}</li>
+                            </ul>
+                                    
+                                </div>
+                            
+                                <div class="col-md-4">
+
+                            <ul class="temp">
+                                <li>Max : {{ search.weather.temp.min  }}<sup>°C</sup></li>
+                                <li>Min : {{ search.weather.temp.max  }}<sup>°C</sup></li>
+                            </ul>
+                                    
+                                </div>
+                           
+                                <div class="col-md-4">
+                                     <ul class="atmosphere">
+                                <li> <i class="wi humidity"></i> {{ search.weather.humidity }} <b>%</b></li>
+                                <li> <i class="wi pressure"></i> {{ search.weather.pressure }} <b>hPa</b></li>
+                            </ul>
+                                    
+                                </div>
+                            </div>
+                          
+                           
+                        </div>
+                    </div>
+                </div>
             </div>
         </div> 
     </div>

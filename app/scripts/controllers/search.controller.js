@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService'];
 
-        function SearchController (locationsFactory,travelsFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -106,6 +106,7 @@
             vm.countryDestination = params.countryDestination;
             vm.passengers_options  = ['1', '2', '3', '4', '5'];
             vm.passengers = params.passengers;
+
 
             var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
             utilityService.setSearch(url);
@@ -209,6 +210,8 @@
                 }, 100);
                 var title = "Resertrip "+$stateParams.origin+"-"+$stateParams.destination;
                 $rootScope.$broadcast('titleEvent', title);
+                vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
+
 
                 travelsFactory
                     .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers)

@@ -3,12 +3,14 @@ $fa-font-path:   "../bower_components/font-awesome/fonts" !default;
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "font-awesome/scss/font-awesome.scss";
+@import "weather-icons/sass/weather-icons.scss";
 // endbower
 
 
 @import "views/variables.scss";
 @import "views/mixins.scss";
 @import "views/pikaday.scss";
+@import "views/_weather.scss";
 
 @import "views/homepage.scss";
 @import "views/search.scss";
