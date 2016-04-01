@@ -26,8 +26,6 @@
             $rootScope.$broadcast('titleEvent', title);
             $rootScope.$broadcast('counterEvent', 1, false);
 
-           
-
             vm.popular_searches.push({
                 id: 0,
                 origin: 'Madrid',
@@ -261,9 +259,23 @@
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla_andalusia.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/velika.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/vlc.jpg",
-                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/gugenheim.jpg"
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/1.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/2.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/3.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/4.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/5.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/6.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/7.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/8.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/9.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/10.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/11.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/12.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/13.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/14.jpg",
+                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/15.jpg"
                 ];
                 
-                $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 12) + 1)]+') no-repeat center center fixed; background-size: cover;');
+                $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 26) + 1)]+') no-repeat center center fixed; background-size: cover;');
         }
 })();
