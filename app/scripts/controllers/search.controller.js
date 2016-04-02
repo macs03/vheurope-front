@@ -128,6 +128,9 @@
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
+                        console.log('Entre 1');
+
+                        console.log(data);
                         vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
@@ -216,15 +219,19 @@
                 travelsFactory
                     .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers)
                     .then(function(data){
+                        console.log('Entre 2');
+                        console.log(data);
                         vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
+                        
                         for (var i = 0; i < data.typeServices.length; i++) {
                             vm.seats.push(data.typeServices[i].name)
                         }
