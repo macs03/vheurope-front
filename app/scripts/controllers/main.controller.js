@@ -236,7 +236,7 @@
             function quickSearch(origin, destination, id) {
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
-                    $location.path ("/search/"+origin+"/ES/"+destination+"/ES/"+departureDate+"/NaN");
+                    $location.path ("/search/"+origin+"/ESP/"+destination+"/ESP/"+departureDate+"/NaN");
                 })
             }
 
