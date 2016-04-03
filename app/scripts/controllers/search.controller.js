@@ -54,6 +54,19 @@
                 minDate: moment().format('MM-DD-YYYY'),
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
+
+            var toUTCDate = function(date){
+                var _utc = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),  date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+                return _utc;
+            };
+
+            var millisToUTCDate = function(millis){
+                return toUTCDate(new Date(millis));
+            };
+
+            vm.toUTCDate = toUTCDate;
+            vm.millisToUTCDate = millisToUTCDate;
+
             function setDateFilterRange(maxprice,minprice){
                 vm.priceSlider = {
                      price: maxprice+1,

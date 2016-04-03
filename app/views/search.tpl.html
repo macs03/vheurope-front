@@ -280,7 +280,7 @@
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
-                                    <strong>{{trip.departure| date:'HH:mm'}}</strong>
+                                    <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
@@ -291,7 +291,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                    <strong>{{trip.arrival| date:'HH:mm'}}</strong>
+                                    <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
                                 </div>
@@ -332,7 +332,7 @@
                             <div class="results" id="selected-trip-container" >
                                 <div class="row result result-iv">
                                     <div class="col-md-5 col-xs-4 col-sm-4 c-departure nbt" style="border-bottom: 1px solid #bbb; height:70px;">
-                                        <strong>{{search.departureDeparture| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(search.departureDeparture)| date:'HH:mm'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.search.trips.origin}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm  capitalize terminals"  style="display:block;">{{search.departureOrigin}}</small>
@@ -343,7 +343,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 col-sm-4 c-arrival nbt" style="border-bottom: 1px solid #bbb;">
-                                        <strong>{{search.departureArrival| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(search.departureArrival) | date:'HH:mm'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{search.departureDestination}}</small>
                                     </div>
@@ -375,7 +375,7 @@
                                 <div class="row result result-iv">
 
                                     <div class="col-md-5 col-xs-4 col-sm-4 c-departure">
-                                        <strong>{{trip.departure| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.origin}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
@@ -386,7 +386,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                        <strong>{{trip.arrival| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
                                     </div>
@@ -435,7 +435,7 @@
                                 <div class="row result result-iv">
 
                                     <div class="col-md-5 col-xs-4 col-sm-4 c-departure">
-                                        <strong>{{trip.departure| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                         <span class="smallest-font nowrap text-fucsia">{{search.trips.destination}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
@@ -446,7 +446,7 @@
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                        <strong>{{trip.arrival| date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                         <small class="smallest-font dbm text-fucsia">{{search.trips.origin}}</small>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
                                     </div>
@@ -530,7 +530,7 @@
                         <div class="results list" id="trips_no_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
-                                    <strong>{{trip.data.start| date:'HH:mm'}}</strong>
+                                    <strong>{{ search.millisToUTCDate(trip.data.start) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{trip.data.origin}}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.data.origin}}</small>
@@ -541,7 +541,7 @@
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                    <strong>{{trip.data.end| date:'HH:mm'}}</strong>
+                                    <strong>{{ search.millisToUTCDate(trip.data.end) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{trip.data.destination}}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.data.destination}}</small>
                                 </div>
