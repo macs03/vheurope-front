@@ -78,6 +78,10 @@
                      url: '/terms',
                      templateUrl: 'views/terms.tpl.html',
                  })
+                 .state('about-us', {
+                     url: '/about-us',
+                     templateUrl: 'views/about-us.tpl.html',
+                 })
                  .state('cancel', {
                      url: '/cancel/:uuid',
                      templateUrl: 'views/cancel.tpl.html',
