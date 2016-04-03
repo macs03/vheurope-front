@@ -88,7 +88,7 @@
 
     app.config(['$translateProvider', function ($translateProvider) {
       $translateProvider.useStaticFilesLoader({
-        prefix: 'languages/locale-',
+        prefix: '/scripts/languages/locale-',
         suffix: '.json'
       });
 
