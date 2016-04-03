@@ -621,30 +621,26 @@ button.theme-green.outline:hover,
     color: #fff;
 }
 button.theme-blue-2,
-.button.theme-blue-2 {
+.btn.theme-blue-2 {
     background: #29aae3;
     border: 0;
     color: #fff;
     transition: background-color 300ms ease-out;
     text-transform: uppercase;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding: 2px auto !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
     margin-bottom: 0;
 }
 button.theme-blue-2:hover,
-.button.theme-blue-2:hover {
+.btn.theme-blue-2:hover {
     background: #58bef2;
     border: 0;
     color: #fff;
     transition: background-color 300ms ease-out;
-    text-transform: uppercase;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    padding: 2px auto !important;
-    margin-bottom: 0;
+   
 }
 button.secondary,
 .button.secondary {
