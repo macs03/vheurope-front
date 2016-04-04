@@ -134,3 +134,23 @@ rzslider .rz-pointer.rz-active:after{
 }
 .blue p, .blue a { color:#fff; }
 
+.initial{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350%;
+    background: #DADADA;
+    z-index: 20;
+}
+
+.welcome{
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -125px;
+    text-align: center;
+}
