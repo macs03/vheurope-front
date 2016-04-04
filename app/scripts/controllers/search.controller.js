@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -34,6 +34,13 @@
             vm.seatsReset = [];
             vm.companies = [];
             vm.companiesReset = [];
+
+            vm.weather_progressbar = ngProgressFactory.createInstance();
+            vm.weather_progressbar.setHeight('6px');
+            vm.weather_progressbar.setColor('#29abe5');
+            vm.weather_progressbar.setParent(document.getElementById('weather_progress'));
+            vm.weather_progressbar.setAbsolute();
+
 
 
             vm.myOptions = [];
@@ -159,6 +166,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
@@ -264,6 +272,9 @@
                 var title = "Resertrip "+$stateParams.origin+"-"+$stateParams.destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
+                vm.weather_progressbar.reset();
+                vm.weather_progressbar.start();
+
                 
 
 
@@ -278,6 +289,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
                         
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
@@ -428,6 +440,8 @@
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
                         if ( newDate1 <= newDate2) {
+                            vm.weather_progressbar.reset();
+                            vm.weather_progressbar.start();
                             callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                             vm.good = true;
 
@@ -437,6 +451,8 @@
                             dateError();
                         }
                     }else{
+                        vm.weather_progressbar.reset();
+                        vm.weather_progressbar.start();
                         callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
                         vm.good = true;
                     }
@@ -464,6 +480,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
                         var time = $timeout(function () {
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
