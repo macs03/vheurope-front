@@ -79,7 +79,6 @@
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    console.log(data.progress);
                     if (data.progress == "0") {
                         setTimeout(function () {
                             getApiData(self.dataApi);

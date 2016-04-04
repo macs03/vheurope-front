@@ -134,7 +134,7 @@
             sessionStorageService.setUrl(url);
             $rootScope.$broadcast('counterEvent', 1, false);
 
-            if(params.origin){
+            if(params.origin != null){
                 var title = "Resertrip "+params.origin+"-"+params.destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.results = false;
@@ -150,9 +150,6 @@
                 travelsFactory
                     .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                     .then(function(data){
-                        console.log('Entre 1');
-
-                        console.log(data);
                         vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
@@ -174,8 +171,7 @@
                             .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData()
-                                console.log(scraperData.data);
+                                var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         console.log("2");
@@ -197,6 +193,7 @@
                                     }
                                 }
                             }, 15000);
+                        utilityService.setData(null,null,null,null, null, null, null);
                     })
                     .catch(function(err){
                         console.log(err);
@@ -206,6 +203,7 @@
                         vm.disabled = false;
                         $('.pikaday__display').prop('disabled', false);
                         apiError();
+                        utilityService.setData(null,null,null,null, null, null, null);
                     })
 
             }else{
@@ -270,8 +268,6 @@
                 travelsFactory
                     .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers)
                     .then(function(data){
-                        console.log('Entre 2');
-                        console.log(data);
                         vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
@@ -295,8 +291,7 @@
                             .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers);
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData()
-                                console.log(scraperData.data);
+                                var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         console.log("2");
@@ -479,8 +474,7 @@
                             .getAll(origin,destination,departureDate,returnDate,passengers)
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData()
-                                console.log(scraperData.data);
+                                var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         console.log("2");
