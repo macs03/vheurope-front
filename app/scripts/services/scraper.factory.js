@@ -20,26 +20,25 @@
             getFirstStep : getFirstStep,
             getApiData : getApiData,
             getApiStatus : getApiStatus,
-            dataApi : "" ,
+            dataApi : '',
             allData : {},
             getData : getData
         }
 
-        function getAll(origin,destination,departure,returns,passengers) {
+        function getAll(origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
             var split1 = departure.split('/');
-            var newDeparture = new Date(split1[1]+"-"+split1[0]+"-"+split1[2]);
-            var newReturn = "";
-            if(returns !=""){
+            var departureFormated = split1[2] + '-' + split1[1] + '-' + split1[0];
+            var returnsFormated = '';
+            if (returns != ''){
                 var split2 = returns.split('/');
-                var newReturn = new Date(split2[1]+"-"+split2[0]+"-"+split2[2]);
+                returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
-            var departureFormated = $filter('date')(newDeparture, 'yyyy-MM-dd');
-            var returnsFormated = $filter('date')(newReturn, 'yyyy-MM-dd');
-            var formatOrigin = origin.toLowerCase();
-            var formatDestination = destination.toLowerCase();
-            formatOrigin= formatOrigin.replace(/\s/g,"-");
-            formatOrigin= formatOrigin.replace(/ñ/g,"n");
-            formatDestination= formatDestination.replace(/\s/g,"-");
+            var formatOrigin = origin.toLowerCase() + '--' + departureCountry;
+            var formatDestination = destination.toLowerCase() + '--' + arrivalCountry;
+            formatOrigin = formatOrigin.replace(/\s/g, '-');
+            formatOrigin = formatOrigin.replace(/ñ/g, 'n');
+            formatDestination = formatDestination.replace(/\s/g, '-');
+            formatDestination = formatDestination.replace(/ñ/g, 'n');
             getFirstStep(formatOrigin,formatDestination,departureFormated,returnsFormated,1);
         }
 
@@ -50,11 +49,11 @@
                     method:'GET',
                     url: 'https://api.voyhoy.com/tickets/',
                     params: {
-                        origin:formatOrigin+'--espana',
-                        destination:formatDestination+'--espana',
-                        when:departureFormated,
-                        persons:passengers,
-                        referer:'vh-europe'
+                        origin: formatOrigin,
+                        destination: formatDestination,
+                        when: departureFormated,
+                        persons: passengers,
+                        referer: 'vh-europe'
                     },
 
                 })
@@ -79,14 +78,14 @@
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    if (data.progress == "0") {
+                    if (data.progress == 0) {
                         setTimeout(function () {
                             getApiData(self.dataApi);
-                        },10000)
+                        }, 10000)
                     }else{
                         setTimeout(function () {
                             getApiData(self.dataApi);
-                        },4000)
+                        }, 4000)
                     }
                 })
                 .error(function(err) {
