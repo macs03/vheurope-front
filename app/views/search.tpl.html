@@ -264,6 +264,8 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
                                     <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
+
+                                    
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
                                 </div>
@@ -275,6 +277,8 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
                                     <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
+                                    <small class="smallest-font text-muted"><i class="fa fa-clock-o"></i> {{trip.duration}}</small>
+                                    <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
                                 </div>
 
@@ -289,11 +293,11 @@
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
                                     <small class="text-muted smallest-font company">{{trip.companyName}}</small>
-                                    <img ng-src={{trip.logo}} title="Pullman Bus" class="logo_small hidden-xs hidden-sm float-right">
+                                    
                                 </div>
 
                                 <div class="col-md-8 col-xs-3 col-sm-3 c-approximate-time hidden-xs hidden-sm nbt" style="border-top: 1px solid #bbb;">
-                                    <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{trip.duration}}</p>
+                                    <img ng-src={{trip.logo}} title="Pullman Bus" class="logo_small hidden-xs hidden-sm pull-left" style="margin-top: 5px;">
                                 </div>
                             </div> <!-- end .row .result-->
                         </div>  <!-- end .results-->

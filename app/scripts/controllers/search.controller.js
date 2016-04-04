@@ -386,6 +386,10 @@
             vm.countryDestination = params.countryDestination;
             vm.passengers_options  = ['1', '2', '3', '4', '5'];
             vm.passengers = params.passengers;
+            vm.weather = weatherFactory.getWeather(params.destination, 'es');
+            vm.weather_progressbar.reset();
+            vm.weather_progressbar.start();
+
 
 
             var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
