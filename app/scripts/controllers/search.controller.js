@@ -127,9 +127,9 @@
 
             var params = utilityService.getData();
           	vm.origin = params.origin+", "+params.countryOrigin;
-            vm.originCountry = params.originCountryCode;
+            vm.originCountryCode = params.originCountryCode;
           	vm.destination = params.destination+", "+params.countryDestination;
-            vm.destinationCountry = params.destinationCountryCode;
+            vm.destinationCountryCode = params.destinationCountryCode;
             vm.dates.departureDate = params.departure;
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
@@ -250,9 +250,9 @@
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
 
                 vm.origin = $stateParams.origin+", España";
-                vm.originCountry = $stateParams.originCountryCode;
+                vm.originCountryCode= $stateParams.originCountryCode;
                 vm.destination = $stateParams.destination+", España";
-                vm.destinationCountry = $stateParams.destinationCountryCode;
+                vm.destinationCountryCode = $stateParams.destinationCountryCode;
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
