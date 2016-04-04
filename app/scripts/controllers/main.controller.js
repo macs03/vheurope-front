@@ -135,7 +135,6 @@
             };
 
             var session = sessionStorageService.getFlag();
-            console.log(session);
             if (session == null || session == false) {
                 locationsFactory
                     .getAll()
