@@ -12,10 +12,10 @@
         .module('vhEurope')
         .controller('indexController', indexController)
 
-        indexController.$inject =['$scope','$interval','utilityService','$location','sessionStorageService'];
+        indexController.$inject =['$scope','$interval','utilityService','$location','sessionStorageService','$timeout'];
 
 
-        function indexController ($scope,$interval,utilityService,$location,sessionStorageService) {
+        function indexController ($scope,$interval,utilityService,$location,sessionStorageService,$timeout) {
             $scope.pageTitle = "Resertrip Viaja inteligente";
             $scope.showCLock = false;
             $scope.completeTime = false;
@@ -72,7 +72,12 @@
                     });
                 }
             }
-            $scope.$on('counterEvent', counterClock)
+            $scope.$on('counterEvent', counterClock);
+
+            $timeout(function() {
+                var init = sessionStorageService.getFlag()
+                $scope.initial = init
+            }, 3000);
 
         }
 })();
