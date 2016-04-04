@@ -413,7 +413,18 @@
             }, true);
 
             function searchTrip() {
-
+                angular.forEach(vm.myOptions, function(value, key) {
+                    if(vm.myOptions[key].label === vm.origin){
+                        vm.originCity = vm.myOptions[key].city;
+                        vm.originCountryCode = vm.myOptions[key].countryCode;
+                        vm.originCountry = vm.myOptions[key].country;
+                    }
+                    if(vm.myOptions[key].label === vm.destination){
+                        vm.destinationCity = vm.myOptions[key].city;
+                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
+                        vm.destinationCountry = vm.myOptions[key].country;
+                    }
+                });
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
@@ -435,7 +446,7 @@
                             vm.weather_progressbar.reset();
                             vm.weather_progressbar.start();
 
-                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountry,vm.destinationCountry);
+                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                             vm.good = true;
 
                         }else {
@@ -447,7 +458,7 @@
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
 
-                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountry,vm.destinationCountry);
+                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                         vm.good = true;
                     }
                 }
