@@ -102,14 +102,21 @@
                 }
              };
 
-            locationsFactory
-                .getAll()
-                .then(function (data) {
-                    vm.myOptions = data;
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+             var session = sessionStorageService.getFlag();
+             if (session == null || session == false) {
+                 locationsFactory
+                     .getAll()
+                     .then(function (data) {
+                         vm.myOptions = data;
+                         sessionStorageService.setLocations(data);
+                         sessionStorageService.setFlag(true);
+                     })
+                     .catch(function (err) {
+                         console.log(err);
+                     });
+             }else{
+                 vm.myOptions = sessionStorageService.getLocations()
+             }
 
             var params = utilityService.getData();
           	vm.origin = params.origin+", "+params.countryOrigin;
