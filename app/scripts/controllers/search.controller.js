@@ -35,6 +35,7 @@
             vm.companies = [];
             vm.companiesReset = [];
 
+
             vm.myOptions = [];
         	vm.myConfig = {
           		//create: true,
@@ -256,6 +257,7 @@
                 var title = "Resertrip "+$stateParams.origin+"-"+$stateParams.destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
+                
 
 
                 travelsFactory

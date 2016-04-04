@@ -102,56 +102,28 @@
 
     <!-- Start Main content -->
     <div class="container" ng-show="!search.results"  style="margin-top: 80px; margin-bottom: 80px;">
-        <div class="row">
-            <div class="col-md-12 col-xs-12 text-center">
-                <p translate>SEARCH.LOADING_MESSAGE</p><br>
-                <img src="http://dropshare.jesuscolmenares.com.ve/bus1_2x.gif"  class="" alt="Buscando pasajes ..." width="80">
-            </div>
-
-            <div class="col-md-5 col-xs-12 col-md-offset-4 hidden">
-                <p class="text-center" translate>SEARCH.LOADING_MESSAGE</p><br>
-                <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
-                    <h2>{{ search.destination }}</h2>
-                    <div class="wiToday">
-                        <div class="wiIconGroup">
-                            <div class="wi wi802"></div>
-                            <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
-                        </div>
-                        <p class="wiTemperature">{{ search.weather.temp.current  }}<sup>°C</sup></p>
-                        <div class="wiDetail">
-                            <div class="row">
-                                <div class="col-md-4">
-                                     <ul class="astronomy">
-                                <li> <i class="wi sunrise"></i> {{ search.weather.sys.sunrise  }}</li>
-                                <li> <i class="wi sunset"></i>{{ search.weather.sys.sunset  }}</li>
-                            </ul>
-                                    
-                                </div>
-                            
-                                <div class="col-md-4">
-
-                            <ul class="temp">
-                                <li>Max : {{ search.weather.temp.min  }}<sup>°C</sup></li>
-                                <li>Min : {{ search.weather.temp.max  }}<sup>°C</sup></li>
-                            </ul>
-                                    
-                                </div>
-                           
-                                <div class="col-md-4">
-                                     <ul class="atmosphere">
-                                <li> <i class="wi humidity"></i> {{ search.weather.humidity }} <b>%</b></li>
-                                <li> <i class="wi pressure"></i> {{ search.weather.pressure }} <b>hPa</b></li>
-                            </ul>
-                                    
+            <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; ">
+                <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+               data-keyboard="false" style="padding-top: 10%; ">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color: #fff !important;">
+                            <div class="modal-body">
+                                <p class="text-center" translate>Estamos buscando las mejores ofertas. Por favor no cierres esta ventana</p><br>
+                                <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
+                                    <h2>{{ search.destination }}</h2>
+                                    <div class="wiToday">
+                                        <div class="wiIconGroup">
+                                            <div class="wi wi802"></div>
+                                            <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
+                                        </div>
+                                        <p class="wiTemperature">{{ search.weather.temp.current  }}<sup>°C</sup></p>
+                                    </div>
                                 </div>
                             </div>
-                          
-                           
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
     </div>
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
@@ -303,9 +275,6 @@
 
                                 <div class="col-md-2 col-xs-4 col-sm-4 c-price">
                                     <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
-                                    <span class="hidden sort-price">12.000</span>
-                                    <span class="hidden sort-departure">1200</span>
-                                    <span class="hidden sort-company">pullman</span>
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
@@ -552,15 +521,13 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-4 col-sm-4 c-price">
-                                    <a href="{{trip.data.redirect}}" target="_blank" class="btn btn-block theme-blue-2">COMPRAR <i class="fa fa-share-square-o"></i></a>
-                                    <span class="hidden sort-price">12.000</span>
-                                    <span class="hidden sort-departure">1200</span>
-                                    <span class="hidden sort-company">pullman</span>
+                                    <a href="{{trip.data.redirect}}" target="_blank" class="btn btn-block theme-blue-2">ELEGIR <i class="fa fa-share-square-o"></i></a>
+                                   
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
-                                    <small class="text-muted smallest-font company">{{trip.data.enterprise__name}}</small>
-                                    <img ng-src={{trip.data.enterprise__image}} title="Pullman Bus" class="logo_small hidden-xs hidden-sm float-right">
+                                    <small class="text-muted smallest-font company" title="{{trip.data.enterprise__name}}">AVANZABUS</small>
+                                    <img src="https://s3.eu-central-1.amazonaws.com/vheurope/logo_square_crop_100.png" title="Pullman Bus" class="logo_small hidden-xs hidden-sm float-right">
                                 </div>
 
                                 <div class="col-md-8 col-xs-3 col-sm-3 c-approximate-time hidden-xs hidden-sm nbt" style="border-top: 1px solid #bbb;">
@@ -621,6 +588,7 @@
                  </div>
                </div>
             </div>
+   
 
         </div>
     </div>
