@@ -127,7 +127,9 @@
 
             var params = utilityService.getData();
           	vm.origin = params.origin+", "+params.countryOrigin;
+            vm.originCountry = params.originCountryCode;
           	vm.destination = params.destination+", "+params.countryDestination;
+            vm.destinationCountry = params.destinationCountryCode;
             vm.dates.departureDate = params.departure;
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
@@ -155,7 +157,7 @@
                 }, 100);
 
                 travelsFactory
-                    .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
+                    .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers,params.originCountryCode,params.destinationCountryCode)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -182,8 +184,6 @@
                                 var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
-                                        console.log("2");
-                                        console.log(scraperData.data);
                                         vm.scraperTrips = scraperData.data;
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;
@@ -250,7 +250,9 @@
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
 
                 vm.origin = $stateParams.origin+", España";
+                vm.originCountry = $stateParams.originCountryCode;
                 vm.destination = $stateParams.destination+", España";
+                vm.destinationCountry = $stateParams.destinationCountryCode;
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
@@ -273,11 +275,8 @@
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
 
-                
-
-
                 travelsFactory
-                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers)
+                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -306,8 +305,6 @@
                                 var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
-                                        console.log("2");
-                                        console.log(scraperData.data);
                                         vm.scraperTrips = scraperData.data;
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;
@@ -437,7 +434,8 @@
                         if ( newDate1 <= newDate2) {
                             vm.weather_progressbar.reset();
                             vm.weather_progressbar.start();
-                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
+
+                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountry,vm.destinationCountry);
                             vm.good = true;
 
                         }else {
@@ -448,14 +446,15 @@
                     }else{
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
-                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers);
+
+                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountry,vm.destinationCountry);
                         vm.good = true;
                     }
                 }
 
             }
 
-            function callSearch(origin,destination,departureDate,returnDate,passengers) {
+            function callSearch(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry) {
                 vm.isLoading = true;
                 vm.results = false;
                 vm.trips = [];
@@ -467,7 +466,7 @@
                 var title = "Resertrip "+origin+"-"+destination;
                 $rootScope.$broadcast('titleEvent', title);
                 travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers)
+                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -494,8 +493,6 @@
                                 var scraperData = scraperFactory.getData();
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
-                                        console.log("2");
-                                        console.log(scraperData.data);
                                         vm.scraperTrips = scraperData.data;
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;

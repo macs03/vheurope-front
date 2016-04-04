@@ -18,7 +18,7 @@
             getAll: getAll
         }
 
-        function getAll (origin,destiny,departure,returns,passengers) {
+        function getAll (origin,destiny,departure,returns,passengers,departureCountry,arrivalCountry) {
             var defered = $q.defer();
             var promise = defered.promise;
             var departureFormated = $filter('date')(departure, 'dd/MM/yyyy');
@@ -29,7 +29,9 @@
                     url: apiUrl + 'trips',
                     params: {
                         departure:origin,
+                        departureCountry:departureCountry,
                         arrival:destiny,
+                        arrivalCountry:arrivalCountry,
                         departureDate:departureFormated,
                         returnDate:returnsFormated,
                         totalPeople:passengers
