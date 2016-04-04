@@ -22,7 +22,11 @@
             setPayer : setPayer,
             getPayer : getPayer,
             setSuccessData : setSuccessData,
-            getSuccessData : getSuccessData
+            getSuccessData : getSuccessData,
+            setLocations : setLocations,
+            getLocations : getLocations,
+            setFlag : setFlag,
+            getFlag : getFlag
         }
 
         function setUrl(url) {
@@ -75,6 +79,24 @@
 
         function getSuccessData() {
             var data = JSON.parse(localStorageService.get('success'));
+            return data;
+        }
+
+        function setLocations(locations) {
+            localStorageService.set('locations',JSON.stringify(locations));
+        }
+
+        function getLocations() {
+            var data = JSON.parse(localStorageService.get("locations"));
+            return data;
+        }
+
+        function setFlag(flag) {
+            localStorageService.set('flag',JSON.stringify(flag));
+        }
+
+        function getFlag() {
+            var data = JSON.parse(localStorageService.get("flag"));
             return data;
         }
 

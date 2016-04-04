@@ -12,10 +12,10 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope','$translate','$cookieStore'];
+        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope','$translate','$cookieStore','sessionStorageService'];
 
 
-        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope,$translate,$cookieStore) {
+        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope,$translate,$cookieStore,sessionStorageService) {
 
             var vm = this;
             var params = utilityService.getData();
@@ -134,15 +134,22 @@
                 maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
             };
 
-
-            locationsFactory
-                .getAll()
-                .then(function (data) {
-                    vm.myOptions = data;
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+            var session = sessionStorageService.getFlag();
+            console.log(session);
+            if (session == null || session == false) {
+                locationsFactory
+                    .getAll()
+                    .then(function (data) {
+                        vm.myOptions = data;
+                        sessionStorageService.setLocations(data);
+                        sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+            }else{
+                vm.myOptions = sessionStorageService.getLocations()
+            }
 
 
         	vm.searchTrips = function () {
