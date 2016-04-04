@@ -283,5 +283,6 @@
                 ];
                 
                 $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 26) + 1)]+') no-repeat center center fixed; background-size: cover;');
+                $('.cookie-message').cookieBar();
         }
 })();
