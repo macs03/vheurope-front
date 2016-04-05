@@ -117,10 +117,10 @@
                                     <h2>{{ search.destination }}</h2>
                                     <div class="wiToday">
                                         <div class="wiIconGroup">
-                                            <div class="wi wi802"></div>
+                                            <div class="{{ search.weather.icon }}"></div>
                                             <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
                                         </div>
-                                        <p class="wiTemperature">{{ search.weather.temp.current  }}<sup>°C</sup></p>
+                                        <p class="wiTemperature">{{ search.weather.temp.current  }}</p>
                                     </div>
                                 </div>
                                 <br>
