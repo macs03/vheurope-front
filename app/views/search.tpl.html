@@ -253,7 +253,7 @@
 
 
             <!-- Start Results -->
-            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
+            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0}">
                 <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0" >
                     <div class="col-md-12">
                         <h4>Lo Sentimos. No encontramos información para esta ruta. : (</h4>
