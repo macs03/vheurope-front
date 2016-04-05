@@ -420,6 +420,8 @@
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
                         for (var i = 0; i < data.typeServices.length; i++) {
@@ -440,6 +442,7 @@
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         vm.scraperTrips = scraperData.data;
+                                        scraperManager(scraperData.data.tickets);
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;
                                         }else{
@@ -451,6 +454,7 @@
                                 if (scraperData.data.tickets != undefined) {
                                     if (scraperData.data.tickets.length != 0) {
                                         vm.scraperFlag = false;
+                                        scraperManager(scraperData.data.tickets);
                                     }else{
                                         vm.scraperFlag = false;
                                     }
@@ -550,11 +554,13 @@
                         vm.minDuration = data.minDuration;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
-                        
+
                         var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
-                        
+
                         for (var i = 0; i < data.typeServices.length; i++) {
                             vm.seats.push(data.typeServices[i].name)
                         }
@@ -573,6 +579,7 @@
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         vm.scraperTrips = scraperData.data;
+                                        scraperManager(scraperData.data.tickets);
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;
                                         }else{
@@ -584,6 +591,7 @@
                                 if (scraperData.data.tickets != undefined) {
                                     if (scraperData.data.tickets.length != 0) {
                                         vm.scraperFlag = false;
+                                        scraperManager(scraperData.data.tickets);
                                     }else{
                                         vm.scraperFlag = false;
                                     }
@@ -755,6 +763,8 @@
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
                         for (var i = 0; i < data.typeServices.length; i++) {
@@ -775,6 +785,7 @@
                                 if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
                                     var scraperTime2 = $timeout(function () {
                                         vm.scraperTrips = scraperData.data;
+                                        scraperManager(scraperData.data.tickets);
                                         if (scraperData.data.tickets.length ==0) {
                                             vm.scraperFlag = false;
                                         }else{
@@ -786,6 +797,7 @@
                                 if (scraperData.data.tickets != undefined) {
                                     if (scraperData.data.tickets.length != 0) {
                                         vm.scraperFlag = false;
+                                        scraperManager(scraperData.data.tickets);
                                     }else{
                                         vm.scraperFlag = false;
                                     }
@@ -874,6 +886,35 @@
                     vm.departureCompanyName = '';
                     vm.departureLogo = '';
                 }
+            }
+
+            function scraperManager(scraper){
+                var companies = {};
+                var seats = {};
+                var listCompanies = new Set();
+                var listSeats = new Set();
+                var top = 0;
+                angular.forEach(scraper, function(value,key) {
+                    companies.id = key;
+                    companies.name = scraper[key].data.enterprise__name;
+                    if (companies.name == "Auto-Res, S.L.U.") {
+                        companies.nickName = 'AVANZABUS';
+                    }
+                    listCompanies.add(companies);
+                    seats.id = key;
+                    seats.name = scraper[key].data.type__name;
+                    listSeats.add(seats);
+                    if (top < scraper[key].data.price) {
+                        top = scraper[key].data.price;
+                    }
+                });
+                if (top > vm.maxPrice) {
+                    setDateFilterRange(top,vm.minPrice);
+                }
+                var listCompaniesArr = Array.from(listCompanies);
+                vm.scraperCompanies = listCompaniesArr;
+                var listSeatsArr = Array.from(listSeats);
+                vm.scraperSeats = listSeatsArr;
             }
 
             function apiError() {
