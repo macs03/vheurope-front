@@ -34,6 +34,7 @@
             vm.seatsReset = [];
             vm.companies = [];
             vm.companiesReset = [];
+            vm.minDuration = '';
             vm.cnames_es = [
             { name: 'ABW', value:'Aruba' },
             { name: 'AFG', value:'Afganistan' },
@@ -415,6 +416,7 @@
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
+                        vm.minDuration = data.minDuration;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -428,6 +430,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        vm.weather_progressbar.reset();
+                        vm.weather_progressbar.start();
                         scraperFactory
                             .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
                             vm.scraperFlag = true;
@@ -543,6 +547,7 @@
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
+                        vm.minDuration = data.minDuration;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         
@@ -558,6 +563,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        vm.weather_progressbar.reset();
+                        vm.weather_progressbar.start();
                         scraperFactory
                             .getAll(origin[0], destination[0], departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
                             vm.scraperFlag = true;
@@ -744,6 +751,7 @@
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
+                        vm.minDuration = data.minDuration;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -757,6 +765,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
+                        vm.weather_progressbar.reset();
+                        vm.weather_progressbar.start();
                         scraperFactory
                             .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                             vm.scraperFlag = true;
