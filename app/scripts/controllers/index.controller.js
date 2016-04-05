@@ -73,10 +73,11 @@
                 }
             }
             $scope.$on('counterEvent', counterClock);
-
+            $scope.initial = false;
             $timeout(function() {
-                var init = sessionStorageService.getFlag()
-                $scope.initial = init
+                var init = sessionStorageService.getFlag();
+                console.log(init);
+                $scope.initial = init;
             }, 3000);
 
         }
