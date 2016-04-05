@@ -76,7 +76,6 @@
             $scope.initial = false;
             $timeout(function() {
                 var init = sessionStorageService.getFlag();
-                console.log(init);
                 $scope.initial = init;
             }, 3000);
 
