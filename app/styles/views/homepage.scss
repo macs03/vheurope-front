@@ -554,3 +554,18 @@ input[type="text"] {
 
     .vh-calendar { right: 20px !important }
 }
+
+.loading-page {
+    color: #29abe5;
+    font-size: 40px;
+    padding: 20px 10px;
+}
+
+.fade-in-out {
+  transition: 1s linear all;  
+  opacity: 1;
+}
+
+.fade-in-out.ng-hide {
+  opacity: 0;
+}

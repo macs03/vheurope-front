@@ -135,6 +135,7 @@
                 </div>
             </div>
     </div>
+   
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->
@@ -253,6 +254,12 @@
 
             <!-- Start Results -->
             <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
+                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0" >
+                    <div class="col-md-12">
+                        <h4>Lo Sentimos. No encontramos información para esta ruta. : (</h4>
+                        <p>No encontramos billetes para el destino seleccionado. Puede que estén agotados o que no esté disponible su venta por internet.</p>
+                    </div>
+                </div>
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0 ">
                     <h5 class="hidden-xs" ng-hide="search.trips.alternativeTrips.length > 0 || search.trips.directReturnTrips.length == 0">
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
@@ -467,6 +474,34 @@
 
             <div class="container" ng-show="search.scraperFlag" style="margin-top: 80px; margin-bottom: 80px;">
                 <div class="row">
+                     <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; " ng-show="search.scraperFlag &&  search.trips.directDepartureTrips.length == 0">
+                        <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+                       data-keyboard="false" style="padding-top: 10%; ">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="background-color: #fff !important;">
+                                    <div class="modal-body">
+                                        <p class="text-center" translate>Buscando billetes en otras empresas de autobús. Por favor no cierres esta ventana</p><br>
+                                        <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
+                                            <h2>{{ search.destination }}</h2>
+                                            <div class="wiToday">
+                                                <div class="wiIconGroup">
+                                                    <div class="{{ search.weather.icon }}"></div>
+                                                    <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
+                                                </div>
+                                                <p class="wiTemperature">{{ search.weather.temp.current  }}</p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <div id="weather_progress" style="padding: 10px 20px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-8 col-xs-12 text-center">
                         <p translate>Buscando billetes en otras empresas de autobús...</p><br>
                         <img src="https://cdn.api.voyhoy.com/loader.gif"  class="" alt="Buscando pasajes ..." />
