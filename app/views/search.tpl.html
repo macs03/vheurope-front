@@ -224,6 +224,10 @@
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
+                            <li ng-repeat="typeSeat in search.scraperSeats">
+                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
+                            </li>
                         </ul>
                     </div>
                     <!-- End Filter Seats -->
@@ -240,6 +244,10 @@
                             <li ng-repeat="company in search.trips.companies">
                                 <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
+                            </li>
+                            <li ng-repeat="company in search.scraperCompanies">
+                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
                             </li>
                         </ul>
                     </div>
