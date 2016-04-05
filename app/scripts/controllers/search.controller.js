@@ -376,9 +376,9 @@
              }
 
             var params = utilityService.getData();
-          	vm.origin = params.origin+", "+params.countryOrigin;
+          	vm.origin = params.origin + ', ' + params.countryOrigin;
             vm.originCountryCode = params.originCountryCode;
-          	vm.destination = params.destination+", "+params.countryDestination;
+          	vm.destination = params.destination + ', ' + params.countryDestination;
             vm.destinationCountryCode = params.destinationCountryCode;
             vm.dates.departureDate = params.departure;
             vm.dates.returnDate = params.returns;
@@ -390,9 +390,7 @@
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
 
-
-
-            var url = "/search/"+$stateParams.origin+"/"+$stateParams.originCountryCode+"/"+$stateParams.destination+"/"+$stateParams.destinationCountryCode+"/"+$stateParams.departureDate+"/"+$stateParams.returnDate;
+            var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
             sessionStorageService.setUrl(url);
             $rootScope.$broadcast('counterEvent', 1, false);
@@ -409,9 +407,8 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
-
                 travelsFactory
-                    .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers,params.originCountryCode,params.destinationCountryCode)
+                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -432,7 +429,7 @@
                         }
                         vm.companiesReset = vm.companies;
                         scraperFactory
-                            .getAll(params.origin,params.destination,params.departure,params.returns,params.passengers)
+                            .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
                                 var scraperData = scraperFactory.getData();
@@ -512,9 +509,9 @@
                     }
                 });
 
-                vm.origin = $stateParams.origin+", "+vm.originCountry;
+                vm.origin = $stateParams.origin + ', ' + vm.originCountry;
                 vm.originCountryCode= $stateParams.originCountryCode;
-                vm.destination = $stateParams.destination+", "+vm.destinationCountry;
+                vm.destination = $stateParams.destination + ', ' + vm.destinationCountry;
                 vm.destinationCountryCode = $stateParams.destinationCountryCode;
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
@@ -532,7 +529,7 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
-                var title = "Resertrip "+$stateParams.origin+"-"+$stateParams.destination;
+                var title = 'Resertrip ' + $stateParams.origin + '-' + $stateParams.destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
                 vm.weather_progressbar.reset();
@@ -562,7 +559,7 @@
                         }
                         vm.companiesReset = vm.companies;
                         scraperFactory
-                            .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers);
+                            .getAll(origin[0], destination[0], departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
                                 var scraperData = scraperFactory.getData();
@@ -654,7 +651,7 @@
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
-                    if (oldVal != "Invalid date") {
+                    if (oldVal != 'Invalid date') {
                         vm.seats = [];
                         vm.seatsReset = [];
                         vm.companies = [];
@@ -688,20 +685,20 @@
                         vm.destinationCountry = vm.myOptions[key].country;
                     }
                 });
-                var origin = vm.origin.split(",");
-                var destination = vm.destination.split(",");
-                if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
+                var origin = vm.origin.split(',');
+                var destination = vm.destination.split(',');
+                if (vm.origin === vm.destination || vm.origin == '' || vm.destination == '' ) {
                     console.log("error cities");
                     vm.good = false;
                     cityError();
                 } else {
-                    if(vm.dates.returnDate=="Invalid date" || vm.dates.returnDate==undefined) vm.dates.returnDate=""
+                    if(vm.dates.returnDate == 'Invalid date' || vm.dates.returnDate == undefined) vm.dates.returnDate = ''
 
-                    if (vm.dates.returnDate != "" && vm.dates.returnDate!="Invalid date") {
+                    if (vm.dates.returnDate != '' && vm.dates.returnDate != 'Invalid date') {
                         var date1 = vm.dates.departureDate;
                         var date2 = vm.dates.returnDate;
-                        var vD1 = date1.split("/")
-                        var vD2 = date2.split("/")
+                        var vD1 = date1.split('/')
+                        var vD2 = date2.split('/')
                         var newDate1 = new Date(vD1[2],vD1[1],vD1[0]);
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
@@ -737,7 +734,7 @@
                 vm.error = false;
                 vm.disabled = true;
                 $('.pikaday__display').prop('disabled', true);
-                var title = "Resertrip "+origin+"-"+destination;
+                var title = 'Resertrip ' + origin + '-' + destination;
                 $rootScope.$broadcast('titleEvent', title);
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry)
@@ -761,7 +758,7 @@
                         }
                         vm.companiesReset = vm.companies;
                         scraperFactory
-                            .getAll(origin,destination,departureDate,returnDate,passengers)
+                            .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
                                 var scraperData = scraperFactory.getData();
@@ -858,14 +855,14 @@
                     vm.departureCompanyName = companyName;
                     vm.departureLogo = logo;
                 }else{
-                    vm.departureId = "";
-                    vm.departureDeparture = "";
-                    vm.departureDuration = "";
-                    vm.departureArrival = "";
-                    vm.departurePrice = "";
-                    vm.departureTypeService = "";
-                    vm.departureCompanyName = "";
-                    vm.departureLogo = "";
+                    vm.departureId = '';
+                    vm.departureDeparture = '';
+                    vm.departureDuration = '';
+                    vm.departureArrival = '';
+                    vm.departurePrice = '';
+                    vm.departureTypeService = '';
+                    vm.departureCompanyName = '';
+                    vm.departureLogo = '';
                 }
             }
 

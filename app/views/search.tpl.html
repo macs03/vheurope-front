@@ -138,7 +138,7 @@
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->
-            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0 || search.trips.directDepartureTrips.length == 0">
+            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0">
                 <div class="filter-btn-content visible-xs">
                     <div class="row">
                         <div class="col-xs-7">
@@ -464,52 +464,21 @@
             </div>
 
             </div> <!-- end columns results -->
-            <div class="row  container-responsive" id="alternative-results" ng-show="search.trips.alternativeTrips.length > 0">
-                <div class="col-xs-12 col-md-12">
-                    <h5 class="hidden-xs hidden-sm" >
-                        Viajes Alternativos: {{search.trips.alternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
-                    </h5>
-                    <div class="new-results" ng-repeat="trip in search.trips.alternativeTrips">
-                        <div class="results list" >
-                            <div class="row result result-iv" >
 
-                                <div class="col-md-5 col-xs-4 alternativeBox">
-                                    <span class="nowrap text-fucsia">{{trip.origin}}</span>
-                                </div>
-
-                                <div class="col-md-4 col-xs-4 alternativeBox">
-                                    <span class="nowrap text-fucsia">{{trip.destination}}</span>
-                                </div>
-
-                                <div class="col-xs-4 nbt visible-xs">
-                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
-                                </div>
-
-                                <div class="col-md-3 nbt hidden-xs alternativeBox">
-                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
-                                    <span class="hidden sort-price">${trip.price}</span>
-                                    <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
-                                    <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container" ng-show="search.scraperFlag" style="margin-top: 80px; margin-bottom: 80px;">
                 <div class="row">
-                    <div class="col-md-12 col-xs-12 text-center">
+                    <div class="col-md-8 col-xs-12 text-center">
                         <p translate>Buscando billetes en otras empresas de autobús...</p><br>
-                        <img src="http://dropshare.jesuscolmenares.com.ve/bus1_2x.gif"  class="" alt="Buscando pasajes ..." width="80">
+                        <img src="https://cdn.api.voyhoy.com/loader.gif"  class="" alt="Buscando pasajes ..." />
                     </div>
                 </div>
             </div>
             <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.tickets.length > 0">
-                <div class="col-xs-12 col-md-12">
+                <div class="col-xs-12 col-md-9 " style="width: 74% !important;">
                     <h5 class="hidden-xs hidden-sm" >
                         COMPARA PASAJES <small>Estos precios no estan garantizados.</small> {{search.scraperTrips.tickets.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
-                    <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets">
+                    <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture ">
                         <div class="results list" id="trips_no_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
@@ -548,6 +517,39 @@
                                     <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{trip.data.duration}}</p>
                                 </div>
                             </div> <!-- end .row .result-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row  container-responsive" id="alternative-results" ng-show="search.trips.alternativeTrips.length > 0">
+                <div class="col-xs-12 col-md-12">
+                    <h5 class="hidden-xs hidden-sm" >
+                        Viajes Alternativos: {{search.trips.alternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
+                    </h5>
+                    <div class="new-results" ng-repeat="trip in search.trips.alternativeTrips">
+                        <div class="results list" >
+                            <div class="row result result-iv" >
+
+                                <div class="col-md-5 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.origin}}</span>
+                                </div>
+
+                                <div class="col-md-4 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.destination}}</span>
+                                </div>
+
+                                <div class="col-xs-4 nbt visible-xs">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
+                                </div>
+
+                                <div class="col-md-3 nbt hidden-xs alternativeBox">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
+                                    <span class="hidden sort-price">${trip.price}</span>
+                                    <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
+                                    <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
