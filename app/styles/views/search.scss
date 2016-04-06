@@ -1202,3 +1202,38 @@ td .ui-state-hover {
     }
     .conttainer-results { margin-top: 30px !important }
 }
+
+#gmaps {
+    width: 100%;
+    height: 240px;
+    min-height: 240px;
+    display: block;
+    margin-bottom: 0px;
+    margin-top: -20px;
+}
+
+.selectize-control.single .selectize-input:after {
+    border-style: none !important;
+    border-width: none !important;
+    border-color: transparent transparent transparent !important;
+}
+
+.terminals {
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        -ms-text-overflow: ellipsis !important;
+        text-overflow: ellipsis !important;
+        width: 98% !important;
+    }
+
+#passages_link {
+    display: none;
+}
+.btn.outline {
+    background-color: #f1f1f1;
+    border-radius: 0;
+}
+#ngProgress-container {
+    background: #a9e1f9;
+    border-radius: 5px;
+}

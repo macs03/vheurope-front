@@ -292,6 +292,12 @@
             vm.weather_progressbar.setParent(document.getElementById('weather_progress'));
             vm.weather_progressbar.setAbsolute();
 
+            vm.weather_progress_scraper = ngProgressFactory.createInstance();
+            vm.weather_progress_scraper.setHeight('6px');
+            vm.weather_progress_scraper.setColor('#29abe5');
+            vm.weather_progress_scraper.setParent(document.getElementById('weather_progress_scraper'));
+            vm.weather_progress_scraper.setAbsolute();
+
 
 
             vm.myOptions = [];
@@ -430,8 +436,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
-                        vm.weather_progressbar.reset();
-                        vm.weather_progressbar.start();
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
                         scraperFactory
                             .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
                             vm.scraperFlag = true;
@@ -563,8 +569,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
-                        vm.weather_progressbar.reset();
-                        vm.weather_progressbar.start();
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
                         scraperFactory
                             .getAll(origin[0], destination[0], departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
                             vm.scraperFlag = true;
@@ -765,8 +771,8 @@
                             vm.companies.push(data.companies[i].name)
                         }
                         vm.companiesReset = vm.companies;
-                        vm.weather_progressbar.reset();
-                        vm.weather_progressbar.start();
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
                         scraperFactory
                             .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                             vm.scraperFlag = true;
