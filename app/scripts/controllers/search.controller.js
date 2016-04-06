@@ -820,20 +820,23 @@
                         apiError();
                     })
             }
-
+            var listCompanies = new Set();
             function companyFilter(company,long) {
                 if (company.checked) {
                    vm.company = company.name;
                    if (vm.companies.length === long) {
                        vm.companies = [];
-                       vm.companies.push(company.name);
+                       listCompanies.add(company.name);
+                       vm.companies = Array.from(listCompanies);
                    }else{
-                       vm.companies.push(company.name);
+                       listCompanies.add(company.name);
+                       vm.companies = Array.from(listCompanies);
                    }
                 }else{
                     for (var i = vm.companies.length; i--;) {
                         if (vm.companies[i] === company.name) {
                             vm.companies.splice(i, 1);
+                            listCompanies = new Set(vm.companies);
                         }
                     }
                     if(vm.companies.length === 0){
@@ -921,6 +924,10 @@
                 vm.scraperCompanies = listCompaniesArr;
                 var listSeatsArr = Array.from(listSeats);
                 vm.scraperSeats = listSeatsArr;
+                for (var i = 0; i < vm.scraperCompanies.length; i++) {
+                    vm.companies.push(vm.scraperCompanies[i].name);
+                }
+                vm.companiesReset = vm.companies;
             }
 
             function apiError() {
