@@ -77,6 +77,7 @@
             $timeout(function() {
                 var init = sessionStorageService.getFlag();
                 $scope.initial = init;
+                $('.initial').fadeOut( "slow" );
             }, 3000);
 
         }
