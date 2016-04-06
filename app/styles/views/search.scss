@@ -476,10 +476,9 @@ input[type="radio"] { margin-bottom: 10px !important }
 .new-results .results .result  img , .new-results-selected .results .result  img{
     max-width: 32px;
     max-height: 32px;
-    margin-top: -5px;
-    float: right;
     display: inline;
     margin-left: 0px;
+    margin-right: 10px;
 }
 .new-results .results .result .seat,
 .new-results .results .result .horary {
