@@ -475,7 +475,7 @@
                     <h5 class="hidden-xs hidden-sm" >
                         COMPARA PASAJES <small>Estos precios no estan garantizados.</small> {{search.scraperTrips.tickets.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
-                    <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats">
+                    <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
                         <div class="results list" id="trips_no_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
