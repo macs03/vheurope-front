@@ -8,8 +8,12 @@
             var map, infoWindow;
             var directionsDisplay = null;
             var directionsService = null;
+            var origin = '';
+            var destination = '';
+            var updateAttrs = false;
             var markers = [];
             // map config
+
             var mapOptions = {
                 center: new google.maps.LatLng(40.45740, -3.70424),
                 zoom: 20,
@@ -17,21 +21,24 @@
                 scrollwheel: false,
                 disableDefaultUI: true
             };
-        
+            origin = attrs.origin;
+            destination = attrs.destination;
             // init the map
-            function initMap() {
-                if (map === void 0) {
+            function initMap(origin, destination) {
+                if (map === void 0 || updateAttrs === true) {
                     map = new google.maps.Map(element[0], mapOptions);
                     directionsDisplay = new google.maps.DirectionsRenderer();
                     directionsService = new google.maps.DirectionsService();
 
                     var request = {
-                        origin: attrs.origin,
-                        destination: attrs.destination,
+                        origin: origin,
+                        destination: destination,
                         travelMode: google.maps.DirectionsTravelMode['DRIVING'],
                         unitSystem: google.maps.DirectionsUnitSystem['METRIC'],
                         provideRouteAlternatives: true
                     };
+
+
 
                     directionsService.route(request, function(response, status) {
                         if (status == google.maps.DirectionsStatus.OK) {
@@ -76,11 +83,22 @@
             }
         
             // show the map and place some markers
+            attrs.$observe('origin', function(value){
+                origin = value;
+                updateAttrs = true;
+                updateMap();
+            });
+            attrs.$observe('destination', function(value){
+                destination = value;
+                updateAttrs = true;
+                updateMap();
+            });
             
             $interval(updateMap, 2000);
 
              function updateMap() {
-                initMap();
+                initMap(origin, destination);
+                updateAttrs = false;
                 var center = map.getCenter();
                 google.maps.event.trigger(map, "resize");
                 map.setCenter(center);
