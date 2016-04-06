@@ -232,7 +232,7 @@
                     </div>
                 </div>
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
-                    <h5 class="hidden-xs" ng-hide="search.trips.alternativeTrips.length > 0 || search.trips.directReturnTrips.length > 0">
+                    <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0">
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                     </h5>
 
