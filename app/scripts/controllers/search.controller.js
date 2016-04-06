@@ -844,20 +844,23 @@
                     }
                 }
             }
-
+            var listSeats = new Set();
             function seatFilter(seat,long) {
                 if (seat.checked) {
                    vm.seat = seat.name;
                    if (vm.seats.length === long) {
                        vm.seats = [];
-                       vm.seats.push(seat.name);
+                       listSeats.add(seat.name);
+                       vm.seats = Array.from(listSeats);
                    }else{
-                       vm.seats.push(seat.name);
+                       listSeats.add(seat.name);
+                       vm.seats = Array.from(listSeats);
                    }
                 }else{
                     for (var i = vm.seats.length; i--;) {
                         if (vm.seats[i] === seat.name) {
                             vm.seats.splice(i, 1);
+                            listSeats = new Set(vm.seats);
                         }
                     }
                     if(vm.seats.length === 0){
@@ -927,7 +930,11 @@
                 for (var i = 0; i < vm.scraperCompanies.length; i++) {
                     vm.companies.push(vm.scraperCompanies[i].name);
                 }
+                for (var i = 0; i < vm.scraperSeats.length; i++) {
+                    vm.seats.push(vm.scraperSeats[i].name);
+                }
                 vm.companiesReset = vm.companies;
+                vm.seatsReset = vm.seats;
             }
 
             function apiError() {
