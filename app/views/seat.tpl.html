@@ -347,7 +347,9 @@ input.ng-valid.ng-touched {
                             </p>
                             <br>
                             <br>
-                            <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay" ng-click = "seat.reserve()" translate>SEATS.PURCHASE_BUTTON</a>
+                            <div ng-class="{'disable-box': seat.totalSeats === 0}">
+                                <a href="javascript:void(0)"  ng-disabled="seat.totalSeats === 0" class="btn btn-block btn-success btn-lg theme-green btn-pay" ng-click = "seat.reserve()" translate>SEATS.PURCHASE_BUTTON</a>
+                            </div>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .box-content -->
