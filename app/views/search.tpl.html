@@ -479,19 +479,19 @@
                         <div class="results list" id="trips_no_tickeables" >
                             <div class="row result">
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
-                                    <strong>{{ search.millisToUTCDate(trip.data.start) | date:'HH:mm'}}</strong>
-                                    <small class="smallest-font text-fucsia">{{trip.data.origin}}</small>
+                                    <strong>{{ search.millisToUTCDate(trip.data.start * 1000) | date:'HH:mm'}}</strong>
+                                    <small class="smallest-font text-fucsia">{{ search.trips.origin }}</small>
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.data.origin}}</small>
                                 </div>
 
                                 <div class="col-xs-4 col-sm-4 c-approximate-time visible-xs visible-sm nbt text-center" style="border-top: 1px solid #bbb;">
-                                    <p class="approximate-time text-muted smallest-font">{{trip.data.duration}}.</p>
+                                    <p class="approximate-time text-muted smallest-font">{{ search.durationFormatted(trip.data.duration) }}</p>
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                    <strong>{{ search.millisToUTCDate(trip.data.end) | date:'HH:mm'}}</strong>
-                                    <small class="smallest-font dbm text-fucsia">{{trip.data.destination}}</small>
+                                    <strong>{{ search.millisToUTCDate(trip.data.end * 1000) | date:'HH:mm'}}</strong>
+                                    <small class="smallest-font dbm text-fucsia">{{ search.trips.destination }}</small>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.data.destination}}</small>
                                 </div>
 
@@ -511,7 +511,7 @@
                                 </div>
 
                                 <div class="col-md-8 col-xs-3 col-sm-3 c-approximate-time hidden-xs hidden-sm nbt" style="border-top: 1px solid #bbb;">
-                                    <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{trip.data.duration}}</p>
+                                    <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ search.durationFormatted(trip.data.duration) }}</p>
                                 </div>
                             </div> <!-- end .row .result-->
                         </div>

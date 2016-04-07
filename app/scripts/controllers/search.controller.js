@@ -332,6 +332,12 @@
             vm.toUTCDate = toUTCDate;
             vm.millisToUTCDate = millisToUTCDate;
 
+            var durationFormatted = function(duration) {
+                return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
+            };
+
+            vm.durationFormatted = durationFormatted;
+
             function setDateFilterRange(maxprice,minprice){
                 vm.priceSlider = {
                      price: maxprice+1,

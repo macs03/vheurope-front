@@ -104,7 +104,6 @@
                 })
                 .success(function(data) {
                     defered.resolve(data);
-
                     self.allData = data;
                 })
                 .error(function(err) {
