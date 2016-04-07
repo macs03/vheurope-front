@@ -193,6 +193,10 @@
               "TITLE_4": "to select your seats",
               "TITLE_5": "Your Ticket Selected",
               "TITLE_6": "Change ticket"
+            },
+            "SCRAPER": {
+              "TITLE": "COMPARE TICKETS",
+              "MESSAGE": "These prices are not guaranteed."
             }
           },
           "SEATS": {
@@ -389,6 +393,10 @@
           "TITLE_4": "para poder seleccionar tus asientos",
           "TITLE_5": "Tu Billete Seleccionado",
           "TITLE_6": "Cambia billete de IDA"
+        },
+        "SCRAPER": {
+          "TITLE": "COMPARA BILLETES",
+          "MESSAGE": "Estos precios no estan garantizados."
         }
       },
       "SEATS": {
