@@ -177,6 +177,22 @@
               "RETURN": "Return",
               "RESULTS": "results",
               "BUTTON": "BUY"
+            },
+            "WEATHER": {
+              "TITLE_1": "We are looking for the best deals. Please wait.",
+              "TITLE_2": "Looking for tickets in other bus companies."
+            },
+            "NO_RESULTS": {
+              "TITLE": "We are sorry. No information found for this route. : (",
+              "MESSAGE": "You can not find tickets for the selected destination. They may be exhausted or sale is not available online."
+            },
+            "SELECTED_TRIP": {
+              "TITLE_1": "Choose your way ticket",
+              "TITLE_2": "before selecting your Return",
+              "TITLE_3": "Choose your return trip",
+              "TITLE_4": "to select your seats",
+              "TITLE_5": "Your Ticket Selected",
+              "TITLE_6": "Change ticket"
             }
           },
           "SEATS": {
@@ -357,6 +373,22 @@
           "RETURN": "Vuelta",
           "RESULTS": "resultados",
           "BUTTON": "COMPRAR"
+        },
+        "WEATHER": {
+          "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",
+          "TITLE_2": "Buscando billetes en otras empresas de autobús."
+        },
+        "NO_RESULTS": {
+          "TITLE": "Lo Sentimos. No encontramos información para esta ruta. : (",
+          "MESSAGE": "No encontramos billetes para el destino seleccionado. Puede que estén agotados o que no esté disponible su venta por internet."
+        },
+        "SELECTED_TRIP": {
+          "TITLE_1": "Selecciona tu Ida",
+          "TITLE_2": "antes de seleccionar tu Vuelta",
+          "TITLE_3": "Selecciona tu Vuelta ",
+          "TITLE_4": "para poder seleccionar tus asientos",
+          "TITLE_5": "Tu Billete Seleccionado",
+          "TITLE_6": "Cambia billete de IDA"
         }
       },
       "SEATS": {
