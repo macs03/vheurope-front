@@ -15,7 +15,8 @@
 
       function travelsFactory($http,$q,$filter,apiUrl) {
         return {
-            getAll: getAll
+            getAll: getAll,
+            skipAccents: skipAccents
         }
 
         function getAll (origin,destiny,departure,returns,passengers,departureCountry,arrivalCountry) {
@@ -24,13 +25,15 @@
             var departureFormated = $filter('date')(departure, 'dd/MM/yyyy');
             var returnsFormated = $filter('date')(returns, 'dd/MM/yyyy');
 
+            
+
             $http({
                     method:'GET',
                     url: apiUrl + 'trips',
                     params: {
-                        departure:origin,
+                        departure: skipAccents(origin),
                         departureCountry:departureCountry,
-                        arrival:destiny,
+                        arrival: skipAccents(destiny),
                         arrivalCountry:arrivalCountry,
                         departureDate:departureFormated,
                         returnDate:returnsFormated,
@@ -48,4 +51,15 @@
             return promise;
         }
       }
+
+      function skipAccents(text) {
+        var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+        var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+        for (var i=0; i<acentos.length; i++) {
+          text = text.replace(acentos.charAt(i), original.charAt(i));
+        }
+        
+        return text;
+      }
+
 })();
