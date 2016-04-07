@@ -164,6 +164,12 @@
                         vm.destinationCountry = vm.myOptions[key].country;
                     }
                 });
+                var formatOrigin;
+                var formatDestination;
+                formatOrigin = vm.originCity.replace(/\s/g, '_');
+                formatOrigin = formatOrigin.replace(/ñ/g, 'n');
+                formatDestination = vm.destinationCity.replace(/\s/g, '_');
+                formatDestination = formatDestination.replace(/ñ/g, 'n');
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.originCity === vm.destinationCity || vm.originCity =="" || vm.destinationCity =="" ) {
@@ -193,7 +199,7 @@
                             console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                             vm.good = true;
-                            $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
+                            $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
                         }else {
                             console.log("error dates");
@@ -215,7 +221,7 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
                         utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                         vm.good = true;
-                        $location.path ("/search/"+vm.originCity+"/"+vm.originCountryCode+"/"+vm.destinationCity+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
+                        $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
                 }
             }

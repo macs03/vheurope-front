@@ -491,6 +491,20 @@
                 var dateDeparture = new Date(parseInt($stateParams.departureDate));
                 var dateReturn = ""
                 var returnDateFormat = ""
+                var formatOrigin;
+                var formatDestination;
+                if ($stateParams.origin == 'A_Coruna' || $stateParams.origin == 'Logrono') {
+                    formatOrigin = $stateParams.origin.replace(/n/g, 'ñ');
+                    formatOrigin = formatOrigin.replace(/_/g, ' ');
+                }else{
+                    formatOrigin = $stateParams.origin.replace(/_/g, ' ');
+                }
+                if ($stateParams.destination == 'A_Coruna' || $stateParams.destination == 'Logrono') {
+                    formatDestination = $stateParams.destination.replace(/n/g, 'ñ');
+                    formatDestination = formatDestination.replace(/_/g, ' ');
+                }else{
+                    formatDestination = $stateParams.destination.replace(/_/g, ' ');
+                }
 
                 if($stateParams.returnDate ==  "NaN"){
                     returnDateFormat = "";
@@ -529,9 +543,9 @@
                     }
                 });
 
-                vm.origin = $stateParams.origin + ', ' + vm.originCountry;
+                vm.origin = formatOrigin + ', ' + vm.originCountry;
                 vm.originCountryCode= $stateParams.originCountryCode;
-                vm.destination = $stateParams.destination + ', ' + vm.destinationCountry;
+                vm.destination = formatDestination + ', ' + vm.destinationCountry;
                 vm.destinationCountryCode = $stateParams.destinationCountryCode;
                 vm.dates.departureDate = departureDateFormat;
                 vm.dates.returnDate = returnDateFormat;
@@ -556,7 +570,7 @@
                 vm.weather_progressbar.start();
 
                 travelsFactory
-                    .getAll(origin[0],destination[0],departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode)
+                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -584,7 +598,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
                         scraperFactory
-                            .getAll(origin[0], destination[0], departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
+                            .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
                             vm.scraperFlag = true;
                             var scraperTime = $timeout(function () {
                                 var scraperData = scraperFactory.getData();
