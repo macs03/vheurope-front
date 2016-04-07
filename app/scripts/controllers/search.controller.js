@@ -955,6 +955,7 @@
                 }
             }
 
+            
             $('.btn-filters').on('click', function(){
                 $('#filters-container').toggleClass('hidden-xs');
             });
