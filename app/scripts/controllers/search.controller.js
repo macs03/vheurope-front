@@ -298,7 +298,7 @@
             vm.weather_progress_scraper.setParent(document.getElementById('weather_progress_scraper'));
             vm.weather_progress_scraper.setAbsolute();
 
-
+            vm.nextDay = nextDay;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -955,6 +955,24 @@
                 }
                 vm.companiesReset = vm.companies;
                 vm.seatsReset = vm.seats;
+            }
+
+            function nextDay() {
+                var today = vm.dates.departureDate.split('/')
+                var day = parseInt(today[0]);
+                var month = parseInt(today[1]);
+                var year = today[2];
+                var nextDate = new Date(year,month-1,day+1);
+                console.log(nextDate);
+                var nextDayMonth = nextDate.getUTCMonth()+1;
+                if (nextDayMonth < 10) {
+                    nextDayMonth = '0'+nextDayMonth;
+                }
+                var nestDayDay = nextDate.getUTCDate();
+                if (parseInt(nextDate.getUTCDate()) < 10) {
+                    nestDayDay = '0'+nextDate.getUTCDate();
+                }
+                vm.dates.departureDate = nestDayDay+'/'+nextDayMonth+'/'+nextDate.getUTCFullYear();
             }
 
             function apiError() {
