@@ -220,9 +220,9 @@
                         <span translate>SEARCH.SORT.PRICE</span>
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
                     </div>
-                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'duration'}" data-sort="company" ng-click="search.order('companyName')">
+                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'durationMinutes'}" data-sort="company" ng-click="search.order('durationMinutes')">
                         <span style="margin-left:6px;" translate>SEARCH.SORT.DURATION</span>
-                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
+                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'durationMinutes'"></span>
                     </div>
                     
                     <div class="col-md-3  sort sort-trips bl bt bb br" ng-class="{active:search.type === 'companyName'}" data-sort="company" ng-click="search.order('companyName')">
