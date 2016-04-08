@@ -44,24 +44,7 @@
                         <!-- <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div> -->
                     </div> <!-- end .row-->
 
-                    <div class="row header hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0">
-                        <div class="col-md-3 col-xs-5 sort text-center">
-                            <span translate>SEARCH.SORT.ORDER_BY</span>
-                        </div>
-                        <div class="col-md-3 col-xs-5 sort sort-trips" data-sort="company" ng-click="search.order('companyName')">
-                            <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
-                        </div>
-                        <div class="col-md-3 col-xs-3 sort sort-trips" data-sort="departure" ng-click="search.order('salida')">
-                            <span translate>SEARCH.SORT.HORARY</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
-                        </div>
-                        <div class="col-md-2 col-xs-4 sort sort-trips" data-sort="price" ng-click="search.order('price')">
-                            <span translate>SEARCH.SORT.PRICE</span>
-                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
-                        </div>
-                        <div class="col-md-2 col-xs-4"></div>
-                    </div> <!-- end .row -->
+                    
                 </div> <!-- end container-->
             </div> <!-- end .hero-content-->
         </div> <!-- end .hero-img-->
@@ -225,6 +208,25 @@
 
             <!-- Start Results -->
             <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0}">
+                <div class="row header-results hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0">
+                    <div class="col-md-3 sort sort-trips bl bt bb" ng-class="{active:search.type === 'salida'}" data-sort="departure" ng-click="search.order('salida')">
+                        <span translate>SEARCH.SORT.HORARY</span>
+                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
+                    </div>
+                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'price'}" data-sort="price" ng-click="search.order('price')">
+                        <span translate>SEARCH.SORT.PRICE</span>
+                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
+                    </div>
+                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'duration'}" data-sort="company" ng-click="search.order('companyName')">
+                        <span style="margin-left:6px;" translate>SEARCH.SORT.DURATION</span>
+                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
+                    </div>
+                    
+                    <div class="col-md-3  sort sort-trips bl bt bb br" ng-class="{active:search.type === 'companyName'}" data-sort="company" ng-click="search.order('companyName')">
+                        <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
+                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
+                    </div>
+                </div> <!-- end .row -->
                 <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0" >
                     <div class="col-md-12">
                         <h4 translate>SEARCH.NO_RESULTS.TITLE</h4>
@@ -242,8 +244,6 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
                                     <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
-
-                                    
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
                                 </div>
@@ -255,7 +255,6 @@
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
                                     <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
-                                    
                                     <br>
                                     <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
                                 </div>

@@ -161,9 +161,10 @@
             "LOADING_MESSAGE": "Loading results...",
             "SORT": {
               "ORDER_BY": "Order by:",
-              "COMPANY": "Company",
+              "COMPANY": "Companies",
               "HORARY": "Departure Time",
-              "PRICE": "Price"
+              "PRICE": "The cheapest",
+              "DURATION": "The fastest"
             },
             "FILTERS": {
               "MAP_TITLE": "TRIP INFORMATION",
@@ -365,9 +366,10 @@
         "LOADING_MESSAGE": "Cargando resultados...",
         "SORT": {
           "ORDER_BY": "Ordenar por:",
-          "COMPANY": "Empresa",
-          "HORARY": "Horario",
-          "PRICE": "Precio"
+          "COMPANY": "Empresas",
+          "HORARY": "Horario de Salida",
+          "PRICE": "El más Barato",
+          "DURATION": "El más rápido"
         },
         "FILTERS": {
           "MAP_TITLE": "INFORMACIÓN DEL VIAJE",
