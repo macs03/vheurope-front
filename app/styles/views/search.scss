@@ -923,6 +923,7 @@ button.theme-search,
     border: none;
     min-height: 50px;
     max-height: 45px;
+    border: 1px solid #c1c1c1;
 }
 
 
@@ -1041,6 +1042,7 @@ button.theme-search,
     color: #999;
     -webkit-transition: opacity .5s;
     transition: opacity .5s;
+    z-index: 10;
 }
 
 .clear-calendar {
@@ -1048,6 +1050,13 @@ button.theme-search,
     color: #ff2929;
     -webkit-transition: opacity .5s;
     transition: opacity .5s;
+}
+.clear-field {
+    color: #ff2929;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+    cursor: pointer;
+    right: 15px;
 }
 
 .alternativeBox{
