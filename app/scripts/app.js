@@ -189,7 +189,8 @@
             },
             "NO_RESULTS": {
               "TITLE": "We are sorry. No information found for this route. : (",
-              "MESSAGE": "You can not find tickets for the selected destination. They may be exhausted or sale is not available online."
+              "MESSAGE": "You can not find tickets for the selected destination. They may be exhausted or sale is not available online.",
+              "FIND_NEXT_DAY": "Find tickets for the next day"
             },
             "SELECTED_TRIP": {
               "TITLE_1": "Choose your way ticket",
@@ -394,7 +395,8 @@
         },
         "NO_RESULTS": {
           "TITLE": "Lo Sentimos. No encontramos información para esta ruta. : (",
-          "MESSAGE": "No encontramos billetes para el destino seleccionado. Puede que estén agotados o que no esté disponible su venta por internet."
+          "MESSAGE": "No encontramos billetes para el destino seleccionado. Puede que estén agotados o que no esté disponible su venta por internet.",
+          "FIND_NEXT_DAY": "Buscar billetes para el siguiente día"
         },
         "SELECTED_TRIP": {
           "TITLE_1": "Selecciona tu Ida",
