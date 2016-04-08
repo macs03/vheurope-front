@@ -231,7 +231,9 @@
                     <div class="col-md-12">
                         <h4 translate>SEARCH.NO_RESULTS.TITLE</h4>
                         <p translate>SEARCH.NO_RESULTS.MESSAGE</p>
-                        <button class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.nextDay()" style="width:40%;">Buscar el dia siguiente</button>
+                        <div class="col-md-5 col-xs-12">
+                            <button class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.nextDay()">Buscar el dia siguiente</button>
+                        </div>
                     </div>
                 </div>
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
