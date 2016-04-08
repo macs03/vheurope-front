@@ -963,7 +963,6 @@
                 var month = parseInt(today[1]);
                 var year = today[2];
                 var nextDate = new Date(year,month-1,day+1);
-                console.log(nextDate);
                 var nextDayMonth = nextDate.getUTCMonth()+1;
                 if (nextDayMonth < 10) {
                     nextDayMonth = '0'+nextDayMonth;
@@ -973,6 +972,7 @@
                     nestDayDay = '0'+nextDate.getUTCDate();
                 }
                 vm.dates.departureDate = nestDayDay+'/'+nextDayMonth+'/'+nextDate.getUTCFullYear();
+                $('input[placeholder="Ida"]').val(vm.dates.departureDate);
             }
 
             function apiError() {
