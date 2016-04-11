@@ -493,17 +493,37 @@
                 var returnDateFormat = ""
                 var formatOrigin;
                 var formatDestination;
-                if ($stateParams.origin == 'A_Coruna' || $stateParams.origin == 'Logrono') {
-                    formatOrigin = $stateParams.origin.replace(/n/g, 'ñ');
-                    formatOrigin = formatOrigin.replace(/_/g, ' ');
-                }else{
-                    formatOrigin = $stateParams.origin.replace(/_/g, ' ');
+
+                var specialLocations = ['A_Coruna','Logrono','Ona','Sona','Arino','Banos','Bonar','Pinar','Riano','Beleno',
+                                        'Bikuna','Brinas','Bunuel','Caneda','Canedo','Degana','Duenas','Soto_Duenas','Finana','Granon',
+                                        'Guenes','Iguena','Minano','Muneca','Norena','Susane','Verina','Vicuna','Albunol','Alcaniz',
+                                        'Anezcar','Argonos','Borlena','Calanas','Cocenas','Cegunal','E.Gonar','Iraneta','La_Pena','La_Vina',
+                                        'Penalba','Porrino','Saldana','Santona','Vinuela','A_Caniza','A_Sudina','Avinante','Canarico','Barinas',
+                                        'Lecinana','Ontinena','Sarinena','Cadinano','Camarinas','Fustinana','La_Vinuela','Sabinanigo','Soto_De_Luina','Finana_Empolme',
+                                        'Penaflor','Penuelas','Sopenano','Peniscola','Salobrena','V.Pecenil','Penahorada','Penarrolla','Valdepenas','Soto_Duenas',
+                                        'Penapardas_Cruce','Santibanes_Pena','Finca_Los_Cedenos','Penalba_De_Castro','Quint._Entrepenas','Penaranda_De_Duenno','Carrena_De_Cabrales','Treceno_(Valdalija)','Castrejon_De_La_Pena','Linares_(Penarubia)',
+                                        'Pisuena_-_B.Guzmazan','Villaverde_De_La_Pena','Castaneo','Codonera','La_Buniza','Villafane','Fernan_Nunes','Canete_La_Real','Campo_De_Santibanez','Socobio_(Castaneda)',
+                                        'Santibanes_De_Valdeiglesias','Villamonio','Ventas_De_Canizar','Codonera','Dona_Maria','El_Madrono','Dona_Mencia','Fuentes_De_Onoro','Alto_San_Mateo_-_Maono','V.Castanos',
+                                        'Canos_De_Meca','Quintanaostono','Banos_De_Montemayor','Martin_Monos_De_Las_Posadas','Armuna_Al','Cabronana','Albunuelas','Puente_De_Tuna','Arenas_De_Iguna','Oruna_De_Pielagos',
+                                        'Cabanuelas'];
+
+                for (var i = 0; i < specialLocations.length; i++) {
+                    if ($stateParams.origin == specialLocations[i]) {
+                        formatOrigin = $stateParams.origin.replace(/n/g, 'ñ');
+                        formatOrigin = formatOrigin.replace(/_/g, ' ');
+                        break;
+                    }else{
+                        formatOrigin = $stateParams.origin.replace(/_/g, ' ');
+                    }
                 }
-                if ($stateParams.destination == 'A_Coruna' || $stateParams.destination == 'Logrono') {
-                    formatDestination = $stateParams.destination.replace(/n/g, 'ñ');
-                    formatDestination = formatDestination.replace(/_/g, ' ');
-                }else{
-                    formatDestination = $stateParams.destination.replace(/_/g, ' ');
+                for (var i = 0; i < specialLocations.length; i++) {
+                    if ($stateParams.destination == specialLocations[i]) {
+                        formatDestination = $stateParams.destination.replace(/n/g, 'ñ');
+                        formatDestination = formatDestination.replace(/_/g, ' ');
+                        break;
+                    }else{
+                        formatDestination = $stateParams.destination.replace(/_/g, ' ');
+                    }
                 }
 
                 if($stateParams.returnDate ==  "NaN"){
