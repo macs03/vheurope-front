@@ -6,7 +6,7 @@
         <div class="new-results" ng-repeat="trip in search.trips.mixedTrips | orderBy:search.typeDeparture:search.reverseDeparture">
             <div class="results list" id="trips_mixed" >
                 <div class="row result mobile-mixed" style="display: flex; align-items: center;">
-                    <div class="col-md-8 col-xs-12 col-sm-12">
+                    <div class="col-md-9 col-xs-12 col-sm-12">
                         <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
                             <small class="text-muted-dark smallest-font capitalize terminals company">{{trip.originT1 }}</small>
                         </div>
@@ -15,7 +15,7 @@
                             <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
                         </div>
 
-                        <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
+                        <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-right: 1px solid #bbb;">
                             <small class="text-muted-dark smallest-font capitalize terminals company">{{ trip.destinationT1 }}</small>
                         </div>
 
@@ -27,12 +27,12 @@
                             <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
                         </div>
 
-                        <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-top: 1px solid #bbb;">
+                        <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-top: 1px solid #bbb; border-right: 1px solid #bbb;">
                             <small class="text-muted-dark smallest-font capitalize terminals company">{{ trip.destinationT2 }}</small>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-xs-12 col-sm-12">
+                    <div class="col-md-3 col-xs-12 col-sm-12">
                         <a href="{{trip.data.redirect}}" target="_blank" class="btn btn-block theme-blue-2">ELEGIR <i class="fa fa-share-square-o"></i></a>
                     </div>
 
