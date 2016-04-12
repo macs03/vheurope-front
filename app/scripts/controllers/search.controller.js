@@ -429,6 +429,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -598,6 +599,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
 
@@ -806,6 +808,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {

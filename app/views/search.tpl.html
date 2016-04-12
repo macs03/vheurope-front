@@ -230,7 +230,7 @@
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
                     </div>
                 </div> <!-- end .row -->
-                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0" >
+                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips" >
                     <div class="col-md-12">
                         <h4 translate>SEARCH.NO_RESULTS.TITLE</h4>
                         <p translate>SEARCH.NO_RESULTS.MESSAGE</p>
@@ -440,9 +440,12 @@
                         </div>
                     </div>
             </div>
+
+            <mixed-trips-directive ng-show="search.isMixedTrips"></mixed-trips-directive>
+
             <div class="container" ng-show="search.scraperFlag" style="margin-top: 80px; margin-bottom: 80px;">
                 <div class="row">
-                     <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; " ng-show="search.scraperFlag &&  search.trips.directDepartureTrips.length == 0">
+                     <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; " ng-show="search.scraperFlag &&  search.trips.directDepartureTrips.length == 0 && !search.isMixedTrips">
                         <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
                        data-keyboard="false" style="padding-top: 10%; ">
                             <div class="modal-dialog" role="document">
