@@ -131,7 +131,7 @@
                 departureDate: moment().format('DD/MM/YYYY'),
                 returnDate: '',
                 minDate: moment().format('MM-DD-YYYY'),
-                maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
+                maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
             };
 
             var session = sessionStorageService.getFlag();

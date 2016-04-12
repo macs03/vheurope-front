@@ -20,7 +20,7 @@
             vm.searching = false;
             vm.error = false;
             vm.order = order;
-            vm.type = '';
+            vm.type = 'salida';
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
@@ -317,7 +317,7 @@
                 departureDate: '',
                 returnDate: '',
                 minDate: moment().format('MM-DD-YYYY'),
-                maxDate: moment().add(30, 'days').format('MM-DD-YYYY')
+                maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
             };
 
             var toUTCDate = function(date){
