@@ -299,6 +299,7 @@
             vm.weather_progress_scraper.setAbsolute();
 
             vm.nextDay = nextDay;
+            vm.findMixRoutes = findMixRoutes;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -996,6 +997,34 @@
                 }
                 vm.dates.departureDate = nestDayDay+'/'+nextDayMonth+'/'+nextDate.getUTCFullYear();
                 $('input[placeholder="Ida"]').val(vm.dates.departureDate);
+            }
+
+            function findMixRoutes(id) {
+                vm.searchingMix = true;
+                travelsFactory
+                    .getMixedTrips(id)
+                    .then(function (data) {
+                        vm.searchingMix = false;
+                        vm.results = true;
+                        vm.trips = data;
+                        var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+                        for (var i = 0; i < data.typeServices.length; i++) {
+                            vm.seats.push(data.typeServices[i].name)
+                        }
+                        vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
+                    })
+                    .catch(function (err) {
+                        vm.searchingMix = false;
+                        console.log(err);
+                    })
             }
 
             function apiError() {
