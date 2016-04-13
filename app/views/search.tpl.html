@@ -211,7 +211,7 @@
 
             <!-- Start Results -->
             <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0}">
-                <div class="row header-results hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0">
+                <div class="row header-results hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0 || search.results">
                     <div class="col-md-3 sort sort-trips bl bt bb" ng-class="{active:search.type === 'salida'}" data-sort="departure" ng-click="search.order('salida')">
                         <span translate>SEARCH.SORT.HORARY</span>
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
@@ -241,8 +241,11 @@
                     </div>
                 </div>
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
-                    <div class="" ng-repeat="trips in search.trips.directDepartureTrips">
-
+                    <div class="" id="tramo-{{$index}}" ng-repeat="trips in search.trips.directDepartureTrips" ng-init="outindex = $index">
+                        <br/ ng-show="$index == 1">
+                        <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 1">
+                            <span translate>Tramo</span>: {{$index + 1}}
+                        </h5>
                         <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0">
                             <span translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                         </h5>
@@ -273,7 +276,15 @@
                                         <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price">
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="search.trips.directDepartureTrips.length < 1">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    </div>
+
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0">
+                                        <a href="#tramo-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    </div>
+
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1">
                                         <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
@@ -337,7 +348,11 @@
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.departureSelect()"><strong><span translate>SEARCH.SELECTED_TRIP.TITLE_6</span></strong></a>
                             </div>
                         </div>
-                        <div class="" ng-repeat="trips in search.trips.directDepartureTrips">
+                        <div class="" id="tramo-ida-{{$index}}" ng-repeat="trips in search.trips.directDepartureTrips" ng-init="outindex = $index">
+                            <br/ ng-show="$index == 1">
+                            <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 1">
+                                <span translate>Tramo</span>: {{$index + 1}}
+                            </h5>
                             <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}">
                                 <span class="way" translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}}  <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                             </h5>
@@ -393,7 +408,11 @@
                             <div class="results" id="selected-trip-container" >
                             </div>
                         </div>
-                        <div class="" ng-repeat="trips in search.trips.directReturnTrips">
+                        <div class="" id="tramo-vuelta-{{$index}}" ng-repeat="trips in search.trips.directReturnTrips" ng-init="outindex = $index">
+                            <br/ ng-show="$index == 1">
+                            <h5 class="hidden-xs" ng-show="search.trips.directReturnTrips.length > 1">
+                                <span translate>Tramo</span>: {{$index + 1}}
+                            </h5>
                             <h5 class="hidden-xs hidden-sm">
                                 <span class="way" translate>SEARCH.TRIPS.RETURN</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.returnDate | date: 'EEE, MMM dd' }}
                             </h5>
