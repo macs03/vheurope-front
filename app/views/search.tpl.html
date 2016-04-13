@@ -249,6 +249,9 @@
                         <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0">
                             <span translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                         </h5>
+                        <div class="change-departure" ng-show="search.idIda_1 != 0" style="margin-bottom: .3em;">
+                            <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep()"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
+                        </div>
 
                         <div class="new-results" id="new-results-tickeables" ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
                             <div class="results list" id="trips_tickeables" >
@@ -280,12 +283,11 @@
                                         <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0">
-                                        <a href="#tramo-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0" ng-class="{'disable-box':search.selectMixTrip}">
+                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id)" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
-
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1">
-                                        <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
                                     <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">

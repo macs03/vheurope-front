@@ -300,6 +300,8 @@
 
             vm.nextDay = nextDay;
             vm.findMixRoutes = findMixRoutes;
+            vm.firstStep = firstStep;
+            vm.resetFirstSetep = resetFirstSetep;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -1025,6 +1027,24 @@
                         vm.searchingMix = false;
                         console.log(err);
                     })
+            }
+
+            vm.selectMixTrip = false;
+            vm.idIda_1 = 0;
+            function firstStep(id_1) {
+                $('html, body').stop().animate({
+                    scrollTop: jQuery('#tramo-1').offset().top
+                }, 800);
+                vm.selectMixTrip = true;
+                vm.idIda_1 = id_1;
+            }
+
+            function resetFirstSetep() {
+                $('html, body').stop().animate({
+                    scrollTop: jQuery('#tramo-0').offset().top
+                }, 800);
+                vm.selectMixTrip = false;
+                vm.idIda_1 = 0;
             }
 
             function apiError() {
