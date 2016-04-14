@@ -279,14 +279,14 @@
                                         <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="search.trips.directDepartureTrips.length < 1">
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="search.trips.directDepartureTrips.length == 1">
                                         <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0" ng-class="{'disable-box':search.selectMixTrip}">
-                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id)" translate>SEARCH.TRIPS.BUTTON</a>
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
+                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id,1)" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
                                         <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
@@ -311,12 +311,48 @@
                         <h5 class="hidden-xs" ng-show="!search.selectDeparture">
                             <span class="way"><span translate>SEARCH.SELECTED_TRIP.TITLE_5</span></span>
                         </h5>
+                        <div class="new-results-selected" style="margin-bottom:2em;" ng-show="!search.selectDeparture && search.trips.directDepartureTrips.length > 0">
+                            <div class="results" id="selected-trip-container" >
+                                <div class="row result result-iv">
+                                    <div class="col-md-5 col-xs-4 col-sm-4 c-departure nbt" style="border-bottom: 1px solid #bbb; height:70px;">
+                                        <strong>{{ search.millisToUTCDate(search.departureDeparture_1)| date:'HH:mm'}}</strong>
+                                        <span class="smallest-font nowrap text-fucsia">{{search.trips.origin}}</span>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm  capitalize terminals"  style="display:block;">{{search.departureOrigin}}</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 c-approximate-time visible-xs visible-sm nbt text-center">
+                                        <p class="approximate-time text-muted smallest-font">{{search.departureDuration_1}}.</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival nbt" style="border-bottom: 1px solid #bbb;">
+                                        <strong>{{ search.millisToUTCDate(search.departureArrival_1) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{search.departureDestination_1}}</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 c-seat-type nbt" style="border-bottom: 1px solid #bbb;">
+                                        <strong class="text-fucsia">{{search.departurePrice_1}} €</strong>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm" style="display:block;">{{search.departureTypeService_1}}</small>
+                                    </div>
+
+                                    <div class="col-md-5 col-xs-4 col-sm-4 c-company nbt text-center">
+                                        <small class="text-muted smallest-font company">{{search.departureCompanyName_1}}</small>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-3 col-sm-4 c-approximate-time hidden-xs hidden-sm nbt">
+                                        <img ng-src={{search.departureLogo_1}} title="{{search.departureCompanyName}}" class="logo-iv hidden-xs hidden-sm">
+                                        <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i>{{search.departureDuration_1}}.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="new-results-selected" style="margin-bottom:2em;" ng-show="!search.selectDeparture">
                             <div class="results" id="selected-trip-container" >
                                 <div class="row result result-iv">
                                     <div class="col-md-5 col-xs-4 col-sm-4 c-departure nbt" style="border-bottom: 1px solid #bbb; height:70px;">
                                         <strong>{{ search.millisToUTCDate(search.departureDeparture)| date:'HH:mm'}}</strong>
-                                        <span class="smallest-font nowrap text-fucsia">{{search.search.trips.origin}}</span>
+                                        <span class="smallest-font nowrap text-fucsia">{{search.trips.origin}}</span>
                                         <br>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm  capitalize terminals"  style="display:block;">{{search.departureOrigin}}</small>
                                     </div>
@@ -358,6 +394,9 @@
                             <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}">
                                 <span class="way" translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}}  <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                             </h5>
+                            <div class="change-departure" ng-show="search.idIda_1 != 0" style="margin-bottom: .3em;">
+                                <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(2)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
+                            </div>
                             <div class="new-results" ng-repeat="trip in trips| orderBy: search.typeDeparture : search.reverseDeparture" ng-class="{'disable-box':!search.selectDeparture}">
                                 <div class="results list" >
                                     <div class="row result result-iv">
@@ -396,8 +435,14 @@
                                             <small class="text-muted smallest-font"><i class="fa fa-clock-o"></i>{{trip.duration}}.</small>
                                         </div>
 
-                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;">
-                                            <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="search.trips.directDepartureTrips.length == 1">
+                                            <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
+                                            <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                            <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
                                 </div>
