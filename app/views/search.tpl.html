@@ -250,7 +250,7 @@
                             <span translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                         </h5>
                         <div class="change-departure" ng-show="search.idIda_1 != 0" style="margin-bottom: .3em;">
-                            <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep()"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
+                            <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(1)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                         </div>
 
                         <div class="new-results" id="new-results-tickeables" ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
