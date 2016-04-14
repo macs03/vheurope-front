@@ -1077,8 +1077,13 @@
             vm.selectMixTrip = false;
             vm.idIda_1 = 0;
             vm.idVuelta_1 = 0;
+            vm.dateIda_1 = 0;
             function firstStep(id_1,type,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                var date = new Date(parseInt(arrival))
+                var minutes = date.getUTCMinutes() + 50;
+                date = date.setUTCMinutes(minutes);
                 if (type == 1) {
+                    vm.dateIda_1 = date;
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-1').offset().top
                     }, 800);
@@ -1097,6 +1102,7 @@
                         "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
                         "border" : "1px solid #29ABE5"
                     });
+                    vm.dateIda_1 = date;
                     vm.selectMixTrip = true;
                     vm.idIda_1 = id_1;
                     vm.departureId_1 = id_1;
@@ -1118,6 +1124,7 @@
                         "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
                         "border" : "1px solid #29ABE5"
                     });
+                    vm.dateVuelta_1 = date;
                     vm.selectMixTrip = true;
                     vm.idVuelta_1 = id_1;
                     vm.returnId = id_1;

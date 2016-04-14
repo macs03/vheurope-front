@@ -284,9 +284,9 @@
                                     </div>
 
                                     <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
-                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id,1)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}">
                                         <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
                                     </div>
 
@@ -441,7 +441,7 @@
                                         <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
                                             <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
-                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}">
                                             <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
@@ -510,7 +510,7 @@
                                         <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
                                             <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
-                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}">
                                             <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button"  translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
