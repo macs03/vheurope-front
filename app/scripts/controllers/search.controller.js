@@ -935,7 +935,50 @@
                     vm.departureTypeService = typeService;
                     vm.departureCompanyName = companyName;
                     vm.departureLogo = logo;
+                    $('.'+id).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
                 }else{
+                    $('.'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    $('.'+vm.departureId).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.departureId).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    $('#'+vm.idVuelta_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idVuelta_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
                     vm.departureId = '';
                     vm.departureDeparture = '';
                     vm.departureDuration = '';
@@ -944,6 +987,7 @@
                     vm.departureTypeService = '';
                     vm.departureCompanyName = '';
                     vm.departureLogo = '';
+                    vm.idIda_1 = 0;
                 }
             }
 
@@ -1038,6 +1082,10 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-1').offset().top
                     }, 800);
+                    $('#'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
                     vm.selectMixTrip = true;
                     vm.idIda_1 = id_1;
                 }
@@ -1045,6 +1093,10 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-ida-1').offset().top
                     }, 800);
+                    $('.'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
                     vm.selectMixTrip = true;
                     vm.idIda_1 = id_1;
                     vm.departureId_1 = id_1;
@@ -1062,6 +1114,10 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-vuelta-1').offset().top
                     }, 800);
+                    $('#'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
                     vm.selectMixTrip = true;
                     vm.idVuelta_1 = id_1;
                     vm.returnId = id_1;
@@ -1082,6 +1138,19 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-0').offset().top
                     }, 800);
+                    $('#'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
                     vm.selectMixTrip = false;
                     vm.idIda_1 = 0;
                 }
@@ -1089,6 +1158,19 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-ida-0').offset().top
                     }, 800);
+                    $('.'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
                     vm.selectMixTrip = false;
                     vm.idIda_1 = 0;
                 }
@@ -1096,6 +1178,19 @@
                     $('html, body').stop().animate({
                         scrollTop: jQuery('#tramo-vuelta-0').offset().top
                     }, 800);
+                    $('#'+vm.idVuelta_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idVuelta_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
                     vm.selectMixTrip = false;
                     vm.idVuelta_1 = 0;
                 }
