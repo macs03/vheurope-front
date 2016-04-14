@@ -921,7 +921,7 @@
                 callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
             }
 
-            function departureSelect(id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
                 vm.selectDeparture = !vm.selectDeparture;
                 if(!vm.selectDeparture){
                     vm.departureId = id;
@@ -1031,20 +1031,48 @@
 
             vm.selectMixTrip = false;
             vm.idIda_1 = 0;
-            function firstStep(id_1) {
-                $('html, body').stop().animate({
-                    scrollTop: jQuery('#tramo-1').offset().top
-                }, 800);
-                vm.selectMixTrip = true;
-                vm.idIda_1 = id_1;
+            function firstStep(id_1,type,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                if (type == 1) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-1').offset().top
+                    }, 800);
+                    vm.selectMixTrip = true;
+                    vm.idIda_1 = id_1;
+                }
+                if (type == 2) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-ida-1').offset().top
+                    }, 800);
+                    vm.selectMixTrip = true;
+                    vm.idIda_1 = id_1;
+                    vm.departureId_1 = id_1;
+                    vm.departureOrigin_1 = origin;
+                    vm.departureDestination_1 = destination;
+                    vm.departureDeparture_1 = departure;
+                    vm.departureDuration_1 = duration;
+                    vm.departureArrival_1 = arrival;
+                    vm.departurePrice_1 = price;
+                    vm.departureTypeService_1 = typeService;
+                    vm.departureCompanyName_1 = companyName;
+                    vm.departureLogo_1 = logo;
+                }
             }
 
-            function resetFirstSetep() {
-                $('html, body').stop().animate({
-                    scrollTop: jQuery('#tramo-0').offset().top
-                }, 800);
-                vm.selectMixTrip = false;
-                vm.idIda_1 = 0;
+            function resetFirstSetep(type) {
+                if (type == 1) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-0').offset().top
+                    }, 800);
+                    vm.selectMixTrip = false;
+                    vm.idIda_1 = 0;
+                }
+                if (type == 2) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-ida-0').offset().top
+                    }, 800);
+                    vm.selectMixTrip = false;
+                    vm.idIda_1 = 0;
+                }
             }
 
             function apiError() {
