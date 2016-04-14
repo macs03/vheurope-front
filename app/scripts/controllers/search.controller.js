@@ -922,6 +922,7 @@
             }
 
             function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                vm.selectMixTrip = false;
                 vm.selectDeparture = !vm.selectDeparture;
                 if(!vm.selectDeparture){
                     vm.departureId = id;
@@ -1031,6 +1032,7 @@
 
             vm.selectMixTrip = false;
             vm.idIda_1 = 0;
+            vm.idVuelta_1 = 0;
             function firstStep(id_1,type,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
                 if (type == 1) {
                     $('html, body').stop().animate({
@@ -1056,6 +1058,23 @@
                     vm.departureCompanyName_1 = companyName;
                     vm.departureLogo_1 = logo;
                 }
+                if(type == 3){
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-vuelta-1').offset().top
+                    }, 800);
+                    vm.selectMixTrip = true;
+                    vm.idVuelta_1 = id_1;
+                    vm.returnId = id_1;
+                    vm.returnOrigin = origin;
+                    vm.returnDestination = destination;
+                    vm.returnDeparture = departure;
+                    vm.returnDuration = duration;
+                    vm.returnArrival = arrival;
+                    vm.returnPrice = price;
+                    vm.returnTypeService = typeService;
+                    vm.returnCompanyName = companyName;
+                    vm.returnLogo = logo;
+                }
             }
 
             function resetFirstSetep(type) {
@@ -1072,6 +1091,13 @@
                     }, 800);
                     vm.selectMixTrip = false;
                     vm.idIda_1 = 0;
+                }
+                if (type == 3) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-vuelta-0').offset().top
+                    }, 800);
+                    vm.selectMixTrip = false;
+                    vm.idVuelta_1 = 0;
                 }
             }
 

@@ -463,6 +463,9 @@
                             <h5 class="hidden-xs hidden-sm">
                                 <span class="way" translate>SEARCH.TRIPS.RETURN</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.returnDate | date: 'EEE, MMM dd' }}
                             </h5>
+                            <div class="change-departure" ng-show="search.idVuelta_1 != 0" style="margin-bottom: .3em;">
+                                <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(3)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
+                            </div>
                             <div class="new-results" ng-repeat="trip in trips| orderBy: search.typeReturn : search.reverseReturn">
                                 <div class="results list" >
                                     <div class="row result result-iv">
@@ -501,8 +504,14 @@
                                             <small class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{trip.duration}}.</small>
                                         </div>
 
-                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;">
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="search.trips.directDepartureTrips.length == 1">
                                             <a href="#/seat/{{search.departureId}}/{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
+                                            <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                        <div class="col-md-3 nbt hidden-xs hidden-sm" style="border-top: 1px solid #bbb;" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip}">
+                                            <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button"  translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
                                 </div>
