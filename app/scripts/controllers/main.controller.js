@@ -269,7 +269,6 @@
             });
 
             $('#select_passengers').on('click', function(){
-                console.log('OK');
                  $('#modal_select_passengers').modal('show');
             });
 
