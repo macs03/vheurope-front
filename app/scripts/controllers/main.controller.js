@@ -95,11 +95,19 @@
           	vm.destination = params.destination+","+params.countryDestination;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['1', '2', '3', '4', '5'];
-            vm.passengers  = vm.passengers_options [0];
+            vm.passengers_options  = ['0', '1', '2', '3', '4', '5'];
+            vm.passengers  = vm.passengers_options [1];
+            vm.passengersAdult  = vm.passengers_options [1];
+            vm.passengersChild  = vm.passengers_options [0];
+            vm.passengersBaby  = vm.passengers_options [0];
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
+
+            vm.selectPassengers = function(){
+                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
+                $('#modal_select_passengers').modal('hide');
+            };
 
         	vm.configOrigin = {
           		//create: true,
@@ -256,6 +264,11 @@
 
             $('#switch_language li').on('click', function() {
                 $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
+            });
+
+            $('#select_passengers').on('click', function(){
+                console.log('OK');
+                 $('#modal_select_passengers').modal('show');
             });
 
             var bg_images = [
