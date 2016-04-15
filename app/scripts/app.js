@@ -520,8 +520,8 @@
         }
       },
       "CANCEL": {
-        "TITLE": "Te presentamos tu lista de pasajes",
-        "CANCELMSG": "Esta lista de pasajes ya se encuentra anulada",
+        "TITLE": "Te presentamos tu lista de billetes",
+        "CANCELMSG": "Esta lista de billetes ya se encuentra anulada",
         "BUTTON" : "Anular"
       }
     };
