@@ -311,7 +311,7 @@ display: none;
                                 <span translate>CANCEL.BUTTON</span> <i class="fa fa-ban"></i>
                             </a>
                             <p>
-                                <small ng-show="cancel.unableCancel">Esta Compra ya ha caducado</small>
+                                <small ng-show="cancel.unableCancel" translate>CANCEL.EXPIRED</small>
                             </p>
                             <p ng-show="cancel.cancelData.paymentOrderStatus == 'CANCELED' || cancel.cancelOk == 'OK'" translate>
                                 CANCEL.CANCELMSG
