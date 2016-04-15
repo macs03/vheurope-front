@@ -237,7 +237,8 @@
             "FORM_EMAIL": "Email",
             "FORM_EMAIL_PLACEHOLDER": "Email",
             "FORM_BTN_SELECT": "Select",
-            "FORM_BTN_UPDATE": "Update"
+            "FORM_BTN_UPDATE": "Update",
+            "REDIRECT" : "Soon you will be redirected to the search page automatically"
           },
           "PAYMENT": {
             "INFORMATION": {
@@ -444,7 +445,8 @@
         "FORM_EMAIL": "Correo electrónico",
         "FORM_EMAIL_PLACEHOLDER": "Correo electronico",
         "FORM_BTN_SELECT": "Seleccionar",
-        "FORM_BTN_UPDATE": "Actualizar"
+        "FORM_BTN_UPDATE": "Actualizar",
+        "REDIRECT" : "En breve seras redireccionado a la página de búsqueda automáticamente"
       },
       "PAYMENT": {
         "INFORMATION": {

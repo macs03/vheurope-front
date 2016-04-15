@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService', '$timeout'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelectedDeparture = [];
@@ -507,6 +507,13 @@ angular
 
             })
             .catch(function (err) {
+                $timeout(function () {
+                    $('#error-seat').modal('hide');
+                    var url = sessionStorageService.getUrl();
+                    $timeout(function () {
+                        $location.path (url);
+                    }, 500);
+                }, 12000);
                 console.log(err);
                 vm.msgError = err;
                 vm.errorSeat = true;
