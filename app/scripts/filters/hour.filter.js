@@ -26,8 +26,10 @@
                     var firstTime = new Date(Date.UTC(year,month,day,minValue,0,0));
                     var secondTime = new Date(Date.UTC(year,month,day,maxValue,59,59));
                 }else{
-                    var firstTime = new Date(Date.UTC(year,month-1,day,minValue,0,0));
-                    var secondTime = new Date(Date.UTC(year,month-1,day,maxValue,59,59));
+                    var firstTime = new Date(Date.UTC(year,month,day,minValue,0,0));
+                    var secondTime = new Date(Date.UTC(year,month,day,maxValue,59,59));
+                    //var firstTime = new Date(Date.UTC(year,month-1,day,minValue,0,0));
+                    //var secondTime = new Date(Date.UTC(year,month-1,day,maxValue,59,59));
                 }
                 var initialTime = firstTime.getTime();
                 var finalTime = secondTime.getTime();
