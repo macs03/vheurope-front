@@ -205,7 +205,8 @@
                         	console.log(vm.destinationCity);
                         	console.log('departure: '+vm.dates.departureDate);
                             console.log('returns: '+vm.dates.returnDate);
-                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                            sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             vm.good = true;
                             $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
@@ -227,7 +228,8 @@
                         var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
                         vm.departureDateUnix = new Date(newDate3).getTime();
                         vm.returnDateUnix = new Date(newDate4).getTime();
-                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                        sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                         vm.good = true;
                         $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
@@ -267,7 +269,6 @@
             });
 
             $('#select_passengers').on('click', function(){
-                console.log('OK');
                  $('#modal_select_passengers').modal('show');
             });
 
