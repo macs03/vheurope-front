@@ -589,14 +589,6 @@ angular
                 console.log(vm.seatInSelection.trip);
                 if(vm.seatInSelection.trip === 0){
                     //vm.seatsSelectedReturn.splice(0, 1,vm.seatInSelection);
-                    vm.seatsSelectedReturn[0].country = angular.copy(vm.seatsSelectedDeparture[0].country);
-                    vm.seatsSelectedReturn[0].dni = angular.copy(vm.seatsSelectedDeparture[0].dni);
-                    vm.seatsSelectedReturn[0].document = angular.copy(vm.seatsSelectedDeparture[0].document);
-                    vm.seatsSelectedReturn[0].email = angular.copy(vm.seatsSelectedDeparture[0].email);
-                    vm.seatsSelectedReturn[0].lastname = angular.copy(vm.seatsSelectedDeparture[0].lastname);
-                    vm.seatsSelectedReturn[0].phone = angular.copy(vm.seatsSelectedDeparture[0].phone);
-                    vm.seatsSelectedReturn[0].name = angular.copy(vm.seatsSelectedDeparture[0].name);
-                    vm.selectDepartureSeat = false;
                     if($stateParams.idReturn == "-1"){
                         vm.resetSeatInSelection();
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
@@ -604,6 +596,14 @@ angular
                             vm.allSeats = true;
                         }
                     }else{
+                        vm.seatsSelectedReturn[0].country = angular.copy(vm.seatsSelectedDeparture[0].country);
+                        vm.seatsSelectedReturn[0].dni = angular.copy(vm.seatsSelectedDeparture[0].dni);
+                        vm.seatsSelectedReturn[0].document = angular.copy(vm.seatsSelectedDeparture[0].document);
+                        vm.seatsSelectedReturn[0].email = angular.copy(vm.seatsSelectedDeparture[0].email);
+                        vm.seatsSelectedReturn[0].lastname = angular.copy(vm.seatsSelectedDeparture[0].lastname);
+                        vm.seatsSelectedReturn[0].phone = angular.copy(vm.seatsSelectedDeparture[0].phone);
+                        vm.seatsSelectedReturn[0].name = angular.copy(vm.seatsSelectedDeparture[0].name);
+                        vm.selectDepartureSeat = false;
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
                                 console.log("full seats");
                                 vm.allSeats = true;
