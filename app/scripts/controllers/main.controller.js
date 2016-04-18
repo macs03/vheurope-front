@@ -95,11 +95,19 @@
           	vm.destination = params.destination+","+params.countryDestination;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['1', '2', '3', '4', '5'];
-            vm.passengers  = vm.passengers_options [0];
+            vm.passengers_options  = ['0', '1', '2', '3', '4', '5'];
+            vm.passengers  = vm.passengers_options [1];
+            vm.passengersAdult  = vm.passengers_options [1];
+            vm.passengersChild  = vm.passengers_options [0];
+            vm.passengersBaby  = vm.passengers_options [0];
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
+
+            vm.selectPassengers = function(){
+                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
+                $('#modal_select_passengers').modal('hide');
+            };
 
         	vm.configOrigin = {
           		//create: true,
@@ -197,7 +205,8 @@
                         	console.log(vm.destinationCity);
                         	console.log('departure: '+vm.dates.departureDate);
                             console.log('returns: '+vm.dates.returnDate);
-                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                            utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                            sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             vm.good = true;
                             $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
@@ -219,7 +228,8 @@
                         var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
                         vm.departureDateUnix = new Date(newDate3).getTime();
                         vm.returnDateUnix = new Date(newDate4).getTime();
-                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                        utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                        sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                         vm.good = true;
                         $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
@@ -246,6 +256,7 @@
             }
 
             function quickSearch(origin, destination, id) {
+                sessionStorageService.setPassengers(1,0,0);
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
                     $location.path ("/search/"+origin+"/ESP/"+destination+"/ESP/"+departureDate+"/NaN");
@@ -256,6 +267,10 @@
 
             $('#switch_language li').on('click', function() {
                 $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
+            });
+
+            $('#select_passengers').on('click', function(){
+                 $('#modal_select_passengers').modal('show');
             });
 
             var bg_images = [

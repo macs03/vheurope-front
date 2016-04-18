@@ -20,13 +20,10 @@
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-                   <select ng-model="main.passengers" ng-options="opt for opt in main.passengers_options" class="cth"></select>
-                   <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
-
-
+                    <input type="text" id="select_passengers" value="{{ main.passengers }}">
+                    <span class="fa fa-users vh-calendar" style="margin-right: 15px;"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-
                     <a class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
                     <a class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" >Buscar</a>
 
@@ -65,6 +62,48 @@
             <p>
                 Revise su seleccion de fechas
             </p>
+        </div>
+      </div>
+    </div>
+ </div>
+
+ <div class="modal fade" id="modal_select_passengers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4>Pasajeros</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="">Adultos</label>
+                </div>
+                <div class="col-md-6"> 
+                    <select ng-model="main.passengersAdult" ng-options="opt for opt in main.passengers_options" class="select-passengers"></select>
+                </div>    
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="">Niños</label>
+                </div>
+                <div class="col-md-6"> 
+                    <select ng-model="main.passengersChild" ng-options="opt for opt in main.passengers_options" class="select-passengers"></select>
+                </div>    
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="">Bebes</label>
+                </div>
+                <div class="col-md-6"> 
+                    <select ng-model="main.passengersBaby" ng-options="opt for opt in main.passengers_options" class="select-passengers"></select>
+                </div>    
+            </div>
+        </div>
+        <div class="modal-footer text-center">
+            <a class="btn  btn-success btn-search" ng-click="main.selectPassengers()"  >Seleccionar</a>
         </div>
       </div>
     </div>
