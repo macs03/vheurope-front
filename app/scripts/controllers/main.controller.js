@@ -256,6 +256,7 @@
             }
 
             function quickSearch(origin, destination, id) {
+                sessionStorageService.setPassengers(1,0,0);
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
                     $location.path ("/search/"+origin+"/ESP/"+destination+"/ESP/"+departureDate+"/NaN");
