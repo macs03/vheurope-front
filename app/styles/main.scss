@@ -209,7 +209,6 @@ rzslider .rz-pointer.rz-active:after{
        font-size: .9em;
 
     }
-    
 
     .popover-select-passengers-wrapper button {
        border-radius: 80px !important;
@@ -218,12 +217,12 @@ rzslider .rz-pointer.rz-active:after{
     .popover-select-passengers-wrapper button:focus {outline:0;}
     
     #popover-bg {
-    background: 0;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: 999;
-    display: none;
-    top: 0;
-    left: 0;
-}
+      background: 0;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      top: 0;
+      left: 0;
+  }
