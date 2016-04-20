@@ -926,7 +926,6 @@
             function alternativeSearch(origin, countryOrigin, destination, countryDestination) {
                 vm.origin = origin+", "+countryOrigin;
                 vm.destination = destination+", "+countryDestination;
-                callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
             }
 
             function departureSelect(id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
