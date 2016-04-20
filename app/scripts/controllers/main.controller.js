@@ -103,6 +103,7 @@
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
 
+
             vm.updatePassengers = function(type, direction){
                 if(direction == 'up' && vm.passengers < 7){
                     if(type=='adult'){
@@ -127,7 +128,6 @@
                         vm.passengersBaby = vm.passengersBaby - 1;
                     } 
                 }
-                console.log(vm.passengersAdult +'--'+vm.passengersChild +'---'+vm.passengersBaby);
                 vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
                 $('#select_passengers').val(vm.passengers);
             };
@@ -183,6 +183,8 @@
 
 
         	vm.searchTrips = function () {
+            console.log(vm.passengersAdult +'--'+vm.passengersChild +'---'+vm.passengersBaby);
+
                 angular.forEach(vm.myOptions, function(value, key) {
                     if(vm.myOptions[key].id === vm.origin){
                         vm.originCity = vm.myOptions[key].city;
@@ -261,12 +263,9 @@
                 }
             }
 
-
             function changeDate(){
                 vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
             }
-
-           
 
             function cityError() {
                 if(!vm.good){
