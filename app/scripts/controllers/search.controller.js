@@ -397,15 +397,44 @@
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['0','1', '2', '3', '4', '5','6'];
-            vm.passengers = params.passengers;
-            vm.passengersAdult  = params.passengersAdult;
-            vm.passengersChild  = params.passengersChild;
-            vm.passengersBaby  = params.passengersBaby;
+            vm.passengers = parseInt(params.passengers);
+            vm.passengersAdult  = parseInt(params.passengersAdult);
+            vm.passengersChild  = parseInt(params.passengersChild);
+            vm.passengersBaby  = parseInt(params.passengersBaby);
 
             vm.weather = weatherFactory.getWeather(params.destination, 'es');
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
+
+            vm.updatePassengers = function(type, direction){
+                console.log(type);
+                if(direction == 'up' && vm.passengers < 7){
+                    if(type=='adult'){
+                       vm.passengersAdult = vm.passengersAdult + 1;  
+                    }
+                    if(type=='child'){
+                        vm.passengersChild =  vm.passengersChild + 1;
+                    } 
+                    if(type=='baby'){
+                        vm.passengersBaby = vm.passengersBaby + 1;
+                    } 
+                }
+
+                if(direction == 'dwn'){
+                    if(type=='adult' && vm.passengersAdult > 0){
+                       vm.passengersAdult = vm.passengersAdult - 1;  
+                    }
+                    if(type=='child' && vm.passengersChild > 0){
+                        vm.passengersChild =  vm.passengersChild - 1;
+                    } 
+                    if(type=='baby' && vm.passengersBaby > 0){
+                        vm.passengersBaby = vm.passengersBaby - 1;
+                    } 
+                }
+                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
+                $('#select_passengers').val(vm.passengers);
+            };
+
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -575,12 +604,10 @@
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
-                vm.passengers_options  = ['0','1', '2', '3', '4', '5'];
-                vm.passengers  = vm.passengers_options [1];
-                vm.passengersAdult  = sessionStorageService.getPassengers().passengersAdult;
-                vm.passengersChild  = sessionStorageService.getPassengers().passengersChild;
-                vm.passengersBaby  = sessionStorageService.getPassengers().passengersBaby;
-
+                vm.passengers  = 1;
+                vm.passengersAdult  = parseInt(sessionStorageService.getPassengers().passengersAdult);
+                vm.passengersChild  = parseInt(sessionStorageService.getPassengers().passengersChild);
+                vm.passengersBaby  = parseInt(sessionStorageService.getPassengers().passengersBaby);
 
                 vm.results = false;
                 vm.trips = [];
@@ -1025,7 +1052,17 @@
                 $('#filters-container').toggleClass('hidden-xs');
             });
 
-           
+            $('#select_passengers').on('click', function(){
+                var offset = $(this).offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top+55)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
+
+             $('#popover-bg').on('click', function(){
+                $('.popover-select-passengers').attr('style', 'display: none;');
+                $('#popover-bg').attr('style', 'display: none;opacity:0');
+            });
 
         }
 })();

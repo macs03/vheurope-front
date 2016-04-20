@@ -20,8 +20,8 @@
                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
-                    <select ng-model="main.passengers" ng-options="opt for opt in main.passengers_options" class="cth"></select>
-                    <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
+                    <input type="text" id="select_passengers" ng-model="main.passengers">
+                    <span class="fa fa-users vh-calendar" style="margin-right: 15px;"></span>
                 </div>
                 <div class="col-md-1 col-xs-12 np">
                     <a class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
@@ -50,6 +50,7 @@
       </div>
     </div>
  </div>
+
  <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
     data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
@@ -65,5 +66,9 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
  </div>
  
+=======
+ </div>
+>>>>>>> multiple-users
