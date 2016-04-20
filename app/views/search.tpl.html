@@ -1,39 +1,49 @@
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
     <div class="popover-select-passengers-wrapper">
-                <h5>Pasajeros</h5>
-                <div class="input-group number-spinner pull-right">
-                    <label for="">Adultos</label>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('adult', 'dwn')"><span class="glyphicon glyphicon-minus"></span></button>
-                    </span>
-                    <input type="text" class="text-center" ng-value="search.passengersAdult" size="2" ng-model="search.passengersAdult">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('adult', 'up')"><span class="glyphicon glyphicon-plus"></span></button>
-                    </span>
-                </div>
-                <div class="input-group number-spinner pull-right">
-                    <label for="">Niños</label>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('child', 'dwn')"><span class="glyphicon glyphicon-minus"></span></button>
-                    </span>
-                    <input type="text" class="text-center" ng-value="search.passengersChild" size="2" ng-model="search.passengersChild">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('child', 'up')"><span class="glyphicon glyphicon-plus"></span></button>
-                    </span>
-                </div>
-                <div class="input-group number-spinner pull-right">
-                    <label for="">Bebes</label>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('baby', 'dwn')"><span class="glyphicon glyphicon-minus"></span></button>
-                    </span>
-                    <input type="text" class="text-center" ng-value="search.passengersBaby" size="2" ng-model="search.passengersBaby">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('baby', 'up')"><span class="glyphicon glyphicon-plus"></span></button>
-                    </span>
-                </div>
-               
-        
+        <h5>Pasajeros</h5>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Adultos</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('adult', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center" size="2" ng-model="search.passengersAdult">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('adult', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Niños</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('child', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center"  size="2" ng-model="search.passengersChild">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('child', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Bebes</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('baby', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center" size="2" ng-model="search.passengersBaby">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('baby', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
     </div>
 </div>
 <div id="results-container">

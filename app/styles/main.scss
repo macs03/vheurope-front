@@ -214,6 +214,8 @@ rzslider .rz-pointer.rz-active:after{
     .popover-select-passengers-wrapper button {
        border-radius: 80px !important;
     }
+
+    .popover-select-passengers-wrapper button:focus {outline:0;}
     
     #popover-bg {
     background: 0;
