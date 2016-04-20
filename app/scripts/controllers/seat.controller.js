@@ -568,6 +568,7 @@ angular
                         console.log("seats full");
                         vm.allSeats = true;
                     }
+                    vm.resetSeatInSelection();
                 }
                 if (vm.automaticSeat) {
                     if (vm.returnSeats.length > 0) {
@@ -588,9 +589,10 @@ angular
                 vm.selectDepartureSeat = false;
                 console.log(vm.seatInSelection.trip);
                 if(vm.seatInSelection.trip === 0){
-                    //vm.seatsSelectedReturn.splice(0, 1,vm.seatInSelection);
                     if($stateParams.idReturn == "-1"){
+                        vm.seatsSelectedDeparture[vm.index] = angular.copy(vm.seatInSelection);
                         vm.resetSeatInSelection();
+                        vm.selectDepartureSeat = true;
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
                             console.log("full seats");
                             vm.allSeats = true;
@@ -623,7 +625,7 @@ angular
 			vm.updateTotals();
 		};
 
-		vm.releaseSeat = function (trip, floor, seatNumber, update) {
+		vm.releaseSeat = function (trip, floor, seatNumber, update,index) {
             console.log(seatNumber+'-'+trip);
             if(trip === 0){
                 console.log('IDA');
@@ -640,6 +642,7 @@ angular
                 }else{
                     sc2.status(seatNumber.toString(), 'available');
                 }
+                vm.seatInSelection.update = false;
             }else{
                 console.log('VUELTA');
                 if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
@@ -663,22 +666,37 @@ angular
             $('#formSeat').modal('hide');
 		};
 
-		vm.deleteSeat = function (trip, floor, seatNumber, update) {
+		vm.deleteSeat = function (trip, floor, seatNumber, update, index) {
+            console.log(index);
             if (trip === 0) {
-                for(var i = vm.seatsSelectedDeparture.length; i--;) {
-                   if(vm.seatsSelectedDeparture[i].trip === trip && vm.seatsSelectedDeparture[i].seatNumber === seatNumber) {
-                        vm.seatsSelectedDeparture.splice(i, 1);
-                        vm.releaseSeat (trip, floor, seatNumber, update);
-                        break;
-                   }
-               	}
-            } else {
-                for(var i = vm.seatsSelectedReturn.length; i--;) {
-                    if(vm.seatsSelectedReturn[i].trip === trip && vm.seatsSelectedReturn[i].seatNumber === seatNumber) {
-                        vm.seatsSelectedReturn.splice(i, 1);
-                        vm.releaseSeat (trip, floor, seatNumber, update);
-                        break;
+                vm.seatInSelection = vm.seatsSelectedDeparture[index];
+               if(vm.seatsSelectedDeparture[index].trip === trip && vm.seatsSelectedDeparture[index].seatNumber === seatNumber) {
+                   if($stateParams.idReturn != "-1"){
+                       if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
+                           vm.seatsSelectedDeparture.splice(index, 1);
+                           vm.releaseSeat (trip, floor, seatNumber, update,index);
+                       }else{
+                           console.log("no borrar");
+                       }
+                   }else{
+                        vm.seatsSelectedDeparture.splice(index, 1);
+                        vm.releaseSeat (trip, floor, seatNumber, update,index);
                     }
+               }
+            } else {
+                vm.seatInSelection = vm.seatsSelectedReturn[index];
+                if(vm.seatsSelectedReturn[index].trip === trip && vm.seatsSelectedReturn[index].seatNumber === seatNumber) {
+                    if($stateParams.idReturn != "-1"){
+                        if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
+                            vm.seatsSelectedReturn.splice(index, 1);
+                            vm.releaseSeat (trip, floor, seatNumber, update,index);
+                        }else{
+                            console.log("no borrar");
+                        }
+                    }else{
+                        vm.seatsSelectedReturn.splice(index, 1);
+                        vm.releaseSeat (trip, floor, seatNumber, update,index);
+                     }
                 }
             }
 		};
@@ -696,11 +714,13 @@ angular
 
         }
 
-		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item) {
+		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item, index) {
 			//seatNUmber = Numero de asiento
 			//trip => 0 = ida, 2= vuelta
 			//floor = Numero de piso
+            console.log(index);
 			console.log(item);
+            vm.index = index;
 
 			if(item != null ){
 				vm.seatInSelection = item;
@@ -711,7 +731,7 @@ angular
                 if($stateParams.idReturn != "-1"){
                     if(vm.seatInSelection.trip === 1){
                         vm.selectAgain = true;
-                        vm.resetSeatInSelection();
+                        //vm.resetSeatInSelection();
                     }
                 }
 				vm.seatInSelection.seatNumber = seatNumber;
@@ -737,6 +757,7 @@ angular
 						vm.seatInSelection.price = vm.trips.return.priceFloorTwo;
 					}
                     vm.addSeat();
+                    vm.index = index;
 				}
 
 				$scope.$apply();
