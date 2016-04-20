@@ -177,8 +177,8 @@ input.ng-valid.ng-touched {
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
-                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item, $index);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false, $index);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +292,7 @@ input.ng-valid.ng-touched {
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
                                             <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
-                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index);"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
