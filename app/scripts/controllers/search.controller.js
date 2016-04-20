@@ -399,6 +399,10 @@
             vm.countryDestination = params.countryDestination;
             vm.passengers_options  = ['0','1', '2', '3', '4', '5','6'];
             vm.passengers = params.passengers;
+            vm.passengersAdult  = params.passengersAdult;
+            vm.passengersChild  = params.passengersChild;
+            vm.passengersBaby  = params.passengersBaby;
+
             vm.weather = weatherFactory.getWeather(params.destination, 'es');
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
@@ -572,10 +576,11 @@
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
                 vm.passengers_options  = ['0','1', '2', '3', '4', '5'];
-                vm.passengers  = vm.passengers_options [0];
+                vm.passengers  = vm.passengers_options [1];
                 vm.passengersAdult  = sessionStorageService.getPassengers().passengersAdult;
                 vm.passengersChild  = sessionStorageService.getPassengers().passengersChild;
                 vm.passengersBaby  = sessionStorageService.getPassengers().passengersBaby;
+
 
                 vm.results = false;
                 vm.trips = [];
@@ -591,9 +596,6 @@
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
-
-                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
-                $('#modal_select_passengers').modal('hide');
 
                 travelsFactory
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)

@@ -14,10 +14,74 @@
                     <div id="search-form-wrapper">
                         <h1 translate>MAIN.TITLE</h1>
                         <h3 class="hidden-xs" translate>MAIN.SUBTITLE</h3>
-                        <form-directive></form-directive>
+                        <form role="form" >
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 ">
+                                    <div class="row destination-search">
+                                        <div class="col-md-3 col-xs-12 np">
+                                            <selectize config='main.configOrigin' options='main.myOptions' ng-model="main.origin"></selectize>
+                                        </div>
+                                        <div class="switcheroo hidden-xs"></div>
+                                        <div class="col-md-3 col-xs-12  np">
+                                            <selectize config='main.configDestination' options='main.myOptions' ng-model="main.destination"></selectize>
+                                        </div>
+                                        <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
+                                           <vhdatepicker class="form-departure" id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                                            <span class="fa fa-calendar departure-calendar vh-calendar"></span>
+                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                        </div>
+                                        <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
+                                            <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}"  data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                                            <span class="fa fa-calendar return-calendar vh-calendar"></span>
+                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                        </div>
+                                        <div class="col-md-1 col-xs-12 np">
+                                            <select ng-model="main.passengers" ng-options="opt for opt in main.passengers_options" class="cth"></select>
+                                            <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
+                                        </div>
+                                        <div class="col-md-1 col-xs-12 np">
+                                            <a class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
+                                            <a class="btn btn-block btn-success btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" >Buscar</a>
+                                        </div>
+                                    </div> <!-- end .row -->
+                                </div> <!-- End Destination Search -->
+                            </div>
+                         </form>
+
+                         <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+                            data-keyboard="false">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content" style="background-color: #F2DEDD !important;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                    <h2>Error</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        Revise su seleccion de ciudades
+                                    </p>
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+                            data-keyboard="false">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content" style="background-color: #F2DEDD !important;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                    <h2>Error</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        Revise su seleccion de fechas
+                                    </p>
+                                </div>
+                              </div>
+                            </div>
+                         </div>
                     </div>
                 </div>
-
         </div>
     </div>
 </div>
