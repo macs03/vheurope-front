@@ -399,17 +399,9 @@
             vm.countryDestination = params.countryDestination;
             vm.passengers_options  = ['0','1', '2', '3', '4', '5','6'];
             vm.passengers = params.passengers;
-            vm.passengersAdult  = params.passengersAdult;
-            vm.passengersChild  = params.passengersChild;
-            vm.passengersBaby  = params.passengersBaby;
             vm.weather = weatherFactory.getWeather(params.destination, 'es');
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
-
-             vm.selectPassengers = function(){
-                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
-                $('#modal_select_passengers').modal('hide');
-            };
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -1031,9 +1023,7 @@
                 $('#filters-container').toggleClass('hidden-xs');
             });
 
-            $('#select_passengers').on('click', function(){
-                 $('#modal_select_passengers').modal('show');
-            });
+           
 
         }
 })();
