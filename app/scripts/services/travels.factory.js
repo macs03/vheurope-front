@@ -19,13 +19,11 @@
             skipAccents: skipAccents
         }
 
-        function getAll (origin,destiny,departure,returns,passengers,departureCountry,arrivalCountry) {
+        function getAll (origin,destiny,departure,returns,passengers,departureCountry,arrivalCountry,passengersAdult,passengersChild,passengersBaby) {
             var defered = $q.defer();
             var promise = defered.promise;
             var departureFormated = $filter('date')(departure, 'dd/MM/yyyy');
             var returnsFormated = $filter('date')(returns, 'dd/MM/yyyy');
-
-            
 
             $http({
                     method:'GET',
@@ -37,7 +35,9 @@
                         arrivalCountry:arrivalCountry,
                         departureDate:departureFormated,
                         returnDate:returnsFormated,
-                        totalPeople:passengers
+                        adultPassengersNumber : passengersAdult,
+                        childPassengersNumber : passengersChild,
+                        babyPassengersNumber : passengersBaby
                     },
 
                 })

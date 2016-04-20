@@ -25,6 +25,9 @@
             departure: "",
             returns: "",
             passengers: "",
+            passengersAdult: "",
+            passengersChild: "",
+            passengersBaby: "",
             getData: getData,
             setData: setData,
             setPaymentData: setPaymentData,
@@ -61,11 +64,14 @@
                 returns: self.returns,
                 passengers: self.passengers,
                 originCountryCode : self.originCountryCode,
-                destinationCountryCode : self.destinationCountryCode
+                destinationCountryCode : self.destinationCountryCode,
+                passengersAdult: self.passengersAdult,
+                passengersChild: self.passengersChild,
+                passengersBaby: self.passengersBaby
             }
         }
 
-        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry){
+        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry,passengersAdult,passengersChild,passengersBaby){
             self.origin = origin;
             self.countryOrigin = countryOrigin,
             self.destination = destination,
@@ -75,6 +81,9 @@
             self.passengers = passengers;
             self.originCountryCode = originCountry;
             self.destinationCountryCode = destinationCountry;
+            self.passengersAdult = passengersAdult;
+            self.passengersChild = passengersChild;
+            self.passengersBaby = passengersBaby;
         }
 
         function setPaymentData(idIda,idVuelta,totalWithDiscount,totalFee,totalPayment,departure, returns) {

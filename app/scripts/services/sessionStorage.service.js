@@ -26,7 +26,9 @@
             setLocations : setLocations,
             getLocations : getLocations,
             setFlag : setFlag,
-            getFlag : getFlag
+            getFlag : getFlag,
+            setPassengers : setPassengers,
+            getPassengers : getPassengers
         }
 
         function setUrl(url) {
@@ -97,6 +99,20 @@
 
         function getFlag() {
             var data = JSON.parse(localStorageService.get("flag"));
+            return data;
+        }
+
+        function setPassengers(adults,children,babies) {
+            var passengers = {
+                passengersAdult : adults,
+                passengersChild : children,
+                passengersBaby : babies
+            }
+            localStorageService.set('passengers',JSON.stringify(passengers));
+        }
+
+        function getPassengers() {
+            var data = JSON.parse(localStorageService.get("passengers"));
             return data;
         }
 

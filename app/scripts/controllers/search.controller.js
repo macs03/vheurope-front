@@ -397,11 +397,11 @@
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['1', '2', '3', '4', '5'];
+            vm.passengers_options  = ['0','1', '2', '3', '4', '5','6'];
             vm.passengers = params.passengers;
-            vm.passengersAdult  = vm.passengers_options [1];
-            vm.passengersChild  = vm.passengers_options [0];
-            vm.passengersBaby  = vm.passengers_options [0];
+            vm.passengersAdult  = params.passengersAdult;
+            vm.passengersChild  = params.passengersChild;
+            vm.passengersBaby  = params.passengersBaby;
             vm.weather = weatherFactory.getWeather(params.destination, 'es');
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
@@ -429,7 +429,7 @@
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
                 travelsFactory
-                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
+                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -579,8 +579,11 @@
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
-                vm.passengers_options  = ['1', '2', '3', '4', '5'];
+                vm.passengers_options  = ['0','1', '2', '3', '4', '5'];
                 vm.passengers  = vm.passengers_options [0];
+                vm.passengersAdult  = sessionStorageService.getPassengers().passengersAdult;
+                vm.passengersChild  = sessionStorageService.getPassengers().passengersChild;
+                vm.passengersBaby  = sessionStorageService.getPassengers().passengersBaby;
 
                 vm.results = false;
                 vm.trips = [];
@@ -597,8 +600,11 @@
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
 
+                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
+                $('#modal_select_passengers').modal('hide');
+
                 travelsFactory
-                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode)
+                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
@@ -806,7 +812,7 @@
                 var title = 'Resertrip ' + origin + '-' + destination;
                 $rootScope.$broadcast('titleEvent', title);
                 travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry)
+                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
