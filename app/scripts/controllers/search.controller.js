@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -453,6 +453,20 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
+
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: params.origin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: params.destination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: params.originCountryCode });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: params.destinationCountryCode });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: params.passengers });
+                if ((params.returns).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(params.departure,params.returns) });
+                }
+
                 travelsFactory
                     .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
                     .then(function(data){
@@ -623,6 +637,19 @@
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
+
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: formatOrigin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: formatDestination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: $stateParams.originCountryCode });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: $stateParams.destinationCountryCode });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: vm.passengers });
+                if ((returnDateFormat).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDateFormat,returnDateFormat) });
+                }
 
                 travelsFactory
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
@@ -832,6 +859,20 @@
                 $('.pikaday__display').prop('disabled', true);
                 var title = 'Resertrip ' + origin + '-' + destination;
                 $rootScope.$broadcast('titleEvent', title);
+
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: origin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: destination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: originCountry });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: destinationCountry });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: vm.passengers });
+                if ((returnDate).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDate,returnDate) });
+                }
+                
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
                     .then(function(data){
@@ -1045,6 +1086,17 @@
                 if(!vm.good){
                     $('#error-date').modal('show');
                 }
+            }
+
+            function diffDays(f1,f2){
+                var aFecha1 = f1.split('/'); 
+                var aFecha2 = f2.split('/'); 
+                var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+                var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+                var dif = fFecha2 - fFecha1;
+                var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+                
+                return dias;
             }
 
 

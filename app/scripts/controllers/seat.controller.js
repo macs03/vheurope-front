@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService', '$timeout'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService', '$timeout','$analytics'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout,$analytics) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelectedDeparture = [];
@@ -539,7 +539,9 @@ angular
             $rootScope.$broadcast('counterEvent', counter, true);
   			console.log(vm.seatInSelection);
   			if(vm.seatInSelection.update != true){
-                console.log(vm.seatInSelection.trip);
+                //Eventos Google Analytics
+                $analytics.eventTrack('Select Seat', {  category: 'Seat', label: vm.seatInSelection.seatNumber });
+                console.log(vm.seatInSelection);
                 if(vm.seatInSelection.trip === 0){
                     console.log("Departure");
                     vm.seatsSelectedDeparture.push(angular.copy(vm.seatInSelection));
@@ -623,6 +625,9 @@ angular
                 vm.autoPassengers --;
             }
 
+            
+
+
 			$('#formSeat').modal('hide');
 			vm.updateTotals();
 		};
@@ -669,6 +674,8 @@ angular
 		};
 
 		vm.deleteSeat = function (trip, floor, seatNumber, update, index) {
+            //Eventos Google Analytics
+            $analytics.eventTrack('Unselect Seat', {  category: 'Seat', label: seatNumber });
             console.log(index);
             if (trip === 0) {
 
@@ -706,6 +713,7 @@ angular
 
         function selectSeatAutomatic(trip) {
             console.log("Automatic Seat");
+            $analytics.eventTrack('Select Seat Automatic', {  category: 'Seat', label: 'Automatic Seats' });
             if (trip == 0) {
                 vm.seatInSelection.trip = trip;
                 vm.seatInSelection.price = vm.trips.round.priceFloorOne;
@@ -742,6 +750,8 @@ angular
 	            vm.seatInSelection.trip = trip;
 	            vm.seatInSelection.floor = floor;
 
+                $analytics.eventTrack('Select Seat Open Form', {  category: 'Seat', label: 'Open Form' });
+               
 				if (trip === 0){
 					if(floor === 1){
 						vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
