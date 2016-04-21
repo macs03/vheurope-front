@@ -180,9 +180,7 @@
                 vm.myOptions = sessionStorageService.getLocations()
             }
 
-
         	vm.searchTrips = function () {
-            console.log(vm.passengersAdult +'--'+vm.passengersChild +'---'+vm.passengersBaby);
 
                 angular.forEach(vm.myOptions, function(value, key) {
                     if(vm.myOptions[key].id === vm.origin){
