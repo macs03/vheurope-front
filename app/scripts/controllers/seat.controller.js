@@ -12,9 +12,9 @@ angular
     .module('vhEurope')
     .controller('SeatController',SeatController);
 
-    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService', '$timeout'];
+    SeatController.$inject = ['travelsFactory','utilityService','seatsFactory','reserveFactory','$scope','$interval','$stateParams','$location','$rootScope','sessionStorageService', '$timeout','$analytics'];
 
-    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout) {
+    function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout,$analytics) {
         var vm = this;
         var sc, sc2, sc3, sc4;
         vm.seatsSelectedDeparture = [];
@@ -556,7 +556,9 @@ angular
             $rootScope.$broadcast('counterEvent', counter, true);
   			console.log(vm.seatInSelection);
   			if(vm.seatInSelection.update != true){
-                console.log(vm.seatInSelection.trip);
+                //Eventos Google Analytics
+                $analytics.eventTrack('Select Seat', {  category: 'Seat', label: vm.seatInSelection.seatNumber });
+                console.log(vm.seatInSelection);
                 if(vm.seatInSelection.trip === 0){
                     console.log("Departure");
                     vm.seatsSelectedDeparture.push(angular.copy(vm.seatInSelection));
@@ -585,6 +587,7 @@ angular
                         console.log("seats full");
                         vm.allSeats = true;
                     }
+                    vm.resetSeatInSelection();
                 }
                 if (vm.automaticSeat) {
                     if (vm.returnSeats.length > 0) {
@@ -605,22 +608,25 @@ angular
                 vm.selectDepartureSeat = false;
                 console.log(vm.seatInSelection.trip);
                 if(vm.seatInSelection.trip === 0){
-                    //vm.seatsSelectedReturn.splice(0, 1,vm.seatInSelection);
                     if($stateParams.idReturn == "-1"){
+                        vm.seatsSelectedDeparture[vm.index] = angular.copy(vm.seatInSelection);
                         vm.resetSeatInSelection();
+                        vm.selectDepartureSeat = true;
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
                             console.log("full seats");
                             vm.allSeats = true;
                         }
                     }else{
-                        vm.seatsSelectedReturn[0].country = angular.copy(vm.seatsSelectedDeparture[0].country);
-                        vm.seatsSelectedReturn[0].dni = angular.copy(vm.seatsSelectedDeparture[0].dni);
-                        vm.seatsSelectedReturn[0].document = angular.copy(vm.seatsSelectedDeparture[0].document);
-                        vm.seatsSelectedReturn[0].email = angular.copy(vm.seatsSelectedDeparture[0].email);
-                        vm.seatsSelectedReturn[0].lastname = angular.copy(vm.seatsSelectedDeparture[0].lastname);
-                        vm.seatsSelectedReturn[0].phone = angular.copy(vm.seatsSelectedDeparture[0].phone);
-                        vm.seatsSelectedReturn[0].name = angular.copy(vm.seatsSelectedDeparture[0].name);
-                        vm.selectDepartureSeat = false;
+                        if (vm.seatsSelectedReturn.length > 0) {
+                            vm.seatsSelectedReturn[vm.index].country = angular.copy(vm.seatsSelectedDeparture[vm.index].country);
+                            vm.seatsSelectedReturn[vm.index].dni = angular.copy(vm.seatsSelectedDeparture[vm.index].dni);
+                            vm.seatsSelectedReturn[vm.index].document = angular.copy(vm.seatsSelectedDeparture[vm.index].document);
+                            vm.seatsSelectedReturn[vm.index].email = angular.copy(vm.seatsSelectedDeparture[vm.index].email);
+                            vm.seatsSelectedReturn[vm.index].lastname = angular.copy(vm.seatsSelectedDeparture[vm.index].lastname);
+                            vm.seatsSelectedReturn[vm.index].phone = angular.copy(vm.seatsSelectedDeparture[vm.index].phone);
+                            vm.seatsSelectedReturn[vm.index].name = angular.copy(vm.seatsSelectedDeparture[vm.index].name);
+                            vm.selectDepartureSeat = false;
+                        }
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
                                 console.log("full seats");
                                 vm.allSeats = true;
@@ -636,11 +642,14 @@ angular
                 vm.autoPassengers --;
             }
 
+            
+
+
 			$('#formSeat').modal('hide');
 			vm.updateTotals();
 		};
 
-		vm.releaseSeat = function (trip, floor, seatNumber, update) {
+		vm.releaseSeat = function (trip, floor, seatNumber, update,index) {
             console.log(seatNumber+'-'+trip);
             if(trip === 0){
                 console.log('IDA');
@@ -657,6 +666,7 @@ angular
                 }else{
                     sc2.status(seatNumber.toString(), 'available');
                 }
+                vm.seatInSelection.update = false;
             }else{
                 console.log('VUELTA');
                 if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
@@ -680,28 +690,47 @@ angular
             $('#formSeat').modal('hide');
 		};
 
-		vm.deleteSeat = function (trip, floor, seatNumber, update) {
+		vm.deleteSeat = function (trip, floor, seatNumber, update, index) {
+            //Eventos Google Analytics
+            $analytics.eventTrack('Unselect Seat', {  category: 'Seat', label: seatNumber });
+            console.log(index);
             if (trip === 0) {
-                for(var i = vm.seatsSelectedDeparture.length; i--;) {
-                   if(vm.seatsSelectedDeparture[i].trip === trip && vm.seatsSelectedDeparture[i].seatNumber === seatNumber) {
-                        vm.seatsSelectedDeparture.splice(i, 1);
-                        vm.releaseSeat (trip, floor, seatNumber, update);
-                        break;
-                   }
-               	}
-            } else {
-                for(var i = vm.seatsSelectedReturn.length; i--;) {
-                    if(vm.seatsSelectedReturn[i].trip === trip && vm.seatsSelectedReturn[i].seatNumber === seatNumber) {
-                        vm.seatsSelectedReturn.splice(i, 1);
-                        vm.releaseSeat (trip, floor, seatNumber, update);
-                        break;
+
+               if(vm.seatsSelectedDeparture[index].trip === trip && vm.seatsSelectedDeparture[index].seatNumber === seatNumber) {
+                   if($stateParams.idReturn != "-1"){
+                       if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
+                           vm.seatInSelection = vm.seatsSelectedDeparture[index];
+                           vm.seatsSelectedDeparture.splice(index, 1);
+                           vm.releaseSeat (trip, floor, seatNumber, update,index);
+                       }else{
+                           console.log("Do not delete");
+                       }
+                   }else{
+                        vm.seatsSelectedDeparture.splice(index, 1);
+                        vm.releaseSeat (trip, floor, seatNumber, update,index);
                     }
+               }
+            } else {
+                if(vm.seatsSelectedReturn[index].trip === trip && vm.seatsSelectedReturn[index].seatNumber === seatNumber) {
+                    if($stateParams.idReturn != "-1"){
+                        if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
+                            vm.seatInSelection = vm.seatsSelectedReturn[index];
+                            vm.seatsSelectedReturn.splice(index, 1);
+                            vm.releaseSeat (trip, floor, seatNumber, update,index);
+                        }else{
+                            console.log("Do no delete");
+                        }
+                    }else{
+                        vm.seatsSelectedReturn.splice(index, 1);
+                        vm.releaseSeat (trip, floor, seatNumber, update,index);
+                     }
                 }
             }
 		};
 
         function selectSeatAutomatic(trip) {
             console.log("Automatic Seat");
+            $analytics.eventTrack('Select Seat Automatic', {  category: 'Seat', label: 'Automatic Seats' });
             if (trip == 0) {
                 vm.seatInSelection.trip = trip;
                 vm.seatInSelection.price = vm.trips.round.priceFloorOne;
@@ -713,11 +742,13 @@ angular
 
         }
 
-		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item) {
+		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item, index) {
 			//seatNUmber = Numero de asiento
 			//trip => 0 = ida, 2= vuelta
 			//floor = Numero de piso
+            console.log(index);
 			console.log(item);
+            vm.index = index;
 
 			if(item != null ){
 				vm.seatInSelection = item;
@@ -728,7 +759,7 @@ angular
                 if($stateParams.idReturn != "-1"){
                     if(vm.seatInSelection.trip === 1){
                         vm.selectAgain = true;
-                        vm.resetSeatInSelection();
+                        //vm.resetSeatInSelection();
                     }
                 }
 				vm.seatInSelection.seatNumber = seatNumber;
@@ -736,6 +767,8 @@ angular
 	            vm.seatInSelection.trip = trip;
 	            vm.seatInSelection.floor = floor;
 
+                $analytics.eventTrack('Select Seat Open Form', {  category: 'Seat', label: 'Open Form' });
+               
 				if (trip === 0){
 					if(floor === 1){
 						vm.seatInSelection.tripId = vm.trips.round[0].tripIdFloorOne;
@@ -766,6 +799,7 @@ angular
                         }
 					}
                     vm.addSeat();
+                    vm.index = index;
 				}
 
 				$scope.$apply();

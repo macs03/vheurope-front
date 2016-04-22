@@ -95,18 +95,40 @@
           	vm.destination = params.destination+","+params.countryDestination;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['0', '1', '2', '3', '4', '5'];
-            vm.passengers  = vm.passengers_options [1];
-            vm.passengersAdult  = vm.passengers_options [1];
-            vm.passengersChild  = vm.passengers_options [0];
-            vm.passengersBaby  = vm.passengers_options [0];
+            vm.passengers  = 1;
+            vm.passengersAdult  = 1;
+            vm.passengersChild  = 0;
+            vm.passengersBaby  = 0;
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
         	vm.myOptions = [];
 
-            vm.selectPassengers = function(){
+            vm.updatePassengers = function(type, direction){
+                if(direction == 'up' && vm.passengers < 7){
+                    if(type=='adult'){
+                       vm.passengersAdult = vm.passengersAdult + 1;  
+                    }
+                    if(type=='child'){
+                        vm.passengersChild =  vm.passengersChild + 1;
+                    } 
+                    if(type=='baby'){
+                        vm.passengersBaby = vm.passengersBaby + 1;
+                    } 
+                }
+
+                if(direction == 'dwn'){
+                    if(type=='adult' && vm.passengersAdult > 0){
+                       vm.passengersAdult = vm.passengersAdult - 1;  
+                    }
+                    if(type=='child' && vm.passengersChild > 0){
+                        vm.passengersChild =  vm.passengersChild - 1;
+                    } 
+                    if(type=='baby' && vm.passengersBaby > 0){
+                        vm.passengersBaby = vm.passengersBaby - 1;
+                    } 
+                }
                 vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
-                $('#modal_select_passengers').modal('hide');
+                $('#select_passengers').val(vm.passengers);
             };
 
         	vm.configOrigin = {
@@ -158,8 +180,8 @@
                 vm.myOptions = sessionStorageService.getLocations()
             }
 
-
         	vm.searchTrips = function () {
+
                 angular.forEach(vm.myOptions, function(value, key) {
                     if(vm.myOptions[key].id === vm.origin){
                         vm.originCity = vm.myOptions[key].city;
@@ -201,6 +223,7 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
 
                         if ( newDate1 <= newDate2) {
+                            console.log('IF');
                             console.log(vm.originCity);
                         	console.log(vm.destinationCity);
                         	console.log('departure: '+vm.dates.departureDate);
@@ -216,6 +239,7 @@
                             dateError();
                         }
                     }else{
+                        console.log('ELSE');
                         var date1 = vm.dates.departureDate;
                         var date2 = vm.dates.returnDate;
                         var vD1 = date1.split("/")
@@ -236,12 +260,9 @@
                 }
             }
 
-
             function changeDate(){
                 vm.departureDateUnix = new Date(vm.dates.departureDate).getTime()/1000;
             }
-
-           
 
             function cityError() {
                 if(!vm.good){
@@ -269,8 +290,17 @@
                 $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
             });
 
+
             $('#select_passengers').on('click', function(){
-                 $('#modal_select_passengers').modal('show');
+                var offset = $(this).offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top-132)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
+
+             $('#popover-bg').on('click', function(){
+                $('.popover-select-passengers').attr('style', 'display: none;');
+                $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
 
             var bg_images = [

@@ -74,7 +74,7 @@ input.ng-valid.ng-touched {
             <p translate>SEATS.LOADING_MESSAGE</p><br>
             <img src="https://cdn.api.voyhoy.com/loader.gif" alt="Cargando mapa de asientos..." />
         </div>
-    </div> 
+    </div>
 </div>
 <div class="container" ng-show="!seat.isLoading" id="seat-container">
     <br>
@@ -163,24 +163,21 @@ input.ng-valid.ng-touched {
                                 <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
                                 <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
 
-                            </div>
-                            <div id="seats-ida">
+                            <div ng-repeat="item in seat.seatsSelectedDeparture | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font text-muted">{{ item.dni }}</p>
+                                        <small class="text-muted smallest-font">{{ item.country }}</small>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">
+                                        <div class="seat-actions">
+                                            <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item, $index);"><i class="fa fa-edit"></i></a>
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false, $index);"><i class="fa fa-times"></i></a>
 
-                                <div ng-repeat="item in seat.seatsSelectedDeparture | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}">
-                                    <div class="row">
-                                        <div class="col-md-5 col-xs-5">
-                                            <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
-                                            <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
-                                        </div>
-                                        <div class="col-md-5 col-xs-5">
-                                            <p class="smallest-font text-muted">{{ item.dni }}</p>
-                                            <small class="text-muted smallest-font">{{ item.country }}</small>
-                                        </div>
-                                        <div class="col-md-2 col-xs-2">
-                                            <div class="seat-actions">
-                                                <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a>
-                                                <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -275,28 +272,21 @@ input.ng-valid.ng-touched {
                             </div>
                         </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
 
-                        <div class="col-xs-12 col-md-6 col-sm-6" style="padding: 0;" id="forms_vuelta">
-                            <div class="select-seat">
-                                <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
-                                <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
-                            </div>
-                            <div id="seats-vuelta">
+                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font text-muted">{{ item.dni }}</p>
+                                        <small class="text-muted smallest-font">{{ item.country }}</small>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">
+                                        <div class="seat-actions">
+                                            <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
+                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index);"><i class="fa fa-times"></i></a>
 
-                                <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected" id="id_{{ item.seatNumber }}">
-                                    <div class="row">
-                                        <div class="col-md-5 col-xs-5">
-                                            <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
-                                            <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
-                                        </div>
-                                        <div class="col-md-5 col-xs-5">
-                                            <p class="smallest-font text-muted">{{ item.dni }}</p>
-                                            <small class="text-muted smallest-font">{{ item.country }}</small>
-                                        </div>
-                                        <div class="col-md-2 col-xs-2">
-                                            <div class="seat-actions">
-                                                <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
-                                                <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false);"><i class="fa fa-times"></i></a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -366,7 +356,7 @@ input.ng-valid.ng-touched {
 <!-- MODALES REUSABLES -->
 
 <!-- Modal -->
-<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" 
+<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
    data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -378,9 +368,9 @@ input.ng-valid.ng-touched {
         </p>
       </div>
       <div class="modal-body">
-      <form role="form" id="form_data"  ng-submit="seat.addSeat()">    
+      <form role="form" id="form_data"  ng-submit="seat.addSeat()">
         <fieldset class="" >
-           
+
             <div class="form-content">
 
                 <div class="row">
@@ -399,7 +389,7 @@ input.ng-valid.ng-touched {
                 </div>
                 <div class="row">
 
-                    
+
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>

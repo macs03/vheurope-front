@@ -1,3 +1,51 @@
+<div id="popover-bg"></div>
+<div class="popover-select-passengers">
+    <div class="popover-select-passengers-wrapper">
+        <h5>Pasajeros</h5>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Adultos</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('adult', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center" size="2" ng-model="search.passengersAdult">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('adult', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Niños</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('child', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center"  size="2" ng-model="search.passengersChild">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('child', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+        <div class="input-group number-spinner pull-right">
+            <label for="">Bebes</label>
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('baby', 'dwn')">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </span>
+            <input type="text" class="text-center" size="2" ng-model="search.passengersBaby">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-xs" data-dir="up" ng-click="search.updatePassengers('baby', 'up')">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
 <div id="results-container">
     <!-- Start Hero -->
     <div class="hero" id="search-page">
@@ -33,8 +81,8 @@
                                                     <span class="fa fa-times clear-calendar vh-calendar"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-12 np">
-                                                    <input type="text" id="select_passengers" value="{{ search.passengers }}">
-                                                   <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
+                                                    <input type="text" id="select_passengers" ng-model="search.passengers">
+                                                    <span class="fa fa-users  vh-calendar" style="margin-right: 15px;"></span>
                                                 </div>
 
                                             </div> <!-- end .row -->
@@ -47,7 +95,7 @@
                         <!-- <div class="bg-danger col-xs-12 col-md-12" ng-if="search.error"><span>{{search.msgError}}</span></div> -->
                     </div> <!-- end .row-->
 
-                    
+
                 </div> <!-- end container-->
             </div> <!-- end .hero-content-->
         </div> <!-- end .hero-img-->
@@ -84,7 +132,7 @@
                 </div>
             </div>
     </div>
-   
+
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->
@@ -224,7 +272,7 @@
                         <span style="margin-left:6px;" translate>SEARCH.SORT.DURATION</span>
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'durationMinutes'"></span>
                     </div>
-                    
+
                     <div class="col-md-3  sort sort-trips bl bt bb br" ng-class="{active:search.type === 'companyName'}" data-sort="company" ng-click="search.order('companyName')">
                         <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
@@ -603,7 +651,7 @@
             <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.tickets.length > 0">
                 <div class="col-xs-12 col-md-12 " >
                     <h5 class="hidden-xs hidden-sm" >
-                        <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.tickets.length}} <span translate>SEARCH.TRIPS.RESULTS</span> 
+                        <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.tickets.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
                     </h5>
                     <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
                         <div class="results list" id="trips_no_tickeables" >
@@ -632,7 +680,7 @@
 
                                 <div class="col-md-2 col-xs-4 col-sm-4 c-price">
                                     <a href="{{trip.data.redirect}}" target="_blank" class="btn btn-block theme-blue-2">ELEGIR <i class="fa fa-share-square-o"></i></a>
-                                   
+
                                 </div>
 
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
@@ -732,49 +780,6 @@
                  </div>
                </div>
             </div>
-             <div class="modal fade" id="modal_select_passengers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-            <h4>Pasajeros</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="">Adultos</label>
-                </div>
-                <div class="col-md-6">
-                    <select ng-model="search.passengersAdult" ng-options="opt for opt in search.passengers_options" class="select-passengers"></select>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="">Niños</label>
-                </div>
-                <div class="col-md-6">
-                    <select ng-model="search.passengersChild" ng-options="opt for opt in search.passengers_options" class="select-passengers"></select>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="">Bebes</label>
-                </div>
-                <div class="col-md-6">
-                    <select ng-model="search.passengersBaby" ng-options="opt for opt in search.passengers_options" class="select-passengers"></select>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer text-center">
-            <a class="btn  btn-success btn-search" ng-click="search.selectPassengers()"  >Seleccionar</a>
-        </div>
-      </div>
-    </div>
- </div>
-
-
         </div>
     </div>
 </div>

@@ -155,13 +155,16 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-34587596-1']);
+          //_gaq.push(['_trackPageview']);
+          _gaq.push(['_setDomainName', 'none']);
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
     </script>
 
 
@@ -193,6 +196,9 @@
     <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="bower_components/ngprogress/build/ngprogress.min.js"></script>
+    <script src="bower_components/SHA-1/sha1.js"></script>
+    <script src="bower_components/angulartics/src/angulartics.js"></script>
+    <script src="bower_components/angulartics-google-analytics/lib/angulartics-google-analytics.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -203,7 +209,6 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/constants.js"></script>
-        <script src="scripts/directives/form.directive.js"></script>
         <script src="scripts/directives/gmap.directive.js"></script>
         <script src="scripts/directives/footer.directive.js"></script>
         <script src="scripts/directives/datepicker.directive.js"></script>
@@ -228,7 +233,6 @@
         <script src="scripts/filters/priceScraper.filter.js"></script>
         <script src="scripts/controllers/index.controller.js"></script>
         <script src="scripts/controllers/main.controller.js"></script>
-        <script src="scripts/controllers/form.directive.controller.js"></script>
         <script src="scripts/controllers/switchLanguage.controller.js"></script>
         <script src="scripts/controllers/search.controller.js"></script>
         <script src="scripts/controllers/seat.controller.js"></script>

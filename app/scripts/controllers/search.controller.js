@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics) {
             var vm = this;
             vm.searchTrip = searchTrip;
             vm.searching = false;
@@ -400,19 +400,44 @@
             vm.dates.returnDate = params.returns;
             vm.countryOrigin = params.countryOrigin;
             vm.countryDestination = params.countryDestination;
-            vm.passengers_options  = ['0','1', '2', '3', '4', '5','6'];
-            vm.passengers = params.passengers;
-            vm.passengersAdult  = params.passengersAdult;
-            vm.passengersChild  = params.passengersChild;
-            vm.passengersBaby  = params.passengersBaby;
+            vm.passengers = parseInt(params.passengers);
+            vm.passengersAdult  = parseInt(params.passengersAdult);
+            vm.passengersChild  = parseInt(params.passengersChild);
+            vm.passengersBaby  = parseInt(params.passengersBaby);
+
             vm.weather = weatherFactory.getWeather(params.destination, 'es');
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
 
-             vm.selectPassengers = function(){
+            vm.updatePassengers = function(type, direction){
+                console.log(type);
+                if(direction == 'up' && vm.passengers < 7){
+                    if(type=='adult'){
+                       vm.passengersAdult = vm.passengersAdult + 1;  
+                    }
+                    if(type=='child'){
+                        vm.passengersChild =  vm.passengersChild + 1;
+                    } 
+                    if(type=='baby'){
+                        vm.passengersBaby = vm.passengersBaby + 1;
+                    } 
+                }
+
+                if(direction == 'dwn'){
+                    if(type=='adult' && vm.passengersAdult > 0){
+                       vm.passengersAdult = vm.passengersAdult - 1;  
+                    }
+                    if(type=='child' && vm.passengersChild > 0){
+                        vm.passengersChild =  vm.passengersChild - 1;
+                    } 
+                    if(type=='baby' && vm.passengersBaby > 0){
+                        vm.passengersBaby = vm.passengersBaby - 1;
+                    } 
+                }
                 vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
-                $('#modal_select_passengers').modal('hide');
+                $('#select_passengers').val(vm.passengers);
             };
+
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -431,6 +456,20 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
+
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: params.origin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: params.destination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: params.originCountryCode });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: params.destinationCountryCode });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: params.passengers });
+                if ((params.returns).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(params.departure,params.returns) });
+                }
+
                 travelsFactory
                     .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
                     .then(function(data){
@@ -583,11 +622,10 @@
                 vm.dates.returnDate = returnDateFormat;
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
-                vm.passengers_options  = ['0','1', '2', '3', '4', '5'];
-                vm.passengers  = vm.passengers_options [0];
-                vm.passengersAdult  = sessionStorageService.getPassengers().passengersAdult;
-                vm.passengersChild  = sessionStorageService.getPassengers().passengersChild;
-                vm.passengersBaby  = sessionStorageService.getPassengers().passengersBaby;
+                vm.passengers  = 1;
+                vm.passengersAdult  = parseInt(sessionStorageService.getPassengers().passengersAdult);
+                vm.passengersChild  = parseInt(sessionStorageService.getPassengers().passengersChild);
+                vm.passengersBaby  = parseInt(sessionStorageService.getPassengers().passengersBaby);
 
                 vm.results = false;
                 vm.trips = [];
@@ -604,8 +642,18 @@
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
 
-                vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
-                $('#modal_select_passengers').modal('hide');
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: formatOrigin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: formatDestination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: $stateParams.originCountryCode });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: $stateParams.destinationCountryCode });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: vm.passengers });
+                if ((returnDateFormat).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDateFormat,returnDateFormat) });
+                }
 
                 travelsFactory
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
@@ -816,6 +864,20 @@
                 $('.pikaday__display').prop('disabled', true);
                 var title = 'Resertrip ' + origin + '-' + destination;
                 $rootScope.$broadcast('titleEvent', title);
+
+                //Eventos Google Analytics
+                $analytics.eventTrack('Origin City', {  category: 'Search', label: origin });
+                $analytics.eventTrack('Destination City', {  category: 'Search', label: destination });
+                $analytics.eventTrack('Origin Country', {  category: 'Search', label: originCountry });
+                $analytics.eventTrack('Destination Country', {  category: 'Search', label: destinationCountry });
+                $analytics.eventTrack('Number Passengers', {  category: 'Search', label: 'Total Passengers', value: vm.passengers });
+                if ((returnDate).length == 0) {
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'One Way' });
+                }else{
+                    $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
+                    $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDate,returnDate) });
+                }
+                
                 travelsFactory
                     .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
                     .then(function(data){
@@ -932,7 +994,6 @@
             function alternativeSearch(origin, countryOrigin, destination, countryDestination) {
                 vm.origin = origin+", "+countryOrigin;
                 vm.destination = destination+", "+countryDestination;
-                callSearch(origin,destination,vm.dates.departureDate,vm.dates.returnDate);
             }
 
             function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
@@ -1235,13 +1296,32 @@
                 }
             }
 
+            function diffDays(f1,f2){
+                var aFecha1 = f1.split('/'); 
+                var aFecha2 = f2.split('/'); 
+                var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+                var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+                var dif = fFecha2 - fFecha1;
+                var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+                
+                return dias;
+            }
+
 
             $('.btn-filters').on('click', function(){
                 $('#filters-container').toggleClass('hidden-xs');
             });
 
             $('#select_passengers').on('click', function(){
-                 $('#modal_select_passengers').modal('show');
+                var offset = $(this).offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top+55)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
+
+             $('#popover-bg').on('click', function(){
+                $('.popover-select-passengers').attr('style', 'display: none;');
+                $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
 
         }

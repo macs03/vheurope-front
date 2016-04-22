@@ -25,7 +25,9 @@
        'ui.router',
        'ui.mask',
        'LocalStorageModule',
-       'ngProgress'
+       'ngProgress',
+       'angulartics',
+       'angulartics.google.analytics'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {

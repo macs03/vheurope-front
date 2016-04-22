@@ -46,6 +46,9 @@ module.exports = function(config) {
       'bower_components/angular-ui-mask/dist/mask.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
       'bower_components/ngprogress/build/ngprogress.min.js',
+      'bower_components/SHA-1/sha1.js',
+      'bower_components/angulartics/src/angulartics.js',
+      'bower_components/angulartics-google-analytics/lib/angulartics-google-analytics.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
