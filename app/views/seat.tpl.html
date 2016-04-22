@@ -271,8 +271,10 @@ input.ng-valid.ng-touched {
                                 </div> <!-- end .tab-content -->
                             </div>
                         </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
-
-                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                        <div class="select-seat">
+                            <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
+                            <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
+                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}">
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
@@ -293,7 +295,7 @@ input.ng-valid.ng-touched {
 
                             </div>
                             <br>
-                            <div class="row" ng-show="!seat.trips.round.automaticSeat">
+                            <div class="col-md-6" ng-show="!seat.trips.round.automaticSeat">
                                 <div class="col-md-4 col-xs-4 seat-legend">
                                     <img src="images/seat-charts/seat-available.png" alt="Disponible">
                                     <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>

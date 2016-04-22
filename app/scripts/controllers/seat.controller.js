@@ -821,14 +821,13 @@ angular
 				// vm.totalMount += vm.seatsSelectedReturn[i].price;
                 // vm.totalMount = Math.round(vm.totalMount * 100) / 100;
         	}
-            for (var i = 0; i < vm.trips.round.length; i++) {
-                if (vm.seatsSelectedReturn.length > 0) {
-                    vm.totalMount += vm.seatsSelectedReturn[i].price + vm.seatsSelectedDeparture[i].price;
-                    vm.totalMount = Math.round(vm.totalMount * 100) / 100;
-                }else{
-                    vm.totalMount += vm.seatsSelectedDeparture[i].price;
-                    vm.totalMount = Math.round(vm.totalMount * 100) / 100;
-                }
+
+            if (vm.seatsSelectedReturn.length > 0) {
+                vm.totalMount += vm.seatsSelectedReturn[0].price + vm.seatsSelectedDeparture[0].price;
+                vm.totalMount = Math.round(vm.totalMount * 100) / 100;
+            }else{
+                vm.totalMount += vm.seatsSelectedDeparture[0].price;
+                vm.totalMount = Math.round(vm.totalMount * 100) / 100;
             }
 
 		};
