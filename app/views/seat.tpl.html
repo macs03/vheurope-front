@@ -81,32 +81,32 @@ input.ng-valid.ng-touched {
     <div class="row">
         <!--  El de abajo es el enlace original al controlador de pagos -->
         <div id="form-seat-selection" data-action="#"></div>
-        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-ida">
-            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_ROUND</span> <span class="text-muted">{{ seat.trips.round.origin }} a {{ seat.trips.round.destination }}</span></h5>
+        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-ida" ng-repeat="i in [0,1]" ng-hide="seat.tramos && $index > 0">
+            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_ROUND</span> <span class="text-muted">{{ seat.trips.round[i].origin }} a {{ seat.trips.round[i].destination }}</span></h5>
             <br>
             <div class="new-results">
-                <div class="results list" >
+                <div class="results list">
                     <div class="row result seat">
                         <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>{{ seat.trips.round.departureHour }} hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round.origin }}</small>
+                            <strong>{{ seat.trips.round[i].departureHour }} hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round[i].origin }}</small>
                             <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.round.terminalOrigin }}</small>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.round[i].terminalOrigin }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>{{ seat.trips.round.arrivalHour }} hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.round.destination }}</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.round.terminalDestination }}</small>
+                            <strong>{{ seat.trips.round[i].arrivalHour }} hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.round[i].destination }}</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.round[i].terminalDestination }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company"> {{ seat.trips.round.company }}</small>
-                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
+                            <small class="text-muted smallest-font company"> {{ seat.trips.round[i].company }}</small>
+                            <img src="{{ seat.trips.round[i].companyLogo }}" title="{{ seat.trips.round[i].company }}" class="logo_small">
                         </div>
                         <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round.duration }}</p>
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round[i].duration }}</p>
                         </div>
-                    </div>  
-                </div>  
+                    </div>
+                </div>
             </div>
 
             <div class="box" id="box-ida">
@@ -126,7 +126,7 @@ input.ng-valid.ng-touched {
                                 <div role="tabpanel" class="tab-pane active" id="panel1">
                                     <div class="wrapper">
                                         <div class="container-seats">
-                                            <div id="seat-map-1">
+                                            <div id="seat-map-{{i}}">
                                                 <div class="front-indicator">Frente</div>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@ input.ng-valid.ng-touched {
                                 <div role="tabpanel" class="tab-pane" id="panel2">
                                     <div class="wrapper">
                                         <div class="container-seats">
-                                            <div id="seat-map-2">
+                                            <div id="seat-map-2-{{$index}}">
                                                 <div class="front-indicator">Frente</div>
                                             </div>
                                         </div>
@@ -207,37 +207,37 @@ input.ng-valid.ng-touched {
                 </div> <!-- end .box-content -->
             </div> <!-- end .box #box-ida -->
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
-        
-        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip">
-            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_RETURN</span> <span class="text-muted">{{ seat.trips.return.origin }} a {{ seat.trips.return.destination }}</span></h5>
+
+        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip" ng-repeat="i in [0,1]" ng-hide="seat.tramos2 && $index > 0">
+            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_RETURN</span> <span class="text-muted">{{ seat.trips.return[i].origin }} a {{ seat.trips.return[i].destination }}</span></h5>
             <br>
             <div class="new-results">
                 <div class="results list" >
                     <div class="row result">
                         <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>{{ seat.trips.return.departureHour }} hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.return.origin }}</small>
+                            <strong>{{ seat.trips.return[i].departureHour }} hrs.</strong>
+                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.return[i].origin }}</small>
                             <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.return.terminalOrigin }}</small>
+                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.return[i].terminalOrigin }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>{{ seat.trips.return.arrivalHour }} hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.return.destination }}</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.return.terminalDestination }}</small>
+                            <strong>{{ seat.trips.return[i].arrivalHour }} hrs.</strong>
+                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.return[i].destination }}</small>
+                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.return[i].terminalDestination }}</small>
                         </div>
                         <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company"> {{ seat.trips.return.company }}</small>
-                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
+                            <small class="text-muted smallest-font company"> {{ seat.trips.return[i].company }}</small>
+                            <img src="{{ seat.trips.return[i].companyLogo }}" title="{{ seat.trips.return[i].company }}" class="logo_small">
                         </div>
                         <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return.duration }}</p>
+                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return[i].duration }}</p>
                         </div>
-                    </div>  
-                </div>  
+                    </div>
+                </div>
             </div>
-            
+
             <div class="box" id="box-vuelta">
-                <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;">
+                <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;" >
                     <div class="col-xs-12 col-md-6 col-sm-6" id="seat_map_vuelta" style="padding-left:0;" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats}" ng-show="!seat.trips.round.automaticSeat">
                         <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
                         <div class="tabs-container">
@@ -253,7 +253,7 @@ input.ng-valid.ng-touched {
                                 <div role="tabpanel" class="tab-pane active" id="panel3">
                                     <div class="wrapper">
                                         <div class="container-seats">
-                                            <div id="seat-map-3">
+                                            <div id="seat-map-3-{{$index}}">
                                                 <div class="front-indicator">Frente</div>
                                             </div>
                                         </div>
@@ -262,7 +262,7 @@ input.ng-valid.ng-touched {
                                 <div role="tabpanel" class="tab-pane" id="panel4">
                                     <div class="wrapper">
                                         <div class="container-seats">
-                                            <div id="seat-map-4">
+                                            <div id="seat-map-4-{{$index}}">
                                                 <div class="front-indicator">Frente</div>
                                             </div>
                                         </div>
@@ -313,13 +313,13 @@ input.ng-valid.ng-touched {
                                 <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
                                 <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div> <!-- end .box-content -->
             </div> <!-- end .box #box-vuelta -->
         </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
 
-        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'mt5':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip}">
+        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'mt5':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip || !seat.tramos}">
             <div ng-show="!seat.trips.isRoundTrip"><br><br><br></div>
             <div class="box" id="purchase-resumen" style="background: #fff;">
                 <div class="box-content">
@@ -343,7 +343,7 @@ input.ng-valid.ng-touched {
                             </p> -->
                             <p>
                                 <span class="small-font"><strong translate>SEATS.PURCHASE_TOTAL</strong></span>
-                                <span class="small-font pull-right"> <span id="total">{{ seat.seatsSelectedDeparture[0].price  }} €</span></span>
+                                <span class="small-font pull-right"> <span id="total">{{ seat.totalMount  }} €</span></span>
                             </p>
                             <br>
                             <br>
