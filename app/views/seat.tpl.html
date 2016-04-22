@@ -205,7 +205,7 @@ input.ng-valid.ng-touched {
                     </div> <!-- end .box-content -->
                 </div> <!-- end .box #box-ida -->
             </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
-
+        </div>
 
         <div class="col-xs-12" ng-show="seat.trips.isRoundTrip" ng-class="{'col-md-6':seat.trips.return.length == 1 , 'col-md-12': seat.trips.return.length > 1 }">
             <div class="col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip" ng-repeat="i in [0,1]" ng-hide="seat.tramos2 && $index > 0" ng-class="{'col-md-12':seat.trips.return.length == 1 , 'col-md-6': seat.trips.return.length > 1 }">
