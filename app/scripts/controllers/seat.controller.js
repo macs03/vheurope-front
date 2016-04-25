@@ -415,10 +415,11 @@ angular
                             console.log(item);
                             sc.status(item.toString(), 'unavailable');
                         });
-
-                        $.each(vm.trips.round[i].unavailableSeats, function(index, item){
-                            sc2.status(item.toString(), 'unavailable');
-                        });
+                        if(vm.trips.round[i].size === 2){
+                            $.each(vm.trips.round[i].unavailableSeats, function(index, item){
+                                sc2.status(item.toString(), 'unavailable');
+                            });
+                        }
                     }else{
 
                         $.each(vm.trips.round[i].unavailableSeats, function(index, item){
@@ -508,10 +509,11 @@ angular
                                 console.log(item);
                                 sc3.status(item.toString(), 'unavailable');
                             });
-
-                            $.each(vm.trips.return[i].unavailableSeats, function(index, item){
-                                sc4.status(item.toString(), 'unavailable');
-                            });
+                            if(vm.trips.return[i].size === 2){
+                                $.each(vm.trips.return[i].unavailableSeats, function(index, item){
+                                    sc4.status(item.toString(), 'unavailable');
+                                });
+                            }
                         }else{
 
                             $.each(vm.trips.return[i].unavailableSeats, function(index, item){
