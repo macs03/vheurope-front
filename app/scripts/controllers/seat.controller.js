@@ -16,7 +16,7 @@ angular
 
     function SeatController (travelsFactory, utilityService, seatsFactory, reserveFactory, $scope, $interval, $stateParams,$location,$rootScope,sessionStorageService,$timeout,$analytics) {
         var vm = this;
-        var sc, sc2, sc3, sc4;
+        var sc, sc2, sc3, sc4 , sc5 , sc6, sc7, sc8;
         vm.seatsSelectedDeparture = [];
         vm.seatsSelectedDeparture2 = [];
         vm.seatsSelectedReturn = [];
@@ -337,8 +337,43 @@ angular
                 }else if (len2 == 2) {
                     vm.tramos2 = false;
                 }
-                for (var i = 0; i < vm.trips.round.length; i++) {
-                    sc = $('#seat-map-'+i).seatCharts({
+                sc = $('#seat-map-'+0).seatCharts({
+                    map: vm.trips.round[0].seatMap,
+                    seats: {
+                        a: {
+                            price   : 99.99,
+                            classes : 'front-seat' //your custom CSS class
+                        }
+
+                    },
+                    naming : {
+                                    top : false,
+                                    left: false
+                     },
+                    click: function () {
+                        if (this.status() == 'available') {
+                            var seatNumber = this.settings.id;
+                            var seatLabel = this.settings.label;
+                            vm.selectSeat(seatNumber, seatLabel, 0, 1, null);
+                            //do some stuff, i.e. add to the cart
+                           return 'selected';
+                        } else if (this.status() == 'selected') {
+                            var seatNumber = this.settings.id;
+                            vm.deleteSeat(0, 1, seatNumber, true);
+                            //seat has been vacated
+                            return 'available';
+                        } else if (this.status() == 'unavailable') {
+                            //seat has been already booked
+                            return 'unavailable';
+                        } else {
+                            return this.style();
+                        }
+                    }
+                });
+
+                if(vm.trips.round[0].size === 2){
+
+                    sc2 = $('#seat-map-2-'+0).seatCharts({
                         map: vm.trips.round[i].seatMap,
                         seats: {
                             a: {
@@ -355,12 +390,13 @@ angular
                             if (this.status() == 'available') {
                                 var seatNumber = this.settings.id;
                                 var seatLabel = this.settings.label;
-                                vm.selectSeat(seatNumber, seatLabel, 0, 1, null);
+                                vm.selectSeat(seatNumber, seatLabel, 0, 2, null);
+
                                 //do some stuff, i.e. add to the cart
                                return 'selected';
                             } else if (this.status() == 'selected') {
-                                var seatNumber = this.settings.id;
-                                vm.deleteSeat(0, 1, seatNumber, true);
+                                var seatNumber = this.settings.label;
+                                vm.deleteSeat(0, 2, seatNumber, true);
                                 //seat has been vacated
                                 return 'available';
                             } else if (this.status() == 'unavailable') {
@@ -371,64 +407,116 @@ angular
                             }
                         }
                     });
+                }
 
-                    if(vm.trips.round[i].size === 2){
+                //Elimino los asientos ocupados
+                if(vm.trips.round[0].unavailableSeats.length > 0){
 
-                        sc2 = $('#seat-map-2-'+i).seatCharts({
-                            map: vm.trips.round[i].seatMap,
-                            seats: {
-                                a: {
-                                    price   : 99.99,
-                                    classes : 'front-seat' //your custom CSS class
-                                }
-
-                            },
-                            naming : {
-                                            top : false,
-                                            left: false
-                             },
-                            click: function () {
-                                if (this.status() == 'available') {
-                                    var seatNumber = this.settings.id;
-                                    var seatLabel = this.settings.label;
-                                    vm.selectSeat(seatNumber, seatLabel, 0, 2, null);
-
-                                    //do some stuff, i.e. add to the cart
-                                   return 'selected';
-                                } else if (this.status() == 'selected') {
-                                    var seatNumber = this.settings.label;
-                                    vm.deleteSeat(0, 2, seatNumber, true);
-                                    //seat has been vacated
-                                    return 'available';
-                                } else if (this.status() == 'unavailable') {
-                                    //seat has been already booked
-                                    return 'unavailable';
-                                } else {
-                                    return this.style();
-                                }
-                            }
+                    $.each(vm.trips.round[0].unavailableSeats, function(index, item){
+                        console.log(item);
+                        sc.status(item.toString(), 'unavailable');
+                    });
+                    if(vm.trips.round[0].size === 2){
+                        $.each(vm.trips.round[0].unavailableSeats, function(index, item){
+                            sc2.status(item.toString(), 'unavailable');
                         });
                     }
+                }else{
 
-                    //Elimino los asientos ocupados
-                    if(vm.trips.round[i].unavailableSeats.length > 0){
+                    $.each(vm.trips.round[0].unavailableSeats, function(index, item){
 
-                        $.each(vm.trips.round[i].unavailableSeats, function(index, item){
-                            console.log(item);
-                            sc.status(item.toString(), 'unavailable');
-                        });
-                        if(vm.trips.round[i].size === 2){
-                            $.each(vm.trips.round[i].unavailableSeats, function(index, item){
-                                sc2.status(item.toString(), 'unavailable');
-                            });
+                        sc.status(item.toString(), 'unavailable');
+                    });
+                }
+
+                sc3 = $('#seat-map-'+1).seatCharts({
+                    map: vm.trips.round[1].seatMap,
+                    seats: {
+                        a: {
+                            price   : 99.99,
+                            classes : 'front-seat' //your custom CSS class
                         }
-                    }else{
 
-                        $.each(vm.trips.round[i].unavailableSeats, function(index, item){
+                    },
+                    naming : {
+                                    top : false,
+                                    left: false
+                     },
+                    click: function () {
+                        if (this.status() == 'available') {
+                            var seatNumber = this.settings.id;
+                            var seatLabel = this.settings.label;
+                            vm.selectSeat(seatNumber, seatLabel, 0, 1, null);
+                            //do some stuff, i.e. add to the cart
+                           return 'selected';
+                        } else if (this.status() == 'selected') {
+                            var seatNumber = this.settings.id;
+                            vm.deleteSeat(0, 1, seatNumber, true);
+                            //seat has been vacated
+                            return 'available';
+                        } else if (this.status() == 'unavailable') {
+                            //seat has been already booked
+                            return 'unavailable';
+                        } else {
+                            return this.style();
+                        }
+                    }
+                });
 
-                            sc.status(item.toString(), 'unavailable');
+                if(vm.trips.round[1].size === 2){
+
+                    sc4 = $('#seat-map-2-'+1).seatCharts({
+                        map: vm.trips.round[1].seatMap,
+                        seats: {
+                            a: {
+                                price   : 99.99,
+                                classes : 'front-seat' //your custom CSS class
+                            }
+
+                        },
+                        naming : {
+                                        top : false,
+                                        left: false
+                         },
+                        click: function () {
+                            if (this.status() == 'available') {
+                                var seatNumber = this.settings.id;
+                                var seatLabel = this.settings.label;
+                                vm.selectSeat(seatNumber, seatLabel, 0, 2, null);
+
+                                //do some stuff, i.e. add to the cart
+                               return 'selected';
+                            } else if (this.status() == 'selected') {
+                                var seatNumber = this.settings.label;
+                                vm.deleteSeat(0, 2, seatNumber, true);
+                                //seat has been vacated
+                                return 'available';
+                            } else if (this.status() == 'unavailable') {
+                                //seat has been already booked
+                                return 'unavailable';
+                            } else {
+                                return this.style();
+                            }
+                        }
+                    });
+                }
+
+                //Elimino los asientos ocupados
+                if(vm.trips.round[1].unavailableSeats.length > 0){
+
+                    $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                        console.log(item);
+                        sc3.status(item.toString(), 'unavailable');
+                    });
+                    if(vm.trips.round[1].size === 2){
+                        $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                            sc4.status(item.toString(), 'unavailable');
                         });
                     }
+                }else{
+                    $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                        sc.status(item.toString(), 'unavailable');
+                    });
                 }
 
                 if(vm.trips.isRoundTrip){
@@ -693,10 +781,12 @@ angular
                     if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
+                        vm.seatRound = false;
                         console.log("reset");
                     }else{
                         vm.selectDepartureSeat = true;
                         vm.allSeats = false;
+                        vm.seatRound = false;
                     }
                     if(floor === 1){
                         sc.status(seatNumber.toString(), 'available');
@@ -708,17 +798,17 @@ angular
                     if (vm.seatsSelectedDeparture2.length === 0 && vm.seatsSelectedReturn.length === 0) {
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
-                        vm.seatRound = false;
+                        vm.seatRound = true;
                         console.log("reset");
                     }else{
                         vm.selectDepartureSeat = true;
                         vm.allSeats = false;
-                        vm.seatRound = false;
+                        vm.seatRound = true;
                     }
                     if(floor === 1){
-                        sc.status(seatNumber.toString(), 'available');
+                        sc3.status(seatNumber.toString(), 'available');
                     }else{
-                        sc2.status(seatNumber.toString(), 'available');
+                        sc4.status(seatNumber.toString(), 'available');
                     }
                     vm.seatInSelection.update = false;
                 }
