@@ -1,3 +1,395 @@
+<style>
+    .price-full {
+        font-size: 2em;
+        color: #666;
+    }
+
+    .truncate {
+      width: 95%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .text-theme-blue {
+        color: #29abe5 !important;
+    }
+    .arrow-box {
+    position: relative;
+    background: #29abe5;
+    border: 1px solid #29abe5;
+    width: 80px;
+    display: block;
+    text-align: center;
+    color: #fff !important;
+    font-style: italic;
+    font-size: .65em;
+    padding: 2px;
+    border-radius: 2px;
+}
+.arrow-box:after, .arrow-box:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.arrow-box:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #29abe5;
+    border-width: 5px;
+    margin-left: -5px;
+}
+.arrow-box:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-top-color: #29abe5;
+    border-width: 6px;
+    margin-left: -6px;
+}
+
+.timeline {
+  list-style-type: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: -16px;
+}
+
+.li {
+  transition: all 200ms ease-in;
+}
+
+.timestamp {
+  margin-bottom: 20px;
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 100;
+}
+.status:first-child {
+  padding: 0px 0px;
+  
+}
+.status {
+  padding: 0px 40px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #D6DCE0;
+  position: relative;
+  transition: all 200ms ease-in;
+}
+.status h4 {
+  font-weight: 600;
+}
+.status:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: -6px;
+  left: 42%;
+  transition: all 200ms ease-in;
+}
+
+.status.no-scale:before {
+  content: none;
+  width: 0;
+  height: 0;
+}
+
+.li.complete .status {
+  border-top: 2px solid #d1d1d1;
+}
+.li.complete .status:before {
+  background-color: #fff;
+  border: 2px solid #d1d1d1;;
+  transition: all 200ms ease-in;
+}
+.li.complete .status h4 {
+  color: #66DC71;
+}
+
+@media (min-device-width: 320px) and (max-device-width: 700px) {
+  .timeline {
+    list-style-type: none;
+    display: block;
+  }
+
+  .li {
+    transition: all 200ms ease-in;
+    display: flex;
+    width: inherit;
+  }
+
+  .timestamp {
+    width: 100px;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+    transition: all 200ms ease-in;
+  }
+}
+
+.fa-chevron-right {
+    margin-top: 7px;
+    position: absolute;
+    margin-left: -12px;
+    color: #d1d1d1;
+}
+
+
+.timeline-centered {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+    .timeline-centered:before, .timeline-centered:after {
+        content: " ";
+        display: table;
+    }
+
+    .timeline-centered:after {
+        clear: both;
+    }
+
+    .timeline-centered:before, .timeline-centered:after {
+        content: " ";
+        display: table;
+    }
+
+    .timeline-centered:after {
+        clear: both;
+    }
+
+    .timeline-centered:before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 4px;
+        background: #f5f5f6;
+        left: 15%;
+        top: 10px;
+        bottom: 20px;
+        margin-left: -4px;
+    }
+
+    .timeline-centered .timeline-entry {
+        position: relative;
+        width: 40%;
+        float: left;
+        margin-bottom: 70px;
+        clear: both;
+        margin-left: 142px;
+    }
+
+        .timeline-centered .timeline-entry:before, .timeline-centered .timeline-entry:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline-centered .timeline-entry:after {
+            clear: both;
+        }
+
+        .timeline-centered .timeline-entry:before, .timeline-centered .timeline-entry:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline-centered .timeline-entry:after {
+            clear: both;
+        }
+
+        .timeline-centered .timeline-entry.begin {
+            margin-bottom: 0;
+        }
+
+        .timeline-centered .timeline-entry.left-aligned {
+            float: left;
+        }
+
+            .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner {
+                margin-left: 0;
+                margin-right: -18px;
+            }
+
+                .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-time {
+                    left: auto;
+                    right: -100px;
+                    text-align: left;
+                }
+
+                .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-icon {
+                    float: right;
+                }
+
+                .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-label {
+                    margin-left: 0;
+                    margin-right: 70px;
+                }
+
+                    .timeline-centered .timeline-entry.left-aligned .timeline-entry-inner .timeline-label:after {
+                        left: auto;
+                        right: 0;
+                        margin-left: 0;
+                        margin-right: -9px;
+                        -moz-transform: rotate(180deg);
+                        -o-transform: rotate(180deg);
+                        -webkit-transform: rotate(180deg);
+                        -ms-transform: rotate(180deg);
+                        transform: rotate(180deg);
+                    }
+
+        .timeline-centered .timeline-entry .timeline-entry-inner {
+            position: relative;
+            margin-left: -26px;
+        }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner:before, .timeline-centered .timeline-entry .timeline-entry-inner:after {
+                content: " ";
+                display: table;
+            }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner:after {
+                clear: both;
+            }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner:before, .timeline-centered .timeline-entry .timeline-entry-inner:after {
+                content: " ";
+                display: table;
+            }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner:after {
+                clear: both;
+            }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time {
+                position: absolute;
+                left: -100px;
+                text-align: right;
+                padding: 10px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+                .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time > span {
+                    display: block;
+                }
+
+                    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time > span:first-child {
+                        font-size: 15px;
+                        font-weight: bold;
+                    }
+
+                    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-time > span:last-child {
+                        font-size: 12px;
+                    }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon {
+                background: #fff;
+                color: #737881;
+                display: block;
+                width: 20px;
+                height: 20px;
+                -webkit-background-clip: padding-box;
+                -moz-background-clip: padding;
+                background-clip: padding-box;
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                border-radius: 20px;
+                text-align: center;
+                -moz-box-shadow: 0 0 0 5px #f5f5f6;
+                -webkit-box-shadow: 0 0 0 5px #f5f5f6;
+                box-shadow: 0 0 0 5px #f5f5f6;
+                line-height: 20px;
+                font-size: 15px;
+                float: left;
+            }
+
+            .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-theme-blue {
+                    background-color: #29abe5;
+                    color: #fff;
+            }
+
+              
+                .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon {
+                    background-color: #c1c1c1;
+                    color: #fff;
+                }
+
+               
+
+            .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
+                position: relative;
+                background: #f5f5f6;
+                padding: 1em;
+                margin-left: 40px;
+                margin-top: -10px;
+                -webkit-background-clip: padding-box;
+                -moz-background-clip: padding;
+                background-clip: padding-box;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+
+                .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 9px 9px 9px 0;
+                    border-color: transparent #f5f5f6 transparent transparent;
+                    left: 0;
+                    top: 10px;
+                    margin-left: -9px;
+                }
+
+                .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2, .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p {
+                    color: #737881;
+                    font-size: 12px;
+                    margin: 0;
+                    line-height: 1.528571429;
+                }
+
+                    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p + p {
+                        margin-top: 15px;
+                    }
+
+                .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                    color: #29abe5;
+                }
+
+                    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 a {
+                        color: #303641;
+                    }
+
+                    .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 span {
+                        -webkit-opacity: .6;
+                        -moz-opacity: .6;
+                        opacity: .6;
+                        -ms-filter: alpha(opacity=60);
+                        filter: alpha(opacity=60);
+                    }
+
+
+</style>
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
     <div class="popover-select-passengers-wrapper">
@@ -292,6 +684,239 @@
                     <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0">
                         <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                     </h5>
+
+
+
+
+                    <!-- NUEVO DISEÑO -->
+                    <div class="new-results" id="new-results-tickeables">
+                        <div class="results list" id="trips_tickeables" >
+                            <div class="row result">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font dbm text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <small class="text-muted smallest-font">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small>Directo</small>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Semi-Cama</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia hidden-xs hidden-sm" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row result">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font dbm text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <small class="text-muted smallest-font">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small>3 Escalas</small>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-plane fa-2x pull-right text-theme-blue" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Semi-Cama</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia hidden-xs hidden-sm" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 30px;">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>09:15 AM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Santiago</h2>
+                                                    <p>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>29</b>
+                                                        <span class="pull-right"><b>1h 15min</b></span>
+                                                        <br>
+                                                        <b>09:15am</b> <i class="fa fa-angle-right"></i> <b>10:30am</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>11:00 AM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Concepcion (Aeropuerto)</h2>
+                                                    <p>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>31</b>
+                                                        <span class="pull-right"><b>2h 30min</b></span>
+                                                        <br>
+                                                        <b>11:00am</b> <i class="fa fa-angle-right"></i> <b>1:30pm</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+
+                                         <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>3:00 PM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Puerto Montt (Aeropuerto)</h2>
+                                                    <p>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>07</b>
+                                                        <span class="pull-right"><b>2h 30min</b></span>
+                                                        <br>
+                                                        <b>3:00pm</b> <i class="fa fa-angle-right"></i> <b>5:30pm</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>5:30 PM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Puerto Montt (Aeropuerto)</h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                             <!-- FIN NUEVO DISEÑO -->
+
+
+
+
+
 
                     <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats  | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
                         <div class="results list" id="trips_tickeables" >
