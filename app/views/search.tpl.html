@@ -296,7 +296,7 @@
                     <div class="new-results" id="new-results-tickeables" >
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats  | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
-                                <div class="ribbon-wrapper"><div class="ribbon">PROMO</div></div>
+                                <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                                 <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
                                     <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                     <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
