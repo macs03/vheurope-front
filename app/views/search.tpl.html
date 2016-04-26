@@ -316,7 +316,7 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-4 col-sm-4 c-seat-type text-center">
-                                    <strong>{{trip.price}} €</strong>
+                                    <strong>{{trip.price | currency : '' }} €</strong>
                                     <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
                                 </div>
 
@@ -408,7 +408,7 @@
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 c-seat-type">
-                                        <strong class="text-fucsia">{{trip.price}} €</strong>
+                                        <strong class="text-fucsia">{{trip.price | currency : '' }} €</strong>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm" style="display:block;">{{trip.typeService}}</small>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 nbt visible-xs visible-sm" style="border-top: 1px solid #bbb;">
@@ -465,7 +465,7 @@
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4  c-seat-type">
-                                        <strong class="text-fucsia">{{trip.price}} €</strong>
+                                        <strong class="text-fucsia">{{trip.price | currency : '' }} €</strong>
                                         <small class="text-muted smallest-font hidden-xs hidden-sm" style="display:block;">{{trip.typeService}}</small>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 nbt visible-xs visible-sm" style="border-top: 1px solid #bbb;">
@@ -551,7 +551,7 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-4 col-sm-4 c-seat-type text-center">
-                                    <strong>{{trip.data.price}} €</strong>
+                                    <strong>{{trip.data.price | currency : '' }} €</strong>
                                     <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.data.type__name}}</small>
                                 </div>
 
@@ -599,7 +599,7 @@
 
                                 <div class="col-md-3 nbt hidden-xs alternativeBox">
                                     <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
-                                    <span class="hidden sort-price">${trip.price}</span>
+                                    <span class="hidden sort-price">${trip.price | currency : '' }</span>
                                     <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
                                     <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
                                 </div>
