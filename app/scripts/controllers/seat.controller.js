@@ -950,18 +950,38 @@ angular
                 }
             }else{
                 console.log('VUELTA');
-                if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
-                    vm.allSeats = false;
-                    vm.selectDepartureSeat = true;
-                    console.log("reset");
+                if (bus == 0) {
+                    if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
+                        vm.allSeats = false;
+                        vm.selectDepartureSeat = true;
+                        console.log("reset");
+                        vm.seatReturn = false;
+                    }else{
+                        vm.selectDepartureSeat = false;
+                        vm.allSeats = false;
+                        vm.seatReturn = false;
+                    }
+                    if(floor === 1){
+                        sc5.status(seatNumber.toString(), 'available');
+                    }else{
+                        sc6.status(seatNumber.toString(), 'available');
+                    }
                 }else{
-                    vm.selectDepartureSeat = false;
-                    vm.allSeats = false;
-                }
-                if(floor === 1){
-                    sc3.status(seatNumber.toString(), 'available');
-                }else{
-                    sc4.status(seatNumber.toString(), 'available');
+                    if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
+                        vm.allSeats = false;
+                        vm.selectDepartureSeat = true;
+                        console.log("reset");
+                        vm.seatReturn = true;
+                    }else{
+                        vm.selectDepartureSeat = false;
+                        vm.allSeats = false;
+                        vm.seatReturn = true;
+                    }
+                    if(floor === 1){
+                        sc7.status(seatNumber.toString(), 'available');
+                    }else{
+                        sc8.status(seatNumber.toString(), 'available');
+                    }
                 }
             }
             if (update === true){
@@ -1011,19 +1031,38 @@ angular
                     }
                 }
             } else {
-                if(vm.seatsSelectedReturn[index].trip === trip && vm.seatsSelectedReturn[index].seatNumber === seatNumber) {
-                    if($stateParams.idReturn != "-1"){
-                        if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
-                            vm.seatInSelection = vm.seatsSelectedReturn[index];
-                            vm.seatsSelectedReturn.splice(index, 1);
-                            vm.releaseSeat (trip, floor, seatNumber, update,index);
+                if (bus == 0) {
+                    if(vm.seatsSelectedReturn[index].trip === trip && vm.seatsSelectedReturn[index].seatNumber === seatNumber) {
+                        if($stateParams.idReturn != "-1"){
+                            if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn.length) {
+                                vm.seatInSelection = vm.seatsSelectedReturn[index];
+                                vm.seatsSelectedReturn.splice(index, 1);
+                                vm.releaseSeat (trip, floor, seatNumber, update,index, bus);
+                            }else{
+                                console.log("Do no delete");
+                            }
                         }else{
-                            console.log("Do no delete");
-                        }
-                    }else{
-                        vm.seatsSelectedReturn.splice(index, 1);
-                        vm.releaseSeat (trip, floor, seatNumber, update,index);
-                     }
+                            vm.seatsSelectedReturn.splice(index, 1);
+                            vm.seatInSelection = vm.seatsSelectedDeparture[index];
+                            vm.releaseSeat (trip, floor, seatNumber, update,index, bus);
+                         }
+                    }
+                }else{
+                    if(vm.seatsSelectedReturn2[index].trip === trip && vm.seatsSelectedReturn2[index].seatNumber === seatNumber) {
+                        if($stateParams.idReturn != "-1"){
+                            if (vm.seatsSelectedDeparture.length == vm.seatsSelectedReturn2.length) {
+                                vm.seatInSelection = vm.seatsSelectedReturn2[index];
+                                vm.seatsSelectedReturn2.splice(index, 1);
+                                vm.releaseSeat (trip, floor, seatNumber, update,index);
+                            }else{
+                                console.log("Do no delete");
+                            }
+                        }else{
+                            vm.seatsSelectedReturn2.splice(index, 1);
+                            vm.seatInSelection = vm.seatsSelectedDeparture[index];
+                            vm.releaseSeat (trip, floor, seatNumber, update,index);
+                         }
+                    }
                 }
             }
 		};
