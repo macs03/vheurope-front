@@ -343,7 +343,7 @@ input.ng-valid.ng-touched {
                             </p> -->
                             <p>
                                 <span class="small-font"><strong translate>SEATS.PURCHASE_TOTAL</strong></span>
-                                <span class="small-font pull-right"> <span id="total">{{ seat.seatsSelectedDeparture[0].price  }} €</span></span>
+                                <span class="small-font pull-right"> <span id="total">{{ seat.seatsSelectedDeparture[0].price | currency : '' }} €</span></span>
                             </p>
                             <br>
                             <br>
