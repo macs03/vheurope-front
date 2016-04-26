@@ -4,5 +4,5 @@
 (function () {
     'use strict';
     angular.module('constants', [])
-    .constant('apiUrl', 'http://api.resertrip.com/v1/');
+    .constant('apiUrl', 'http://sandbox.api.resertrip.com/v1/');
 })();
