@@ -730,7 +730,7 @@ angular
         	};
 		};
 
-
+        var aux = 0
         vm.addSeat = function () {
         	console.log('SEAT');
             var counter = 5;
@@ -775,6 +775,12 @@ angular
                     }else{
                         if (vm.trips.round.length == 2) {
                             console.log('banderas para ida y vuelta mixed');
+                            if (vm.seatsSelectedDeparture.length > aux && vm.seatsSelectedDeparture2.length >aux && vm.passengers >= aux) {
+                                console.log('pasamos a la vuelta');
+                                vm.selectDepartureSeat = false;
+                                aux = aux + 1;
+                                vm.seatReturn = false;
+                            }
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
                                 console.log("lleno ida");
                                 vm.selectDepartureSeat = false;
@@ -796,6 +802,10 @@ angular
                     console.log("return");
                     if (vm.seatReturn) {
                         vm.seatsSelectedReturn2.push(angular.copy(vm.seatInSelection));
+                        console.log('selecciono asiento de segundo bus');
+                        vm.selectDepartureSeat = true;
+                        vm.seatRound = false;
+                        vm.seatReturn = false;
                     }else{
                         vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
                     }
@@ -901,10 +911,6 @@ angular
             if (vm.trips.round.automaticSeat) {
                 vm.autoPassengers --;
             }
-
-            
-
-
 			$('#formSeat').modal('hide');
 			vm.updateTotals();
 		};
