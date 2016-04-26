@@ -594,7 +594,6 @@ angular
                     if(vm.trips.return[0].unavailableSeats.length > 0){
 
                         $.each(vm.trips.return[0].unavailableSeats, function(index, item){
-                            console.log(item);
                             sc3.status(item.toString(), 'unavailable');
                         });
                         if(vm.trips.return[0].size === 2){
@@ -684,7 +683,6 @@ angular
                         if(vm.trips.return[1].unavailableSeats.length > 0){
 
                             $.each(vm.trips.return[1].unavailableSeats, function(index, item){
-                                console.log(item);
                                 sc3.status(item.toString(), 'unavailable');
                             });
                             if(vm.trips.return[1].size === 2){
@@ -754,7 +752,6 @@ angular
                     }
                     if($stateParams.idReturn == "-1"){
                         if (vm.trips.round.length == 2) {
-                            console.log('banderas nuevas');
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
                                 console.log("lleno ida");
                                 vm.selectDepartureSeat = false
@@ -774,19 +771,15 @@ angular
                         }
                     }else{
                         if (vm.trips.round.length == 2) {
-                            console.log('banderas para ida y vuelta mixed');
                             if (vm.seatsSelectedDeparture.length > aux && vm.seatsSelectedDeparture2.length >aux && vm.passengers >= aux) {
-                                console.log('pasamos a la vuelta');
                                 vm.selectDepartureSeat = false;
                                 aux = aux + 1;
                                 vm.seatReturn = false;
                             }
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
-                                console.log("lleno ida");
                                 vm.selectDepartureSeat = false;
                             }
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
-                                console.log("lleno todo");
                                 vm.allSeats = true;
                             }
                         }else{
@@ -802,7 +795,6 @@ angular
                     console.log("return");
                     if (vm.seatReturn) {
                         vm.seatsSelectedReturn2.push(angular.copy(vm.seatInSelection));
-                        console.log('selecciono asiento de segundo bus');
                         vm.selectDepartureSeat = true;
                         vm.seatRound = false;
                         vm.seatReturn = false;
@@ -810,14 +802,11 @@ angular
                         vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
                     }
                     if (vm.trips.return.length == 2) {
-                        console.log('banderas nuevas2');
                         vm.seatReturn = true;
                         if (vm.seatsSelectedReturn.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
-                            console.log("lleno completo");
                             vm.allSeats = true;
                         }
                         if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
-                            console.log("lleno todo");
                             vm.allSeats = true;
                         }
                     }else{
