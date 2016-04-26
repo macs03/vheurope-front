@@ -207,8 +207,8 @@ button.theme-fucsia,
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
     margin-bottom: 12px;
 }
 
@@ -438,7 +438,7 @@ input[type="radio"] { margin-bottom: 10px !important }
     background: #fff;
     margin-bottom: 10px;
     padding: 15px 0 5px 0;
-
+    position: relative;
 }
 
 .new-results .results .result:hover {
@@ -720,8 +720,8 @@ button.theme-search,
     }
 
     button.theme-fucsia-iv, .button.theme-fucsia-iv {
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
         margin-top: 20px !important;
     }
     .results-title  small {
@@ -1140,4 +1140,49 @@ button.theme-search,
 #ngProgress-container {
     background: #a9e1f9;
     border-radius: 5px;
+}
+
+.ribbon-wrapper {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+.ribbon {
+  font-size: .62em;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 5px 0;
+  left: 12px;
+  top: 6px;
+  width: 80px;
+  background-color: #ed0000;
+  color: #fff;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon:before, .ribbon:after {
+  content: "";
+  border-top:   3px solid #ed0000;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon:before {
+  left: 0;
+}
+.ribbon:after {
+  right: 0;
 }
