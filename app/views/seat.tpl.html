@@ -258,7 +258,7 @@ input.ng-valid.ng-touched {
 
                 <div class="box" id="box-vuelta">
                     <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;" >
-                        <div class="col-xs-12 col-md-6 col-sm-6" id="seat_map_vuelta" style="padding-left:0;" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats}" ng-show="!seat.trips.round.automaticSeat">
+                        <div class="col-xs-12 col-md-6 col-sm-6" id="seat_map_vuelta" style="padding-left:0;" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatReturn || $index == 0 && seat.seatReturn}" ng-show="!seat.trips.round.automaticSeat">
                             <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
                             <div class="tabs-container">
                                 <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
@@ -294,7 +294,26 @@ input.ng-valid.ng-touched {
                         <div class="select-seat">
                             <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
                             <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
-                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}">
+                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}" ng-hide="i == 1">
+                                <div class="row">
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                        <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5">
+                                        <p class="smallest-font text-muted">{{ item.dni }}</p>
+                                        <small class="text-muted smallest-font">{{ item.country }}</small>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">
+                                        <div class="seat-actions">
+                                            <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
+                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index);"><i class="fa fa-times"></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="item in seat.seatsSelectedReturn2 | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}" ng-show="i == 1">
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>

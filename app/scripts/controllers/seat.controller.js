@@ -413,7 +413,6 @@ angular
                 if(vm.trips.round[0].unavailableSeats.length > 0){
 
                     $.each(vm.trips.round[0].unavailableSeats, function(index, item){
-                        console.log(item);
                         sc.status(item.toString(), 'unavailable');
                     });
                     if(vm.trips.round[0].size === 2){
@@ -428,44 +427,8 @@ angular
                         sc.status(item.toString(), 'unavailable');
                     });
                 }
-
-                sc3 = $('#seat-map-'+1).seatCharts({
-                    map: vm.trips.round[1].seatMap,
-                    seats: {
-                        a: {
-                            price   : 99.99,
-                            classes : 'front-seat' //your custom CSS class
-                        }
-
-                    },
-                    naming : {
-                                    top : false,
-                                    left: false
-                     },
-                    click: function () {
-                        if (this.status() == 'available') {
-                            var seatNumber = this.settings.id;
-                            var seatLabel = this.settings.label;
-                            vm.selectSeat(seatNumber, seatLabel, 0, 1, null);
-                            //do some stuff, i.e. add to the cart
-                           return 'selected';
-                        } else if (this.status() == 'selected') {
-                            var seatNumber = this.settings.id;
-                            vm.deleteSeat(0, 1, seatNumber, true);
-                            //seat has been vacated
-                            return 'available';
-                        } else if (this.status() == 'unavailable') {
-                            //seat has been already booked
-                            return 'unavailable';
-                        } else {
-                            return this.style();
-                        }
-                    }
-                });
-
-                if(vm.trips.round[1].size === 2){
-
-                    sc4 = $('#seat-map-2-'+1).seatCharts({
+                if(vm.trips.round.length > 1){
+                    sc3 = $('#seat-map-'+1).seatCharts({
                         map: vm.trips.round[1].seatMap,
                         seats: {
                             a: {
@@ -482,13 +445,12 @@ angular
                             if (this.status() == 'available') {
                                 var seatNumber = this.settings.id;
                                 var seatLabel = this.settings.label;
-                                vm.selectSeat(seatNumber, seatLabel, 0, 2, null);
-
+                                vm.selectSeat(seatNumber, seatLabel, 0, 1, null);
                                 //do some stuff, i.e. add to the cart
                                return 'selected';
                             } else if (this.status() == 'selected') {
-                                var seatNumber = this.settings.label;
-                                vm.deleteSeat(0, 2, seatNumber, true);
+                                var seatNumber = this.settings.id;
+                                vm.deleteSeat(0, 1, seatNumber, true);
                                 //seat has been vacated
                                 return 'available';
                             } else if (this.status() == 'unavailable') {
@@ -499,30 +461,156 @@ angular
                             }
                         }
                     });
-                }
 
-                //Elimino los asientos ocupados
-                if(vm.trips.round[1].unavailableSeats.length > 0){
-
-                    $.each(vm.trips.round[1].unavailableSeats, function(index, item){
-                        console.log(item);
-                        sc3.status(item.toString(), 'unavailable');
-                    });
                     if(vm.trips.round[1].size === 2){
-                        $.each(vm.trips.round[1].unavailableSeats, function(index, item){
-                            sc4.status(item.toString(), 'unavailable');
+
+                        sc4 = $('#seat-map-2-'+1).seatCharts({
+                            map: vm.trips.round[1].seatMap,
+                            seats: {
+                                a: {
+                                    price   : 99.99,
+                                    classes : 'front-seat' //your custom CSS class
+                                }
+
+                            },
+                            naming : {
+                                            top : false,
+                                            left: false
+                             },
+                            click: function () {
+                                if (this.status() == 'available') {
+                                    var seatNumber = this.settings.id;
+                                    var seatLabel = this.settings.label;
+                                    vm.selectSeat(seatNumber, seatLabel, 0, 2, null);
+
+                                    //do some stuff, i.e. add to the cart
+                                   return 'selected';
+                                } else if (this.status() == 'selected') {
+                                    var seatNumber = this.settings.label;
+                                    vm.deleteSeat(0, 2, seatNumber, true);
+                                    //seat has been vacated
+                                    return 'available';
+                                } else if (this.status() == 'unavailable') {
+                                    //seat has been already booked
+                                    return 'unavailable';
+                                } else {
+                                    return this.style();
+                                }
+                            }
                         });
                     }
-                }else{
-                    $.each(vm.trips.round[1].unavailableSeats, function(index, item){
-                        sc.status(item.toString(), 'unavailable');
-                    });
+
+                    //Elimino los asientos ocupados
+                    if(vm.trips.round[1].unavailableSeats.length > 0){
+
+                        $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                            sc3.status(item.toString(), 'unavailable');
+                        });
+                        if(vm.trips.round[1].size === 2){
+                            $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                                sc4.status(item.toString(), 'unavailable');
+                            });
+                        }
+                    }else{
+                        $.each(vm.trips.round[1].unavailableSeats, function(index, item){
+                            sc.status(item.toString(), 'unavailable');
+                        });
+                    }
                 }
 
                 if(vm.trips.isRoundTrip){
-                    for (var i = 0; i < vm.trips.return.length; i++) {
-                        sc3 = $('#seat-map-3-'+i).seatCharts({
-                            map: vm.trips.return[i].seatMap,
+                    sc5 = $('#seat-map-3-'+0).seatCharts({
+                        map: vm.trips.return[0].seatMap,
+                        seats: {
+                            a: {
+                                price   : 99.99,
+                                classes : 'front-seat' //your custom CSS class
+                            }
+                        },
+                        naming : {
+                                        top : false,
+                                        left: false
+                         },
+                        click: function () {
+                            if (this.status() == 'available') {
+                                var seatNumber = this.settings.id;
+                                var seatLabel = this.settings.label;
+                                vm.selectSeat(seatNumber, seatLabel,  1, 1, null);
+                                //do some stuff, i.e. add to the cart
+
+                                return 'selected';
+                            } else if (this.status() == 'selected') {
+                                var seatNumber = this.settings.label;
+                                vm.deleteSeat(1, 1, seatNumber, true);
+                                //seat has been vacated
+                                return 'available';
+                            } else if (this.status() == 'unavailable') {
+                                //seat has been already booked
+                                return 'unavailable';
+                            } else {
+                                return this.style();
+                            }
+                        }
+                    });
+
+                    if(vm.trips.return[0].size === 2){
+
+                        sc6 = $('#seat-map-4'+0).seatCharts({
+                            map: vm.trips.round[0].seatMap,
+                            seats: {
+                                a: {
+                                    price   : 99.99,
+                                    classes : 'front-seat' //your custom CSS class
+                                }
+
+                            },
+                            naming : {
+                                            top : false,
+                                            left: false
+                             },
+                            click: function () {
+                                if (this.status() == 'available') {
+                                    var seatNumber = this.settings.id;
+                                    var seatLabel = this.settings.label;
+                                    vm.selectSeat(seatNumber, seatLabel, 1, 2, null);
+
+                                    //do some stuff, i.e. add to the cart
+                                   return 'selected';
+                                } else if (this.status() == 'selected') {
+                                    var seatNumber = this.settings.label;
+                                    vm.deleteSeat(1, 2, seatNumber, true);
+                                    //seat has been vacated
+                                    return 'available';
+                                } else if (this.status() == 'unavailable') {
+                                    //seat has been already booked
+                                    return 'unavailable';
+                                } else {
+                                    return this.style();
+                                }
+                            }
+                        });
+                    }
+
+                    if(vm.trips.return[0].unavailableSeats.length > 0){
+
+                        $.each(vm.trips.return[0].unavailableSeats, function(index, item){
+                            console.log(item);
+                            sc3.status(item.toString(), 'unavailable');
+                        });
+                        if(vm.trips.return[0].size === 2){
+                            $.each(vm.trips.return[0].unavailableSeats, function(index, item){
+                                sc4.status(item.toString(), 'unavailable');
+                            });
+                        }
+                    }else{
+
+                        $.each(vm.trips.return[0].unavailableSeats, function(index, item){
+                            sc3.status(item.toString(), 'unavailable');
+                        });
+                    }
+                    if (vm.trips.return.length > 1) {
+                        sc7 = $('#seat-map-3-'+1).seatCharts({
+                            map: vm.trips.return[1].seatMap,
                             seats: {
                                 a: {
                                     price   : 99.99,
@@ -555,10 +643,10 @@ angular
                             }
                         });
 
-                        if(vm.trips.return[i].size === 2){
+                        if(vm.trips.return[1].size === 2){
 
-                            sc4 = $('#seat-map-4'+i).seatCharts({
-                                map: vm.trips.round[i].seatMap,
+                            sc8 = $('#seat-map-4'+1).seatCharts({
+                                map: vm.trips.round[1].seatMap,
                                 seats: {
                                     a: {
                                         price   : 99.99,
@@ -593,24 +681,25 @@ angular
                             });
                         }
 
-                        if(vm.trips.return[i].unavailableSeats.length > 0){
+                        if(vm.trips.return[1].unavailableSeats.length > 0){
 
-                            $.each(vm.trips.return[i].unavailableSeats, function(index, item){
+                            $.each(vm.trips.return[1].unavailableSeats, function(index, item){
                                 console.log(item);
                                 sc3.status(item.toString(), 'unavailable');
                             });
-                            if(vm.trips.return[i].size === 2){
-                                $.each(vm.trips.return[i].unavailableSeats, function(index, item){
+                            if(vm.trips.return[1].size === 2){
+                                $.each(vm.trips.return[1].unavailableSeats, function(index, item){
                                     sc4.status(item.toString(), 'unavailable');
                                 });
                             }
                         }else{
 
-                            $.each(vm.trips.return[i].unavailableSeats, function(index, item){
+                            $.each(vm.trips.return[1].unavailableSeats, function(index, item){
                                 sc3.status(item.toString(), 'unavailable');
                             });
                         }
                     }
+
                 }
 
 
@@ -658,25 +747,22 @@ angular
                     }else{
                         vm.seatsSelectedDeparture.push(angular.copy(vm.seatInSelection));
                     }
-                    if (vm.trips.round.length == 2) {
-                        console.log('banderas nuevas');
-                        vm.seatRound = true;
-                        if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
-                            console.log("lleno ida");
-                            vm.selectDepartureSeat = false;
-                        }
-                    }else{
+                    if (vm.trips.round.length < 2) {
                         vm.selectDepartureSeat = false;
+                    }else{
+                        vm.seatRound = !vm.seatRound;
                     }
                     if($stateParams.idReturn == "-1"){
                         if (vm.trips.round.length == 2) {
                             console.log('banderas nuevas');
-                            vm.seatRound = true;
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
                                 console.log("lleno ida");
+                                vm.selectDepartureSeat = false
                                 vm.allSeats = true;
+                                vm.resetSeatInSelection();
                             }
                         }else{
+                            vm.selectDepartureSeat = false;
                             vm.resetSeatInSelection();
                             if(vm.seatsSelectedDeparture.length == vm.passengers){
                                 console.log("seats full");
@@ -687,21 +773,51 @@ angular
                             }
                         }
                     }else{
-                        if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain  && vm.seatsSelectedReturn.length == vm.passengers){
-                            console.log("seats full");
-                            vm.allSeats = true;
+                        if (vm.trips.round.length == 2) {
+                            console.log('banderas para ida y vuelta mixed');
+                            if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
+                                console.log("lleno ida");
+                                vm.selectDepartureSeat = false;
+                            }
+                            if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
+                                console.log("lleno todo");
+                                vm.allSeats = true;
+                            }
+                        }else{
+                            if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain  && vm.seatsSelectedReturn.length == vm.passengers){
+                                console.log("seats full");
+                                vm.allSeats = true;
+                                vm.seatReturn = true;
+                            }
                         }
                     }
                 }
                 if(vm.seatInSelection.trip === 1){
                     console.log("return");
-                    vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
-                    vm.selectDepartureSeat = true;
-                    if(vm.seatsSelectedDeparture.length == vm.passengers){
-                        console.log("seats full");
-                        vm.allSeats = true;
+                    if (vm.seatReturn) {
+                        vm.seatsSelectedReturn2.push(angular.copy(vm.seatInSelection));
+                    }else{
+                        vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
                     }
-                    vm.resetSeatInSelection();
+                    if (vm.trips.return.length == 2) {
+                        console.log('banderas nuevas2');
+                        vm.seatReturn = true;
+                        if (vm.seatsSelectedReturn.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
+                            console.log("lleno completo");
+                            vm.allSeats = true;
+                        }
+                        if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedReturn2.length == vm.passengers) {
+                            console.log("lleno todo");
+                            vm.allSeats = true;
+                        }
+                    }else{
+                        vm.selectDepartureSeat = true;
+                        if(vm.seatsSelectedDeparture.length == vm.passengers){
+                            console.log("seats full");
+                            vm.allSeats = true;
+                        }
+                        vm.resetSeatInSelection();
+                    }
                 }
                 if (vm.automaticSeat) {
                     if (vm.returnSeats.length > 0) {
@@ -741,6 +857,16 @@ angular
                             vm.allSeats = true;
                         }
                     }else{
+                        if (vm.trips.round.length == 2) {
+                            vm.seatsSelectedDeparture2[vm.index].country = angular.copy(vm.seatsSelectedDeparture[vm.index].country);
+                            vm.seatsSelectedDeparture2[vm.index].dni = angular.copy(vm.seatsSelectedDeparture[vm.index].dni);
+                            vm.seatsSelectedDeparture2[vm.index].document = angular.copy(vm.seatsSelectedDeparture[vm.index].document);
+                            vm.seatsSelectedDeparture2[vm.index].email = angular.copy(vm.seatsSelectedDeparture[vm.index].email);
+                            vm.seatsSelectedDeparture2[vm.index].lastname = angular.copy(vm.seatsSelectedDeparture[vm.index].lastname);
+                            vm.seatsSelectedDeparture2[vm.index].phone = angular.copy(vm.seatsSelectedDeparture[vm.index].phone);
+                            vm.seatsSelectedDeparture2[vm.index].name = angular.copy(vm.seatsSelectedDeparture[vm.index].name);
+                            vm.selectDepartureSeat = false;
+                        }
                         if (vm.seatsSelectedReturn.length > 0) {
                             vm.seatsSelectedReturn[vm.index].country = angular.copy(vm.seatsSelectedDeparture[vm.index].country);
                             vm.seatsSelectedReturn[vm.index].dni = angular.copy(vm.seatsSelectedDeparture[vm.index].dni);
@@ -749,6 +875,16 @@ angular
                             vm.seatsSelectedReturn[vm.index].lastname = angular.copy(vm.seatsSelectedDeparture[vm.index].lastname);
                             vm.seatsSelectedReturn[vm.index].phone = angular.copy(vm.seatsSelectedDeparture[vm.index].phone);
                             vm.seatsSelectedReturn[vm.index].name = angular.copy(vm.seatsSelectedDeparture[vm.index].name);
+                            vm.selectDepartureSeat = false;
+                        }
+                        if (vm.trips.return.length == 2) {
+                            vm.seatsSelectedReturn2[vm.index].country = angular.copy(vm.seatsSelectedDeparture[vm.index].country);
+                            vm.seatsSelectedReturn2[vm.index].dni = angular.copy(vm.seatsSelectedDeparture[vm.index].dni);
+                            vm.seatsSelectedReturn2[vm.index].document = angular.copy(vm.seatsSelectedDeparture[vm.index].document);
+                            vm.seatsSelectedReturn2[vm.index].email = angular.copy(vm.seatsSelectedDeparture[vm.index].email);
+                            vm.seatsSelectedReturn2[vm.index].lastname = angular.copy(vm.seatsSelectedDeparture[vm.index].lastname);
+                            vm.seatsSelectedReturn2[vm.index].phone = angular.copy(vm.seatsSelectedDeparture[vm.index].phone);
+                            vm.seatsSelectedReturn2[vm.index].name = angular.copy(vm.seatsSelectedDeparture[vm.index].name);
                             vm.selectDepartureSeat = false;
                         }
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
@@ -853,6 +989,7 @@ angular
                             }
                         }else{
                              vm.seatsSelectedDeparture.splice(index, 1);
+                             vm.seatInSelection = vm.seatsSelectedDeparture[index];
                              vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                          }
                     }
@@ -868,6 +1005,7 @@ angular
                             }
                         }else{
                              vm.seatsSelectedDeparture2.splice(index, 1);
+                             vm.seatInSelection = vm.seatsSelectedDeparture[index];
                              vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                          }
                     }
@@ -904,6 +1042,7 @@ angular
 
         }
         vm.seatRound = false;
+        vm.seatReturn = false;
 		vm.selectSeat = function (seatNumber, seatLabel, trip, floor, item, index) {
 			//seatNUmber = Numero de asiento
 			//trip => 0 = ida, 2= vuelta
