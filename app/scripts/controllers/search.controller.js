@@ -1129,6 +1129,7 @@
                         vm.searchingMix = false;
                         vm.results = true;
                         vm.trips = data;
+                        vm.isMixedTrips = data.isMixedTrips
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
