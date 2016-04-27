@@ -753,7 +753,6 @@ angular
                     if($stateParams.idReturn == "-1"){
                         if (vm.trips.round.length == 2) {
                             if (vm.seatsSelectedDeparture.length == vm.passengers && vm.seatsSelectedDeparture2.length == vm.passengers) {
-                                console.log("lleno ida");
                                 vm.selectDepartureSeat = false
                                 vm.allSeats = true;
                                 vm.resetSeatInSelection();
