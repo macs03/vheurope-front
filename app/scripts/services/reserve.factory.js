@@ -18,7 +18,7 @@
             getAll: getAll
         }
 
-        function getAll (passengersDataDeparture, passengersDataReturn, departureId, returnId) {
+        function getAll (passengersDataDeparture, passengersDataDeparture2, passengersDataReturn, passengersDataReturn2, departureId, returnId) {
             var defered = $q.defer();
             var promise = defered.promise;
             console.log(departureId+" "+returnId);
@@ -26,6 +26,8 @@
                 console.log("return");
                 var seatsListDeparture = []
                 var seatsListReturn = []
+                var seatsDeparture = []
+                var seatsReturn = []
                 var passengers = []
                 angular.forEach(passengersDataReturn, function(value,key) {
                     seatsListReturn.push(passengersDataReturn[key].seatNumber);
@@ -40,13 +42,27 @@
                         documentType : passengersDataDeparture[key].document
                     });
                 });
-                var seatsDeparture = seatsListDeparture.join("~");
-                var seatsReturn = seatsListReturn.join("~");
+                seatsDeparture.push(seatsListDeparture.join("~"));
+                seatsReturn.push(seatsListReturn.join("~"));
                 var idReturn = returnId;
                 console.log(passengers);
+                if (passengersDataReturn2.length > 0) {
+                    var seatsListDeparture = []
+                    var seatsListReturn = []
+                    angular.forEach(passengersDataReturn2, function(value,key) {
+                        seatsListReturn.push(passengersDataReturn2[key].seatNumber);
+                    });
+                    angular.forEach(passengersDataDeparture2, function(value,key) {
+                        seatsListDeparture.push(passengersDataDeparture2[key].seatNumber);
+                    });
+                    seatsDeparture.push(seatsListDeparture.join("~"));
+                    seatsReturn.push(seatsListReturn.join("~"));
+                    var idReturn = returnId;
+                }
             }else{
                 var seatsList = []
                 var passengers = []
+                var seatsDeparture = []
                 angular.forEach(passengersDataDeparture, function(value,key) {
                     seatsList.push(passengersDataDeparture[key].seatNumber);
                     passengers.push({
@@ -57,10 +73,19 @@
                         documentType : passengersDataDeparture[key].document
                     });
                 });
-                var seatsDeparture = seatsList.join("~")
+                seatsDeparture.push(seatsList.join("~"));
                 var seatsReturn = "";
                 var idReturn = "";
                 console.log(passengers);
+                if (passengersDataDeparture2.length > 0) {
+                    var seatsList = [];
+                    angular.forEach(passengersDataDeparture2, function(value,key) {
+                        seatsList.push(passengersDataDeparture2[key].seatNumber);
+                    });
+                    seatsDeparture.push(seatsList.join("~"));
+                    var seatsReturn = "";
+                    var idReturn = "";
+                }
             }
 
             $http({
