@@ -513,7 +513,7 @@ angular
                         }
                     }else{
                         $.each(vm.trips.round[1].unavailableSeats, function(index, item){
-                            sc.status(item.toString(), 'unavailable');
+                            sc3.status(item.toString(), 'unavailable');
                         });
                     }
                 }
@@ -594,17 +594,17 @@ angular
                     if(vm.trips.return[0].unavailableSeats.length > 0){
 
                         $.each(vm.trips.return[0].unavailableSeats, function(index, item){
-                            sc3.status(item.toString(), 'unavailable');
+                            sc5.status(item.toString(), 'unavailable');
                         });
                         if(vm.trips.return[0].size === 2){
                             $.each(vm.trips.return[0].unavailableSeats, function(index, item){
-                                sc4.status(item.toString(), 'unavailable');
+                                sc6.status(item.toString(), 'unavailable');
                             });
                         }
                     }else{
 
                         $.each(vm.trips.return[0].unavailableSeats, function(index, item){
-                            sc3.status(item.toString(), 'unavailable');
+                            sc5.status(item.toString(), 'unavailable');
                         });
                     }
                     if (vm.trips.return.length > 1) {
@@ -683,17 +683,17 @@ angular
                         if(vm.trips.return[1].unavailableSeats.length > 0){
 
                             $.each(vm.trips.return[1].unavailableSeats, function(index, item){
-                                sc8.status(item.toString(), 'unavailable');
+                                sc7.status(item.toString(), 'unavailable');
                             });
                             if(vm.trips.return[1].size === 2){
                                 $.each(vm.trips.return[1].unavailableSeats, function(index, item){
-                                    sc4.status(item.toString(), 'unavailable');
+                                    sc8.status(item.toString(), 'unavailable');
                                 });
                             }
                         }else{
 
                             $.each(vm.trips.return[1].unavailableSeats, function(index, item){
-                                sc8.status(item.toString(), 'unavailable');
+                                sc7.status(item.toString(), 'unavailable');
                             });
                         }
                     }
