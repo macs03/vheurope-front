@@ -56,9 +56,9 @@
             vm.departureData = paymentData.departure;
             vm.returnData = paymentData.returns;
             vm.isRoundTrip = false;
-            
-            if (vm.returnData != undefined){
-                if(vm.returnData.hasOwnProperty('company')){
+            console.log(vm.returnData);
+            if (vm.returnData.length > 0){
+                if(vm.returnData[0].hasOwnProperty('company')){
                      vm.isRoundTrip = true;
                 }
             }

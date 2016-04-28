@@ -21,9 +21,7 @@
         function getAll (passengersDataDeparture, passengersDataDeparture2, passengersDataReturn, passengersDataReturn2, departureId, returnId) {
             var defered = $q.defer();
             var promise = defered.promise;
-            console.log(departureId+" "+returnId);
             if (returnId != "-1") {
-                console.log("return");
                 var seatsListDeparture = []
                 var seatsListReturn = []
                 var seatsDeparture = []
@@ -45,7 +43,6 @@
                 seatsDeparture.push(seatsListDeparture.join("~"));
                 seatsReturn.push(seatsListReturn.join("~"));
                 var idReturn = returnId;
-                console.log(passengers);
                 if (passengersDataReturn2.length > 0) {
                     var seatsListDeparture = []
                     var seatsListReturn = []
@@ -76,7 +73,6 @@
                 seatsDeparture.push(seatsList.join("~"));
                 var seatsReturn = "";
                 var idReturn = "";
-                console.log(passengers);
                 if (passengersDataDeparture2.length > 0) {
                     var seatsList = [];
                     angular.forEach(passengersDataDeparture2, function(value,key) {

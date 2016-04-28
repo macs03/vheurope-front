@@ -463,34 +463,37 @@ input.ng-valid.ng-touched {
                     <div class="trip-container" translate>
                         PAYMENT.PURCHASE.ROUND
                     </div>
-                    <div class="trip-container odd">
+                    <div class="trip-container odd" ng-repeat="departure in payment.departureData">
+                        <h5 ng-show="payment.departureData.length > 1">
+                            Tramo {{$index + 1}}
+                        </h5>
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
                                 <i class="fa fa-bus"></i>
                             </div>
                             <div class="col-md-8 col-xs-6">
                                 <p class="smallest-font">
-                                    <b>{{ payment.departureData.origin }} - {{ payment.departureData.destination }}</b>
-                                    <span class="text-muted date"> {{ payment.departureData.date }}</span>
+                                    <b>{{ departure.origin }} - {{ departure.destination }}</b>
+                                    <span class="text-muted date"> {{ departure.date }}</span>
                                 </p>
                                 <p class="small-font hidden-xs">
-                                    <small class="text-muted">{{ payment.departureData.company }}</small>
+                                    <small class="text-muted">{{ departure.company }}</small>
                                 </p>
                             </div>
                             <div class="col-xs-6 visible-xs">
-                                <p class="smallest-font pull-right"><span class="text-muted"> {{ payment.departureData.date }}</span></p>
+                                <p class="smallest-font pull-right"><span class="text-muted"> {{ departure.date }}</span></p>
                             </div>
                             <div class="col-xs-4 visible-xs">
                                 <p class="small-font">
-                                    <small class="text-muted">{{ payment.departureData.company }}</small>
+                                    <small class="text-muted">{{ departure.company }}</small>
                                 </p>
                             </div>
                             <div class="col-md-4 visible-xs text-center">
-                                <p class="smallest-font pull-right">{{ payment.departureData.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ departure.time }} hrs.</p>
                             </div>
                             <div class="col-xs-4 col-md-3 hidden-xs">
-                                <p class="smallest-font pull-right hidden-xs">{{ payment.departureData.time }} hrs.</p>
-                                <p class="smallest-font pull-right">{{ payment.departureData.typeService }}</p>
+                                <p class="smallest-font pull-right hidden-xs">{{ departure.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ departure.typeService }}</p>
                             </div>
                         </div>
                     </div>
@@ -498,34 +501,37 @@ input.ng-valid.ng-touched {
                     <div class="trip-container" translate ng-show="payment.isRoundTrip">
                         PAYMENT.PURCHASE.RETURN
                     </div>
-                    <div class="trip-container odd" ng-show="payment.isRoundTrip">
+                    <div class="trip-container odd" ng-show="payment.isRoundTrip" ng-repeat="return in payment.returnData">
+                        <h5 ng-show="payment.returnData.length > 1">
+                            Tramo {{$index + 1}}
+                        </h5>
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
                                 <i class="fa fa-bus"></i>
                             </div>
                             <div class="col-md-8 col-xs-6">
                                 <p class="smallest-font">
-                                    <b>{{ payment.returnData.origin }} - {{ payment.returnData.destination }}</b>
-                                    <span class="text-muted date"> {{ payment.returnData.date }}</span>
+                                    <b>{{ return.origin }} - {{ return.destination }}</b>
+                                    <span class="text-muted date"> {{ return.date }}</span>
                                 </p>
                                 <p class="small-font hidden-xs">
-                                    <small class="text-muted">{{ payment.returnData.company }}</small>
+                                    <small class="text-muted">{{ return.company }}</small>
                                 </p>
                             </div>
                             <div class="col-xs-6 visible-xs">
-                                <p class="smallest-font pull-right"><span class="text-muted"> {{ payment.returnData.date }}</span></p>
+                                <p class="smallest-font pull-right"><span class="text-muted"> {{ return.date }}</span></p>
                             </div>
                             <div class="col-xs-4 visible-xs">
                                 <p class="small-font">
-                                    <small class="text-muted">{{ payment.returnData.company }}</small>
+                                    <small class="text-muted">{{ return.company }}</small>
                                 </p>
                             </div>
                             <div class="col-md-4 visible-xs text-center">
-                                <p class="smallest-font pull-right">{{ payment.returnData.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ return.time }} hrs.</p>
                             </div>
                             <div class="col-xs-4 col-md-3 hidden-xs">
-                                <p class="smallest-font pull-right hidden-xs">{{ payment.returnData.time }} hrs.</p>
-                                <p class="smallest-font pull-right">{{ payment.returnData.typeService }}</p>
+                                <p class="smallest-font pull-right hidden-xs">{{ return.time }} hrs.</p>
+                                <p class="smallest-font pull-right">{{ return.typeService }}</p>
                             </div>
                         </div>
                     </div>
