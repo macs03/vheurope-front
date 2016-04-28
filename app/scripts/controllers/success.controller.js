@@ -28,7 +28,7 @@ angular
             $analytics.eventTrack('Seat Price Departure', {  category: 'Success', label: 'Price for Seat Number: '+successData.departureData.seats[i].seatNumber, value: successData.departureData.seats[i].price });
         }*/
 
-        if(typeof(successData.returnData)== 'object'){
+        if(typeof(successData.returnData[0])== 'object'){
 
             $analytics.eventTrack('# Passages Return', {  category: 'Success', label: 'Number of tickets purchased', value: successData.returnData[0].seats.length });
             $analytics.eventTrack('Bus Company Return', {  category: 'Success', label: successData.returnData[0].companyName });
