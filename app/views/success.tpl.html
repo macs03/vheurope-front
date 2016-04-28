@@ -182,7 +182,7 @@
                         </div>
 						<div class="departure" ng-repeat="departure in success.departureData">
 							<div class="sub-header" style="background: #FFF;color:#666; border-bottom: 1px solid #DDD;" ng-show="success.departureData.length > 1">
-								<p><strong>Tramo {{$index + 1}}</strong></p>
+								<p><strong translate>CANCEL.SECTION</strong> {{$index + 1}}</p>
 							</div>
 							<div class="row ticket " style="border-bottom: 1px solid #bbb;">
 	                            <div class="col-xs-4 col-md-2 col-md-offset-1">
@@ -255,7 +255,7 @@
                         </div>
 						<div class="return" ng-repeat="return in success.returnData">
 							<div class="sub-header" style="background: #FFF;color:#666;border-bottom: 1px solid #DDD;" ng-show="success.returnData.length > 1">
-								<p><strong>Tramo {{$index + 1}}</strong></p>
+								<p><strong translate>CANCEL.SECTION</strong> {{$index + 1}}</p>
 							</div>
 							<div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="return != ''">
 								<div class="col-xs-4 col-md-2 col-md-offset-1">

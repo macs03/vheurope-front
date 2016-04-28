@@ -173,7 +173,7 @@ display: none;
                     </div>
                     <div class="departure" ng-repeat="departure in cancel.cancelData.departureData">
                         <div class="sub-header" style="background: #FFF;color:#666; border-bottom: 1px solid #DDD;" ng-show="cancel.cancelData.departureData.length > 1">
-                            <p><strong>Tramo {{$index + 1}}</strong></p>
+                            <p><strong translate>CANCEL.SECTION</strong> {{$index + 1}}</p>
                         </div>
                         <div class="row ticket " style="border-bottom: 1px solid #bbb;">
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
@@ -247,7 +247,7 @@ display: none;
                     </div>
                     <div class="return" ng-repeat="return in cancel.cancelData.returnData">
                         <div class="sub-header" style="background: #FFF;color:#666;border-bottom: 1px solid #DDD;" ng-show="cancel.cancelData.returnData.length > 1">
-                            <p><strong>Tramo {{$index + 1}}</strong></p>
+                            <p><strong translate>CANCEL.SECTION</strong>  {{$index + 1}}</p>
                         </div>
                         <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="return.returnData != ''">
                             <div class="col-xs-4 col-md-2 col-md-offset-1">

@@ -320,7 +320,8 @@
             "TITLE": "We present your list of passages",
             "CANCELMSG": "This list of passages already canceled",
             "BUTTON" : "Cancel",
-            "EXPIRED" : "This purchase has expired"
+            "EXPIRED" : "This purchase has expired",
+            "SECTION" : "Section"
           }
         };
     var translationsES = {
@@ -528,7 +529,8 @@
         "TITLE": "Te presentamos tu lista de billetes",
         "CANCELMSG": "Esta lista de billetes ya se encuentra anulada",
         "BUTTON" : "Anular",
-        "EXPIRED" : "Esta Compra ya ha caducado"
+        "EXPIRED" : "Esta Compra ya ha caducado",
+        "SECTION" : "Tramo"
       }
     };
 

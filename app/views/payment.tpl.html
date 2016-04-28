@@ -465,7 +465,7 @@ input.ng-valid.ng-touched {
                     </div>
                     <div class="trip-container odd" ng-repeat="departure in payment.departureData">
                         <h5 ng-show="payment.departureData.length > 1">
-                            Tramo {{$index + 1}}
+                            <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
                         </h5>
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
@@ -503,7 +503,7 @@ input.ng-valid.ng-touched {
                     </div>
                     <div class="trip-container odd" ng-show="payment.isRoundTrip" ng-repeat="return in payment.returnData">
                         <h5 ng-show="payment.returnData.length > 1">
-                            Tramo {{$index + 1}}
+                            <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
                         </h5>
                         <div class="row">
                             <div class="col-md-1 hidden-xs">
