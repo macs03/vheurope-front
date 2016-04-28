@@ -12,10 +12,11 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
             var vm = this;
+            vm.searchMobile = false;
             vm.searchTrip = searchTrip;
             vm.searching = false;
             vm.error = false;
@@ -435,6 +436,26 @@
                 $('#select_passengers').val(vm.passengers);
             };
 
+            vm.updateSearchMobile = function(){
+                vm.searchMobile = !vm.searchMobile;
+            };
+
+            vm.searchMobile = screenSize.on('xs, sm', function(isMatch){
+                vm.searchMobile = !isMatch;
+            });
+
+            vm.tripDetails = function($event){
+                var elementId = '#trip_details_'+jQuery($event.target)[0].id;
+                 $(elementId).slideToggle( "slow" );
+            };
+
+            if (screenSize.is('xs, sm')) {
+                // it's a mobile device so fetch a small image
+                vm.searchMobile = false;
+            }else {
+                // it's a desktop size so do the complicated calculations and render that
+                vm.searchMobile = true;
+            }
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -1111,10 +1132,10 @@
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
 
-             $('#popover-bg').on('click', function(){
+            $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
-
         }
+
 })();
