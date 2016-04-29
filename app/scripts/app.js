@@ -306,14 +306,14 @@
                 "SEAT": "SEAT:",
                 "CODE": "CODE:",
                 "PRICE": "PRICE:"
-                } 
+                }
             },
             "PAYMENT": {
               "TITLE": "PAYMENT DETAIL",
               "TYPE": "Payment method:",
               "TOTAL": "TOTAL:",
-              "LINK": "Terms and Conditions"
-
+              "LINK": "Terms and Conditions",
+              "TOTALFEE" : "Service Fee:"
             }
           },
           "CANCEL": {
@@ -515,14 +515,14 @@
             "SEAT": "ASIENTO:",
             "CODE": "CÓDIDO:",
             "PRICE": "PRECIO:"
-            } 
+            }
         },
         "PAYMENT": {
           "TITLE": "DETALLE DE PAGO",
           "TYPE": "Método de pago:",
           "TOTAL": "TOTAL:",
-          "LINK": "Terminos y condiciones"
-
+          "LINK": "Terminos y condiciones",
+          "TOTALFEE" : "Coste de gestión:"
         }
       },
       "CANCEL": {

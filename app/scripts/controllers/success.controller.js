@@ -48,6 +48,7 @@ angular
         vm.total = successData.total;
         vm.departureData = successData.departureData;
         vm.returnData = successData.returnData;
+        vm.totalFee = successData.totalFee
         vm.pdf = apiUrl;
         $rootScope.$broadcast('counterEvent', 1, false);
     }

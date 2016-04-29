@@ -66,7 +66,7 @@
             return data;
         }
 
-        function setSuccessData(customer,customerEmail,providerName,purchaseId,total,departureData,returnData) {
+        function setSuccessData(customer,customerEmail,providerName,purchaseId,total,departureData,returnData,totalFee) {
             var success = {
                 customer : customer,
                 customerEmail : customerEmail,
@@ -74,7 +74,8 @@
                 purchaseId : purchaseId,
                 total : total,
                 departureData : departureData,
-                returnData : returnData
+                returnData : returnData,
+                totalFee : totalFee
             };
             localStorageService.set('success',JSON.stringify(success));
         }
