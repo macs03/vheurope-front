@@ -34,17 +34,17 @@ _Documentation about the IP addresses and protocol: [IANA](http://www.iana.org/n
 By the way, if we don't need a very precise geolocation, some companies give for free their last month database. And we can check their accuracy depending on the country and the precision we need.
 
 If we decide to use an API service, we have two options to get the city of the client:
-	1. We get his IP when he first connects to the app and send it to the AngularJS app with the scripts. Then the app sends the request to the API service we chose with the IP adress in argument.
-- OR -
-	2. We directly send the geolocation request to the API through the AngularJS app. This way we don't have to save the IP and send it back to the front-end. The API service send us back the IP (which is pretty useless with this option...) and the geolocation information: country, city, etc..
+
+1. We get his IP when he first connects to the app and send it to the AngularJS app with the scripts. Then the app sends the request to the API service we chose with the IP adress in argument.
+
+OR
+
+2. We directly send the geolocation request to the API through the AngularJS app. This way we don't have to save the IP and send it back to the front-end. The API service send us back the IP (which is pretty useless with this option...) and the geolocation information: country, city, etc..
 
 #### Services available for geolocation
-+ [MaxMind](http://dev.maxmind.com/geoip/): GeoIP seems to be the most efficient API available for geolocation. It also has a cost depending on the number of requests we make each month and the precision desired. See their [pricing page - for city precision](https://www.maxmind.com/en/geoip2-precision-city-service) for more details.
-  They also provide **free databases** updated each month: [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/). They also provide a software to automatically update the database: [GeoIP Update](http://dev.maxmind.com/geoip/geoipupdate/)
-+ [IPinfoDB](http://ipinfodb.com/index.php): seems to be maintained by a community (?).
-	They also provide a **free database** [http://ipinfodb.com/ip_database.php]()
++ [MaxMind](http://dev.maxmind.com/geoip/): GeoIP seems to be the most efficient API available for geolocation. It also has a cost depending on the number of requests we make each month and the precision desired. See their [pricing page - for city precision](https://www.maxmind.com/en/geoip2-precision-city-service) for more details. They also provide **free databases** updated each month: [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/). They also provide a software to automatically update the database: [GeoIP Update](http://dev.maxmind.com/geoip/geoipupdate/)
++ [IPinfoDB](http://ipinfodb.com/index.php): seems to be maintained by a community (?). They also provide a **free database** [http://ipinfodb.com/ip_database.php]()
 + [IP info](http://ipinfo.io/): an other service with free API till 1,000 requests / day (the one I use to test the script)
-+ 
 
 
 
@@ -53,8 +53,10 @@ If we decide to use an API service, we have two options to get the city of the c
 Thanks to HTML5, Geolocation is now native from the browser. And it's more accurate than the IP address ! Modern browsers allow the JavaScript code to get the geolocation of the client but only with its **coordinates** (_latitude_ and _longitude_). So if we want to get usable location (a city or even a street), we have to do some **geocoding**. In order to do so, different APIs exist:
 + [Flickr App Garden](https://www.flickr.com/services/api/explore/?method=flickr.places.findByLatLon): Free for non-commercial use, we have to ask for information for commercial use. I didn't find a clear pricing page.
 + [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse?hl=fr): 1,000 free requests / day and still free until 150,000 requests / day if we give a credit card (which isn't debited). See details on the [pricing page](https://developers.google.com/maps/pricing-and-plans#details).
+
 **IMPORTANT NOTE ABOUT GOOGLE AND YAHOO API SERVICES**:
 Yahoo's limit is per application while Google's limit is per IP which means that for a Server-Side geocoding: Yahoo > Google whereas for a Client-Side geocoding: Google > Yahoo.
+
 **BUT, If we won't display the results on a map, then neither Google nor Yahoo will do. You'll violate their terms of service [see terms of service, advertising part](https://developers.google.com/maps/terms#4-provision-of-the-service-by-google).**
 
 + [MapQuest](http://www.mapquestapi.com/geocoding/): this is probably the most open among the fast geocoders. 15,000 requests / month for free.
@@ -64,6 +66,7 @@ Yahoo's limit is per application while Google's limit is per IP which means that
 When the browser asks the client if we want to share his location, it's exactly this technique which is used. So it can be a less-friendly solution, depending on the customers and their fears about a "big brother society".
 
 > This API will retrieve the geographic location of the hosting device which will usually pinpoint the location of the user of the device. To prevent a breach of the user's privacy, it is recommended that any browsers that implement this API supply a method of acquiring permission explicitly from users before revealing their locations.
+
 _source: [IPGeo5](http://ipgeo5.com/)_
 
 
