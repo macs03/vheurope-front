@@ -445,8 +445,8 @@
             });
 
             vm.tripDetails = function($event){
-                var elementId = '#trip_details_'+jQuery($event.target)[0].id;
-                 $(elementId).slideToggle( "slow" );
+                var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                $(elementId).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {
@@ -773,7 +773,7 @@
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -783,7 +783,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -793,7 +793,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     if (oldVal != 'Invalid date') {
                         vm.seats = [];
@@ -1119,7 +1119,6 @@
                 
                 return dias;
             }
-
 
             $('.btn-filters').on('click', function(){
                 $('#filters-container').toggleClass('hidden-xs');

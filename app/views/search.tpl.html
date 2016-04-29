@@ -408,6 +408,10 @@
                         color: #29abe5;
                     }
 
+                    .tabs-filter .tab-filter span {
+                       display: block;
+                    }
+
                     .tabs-filter .tab-filter:hover {
                         background-color: #d1d1d1;
                     }
@@ -529,6 +533,10 @@ input.chk-toggle-round:checked + label:before {
 }
 input.chk-toggle-round:checked + label:after {
   margin-left: 30px;
+}
+
+.text-theme-green {
+    color: #72cb4c !important;
 }
 
 
@@ -821,7 +829,7 @@ input.chk-toggle-round:checked + label:after {
                     <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.directDepartureTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                 </h5>
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
-                <div class="time-resumen-trips">
+                <div class="time-resumen-trips hidden-xs hidden-sm">
                     <div class="row time-resume-trip">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  <b>22.00 $</b>
@@ -835,7 +843,7 @@ input.chk-toggle-round:checked + label:after {
                             <i class="fa fa-train text-muted"></i>  <b>42.00 $</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
-                            <span>6h 10 minX</span>
+                            <span>6h 10 min</span>
                         </div>
                     </div>
                     <div class="row time-resume-trip">
@@ -888,19 +896,22 @@ input.chk-toggle-round:checked + label:after {
                         
                        
                     </div>
-                    <div class="col-md-2 col-xs-4 np">
+                    <div class="col-md-2 col-xs-4 np-tab pr5">
                         <div class="tab-filter active">
                             <i class="fa fa-bus fa-2x"></i>
+                            <span class="text-muted"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
-                    <div class="col-md-2 col-xs-4 np">
+                    <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
                         <div class="tab-filter">
                             <i class="fa fa-plane fa-2x"></i>
+                            <span class="text-muted"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
-                    <div class="col-md-2 col-xs-4 np">
+                    <div class="col-md-2 col-xs-4 np-tab pl0">
                         <div class="tab-filter">
                             <i class="fa fa-train fa-2x"></i>
+                            <span class="text-muted"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
                 </div>
@@ -962,6 +973,8 @@ input.chk-toggle-round:checked + label:after {
                                 <div class="row" style="padding-top: 30px;">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                         <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
                                     </div>
                                        
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
@@ -980,7 +993,8 @@ input.chk-toggle-round:checked + label:after {
                                             </li>
                                         </ul> 
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
-                                        <small>Directo</small>
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
@@ -1028,6 +1042,8 @@ input.chk-toggle-round:checked + label:after {
                                 <div class="row" style="padding-top: 30px;">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                         <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">3 Escalas</small>
                                     </div>
                                        
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
@@ -1050,7 +1066,8 @@ input.chk-toggle-round:checked + label:after {
                                             </li>
                                         </ul> 
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
-                                        <small>3 Escalas</small>
+                                        <small class="hidden-xs hidden-sm">3 Escalas</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg" data-trip-id="001" ng-click="search.tripDetails($event)"></i>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
@@ -1059,7 +1076,7 @@ input.chk-toggle-round:checked + label:after {
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 text-center">
-                                        <button id="001" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm" translate>Seleccionar</button>
+                                        <button data-trip-id="001" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm" translate>Elegir</button>
                                         <strong class="price hidden-md hidden-lg">18.57 €</strong>
                                     </div>
                                 </div>
@@ -1068,7 +1085,7 @@ input.chk-toggle-round:checked + label:after {
                                         <article class="timeline-entry right-aligned">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>09:15 AM</span>
+                                                    <span>09:32 PM</span>
                                                     <span>Jue, Abril 22</span>
                                                 </time>
                                                 <div class="timeline-icon bg-theme-blue">
@@ -1077,10 +1094,10 @@ input.chk-toggle-round:checked + label:after {
                                                 <div class="timeline-label">
                                                     <h2>Santiago</h2>
                                                     <p>
-                                                        <b>Sky Airline</b> | Vuelo No: <b>29</b>
-                                                        <span class="pull-right"><b>1h 15min</b></span>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>28</b>
+                                                        <span class="label label-default pull-right"><b>1h 13min</b></span>
                                                         <br>
-                                                        <b>09:15am</b> <i class="fa fa-angle-right"></i> <b>10:30am</b>
+                                                        <b>09:32pm</b> <i class="fa fa-angle-right"></i> <b>10:45pm</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -1089,7 +1106,7 @@ input.chk-toggle-round:checked + label:after {
                                         <article class="timeline-entry right-aligned">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>11:00 AM</span>
+                                                    <span>10:45 PM</span>
                                                     <span>Jue, Abril 22</span>
                                                 </time>
                                                 <div class="timeline-icon">
@@ -1099,9 +1116,9 @@ input.chk-toggle-round:checked + label:after {
                                                     <h2>Concepcion (Aeropuerto)</h2>
                                                     <p>
                                                         <b>Sky Airline</b> | Vuelo No: <b>31</b>
-                                                        <span class="pull-right"><b>2h 30min</b></span>
+                                                        <span class="label label-default pull-right"><b>1h 45min</b></span>
                                                         <br>
-                                                        <b>11:00am</b> <i class="fa fa-angle-right"></i> <b>1:30pm</b>
+                                                        <b>10:45pm</b> <i class="fa fa-angle-right"></i> <b>12:25am</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -1110,8 +1127,8 @@ input.chk-toggle-round:checked + label:after {
                                          <article class="timeline-entry right-aligned">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>3:00 PM</span>
-                                                    <span>Jue, Abril 22</span>
+                                                    <span>12:25 AM</span>
+                                                    <span>Jue, Abril 23</span>
                                                 </time>
                                                 <div class="timeline-icon">
                                                     <i class="fa fa-plane"></i>
@@ -1120,9 +1137,9 @@ input.chk-toggle-round:checked + label:after {
                                                     <h2>Puerto Montt (Aeropuerto)</h2>
                                                     <p>
                                                         <b>Sky Airline</b> | Vuelo No: <b>07</b>
-                                                        <span class="pull-right"><b>2h 30min</b></span>
+                                                        <span class="label label-default pull-right"><b>2h 10min</b></span>
                                                         <br>
-                                                        <b>3:00pm</b> <i class="fa fa-angle-right"></i> <b>5:30pm</b>
+                                                        <b>12:25am</b> <i class="fa fa-angle-right"></i> <b>02:35am</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -1131,14 +1148,14 @@ input.chk-toggle-round:checked + label:after {
                                         <article class="timeline-entry begin">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>5:30 PM</span>
-                                                    <span>Jue, Abril 22</span>
+                                                    <span>02:35 AM</span>
+                                                    <span>Jue, Abril 23</span>
                                                 </time>
                                                 <div class="timeline-icon">
                                                     
                                                 </div>
                                                 <div class="timeline-label">
-                                                    <h2>Puerto Montt (Aeropuerto)</h2>
+                                                    <h2>Puerto Arena </h2>
                                                 </div>
 
                                             </div>

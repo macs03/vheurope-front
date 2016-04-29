@@ -274,7 +274,7 @@ button.theme-fucsia:hover,
     border-bottom: 1px solid #7c7d7b;
 }
 
-.np {
+.np, .np-tab {
     padding: 0 !important;
 }
 
@@ -767,6 +767,27 @@ button.theme-search,
         padding: 10px 10px !important;
     }
 
+    .np-tab {
+        padding: 0 10px !important;
+    }
+
+    .npb {
+        padding: 0 10px 0 10px !important;
+    }
+
+    .pl0 {
+        padding-left: 0px !important;
+    }
+
+    .pl5 {
+        padding-left: 5px !important;
+    }
+
+
+    .pr5 {
+        padding-right: 5px !important;
+    }
+
     .selectize-control.single .selectize-input {
         border: 1px solid  #d0d0d0 !important;
         margin-bottom: 5px;
@@ -786,6 +807,10 @@ button.theme-search,
     }
     h2.text-fucsia {
         font-size: 1.2em;
+    }
+
+    .tabs-filter .tab-filter {
+        margin: 0 0 !important;
     }
 }
 @media only screen and (min-width: 800px) and (max-width: 800px) { 
@@ -825,9 +850,7 @@ button.theme-search,
 
     }
 
-    .np {
-        /*padding: 0px 10px !important;*/
-    }
+   
 
     .selectize-control.single .selectize-input {
         border: 1px solid  #d0d0d0 !important;
@@ -1156,3 +1179,5 @@ button.theme-search,
     background: #a9e1f9;
     border-radius: 5px;
 }
+
+
