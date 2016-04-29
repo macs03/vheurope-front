@@ -35,15 +35,15 @@ By the way, if we don't need a very precise geolocation, some companies give for
 
 If we decide to use an API service, we have two options to get the city of the client:
 
-1. We get his IP when he first connects to the app and send it to the AngularJS app with the scripts. Then the app sends the request to the API service we chose with the IP adress in argument.
++ We get his IP when he first connects to the app and send it to the AngularJS app with the scripts. Then the app sends the request to the API service we chose with the IP adress in argument.
 
 OR
 
-2. We directly send the geolocation request to the API through the AngularJS app. This way we don't have to save the IP and send it back to the front-end. The API service send us back the IP (which is pretty useless with this option...) and the geolocation information: country, city, etc..
++ We directly send the geolocation request to the API through the AngularJS app. This way we don't have to save the IP and send it back to the front-end. The API service send us back the IP (which is pretty useless with this option...) and the geolocation information: country, city, etc..
 
 #### Services available for geolocation
 + [MaxMind](http://dev.maxmind.com/geoip/): GeoIP seems to be the most efficient API available for geolocation. It also has a cost depending on the number of requests we make each month and the precision desired. See their [pricing page - for city precision](https://www.maxmind.com/en/geoip2-precision-city-service) for more details. They also provide **free databases** updated each month: [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/). They also provide a software to automatically update the database: [GeoIP Update](http://dev.maxmind.com/geoip/geoipupdate/)
-+ [IPinfoDB](http://ipinfodb.com/index.php): seems to be maintained by a community (?). They also provide a **free database** [http://ipinfodb.com/ip_database.php]()
++ [IPinfoDB](http://ipinfodb.com/index.php): seems to be maintained by a community (?). They also provide a **free database** [link to their database](http://ipinfodb.com/ip_database.php)
 + [IP info](http://ipinfo.io/): an other service with free API till 1,000 requests / day (the one I use to test the script)
 
 
@@ -56,8 +56,7 @@ Thanks to HTML5, Geolocation is now native from the browser. And it's more accur
 
 **IMPORTANT NOTE ABOUT GOOGLE AND YAHOO API SERVICES**:
 Yahoo's limit is per application while Google's limit is per IP which means that for a Server-Side geocoding: Yahoo > Google whereas for a Client-Side geocoding: Google > Yahoo.
-
-**BUT, If we won't display the results on a map, then neither Google nor Yahoo will do. You'll violate their terms of service [see terms of service, advertising part](https://developers.google.com/maps/terms#4-provision-of-the-service-by-google).**
+**BUT, If we won't display the results on a map, then neither Google nor Yahoo will do. You'll violate their terms of service ! [See terms of service, advertising part](https://developers.google.com/maps/terms#4-provision-of-the-service-by-google).**
 
 + [MapQuest](http://www.mapquestapi.com/geocoding/): this is probably the most open among the fast geocoders. 15,000 requests / month for free.
 + [GeoNames Web Service](http://www.geonames.org/export/web-services.html#findNearbyPlaceName): an open project for a lot of geocoding and other geographical stuff. With their complicated limit system, we have 10,000 requests / day. But no restriction about the way we use them if we give credit to GeoNames when using data or web services with a link or another reference to GeoNames! [See GeoNames Terms and Conditions](http://www.geonames.org/export/)
