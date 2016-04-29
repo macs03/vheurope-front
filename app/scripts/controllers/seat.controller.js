@@ -935,6 +935,9 @@ angular
                         vm.allSeats = false;
                         vm.seatRound = true;
                     }
+                    if (vm.seatsSelectedDeparture2.length === 0 && vm.seatsSelectedDeparture.length === 0) {
+                        vm.seatRound = false;
+                    }
                     if(floor === 1){
                         sc3.status(seatNumber.toString(), 'available');
                     }else{
@@ -971,6 +974,9 @@ angular
                         vm.allSeats = false;
                         vm.seatReturn = true;
                     }
+                    if (vm.seatsSelectedReturn.length === 0 && vm.seatsSelectedReturn2.length === 0) {
+                        vm.seatReturn = false;
+                    }
                     if(floor === 1){
                         sc7.status(seatNumber.toString(), 'available');
                     }else{
@@ -1002,9 +1008,9 @@ angular
                                 console.log("Do not delete");
                             }
                         }else{
-                             vm.seatsSelectedDeparture.splice(index, 1);
-                             vm.seatInSelection = vm.seatsSelectedDeparture[index];
-                             vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
+                            vm.seatInSelection = vm.seatsSelectedDeparture[index];
+                            vm.seatsSelectedDeparture.splice(index, 1);
+                            vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                          }
                     }
                 }else{
@@ -1018,9 +1024,9 @@ angular
                                 console.log("Do not delete");
                             }
                         }else{
-                             vm.seatsSelectedDeparture2.splice(index, 1);
-                             vm.seatInSelection = vm.seatsSelectedDeparture[index];
-                             vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
+                            vm.seatInSelection = vm.seatsSelectedDeparture2[index];
+                            vm.seatsSelectedDeparture2.splice(index, 1);
+                            vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                          }
                     }
                 }
@@ -1036,8 +1042,8 @@ angular
                                 console.log("Do no delete");
                             }
                         }else{
+                            vm.seatInSelection = vm.seatsSelectedReturn[index];
                             vm.seatsSelectedReturn.splice(index, 1);
-                            vm.seatInSelection = vm.seatsSelectedDeparture[index];
                             vm.releaseSeat (trip, floor, seatNumber, update,index, bus);
                          }
                     }
@@ -1052,8 +1058,8 @@ angular
                                 console.log("Do no delete");
                             }
                         }else{
+                            vm.seatInSelection = vm.seatsSelectedReturn2[index];
                             vm.seatsSelectedReturn2.splice(index, 1);
-                            vm.seatInSelection = vm.seatsSelectedDeparture[index];
                             vm.releaseSeat (trip, floor, seatNumber, update,index);
                          }
                     }
