@@ -840,18 +840,18 @@ input.chk-toggle-round:checked + label:after {
                     </div>
                     <div class="row time-resume-trip">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-train text-muted"></i>  <b>42.00 $</b>
-                        </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
-                            <span>6h 10 min</span>
-                        </div>
-                    </div>
-                    <div class="row time-resume-trip">
-                        <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-plane text-muted"></i>  <b>92.65 $</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 20%;">
                             <span>2h 10 min</span>
+                        </div>
+                    </div>
+                    <div class="row time-resume-trip">
+                        <div class="col-md-3 time-resume-trip-price">
+                            <i class="fa fa-train text-muted"></i>  <b>42.00 $</b>
+                        </div>
+                        <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
+                            <span>6h 10 min</span>
                         </div>
                     </div>
                     
@@ -888,8 +888,8 @@ input.chk-toggle-round:checked + label:after {
                             </div>
                             <div class="col-md-6">
                                  <div class="switch">
-                                    <input id="chk-toggle-1" class="chk-toggle chk-toggle-round" type="checkbox">
-                                    <label for="chk-toggle-1"></label>
+                                    <input id="combine-trips" class="chk-toggle chk-toggle-round" type="checkbox">
+                                    <label for="combine-trips"></label>
                                 </div>
                             </div>
                         </div>
@@ -897,23 +897,24 @@ input.chk-toggle-round:checked + label:after {
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active">
+                        <div class="tab-filter active" data-type="bus" id="bus">
                             <i class="fa fa-bus fa-2x"></i>
-                            <span class="text-muted"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                        <div class="tab-filter">
+                        <div class="tab-filter" data-type="plane">
                             <i class="fa fa-plane fa-2x"></i>
-                            <span class="text-muted"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pl0">
-                        <div class="tab-filter">
+                        <div class="tab-filter" data-type="train">
                             <i class="fa fa-train fa-2x"></i>
-                            <span class="text-muted"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
+                    
                 </div>
                 <!-- END PESTAÑAS DE RESULTADOS -->
                 
@@ -941,7 +942,7 @@ input.chk-toggle-round:checked + label:after {
                     <!-- NUEVO DISEÑO -->
                     <div class="new-results" id="new-results-tickeables">
                         <div class="results list" id="trips_tickeables" >
-                            <div class="row result">
+                            <div class="row result nu" data-type="bus">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
@@ -998,19 +999,19 @@ input.chk-toggle-round:checked + label:after {
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
                                         <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Semi-Cama</small>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 text-center">
-                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia hidden-xs hidden-sm"  translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
                                         <strong class="price hidden-md hidden-lg">18.57 €</strong>
 
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row result">
+                            <div class="row result nu" data-type="bus">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
@@ -1036,7 +1037,145 @@ input.chk-toggle-round:checked + label:after {
                                     </div>
 
                                     <div class="col-md-3 text-center hidden-xs hidden-sm">
-                                        <strong class="price-full">18.57 €</strong>
+                                        <strong class="price-full">19.27 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Semi-Cama</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
+                                        <strong class="price hidden-md hidden-lg">15.50 €</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row result nu" data-type="bus">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">58.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Semi-Cama</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row result nu" data-type="plane">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">48.50 €</strong>
                                     </div>
                                 </div>
                                 <div class="row" style="padding-top: 30px;">
@@ -1067,11 +1206,11 @@ input.chk-toggle-round:checked + label:after {
                                         </ul> 
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
                                         <small class="hidden-xs hidden-sm">3 Escalas</small>
-                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg" data-trip-id="001" ng-click="search.tripDetails($event)"></i>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="001" ng-click="search.tripDetails($event)"></i>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-plane fa-2x pull-right text-theme-blue" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-plane fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
                                         <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Primera Clase</small>
                                     </div>
 
@@ -1167,8 +1306,353 @@ input.chk-toggle-round:checked + label:after {
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
+
+
+                            <div class="row result nu" data-type="plane">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">3 Escalas</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">2 Escalas</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg" data-trip-id="001" ng-click="search.tripDetails($event)"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-plane fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Primera Clase</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <button data-trip-id="002" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm" translate>Elegir</button>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 30px; display: none;" id="trip_details_002">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>09:32 PM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Santiago</h2>
+                                                    <p>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>28</b>
+                                                        <span class="label label-default pull-right"><b>1h 13min</b></span>
+                                                        <br>
+                                                        <b>09:32pm</b> <i class="fa fa-angle-right"></i> <b>10:45pm</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>10:45 PM</span>
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Concepcion (Aeropuerto)</h2>
+                                                    <p>
+                                                        <b>Sky Airline</b> | Vuelo No: <b>31</b>
+                                                        <span class="label label-default pull-right"><b>1h 45min</b></span>
+                                                        <br>
+                                                        <b>10:45pm</b> <i class="fa fa-angle-right"></i> <b>12:25am</b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>02:35 AM</span>
+                                                    <span>Jue, Abril 23</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>Puerto Arena </h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12">
+                                             <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row result nu" data-type="train">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-train fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Standard Plus</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row result nu" data-type="train">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-train fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Standard Plus</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
+                                        <strong class="price hidden-md hidden-lg">38.57 €</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row result nu" data-type="train">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small hidden-xs hidden-sm" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif"><br>
+                                        <small class="text-muted smallest-font truncate">NEX CONTINENTAL HOLDINGS S L U</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>07:00</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Sevilla</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Sevilla (Plaza De Armas)</small>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                        <strong>11:15</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">Malaga</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">Malaga</small>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                        <strong class="price-full">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top: 30px;">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif" title="NEX CONTINENTAL HOLDINGS S L U" class="logo_small" src="http://movelia-dev-web.c.mad.interhost.com/Recursos/img/g_alsa.gif">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-train fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">Standard Plus</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 text-center">
+                                        <a href="#/seat/{{trip.id}}/-1" class="btn theme-blue-2 hidden-xs hidden-sm"  translate>ELEGIR</a>
+                                        <strong class="price hidden-md hidden-lg">28.57 €</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                 
+
+
                         </div>
                     </div>
 
@@ -1180,7 +1664,7 @@ input.chk-toggle-round:checked + label:after {
 
 
 
-
+                            <!-- SUPRIMIR
                     <div class="new-results" id="new-results-tickeables" ng-repeat="trip in search.trips.directDepartureTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats  | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
                         <div class="results list" id="trips_tickeables" >
                             <div class="row result">
@@ -1219,9 +1703,13 @@ input.chk-toggle-round:checked + label:after {
                                     <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm">
                                     <small class="smallest-font text-muted"><i class="fa fa-clock-o"></i> {{trip.duration}}</small>
                                 </div>
-                            </div> <!-- end .row .result-->
-                        </div>  <!-- end .results-->
-                    </div>   <!-- end .new-results -->
+                            </div> 
+                        </div>  
+                    </div>  
+                    -->
+                        
+
+
                 </div> <!-- end #single-results -->
 
                 <div class="row  container-responsive" id="ida-vuelta-results" ng-show="search.trips.directReturnTrips.length > 0">
