@@ -18,6 +18,7 @@ Brief comparison between the two technics:
 | Availability			| Medium (Depends to Data)			| High						|
 | Privacy				| Low								| Medium					|
 | End-user Permission	| Required							| No						|
+| Protocol Restriction	| HTTPS / WSS / etc..				| No (HTTP available)		|
 | Browser Compatibility	| HTML 5 and above					| All						|
 
 _source : [IP2location](http://www.ip2location.com/html5geolocationapi.aspx "Wireless Geolocation (HTML 5 Geolocation API) vs. IP Geolocation")_
@@ -67,6 +68,9 @@ When the browser asks the client if we want to share his location, it's exactly 
 > This API will retrieve the geographic location of the hosting device which will usually pinpoint the location of the user of the device. To prevent a breach of the user's privacy, it is recommended that any browsers that implement this API supply a method of acquiring permission explicitly from users before revealing their locations.
 
 _source: [IPGeo5](http://ipgeo5.com/)_
+
+**IMPORTANT NOTE**:
+That's why Chrome and other Chromium derivates web browsers won't allow any website to even ask permission for geolocation if it's not using a "secure" protocol as HTTPS. See- [Chromium recommendation](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features) for more information about this issue.
 
 
 
