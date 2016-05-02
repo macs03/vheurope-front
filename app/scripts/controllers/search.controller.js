@@ -1135,6 +1135,50 @@
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
+
+
+            var re = $('.nu');
+            re.addClass('hidden');
+            $('.fa-trip-type').addClass('hidden');
+            $.each(re, function(index, item){
+                if($(item).data('type') === 'bus' ){
+                    $(item).removeClass('hidden'); 
+                }
+            });
+
+            $('.tab-filter').on('click', function(){
+                var type = $(this).data('type');
+                $( "#combine-trips" ).prop( "checked", false );
+                $('.tab-filter').removeClass('active');
+                $('.fa-trip-type').addClass('hidden');
+                $(this).addClass('active');
+                var re = $('.nu');
+                re.addClass('hidden');
+                $.each(re, function(index, item){
+                    if($(item).data('type') === type ){
+                       $(item).removeClass('hidden'); 
+                    }
+                });
+            });
+
+            $('#combine-trips').on('change', function(){
+                if($(this).prop('checked') === false){
+                    $('#bus').addClass('active');
+                    var re = $('.nu');
+                    re.addClass('hidden');
+                    $.each(re, function(index, item){
+                        if($(item).data('type') === 'bus' ){
+                            $(item).removeClass('hidden'); 
+                        }
+                    });
+                }else{
+                    $('.tab-filter').removeClass('active');
+                    var re = $('.nu');
+                    re.removeClass('hidden');
+                    $('.fa-trip-type').removeClass('hidden');
+                }
+
+            });
         }
 
 })();
