@@ -17,7 +17,7 @@
         return function(input,price) {
             var salida = [];
             angular.forEach(input, function(value,key) {
-               if (input[key].price > 0 && input[key].price <= price) {
+               if (input[key].price >= 0 && input[key].price <= price) {
                    salida.push(value)
                }
             })
