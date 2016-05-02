@@ -70,7 +70,7 @@ When the browser asks the client if we want to share his location, it's exactly 
 _source: [IPGeo5](http://ipgeo5.com/)_
 
 **IMPORTANT NOTE**:
-That's why Chrome and other Chromium derivates web browsers won't allow any website to even ask permission for geolocation if it's not using a "secure" protocol as HTTPS. See- [Chromium recommendation](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features) for more information about this issue.
+That's why Chrome and other Chromium derivates web browsers won't allow any website to even ask permission for geolocation if it's not using a "secure" protocol as HTTPS. See [Chromium recommendation](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features) for more information about this issue.
 
 
 
