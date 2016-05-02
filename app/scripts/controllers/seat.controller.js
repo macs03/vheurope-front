@@ -299,27 +299,29 @@ angular
                 $rootScope.$broadcast('titleEvent', title);
                 vm.passengers = data.totalPeople;
                 vm.autoPassengers = vm.passengers - 1;
-                if (vm.trips.round.automaticSeat) {
-                    vm.roundSeats = [];
-                    vm.returnSeats = [];
-                    for (var i = 0; i < vm.passengers; i++) {
-                        var seatAuto = {};
-                        var seatsRound = vm.trips.round.seatMap[0][i]
-                        var split1 = seatsRound.split('[');
-                        var split2 = split1[1].split(']');
-                        var split3 = split2[0].split(',');
-                        seatAuto.label = split3[1];
-                        seatAuto.number = split3[0];
-                        vm.roundSeats.push(seatAuto);
-                        if (vm.trips.return != undefined && vm.trips.return.length != 0) {
+                for (var i = 0; i < vm.trips.round.length; i++) {
+                    if (vm.trips.round[i].automaticSeat) {
+                        vm.roundSeats = [];
+                        vm.returnSeats = [];
+                        for (var j = 0; j < vm.passengers; j++) {
                             var seatAuto = {};
-                            var seatsReturn = vm.trips.return.seatMap[0][i]
-                            var split1 = seatsReturn.split('[');
+                            var seatsRound = vm.trips.round[i].seatMap[0]
+                            var split1 = seatsRound.split('[');
                             var split2 = split1[1].split(']');
                             var split3 = split2[0].split(',');
                             seatAuto.label = split3[1];
                             seatAuto.number = split3[0];
-                            vm.returnSeats.push(seatAuto);
+                            vm.roundSeats.push(seatAuto);
+                            if (vm.trips.return != undefined && vm.trips.return.length != 0) {
+                                var seatAuto = {};
+                                var seatsReturn = vm.trips.return[i].seatMap[0]
+                                var split1 = seatsReturn.split('[');
+                                var split2 = split1[1].split(']');
+                                var split3 = split2[0].split(',');
+                                seatAuto.label = split3[1];
+                                seatAuto.number = split3[0];
+                                vm.returnSeats.push(seatAuto);
+                            }
                         }
                     }
                 }

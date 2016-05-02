@@ -113,7 +113,7 @@ input.ng-valid.ng-touched {
                 <div class="box" id="box-ida">
                     <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
                         <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
-                        <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatRound || $index == 0 && seat.seatRound}" ng-show="!seat.trips.round.automaticSeat">
+                        <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatRound || $index == 0 && seat.seatRound}" ng-show="!seat.trips.round[i].automaticSeat">
                             <div class="tabs-container">
                                 <ul class="nav nav-tabs" role="tablist" id="seats-ida">
                                     <li role="presentation" class="active">
@@ -148,7 +148,7 @@ input.ng-valid.ng-touched {
 
                              </div>
                         </div> <!-- end .col-md-6 .col-xs-12 -->
-                        <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round.automaticSeat" style="background:#fff;">
+                        <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round[i].automaticSeat" style="background:#fff;">
                             <div class="tabs-container">
                                 <h5 class="text-muted">Asientos Automaticos</h5>
                              </div>
@@ -204,7 +204,7 @@ input.ng-valid.ng-touched {
                                 </div>
                             </div>
                             <br>
-                            <div class="row" ng-show="!seat.trips.round.automaticSeat">
+                            <div class="row" ng-show="!seat.trips.round[i].automaticSeat">
                                 <div class="col-md-4 col-xs-4 seat-legend">
                                     <img src="images/seat-charts/seat-available.png" alt="Disponible">
                                     <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
