@@ -770,6 +770,9 @@ angular
                                 vm.selectDepartureSeat = true;
                             }
                         }
+                        if (vm.trips.round.automaticSeat && vm.passengers > 1) {
+                            vm.autoPassengers --;
+                        }
                     }else{
                         if (vm.trips.round.length == 2) {
                             if (vm.seatsSelectedDeparture.length > aux && vm.seatsSelectedDeparture2.length >aux && vm.passengers >= aux) {
@@ -817,6 +820,10 @@ angular
                             vm.allSeats = true;
                         }
                         vm.resetSeatInSelection();
+                    }
+                    vm.resetSeatInSelection();
+                    if (vm.trips.round.automaticSeat && vm.passengers > 1) {
+                        vm.autoPassengers --;
                     }
                 }
                 if (vm.automaticSeat) {
@@ -1079,6 +1086,13 @@ angular
                 vm.seatInSelection.seatLabel = vm.roundSeats[vm.autoPassengers].label;
                 vm.seatInSelection.seatNumber = vm.roundSeats[vm.autoPassengers].number;
                 $('#formSeat').modal('show');
+            }else{
+                vm.seatInSelection.trip = trip;
+                vm.seatInSelection.price = vm.trips.round.priceFloorOne;
+                vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
+                vm.seatInSelection.seatLabel = vm.returnSeats[vm.autoPassengers].label;
+                vm.seatInSelection.seatNumber = vm.returnSeats[vm.autoPassengers].number;
+                vm.addSeat();
             }
 
         }

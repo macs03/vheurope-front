@@ -623,6 +623,10 @@
                 vm.countryOrigin = origin[1];
                 vm.countryDestination = destination[1];
                 vm.passengers  = 1;
+
+                if(!sessionStorageService.getPassengers()){
+                    sessionStorageService.setPassengers(1,0,0);
+                }
                 vm.passengersAdult  = parseInt(sessionStorageService.getPassengers().passengersAdult);
                 vm.passengersChild  = parseInt(sessionStorageService.getPassengers().passengersChild);
                 vm.passengersBaby  = parseInt(sessionStorageService.getPassengers().passengersBaby);
