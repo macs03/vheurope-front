@@ -151,7 +151,7 @@ input.ng-valid.ng-touched {
                         <div class="tabs-container">
                             <h5 class="text-muted">Asientos Automaticos</h5>
                          </div>
-                         <div class="addSeat-automatic">
+                         <div class="addSeat-automatic" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}">
                              <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0)" ng-hide = "seat.allSeats">
                                  Añadir Pasajero
                              </button>
@@ -271,8 +271,19 @@ input.ng-valid.ng-touched {
                             </div> <!-- end .tab-content -->
                         </div>
                     </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
-                    
-                    <div class="col-xs-12 col-md-6 col-sm-6" style="padding: 0;" id="forms_vuelta">
+
+                    <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round.automaticSeat" style="background:#fff;">
+                        <div class="tabs-container">
+                            <h5 class="text-muted">Asientos Automaticos</h5>
+                         </div>
+                         <div class="addSeat-automatic" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats}">
+                             <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(1)" ng-hide = "seat.allSeats">
+                                 Añadir Pasajero
+                             </button>
+                         </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6 col-sm-6" style="padding: 0; padding-left: 15px;" id="forms_vuelta">
                         <div class="select-seat">
                             <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
                             <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
