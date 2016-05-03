@@ -152,8 +152,8 @@ input.ng-valid.ng-touched {
                             <div class="tabs-container">
                                 <h5 class="text-muted">Asientos Automaticos</h5>
                              </div>
-                             <div class="addSeat-automatic" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}">
-                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0)" ng-hide = "seat.allSeats">
+                             <div class="addSeat-automatic" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatRound || $index == 0 && seat.seatRound}">
+                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0,$index)" ng-hide = "seat.allSeats">
                                      Añadir Pasajero
                                  </button>
                              </div>
@@ -225,7 +225,6 @@ input.ng-valid.ng-touched {
                     </div> <!-- end .box-content -->
                 </div> <!-- end .box #box-ida -->
             </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
-        </div>
 
         <div class="col-xs-12" ng-show="seat.trips.isRoundTrip" ng-class="{'col-md-6':seat.trips.return.length == 1 , 'col-md-12': seat.trips.return.length > 1 }">
             <div class="col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip" ng-repeat="i in [0,1]" ng-hide="seat.tramos2 && $index > 0" ng-class="{'col-md-12':seat.trips.return.length == 1 , 'col-md-6': seat.trips.return.length > 1 }">
@@ -298,7 +297,7 @@ input.ng-valid.ng-touched {
                                 <h5 class="text-muted">Asientos Automaticos</h5>
                              </div>
                              <div class="addSeat-automatic" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatReturn || $index == 0 && seat.seatReturn}">
-                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(1)" ng-hide = "seat.allSeats">
+                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(1,$index)" ng-hide = "seat.allSeats">
                                      Añadir Pasajero
                                  </button>
                              </div>

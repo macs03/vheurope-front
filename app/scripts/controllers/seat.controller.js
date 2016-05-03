@@ -1076,7 +1076,7 @@ angular
             }
 		};
 
-        function selectSeatAutomatic(trip) {
+        function selectSeatAutomatic(trip,index) {
             console.log("Automatic Seat");
             $analytics.eventTrack('Select Seat Automatic', {  category: 'Seat', label: 'Automatic Seats' });
             if (trip == 0) {
@@ -1085,7 +1085,11 @@ angular
                 vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
                 vm.seatInSelection.seatLabel = vm.roundSeats[vm.autoPassengers].label;
                 vm.seatInSelection.seatNumber = vm.roundSeats[vm.autoPassengers].number;
-                $('#formSeat').modal('show');
+                if (index == 0) {
+                    $('#formSeat').modal('show');
+                }else{
+                    vm.addSeat();
+                }
             }else{
                 vm.seatInSelection.trip = trip;
                 vm.seatInSelection.price = vm.trips.round.priceFloorOne;
