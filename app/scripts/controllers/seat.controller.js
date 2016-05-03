@@ -293,6 +293,10 @@ angular
                 vm.trips.isRoundTrip = data.isRoundTrip;
                 vm.trips.round = data.departure;
                 vm.trips.return = data.return;
+                vm.hasBoat = data.hasBoat;
+                vm.ageCategories = data.ageCategories;
+                vm.genders = data.genders;
+                vm.docTypes = data.docTypes;
                 console.log(vm.trips.round);
                 console.log(vm.trips.return);
                 var title = "Resertrip "+data.departure[0].origin+"-"+data.departure[0].destination;

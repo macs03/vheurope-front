@@ -442,6 +442,29 @@ input.ng-valid.ng-touched {
                         </div>
                     </div>
                 </div>
+                <div class="row" ng-show="seat.hasBoat">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form-group">
+                            <label for="form_data_genders" translate>Sexo</label>
+                            <select name="form_data_genders" id="form_data_genders"  class="country" ng-model="seat.seatInSelection.genders" ng-options="genders.key as genders.value for genders in seat.genders" ng-init="seat.seatInSelection.genders='V'">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form_group">
+                            <label for="form_data_ages" translate>Tipo de pasajero</label>
+                            <select name="form_data_ages" id="form_data_ages"  class="country" ng-model="seat.seatInSelection.ages" ng-options="ages.key as ages.value for ages in seat.ageCategories" ng-init="seat.seatInSelection.ages='A'">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form_group">
+                            <label for="form_data_bornDate" translate>Fecha de nacimiento</label>
+                           <input type="text" placeholder="DD/MM/YYYY" name="form_data_bornDate" id="form_data_bornDate" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.bornDate" ui-mask="99/99/9999" model-view-value="true"/>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="row">
 
 
@@ -453,7 +476,18 @@ input.ng-valid.ng-touched {
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 col-md-6" ng-show="seat.hasBoat">
+                        <div class="col-xs-12 col-md-6">
+                            <label for="form_data_country" translate>Tipo de documento</label>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.docTypes" ng-options="docTypes.key as docTypes.value for docTypes in seat.docTypes" ng-init="seat.seatInSelection.docTypes='1'">
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-md-6 rut-container">
+                            <label for="form_data_rut" translate>Documento</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6" ng-hide="seat.hasBoat">
                             <label class="radio-inline">
                                 <input type="radio" name="form_data_document" id="form_data_document" ng-checked="true" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>DNI/NIF</small>
                             </label>
