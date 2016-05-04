@@ -78,7 +78,8 @@
                         pikadayOptions: {
                             minDate: new Date(minDate),
                             maxDate: new Date(maxDate),
-                            i18n: daysNames
+                            i18n: daysNames,
+                            firstDay: 1
                         }
                     });
 
