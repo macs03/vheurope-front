@@ -35,14 +35,15 @@
                     if (hasBoat) {
                         passengers.push({
                             email : passengersDataDeparture[key].email,
-                            documentId : passengersDataDeparture[key].dni,
+                            documentIdentifier : passengersDataDeparture[key].dni,
                             name : passengersDataDeparture[key].name,
                             surname : passengersDataDeparture[key].lastname,
-                            genders : passengersDataDeparture[key].genders,
-                            ageCategories : passengersDataDeparture[key].ages,
-                            bornDate : passengersDataDeparture[key].bornDate,
-                            docTypes : passengersDataDeparture[key].docTypes,
-                            documentType : passengersDataDeparture[key].document
+                            gender : passengersDataDeparture[key].genders,
+                            ageCategory : passengersDataDeparture[key].ages,
+                            birthDate : passengersDataDeparture[key].bornDate,
+                            typeDocument : passengersDataDeparture[key].docTypes,
+                            phoneContact : passengersDataDeparture[key].phone,
+                            nacionality : passengersDataDeparture[key].country
                         });
                     }else{
                         passengers.push({
