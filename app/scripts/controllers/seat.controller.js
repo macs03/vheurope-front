@@ -1253,7 +1253,7 @@ angular
                     }
                 }
             }else
-            if(vm.seatInSelection.document == 2){
+            if(vm.seatInSelection.document == 2 || vm.seatInSelection.docTypes == 1){
                 if(vm.seatInSelection.dni != undefined){
                     if(validateNif(vm.seatInSelection.dni)){
                         vm.errorDni = false;
@@ -1262,7 +1262,7 @@ angular
                     }
                 }
             }else
-            if(vm.seatInSelection.document == 3){
+            if(vm.seatInSelection.document == 3 || vm.seatInSelection.docTypes == 3 || vm.seatInSelection.docTypes == 5 || vm.seatInSelection.docTypes == 4){
                 if(vm.seatInSelection.dni != undefined){
                     if(validatePassport(vm.seatInSelection.dni)){
                         vm.errorDni = false;
