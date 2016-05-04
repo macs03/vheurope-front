@@ -316,9 +316,9 @@ angular
                             seatAuto.label = split3[1];
                             seatAuto.number = split3[0];
                             vm.roundSeats.push(seatAuto);
-                            if (vm.trips.return != undefined && vm.trips.return.length != 0) {
+                            if (vm.trips.return != undefined && vm.trips.return.length != 0 && vm.trips.return[j].automaticSeat) {
                                 var seatAuto = {};
-                                var seatsReturn = vm.trips.return[i].seatMap[0]
+                                var seatsReturn = vm.trips.return[j].seatMap[0]
                                 var split1 = seatsReturn.split('[');
                                 var split2 = split1[1].split(']');
                                 var split3 = split2[0].split(',');
@@ -825,7 +825,7 @@ angular
                         }
                         vm.resetSeatInSelection();
                     }
-                    vm.resetSeatInSelection();
+                    //vm.resetSeatInSelection();
                     if (vm.trips.round.automaticSeat && vm.passengers > 1) {
                         vm.autoPassengers --;
                     }

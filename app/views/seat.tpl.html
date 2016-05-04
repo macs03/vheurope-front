@@ -308,7 +308,7 @@ input.ng-valid.ng-touched {
                                 <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
                                 <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
                             </div>
-                                <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}" ng-hide="i == 1">
+                                <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-12 col-xs-12" id="id_{{ item.seatNumber }}" ng-hide="i == 1">
                                     <div class="row">
                                         <div class="col-md-5 col-xs-5">
                                             <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
@@ -327,7 +327,7 @@ input.ng-valid.ng-touched {
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-repeat="item in seat.seatsSelectedReturn2 | filter: { trip: 1}" class="seat-selected col-md-6 col-xs-12" id="id_{{ item.seatNumber }}" ng-show="i == 1">
+                                <div ng-repeat="item in seat.seatsSelectedReturn2 | filter: { trip: 1}" class="seat-selected col-md-12 col-xs-12" id="id_{{ item.seatNumber }}" ng-show="i == 1">
                                     <div class="row">
                                         <div class="col-md-5 col-xs-5">
                                             <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
