@@ -18,7 +18,7 @@
             getAll: getAll
         }
 
-        function getAll (passengersDataDeparture, passengersDataDeparture2, passengersDataReturn, passengersDataReturn2, departureId, returnId) {
+        function getAll (passengersDataDeparture, passengersDataDeparture2, passengersDataReturn, passengersDataReturn2, departureId, returnId, hasBoat) {
             var defered = $q.defer();
             var promise = defered.promise;
             if (returnId != "-1") {
@@ -32,13 +32,27 @@
                 });
                 angular.forEach(passengersDataDeparture, function(value,key) {
                     seatsListDeparture.push(passengersDataDeparture[key].seatNumber);
-                    passengers.push({
-                        email : passengersDataDeparture[key].email,
-                        documentId : passengersDataDeparture[key].dni,
-                        name : passengersDataDeparture[key].name,
-                        surname : passengersDataDeparture[key].lastname,
-                        documentType : passengersDataDeparture[key].document
-                    });
+                    if (hasBoat) {
+                        passengers.push({
+                            email : passengersDataDeparture[key].email,
+                            documentId : passengersDataDeparture[key].dni,
+                            name : passengersDataDeparture[key].name,
+                            surname : passengersDataDeparture[key].lastname,
+                            genders : passengersDataDeparture[key].genders,
+                            ageCategories : passengersDataDeparture[key].ages,
+                            bornDate : passengersDataDeparture[key].bornDate,
+                            docTypes : passengersDataDeparture[key].docTypes,
+                            documentType : passengersDataDeparture[key].document
+                        });
+                    }else{
+                        passengers.push({
+                            email : passengersDataDeparture[key].email,
+                            documentId : passengersDataDeparture[key].dni,
+                            name : passengersDataDeparture[key].name,
+                            surname : passengersDataDeparture[key].lastname,
+                            documentType : passengersDataDeparture[key].document
+                        });
+                    }
                 });
                 seatsDeparture.push(seatsListDeparture.join("~"));
                 seatsReturn.push(seatsListReturn.join("~"));
@@ -62,13 +76,28 @@
                 var seatsDeparture = []
                 angular.forEach(passengersDataDeparture, function(value,key) {
                     seatsList.push(passengersDataDeparture[key].seatNumber);
-                    passengers.push({
-                        email : passengersDataDeparture[key].email,
-                        documentId : passengersDataDeparture[key].dni,
-                        name : passengersDataDeparture[key].name,
-                        surname : passengersDataDeparture[key].lastname,
-                        documentType : passengersDataDeparture[key].document
-                    });
+                    if (hasBoat) {
+                        passengers.push({
+                            email : passengersDataDeparture[key].email,
+                            documentIdentifier : passengersDataDeparture[key].dni,
+                            name : passengersDataDeparture[key].name,
+                            surname : passengersDataDeparture[key].lastname,
+                            gender : passengersDataDeparture[key].genders,
+                            ageCategory : passengersDataDeparture[key].ages,
+                            birthDate : passengersDataDeparture[key].bornDate,
+                            typeDocument : passengersDataDeparture[key].docTypes,
+                            phoneContact : passengersDataDeparture[key].phone,
+                            nacionality : passengersDataDeparture[key].country
+                        });
+                    }else {
+                        passengers.push({
+                            email : passengersDataDeparture[key].email,
+                            documentId : passengersDataDeparture[key].dni,
+                            name : passengersDataDeparture[key].name,
+                            surname : passengersDataDeparture[key].lastname,
+                            documentType : passengersDataDeparture[key].document
+                        });
+                    }
                 });
                 seatsDeparture.push(seatsList.join("~"));
                 var seatsReturn = "";

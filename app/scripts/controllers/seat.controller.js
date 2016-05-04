@@ -1202,7 +1202,7 @@ angular
 
         function reserve() {
             reserveFactory
-                .getAll(vm.seatsSelectedDeparture,vm.seatsSelectedDeparture2,vm.seatsSelectedReturn,vm.seatsSelectedReturn2,$stateParams.idDeparture,$stateParams.idReturn)
+                .getAll(vm.seatsSelectedDeparture,vm.seatsSelectedDeparture2,vm.seatsSelectedReturn,vm.seatsSelectedReturn2,$stateParams.idDeparture,$stateParams.idReturn,vm.hasBoat)
                 .then(function(data){
                     utilityService.setPayer(vm.seatsSelectedDeparture[0]);
                     utilityService.setPaymentData(data.idIda,data.idVuelta,data.totalPrice, data.totalFee, data.totalPayment, data.departure,data.return);
