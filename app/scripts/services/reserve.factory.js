@@ -43,7 +43,8 @@
                             birthDate : passengersDataDeparture[key].bornDate,
                             typeDocument : passengersDataDeparture[key].docTypes,
                             phoneContact : passengersDataDeparture[key].phone,
-                            nacionality : passengersDataDeparture[key].country
+                            nacionality : passengersDataDeparture[key].country,
+                            docExpirationDate : passengersDataDeparture[key].docExpirationDate
                         });
                     }else{
                         passengers.push({
@@ -88,7 +89,8 @@
                             birthDate : passengersDataDeparture[key].bornDate,
                             typeDocument : passengersDataDeparture[key].docTypes,
                             phoneContact : passengersDataDeparture[key].phone,
-                            nacionality : passengersDataDeparture[key].country
+                            nacionality : passengersDataDeparture[key].country,
+                            docExpirationDate : passengersDataDeparture[key].docExpirationDate
                         });
                     }else {
                         passengers.push({

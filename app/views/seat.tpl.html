@@ -568,7 +568,7 @@ input.ng-valid.ng-touched {
 
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 col-md-3">
                         <div class="form-group">
                             <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
                             <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country" ng-options="country.name as country.value for country in seat.cnames_es" ng-init="seat.seatInSelection.country='ESP'">
@@ -576,16 +576,18 @@ input.ng-valid.ng-touched {
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
-                        <div class="col-xs-12 col-md-6">
-                            <label for="form_data_country" translate>Tipo de documento</label>
-                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.docTypes" ng-options="docTypes.key as docTypes.value for docTypes in seat.docTypes" ng-init="seat.seatInSelection.docTypes='1'">
-                            </select>
-                        </div>
-                        <div class="col-xs-12 col-md-6 rut-container">
-                            <label for="form_data_rut" translate>Documento</label>
-                            <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
-                        </div>
+                    <div class="col-xs-12 col-md-3">
+                        <label for="form_data_country" translate>Tipo de documento</label>
+                        <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.docTypes" ng-options="docTypes.key as docTypes.value for docTypes in seat.docTypes" ng-init="seat.seatInSelection.docTypes='1'">
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <label for="form_data_rut" translate>Documento</label>
+                        <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
+                    </div>
+                    <div class="form_group col-xs-12 col-md-3">
+                        <label for="form_data_docExpirationDate" translate>Fecha de caducidad</label>
+                        <input type="text" placeholder="DD/MM/YYYY" name="form_data_docExpirationDate" id="form_data_docExpirationDate" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.docExpirationDate" ui-mask="99/99/9999" model-view-value="true"/>
                     </div>
                 </div>
                 <div class="row">
