@@ -892,6 +892,11 @@
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
+                        vm.selectDeparture = true;
+                        vm.idIda_1 = 0;
+                        vm.idVuelta_1 = 0;
+                        vm.dateIda_1 = 0;
+                        vm.selectMixTrip = false;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
