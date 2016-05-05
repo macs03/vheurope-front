@@ -1211,7 +1211,11 @@ angular
         	}
 
             if (vm.seatsSelectedReturn.length > 0) {
-                vm.totalMount += vm.seatsSelectedReturn[0].price + vm.seatsSelectedDeparture[0].price;
+                if (vm.hasBoat) {
+                    vm.totalMount += 0 + vm.seatsSelectedDeparture[0].price;
+                }else{
+                    vm.totalMount += vm.seatsSelectedReturn[0].price + vm.seatsSelectedDeparture[0].price;
+                }
                 vm.totalMount = Math.round(vm.totalMount * 100) / 100;
             }else if(vm.seatsSelectedDeparture.length > 0){
                 vm.totalMount += vm.seatsSelectedDeparture[0].price;
