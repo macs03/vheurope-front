@@ -912,7 +912,11 @@ angular
             if (vm.trips.round.automaticSeat) {
                 vm.autoPassengers --;
             }
-			$('#formSeat').modal('hide');
+            if (vm.hasBoat) {
+                $('#formSeatBoat').modal('hide');
+            }else{
+                $('#formSeat').modal('hide');
+            }
 			vm.updateTotals();
 		};
 
@@ -1001,7 +1005,11 @@ angular
             	$scope.$apply();
             }
             vm.updateTotals();
-            $('#formSeat').modal('hide');
+            if (vm.hasBoat) {
+                $('#formSeatBoat').modal('hide');
+            }else{
+                $('#formSeat').modal('hide');
+            }
 		};
 
 		vm.deleteSeat = function (trip, floor, seatNumber, update, index, bus) {
@@ -1090,7 +1098,11 @@ angular
                 vm.seatInSelection.seatLabel = vm.roundSeats[vm.autoPassengers].label;
                 vm.seatInSelection.seatNumber = vm.roundSeats[vm.autoPassengers].number;
                 if (index == 0) {
-                    $('#formSeat').modal('show');
+                    if (vm.hasBoat) {
+                        $('#formSeatBoat').modal('show');
+                    }else{
+                        $('#formSeat').modal('show');
+                    }
                 }else{
                     vm.addSeat();
                 }
@@ -1117,7 +1129,11 @@ angular
 			if(item != null ){
 				vm.seatInSelection = item;
 				vm.seatInSelection.update = true;
-                $('#formSeat').modal('show');
+                if (vm.hasBoat) {
+                    $('#formSeatBoat').modal('show');
+                }else{
+                    $('#formSeat').modal('show');
+                }
                 vm.selectDepartureSeat = true
 			}else{
                 if($stateParams.idReturn != "-1"){
@@ -1148,7 +1164,11 @@ angular
                         }
 					}
                     if (!vm.seatRound) {
-                        $('#formSeat').modal('show');
+                        if (vm.hasBoat) {
+                            $('#formSeatBoat').modal('show');
+                        }else{
+                            $('#formSeat').modal('show');
+                        }
                     }else{
                         vm.addSeat();
                     }
@@ -1253,7 +1273,7 @@ angular
                     }
                 }
             }else
-            if(vm.seatInSelection.document == 2 || vm.seatInSelection.docTypes == 1){
+            if(vm.seatInSelection.document == 2 || (vm.seatInSelection.docTypes == 1 && vm.hasBoat)){
                 if(vm.seatInSelection.dni != undefined){
                     if(validateNif(vm.seatInSelection.dni)){
                         vm.errorDni = false;
@@ -1262,11 +1282,11 @@ angular
                     }
                 }
             }else
-            if(vm.seatInSelection.document == 3 || vm.seatInSelection.docTypes == 3 || vm.seatInSelection.docTypes == 5 || vm.seatInSelection.docTypes == 4){
+            if(vm.seatInSelection.document == 3|| (vm.seatInSelection.docTypes == 3 || vm.seatInSelection.docTypes == 5 || vm.seatInSelection.docTypes == 4 && vm.hasBoat)){
                 if(vm.seatInSelection.dni != undefined){
                     if(validatePassport(vm.seatInSelection.dni)){
                         vm.errorDni = false;
-                    }else{
+                    }else{        
                         vm.errorDni = true;
                     }
                 }

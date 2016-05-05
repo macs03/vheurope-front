@@ -448,7 +448,103 @@ input.ng-valid.ng-touched {
                         </div>
                     </div>
                 </div>
-                <div class="row" ng-show="seat.hasBoat">
+                <div class="row">
+
+
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country" ng-options="country.name as country.value for country in seat.cnames_es" ng-init="seat.seatInSelection.country='ESP'">
+                                <option value="" translate>SEATS.FORM_COUNTRY_TEXT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" ng-checked="true" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>DNI/NIF</small>
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" value="2" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>NIF</small>
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="form_data_document" id="form_data_document" value="3" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>SEATS.FORM_PASSPORT</small>
+                            </label>
+                            <div class=" rut-container">
+                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_phone" translate>SEATS.FORM_PHONE</label>
+                           <input type="text" placeholder="{{ 'SEATS.FORM_PHONE_PLACEHOLDER' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form_group">
+                            <label for="form_data_email" translate>SEATS.FORM_EMAIL</label>
+                           <input type="email" placeholder="{{ 'SEATS.FORM_EMAIL_PLACEHOLDER' | translate}}" name="form_data_email" id="form_data_email" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.email" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >
+                            <div ng-switch-when="true">
+                                <span translate>SEATS.FORM_BTN_UPDATE</span>
+                            </div>
+                            <div ng-switch-default>
+                                <span translate>SEATS.FORM_BTN_SELECT</span>
+                            </div>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Boat -->
+<div class="modal fade" id="formSeatBoat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+   data-keyboard="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber, false, 0, 0)" aria-label="Close" ng-hide="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-show="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
+         <p class="text-fucsia">
+            <strong translate>SEATS.FORM_LABEL_PASSAGE</strong>
+            <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatLabel }}</span>
+        </p>
+      </div>
+      <div class="modal-body">
+      <form role="form" id="form_data"  ng-submit="seat.addSeat()">
+        <fieldset class="" >
+
+            <div class="form-content">
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_name" translate>SEATS.FORM_NAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_NAME' | translate}}" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.seatInSelection.name"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_lastname" translate>SEATS.FORM_LASTNAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_LASTNAME' | translate}}" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.seatInSelection.lastname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12 col-md-4">
                         <div class="form-group">
                             <label for="form_data_genders" translate>Sexo</label>
@@ -472,8 +568,6 @@ input.ng-valid.ng-touched {
 
                 </div>
                 <div class="row">
-
-
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
@@ -482,7 +576,7 @@ input.ng-valid.ng-touched {
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6" ng-show="seat.hasBoat">
+                    <div class="col-xs-12 col-md-6">
                         <div class="col-xs-12 col-md-6">
                             <label for="form_data_country" translate>Tipo de documento</label>
                             <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.docTypes" ng-options="docTypes.key as docTypes.value for docTypes in seat.docTypes" ng-init="seat.seatInSelection.docTypes='1'">
@@ -492,21 +586,6 @@ input.ng-valid.ng-touched {
                             <label for="form_data_rut" translate>Documento</label>
                             <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6" ng-hide="seat.hasBoat">
-                            <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" ng-checked="true" value="1" class="rut-radio" checked ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>DNI/NIF</small>
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="2" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>NIF</small>
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="form_data_document" id="form_data_document" value="3" class="pass-radio" ng-model="seat.seatInSelection.document" ng-click="seat.validateDni()"> <small translate>SEATS.FORM_PASSPORT</small>
-                            </label>
-                            <div class=" rut-container">
-                                <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
-                            </div>
-
                     </div>
                 </div>
                 <div class="row">
