@@ -56,9 +56,9 @@
             vm.departureData = paymentData.departure;
             vm.returnData = paymentData.returns;
             vm.isRoundTrip = false;
-            
-            if (vm.returnData != undefined){
-                if(vm.returnData.hasOwnProperty('company')){
+            console.log(vm.returnData);
+            if (vm.returnData.length > 0){
+                if(vm.returnData[0].hasOwnProperty('company')){
                      vm.isRoundTrip = true;
                 }
             }
@@ -86,7 +86,7 @@
                     .then(function(data){
                         //$location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                         utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
-                        sessionStorageService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
+                        sessionStorageService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData,data.totalFee);
                         $location.path ("/success");
                     })
                     .catch(function(err){

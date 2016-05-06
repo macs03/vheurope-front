@@ -299,6 +299,9 @@
             vm.weather_progress_scraper.setAbsolute();
 
             vm.nextDay = nextDay;
+            vm.findMixRoutes = findMixRoutes;
+            vm.firstStep = firstStep;
+            vm.resetFirstSetep = resetFirstSetep;
 
             vm.myOptions = [];
         	vm.myConfig = {
@@ -476,6 +479,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -664,6 +668,7 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
 
@@ -886,6 +891,12 @@
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
+                        vm.isMixedTrips = data.isMixedTrips;
+                        vm.selectDeparture = true;
+                        vm.idIda_1 = 0;
+                        vm.idVuelta_1 = 0;
+                        vm.dateIda_1 = 0;
+                        vm.selectMixTrip = false;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -994,7 +1005,8 @@
                 vm.destination = destination+", "+countryDestination;
             }
 
-            function departureSelect(id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                vm.selectMixTrip = false;
                 vm.selectDeparture = !vm.selectDeparture;
                 if(!vm.selectDeparture){
                     vm.departureId = id;
@@ -1007,7 +1019,50 @@
                     vm.departureTypeService = typeService;
                     vm.departureCompanyName = companyName;
                     vm.departureLogo = logo;
+                    $('.'+id).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
                 }else{
+                    $('.'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    $('.'+vm.departureId).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.departureId).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    $('#'+vm.idVuelta_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idVuelta_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
                     vm.departureId = '';
                     vm.departureDeparture = '';
                     vm.departureDuration = '';
@@ -1016,6 +1071,7 @@
                     vm.departureTypeService = '';
                     vm.departureCompanyName = '';
                     vm.departureLogo = '';
+                    vm.idIda_1 = 0;
                 }
             }
 
@@ -1072,6 +1128,164 @@
                 }
                 vm.dates.departureDate = nestDayDay+'/'+nextDayMonth+'/'+nextDate.getUTCFullYear();
                 $('input[placeholder="Ida"]').val(vm.dates.departureDate);
+            }
+
+            function findMixRoutes(id) {
+                vm.searchingMix = true;
+                travelsFactory
+                    .getMixedTrips(id)
+                    .then(function (data) {
+                        vm.searchingMix = false;
+                        vm.results = true;
+                        vm.trips = data;
+                        vm.isMixedTrips = data.isMixedTrips
+                        var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+                        for (var i = 0; i < data.typeServices.length; i++) {
+                            vm.seats.push(data.typeServices[i].name)
+                        }
+                        vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
+                    })
+                    .catch(function (err) {
+                        vm.searchingMix = false;
+                        console.log(err);
+                    })
+            }
+
+            vm.selectMixTrip = false;
+            vm.idIda_1 = 0;
+            vm.idVuelta_1 = 0;
+            vm.dateIda_1 = 0;
+            function firstStep(id_1,type,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+                var date = new Date(parseInt(arrival))
+                var minutes = date.getUTCMinutes() + 50;
+                date = date.setUTCMinutes(minutes);
+                if (type == 1) {
+                    vm.dateIda_1 = date;
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-1').offset().top
+                    }, 800);
+                    $('#'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
+                    vm.selectMixTrip = true;
+                    vm.idIda_1 = id_1;
+                }
+                if (type == 2) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-ida-1').offset().top
+                    }, 800);
+                    $('.'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
+                    vm.dateIda_1 = date;
+                    vm.selectMixTrip = true;
+                    vm.idIda_1 = id_1;
+                    vm.departureId_1 = id_1;
+                    vm.departureOrigin_1 = origin;
+                    vm.departureDestination_1 = destination;
+                    vm.departureDeparture_1 = departure;
+                    vm.departureDuration_1 = duration;
+                    vm.departureArrival_1 = arrival;
+                    vm.departurePrice_1 = price;
+                    vm.departureTypeService_1 = typeService;
+                    vm.departureCompanyName_1 = companyName;
+                    vm.departureLogo_1 = logo;
+                }
+                if(type == 3){
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-vuelta-1').offset().top
+                    }, 800);
+                    $('#'+id_1).css({
+                        "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)",
+                        "border" : "1px solid #29ABE5"
+                    });
+                    vm.dateVuelta_1 = date;
+                    vm.selectMixTrip = true;
+                    vm.idVuelta_1 = id_1;
+                    vm.returnId = id_1;
+                    vm.returnOrigin = origin;
+                    vm.returnDestination = destination;
+                    vm.returnDeparture = departure;
+                    vm.returnDuration = duration;
+                    vm.returnArrival = arrival;
+                    vm.returnPrice = price;
+                    vm.returnTypeService = typeService;
+                    vm.returnCompanyName = companyName;
+                    vm.returnLogo = logo;
+                }
+            }
+
+            function resetFirstSetep(type) {
+                if (type == 1) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-0').offset().top
+                    }, 800);
+                    $('#'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    vm.selectMixTrip = false;
+                    vm.idIda_1 = 0;
+                }
+                if (type == 2) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-ida-0').offset().top
+                    }, 800);
+                    $('.'+vm.idIda_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('.'+vm.idIda_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    vm.selectMixTrip = false;
+                    vm.idIda_1 = 0;
+                }
+                if (type == 3) {
+                    $('html, body').stop().animate({
+                        scrollTop: jQuery('#tramo-vuelta-0').offset().top
+                    }, 800);
+                    $('#'+vm.idVuelta_1).css({
+                        "border" : "none",
+                        "box-shadow" : "none"
+                    });
+                    $('#'+vm.idVuelta_1).hover(function () {
+                        $(this).css({
+                            "box-shadow" : "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
+                        })
+                    }, function() {
+                        $( this ).css({
+                            "box-shadow" : "none"
+                        });
+                    });
+                    vm.selectMixTrip = false;
+                    vm.idVuelta_1 = 0;
+                }
             }
 
             function apiError() {

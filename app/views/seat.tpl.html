@@ -74,98 +74,99 @@ input.ng-valid.ng-touched {
             <p translate>SEATS.LOADING_MESSAGE</p><br>
             <img src="https://cdn.api.voyhoy.com/loader.gif" alt="Cargando mapa de asientos..." />
         </div>
-    </div> 
+    </div>
 </div>
 <div class="container" ng-show="!seat.isLoading" id="seat-container">
     <br>
     <div class="row">
         <!--  El de abajo es el enlace original al controlador de pagos -->
         <div id="form-seat-selection" data-action="#"></div>
-        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-ida">
-            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_ROUND</span> <span class="text-muted">{{ seat.trips.round.origin }} a {{ seat.trips.round.destination }}</span></h5>
-            <br>
-            <div class="new-results">
-                <div class="results list" >
-                    <div class="row result seat">
-                        <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>{{ seat.trips.round.departureHour }} hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round.origin }}</small>
-                            <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.round.terminalOrigin }}</small>
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>{{ seat.trips.round.arrivalHour }} hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.round.destination }}</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.round.terminalDestination }}</small>
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company"> {{ seat.trips.round.company }}</small>
-                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round.duration }}</p>
-                        </div>
-                    </div>  
-                </div>  
-            </div>
 
-            <div class="box" id="box-ida">
-                <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
-                    <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
-                    <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}" ng-show="!seat.trips.round.automaticSeat">
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs" role="tablist" id="seats-ida">
-                                <li role="presentation" class="active">
-                                    <a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
-                                </li>
-                                <li role="presentation" class="hidden">
-                                    <a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="panel1">
-                                    <div class="wrapper">
-                                        <div class="container-seats">
-                                            <div id="seat-map-1">
-                                                <div class="front-indicator">Frente</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="panel2">
-                                    <div class="wrapper">
-                                        <div class="container-seats">
-                                            <div id="seat-map-2">
-                                                <div class="front-indicator">Frente</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-ida" ng-repeat="i in [0,1]" ng-hide="seat.tramos && $index > 0">
+                <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_ROUND</span> <span class="text-muted">{{ seat.trips.round[i].origin }} a {{ seat.trips.round[i].destination }}</span></h5>
+                <br>
+                <div class="new-results">
+                    <div class="results list">
+                        <div class="row result seat">
+                            <div class="col-md-6 col-xs-6 c-departure">
+                                <strong>{{ seat.trips.round[i].departureHour }} hrs.</strong>
+                                <small class="text-muted smallest-font text-fucsia">{{ seat.trips.round[i].origin }}</small>
+                                <br>
+                                <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.round[i].terminalOrigin }}</small>
                             </div>
-                       
-                        <!-- LEGEND -->                  
-                       
-                         </div>
-                    </div> <!-- end .col-md-6 .col-xs-12 -->
-                    <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round.automaticSeat" style="background:#fff;">
-                        <div class="tabs-container">
-                            <h5 class="text-muted">Asientos Automaticos</h5>
-                         </div>
-                         <div class="addSeat-automatic" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats}">
-                             <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0)" ng-hide = "seat.allSeats">
-                                 Añadir Pasajero
-                             </button>
-                         </div>
-                    </div>
-                    <div class="col-md-6 col-xs-12 col-sm-6"  id="forms_ida" style="padding-right:0;">
-                        <div class="select-seat">
-                            <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
-                            <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
-                            
+                            <div class="col-md-6 col-xs-6 c-arrival">
+                                <strong>{{ seat.trips.round[i].arrivalHour }} hrs.</strong>
+                                <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.round[i].destination }}</small>
+                                <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.round[i].terminalDestination }}</small>
+                            </div>
+                            <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
+                                <small class="text-muted smallest-font company"> {{ seat.trips.round[i].company }}</small>
+                                <img src="{{ seat.trips.round[i].companyLogo }}" title="{{ seat.trips.round[i].company }}" class="logo_small">
+                            </div>
+                            <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
+                                <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round[i].duration }}</p>
+                            </div>
                         </div>
-                        <div id="seats-ida">
+                    </div>
+                </div>
 
-                            <div ng-repeat="item in seat.seatsSelectedDeparture | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                <div class="box" id="box-ida">
+                    <div class="box-content" id="box-content-ida" style="background: transparent; padding: 0;">
+                        <p class="hidden" id="no_seat_map_ida_message">No es posible efectuar selección de asiento en este bus</p>
+                        <div class="col-md-6 col-xs-12 col-sm-6" id="seat_map_ida" style="padding-left:0;" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatRound || $index == 0 && seat.seatRound}" ng-show="!seat.trips.round[i].automaticSeat">
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs" role="tablist" id="seats-ida">
+                                    <li role="presentation" class="active">
+                                        <a href="#panel1" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
+                                    </li>
+                                    <li role="presentation" class="hidden">
+                                        <a href="#panel2" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="panel1">
+                                        <div class="wrapper">
+                                            <div class="container-seats">
+                                                <div id="seat-map-{{i}}">
+                                                    <div class="front-indicator">Frente</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="panel2">
+                                        <div class="wrapper">
+                                            <div class="container-seats">
+                                                <div id="seat-map-2-{{$index}}">
+                                                    <div class="front-indicator">Frente</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- LEGEND -->
+
+                             </div>
+                        </div> <!-- end .col-md-6 .col-xs-12 -->
+                        <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round[i].automaticSeat" style="background:#fff;">
+                            <div class="tabs-container col-md-12 col-xs-12" style="margin: 15px 0 15px 0;">
+                                <h5 class="text-muted col-md-10 col-xs-10" style="padding : 0;">Asientos Automaticos</h5>
+                                <div class="col-md-2 col-xs-2 text-muted" style="margin: 6px 0;">
+                                    <i class="fa fa-bus fa-2x" aria-hidden="true" ng-show="!seat.hasBoat"></i> <i class="fa fa-ship fa-2x" aria-hidden="true" ng-show="seat.hasBoat"></i>
+                                </div>
+                             </div>
+                             <div class="addSeat-automatic" ng-class="{'disable-box':!seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatRound || $index == 0 && seat.seatRound}">
+                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(0,$index)" ng-hide = "seat.allSeats">
+                                     Añadir Pasajero
+                                 </button>
+                             </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-6"  id="forms_ida" style="padding-right:0;">
+                            <div class="select-seat">
+                                <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
+                                <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
+                            </div>
+                            <div ng-repeat="item in seat.seatsSelectedDeparture | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}" ng-hide = "i == 1">
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
@@ -178,119 +179,14 @@ input.ng-valid.ng-touched {
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
                                             <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item, $index);"><i class="fa fa-edit"></i></a>
-                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false, $index);"><i class="fa fa-times"></i></a>
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false, $index, i);"><i class="fa fa-times"></i></a>
+
                                         </div>
                                     </div>
+
                                 </div>
-
                             </div>
-                        </div>
-                        <br>
-                        <div class="row" ng-show="!seat.trips.round.automaticSeat">
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-available.png" alt="Disponible">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
-                            </div>
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
-                            </div>
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
-                            </div>
-                        </div>        
-                        <br>
-                        <p class="smallest-font more-info select-more hidden">Puede agregar otro asiento</p>
-                        <br>
-                    </div> <!-- end .col-md-6 .col-xs-12 -->
-                </div> <!-- end .box-content -->
-            </div> <!-- end .box #box-ida -->
-        </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
-        
-        <div class="col-md-6 col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip">
-            <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_RETURN</span> <span class="text-muted">{{ seat.trips.return.origin }} a {{ seat.trips.return.destination }}</span></h5>
-            <br>
-            <div class="new-results">
-                <div class="results list" >
-                    <div class="row result">
-                        <div class="col-md-6 col-xs-6 c-departure">
-                            <strong>{{ seat.trips.return.departureHour }} hrs.</strong>
-                            <small class="text-muted smallest-font text-fucsia">{{ seat.trips.return.origin }}</small>
-                            <br>
-                            <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.return.terminalOrigin }}</small>
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-arrival">
-                            <strong>{{ seat.trips.return.arrivalHour }} hrs.</strong>
-                            <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.return.destination }}</small>
-                            <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.return.terminalDestination }}</small>
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
-                            <small class="text-muted smallest-font company"> {{ seat.trips.return.company }}</small>
-                            <img src="{{ seat.trips.round.companyLogo }}" title="{{ seat.trips.round.company }}" class="logo_small">
-                        </div>
-                        <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
-                            <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return.duration }}</p>
-                        </div>
-                    </div>  
-                </div>  
-            </div>
-            
-            <div class="box" id="box-vuelta">
-                <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;">
-                    <div class="col-xs-12 col-md-6 col-sm-6" id="seat_map_vuelta" style="padding-left:0;" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats}" ng-show="!seat.trips.round.automaticSeat">
-                        <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
-                        <div class="tabs-container">
-                            <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
-                                <li role="presentation" class="active">
-                                    <a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
-                                </li>
-                                <li role="presentation" class="hidden">
-                                    <a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="panel3">
-                                    <div class="wrapper">
-                                        <div class="container-seats">
-                                            <div id="seat-map-3">
-                                                <div class="front-indicator">Frente</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="panel4">
-                                    <div class="wrapper">
-                                        <div class="container-seats">
-                                            <div id="seat-map-4">
-                                                <div class="front-indicator">Frente</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end .tab-content -->
-                        </div>
-                    </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
-
-                    <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.round.automaticSeat" style="background:#fff;">
-                        <div class="tabs-container">
-                            <h5 class="text-muted">Asientos Automaticos</h5>
-                         </div>
-                         <div class="addSeat-automatic" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats}">
-                             <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(1)" ng-hide = "seat.allSeats">
-                                 Añadir Pasajero
-                             </button>
-                         </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-6 col-sm-6" style="padding: 0; padding-left: 15px;" id="forms_vuelta">
-                        <div class="select-seat">
-                            <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
-                            <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
-                        </div>
-                        <div id="seats-vuelta">
-
-                            <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected" id="id_{{ item.seatNumber }}">
+                            <div ng-repeat="item in seat.seatsSelectedDeparture2 | filter: { trip: 0}" class="seat-selected" id="id_{{ item.seatNumber }}" ng-show = "i == 1">
                                 <div class="row">
                                     <div class="col-md-5 col-xs-5">
                                         <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
@@ -302,35 +198,182 @@ input.ng-valid.ng-touched {
                                     </div>
                                     <div class="col-md-2 col-xs-2">
                                         <div class="seat-actions">
-                                            <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
-                                            <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index);"><i class="fa fa-times"></i></a>
+                                            <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item, $index, i);"><i class="fa fa-edit"></i></a> -->
+                                            <a href="javascript:;" class="release-seat" data-seat="" data-trip="" data-trip-id="" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false, $index, i);"><i class="fa fa-times"></i></a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" ng-show="!seat.trips.round[i].automaticSeat">
+                                <div class="col-md-4 col-xs-4 seat-legend">
+                                    <img src="images/seat-charts/seat-available.png" alt="Disponible">
+                                    <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
+                                </div>
+                                <div class="col-md-4 col-xs-4 seat-legend">
+                                    <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
+                                    <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
+                                </div>
+                                <div class="col-md-4 col-xs-4 seat-legend">
+                                    <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
+                                    <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
+                                </div>
+                            </div>
+                            <br>
+                            <p class="smallest-font more-info select-more hidden">Puede agregar otro asiento</p>
+                            <br>
+                        </div> <!-- end .col-md-6 .col-xs-12 -->
+                    </div> <!-- end .box-content -->
+                </div> <!-- end .box #box-ida -->
+            </div> <!-- end .col-md-6 .col-xs-12 #container-trip-ida -->
+
+        <div class="col-xs-12" ng-show="seat.trips.isRoundTrip" ng-class="{'col-md-6':seat.trips.return.length == 1 , 'col-md-12': seat.trips.return.length > 1 }">
+            <div class="col-xs-12 col-sm-12" id="container-trip-vuelta" ng-show="seat.trips.isRoundTrip" ng-repeat="i in [0,1]" ng-hide="seat.tramos2 && $index > 0" ng-class="{'col-md-12':seat.trips.return.length == 1 , 'col-md-6': seat.trips.return.length > 1 }">
+                <h5 class="hidden-xs"><span translate>SEATS.PASSAGE_RETURN</span> <span class="text-muted">{{ seat.trips.return[i].origin }} a {{ seat.trips.return[i].destination }}</span></h5>
+                <br>
+                <div class="new-results">
+                    <div class="results list" >
+                        <div class="row result">
+                            <div class="col-md-6 col-xs-6 c-departure">
+                                <strong>{{ seat.trips.return[i].departureHour }} hrs.</strong>
+                                <small class="text-muted smallest-font text-fucsia">{{ seat.trips.return[i].origin }}</small>
+                                <br>
+                                <small class="text-muted smallest-font  capitalize"  style="display:block;">{{ seat.trips.return[i].terminalOrigin }}</small>
+                            </div>
+                            <div class="col-md-6 col-xs-6 c-arrival">
+                                <strong>{{ seat.trips.return[i].arrivalHour }} hrs.</strong>
+                                <small class="text-muted smallest-font dbm text-fucsia">{{ seat.trips.return[i].destination }}</small>
+                                <small class="text-muted smallest-font  capitalize" style="display:block;">{{ seat.trips.return[i].terminalDestination }}</small>
+                            </div>
+                            <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
+                                <small class="text-muted smallest-font company"> {{ seat.trips.return[i].company }}</small>
+                                <img src="{{ seat.trips.return[i].companyLogo }}" title="{{ seat.trips.return[i].company }}" class="logo_small">
+                            </div>
+                            <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
+                                <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return[i].duration }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box" id="box-vuelta">
+                    <div class="box-content" id="box-content-vuelta" style="background: transparent; padding: 0;" >
+                        <div class="col-xs-12 col-md-6 col-sm-6" id="seat_map_vuelta" style="padding-left:0;" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatReturn || $index == 0 && seat.seatReturn}" ng-show="!seat.trips.return[i].automaticSeat">
+                            <p class="hidden" id="no_seat_map_vuelta_message"><small>No se puede efectuar seleccion de asientos para este viaje</small></p>
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs" role="tablist" id="seats-vuelta">
+                                    <li role="presentation" class="active">
+                                        <a href="#panel3" aria-controls="messages" role="tab" data-toggle="tab" translate>SEATS.FLOOR_1</a>
+                                    </li>
+                                    <li role="presentation" class="hidden">
+                                        <a href="#panel4" aria-controls="settings" role="tab" data-toggle="tab" translate>SEATS.FLOOR_2</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="panel3">
+                                        <div class="wrapper">
+                                            <div class="container-seats">
+                                                <div id="seat-map-3-{{$index}}">
+                                                    <div class="front-indicator">Frente</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="panel4">
+                                        <div class="wrapper">
+                                            <div class="container-seats">
+                                                <div id="seat-map-4-{{$index}}">
+                                                    <div class="front-indicator">Frente</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end .tab-content -->
+                            </div>
+                        </div> <!-- end .col-xs-12 .col-md-6 #seat_map_vuelta -->
+
+
+                        <div class="col-md-6 col-xs-12 col-sm-6" ng-show="seat.trips.return[i].automaticSeat" style="background:#fff;">
+                            <div class="tabs-container col-md-12 col-xs-12" style="margin: 15px 0 15px 0;">
+                                <h5 class="text-muted col-md-10 col-xs-10" style="padding : 0;">Asientos Automaticos</h5>
+                                <div class="col-md-2 col-xs-2 text-muted" style="margin: 6px 0;">
+                                    <i class="fa fa-bus fa-2x" aria-hidden="true" ng-show="!seat.hasBoat"></i> <i class="fa fa-ship fa-2x" aria-hidden="true" ng-show="seat.hasBoat"></i>
+                                </div>
+                             </div>
+                             <div class="addSeat-automatic" ng-class="{'disable-box':seat.selectDepartureSeat || seat.allSeats || $index == 1 && !seat.seatReturn || $index == 0 && seat.seatReturn}">
+                                 <button type="button" name="addSeat" class="btn btn-block btn-success btn-lg theme-green btn-pay ng-scope" ng-click="seat.selectSeatAutomatic(1,$index)" ng-hide = "seat.allSeats">
+                                     Añadir Pasajero
+                                 </button>
+                             </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 col-sm-6" style="padding: 0; padding-left: 15px;" id="forms_vuelta">
+                            <div class="select-seat">
+                                <p class="select-seat-title" translate>SEATS.SELECTION_LABEL</p>
+                                <small class="select-seat-subtitle" translate>SEATS.SELECTION_SUBLABEL</small>
+                            </div>
+                                <div ng-repeat="item in seat.seatsSelectedReturn | filter: { trip: 1}" class="seat-selected col-md-12 col-xs-12" id="id_{{ item.seatNumber }}" ng-hide="i == 1">
+                                    <div class="row">
+                                        <div class="col-md-5 col-xs-5">
+                                            <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                            <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
+                                        </div>
+                                        <div class="col-md-5 col-xs-5">
+                                            <p class="smallest-font text-muted">{{ item.dni }}</p>
+                                            <small class="text-muted smallest-font">{{ item.country }}</small>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2">
+                                            <div class="seat-actions">
+                                                <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
+                                                <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index,i);"><i class="fa fa-times"></i></a>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                        </div>
-                        <br>
-                        <div class="row" ng-show="!seat.trips.round.automaticSeat">
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-available.png" alt="Disponible">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
-                            </div>
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
-                            </div>
-                            <div class="col-md-4 col-xs-4 seat-legend">
-                                <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
-                                <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
-                            </div>
-                        </div> 
-                    </div>
-                </div> <!-- end .box-content -->
-            </div> <!-- end .box #box-vuelta -->
-        </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
+                                <div ng-repeat="item in seat.seatsSelectedReturn2 | filter: { trip: 1}" class="seat-selected col-md-12 col-xs-12" id="id_{{ item.seatNumber }}" ng-show="i == 1">
+                                    <div class="row">
+                                        <div class="col-md-5 col-xs-5">
+                                            <p class="smallest-font name"><strong> {{ item.name }}, {{ item.lastname }} </strong></p>
+                                            <small class="text-muted smallest-font text-fucsia">Asiento {{ item.seatLabel }}</small>
+                                        </div>
+                                        <div class="col-md-5 col-xs-5">
+                                            <p class="smallest-font text-muted">{{ item.dni }}</p>
+                                            <small class="text-muted smallest-font">{{ item.country }}</small>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2">
+                                            <div class="seat-actions">
+                                                <!-- <a href="javascript:;" class="edit-seat" id="" ng-click="seat.selectSeat(item.seatNumber, item.seatLabel, item.trip, item.floor, item);"><i class="fa fa-edit"></i></a> -->
+                                                <a href="javascript:;" class="release-seat" ng-click="seat.deleteSeat(item.trip, item.floor,  item.seatNumber, false,$index,i);"><i class="fa fa-times"></i></a>
 
-        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'mt5':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row" ng-show="!seat.trips.return[i].automaticSeat" style="padding: 0;">
+                                    <div class="col-md-4 col-xs-4 seat-legend">
+                                        <img src="images/seat-charts/seat-available.png" alt="Disponible">
+                                        <span class="text-muted smallest-font" translate>SEATS.LEGEND_AVAILABLE</span>
+                                    </div>
+                                    <div class="col-md-4 col-xs-4 seat-legend">
+                                        <img src="images/seat-charts/seat-taken.png" alt="Ocupado">
+                                        <span class="text-muted smallest-font" translate>SEATS.LEGEND_UNAVAILABLE</span>
+                                    </div>
+                                    <div class="col-md-4 col-xs-4 seat-legend">
+                                        <img src="images/seat-charts/seat-selected.png" alt="Seleccionado">
+                                        <span class="text-muted smallest-font" translate>SEATS.LEGEND_SELECTED</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div> <!-- end .box-content -->
+                </div> <!-- end .box #box-vuelta -->
+            </div> <!-- end .col-md-6 .col-xs-12 #container-trip-vuelta -->
+        </div>
+
+        <div class="col-xs-12" ng-class="{'col-md-6':!seat.trips.isRoundTrip,'mt5':!seat.trips.isRoundTrip,'col-md-12':seat.trips.isRoundTrip || !seat.tramos}">
             <div ng-show="!seat.trips.isRoundTrip"><br><br><br></div>
             <div class="box" id="purchase-resumen" style="background: #fff;">
                 <div class="box-content">
@@ -354,7 +397,7 @@ input.ng-valid.ng-touched {
                             </p> -->
                             <p>
                                 <span class="small-font"><strong translate>SEATS.PURCHASE_TOTAL</strong></span>
-                                <span class="small-font pull-right"> <span id="total">{{ seat.seatsSelectedDeparture[0].price | currency : '' }} €</span></span>
+                                <span class="small-font pull-right"> <span id="total">{{ seat.totalMount | currency : ''  }} €</span></span>
                             </p>
                             <br>
                             <br>
@@ -373,21 +416,22 @@ input.ng-valid.ng-touched {
 <!-- MODALES REUSABLES -->
 
 <!-- Modal -->
-<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" 
+<div class="modal fade" id="formSeat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
    data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber)" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber, false, 0, 0)" aria-label="Close" ng-hide="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-show="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
          <p class="text-fucsia">
             <strong translate>SEATS.FORM_LABEL_PASSAGE</strong>
             <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatLabel }}</span>
         </p>
       </div>
       <div class="modal-body">
-      <form role="form" id="form_data"  ng-submit="seat.addSeat()">    
+      <form role="form" id="form_data"  ng-submit="seat.addSeat()">
         <fieldset class="" >
-           
+
             <div class="form-content">
 
                 <div class="row">
@@ -406,7 +450,7 @@ input.ng-valid.ng-touched {
                 </div>
                 <div class="row">
 
-                    
+
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
@@ -429,6 +473,121 @@ input.ng-valid.ng-touched {
                                 <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
                             </div>
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_phone" translate>SEATS.FORM_PHONE</label>
+                           <input type="text" placeholder="{{ 'SEATS.FORM_PHONE_PLACEHOLDER' | translate}}" name="form_data_phone" id="form_data_phone" value=""  class="phone" required maxlength="15" ng-model="seat.seatInSelection.phone" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form_group">
+                            <label for="form_data_email" translate>SEATS.FORM_EMAIL</label>
+                           <input type="email" placeholder="{{ 'SEATS.FORM_EMAIL_PLACEHOLDER' | translate}}" name="form_data_email" id="form_data_email" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.email" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >
+                            <div ng-switch-when="true">
+                                <span translate>SEATS.FORM_BTN_UPDATE</span>
+                            </div>
+                            <div ng-switch-default>
+                                <span translate>SEATS.FORM_BTN_SELECT</span>
+                            </div>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Boat -->
+<div class="modal fade" id="formSeatBoat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+   data-keyboard="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="seat.releaseSeat(seat.seatInSelection.trip, seat.seatInSelection.floor,  seat.seatInSelection.seatNumber, false, 0, 0)" aria-label="Close" ng-hide="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-show="seat.seatInSelection.update"><span aria-hidden="true">&times;</span></button>
+         <p class="text-fucsia">
+            <strong translate>SEATS.FORM_LABEL_PASSAGE</strong>
+            <span translate>SEATS.FORM_LABEL_SEAT</span> <span class="passenger_no">{{ seat.seatInSelection.seatLabel }}</span>
+        </p>
+      </div>
+      <div class="modal-body">
+      <form role="form" id="form_data"  ng-submit="seat.addSeat()">
+        <fieldset class="" >
+
+            <div class="form-content">
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_name" translate>SEATS.FORM_NAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_NAME' | translate}}" required name="form_data_name"  id="form_data_name" value="" class="name" ng-model="seat.seatInSelection.name"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label for="form_data_lastname" translate>SEATS.FORM_LASTNAME</label>
+                            <input type="text" placeholder="{{ 'SEATS.FORM_LASTNAME' | translate}}" required name="form_data_lastname" id="form_data_lastname" value="" class="lastname"  ng-model="seat.seatInSelection.lastname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form-group">
+                            <label for="form_data_genders" translate>Sexo</label>
+                            <select name="form_data_genders" id="form_data_genders"  class="country" ng-model="seat.seatInSelection.genders" ng-options="genders.key as genders.value for genders in seat.genders" ng-init="seat.seatInSelection.genders='V'">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form_group">
+                            <label for="form_data_ages" translate>Tipo de pasajero</label>
+                            <select name="form_data_ages" id="form_data_ages"  class="country" ng-model="seat.seatInSelection.ages" ng-options="ages.key as ages.value for ages in seat.ageCategories" ng-init="seat.seatInSelection.ages='A'">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form_group">
+                            <label for="form_data_bornDate" translate>Fecha de nacimiento</label>
+                           <input type="text" placeholder="DD/MM/YYYY" name="form_data_bornDate" id="form_data_bornDate" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.bornDate" ui-mask="99/99/9999" model-view-value="true"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <div class="form-group">
+                            <label for="form_data_country" translate>SEATS.FORM_COUNTRY</label>
+                            <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.country" ng-options="country.name as country.value for country in seat.cnames_es" ng-init="seat.seatInSelection.country='ESP'">
+                                <option value="" translate>SEATS.FORM_COUNTRY_TEXT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <label for="form_data_country" translate>Tipo de documento</label>
+                        <select name="form_data_country" id="form_data_country"  class="country" ng-model="seat.seatInSelection.docTypes" ng-options="docTypes.key as docTypes.value for docTypes in seat.docTypes" ng-init="seat.seatInSelection.docTypes='1'">
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <label for="form_data_rut" translate>Documento</label>
+                        <input type="text" placeholder="{{ 'SEATS.FORM_RUT' | translate}}" name="form_data_rut" id="form_data_rut" value=""  class="rut" required ng-model="seat.seatInSelection.dni" ng-change="seat.validateDni()" ng-class="{'invalid':seat.errorDni && seat.dniEdit,'valid':!seat.errorDni && seat.dniEdit}"/>
+                    </div>
+                    <div class="form_group col-xs-12 col-md-3">
+                        <label for="form_data_docExpirationDate" translate>Fecha de caducidad</label>
+                        <input type="text" placeholder="DD/MM/YYYY" name="form_data_docExpirationDate" id="form_data_docExpirationDate" value=""  class="email" required maxlength="100" ng-model="seat.seatInSelection.docExpirationDate" ui-mask="99/99/9999" model-view-value="true"/>
                     </div>
                 </div>
                 <div class="row">

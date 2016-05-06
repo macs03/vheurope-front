@@ -306,21 +306,22 @@
                 "SEAT": "SEAT:",
                 "CODE": "CODE:",
                 "PRICE": "PRICE:"
-                } 
+                }
             },
             "PAYMENT": {
               "TITLE": "PAYMENT DETAIL",
               "TYPE": "Payment method:",
               "TOTAL": "TOTAL:",
-              "LINK": "Terms and Conditions"
-
+              "LINK": "Terms and Conditions",
+              "TOTALFEE" : "Service Fee:"
             }
           },
           "CANCEL": {
             "TITLE": "We present your list of passages",
             "CANCELMSG": "This list of passages already canceled",
             "BUTTON" : "Cancel",
-            "EXPIRED" : "This purchase has expired"
+            "EXPIRED" : "This purchase has expired",
+            "SECTION" : "Section"
           }
         };
     var translationsES = {
@@ -514,21 +515,22 @@
             "SEAT": "ASIENTO:",
             "CODE": "CÓDIDO:",
             "PRICE": "PRECIO:"
-            } 
+            }
         },
         "PAYMENT": {
           "TITLE": "DETALLE DE PAGO",
           "TYPE": "Método de pago:",
           "TOTAL": "TOTAL:",
-          "LINK": "Terminos y condiciones"
-
+          "LINK": "Terminos y condiciones",
+          "TOTALFEE" : "Coste de gestión:"
         }
       },
       "CANCEL": {
         "TITLE": "Te presentamos tu lista de billetes",
         "CANCELMSG": "Esta lista de billetes ya se encuentra anulada",
         "BUTTON" : "Anular",
-        "EXPIRED" : "Esta Compra ya ha caducado"
+        "EXPIRED" : "Esta Compra ya ha caducado",
+        "SECTION" : "Tramo"
       }
     };
 

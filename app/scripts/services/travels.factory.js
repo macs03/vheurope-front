@@ -16,7 +16,8 @@
       function travelsFactory($http,$q,$filter,apiUrl) {
         return {
             getAll: getAll,
-            skipAccents: skipAccents
+            skipAccents: skipAccents,
+            getMixedTrips : getMixedTrips
         }
 
         function getAll (origin,destiny,departure,returns,passengers,departureCountry,arrivalCountry,passengersAdult,passengersChild,passengersBaby) {
@@ -50,6 +51,28 @@
 
             return promise;
         }
+
+        function getMixedTrips(id) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                    method:'GET',
+                    url: apiUrl + 'tripsFromRoute',
+                    params: {
+                        id : id
+                    },
+
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err)
+                });
+
+            return promise;
+        }
+
       }
 
       function skipAccents(text) {

@@ -22,17 +22,17 @@ angular
             .getAll($stateParams.uuid)
             .then(function (data) {
                 vm.cancelData = data;
-                var departureDate = data.departureData.departureDate;
+                var departureDate = data.departureData[0].departureDate;
                 var returnDate;
-                if (data.returnData != "") {
-                    returnDate = data.returnData.departureDate;
+                if (data.returnData.length != 0) {
+                    returnDate = data.returnData[0].departureDate;
                     var splitReturn = returnDate.split('/');
                     var dateReturn = new Date(splitReturn[2]+'/'+splitReturn[1]+'/'+splitReturn[0]);
                 }
                 var splitDeparture = departureDate.split('/');
                 var dateDeparture = new Date(splitDeparture[2]+'/'+splitDeparture[1]+'/'+splitDeparture[0]);
                 var today = new Date();
-                if (dateDeparture.getTime() < today.getTime() || dateReturn.getTime() < today.getTime()) {
+                if (dateDeparture.getTime() < today.getTime()) {
                     console.log('no se puede anular');
                     vm.unableCancel = true;
                 }

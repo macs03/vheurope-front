@@ -171,139 +171,150 @@ display: none;
                 <div class="sub-header" style="background: #2BB3F0;color:#fff;">
                         <p><strong translate>SUCCESS.ROUND.TITLE</strong></p>
                     </div>
-                    <div class="row ticket " style="border-bottom: 1px solid #bbb;">
-                        <div class="col-xs-4 col-md-2 col-md-offset-1">
-                            <p>
-                                <strong>{{cancel.cancelData.departureData.departureDate}} {{cancel.cancelData.departureData.departureTime}}</strong>
-                                <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.origin}}</small>
-                                <br>
-                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.terminalOrigin}}</small>
-
-                            </p>
+                    <div class="departure" ng-repeat="departure in cancel.cancelData.departureData">
+                        <div class="sub-header" style="background: #FFF;color:#666; border-bottom: 1px solid #DDD;" ng-show="cancel.cancelData.departureData.length > 1">
+                            <p><strong translate>CANCEL.SECTION</strong> {{$index + 1}}</p>
                         </div>
-                        <div class="col-xs-4 col-md-2 col-md-offset-1">
-                            <p>
-                                <strong>{{cancel.cancelData.departureData.arrivalDate}} {{cancel.cancelData.departureData.arrivalTime}}</strong>
-                                <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.destination}}</small>
-                                <br>
-                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.terminalDestination}}</small>
-
-                            </p>
-                        </div>
-                        <div class="col-xs-4 col-md-2 col-md-offset-1">
-                            <p>
-                                <br>
-                                <small class="smallest-font text-muted">{{cancel.cancelData.departureData.typeService}}</small>
-                            </p>
-                        </div>
-                        <div class="col-xs-4 col-md-2 col-md-offset-1">
-                            <p>
-                                <br>
-                                <small class="smallest-font vh-blue"><span translate>SUCCESS.ROUND.NO_TRIPS</span> {{cancel.cancelData.departureData.numTrip}}</small>
-                                <br>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                         <!-- PARTE INFERIOR -->
-                        <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                            <small class="smallest-font vh-blue">{{cancel.cancelData.departureData.companyName}}</small>
-                            <img ng-src="{{cancel.cancelData.departureData.companyLogo}}" title="{{success.departureData.companyLogo}}" class="logo_small hidden-xs pull-right">
-                        </div>
-                        <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                            <small class="smallest-font text-muted">{{cancel.cancelData.departureData.duration}}</small>
-                        </div>
-                        <br><br>
-                    </div>
-                    <div class="sub-header">
-                        <p translate>SUCCESS.ROUND.TICKETS.TITLE</p>
-                    </div>
-                    <div class="row ticket list last" ng-repeat="seat in cancel.cancelData.departureData.seats">
-                        <div class="col-md-2 hidden-xs">
-                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
-                        </div>
-                        <div class="col-md-3 col-xs-8">
-                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
-                        </div>
-                        <div class="col-md-2 col-xs-4">
-                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
-                        </div>
-                        <div class="col-md-3 hidden-xs">
-                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
-                        </div>
-                        <div class="col-md-2 hidden-xs">
-                            <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price  | currency : '' }} &euro;</span></span>
-                        </div>
-                    </div>
-
-
-                        <div class="sub-header" style="background: #2BB3F0;color:#fff;" ng-show="cancel.cancelData.returnData != ''">
-                            <p><strong translate>SUCCESS.RETURN.TITLE</strong></p>
-                        </div>
-                        <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="cancel.cancelData.returnData != ''">
+                        <div class="row ticket " style="border-bottom: 1px solid #bbb;">
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
-                                    <strong>{{cancel.cancelData.returnData.departureDate}} {{cancel.cancelData.returnData.departureTime}}</strong>
-                                    <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.origin}}</small>
+                                    <strong>{{departure.departureDate}} {{departure.departureTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{departure.origin}}</small>
                                     <br>
-                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.terminalOrigin}}</small>
+                                    <small class="smallest-font text-muted">{{departure.terminalOrigin}}</small>
 
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
-                                    <strong>{{cancel.cancelData.returnData.arrivalDate}} {{cancel.cancelData.returnData.arrivalTime}}</strong>
-                                    <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.destination}}</small>
+                                    <strong>{{departure.arrivalDate}} {{departure.arrivalTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{departure.destination}}</small>
                                     <br>
-                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.terminalDestination}}</small>
+                                    <small class="smallest-font text-muted">{{departure.terminalDestination}}</small>
 
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
                                     <br>
-                                    <small class="smallest-font text-muted">{{cancel.cancelData.returnData.typeService}}</small>
+                                    <small class="smallest-font text-muted">{{departure.typeService}}</small>
                                 </p>
                             </div>
                             <div class="col-xs-4 col-md-2 col-md-offset-1">
                                 <p>
                                     <br>
-                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.RETURN.NO_TRIPS</span> {{cancel.cancelData.returnData.numTrip}}</small>
+                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.ROUND.NO_TRIPS</span> {{departure.numTrip}}</small>
                                     <br>
                                 </p>
                             </div>
+                        </div>
+                        <div class="row">
+                             <!-- PARTE INFERIOR -->
+                            <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                <small class="smallest-font vh-blue">{{departure.companyName}}</small>
+                                <img ng-src="{{departure.companyLogo}}" title="{{departure.companyLogo}}" class="logo_small hidden-xs pull-right">
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                <small class="smallest-font text-muted">{{departure.duration}}</small>
+                            </div>
+                            <br><br>
+                        </div>
+                        <div class="sub-header">
+                            <p translate>SUCCESS.ROUND.TICKETS.TITLE</p>
+                        </div>
+                        <div class="row ticket list last" ng-repeat="seat in departure.seats">
+                            <div class="col-md-2 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                            </div>
+                            <div class="col-md-3 col-xs-8">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                            </div>
+                            <div class="col-md-2 col-xs-4">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
+                            </div>
+                            <div class="col-md-3 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
+                            </div>
+                            <div class="col-md-2 hidden-xs">
+                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price  | currency : '' }} &euro;</span></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row" ng-show="cancel.cancelData.returnData != ''">
-                         <!-- PARTE INFERIOR -->
-                         <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                             <small class="smallest-font vh-blue">{{cancel.cancelData.returnData.companyName}}</small>
-                             <img ng-src="{{cancel.cancelData.returnData.companyLogo}}" title="{{cancel.cancelData.returnData.companyLogo}}" class="logo_small hidden-xs pull-right">
-                         </div>
-                         <div class="col-xs-4 col-md-2 col-md-offset-1" >
-                             <small class="smallest-font text-muted">{{cancel.cancelData.returnData.duration}}</small>
-                         </div>
-                        <br><br>
+
+
+                    <div class="sub-header" style="background: #2BB3F0;color:#fff;" ng-show="cancel.cancelData.returnData != ''">
+                        <p><strong translate>SUCCESS.RETURN.TITLE</strong></p>
                     </div>
-                     <div class="sub-header" ng-show="cancel.cancelData.returnData != ''">
-                        <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
+                    <div class="return" ng-repeat="return in cancel.cancelData.returnData">
+                        <div class="sub-header" style="background: #FFF;color:#666;border-bottom: 1px solid #DDD;" ng-show="cancel.cancelData.returnData.length > 1">
+                            <p><strong translate>CANCEL.SECTION</strong>  {{$index + 1}}</p>
+                        </div>
+                        <div class="row ticket " style="border-bottom: 1px solid #bbb;" ng-show="return.returnData != ''">
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <strong>{{return.departureDate}} {{return.departureTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{return.origin}}</small>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{return.terminalOrigin}}</small>
+
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <strong>{{return.arrivalDate}} {{return.arrivalTime}}</strong>
+                                    <small class="smallest-font vh-blue">{{return.destination}}</small>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{return.terminalDestination}}</small>
+
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <br>
+                                    <small class="smallest-font text-muted">{{return.typeService}}</small>
+                                </p>
+                            </div>
+                            <div class="col-xs-4 col-md-2 col-md-offset-1">
+                                <p>
+                                    <br>
+                                    <small class="smallest-font vh-blue"><span translate>SUCCESS.RETURN.NO_TRIPS</span> {{return.numTrip}}</small>
+                                    <br>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="return != ''">
+                             <!-- PARTE INFERIOR -->
+                             <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                 <small class="smallest-font vh-blue">{{return.companyName}}</small>
+                                 <img ng-src="{{return.companyLogo}}" title="{{return.companyLogo}}" class="logo_small hidden-xs pull-right">
+                             </div>
+                             <div class="col-xs-4 col-md-2 col-md-offset-1" >
+                                 <small class="smallest-font text-muted">{{return.duration}}</small>
+                             </div>
+                            <br><br>
+                        </div>
+                        <div class="sub-header" ng-show="return != ''">
+                           <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
+                       </div>
+                       <div class="row ticket list" ng-show="return != ''" ng-repeat="seat in return.seats">
+                           <div class="col-md-2 hidden-xs">
+                               <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
+                           </div>
+                           <div class="col-md-3 col-xs-8">
+                               <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
+                           </div>
+                           <div class="col-md-2 col-xs-4">
+                               <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
+                           </div>
+                           <div class="col-md-3 hidden-xs">
+                               <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
+                           </div>
+                           <div class="col-md-2 hidden-xs">
+                               <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
+                           </div>
+                       </div>
                     </div>
-                    <div class="row ticket list" ng-show="cancel.cancelData.returnData != ''" ng-repeat="seat in cancel.cancelData.returnData.seats">
-                                <div class="col-md-2 hidden-xs">
-                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
-                                </div>
-                                <div class="col-md-3 col-xs-8">
-                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
-                                </div>
-                                <div class="col-md-2 col-xs-4">
-                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
-                                </div>
-                                <div class="col-md-3 hidden-xs">
-                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
-                                </div>
-                                <div class="col-md-2 hidden-xs">
-                                    <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
-                                </div>
-                    </div>
+
                     <div class="row  text-center">
                         <div class="col-xs-12 col-md-12" ng-class="{'disable-box':cancel.unableCancel}">
                             <br>
