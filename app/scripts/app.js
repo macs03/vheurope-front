@@ -91,9 +91,26 @@
                      controller: 'CancelController',
                      controllerAs: 'cancel'
                  })
+                 .state('login', {
+                     url: '/login',
+                     templateUrl: 'views/login.tpl.html',
+                     controller: 'LoginController',
+                     controllerAs: 'login'
+                 })
+                 .state("signup", {
+                    url: "/signup",
+                    templateUrl: "views/signup.tpl.html",
+                    controller: "SignUpController",
+                    controllerAs: "signup"
+                })
+                 .state("logout", {
+                    url: "/logout",
+                    templateUrl: null,
+                    controller: "LogoutController"
+                })
      });
 
- 
+
 
     app.config(['$translateProvider', function ($translateProvider) {
       $translateProvider.translations('en', translationsEN);
