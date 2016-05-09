@@ -1,1 +1,207 @@
-<h5>El Registro</h5>
+<style media="screen">
+    /* ============================================================
+COMMON
+============================================================ */
+    .chk-toggle {
+        position: absolute;
+        margin-left: -9999px;
+        visibility: hidden;
+    }
+    .chk-toggle + label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* ============================================================
+SWITCH 1 - ROUND
+============================================================ */
+    input.chk-toggle-round + label {
+        padding: 2px;
+        width: 60px;
+        height: 30px;
+        background-color: #dddddd;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+        border-radius: 30px;
+    }
+    input.chk-toggle-round + label:after,
+    input.chk-toggle-round + label:before {
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+    }
+    input.chk-toggle-round + label:before {
+        right: 1px;
+        background-color: #f1f1f1;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+        border-radius: 30px;
+        -webkit-transition: background 0.4s;
+        -moz-transition: background 0.4s;
+        -o-transition: background 0.4s;
+        transition: background 0.4s;
+    }
+    input.chk-toggle-round + label:after {
+        width: 28px;
+        background-color: #fff;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        border-radius: 100%;
+        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        -webkit-transition: margin 0.4s;
+        -moz-transition: margin 0.4s;
+        -o-transition: margin 0.4s;
+        transition: margin 0.4s;
+    }
+    input.chk-toggle-round:checked + label:before {
+        background-color: #8ce196;
+    }
+    input.chk-toggle-round:checked + label:after {
+        margin-left: 30px;
+    }
+
+    .text-theme-green {
+        color: #72cb4c !important;
+    }
+
+    .button-send {
+        background : #00ACEC;
+        border-color : #00ACEC;
+        border-radius : 0px;
+        color : white;
+    }
+
+    .facebook a{
+        background : #3b5998;
+        height : 50px;
+        color : white;
+        padding : 1em;
+    }
+
+    .facebook a:hover{
+        background : #25386C;
+        text-decoration : none;
+    }
+
+    .google a{
+        background : #dd4b39;
+        height : 50px;
+        color : white;
+        padding : 1em;
+        margin-top : 20px;
+    }
+
+    .google a:hover{
+        background : #AA2D25;
+        text-decoration : none;
+    }
+
+    .form-inputs {
+        height : 50px;
+        border-radius : 0px;
+    }
+
+    .links{
+        margin : 15px 0;
+    }
+
+    .links a {
+        color : #666674;
+    }
+
+    .or{
+        margin: 25px auto;
+        width: 100%;
+        position: relative;
+    }
+
+    .or .mask{
+        overflow: hidden;
+        height: 20px;
+    }
+
+    .or .mask:after{
+        content: '';
+        display: block;
+        margin: -25px auto 0;
+        width: 100%;
+        height: 25px;
+        border-radius: 125px / 12px;
+        box-shadow: 0 0 8px black;
+    }
+
+    .or span{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        bottom: 100%;
+        margin-top: -25px;
+        left: 50%;
+        margin-left: -25px;
+        border-radius: 100%;
+        background: white;
+        top: 0%;
+        padding: 1em;
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4" style="background: #FFF; margin-top:10px;padding:1em;">
+            <div class="text-center" style="margin-top: 15px;">
+                <h4>Por favor Ingrese</h4>
+            </div>
+            <div class="social col-md-12">
+                <div class="facebook text-center">
+                    <a href="#" class="col-md-12 col-xs-12">Registrarse con
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="google text-center">
+                    <a href="#" class="col-md-12 col-xs-12">Registrarse con
+                        <i class="fa fa-google" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12 text-center or">
+                <div class="mask">
+
+                </div>
+                <span>
+                    O
+                </span>
+            </div>
+            <div class="col-md-12 inputs">
+                <form class="" action="" method="post">
+                    <div class="form-group">
+                        <input type="text" name="name" value="" placeholder="Nombre" class="form-control form-inputs" style="border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);width: 100%;padding-left: 0px;">
+                        <br>
+                        <input type="email" name="email" value="" placeholder="Email" class="form-control form-inputs">
+                        <br>
+                        <input type="password" name="password" value="" placeholder="Password" class="form-control form-inputs">
+                        <br>
+                        <input type="password" name="password-confirm" value="" placeholder="Confirmar Password" class="form-control form-inputs">
+                    </div>
+                    <input type="submit" name="send" value="Registrarse" class="form-control button-send form-inputs">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
