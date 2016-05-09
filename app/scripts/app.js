@@ -184,7 +184,7 @@
               "ROUND": "Round",
               "RETURN": "Return",
               "RESULTS": "results",
-              "BUTTON": "BUY"
+              "BUTTON": "CHOOSE"
             },
             "WEATHER": {
               "TITLE_1": "We are looking for the best deals. Please wait.",
@@ -393,7 +393,7 @@
           "ROUND": "Ida",
           "RETURN": "Vuelta",
           "RESULTS": "resultados",
-          "BUTTON": "COMPRAR"
+          "BUTTON": "ELEGIR"
         },
         "WEATHER": {
           "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",
