@@ -12,10 +12,11 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics'];
+        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics) {
+        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
             var vm = this;
+            vm.searchMobile = false;
             vm.searchTrip = searchTrip;
             vm.searching = false;
             vm.error = false;
@@ -438,6 +439,26 @@
                 $('#select_passengers').val(vm.passengers);
             };
 
+            vm.updateSearchMobile = function(){
+                vm.searchMobile = !vm.searchMobile;
+            };
+
+            vm.searchMobile = screenSize.on('xs, sm', function(isMatch){
+                vm.searchMobile = !isMatch;
+            });
+
+            vm.tripDetails = function($event){
+                var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                $(elementId).slideToggle( "slow" );
+            };
+
+            if (screenSize.is('xs, sm')) {
+                // it's a mobile device so fetch a small image
+                vm.searchMobile = false;
+            }else {
+                // it's a desktop size so do the complicated calculations and render that
+                vm.searchMobile = true;
+            }
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -761,7 +782,7 @@
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -771,7 +792,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -781,7 +802,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     if (oldVal != 'Invalid date') {
                         vm.seats = [];
@@ -1317,7 +1338,6 @@
                 return dias;
             }
 
-
             $('.btn-filters').on('click', function(){
                 $('#filters-container').toggleClass('hidden-xs');
             });
@@ -1329,10 +1349,54 @@
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
 
-             $('#popover-bg').on('click', function(){
+            $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
 
+
+            var re = $('.nu');
+            re.addClass('hidden');
+            $('.fa-trip-type').addClass('hidden');
+            $.each(re, function(index, item){
+                if($(item).data('type') === 'bus' ){
+                    $(item).removeClass('hidden'); 
+                }
+            });
+
+            $('.tab-filter').on('click', function(){
+                var type = $(this).data('type');
+                $( "#combine-trips" ).prop( "checked", false );
+                $('.tab-filter').removeClass('active');
+                $('.fa-trip-type').addClass('hidden');
+                $(this).addClass('active');
+                var re = $('.nu');
+                re.addClass('hidden');
+                $.each(re, function(index, item){
+                    if($(item).data('type') === type ){
+                       $(item).removeClass('hidden'); 
+                    }
+                });
+            });
+
+            $('#combine-trips').on('change', function(){
+                if($(this).prop('checked') === false){
+                    $('#bus').addClass('active');
+                    var re = $('.nu');
+                    re.addClass('hidden');
+                    $.each(re, function(index, item){
+                        if($(item).data('type') === 'bus' ){
+                            $(item).removeClass('hidden'); 
+                        }
+                    });
+                }else{
+                    $('.tab-filter').removeClass('active');
+                    var re = $('.nu');
+                    re.removeClass('hidden');
+                    $('.fa-trip-type').removeClass('hidden');
+                }
+
+            });
         }
+
 })();

@@ -27,7 +27,8 @@
        'LocalStorageModule',
        'ngProgress',
        'angulartics',
-       'angulartics.google.analytics'
+       'angulartics.google.analytics',
+       'matchMedia'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {
