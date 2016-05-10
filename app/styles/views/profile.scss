@@ -1,0 +1,40 @@
+.option-menu {
+    list-style: none;
+}
+.option-menu a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #00ACEC;
+    color: #fff;
+    padding: 0.5em;
+    text-decoration: none;
+}
+.mobile-menu {
+    background: #00ACEC;
+    padding: 1em;
+    color: white;
+}
+.mobile-menu a {
+    color: #fff;
+}
+.option-mobile-menu {
+    list-style: none;
+}
+.option-mobile-menu a {
+    display: flex;
+    background: #FFF;
+    color: #00ACEC;
+    padding: 0.5em;
+    text-decoration: none;
+    align-items: center;
+}
+.option-mobile-menu a span {
+    font-size: 0.8em;
+    margin-left: 10px;
+    padding: 1em;
+}
+.option-mobile-menu a i {
+    font-size: 24px;
+    margin-left: 10px;
+}
