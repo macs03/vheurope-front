@@ -77,8 +77,17 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="hidden-xs hidden-sm" id="passages_link"><a href="#/" translate>NAVBAR.PASSAGES</a></li>
-              <switch-language-directive></switch-language-directive>
-
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_language_title"> Ingresar <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="switch_language">
+                            <li><a href="#/login"><span>Iniciar Sesion</span></a></li>
+                            <li><a href="#/signup" ><span>Registrarse</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <switch-language-directive></switch-language-directive>
 
             </ul>
 
