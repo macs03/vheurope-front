@@ -288,6 +288,10 @@
                   <span translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                 </h5>
 
+                <h5 class="hidden-xs hidden-sm"  ng-show="search.trips.mixedTrips.length > 0">
+                    <span translate>Viajes</span> <small><span translate>Compuestos</span></small> {{search.trips.mixedTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
+                </h5>
+
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
                 <!--
                 <div class="time-resumen-trips hidden-xs hidden-sm">
@@ -735,11 +739,143 @@
 
             <div class="row  container-responsive" id="mixed-results" ng-show="search.trips.mixedTrips.length > 0">
                 <div class="col-xs-12 col-md-12 " >
-                    <h5 class="hidden-xs hidden-sm" >
-                        <span translate>Viajes</span> <small><span translate>Compuestos</span></small> {{search.trips.mixedTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
-                    </h5>
                     <div class="new-results" ng-repeat="trip in search.trips.mixedTrips | orderBy:search.typeDeparture:search.reverseDeparture">
                         <div class="results list" id="trips_mixed" >
+                           <div class="row result nu" data-type="plane">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <small class="text-muted smallest-font truncate">Varias empresas</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{trip.originT1 }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.originT1 }}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.destinationT2 }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destinationT2 }}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                      <p class="pull-right">
+                                          <strong class="price-full">18.57 €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">Servicios varios</small>
+                                          </span>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <small class="text-muted" style="margin-left: 25px;">2 Escalas</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">2 Escalas</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type {{ search.mixedTripIcon(1, trip.mixedType) }}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-plus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type {{ search.mixedTripIcon(0, trip.mixedType) }}"   style="margin-left: 20px;margin-top: 10px;"></i>
+                                        
+                                        
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <button data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{ trip.id }}">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa {{ search.mixedTripIcon(0, trip.mixedType) }}"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <p>
+                                                        <b>{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT1 }}</b>
+                                                    </p>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                        </article>
+
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    <i class="fa {{ search.mixedTripIcon(1, trip.mixedType) }}"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <p>
+                                                         <b>{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT2 }}</b>
+                                                    </p>
+                                                </div>
+                                               
+                                            </div>
+                                        </article>
+                                        
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 23</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.destinationT2 }}</h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12">
+                                             <a href="" class="btn theme-fucsia pull-right" ng-click="search.findMixRoutes(trip.id)" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--
                             <div class="row result mobile-mixed" style="display: flex; align-items: center;">
                                 <div class="col-md-9 col-xs-12 col-sm-12">
                                     <div class="col-md-4 col-xs-4 col-sm-4 c-departure" style="overflow-x: hidden;">
@@ -766,12 +902,12 @@
                                         <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.destinationT2 }}">{{ trip.destinationT2 }}</small>
                                     </div>
                                 </div>
-
                                 <div class="col-md-3 col-xs-12 col-sm-12" ng-class="{'disable-box':search.searchingMix}">
                                     <a target="_blank" class="btn btn-block theme-blue-2" ng-click="search.findMixRoutes(trip.id)">ELEGIR <i class="fa fa-share-square-o"></i></a>
                                 </div>
-
                             </div>
+                            -->
+
                         </div>
                     </div>
                 </div>

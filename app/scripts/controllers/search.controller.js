@@ -333,8 +333,17 @@
                 return toUTCDate(new Date(millis));
             };
 
+            var mixedTripIcon = function(tripSection, typeTrip){
+                
+                if(tripSection <= 1 && tripSection >= 0){
+                    var sections = typeTrip.split('_');
+                    return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
+                }
+            }
+
             vm.toUTCDate = toUTCDate;
             vm.millisToUTCDate = millisToUTCDate;
+            vm.mixedTripIcon = mixedTripIcon;
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
