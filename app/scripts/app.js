@@ -106,8 +106,15 @@
                  .state("logout", {
                     url: "/logout",
                     templateUrl: null,
-                    controller: "LogoutController"
+                    controller: "LogoutController",
+                    controllerAs: "logout"
                 })
+                .state("profile", {
+                   url: "/customer-profile",
+                   templateUrl: null,
+                   controller: "CustomerProfileController",
+                   controllerAs: "cp"
+               })
      });
 
 
