@@ -110,11 +110,23 @@
                     controllerAs: "logout"
                 })
                 .state("profile", {
-                   url: "/customer-profile",
-                   templateUrl: 'views/profile.tpl.html',
-                   controller: "CustomerProfileController",
-                   controllerAs: "cp"
+                    url: "/customer-profile",
+                    templateUrl: 'views/profile.tpl.html',
+                    controller: "CustomerProfileController",
+                    controllerAs: "cp"
                })
+               .state("purchases", {
+                    url: "/customer-purchases",
+                    templateUrl: 'views/purchases.tpl.html',
+                    controller: "CustomerPurchasesController",
+                    controllerAs: "cp"
+              })
+              .state("settings", {
+                    url: "/customer-settings",
+                    templateUrl: 'views/settings.tpl.html',
+                    controller: "CustomerSettingsController",
+                    controllerAs: "cp"
+             })
      });
 
 
