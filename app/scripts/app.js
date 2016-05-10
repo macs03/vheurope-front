@@ -111,7 +111,7 @@
                 })
                 .state("profile", {
                    url: "/customer-profile",
-                   templateUrl: null,
+                   templateUrl: 'views/profile.tpl.html',
                    controller: "CustomerProfileController",
                    controllerAs: "cp"
                })
