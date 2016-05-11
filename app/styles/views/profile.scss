@@ -10,7 +10,7 @@
     padding: 0.5em;
     text-decoration: none;
 }
-.option-menu a:hover{
+.option-menu a:hover {
     background: #008CBA;
 }
 .mobile-menu {
@@ -40,4 +40,82 @@
 .option-mobile-menu a i {
     font-size: 24px;
     margin-left: 10px;
+}
+.profile-box {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.profile-box-height {
+    min-height: 200px;
+    max-height: 200px;
+}
+.profile-box-background-blue {
+    background: #00ACEC;
+}
+.profile-box-background-white {
+    background: #FFF;
+}
+.profile-box-background-gray {
+    background: #EEE;
+}
+.profile-box-background-gray:hover {
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #c0c0c0;
+}
+.blue-btn {
+    background: #008CBA;
+}
+.blue-btn:hover {
+    background: #007095;
+    color: #82B1D3;
+}
+.white {
+    color: white;
+}
+.overview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.overview i {
+    font-size: 30px;
+    color: #666;
+}
+.overview span {
+    font-size: 40px;
+    padding: 0.2em;
+}
+.overview h4 {
+    font-weight: 300;
+    color: #666;
+}
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.avatar {
+    display: flex;
+    justify-content: center;
+}
+.avatar .icon {
+    font-size: 14em;
+    color: #00ACEC;
+    align-self: center;
+}
+.avatar .add {
+    background: #00ACEC;
+    top: 2%;
+    left: 2%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.avatar .add i {
+    font-size: 25px;
+    left: 30%;
+    top: 25%;
 }
