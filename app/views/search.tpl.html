@@ -296,17 +296,17 @@
                 </h5>
 
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
-                <!--
+                
                 <div class="time-resumen-trips hidden-xs hidden-sm">
-                    <div class="row time-resume-trip">
+                    <div class="row time-resume-trip" ng-show="search.trips.hasBusTrips">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-bus text-muted"></i>  <b>22.00 $</b>
+                            <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 30%;">
-                            <span>5h 10 min</span>
+                            <span>{{ search.trips.lowest.bus.duration }}</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip">
+                    <div class="row time-resume-trip" ng-show="search.trips.hasPlaneTrips">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-plane text-muted"></i>  <b>92.65 $</b>
                         </div>
@@ -314,17 +314,17 @@
                             <span>2h 10 min</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip">
+                    <div class="row time-resume-trip" ng-show="search.trips.hasTrainTrips">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-train text-muted"></i>  <b>42.00 $</b>
+                            <i class="fa fa-train text-muted"></i>  <b>{{ search.trips.lowest.train.price | currency : '' }} €</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
-                            <span>6h 10 min</span>
+                            <span>{{ search.trips.lowest.train.duration }}</span>
                         </div>
                     </div>
                     
                 </div>
-                -->
+                
                 <!-- FIN RESUMEN DE TIEMPO DE VIAJES -->
 
                 <!-- FILTROS -->
@@ -370,9 +370,9 @@
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')">
+                        <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
                             <i class="fa fa-bus fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <!--
@@ -384,9 +384,9 @@
                     </div>
                     -->
                     <div class="col-md-2 col-xs-4 np-tab pl0">
-                        <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')">
+                        <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
                             <i class="fa fa-train fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                         </div>
                     </div>
                     
@@ -503,7 +503,7 @@
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">

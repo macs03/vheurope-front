@@ -375,7 +375,6 @@
 
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     if(newVal === true){
                         vm.showBus = true;
                         vm.showPlane = true;
@@ -473,7 +472,7 @@
             vm.weather_progressbar.start();
 
             vm.updatePassengers = function(type, direction){
-                console.log(type);
+                
                 if(direction == 'up' && vm.passengers < 7){
                     if(type=='adult'){
                        vm.passengersAdult = vm.passengersAdult + 1;  
