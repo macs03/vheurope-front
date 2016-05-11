@@ -27,7 +27,8 @@
        'LocalStorageModule',
        'ngProgress',
        'angulartics',
-       'angulartics.google.analytics'
+       'angulartics.google.analytics',
+       'satellizer'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {
@@ -150,6 +151,14 @@
             .setPrefix('resertrip')
             .setStorageType('sessionStorage');
     }]);
+
+    app.config(function($authProvider,apiUrl) {
+        // Parametros de configuración
+        $authProvider.loginUrl = apiUrl+"login";
+        $authProvider.signupUrl = apiUrl+"signup";
+        $authProvider.tokenName = "token";
+        $authProvider.tokenPrefix = "resertrip";
+    });
 
     var translationsEN = {
           "MAIN": {

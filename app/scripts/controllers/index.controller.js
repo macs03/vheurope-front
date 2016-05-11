@@ -23,6 +23,22 @@
                 $scope.pageTitle = title;
             }
             $scope.$on('titleEvent', changeTitle)
+
+            var token = localStorage.getItem("resertrip_token");
+            if (token != null) {
+                $scope.login = true;
+            }else{
+                $scope.login = false;
+            }
+            function changeStatus(ev,token) {
+                if (token != null) {
+                    $scope.login = true;
+                }else{
+                    $scope.login = false;
+                }
+            }
+            $scope.$on('tokenEvent', changeStatus)
+
             function counterClock(ev, counter,flag){
                 if(flag){
                     if ( angular.isDefined($scope.time) ) {

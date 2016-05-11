@@ -25,11 +25,11 @@
                 </span>
             </div>
             <div class="col-md-12 inputs">
-                <form class="" action="" method="post">
+                <form class="" ng-submit="login.login()" method="post">
                     <div class="form-group">
-                        <input type="email" name="email" value="" placeholder="Email" class="form-control form-inputs">
+                        <input ng-model="login.email" type="email" name="email" value="" placeholder="Email" class="form-control form-inputs" required>
                         <br>
-                        <input type="password" name="password" value="" placeholder="Password" class="form-control form-inputs">
+                        <input ng-model="login.password" type="password" name="password" value="" placeholder="Password" class="form-control form-inputs" required>
                     </div>
 
                     <div class="form-group">
