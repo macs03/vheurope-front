@@ -1,4 +1,7 @@
 <style>
+.hidden-train, .hidden-bus, .hidden-plane {
+  display: none;
+}
 
 </style>
 <div id="popover-bg"></div>
@@ -358,7 +361,7 @@
                             </div>
                             <div class="col-md-6">
                                  <div class="switch">
-                                    <input id="combine-trips" class="chk-toggle chk-toggle-round" type="checkbox">
+                                    <input id="combine-trips" class="chk-toggle chk-toggle-round" type="checkbox" ng-model="search.combineTrips">
                                     <label for="combine-trips"></label>
                                 </div>
                             </div>
@@ -367,19 +370,21 @@
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active" data-type="bus" id="bus">
+                        <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')">
                             <i class="fa fa-bus fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
+                    <!--
                     <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                        <div class="tab-filter" data-type="plane">
+                        <div class="tab-filter" data-type="plane" id="tab_plane">
                             <i class="fa fa-plane fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
+                    -->
                     <div class="col-md-2 col-xs-4 np-tab pl0">
-                        <div class="tab-filter" data-type="train">
+                        <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')">
                             <i class="fa fa-train fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
@@ -420,9 +425,10 @@
 
                         <div class="new-results" id="new-results-tickeables">
                             <div class="results list" id="trips_tickeables" >
-                                <div class="row result nu" data-type="bus" id={{trip.id}}  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
+
+                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue" >
                                  <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
-                                <div class="row">
+                                <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
                                         <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
@@ -484,29 +490,34 @@
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
                                         <small class="hidden-xs hidden-sm">Directo</small>
                                         <!--<i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i> -->
-                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i> 
 
-                                        <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                        <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                         <!-- BOTON PARA TREN-->
+                                      <a href="{{ trip.url }}" ng-show="trip.transportType == 'train'" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-bus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
-                                      <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                      <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                       <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                        <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
+                                      <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                        
+                                      <!-- BOTON PARA TREN-->
+                                      <a href="{{ trip.url }}" target="_blank" ng-show="trip.transportType == 'train'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
+                                      <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
                                 </div>
                             </div>
