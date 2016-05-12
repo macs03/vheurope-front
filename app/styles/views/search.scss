@@ -466,8 +466,11 @@ input[type="radio"] { margin-bottom: 10px !important }
 }
 
 .new-results .results .result.result-iv {
-    padding: 0 !important;
+    padding: 10px !important;
+}
 
+.new-results .results .result.result-iv .price-full {
+    font-size: 1.5em;
 }
 .new-results .results .result .button {
     font-family: 'Montserrat', sans-serif;
