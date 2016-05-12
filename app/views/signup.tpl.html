@@ -25,15 +25,15 @@
                 </span>
             </div>
             <div class="col-md-12 inputs" style="margin-bottom: 15px;">
-                <form class="" action="" method="post">
+                <form class="" ng-submit="signup.signup()" method="post">
                     <div class="form-group">
-                        <input type="text" name="name" value="" placeholder="Nombre" class="form-control form-inputs" style="border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);width: 100%;padding-left: 12px;">
+                        <input ng-model="signup.name" type="text" name="name" value="" placeholder="Nombre" class="form-control form-inputs" style="border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);width: 100%;padding-left: 12px;">
                         <br>
-                        <input type="email" name="email" value="" placeholder="Email" class="form-control form-inputs">
+                        <input ng-model="signup.email" type="email" name="email" value="" placeholder="Email" class="form-control form-inputs">
                         <br>
-                        <input type="password" name="password" value="" placeholder="Password" class="form-control form-inputs">
+                        <input ng-model="signup.password" type="password" name="password" value="" placeholder="Password" class="form-control form-inputs">
                         <br>
-                        <input type="password" name="password-confirm" value="" placeholder="Confirmar Password" class="form-control form-inputs">
+                        <input ng-model="signup.confirmPassword" type="password" name="password-confirm" value="" placeholder="Confirmar Password" class="form-control form-inputs">
                     </div>
                     <input type="submit" name="send" value="Registrarse" class="form-control button-send form-inputs">
                 </form>

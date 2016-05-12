@@ -155,7 +155,7 @@
     app.config(function($authProvider,apiUrl) {
         // Parametros de configuración
         $authProvider.loginUrl = apiUrl+"login";
-        $authProvider.signupUrl = apiUrl+"signup";
+        $authProvider.signupUrl = apiUrl+"register";
         $authProvider.tokenName = "token";
         $authProvider.tokenPrefix = "resertrip";
     });
