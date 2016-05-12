@@ -12,13 +12,23 @@ angular
     .module('vhEurope')
     .controller('CustomerProfileController',CustomerProfileController);
 
-    CustomerProfileController.$inject = ['$scope', '$location'];
+    CustomerProfileController.$inject = ['$scope', '$location', 'customerInfoFactory'];
 
-    function CustomerProfileController ($scope, $location) {
+    function CustomerProfileController ($scope, $location, customerInfoFactory) {
         var vm = this;
+        vm.customerData = null;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
+        }else{
+            customerInfoFactory
+                .getAll(token)
+                .then(function (data) {
+                    vm.customerData = data;
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
         }
     }
 
