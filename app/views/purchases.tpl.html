@@ -1,5 +1,37 @@
 <div class="container">
     <vh-profile-menu-directive></vh-profile-menu-directive>
     <div class="row">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tab-purchase" role="tablist">
+                <li role="presentation" class="active">
+                    <a data-target="#home" aria-controls="home" role="tab" data-toggle="tab">Viajes comprados sin salida</a>
+                </li>
+                <li role="presentation">
+                    <a data-target="#profile" aria-controls="profile" role="tab" data-toggle="tab">Viajes comprados ya expirados</a>
+                </li>
+                <li role="presentation">
+                    <a data-target="#messages" aria-controls="messages" role="tab" data-toggle="tab">Viajes cancelados</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <p>
+                        Viajes sin salida
+                    </p>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <p>
+                        Viajes expirados
+                    </p>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <p>
+                        Viajes cancelados
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
