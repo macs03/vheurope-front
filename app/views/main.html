@@ -63,7 +63,7 @@
                 <div class="col-md-12"></div>
                     <div id="search-form-wrapper">
                         <h1 translate>MAIN.TITLE</h1>
-                        <h3 class="hidden-xs" translate>MAIN.SUBTITLE</h3>
+                        <h2 class="hidden-xs" translate>MAIN.SUBTITLE</h2>
                         <form role="form" >
                             <div class="row">
                                 <div class="col-xs-12 col-md-12 ">
@@ -146,7 +146,7 @@
                     <vhdatepicker id="departureDate-quick-{{ps.id}}" class="quickDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
                     <img class="img-destinny" ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
                     <figcaption>
-                        <h2>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h2>
+                        <h3>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h3>
                         <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
                     </figcaption>
                 </figure>
@@ -162,7 +162,7 @@
             <div class="col-md-8">
                 <div class="container-text">
                     <h3 translate>MAIN.CTA_BUY</h3>
-                    <h1 translate>MAIN.CTA_PHONE</h1>
+                    <h3  class="mobile" translate>MAIN.CTA_PHONE</h3>
                 </div>
             </div>
             <div class="col-md-4">
@@ -463,5 +463,18 @@
                 </div>
             </div>
         </div>
-
-  
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "name": "Resertrip",
+                "url": "http://www.resertrip.com",
+                "logo": "http://busbud-pubweb-assets.global.ssl.fastly.net/images/2784feb.largeicon.png", 
+                "sameAs": [
+                    "https://www.facebook.com/resertrip", 
+                    "https://twitter.com/resertrip", 
+                    "https://plus.google.com/u/2/106846995516516157967/",
+                    "https://instagram.com/resertrip/",
+                ]
+            }
+        </script>

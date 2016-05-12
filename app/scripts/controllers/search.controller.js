@@ -527,8 +527,11 @@
             $rootScope.$broadcast('counterEvent', 1, false);
 
             if(params.origin != null){
-                var title = "Resertrip "+params.origin+"-"+params.destination;
+                var title = "Billetes de Autobús | "+params.origin+" a "+params.destination+" | Resertrip ";
+                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
+                $rootScope.$broadcast('descriptionEvent', description);
+
                 vm.results = false;
                 vm.trips = [];
                 vm.scraperTrips = [];
@@ -722,8 +725,11 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
-                var title = 'Resertrip ' + $stateParams.origin + '-' + $stateParams.destination;
+
+                var title = "Billetes de Autobús | "+$stateParams.origin+" a "+$stateParams.destination+" | Resertrip ";
+                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
+                $rootScope.$broadcast('descriptionEvent', description);
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
