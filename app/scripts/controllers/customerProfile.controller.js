@@ -12,10 +12,14 @@ angular
     .module('vhEurope')
     .controller('CustomerProfileController',CustomerProfileController);
 
-    CustomerProfileController.$inject = ['$scope'];
+    CustomerProfileController.$inject = ['$scope', '$location'];
 
-    function CustomerProfileController ($scope) {
+    function CustomerProfileController ($scope, $location) {
         var vm = this;
+        var token = localStorage.getItem("resertrip_token");
+        if (token == null) {
+            $location.path("/login")
+        }
     }
 
 })();
