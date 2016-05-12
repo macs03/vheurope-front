@@ -125,7 +125,8 @@
                         idVuelta : idReturn,
                         seatsVuelta : seatsReturn,
                         passengers : passengers
-                    }
+                    },
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);

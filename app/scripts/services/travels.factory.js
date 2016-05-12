@@ -40,7 +40,7 @@
                         childPassengersNumber : passengersChild,
                         babyPassengersNumber : passengersBaby
                     },
-
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);
@@ -81,7 +81,7 @@
         for (var i=0; i<acentos.length; i++) {
           text = text.replace(acentos.charAt(i), original.charAt(i));
         }
-        
+
         return text;
       }
 

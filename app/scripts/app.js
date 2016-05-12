@@ -158,6 +158,8 @@
         $authProvider.signupUrl = apiUrl+"register";
         $authProvider.tokenName = "token";
         $authProvider.tokenPrefix = "resertrip";
+        $authProvider.authHeader = 'Authorization';
+        $authProvider.authToken = '';
     });
 
     var translationsEN = {
