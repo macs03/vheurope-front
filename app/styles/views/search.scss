@@ -1573,7 +1573,7 @@ button.theme-search,
 .tabs-filter .tab-filter span { display: block }
 .tabs-filter .tab-filter:hover { background-color: #d1d1d1 }
 .tabs-filter .tab-filter.active { background-color: #fff }
-.tabs-filter .chk-input { margin-top: 10px }
+.tabs-filter .chk-input { margin-top: 10px; display: none; }
 .tabs-filter .chk-input small { margin-top: 8px }
 .time-resumen-trips {
     background-color: #fff;
