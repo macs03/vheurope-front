@@ -374,7 +374,7 @@
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
                             <i class="fa fa-bus fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                         </div>
@@ -388,7 +388,7 @@
                     </div>
                     -->
                     <div class="col-md-2 col-xs-4 np-tab pl0">
-                        <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
                             <i class="fa fa-train fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                         </div>
@@ -633,21 +633,21 @@
                               <div class="row tabs-filter" >
                                   
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
-                                      <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                                       </div>
                                   </div>
-                                  
+                                  <!--
                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
                                       <div class="tab-filter" data-type="plane" id="tab_plane">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                                       </div>
                                   </div>
-                                  
+                                  -->
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
-                                      <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                                       </div>
@@ -824,21 +824,21 @@
                               <div class="row tabs-filter" >
                                   
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
-                                      <div class="tab-filter active" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                                       </div>
                                   </div>
-                                  
+                                  <!--
                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
                                       <div class="tab-filter" data-type="plane" id="tab_plane">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                                       </div>
                                   </div>
-                                  
+                                  -->
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
-                                      <div class="tab-filter" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                                       </div>

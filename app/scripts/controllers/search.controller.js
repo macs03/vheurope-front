@@ -355,21 +355,21 @@
                         vm.showPlane = false;
                         vm.showTrain = false;
                         $('.tab-filter').removeClass('active');
-                        $('#tab_bus').addClass('active');
+                        $('.tab_bus').addClass('active');
                         break;
                     case 'train':
                         vm.showBus = false;
                         vm.showPlane = false;
                         vm.showTrain = true;
                         $('.tab-filter').removeClass('active');
-                        $('#tab_train').addClass('active');
+                        $('.tab_train').addClass('active');
                         break;
                     default:
                         vm.showBus = false;
                         vm.showPlane = true;
                         vm.showTrain = false;
                         $('.tab-filter').removeClass('active');
-                        $('#tab_plane').addClass('active');
+                        $('.tab_plane').addClass('active');
                 }              
             }
 
