@@ -16,11 +16,16 @@ angular
 
     function CustomerProfileController ($scope, $location, customerInfoFactory) {
         var vm = this;
+        vm.callCustomerInfo = callCustomerInfo;
         vm.customerData = null;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
         }else{
+            callCustomerInfo();
+        }
+
+        function callCustomerInfo() {
             customerInfoFactory
                 .getAll(token)
                 .then(function (data) {
@@ -30,6 +35,7 @@ angular
                     console.log(err);
                 })
         }
+
     }
 
 })();
