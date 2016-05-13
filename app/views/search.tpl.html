@@ -727,7 +727,7 @@
                                         <a class="" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                          <!-- BOTON PARA TREN-->
-                                      <a href="{{ trip.url }}" ng-show="trip.transportType == 'train'" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a class="" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.numAgr,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
 
@@ -744,7 +744,7 @@
                                         <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <!-- BOTON PARA TREN-->
-                                      <a href="{{ trip.url }}" target="_blank" ng-show="trip.transportType == 'train'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.numAgr,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
@@ -920,7 +920,7 @@
                                       <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="" ><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                       <!-- BOTON PARA TREN-->
-                                      <a href="{{ trip.url }}" ng-show="trip.transportType == 'train'" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                      <a class="" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.numAgr)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
 
@@ -937,7 +937,7 @@
                                       <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right"  translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <!-- BOTON PARA TREN-->
-                                      <a href="{{ trip.url }}" target="_blank" ng-show="trip.transportType == 'train'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.numAgr)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>

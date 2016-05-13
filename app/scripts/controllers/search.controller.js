@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
+        SearchController.$inject =['locationsFactory','travelsFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+        function SearchController (locationsFactory,travelsFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
             var vm = this;
             vm.searchMobile = false;
             vm.searchTrip = searchTrip;
@@ -29,6 +29,7 @@
             vm.alternativeSearch = alternativeSearch;
             vm.selectDeparture = true;
             vm.departureSelect = departureSelect;
+            vm.returnSelectTrain = returnSelectTrain;
             vm.isLoading = true;
             vm.good = true;
             vm.seats = [];
@@ -1165,6 +1166,22 @@
                     vm.departureLogo = '';
                     vm.idIda_1 = 0;
                 }
+            }
+
+            function returnSelectTrain(id) {
+                 urlTrainFactory
+                    .getUrl(vm.departureId, id)
+                    .then(function(data){
+                        //console.log(data);
+                        if( typeof data.url != 'undefined' && data.url != null ){
+                            window.location.href = data.url;
+                        }else{
+                            alert('No es posible utilizar esa combinacion de viajes');
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
             }
 
             function scraperManager(scraper){
