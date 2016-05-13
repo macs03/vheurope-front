@@ -1173,7 +1173,7 @@
                     .getUrl(vm.departureId, id)
                     .then(function(data){
                         //console.log(data);
-                        if( typeof data.url != 'undefined' && data.url != null ){
+                        if(data.url != null ){
                             window.location.href = data.url;
                         }else{
                             alert('No es posible utilizar esa combinacion de viajes');
