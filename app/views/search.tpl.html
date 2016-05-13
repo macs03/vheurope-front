@@ -291,7 +291,7 @@
 
             <div class="col-xs-12 col-md-9 conttainer-results" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
                 
-                <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0 && search.trips.directRetuenTrips.length == 0">
+                <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0 && search.trips.directReturnTrips.length == 0">
                   <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                 </h5>
 
@@ -301,7 +301,7 @@
 
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
                 
-                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips">
+                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.trips.hasBusTrips && search.trips.hasTrainTrips && !search.isMixedTrips">
                     <div class="row time-resume-trip" ng-show="search.trips.hasBusTrips">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
@@ -357,7 +357,7 @@
 
                 <!-- PESTAÑAS DE RESULTADOS -->
                
-                <div class="row tabs-filter" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips" >
+                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
                     <div class="col-md-3 np hidden-xs">
                         <div class="row chk-input" ng-class="{'visible-chk': search.trips.hasBusTrips && search.trips.hasTrainTrips}" >
                             <div class="col-md-6">
