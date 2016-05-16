@@ -23,16 +23,33 @@
             callCustomerInfo();
         }
 
+        vm.updateData = updateData;
+
         function callCustomerInfo() {
             customerInfoFactory
                 .getAll(token)
                 .then(function(data) {
                     vm.customerData = data;
+                    var name = data.fullName.split(",");
+                    vm.firstName = name[1];
+                    vm.lastName = name[0];
                 })
                 .catch(function(err) {
                     console.log(err);
                 })
         }
+
+        function updateData() {
+            customerInfoFactory
+                .putNewData(vm.firstName,vm.lastName,vm.customerData.identificationNumber,vm.customerData.email,vm.customerData.address,vm.customerData.birthday,vm.customerData.phoneNumber, vm.customerData.contactName, vm.customerData.contactEmail, vm.customerData.contactPhoneNumber)
+                .then(function (data) {
+                    console.log(data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }
+
     }
 
 })();
