@@ -374,6 +374,17 @@
                 }              
             }
 
+            var getTripsSteps = function(maxDuration, tripDuration){
+                var step = Math.floor(maxDuration/4);
+                var total = Math.floor(tripDuration/step);
+                var range = [];
+                for(var i=1;i<=total;i++) {
+                    range.push(i);
+               }   
+
+               return range;          
+            }
+
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     if(newVal === true){
@@ -397,6 +408,7 @@
             vm.millisToUTCDate = millisToUTCDate;
             vm.mixedTripIcon = mixedTripIcon;
             vm.showTripsType = showTripsType;
+            vm.getTripsSteps = getTripsSteps;
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -1174,7 +1186,7 @@
                     .then(function(data){
                         //console.log(data);
                         if(data.url != null ){
-                            window.location.href = data.url;
+                           window.location.href = data.url;
                         }else{
                             alert('No es posible utilizar esa combinacion de viajes');
                         }

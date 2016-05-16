@@ -482,14 +482,12 @@
                                         </div>
                                            
                                         <ul class="timeline hidden-xs hidden-sm">
-                                            <li class="li complete">
-                                                <div class="timestamp"></div>
+                                            <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
+                                                 <div class="timestamp"></div>
                                                 <div class="status no-scale"></div>
                                             </li>
-                                            <li class="li complete">
-                                                <div class="timestamp"></div>
-                                                <div class="status no-scale"></div>
-                                            </li>
+                                            
+
                                         </ul> 
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
                                         <small class="hidden-xs hidden-sm">Directo</small>
@@ -1136,41 +1134,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <!--
-                            <div class="row result mobile-mixed" style="display: flex; align-items: center;">
-                                <div class="col-md-9 col-xs-12 col-sm-12">
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure" style="overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.originT1 }}">{{trip.originT1 }}</small>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure text-center">
-                                        <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-right: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.destinationT1 }}">{{ trip.destinationT1 }}</small>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure" style="border-top: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.originT2 }}">{{trip.originT2 }}</small>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure text-center" style="border-top: 1px solid #bbb;">
-                                        <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-top: 1px solid #bbb; border-right: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.destinationT2 }}">{{ trip.destinationT2 }}</small>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-xs-12 col-sm-12" ng-class="{'disable-box':search.searchingMix}">
-                                    <a target="_blank" class="btn btn-block theme-blue-2" ng-click="search.findMixRoutes(trip.id)">ELEGIR <i class="fa fa-share-square-o"></i></a>
-                                </div>
-                            </div>
-                            -->
-
                         </div>
                     </div>
                 </div>
