@@ -25,6 +25,10 @@
                 </span>
             </div>
             <div class="col-md-12 inputs">
+                <div class="alert alert-warning alert-dismissible" role="alert" ng-show="login.error">
+                    <button type="button" class="close" aria-label="Close" ng-click="login.reset()"><span aria-hidden="true">&times;</span></button>
+                    <strong>Ups!</strong> Revisa el email y/o contraseña.
+                </div>
                 <form class="" ng-submit="login.login()" method="post">
                     <div class="form-group">
                         <input ng-model="login.email" type="email" name="email" value="" placeholder="Email" class="form-control form-inputs" required>

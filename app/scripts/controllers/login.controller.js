@@ -16,7 +16,9 @@
 
     function LoginController($scope, $auth, $location, $rootScope) {
         var vm = this;
+        vm.reset = reset;
         var token = localStorage.getItem("resertrip_token");
+        vm.error = false;
         if (token != null) {
             $location.path("/customer-profile")
         }
@@ -33,9 +35,13 @@
                 })
                 .catch(function(response) {
                     // Si ha habido errores llegamos a esta parte
-                    console.log("no se pudo loguear por: ");
                     console.log(response);
+                    vm.error = true;
                 });
+        }
+
+        function reset() {
+            vm.error = false;
         }
     }
 
