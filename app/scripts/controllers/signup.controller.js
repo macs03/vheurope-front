@@ -16,6 +16,8 @@
 
     function SignUpController($scope, $auth, $location, $rootScope) {
         var vm = this;
+        vm.confirm = confirm;
+        vm.passwordConfirmed = true;
         var token = localStorage.getItem("resertrip_token");
         if (token != null) {
             $location.path("/customer-profile")
@@ -40,6 +42,14 @@
                     console.log(response);
                     // Si ha habido errores, llegaremos a esta función
                 });
+        }
+
+        function confirm() {
+            if (vm.password === vm.confirmPassword) {
+                vm.passwordConfirmed = true;
+            }else{
+                vm.passwordConfirmed = false;
+            }
         }
     }
 

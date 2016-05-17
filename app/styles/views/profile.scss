@@ -143,3 +143,21 @@
 .width-button{
     width: 134px !important;
 }
+.box-strength{
+    display: flex;
+    flex-direction: column;
+    top: 7%;
+    left: 95%;
+}
+.box-strength i{
+    color: #E4E4E4;
+}
+.low-strong{
+    color: #F12D2D !important;
+}
+.middle-strong{
+    color: #F5A760 !important;
+}
+.high-strong{
+    color: #1AC633 !important;
+}
