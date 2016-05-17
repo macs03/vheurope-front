@@ -31,7 +31,7 @@
                 flag = true;
             }
             $http({
-                    cache: flag,
+                    //cache: flag,
                     method: 'GET',
                     url: apiUrl + 'customer'
                 })
