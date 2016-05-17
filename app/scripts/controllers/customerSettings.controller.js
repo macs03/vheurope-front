@@ -24,6 +24,8 @@
         }
 
         vm.updateData = updateData;
+        vm.confirm = confirm;
+        vm.passwordConfirmed = true;
 
         function callCustomerInfo() {
             customerInfoFactory
@@ -50,6 +52,13 @@
                 })
         }
 
+        function confirm() {
+            if (vm.newPassword === vm.newPasswordConfirm) {
+                vm.passwordConfirmed = true;
+            }else{
+                vm.passwordConfirmed = false;
+            }
+        }
     }
 
 })();

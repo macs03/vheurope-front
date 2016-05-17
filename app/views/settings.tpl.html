@@ -50,21 +50,26 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            <div class="padding-15">
-                                <label class="font-12" for="current-password">CONTRASEÑA ACTUAL</label>
-                                <input class="form-control form-inputs" type="password" name="current-password" value="" placeholder="Ingrese Nombre">
-                            </div>
-                            <div class="padding-15">
-                                <label class="font-12" for="new-password">CONTRASEÑA NUEVA</label>
-                                <input class="form-control form-inputs" type="password" name="new-password" value="" placeholder="Ingrese Nombre">
-                            </div>
-                            <div class="padding-15">
-                                <label class="font-12" for="confirm-password">CONFIRMAR CONTRASEÑA</label>
-                                <input class="form-control form-inputs" type="password" name="confirm-password" value="" placeholder="Ingrese Nombre">
-                            </div>
-                            <div class="padding-15">
-                                <input class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="ACTUALIZAR">
-                            </div>
+                            <form class="" action="" method="post" ng-submit="csettings.changePassword()">
+                                <div class="padding-15">
+                                    <label class="font-12" for="current-password">CONTRASEÑA ACTUAL</label>
+                                    <input ng-model="csettings.currentPassword" class="form-control form-inputs" type="password" name="current-password" value="" placeholder="Ingrese password" required>
+                                </div>
+                                <div class="alert alert-warning alert-dismissible" role="alert" ng-show="!csettings.passwordConfirmed">
+                                    <strong>Ups!</strong> Las contraseñas no coinciden.
+                                </div>
+                                <div class="padding-15">
+                                    <label class="font-12" for="new-password">CONTRASEÑA NUEVA</label>
+                                    <input ng-model="csettings.newPassword" class="form-control form-inputs" type="password" name="new-password" value="" placeholder="Ingrese nueva password" required>
+                                </div>
+                                <div class="padding-15">
+                                    <label class="font-12" for="confirm-password">CONFIRMAR CONTRASEÑA</label>
+                                    <input ng-change="csettings.confirm()" ng-model="csettings.newPasswordConfirm" class="form-control form-inputs" type="password" name="confirm-password" value="" placeholder="Confirme nueva password" required>
+                                </div>
+                                <div ng-class="{'disable-box':!csettings.passwordConfirmed}" class="padding-15">
+                                    <input class="pull-right form-control button-send form-inputs width-button" type="submit" name="name" value="ACTUALIZAR">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -81,15 +86,15 @@
                         <div class="panel-body">
                             <div class="padding-15">
                                 <label class="font-12" for="contact-name">NOMBRE</label>
-                                <input ng-model="csettings.customerData.contactName" class="input-text font-14" type="text" name="contact-name" value="" placeholder="Ingrese Nombre">
+                                <input ng-model="csettings.customerData.contactName" class="input-text font-14" type="text" name="contact-name" value="" placeholder="Ingrese Nombre de Contacto">
                             </div>
                             <div class="padding-15">
                                 <label class="font-12" for="contact-email">EMAIL</label>
-                                <input ng-model="csettings.customerData.contactEmail" class="form-control form-inputs" type="email" name="contact-email" value="" placeholder="Ingrese Nombre">
+                                <input ng-model="csettings.customerData.contactEmail" class="form-control form-inputs" type="email" name="contact-email" value="" placeholder="Ingrese Email de Contacto">
                             </div>
                             <div class="padding-15">
                                 <label class="font-12" for="contact-phone">NUMERO DE TELEFONO</label>
-                                <input ng-model="csettings.customerData.contactPhoneNumber" class="input-text font-14" type="text" name="contact-phone" value="" placeholder="Ingrese Nombre">
+                                <input ng-model="csettings.customerData.contactPhoneNumber" class="input-text font-14" type="text" name="contact-phone" value="" placeholder="Ingrese telefono de contacto">
                             </div>
                             <div class="padding-15">
                                 <input ng-click="csettings.updateData()" class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="ACTUALIZAR">
