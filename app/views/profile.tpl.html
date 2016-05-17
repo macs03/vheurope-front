@@ -34,7 +34,7 @@
         <div class="col-md-12 col-xs-12">
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
                 <i class="fa fa-bus" aria-hidden="true"></i>
-                <span>0</span>
+                <span>{{cprofile.customerData.numberTrips}}</span>
                 <h4>VIAJES HECHOS</h4>
             </div>
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
@@ -42,11 +42,11 @@
                 <span>
                     <i class="fa fa-suitcase" aria-hidden="true"></i>
                 </span>
-                <h4>SUPER VIAJERO</h4>
+                <h4>{{cprofile.customerData.travelerType}}</h4>
             </div>
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>0.0</span>
+                <span>{{cprofile.customerData.totalKilometers | currency : ''}}</span>
                 <h4>kMS RECORRIDOS</h4>
             </div>
         </div>
