@@ -25,7 +25,12 @@
 
         vm.updateData = updateData;
         vm.confirm = confirm;
+        vm.changePassword = changePassword;
+        vm.reset = reset;
         vm.passwordConfirmed = true;
+        vm.error = false;
+        vm.wellDonePassword = false;
+        vm.wellDoneData = false;
 
         function callCustomerInfo() {
             customerInfoFactory
@@ -46,6 +51,7 @@
                 .putNewData(vm.firstName,vm.lastName,vm.customerData.identificationNumber,vm.customerData.email,vm.customerData.address,vm.customerData.birthday,vm.customerData.phoneNumber, vm.customerData.contactName, vm.customerData.contactEmail, vm.customerData.contactPhoneNumber)
                 .then(function (data) {
                     console.log(data);
+                    vm.wellDoneData = true;
                 })
                 .catch(function (err) {
                     console.log(err);
@@ -59,6 +65,26 @@
                 vm.passwordConfirmed = false;
             }
         }
+
+        function changePassword() {
+            customerInfoFactory
+                .postNewPassword(vm.currentPassword, vm.newPassword, vm.newPasswordConfirm)
+                .then(function (data) {
+                    console.log(data);
+                    vm.wellDonePassword = true;
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    vm.error = true;
+                })
+        }
+
+        function reset() {
+            vm.error = false;
+            vm.wellDonePassword = false;
+            vm.wellDoneData = false;
+        }
+
     }
 
 })();

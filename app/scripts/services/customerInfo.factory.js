@@ -16,7 +16,8 @@
     function customerInfoFactory($http, $q, apiUrl) {
         return {
             getAll : getAll,
-            putNewData : putNewData
+            putNewData : putNewData,
+            postNewPassword : postNewPassword
         }
         var aux = null;
         var flag = false;
@@ -49,7 +50,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    cache: flag,
+                    //cache: flag,
                     method: 'PUT',
                     url: apiUrl + 'customer',
                     data: {
@@ -63,6 +64,29 @@
                         birthday: birthday,
                         phoneNumber: phone,
                         identificationNumber: dni
+                    }
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
+        function postNewPassword(oldPassword, newPassword, newPasswordRepeat) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                    //cache: flag,
+                    method: 'POST',
+                    url: apiUrl + 'customer/password',
+                    data: {
+                        oldPassword: oldPassword,
+                        newPassword: newPassword,
+                        newPasswordRepeat: newPasswordRepeat
                     }
                 })
                 .success(function(data) {

@@ -1,6 +1,10 @@
 <div class="container">
     <vh-profile-menu-directive></vh-profile-menu-directive>
     <div class="row">
+        <div class="col-md-12 alert alert-success alert-dismissible" role="alert" ng-show="csettings.wellDoneData">
+            <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
+            <strong>Bien!</strong> Datos actualizados.
+        </div>
         <div class="col-md-8 form-group">
             <div class="col-md-12 col-xs-12 profile-box-background-blue white">
                 <h4 class="font-14"><i class="fa fa-user icon" aria-hidden="true"></i> Informacion de perfil</h4>
@@ -50,7 +54,15 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            <form class="" action="" method="post" ng-submit="csettings.changePassword()">
+                            <form ng-submit="csettings.changePassword()">
+                                <div class="alert alert-success alert-dismissible" role="alert" ng-show="csettings.wellDonePassword">
+                                    <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Bien!</strong> Contraseña actualizada.
+                                </div>
+                                <div class="alert alert-warning alert-dismissible" role="alert" ng-show="csettings.error">
+                                    <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Ups!</strong> Revisa la contraseña actual.
+                                </div>
                                 <div class="padding-15">
                                     <label class="font-12" for="current-password">CONTRASEÑA ACTUAL</label>
                                     <input ng-model="csettings.currentPassword" class="form-control form-inputs" type="password" name="current-password" value="" placeholder="Ingrese password" required>
