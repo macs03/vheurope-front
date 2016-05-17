@@ -161,3 +161,18 @@
 .high-strong{
     color: #1AC633 !important;
 }
+.header-letters-avatar{
+    border: 2px solid;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin: 5px 5px 5px 10px;
+    padding: .7em !important;
+    color: #00ACEC !important;
+    text-align: center;
+}
+@media only screen and (max-width: 561px) {
+    .header-letters-avatar {
+        margin: 5px 5px 5px 23px;
+    }
+}

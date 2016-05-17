@@ -39,6 +39,11 @@
             }
             $scope.$on('tokenEvent', changeStatus)
 
+            function initials(ev,initials) {
+                $scope.initials = initials;
+            }
+            $scope.$on('initialEvent', initials)
+
             function counterClock(ev, counter,flag){
                 if(flag){
                     if ( angular.isDefined($scope.time) ) {

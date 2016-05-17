@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('CustomerProfileController', CustomerProfileController);
 
-    CustomerProfileController.$inject = ['$scope', '$location', 'customerInfoFactory'];
+    CustomerProfileController.$inject = ['$scope', '$location', 'customerInfoFactory', '$rootScope'];
 
-    function CustomerProfileController($scope, $location, customerInfoFactory) {
+    function CustomerProfileController($scope, $location, customerInfoFactory, $rootScope) {
         var vm = this;
         vm.callCustomerInfo = callCustomerInfo;
         vm.customerData = null;
@@ -30,6 +30,14 @@
                 .getAll(token)
                 .then(function(data) {
                     vm.customerData = data;
+                    var name = data.fullName.split(",");
+                    var initials;
+                    if (name[1] != undefined) {
+                        initials = name[1].charAt(1)+name[0].charAt(0)
+                    }else{
+                        initials = name[0].charAt(0)
+                    }
+                    $rootScope.$broadcast('initialEvent', initials);
                 })
                 .catch(function(err) {
                     console.log(err);
