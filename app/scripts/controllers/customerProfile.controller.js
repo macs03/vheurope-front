@@ -19,6 +19,7 @@
         vm.callCustomerInfo = callCustomerInfo;
         vm.customerData = null;
         vm.loadImage = false;
+        vm.updateAvatar = updateAvatar;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
@@ -67,6 +68,18 @@
             reader.readAsDataURL(file);
         };
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
+
+        function updateAvatar() {
+            customerInfoFactory
+                .postNewAvatar($scope.myCroppedImage)
+                .then(function (data) {
+                    console.log(data);
+                    callCustomerInfo();
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }
 
     }
 

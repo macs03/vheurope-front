@@ -17,7 +17,8 @@
         return {
             getAll : getAll,
             putNewData : putNewData,
-            postNewPassword : postNewPassword
+            postNewPassword : postNewPassword,
+            postNewAvatar : postNewAvatar
         }
         var aux = null;
         var flag = false;
@@ -87,6 +88,27 @@
                         oldPassword: oldPassword,
                         newPassword: newPassword,
                         newPasswordRepeat: newPasswordRepeat
+                    }
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
+        function postNewAvatar(avatar) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                    //cache: flag,
+                    method: 'POST',
+                    url: apiUrl + 'customer/avatar',
+                    data: {
+                        data: avatar
                     }
                 })
                 .success(function(data) {
