@@ -23,7 +23,7 @@
             var promise = defered.promise;
 
             $http({
-                    cache: true,
+                    cache: false,
                     method:'GET',
                     url: apiRtUrl+'destinations/?q='+query,
                 })

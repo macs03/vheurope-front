@@ -440,6 +440,13 @@
                return range;          
             }
 
+            var getHourMinPlanes = function(minutes){
+                console.log(minutes);
+                var realmin = minutes % 60
+                var hours = Math.floor(minutes / 60)
+                return hours+'hrs '+realmin+'min';          
+            }
+
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     if(newVal === true){
@@ -465,6 +472,7 @@
             vm.showTripsType = showTripsType;
             vm.getTripsSteps = getTripsSteps;
             vm.getPlanesSteps = getPlanesSteps;
+            vm.getHourMinPlanes = getHourMinPlanes;
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -655,7 +663,7 @@
 
                           //AVIONES        
                         planesFactory
-                            .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
+                            .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
                             vm.scraperFlag = true;
                             var planesTime = $timeout(function () {
                                 var planesData = planesFactory.getData();
@@ -1147,7 +1155,7 @@
 
                           //AVIONES        
                         planesFactory
-                            .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
+                            .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry);
                             vm.scraperFlag = true;
                             var planesTime = $timeout(function () {
                                 var planesData = planesFactory.getData();
@@ -1175,7 +1183,7 @@
                             }, 15000);
 
                             // END AVIONES
-                            
+
                         scraperFactory
                             .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                             vm.scraperFlag = true;

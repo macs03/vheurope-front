@@ -386,7 +386,7 @@
                         </div>
                     </div>
                      <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                        <div class="tab-filter" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
+                        <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                             <i class="fa fa-plane fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
@@ -541,7 +541,7 @@
                                     </div>
 
                                     <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
-                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                        <p class="approximate-time text-muted smallest-font">{{ search.getHourMinPlanes(trip.data.duration) }}</p>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -572,7 +572,7 @@
                                        
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
                                         <div class="arrow-box hidden-xs hidden-sm">
-                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                            <span class=" hidden-xs hidden-sm"> {{ search.getHourMinPlanes(trip.data.duration) }}</span> 
                                         </div>
                                            
                                         <ul class="timeline hidden-xs hidden-sm">
@@ -644,7 +644,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 col-xs-12">
-                                             <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                             <a href="{{ trip.data.redirect }}" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
                                 </div>
