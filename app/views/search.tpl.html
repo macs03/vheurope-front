@@ -310,7 +310,7 @@
                             <span>{{ search.trips.lowest.bus.duration }}</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip" ng-show="search.trips.hasPlaneTrips">
+                    <div class="row time-resume-trip" ng-show="search.hasPlaneTrips">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-plane text-muted"></i>  <b>92.65 $</b>
                         </div>
@@ -379,18 +379,16 @@
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                         </div>
                     </div>
-                    <!--
-                    <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                        <div class="tab-filter" data-type="plane" id="tab_plane">
-                            <i class="fa fa-plane fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
-                        </div>
-                    </div>
-                    -->
                     <div class="col-md-2 col-xs-4 np-tab pl0">
                         <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
                             <i class="fa fa-train fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                        </div>
+                    </div>
+                     <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                        <div class="tab-filter" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
+                            <i class="fa fa-plane fa-2x"></i>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
                         </div>
                     </div>
                     
@@ -523,6 +521,140 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- AVIONES -->
+                            <div ng-show="search.planesFlag">
+                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips" >
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src="{{ trip.data.enterprise__image }}" src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
+                                        <small class="text-muted smallest-font truncate">{{ trip.data.enterprise__name }}</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.data.start*1000) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.data.origin }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.origin }}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.data.end*1000) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.data.destination }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.destination }}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                      <p class="pull-right">
+                                          <strong class="price-full">{{trip.data.price | currency : '' }} €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{ trip.data.type__name }}</small>
+                                          </span>
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="{ trip.data.enterprise__image }}" title="{ trip.data.enterprise__name }}" class="logo_small" src="{ trip.data.enterprise__image }}">
+                                        <br>
+                                        <small class="text-muted" style="margin-left: 25px;">{{ trip.data.segments.length}} Escalas</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm"> 4hrs 15min</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.data.segments.length) ">
+                                                 <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">{{ trip.data.segments.length}} Escalas</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="001" ng-click="search.tripDetails($event)"></i>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-plane fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">{{ trip.data.type__name }}</small>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <button data-trip-id="{{$index}}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                        <strong class="price hidden-md hidden-lg">{{trip.data.price | currency : '' }} €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{$index}}">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned" ng-repeat="segment in trip.data.segments">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</span>
+                                                    <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{ segment.origin }}</h2>
+                                                    <p>
+                                                        <b>{{ segment.enterprise__name }}</b> | Vuelo No: <b>{{ segment.number }}</b>
+                                                        <span class="label label-default pull-right"><b>{{ segment.duration }}min</b></span>
+                                                        <br>
+                                                        <b>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</b> <i class="fa fa-angle-right"></i> <b>{{ search.millisToUTCDate(segment.end*1000) | date:'HH:mm'}}</b>
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-sublabel">
+                                                    <p class="text-muted smallest-font">
+                                                      <i class="fa fa-clock-o hidden"></i> Layover in Concepcion for 1h 26min <br>
+                                                      <i class="fa fa-suitcase hidden"></i> Recheck of checked luggage needed
+                                                    </p>
+                                                </div>
+                                               
+                                            </div>
+                                        </article>
+                                        
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>{{ search.millisToUTCDate(trip.data.end*1000) | date:'HH:mm'}}</span>
+                                                    <span>{{ search.millisToUTCDate(trip.data.end*1000) | date:'EEE, dd MMM'}}</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{ trip.data.destination }}</h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12">
+                                             <a href="#/seat/{{trip.id}}/-1" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+
+                            
+
+                            
 
                             </div>  <!-- end .results-->
                         </div>   <!-- end .new-results -->

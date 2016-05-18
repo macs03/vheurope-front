@@ -33,8 +33,8 @@
                 var split2 = returns.split('/');
                 returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
-            var formatOrigin = origin.toLowerCase() + '--' + 'ES';
-            var formatDestination = destination.toLowerCase() + '--' + 'ES';
+            var formatOrigin = origin.toLowerCase(); // + '--' + 'ES';
+            var formatDestination = destination.toLowerCase(); // + '--' + 'ES';
             formatOrigin = formatOrigin.replace(/\s/g, '-');
             formatOrigin = formatOrigin.replace(/ñ/g, 'n');
             formatDestination = formatDestination.replace(/\s/g, '-');
@@ -104,7 +104,6 @@
                     url: apiData
                 })
                 .success(function(data) {
-                    console.log(data);
                     defered.resolve(data);
                     self.allData = data;
                 })
