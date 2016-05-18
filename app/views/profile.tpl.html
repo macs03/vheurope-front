@@ -22,17 +22,16 @@
                     <a href="#/customer-settings" class="btn blue-btn white">Actualizar</a>
                 </div>
             </div>
-            <div ng-show="cprofile.avatarFlag" class="col-md-3 col-xs-12 profile-box-height profile-box-background-white relative avatar">
+            <div ng-show="cprofile.avatarFlag" ng-style="{'background-image': 'url(' + cprofile.customerData.avatar + ')'}" class="col-md-3 col-xs-12 profile-box-height profile-box-background-white relative avatar avatar-img">
                 <div class="absolute add">
-                    <a href="#">
+                    <a data-toggle="modal" data-target="#crop-img" style="cursor:pointer;">
                         <i class="fa fa-pencil white absolute" aria-hidden="true"></i>
                     </a>
                 </div>
-                <img ng-src="{{cprofile.customerData.avatar}}" alt="" />
             </div>
             <div ng-show="!cprofile.avatarFlag" class="col-md-3 col-xs-12 profile-box-height profile-box-background-white relative avatar">
                 <div class="absolute add">
-                    <a href="#">
+                    <a data-toggle="modal" data-target="#crop-img" style="cursor:pointer;">
                         <i class="fa fa-plus white absolute" aria-hidden="true"></i>
                     </a>
                 </div>
