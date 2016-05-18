@@ -44,6 +44,16 @@
             }
             $scope.$on('initialEvent', initials)
 
+            function avatar(ev,avatar) {
+                $scope.avatar = avatar;
+                if(avatar != null){
+                    $scope.avatarFlag = true;
+                }else{
+                    $scope.avatarFlag = false;
+                }
+            }
+            $scope.$on('avatarEvent', avatar)
+
             function counterClock(ev, counter,flag){
                 if(flag){
                     if ( angular.isDefined($scope.time) ) {

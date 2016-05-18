@@ -37,7 +37,9 @@
                     }else{
                         initials = name[0].charAt(0)
                     }
+                    var avatar = data.avatar;
                     $rootScope.$broadcast('initialEvent', initials);
+                    $rootScope.$broadcast('avatarEvent', avatar);
                 })
                 .catch(function(err) {
                     console.log(err);
