@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','planesFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
+        SearchController.$inject =['locationsFactory','locationsRtFactory','travelsFactory','planesFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,planesFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+        function SearchController (locationsFactory,locationsRtFactory,travelsFactory,planesFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
 
             var vm = this;
             vm.searchMobile = false;
@@ -310,19 +310,61 @@
             vm.firstStep = firstStep;
             vm.resetFirstSetep = resetFirstSetep;
 
-            vm.myOptions = [];
-        	vm.myConfig = {
+            vm.myOptionsOrigin = [];
+            vm.myOptionsDestination = [];
+        	vm.myConfigOrigin = {
           		//create: true,
-          		valueField: 'label',
-          		labelField: 'label',
-                searchField: ['label'],
+          		valueField: 'id',
+          		labelField: 'name__es',
+                searchField: ['name__es'],
           		delimiter: '|',
           		placeholder: 'Pick something',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
-          		maxItems: 1
+          		maxItems: 1,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data.items);
+                        vm.myOptionsOrigin = data.items;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
         	};
+
+            vm.myConfigDestination = {
+                //create: true,
+                valueField: 'id',
+                labelField: 'name__es',
+                searchField: ['name__es'],
+                delimiter: '|',
+                placeholder: 'Pick something',
+                onInitialize: function(selectize){
+                    // receives the selectize object as an argument
+                },
+                maxItems: 1,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data.items);
+                        vm.myOptionsDestination = data.items;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
+            };
             vm.dates = {
                 departureDate: '',
                 returnDate: '',
@@ -451,7 +493,7 @@
                 }
              };
 
-             var session = sessionStorageService.getFlag();
+             /*var session = sessionStorageService.getFlag();
              if (session == null || session == false) {
                  locationsFactory
                      .getAll()
@@ -465,7 +507,7 @@
                      });
              }else{
                  vm.myOptions = sessionStorageService.getLocations()
-             }
+             }*/
 
             var params = utilityService.getData();
           	vm.origin = params.origin + ', ' + params.countryOrigin;
@@ -645,6 +687,8 @@
                 var returnDateFormat = ""
                 var formatOrigin;
                 var formatDestination;
+
+                console.log(vm.origin);
 
                 var specialLocations = ['A_Coruna','Logrono','Ona','Sona','Arino','Banos','Bonar','Pinar','Riano','Beleno',
                                         'Bikuna','Brinas','Bunuel','Caneda','Canedo','Degana','Duenas','Soto_Duenas','Finana','Granon',

@@ -103,7 +103,8 @@
             vm.passengersBaby  = 0;
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
-        	vm.myOptions = [];
+        	vm.myOptionsOrigin = [];
+            vm.myOptionsDestination = [];
 
             vm.updatePassengers = function(type, direction){
                 if(direction == 'up' && vm.passengers < 7){
@@ -135,7 +136,7 @@
 
         	vm.configOrigin = {
           		//create: true,
-          		valueField: 'geo__latitude',
+          		valueField: 'id',
           		labelField: 'name__es',
                 searchField: ['name__es'],
           		delimiter: '|',
@@ -150,7 +151,7 @@
                     .getAll(query)
                     .then(function (data) {
                         callback(data.items);
-                        //vm.myOptions = data;
+                        vm.myOptionsOrigin = data.items;
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
@@ -163,14 +164,28 @@
             vm.configDestination = {
                 //create: true,
                 valueField: 'id',
-                labelField: 'label',
-                searchField: ['label'],
+                labelField: 'name__es',
+                searchField: ['name__es'],
                 delimiter: '|',
                 placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu destino' : 'Choose your destination',
                 onInitialize: function(selectize){
                     // receives the selectize object as an argument
                 },
-                maxItems: 1
+                maxItems: 1,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data.items);
+                        vm.myOptionsDestination = data.items;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
             };
 
             vm.dates = {
@@ -201,18 +216,27 @@
 
         	vm.searchTrips = function () {
 
-                angular.forEach(vm.myOptions, function(value, key) {
-                    if(vm.myOptions[key].id === vm.origin){
-                        vm.originCity = vm.myOptions[key].city;
-                        vm.originCountryCode = vm.myOptions[key].countryCode;
-                        vm.originCountry = vm.myOptions[key].country;
-                    }
-                    if(vm.myOptions[key].id === vm.destination){
-                        vm.destinationCity = vm.myOptions[key].city;
-                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
-                        vm.destinationCountry = vm.myOptions[key].country;
+                console.log(vm.myOptionsOrigin);
+                console.log(vm.myOptionsDestination);
+                console.log( vm.origin);
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                    console.log(value+key);
+                    if(vm.myOptionsOrigin[key].id === vm.origin){
+                        vm.originCity = vm.myOptionsOrigin[key].id;
+                        vm.originCountryCode = 'ESP'; //vm.myOptionsOrigin[key].country.id;
+                        vm.originCountry = vm.myOptionsOrigin[key].country.name__es;
                     }
                 });
+
+                 angular.forEach(vm.myOptionsDestination, function(value, key) {
+                   
+                    if(vm.myOptionsDestination[key].id === vm.destination){
+                        vm.destinationCity = vm.myOptionsDestination[key].id;
+                        vm.destinationCountryCode = 'ESP'; //vm.myOptionsDestination[key].country.id;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country.name__es;
+                    }
+                });
+
                 var formatOrigin;
                 var formatDestination;
                 formatOrigin = vm.originCity.replace(/\s/g, '_');
