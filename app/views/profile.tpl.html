@@ -4,7 +4,8 @@
         <div class="col-md-12">
             <div class="col-md-9 col-xs-12 profile-box profile-box-height profile-box-background-blue">
                 <div class="col-md-12 text-center">
-                    <h3>Hola, {{cprofile.customerData.fullName}}</h3>
+                    <h3>Hola,
+                        {{cprofile.customerData.fullName}}</h3>
                 </div>
                 <div class="col-md-12 text-center white">
                     <p>
@@ -55,6 +56,42 @@
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>{{cprofile.customerData.totalKilometers | currency : ''}}</span>
                 <h4>kMS RECORRIDOS</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="crop-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="cropArea col-md-8" ng-show="cprofile.loadImage">
+                    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                </div>
+                <div class="col-md-4" ng-show="cprofile.loadImage">
+                    <div>
+                        <h4>Vista Previa</h4>
+                    </div>
+                    <div class="relative">
+                        <img ng-src="{{myCroppedImage}}"/>
+                        <div class="ok" ng-show="cprofile.loadImage">
+                            <i class="fa fa-check fa-lg" style="margin: 0.68em; position:absolute;"></i>
+                            <input type="submit" name="submit" value="upload">
+                        </div>
+                    </div>
+                </div>
+                <div class="box-file col-md-12">
+                    <p>
+                        Seleccione o Arrastre Imagen aqui
+                    </p>
+                    <input id="fileInput" class="file" type="file" name="picture" value="">
+
+                </div>
             </div>
         </div>
     </div>

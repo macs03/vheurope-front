@@ -18,6 +18,7 @@
         var vm = this;
         vm.callCustomerInfo = callCustomerInfo;
         vm.customerData = null;
+        vm.loadImage = false;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
@@ -33,8 +34,8 @@
                     var name = data.fullName.split(",");
                     var initials;
                     if (name[1] != undefined) {
-                        initials = name[1].charAt(1)+name[0].charAt(0)
-                    }else{
+                        initials = name[1].charAt(1) + name[0].charAt(0)
+                    } else {
                         initials = name[0].charAt(0)
                     }
                     var avatar = data.avatar;
@@ -42,7 +43,7 @@
                     $rootScope.$broadcast('avatarEvent', avatar);
                     if (avatar != null) {
                         vm.avatarFlag = true;
-                    }else{
+                    } else {
                         vm.avatarFlag = false
                     }
                 })
@@ -50,6 +51,22 @@
                     console.log(err);
                 })
         }
+
+        $scope.myImage = '';
+        $scope.myCroppedImage = '';
+
+        var handleFileSelect = function(evt) {
+            var file = evt.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                $scope.$apply(function($scope) {
+                    vm.loadImage = true;
+                    $scope.myImage = evt.target.result;
+                });
+            };
+            reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
     }
 

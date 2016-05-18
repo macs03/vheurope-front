@@ -28,7 +28,8 @@
        'ngProgress',
        'angulartics',
        'angulartics.google.analytics',
-       'satellizer'
+       'satellizer',
+       'ngImgCrop'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {
