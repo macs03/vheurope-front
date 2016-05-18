@@ -40,6 +40,11 @@
                     var avatar = data.avatar;
                     $rootScope.$broadcast('initialEvent', initials);
                     $rootScope.$broadcast('avatarEvent', avatar);
+                    if (avatar != null) {
+                        vm.avatarFlag = true;
+                    }else{
+                        vm.avatarFlag = false
+                    }
                 })
                 .catch(function(err) {
                     console.log(err);
