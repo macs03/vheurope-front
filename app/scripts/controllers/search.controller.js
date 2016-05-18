@@ -12,9 +12,10 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
+        SearchController.$inject =['locationsFactory','travelsFactory','planesFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+        function SearchController (locationsFactory,travelsFactory,planesFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+
             var vm = this;
             vm.searchMobile = false;
             vm.searchTrip = searchTrip;
@@ -571,6 +572,7 @@
                 travelsFactory
                     .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
                     .then(function(data){
+
                         vm.isLoading = false;
                         vm.trips = data;
                         vm.searching = false;
@@ -635,6 +637,7 @@
                     })
 
             }else{
+                console.log('POR AQIO');
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
                 var dateDeparture = new Date(parseInt($stateParams.departureDate));
@@ -817,6 +820,37 @@
                                     }
                                 }
                             }, 15000);
+
+                          //AVIONES        
+                        planesFactory
+                            .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
+                            vm.scraperFlag = true;
+                            var planesTime = $timeout(function () {
+                                var planesData = planesFactory.getData();
+                                if (!planesData.data.id || planesData.data.tickets.length ==0) {
+                                    var planesTime2 = $timeout(function () {
+                                        vm.planesTrips = planesData.data;
+                    //                    scraperManager(scraperData.data.tickets);
+                                        if (planesData.data.tickets.length ==0) {
+                                            vm.planesFlag = false;
+                                        }else{
+                                            vm.planesFlag = false;
+                                        }
+                                    }, 20000);
+                                }
+                                vm.planesTrips = planesData.data;
+                                if (planesData.data.tickets != undefined) {
+                                    if (planesData.data.tickets.length != 0) {
+                                        vm.planesFlag = false;
+                                        //scraperManager(scraperData.data.tickets);
+                                    }else{
+                                        vm.planesFlag = false;
+                                    }
+                                }
+                            }, 15000);
+
+                            // END AVIONES
+
                     })
                     .catch(function(err){
                         console.log(err);

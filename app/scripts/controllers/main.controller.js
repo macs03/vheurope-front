@@ -12,10 +12,10 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope','$translate','$cookieStore','sessionStorageService'];
+        MainController.$inject =['$scope','locationsFactory', 'locationsRtFactory','utilityService','$location','$rootScope','$translate','$cookieStore','sessionStorageService'];
 
 
-        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope,$translate,$cookieStore,sessionStorageService) {
+        function MainController ($scope,locationsFactory,locationsRtFactory,utilityService,$location,$rootScope,$translate,$cookieStore,sessionStorageService) {
 
             var vm = this;
             var params = utilityService.getData();
@@ -135,15 +135,29 @@
 
         	vm.configOrigin = {
           		//create: true,
-          		valueField: 'id',
-          		labelField: 'label',
-                searchField: ['label'],
+          		valueField: 'geo__latitude',
+          		labelField: 'name__es',
+                searchField: ['name__es'],
           		delimiter: '|',
           		placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
-          		maxItems: 1
+          		maxItems: 1,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data.items);
+                        //vm.myOptions = data;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
         	};
 
             vm.configDestination = {
@@ -166,6 +180,7 @@
                 maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
             };
 
+            /*
             var session = sessionStorageService.getFlag();
             if (session == null || session == false) {
                 locationsFactory
@@ -181,6 +196,8 @@
             }else{
                 vm.myOptions = sessionStorageService.getLocations()
             }
+            */
+            
 
         	vm.searchTrips = function () {
 
