@@ -217,7 +217,7 @@
 .ok {
     background: #35AADE;
     position: absolute;
-    left: 65%;
+    left: 85%;
     border-radius: 50%;
     height: 3em;
     width: 3em;
@@ -236,8 +236,12 @@
 .cropArea {
     background: #FFF;
     overflow: hidden;
-    width: 500px;
     height: 350px;
+}
+.preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 @media only screen and (max-width: 561px) {
     .header-letters-avatar {
