@@ -19,6 +19,13 @@
             $scope.pageTitle = "Resertrip Viaja inteligente";
             $scope.showCLock = false;
             $scope.completeTime = false;
+            $scope.initials = localStorage.getItem("resertrip_initials");
+            $scope.avatar = localStorage.getItem("resertrip_avatar");
+            if ($scope.avatar != null) {
+                $scope.avatarFlag = true;
+            }else{
+                $scope.avatarFlag = false;
+            }
             function changeTitle(ev, title){
                 $scope.pageTitle = title;
             }
@@ -29,6 +36,8 @@
                 $scope.login = true;
             }else{
                 $scope.login = false;
+                localStorage.removeItem("resertrip_avatar");
+                localStorage.removeItem("resertrip_initials");
             }
             function changeStatus(ev,token) {
                 if (token != null) {
@@ -40,12 +49,14 @@
             $scope.$on('tokenEvent', changeStatus)
 
             function initials(ev,initials) {
-                $scope.initials = initials;
+                localStorage.setItem("resertrip_initials", initials);
+                $scope.initials = localStorage.getItem("resertrip_initials");
             }
             $scope.$on('initialEvent', initials)
 
             function avatar(ev,avatar) {
-                $scope.avatar = avatar;
+                localStorage.setItem("resertrip_avatar", avatar);
+                $scope.avatar = localStorage.getItem("resertrip_avatar");
                 if(avatar != null){
                     $scope.avatarFlag = true;
                 }else{
