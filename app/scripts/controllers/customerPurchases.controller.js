@@ -12,14 +12,24 @@
         .module('vhEurope')
         .controller('CustomerPurchasesController', CustomerPurchasesController);
 
-    CustomerPurchasesController.$inject = ['$scope', '$location'];
+    CustomerPurchasesController.$inject = ['$scope', '$location', 'customerInfoFactory'];
 
-    function CustomerPurchasesController($scope, $location) {
+    function CustomerPurchasesController($scope, $location, customerInfoFactory) {
         var vm = this;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
         }
+        vm.purchasesData = null;
+        customerInfoFactory
+            .getCustomerPurchases(token)
+            .then(function(data) {
+                vm.purchasesData = data;
+                console.log(data);
+            })
+            .catch(function(err) {
+                console.log(err);
+            })
     }
 
 })();

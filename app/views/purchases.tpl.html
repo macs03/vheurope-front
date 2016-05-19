@@ -17,19 +17,121 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <p>
-                        Viajes sin salida
-                    </p>
+                    <div ng-show="cpurchase.purchasesData.ticketsCurrent.length == 0" class="container padding-1em text-center margin-top-0 profile-box-background-white margin-pruchase-box relative">
+                        <i class="fa fa-ban fa-3x" aria-hidden="true"></i>
+                        <h4>No Hay tickets actuales</h4>
+                    </div>
+                    <div ng-repeat="ticket in cpurchase.purchasesData.ticketsCurrent" ng-class="{'margin-top-0' : $index == 0}" class="container profile-box-background-white margin-pruchase-box relative">
+                        <div class="row border-box margin-pruchase-box-top">
+                            <div class="col-md-4">
+                                <span class="text-muted">Viaje:
+                                </span>
+                                <span>{{ticket.trip}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Pasajero:
+                                </span>
+                                <span>{{ticket.traveler}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Fecha:
+                                </span>
+                                <span>{{ticket.departureDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-pruchase-box">
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Número de ticket:
+                                </span>
+                                <span>{{ticket.ticketNumber}}</span>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Costo:
+                                </span>
+                                <span>{{ticket.price | currency : ''}}</span>
+                                <span>
+                                    {{ticket.currency}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">
-                    <p>
-                        Viajes expirados
-                    </p>
+                    <div ng-show="cpurchase.purchasesData.ticketsExpired.length == 0" class="container padding-1em text-center margin-top-0 profile-box-background-white margin-pruchase-box relative">
+                        <i class="fa fa-ban fa-3x" aria-hidden="true"></i>
+                        <h4>No Hay tickets expirados</h4>
+                    </div>
+                    <div ng-repeat="ticket in cpurchase.purchasesData.ticketsExpired" ng-class="{'margin-top-0' : $index == 0}" class="container profile-box-background-white margin-pruchase-box relative">
+                        <div class="row border-box margin-pruchase-box-top">
+                            <div class="col-md-4">
+                                <span class="text-muted">Viaje:
+                                </span>
+                                <span>{{ticket.trip}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Pasajero:
+                                </span>
+                                <span>{{ticket.traveler}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Fecha:
+                                </span>
+                                <span>{{ticket.departureDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-pruchase-box">
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Número de ticket:
+                                </span>
+                                <span>{{ticket.ticketNumber}}</span>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Costo:
+                                </span>
+                                <span>{{ticket.price | currency : ''}}</span>
+                                <span>
+                                    {{ticket.currency}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="messages">
-                    <p>
-                        Viajes cancelados
-                    </p>
+                    <div ng-show="cpurchase.purchasesData.ticketsCanceled.length == 0" class="container padding-1em text-center margin-top-0 profile-box-background-white margin-pruchase-box relative">
+                        <i class="fa fa-ban fa-3x" aria-hidden="true"></i>
+                        <h4>No Hay tickets cancelados</h4>
+                    </div>
+                    <div ng-repeat="ticket in cpurchase.purchasesData.ticketsCanceled" ng-class="{'margin-top-0' : $index == 0}" class="container profile-box-background-white margin-pruchase-box relative">
+                        <div class="row border-box margin-pruchase-box-top">
+                            <div class="col-md-4">
+                                <span class="text-muted">Viaje:
+                                </span>
+                                <span>{{ticket.trip}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Pasajero:
+                                </span>
+                                <span>{{ticket.traveler}}</span>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="text-muted">Fecha:
+                                </span>
+                                <span>{{ticket.departureDate}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-pruchase-box">
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Número de ticket:
+                                </span>
+                                <span>{{ticket.ticketNumber}}</span>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <span class="text-muted">Costo:
+                                </span>
+                                <span>{{ticket.price | currency : ''}}</span>
+                                <span>
+                                    {{ticket.currency}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

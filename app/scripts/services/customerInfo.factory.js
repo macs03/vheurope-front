@@ -15,11 +15,12 @@
 
     function customerInfoFactory($http, $q, apiUrl) {
         return {
-            getAll : getAll,
-            putNewData : putNewData,
-            postNewPassword : postNewPassword,
-            postNewAvatar : postNewAvatar,
-            deleteUser : deleteUser
+            getAll: getAll,
+            putNewData: putNewData,
+            postNewPassword: postNewPassword,
+            postNewAvatar: postNewAvatar,
+            deleteUser: deleteUser,
+            getCustomerPurchases: getCustomerPurchases
         }
         var aux = null;
         var flag = false;
@@ -128,6 +129,23 @@
             $http({
                     method: 'DELETE',
                     url: apiUrl + 'customer/user'
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
+        function getCustomerPurchases(token) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'customer/trips'
                 })
                 .success(function(data) {
                     defered.resolve(data);

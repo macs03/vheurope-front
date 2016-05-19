@@ -238,10 +238,25 @@
     overflow: hidden;
     height: 350px;
 }
-.preview{
+.preview {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.margin-pruchase-box {
+    margin: 1em 0;
+}
+.margin-pruchase-box-top {
+    padding: 1em;
+}
+.border-box {
+    border-bottom: 1px solid #999;
+}
+.margin-top-0 {
+    margin-top: 0 !important;
+}
+.padding-1em {
+    padding: 1em;
 }
 @media only screen and (max-width: 561px) {
     .header-letters-avatar {
