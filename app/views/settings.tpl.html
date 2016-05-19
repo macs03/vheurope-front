@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div style="margin-top: 1em;">
-                    <a ng-show="!csettings.delete" ng-click="csettings.delete = true">Darse de baja</a>
+                    <input type="button" ng-show="!csettings.delete" ng-click="csettings.delete = true" class="pull-right form-control button-send form-inputs width-button" style="background:#D9534F; border-color:#D9534F;"  name="name" value="Darse de baja">
                     <div ng-show="csettings.delete" class="alert alert-danger alert-dismissible" role="alert">
                         <button ng-click="csettings.delete = false" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <p><strong>¡Espera!</strong> ¿Estás seguro que deseas eliminar tu cuenta de usuario?</p> <br>
