@@ -147,6 +147,7 @@
           		maxItems: 1,
                 load: function(query, callback) {
                     if (!query.length) return callback();
+                    vm.myOptionsOrigin = [];
                     locationsRtFactory
                     .getAll(query)
                     .then(function (data) {
@@ -174,6 +175,7 @@
                 maxItems: 1,
                 load: function(query, callback) {
                     if (!query.length) return callback();
+                    vm.myOptionsDestination = [];
                     locationsRtFactory
                     .getAll(query)
                     .then(function (data) {
