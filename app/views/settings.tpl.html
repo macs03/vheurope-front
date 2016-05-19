@@ -114,6 +114,18 @@
                         </div>
                     </div>
                 </div>
+                <div style="margin-top: 1em;">
+                    <a ng-show="!csettings.delete" ng-click="csettings.delete = true">Darse de baja</a>
+                    <div ng-show="csettings.delete" class="alert alert-danger alert-dismissible" role="alert">
+                        <button ng-click="csettings.delete = false" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p><strong>¡Espera!</strong> ¿Estás seguro que deseas eliminar tu cuenta de usuario?</p> <br>
+                        <div style="text-align: right;">
+                            <button ng-click="csettings.deleteUser()" type="button" id="myButton" data-loading-text="Eliminando cuenta..." class="btn btn-danger" autocomplete="off">
+                                Si, estoy seguro
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

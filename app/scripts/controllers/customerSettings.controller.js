@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('CustomerSettingsController', CustomerSettingsController);
 
-    CustomerSettingsController.$inject = ['$scope', '$location', 'customerInfoFactory'];
+    CustomerSettingsController.$inject = ['$scope', '$location', 'customerInfoFactory', '$auth', '$rootScope'];
 
-    function CustomerSettingsController($scope, $location, customerInfoFactory) {
+    function CustomerSettingsController($scope, $location, customerInfoFactory, $auth, $rootScope) {
         var vm = this;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
@@ -31,6 +31,8 @@
         vm.error = false;
         vm.wellDonePassword = false;
         vm.wellDoneData = false;
+        vm.deleteUser = deleteUser;
+        vm.delete = false;
 
         function callCustomerInfo() {
             customerInfoFactory
@@ -83,6 +85,24 @@
             vm.error = false;
             vm.wellDonePassword = false;
             vm.wellDoneData = false;
+        }
+
+        function deleteUser() {
+            customerInfoFactory
+                .deleteUser(token)
+                .then(function (data) {
+                    $auth.logout()
+                        .then(function() {
+                            // Desconectamos al usuario y lo redirijimos
+                            var token = localStorage.getItem("resertrip_token");
+                            $rootScope.$broadcast('tokenEvent', token);
+                            $location.path("/")
+                        });
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    vm.error = true;
+                })
         }
 
     }

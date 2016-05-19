@@ -18,7 +18,8 @@
             getAll : getAll,
             putNewData : putNewData,
             postNewPassword : postNewPassword,
-            postNewAvatar : postNewAvatar
+            postNewAvatar : postNewAvatar,
+            deleteUser : deleteUser
         }
         var aux = null;
         var flag = false;
@@ -110,6 +111,23 @@
                     data: {
                         data: avatar
                     }
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
+        function deleteUser(token) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http({
+                    method: 'DELETE',
+                    url: apiUrl + 'customer/user'
                 })
                 .success(function(data) {
                     defered.resolve(data);
