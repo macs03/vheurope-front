@@ -7,16 +7,22 @@
                 <li role="presentation" class="active">
                     <a data-target="#home" aria-controls="home" role="tab" data-toggle="tab">Viajes comprados sin salida</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" ng-show="!cpurchase.searching">
                     <a data-target="#profile" aria-controls="profile" role="tab" data-toggle="tab">Viajes comprados ya expirados</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" ng-show="!cpurchase.searching">
                     <a data-target="#messages" aria-controls="messages" role="tab" data-toggle="tab">Viajes cancelados</a>
                 </li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
+                    <div ng-show="cpurchase.searching" class="container padding-1em text-center margin-top-0 profile-box-background-white margin-pruchase-box relative">
+                        <div class="text-center" style="margin-bottom:20px;">
+                            <p><span>Buscando viajes asociados...</span></p>
+                            <img src="https://cdn.api.voyhoy.com/loader.gif" style="width:50px;"  class="" alt="Buscando viajes asociados ..." />
+                        </div>
+                    </div>
                     <div ng-show="cpurchase.purchasesData.ticketsCurrent.length == 0" class="container padding-1em text-center margin-top-0 profile-box-background-white margin-pruchase-box relative">
                         <i class="fa fa-ban fa-3x" aria-hidden="true"></i>
                         <h4>No Hay tickets actuales</h4>

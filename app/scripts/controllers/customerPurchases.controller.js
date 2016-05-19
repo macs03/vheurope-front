@@ -21,13 +21,16 @@
             $location.path("/login")
         }
         vm.purchasesData = null;
+        vm.searching = true;
         customerInfoFactory
             .getCustomerPurchases(token)
             .then(function(data) {
                 vm.purchasesData = data;
+                vm.searching = false;
                 console.log(data);
             })
             .catch(function(err) {
+                vm.searching = false;
                 console.log(err);
             })
     }
