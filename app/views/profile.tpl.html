@@ -68,8 +68,17 @@
                 <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h4 class="modal-title">Cargar nueva imagen de usuario</h4>
             </div>
             <div class="modal-body row">
+                <div class="alert alert-warning alert-dismissible" role="alert" ng-show="cprofile.error">
+                    <button type="button" class="close" aria-label="Close" ng-click="cprofile.error = false"><span aria-hidden="true">&times;</span></button>
+                    <strong>Ups!</strong> Error al cargar tu imagen.
+                </div>
+                <div class="text-center" ng-show="cprofile.uploading" style="margin-bottom:20px;">
+                    <span>Cargando nueva imagen...</span>
+                    <img src="https://cdn.api.voyhoy.com/loader.gif" style="width:50px;"  class="" alt="cargando imagen ..." />
+                </div>
                 <div class="cropArea col-md-8 col-xs-12" ng-show="cprofile.loadImage">
                     <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
                 </div>

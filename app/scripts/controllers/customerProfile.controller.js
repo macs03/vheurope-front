@@ -20,6 +20,8 @@
         vm.customerData = null;
         vm.loadImage = false;
         vm.updateAvatar = updateAvatar;
+        vm.error = false;
+        vm.uploading = false;
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
@@ -70,14 +72,20 @@
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
         function updateAvatar() {
+            vm.uploading = true;
+            vm.loadImage = false;
             customerInfoFactory
                 .postNewAvatar($scope.myCroppedImage)
                 .then(function (data) {
                     console.log(data);
                     callCustomerInfo();
+                    $('#crop-img').modal('hide');
+                    vm.uploading = false;
                 })
                 .catch(function (err) {
                     console.log(err);
+                    vm.error = true;
+                    vm.uploading = false;
                 })
         }
 
