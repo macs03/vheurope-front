@@ -40,8 +40,12 @@
                 .then(function(data) {
                     vm.customerData = data;
                     var name = data.fullName.split(",");
-                    vm.firstName = name[1];
-                    vm.lastName = name[0];
+                    if (name.length == 1) {
+                        vm.firstName = name[0];
+                    }else {
+                        vm.firstName = name[1];
+                        vm.lastName = name[0];
+                    }
                 })
                 .catch(function(err) {
                     console.log(err);
