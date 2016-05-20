@@ -441,7 +441,6 @@
             }
 
             var getHourMinPlanes = function(minutes){
-                console.log(minutes);
                 var realmin = minutes % 60
                 var hours = Math.floor(minutes / 60)
                 return hours+'hrs '+realmin+'min';          
@@ -740,8 +739,6 @@
                 var returnDateFormat = ""
                 var formatOrigin;
                 var formatDestination;
-
-                console.log(vm.origin);
 
                 var specialLocations = ['A_Coruna','Logrono','Ona','Sona','Arino','Banos','Bonar','Pinar','Riano','Beleno',
                                         'Bikuna','Brinas','Bunuel','Caneda','Canedo','Degana','Duenas','Soto_Duenas','Finana','Granon',

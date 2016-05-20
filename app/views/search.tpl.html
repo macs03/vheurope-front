@@ -7,6 +7,158 @@
   display: block !important;
 }
 
+.type-service {
+    width: 120px;
+    text-align: center;
+}
+
+.time-resumen-trips {
+    background-color: #fff;
+    min-height: 110px;
+    margin-bottom: 20px;
+    padding: 20px 0 15px 20px;
+}
+.time-resumen-trips .time-resume-trip {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.time-resumen-trips .time-resume-trip-price {
+    padding: 5px 0 5px 40px;
+   background: rgba(240,240,240,1);
+background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(240,240,240,1)), color-stop(100%, rgba(230,226,226,1)));
+background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+background: -o-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+background: -ms-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+background: linear-gradient(to bottom, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e2e2', GradientType=0 );
+-webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+}
+.time-resumen-trips .time-resume-trip-price i { margin-right: 20px }
+.time-resumen-trips .time-resume-trip-time {
+    background-color: #0192D2;
+    padding: 5px 0 5px 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+    background: rgba(41,170,225,1);
+    background: -moz-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(41,170,225,1)), color-stop(100%, rgba(1,147,210,1)));
+    background: -webkit-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
+    background: -o-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
+    background: -ms-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
+    background: linear-gradient(to bottom, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29aae1', endColorstr='#0193d2', GradientType=0 );
+}
+
+.time-resumen-trips .time-resume-trip-time span{
+  font-weight: lighter;
+  font-size: .9em;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* Checkbox switch */
+
+.checkbox-switch {
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: 60px;
+  height: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  line-height: 1.2;
+  font-size: 14px;
+}
+
+.checkbox-switch input.input-checkbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.checkbox-switch .checkbox-animate {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #95a5a6;
+  -webkit-transition: background 0.25s ease-out 0s;
+  transition: background 0.25s ease-out 0s;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+}
+
+.checkbox-switch .checkbox-animate:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  background-color: #fff;
+  top: 3px;
+  left: 3px;
+  -webkit-transition: left 0.3s ease-out 0s;
+  transition: left 0.3s ease-out 0s;
+  z-index: 10;
+}
+
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate {
+  background-color: #2ecc71;
+}
+
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate:before {
+  left: 35px;
+  background-color: #fff;
+}
+
+.checkbox-switch .checkbox-off,
+.checkbox-switch .checkbox-on {
+  font-size: 12px;
+  float: left;
+  color: #fff;
+  font-weight: 800;
+  padding-top: 8px;
+  -webkit-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+
+.checkbox-switch .checkbox-off {
+  margin-left: 35px;
+  opacity: 1;
+}
+
+.checkbox-switch .checkbox-on {
+  display: none;
+  float: right;
+  margin-right: 35px;
+  opacity: 0;
+}
+
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate .checkbox-off {
+  display: none;
+  opacity: 0;
+}
+
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate .checkbox-on {
+  display: block;
+  opacity: 1;
+}
+
 </style>
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
@@ -306,7 +458,7 @@
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 30%;">
+                        <div class="col-md-9 time-resume-trip-time" style="width: 60%;">
                             <span>{{ search.trips.lowest.bus.duration }}</span>
                         </div>
                     </div>
@@ -322,7 +474,7 @@
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-train text-muted"></i>  <b>{{ search.trips.lowest.train.price | currency : '' }} €</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
+                        <div class="col-md-9 time-resume-trip-time" style="width: 35%;">
                             <span>{{ search.trips.lowest.train.duration }}</span>
                         </div>
                     </div>
@@ -364,9 +516,12 @@
                                  <small class="pull-right text-muted">Combinar</small>
                             </div>
                             <div class="col-md-6">
-                                 <div class="switch">
-                                    <input id="combine-trips" class="chk-toggle chk-toggle-round" type="checkbox" ng-model="search.combineTrips">
-                                    <label for="combine-trips"></label>
+                                <div class="checkbox-switch">
+                                    <input type="checkbox" checked=""  value="1" name="status" class="input-checkbox" id="combine-trips" ng-model="search.combineTrips">
+                                    <div class="checkbox-animate">
+                                        <span class="checkbox-off">No</span>
+                                        <span class="checkbox-on">Si</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -439,9 +594,9 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
                                       </p>
                                     </div>
 
@@ -452,16 +607,16 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
                                       </p>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <p class="pull-right">
                                           <strong class="price-full">{{trip.price | currency : '' }} €</strong>
-                                          <span class="pull-right">
+                                          <span class="pull-right type-service">
                                             <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.typeService}}</small>
                                           </span>
                                         </p>
@@ -534,9 +689,9 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.data.start*1000) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.data.origin }}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{ trip.data.origin }}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.origin }}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.origin }}</small>
                                       </p>
                                     </div>
 
@@ -547,16 +702,16 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.data.end*1000) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.data.destination }}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{ trip.data.destination }}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.destination }}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.data.destination }}</small>
                                       </p>
                                     </div>
 
                                     <div class="col-md-3 text-center hidden-xs hidden-sm">
                                       <p class="pull-right">
                                           <strong class="price-full">{{trip.data.price | currency : '' }} €</strong>
-                                          <span class="pull-right">
+                                          <span class="pull-right type-service">
                                             <small class="text-muted smallest-font" style="margin-top: -10px;">{{ trip.data.type__name }}</small>
                                           </span>
                                         </p>
@@ -565,9 +720,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
-                                        <img ng-src="{ trip.data.enterprise__image }}" title="{ trip.data.enterprise__name }}" class="logo_small" src="{ trip.data.enterprise__image }}">
+                                        <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small" src="{{ trip.data.enterprise__image }}">
                                         <br>
-                                        <small class="text-muted" style="margin-left: 25px;">{{ trip.data.segments.length}} Escalas</small>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">
+                                            <span ng-show="trip.data.segments.length == 1">Directo</span>
+                                            <span ng-show="trip.data.segments.length > 1">{{ trip.data.segments.length}} Escalas</span>
+                                        </small>
                                     </div>
                                        
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
@@ -578,17 +736,20 @@
                                         <ul class="timeline hidden-xs hidden-sm">
                                             <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.data.segments.length) ">
                                                  <div class="timestamp"></div>
-                                                <div class="status no-scale"></div>
+                                                <div class="status" ng-class="{'scale': trip.data.segments.length > 1, 'no-scale': trip.data.segments.length == 1}"></div>
                                             </li>
                                         </ul> 
                                         <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
-                                        <small class="hidden-xs hidden-sm">{{ trip.data.segments.length}} Escalas</small>
+                                        <small class="hidden-xs hidden-sm">
+                                            <span ng-show="trip.data.segments.length == 1">Directo</span>
+                                            <span ng-show="trip.data.segments.length > 1">{{ trip.data.segments.length}} Escalas</span>
+                                        </small>
                                         <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="001" ng-click="search.tripDetails($event)"></i>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <i class="fa fa-plane fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
-                                        <small class="text-muted smallest-font pull-right" style="margin-top: 20px;">{{ trip.data.type__name }}</small>
+                                        <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.data.type__name }}</small>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4">
@@ -611,15 +772,15 @@
                                                     <h2>{{ segment.origin }}</h2>
                                                     <p>
                                                         <b>{{ segment.enterprise__name }}</b> | Vuelo No: <b>{{ segment.number }}</b>
-                                                        <span class="label label-default pull-right"><b>{{ segment.duration }}min</b></span>
+                                                        <span class="label label-default pull-right"><b>{{ search.getHourMinPlanes(segment.duration) }}</b></span>
                                                         <br>
                                                         <b>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</b> <i class="fa fa-angle-right"></i> <b>{{ search.millisToUTCDate(segment.end*1000) | date:'HH:mm'}}</b>
                                                     </p>
                                                 </div>
                                                 <div class="timeline-sublabel">
-                                                    <p class="text-muted smallest-font">
-                                                      <i class="fa fa-clock-o hidden"></i> Layover in Concepcion for 1h 26min <br>
-                                                      <i class="fa fa-suitcase hidden"></i> Recheck of checked luggage needed
+                                                    <p class="text-muted smallest-font hidden">
+                                                      <i class="fa fa-clock-o"></i> Layover in Concepcion for 1h 26min <br>
+                                                      <i class="fa fa-suitcase"></i> Recheck of checked luggage needed
                                                     </p>
                                                 </div>
                                                
@@ -650,12 +811,6 @@
                                 </div>
                             </div>
                             </div>
-                            
-
-                            
-
-                            
-
                             </div>  <!-- end .results-->
                         </div>   <!-- end .new-results -->
                     </div> 
@@ -799,7 +954,7 @@
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                         <br>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                       </p>
                                     </div>
 
@@ -811,7 +966,7 @@
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                         <br>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                       </p>
                                     </div>
 
@@ -989,9 +1144,9 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
                                       </p>
                                     </div>
 
@@ -1002,9 +1157,9 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
                                       </p>
                                     </div>
 
@@ -1309,48 +1464,87 @@
             </div>
             <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.tickets.length > 0">
                 <div class="col-xs-12 col-md-12 " >
-                    <h5 class="hidden-xs hidden-sm" >
+                    <h5 class="hidden-xs hidden-sm" ng-class="{'hidden-bus': !search.showBus}">
                         <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.tickets.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
                     </h5>
-                    <div class="new-results" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
+                    <div class="new-results" ">
                         <div class="results list" id="trips_no_tickeables" >
-                            <div class="row result">
-                                <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
-                                    <strong>{{ search.millisToUTCDate(trip.data.start * 1000) | date:'HH:mm'}}</strong>
-                                    <small class="smallest-font text-fucsia">{{ search.trips.origin }}</small>
-                                    <br>
-                                    <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.data.origin}}</small>
-                                </div>
+                              <div class="row result nu" data-type="bus" id={{trip.id}} ng-class="{'hidden-bus': !search.showBus}" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
+                                <div class="row" >
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/logo_square_crop_100.png" title="{{trip.data.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <p class="truncate"><small class="text-muted smallest-font">AVANZABUS</small></p>
+                                    </div>
 
-                                <div class="col-xs-4 col-sm-4 c-approximate-time visible-xs visible-sm nbt text-center" style="border-top: 1px solid #bbb;">
-                                    <p class="approximate-time text-muted smallest-font">{{ search.durationFormatted(trip.data.duration) }}</p>
-                                </div>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.data.start * 1000) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.data.origin}}</small>
+                                      </p>
+                                    </div>
 
-                                <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
-                                    <strong>{{ search.millisToUTCDate(trip.data.end * 1000) | date:'HH:mm'}}</strong>
-                                    <small class="smallest-font dbm text-fucsia">{{ search.trips.destination }}</small>
-                                    <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.data.destination}}</small>
-                                </div>
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">{{ search.durationFormatted(trip.data.duration) }}</p>
+                                    </div>
 
-                                <div class="col-md-2 col-xs-4 col-sm-4 c-seat-type text-center">
-                                    <strong>{{trip.data.price | currency : '' }} €</strong>
-                                    <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.data.type__name}}</small>
-                                </div>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.data.end * 1000) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
+                                        <br>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.data.destination}}</small>
+                                      </p>
+                                    </div>
 
-                                <div class="col-md-2 col-xs-4 col-sm-4 c-price">
-                                    <a href="{{trip.data.redirect}}" target="_blank" class="btn btn-block theme-blue-2">ELEGIR <i class="fa fa-share-square-o"></i></a>
-
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <p class="pull-right">
+                                          <strong class="price-full">{{trip.data.price | currency : '' }} €</strong>
+                                          <span class="pull-right type-service">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.data.type__name}}</small>
+                                          </span>
+                                        </p>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/logo_square_crop_100.png" title="{{trip.data.enterprise__name}}" class="logo_small">
+                                        <br>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm">{{ search.durationFormatted(trip.data.duration) }}</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                 <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            
 
-                                <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
-                                    <small class="text-muted smallest-font company" title="{{trip.data.enterprise__name}}">AVANZABUS</small>
-                                    <img src="https://s3.eu-central-1.amazonaws.com/vheurope/logo_square_crop_100.png" title="Pullman Bus" class="logo_small hidden-xs hidden-sm float-right">
-                                </div>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                      
+                                      <a href="{{trip.data.redirect}}" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                <div class="col-md-8 col-xs-3 col-sm-3 c-approximate-time hidden-xs hidden-sm nbt" style="border-top: 1px solid #bbb;">
-                                    <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ search.durationFormatted(trip.data.duration) }}</p>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <a href="{{trip.data.redirect}}" target="_blank" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <strong class="price hidden-md hidden-lg">{{trip.data.price | currency : '' }} €</strong>
+                                    </div>
                                 </div>
-                            </div> <!-- end .row .result-->
+                            </div>
                         </div>
                     </div>
                 </div>
