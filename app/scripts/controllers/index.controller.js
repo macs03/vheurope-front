@@ -20,14 +20,58 @@
             $scope.pageDescription = "Compara horarios y precios de más de 90 empresas de autobús en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
             $scope.showCLock = false;
             $scope.completeTime = false;
+            $scope.initials = localStorage.getItem("resertrip_initials");
+            $scope.avatar = localStorage.getItem("resertrip_avatar");
+            if ($scope.avatar != null) {
+                $scope.avatarFlag = true;
+            }else{
+                $scope.avatarFlag = false;
+            }
             function changeTitle(ev, title){
                 $scope.pageTitle = title;
             }
+            $scope.$on('titleEvent', changeTitle)
             function changeDescription(ev, title){
                 $scope.pageDescription = title;
             }
-            $scope.$on('titleEvent', changeTitle)
             $scope.$on('descriptionEvent', changeDescription)
+
+            var token = localStorage.getItem("resertrip_token");
+            if (token != null) {
+                $scope.login = true;
+            }else{
+                $scope.login = false;
+                localStorage.removeItem("resertrip_avatar");
+                localStorage.removeItem("resertrip_initials");
+            }
+            function changeStatus(ev,token) {
+                if (token != null) {
+                    $scope.login = true;
+                }else{
+                    $scope.login = false;
+                    localStorage.removeItem("resertrip_avatar");
+                    localStorage.removeItem("resertrip_initials");
+                }
+            }
+            $scope.$on('tokenEvent', changeStatus)
+
+            function initials(ev,initials) {
+                localStorage.setItem("resertrip_initials", initials);
+                $scope.initials = localStorage.getItem("resertrip_initials");
+            }
+            $scope.$on('initialEvent', initials)
+
+            function avatar(ev,avatar) {
+                localStorage.setItem("resertrip_avatar", avatar);
+                $scope.avatar = localStorage.getItem("resertrip_avatar");
+                if(avatar != null){
+                    $scope.avatarFlag = true;
+                }else{
+                    $scope.avatarFlag = false;
+                }
+            }
+            $scope.$on('avatarEvent', avatar)
+
             function counterClock(ev, counter,flag){
                 if(flag){
                     if ( angular.isDefined($scope.time) ) {

@@ -74,7 +74,8 @@
             var promise = defered.promise;
             $http({
                     method:'GET',
-                    url: apiStatus
+                    url: apiStatus,
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);

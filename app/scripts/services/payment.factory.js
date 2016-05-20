@@ -42,7 +42,8 @@
                         card : card,
                         expirationDate : expirationDate,
                         cvv : cvv
-                    }
+                    },
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);

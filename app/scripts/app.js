@@ -28,6 +28,8 @@
        'ngProgress',
        'angulartics',
        'angulartics.google.analytics',
+       'satellizer',
+       'ngImgCrop',
        'matchMedia'
      ]);
 
@@ -92,9 +94,45 @@
                      controller: 'CancelController',
                      controllerAs: 'cancel'
                  })
+                 .state('login', {
+                     url: '/login',
+                     templateUrl: 'views/login.tpl.html',
+                     controller: 'LoginController',
+                     controllerAs: 'login'
+                 })
+                 .state("signup", {
+                    url: "/signup",
+                    templateUrl: "views/signup.tpl.html",
+                    controller: "SignUpController",
+                    controllerAs: "signup"
+                })
+                 .state("logout", {
+                    url: "/logout",
+                    templateUrl: null,
+                    controller: "LogoutController",
+                    controllerAs: "logout"
+                })
+                .state("profile", {
+                    url: "/customer-profile",
+                    templateUrl: 'views/profile.tpl.html',
+                    controller: "CustomerProfileController",
+                    controllerAs: "cprofile"
+               })
+               .state("purchases", {
+                    url: "/customer-purchases",
+                    templateUrl: 'views/purchases.tpl.html',
+                    controller: "CustomerPurchasesController",
+                    controllerAs: "cpurchase"
+              })
+              .state("settings", {
+                    url: "/customer-settings",
+                    templateUrl: 'views/settings.tpl.html',
+                    controller: "CustomerSettingsController",
+                    controllerAs: "csettings"
+             })
      });
 
- 
+
 
     app.config(['$translateProvider', function ($translateProvider) {
       $translateProvider.translations('en', translationsEN);
@@ -115,6 +153,16 @@
             .setPrefix('resertrip')
             .setStorageType('sessionStorage');
     }]);
+
+    app.config(function($authProvider,apiUrl) {
+        // Parametros de configuración
+        $authProvider.loginUrl = apiUrl+"login";
+        $authProvider.signupUrl = apiUrl+"register";
+        $authProvider.tokenName = "token";
+        $authProvider.tokenPrefix = "resertrip";
+        $authProvider.authHeader = 'Authorization';
+        $authProvider.authToken = '';
+    });
 
     var translationsEN = {
           "MAIN": {
@@ -184,7 +232,7 @@
               "ROUND": "Round",
               "RETURN": "Return",
               "RESULTS": "results",
-              "BUTTON": "CHOOSE"
+              "BUTTON": "BUY"
             },
             "WEATHER": {
               "TITLE_1": "We are looking for the best deals. Please wait.",
@@ -393,7 +441,7 @@
           "ROUND": "Ida",
           "RETURN": "Vuelta",
           "RESULTS": "resultados",
-          "BUTTON": "ELEGIR"
+          "BUTTON": "COMPRAR"
         },
         "WEATHER": {
           "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",

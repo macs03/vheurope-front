@@ -1142,6 +1142,11 @@ button.theme-search,
     cursor: not-allowed;
 }
 
+.disable-box input{
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 .change-departure{
     display: flex;
     justify-content: flex-end;
