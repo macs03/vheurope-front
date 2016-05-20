@@ -19,9 +19,7 @@
 
             var vm = this;
             vm.popular_links = [];
-            vm.today = String(new Date().getTime()/1000).replace('.','');
-         
-          
+            vm.today = String(moment().add(1, 'days').unix());
 
             vm.popular_links.push({
                 id: 1,

@@ -1,3 +1,13 @@
+<style>
+.hidden-train, .hidden-bus, .hidden-plane {
+  display: none;
+}
+
+.visible-chk {
+  display: block !important;
+}
+
+</style>
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
     <div class="popover-select-passengers-wrapper">
@@ -47,8 +57,25 @@
     </div>
 </div>
 <div id="results-container">
+    <!-- VISTA FORMULARIO MOVIL -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 visible-xs text-center">
+                <div class="search-mobile" ng-click="search.updateSearchMobile()">
+                    <h4><b>{{ search.origin }} - {{ search.destination }}</b></h4>
+                <p>{{search.trips.departureDate | date: 'EEE, MMM dd' }}  <span class="text-muted" style="margin-left: 20px"><i class="fa fa-user"></i> 1</span></p>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <!-- END VISTA FORMULARIO MOVIL -->
+
+
     <!-- Start Hero -->
-    <div class="hero" id="search-page">
+    <div class="hero" id="search-page" ng-class="{'hidden': !search.searchMobile }">
         <div class="hero-img">
             <div class="hero-content">
                 <!-- Start Destination Search -->
@@ -103,34 +130,34 @@
 
     <!-- Start Main content -->
     <div class="container" ng-show="!search.results"  style="margin-top: 80px; margin-bottom: 80px;">
-            <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; ">
-                <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
-               data-keyboard="false" style="padding-top: 10%; ">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="background-color: #fff !important;">
-                            <div class="modal-body">
-                                <p class="text-center" translate>SEARCH.WEATHER.TITLE_1</p><br>
-                                <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
-                                    <h2>{{ search.destination }}</h2>
-                                    <div class="wiToday">
-                                        <div class="wiIconGroup">
-                                            <div class="{{ search.weather.icon }}"></div>
-                                            <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
-                                        </div>
-                                        <p class="wiTemperature">{{ search.weather.temp.current  }}</p>
+        <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; ">
+            <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+                   data-keyboard="false" style="padding-top: 10%; ">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color: #fff !important;">
+                        <div class="modal-body">
+                            <p class="text-center" translate>SEARCH.WEATHER.TITLE_1</p><br>
+                            <div class="flatWeatherPlugin today" style="background: #fff; padding: 10px;">
+                                <h2>{{ search.destination }}</h2>
+                                <div class="wiToday">
+                                    <div class="wiIconGroup">
+                                        <div class="{{ search.weather.icon }}"></div>
+                                        <p class="wiText" style="text-transform: capitalize;">{{ search.weather.description }}</p>
                                     </div>
+                                    <p class="wiTemperature">{{ search.weather.temp.current  }}</p>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <div id="weather_progress" style="padding: 10px 20px;"></div>
-                                    </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div id="weather_progress" style="padding: 10px 20px;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 
     <div class="container" ng-show="search.results">
@@ -257,9 +284,56 @@
             <!-- End colums -->
 
 
+            
+
+
             <!-- Start Results -->
-            <div class="col-xs-12 col-md-9 conttainer-results" style="margin-top:10px" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0 || search.trips.alternativeTrips.length > 0}">
-                <div class="row header-results hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0 || search.results">
+
+            <div class="col-xs-12 col-md-9 conttainer-results" ng-class="{'col-md-12' : search.trips.directReturnTrips.length > 0}">
+                
+                <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0 && search.trips.directReturnTrips.length == 0">
+                  <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
+                </h5>
+
+                <h5 class="hidden-xs hidden-sm"  ng-show="search.trips.mixedTrips.length > 0">
+                    <span translate>Viajes</span> <small><span translate>Compuestos</span></small> {{search.trips.mixedTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
+                </h5>
+
+                <!-- RESUMEN DE TIEMPO DE VIAJES -->
+                
+                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.trips.hasBusTrips && search.trips.hasTrainTrips && !search.isMixedTrips">
+                    <div class="row time-resume-trip" ng-show="search.trips.hasBusTrips">
+                        <div class="col-md-3 time-resume-trip-price">
+                            <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
+                        </div>
+                        <div class="col-md-9 time-resume-trip-time" style="width: 30%;">
+                            <span>{{ search.trips.lowest.bus.duration }}</span>
+                        </div>
+                    </div>
+                    <div class="row time-resume-trip" ng-show="search.trips.hasPlaneTrips">
+                        <div class="col-md-3 time-resume-trip-price">
+                            <i class="fa fa-plane text-muted"></i>  <b>92.65 $</b>
+                        </div>
+                        <div class="col-md-9 time-resume-trip-time" style="width: 20%;">
+                            <span>2h 10 min</span>
+                        </div>
+                    </div>
+                    <div class="row time-resume-trip" ng-show="search.trips.hasTrainTrips">
+                        <div class="col-md-3 time-resume-trip-price">
+                            <i class="fa fa-train text-muted"></i>  <b>{{ search.trips.lowest.train.price | currency : '' }} €</b>
+                        </div>
+                        <div class="col-md-9 time-resume-trip-time" style="width: 50%;">
+                            <span>{{ search.trips.lowest.train.duration }}</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- FIN RESUMEN DE TIEMPO DE VIAJES -->
+
+                <!-- FILTROS -->
+                <div class="row header-results hidden-xs hidden-sm" ng-show="search.results && search.trips.alternativeTrips.length == 0">
+
                     <div class="col-md-3 sort sort-trips bl bt bb" ng-class="{active:search.type === 'salida'}" data-sort="departure" ng-click="search.order('salida')">
                         <span translate>SEARCH.SORT.HORARY</span>
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'salida'"></span>
@@ -278,7 +352,57 @@
                         <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
                     </div>
                 </div> <!-- end .row -->
+
+                <!-- FIN FILTROS -->
+
+                <!-- PESTAÑAS DE RESULTADOS -->
+               
+                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
+                    <div class="col-md-3 np hidden-xs">
+                        <div class="row chk-input" ng-class="{'visible-chk': search.trips.hasBusTrips && search.trips.hasTrainTrips}" >
+                            <div class="col-md-6">
+                                 <small class="pull-right text-muted">Combinar</small>
+                            </div>
+                            <div class="col-md-6">
+                                 <div class="switch">
+                                    <input id="combine-trips" class="chk-toggle chk-toggle-round" type="checkbox" ng-model="search.combineTrips">
+                                    <label for="combine-trips"></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                    <div class="col-md-2 col-xs-4 np-tab pr5">
+                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                            <i class="fa fa-bus fa-2x"></i>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                        <div class="tab-filter" data-type="plane" id="tab_plane">
+                            <i class="fa fa-plane fa-2x"></i>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                        </div>
+                    </div>
+                    -->
+                    <div class="col-md-2 col-xs-4 np-tab pl0">
+                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                            <i class="fa fa-train fa-2x"></i>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- END PESTAÑAS DE RESULTADOS -->
+                
+
+                <!-- SIN RESULTADOS -->
                 <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips" >
+                
+
                     <div class="col-md-12">
                         <h4 translate>SEARCH.NO_RESULTS.TITLE</h4>
                         <p translate>SEARCH.NO_RESULTS.MESSAGE</p>
@@ -288,70 +412,127 @@
                         </div>
                     </div>
                 </div>
+                <!-- FIN SIN RESULTADOS -->
+
+                <!-- BUSQUEDA SOLO IDA -->
                 <div id="single-results" ng-show="search.trips.directReturnTrips.length == 0">
+
                     <div class="" id="tramo-{{$index}}" ng-repeat="trips in search.trips.directDepartureTrips" ng-init="outindex = $index">
                         <br/ ng-show="$index == 1">
                         <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 1">
                             <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                         </h5>
-                        <h5 class="hidden-xs" ng-show="search.trips.directDepartureTrips.length > 0">
-                            <span translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
-                        </h5>
+                        
                         <div class="change-departure" ng-show="search.idIda_1 != 0" style="margin-bottom: .3em;">
                             <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(1)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                         </div>
 
-                        <div class="new-results" id="new-results-tickeables" ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue">
+                        <div class="new-results" id="new-results-tickeables">
                             <div class="results list" id="trips_tickeables" >
-                                <div class="row result" id={{trip.id}}>
-                                    <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure">
-                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font text-fucsia">{{search.trips.origin}}</small>
-                                        <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals"  style="display:block;">{{trip.origin}}</small>
+
+                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue" >
+                                 <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
+                                <div class="row" >
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
                                     </div>
 
-                                    <div class="col-xs-4 col-sm-4 c-approximate-time visible-xs visible-sm nbt text-center" style="border-top: 1px solid #bbb;">
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
                                         <p class="approximate-time text-muted smallest-font">{{trip.duration}}.</p>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival">
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
-                                        <small class="smallest-font dbm text-fucsia">{{search.trips.destination}}</small>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
                                         <br>
-                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="display:block;">{{trip.destination}}</small>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
+                                      </p>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-seat-type text-center">
-                                        <strong>{{trip.price | currency : '' }} €</strong>
-                                        <small class="text-muted smallest-font hidden-xs" style="display:block;">{{trip.typeService}}</small>
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <p class="pull-right">
+                                          <strong class="price-full">{{trip.price | currency : '' }} €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.typeService}}</small>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small">
+                                        <br>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm">{{trip.duration}}.</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
+                                                 <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            
+
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <!--<i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i> -->
+
+                                        <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                        <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                         <!-- BOTON PARA TREN-->
+                                      <a href="{{ trip.url }}" ng-show="trip.transportType == 'train'" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="search.trips.directDepartureTrips.length == 1">
-                                        <a href="#/seat/{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':search.selectMixTrip}">
-                                        <a href="" class="btn btn-block theme-fucsia addTicket-button" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
-                                    </div>
-                                    <div class="col-md-2 col-xs-4 col-sm-4 c-price" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}">
-                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" class="btn btn-block theme-fucsia addTicket-button" translate>SEARCH.TRIPS.BUTTON</a>
-                                    </div>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-company nbt" style="border-top: 1px solid #bbb;">
-                                        <small class="text-muted smallest-font company">{{trip.companyName}}</small>
-                                    </div>
+                                      <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                    <div class="col-md-8 col-xs-3 col-sm-3 c-approximate-time hidden-xs hidden-sm nbt" style="border-top: 1px solid #bbb;">
-                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm">
-                                        <small class="smallest-font text-muted"><i class="fa fa-clock-o"></i> {{trip.duration}}</small>
+                                      <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                        
+                                      <!-- BOTON PARA TREN-->
+                                      <a href="{{ trip.url }}" target="_blank" ng-show="trip.transportType == 'train'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
-                                </div> <!-- end .row .result-->
+                                </div>
+                            </div>
+
                             </div>  <!-- end .results-->
                         </div>   <!-- end .new-results -->
-                    </div> <!-- end #single-results -->
-                </div>
+                    </div> 
+                </div> <!-- end #single-results -->
+
+                        
+
+
+
 
                 <div class="row  container-responsive" id="ida-vuelta-results" ng-show="search.trips.directReturnTrips.length > 0">
                     <h2 class="text-fucsia" ng-show="search.selectDeparture"><span translate>SEARCH.SELECTED_TRIP.TITLE_1</span>  <small class="text-fucsia"><span translate>SEARCH.SELECTED_TRIP.TITLE_2</span></small></h2>
@@ -446,8 +627,129 @@
                             <div class="change-departure" ng-show="search.idIda_1 != 0 && search.selectDeparture" style="margin-bottom: .3em;">
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(2)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                             </div>
-                            <div class="new-results" ng-repeat="trip in trips| orderBy: search.typeDeparture : search.reverseDeparture" ng-class="{'disable-box':!search.selectDeparture}">
+                              <!-- PESTAÑAS DE RESULTADOS -->
+                              <div class="row tabs-filter" >
+                                  
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                          <i class="fa fa-bus fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                                      </div>
+                                  </div>
+                                  <!--
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                                      <div class="tab-filter" data-type="plane" id="tab_plane">
+                                          <i class="fa fa-plane fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                                      </div>
+                                  </div>
+                                  -->
+                                  <div class="col-md-2 col-xs-4 np-tab pl0">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                          <i class="fa fa-train fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+                              <!-- END PESTAÑAS DE RESULTADOS -->
+                            <div class="new-results"  ng-class="{'disable-box':!search.selectDeparture}">
                                 <div class="results list" >
+                                     <div class="row result nu result-iv {{trip.id}}" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips| orderBy: search.typeDeparture : search.reverseDeparture" >
+                                 <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
+                                <div class="row" >
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
+                                        <br>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">{{trip.duration}}.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
+                                        <br>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <p class="pull-right">
+                                          <strong class="price-full">{{trip.price | currency : '' }} €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.typeService}}</small>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small">
+                                        <br>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm">{{trip.duration}}.</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <!--<i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i> -->
+
+                                        <a class="" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                       <a class="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                        <a class="" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                         <!-- BOTON PARA TREN-->
+                                        <a class="" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.numAgr,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                       <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <!-- BOTON PARA TREN-->
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.numAgr,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <!--
                                     <div class="row result result-iv {{trip.id}}" id={{trip.id}}>
 
                                         <div class="col-md-5 col-xs-4 col-sm-4 c-departure">
@@ -494,6 +796,7 @@
                                             <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -515,8 +818,132 @@
                             <div class="change-departure" ng-show="search.idVuelta_1 != 0" style="margin-bottom: .3em;">
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(3)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                             </div>
-                            <div class="new-results" ng-repeat="trip in trips| orderBy: search.typeReturn : search.reverseReturn">
+                            <!-- PESTAÑAS DE RESULTADOS -->
+                              <div class="row tabs-filter" >
+                                  
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                          <i class="fa fa-bus fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                                      </div>
+                                  </div>
+                                  <!--
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                                      <div class="tab-filter" data-type="plane" id="tab_plane">
+                                          <i class="fa fa-plane fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                                      </div>
+                                  </div>
+                                  -->
+                                  <div class="col-md-2 col-xs-4 np-tab pl0">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                          <i class="fa fa-train fa-2x"></i>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                                      </div>
+                                  </div>
+                                  
+                              </div>
+                              <!-- END PESTAÑAS DE RESULTADOS -->
+                            <div class="new-results" >
                                 <div class="results list" >
+                                    <div class="row result nu result-iv" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips| orderBy: search.typeReturn : search.reverseReturn" >
+                                 <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
+                                <div class="row" >
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.origin}}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">{{trip.duration}}.</p>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                      <p class="vh-pull-right">
+                                        <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{search.trips.destination}}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
+                                      </p>
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <p class="pull-right">
+                                          <strong class="price-full">{{trip.price | currency : '' }} €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.typeService}}</small>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small">
+                                        <br>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">Directo</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="arrow-box hidden-xs hidden-sm">
+                                            <span class=" hidden-xs hidden-sm">{{trip.duration}}.</span> 
+                                        </div>
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status no-scale"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">Directo</small>
+                                        <!--<i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i> -->
+
+                                         <a href="#/seat/{{search.departureId}}/{{trip.id}}" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                      <a class="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                      <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="" ><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                      <!-- BOTON PARA TREN-->
+                                      <a class="" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.numAgr)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                    </div>
+
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train'}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+
+                                      <a href="#/seat/{{search.departureId}}/{{trip.id}}" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right"  translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <!-- BOTON PARA TREN-->
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.numAgr)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                      <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                                  
+                                    <!--
                                     <div class="row result result-iv" id={{trip.id}}>
 
                                         <div class="col-md-5 col-xs-4 col-sm-4 c-departure">
@@ -563,6 +990,8 @@
                                             <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" class="btn btn-block theme-fucsia-iv addTicket-button"  translate>SEARCH.TRIPS.BUTTON</a>
                                         </div>
                                     </div>
+
+                                    -->
                                 </div>
                             </div>
                         </div>
@@ -571,42 +1000,139 @@
 
             <div class="row  container-responsive" id="mixed-results" ng-show="search.trips.mixedTrips.length > 0">
                 <div class="col-xs-12 col-md-12 " >
-                    <h5 class="hidden-xs hidden-sm" >
-                        <span translate>Vaijes</span> <small><span translate>Compuestos</span></small> {{search.trips.mixedTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
-                    </h5>
                     <div class="new-results" ng-repeat="trip in search.trips.mixedTrips | orderBy:search.typeDeparture:search.reverseDeparture">
                         <div class="results list" id="trips_mixed" >
-                            <div class="row result mobile-mixed" style="display: flex; align-items: center;">
-                                <div class="col-md-9 col-xs-12 col-sm-12">
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure" style="overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.originT1 }}">{{trip.originT1 }}</small>
+                           <div class="row result nu" data-type="plane">
+                                <div class="row">
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <small class="text-muted smallest-font truncate">Varias empresas</small>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure text-center">
-                                        <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{trip.originT1 }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.originT1 }}</small>
+                                      </p>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-right: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.destinationT1 }}">{{ trip.destinationT1 }}</small>
+                                    <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
+                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure" style="border-top: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.originT2 }}">{{trip.originT2 }}</small>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                       <p class="pull-right">
+                                        <small class="smallest-font text-theme-blue hidden-xs hidden-sm">{{ trip.destinationT2 }}</small>
+                                        <br>
+                                        <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destinationT2 }}</small>
+                                      </p>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-departure text-center" style="border-top: 1px solid #bbb;">
-                                        <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                                    </div>
-
-                                    <div class="col-md-4 col-xs-4 col-sm-4 c-arrival" style="border-top: 1px solid #bbb; border-right: 1px solid #bbb; overflow-x: hidden;">
-                                        <small class="text-muted-dark smallest-font capitalize terminals company" style="float:left;" title="{{ trip.destinationT2 }}">{{ trip.destinationT2 }}</small>
+                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                      <p class="pull-right">
+                                          <strong class="price-full">18.57 €</strong>
+                                          <span class="pull-right">
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">Servicios varios</small>
+                                          </span>
+                                        </p>
+                                        
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <small class="text-muted" style="margin-left: 25px;">2 Escalas</small>
+                                    </div>
+                                       
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                           
+                                        <ul class="timeline hidden-xs hidden-sm">
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                            <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status"></div>
+                                            </li>
+                                        </ul> 
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+                                        <small class="hidden-xs hidden-sm">2 Escalas</small>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)"></i>
+                                    </div>
 
-                                <div class="col-md-3 col-xs-12 col-sm-12" ng-class="{'disable-box':search.searchingMix}">
-                                    <a target="_blank" class="btn btn-block theme-blue-2" ng-click="search.findMixRoutes(trip.id)">ELEGIR <i class="fa fa-share-square-o"></i></a>
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type {{ search.mixedTripIcon(1, trip.mixedType) }}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-plus fa-2x pull-right text-theme-blue fa-trip-type" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type {{ search.mixedTripIcon(0, trip.mixedType) }}"   style="margin-left: 20px;margin-top: 10px;"></i>
+                                        
+                                        
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <button data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right">Ver más</button>
+                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    </div>
                                 </div>
+                                <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{ trip.id }}">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa {{ search.mixedTripIcon(0, trip.mixedType) }}"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <p>
+                                                        <b>{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT1 }}</b>
+                                                    </p>
+                                                </div>
+                                                
+                                               
+                                            </div>
+                                        </article>
 
+                                        <article class="timeline-entry right-aligned">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 22</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    <i class="fa {{ search.mixedTripIcon(1, trip.mixedType) }}"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <p>
+                                                         <b>{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT2 }}</b>
+                                                    </p>
+                                                </div>
+                                               
+                                            </div>
+                                        </article>
+                                        
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>Jue, Abril 23</span>
+                                                </time>
+                                                <div class="timeline-icon">
+                                                    
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{trip.destinationT2 }}</h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12">
+                                             <a href="" class="btn theme-fucsia pull-right" ng-click="search.findMixRoutes(trip.id)" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

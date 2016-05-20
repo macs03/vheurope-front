@@ -51,6 +51,7 @@ module.exports = function(config) {
       'bower_components/angulartics-google-analytics/lib/angulartics-google-analytics.js',
       'bower_components/satellizer/satellizer.js',
       'bower_components/ng-img-crop/compile/minified/ng-img-crop.js',
+      'bower_components/angular-media-queries/match-media.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

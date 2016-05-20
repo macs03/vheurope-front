@@ -12,10 +12,11 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics'];
+        SearchController.$inject =['locationsFactory','travelsFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics) {
+        function SearchController (locationsFactory,travelsFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
             var vm = this;
+            vm.searchMobile = false;
             vm.searchTrip = searchTrip;
             vm.searching = false;
             vm.error = false;
@@ -28,6 +29,7 @@
             vm.alternativeSearch = alternativeSearch;
             vm.selectDeparture = true;
             vm.departureSelect = departureSelect;
+            vm.returnSelectTrain = returnSelectTrain;
             vm.isLoading = true;
             vm.good = true;
             vm.seats = [];
@@ -35,6 +37,10 @@
             vm.companies = [];
             vm.companiesReset = [];
             vm.minDuration = '';
+            vm.showBus = true;
+            vm.showTrain = false;
+            vm.showPlane = false;
+            vm.combineTrips = false;
             vm.cnames_es = [
             { name: 'ABW', value:'Aruba' },
             { name: 'AFG', value:'Afganistan' },
@@ -332,8 +338,77 @@
                 return toUTCDate(new Date(millis));
             };
 
+            var mixedTripIcon = function(tripSection, typeTrip){
+                
+                if(tripSection <= 1 && tripSection >= 0){
+                    var sections = typeTrip.split('_');
+                    return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
+                }
+            }
+
+            var showTripsType = function(tripType){
+                vm.combineTrips = false; 
+                $('.fa-trip-type').addClass('hidden');
+
+                switch(tripType) {
+                    case 'bus':
+                        vm.showBus = true;
+                        vm.showPlane = false;
+                        vm.showTrain = false;
+                        $('.tab-filter').removeClass('active');
+                        $('.tab_bus').addClass('active');
+                        break;
+                    case 'train':
+                        vm.showBus = false;
+                        vm.showPlane = false;
+                        vm.showTrain = true;
+                        $('.tab-filter').removeClass('active');
+                        $('.tab_train').addClass('active');
+                        break;
+                    default:
+                        vm.showBus = false;
+                        vm.showPlane = true;
+                        vm.showTrain = false;
+                        $('.tab-filter').removeClass('active');
+                        $('.tab_plane').addClass('active');
+                }              
+            }
+
+            var getTripsSteps = function(maxDuration, tripDuration){
+                var step = Math.floor(maxDuration/4);
+                var total = Math.floor(tripDuration/step);
+                var range = [];
+                for(var i=1;i<=total;i++) {
+                    range.push(i);
+               }   
+
+               return range;          
+            }
+
+            $scope.$watch('search.combineTrips', function(newVal, oldVal){
+                if (newVal != oldVal && newVal != undefined) {
+                    if(newVal === true){
+                        vm.showBus = true;
+                        vm.showPlane = true;
+                        vm.showTrain = true;
+                        $('.tab-filter').removeClass('active');
+                        $('.fa-trip-type').removeClass('hidden');
+
+                    }else{
+                        vm.showBus = true;
+                        vm.showPlane = false;
+                        vm.showTrain = false;
+                        $('#tab_bus').addClass('active');
+                    }
+                   
+                }
+            }, true);
+
             vm.toUTCDate = toUTCDate;
             vm.millisToUTCDate = millisToUTCDate;
+            vm.mixedTripIcon = mixedTripIcon;
+            vm.showTripsType = showTripsType;
+            vm.getTripsSteps = getTripsSteps;
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -410,7 +485,7 @@
             vm.weather_progressbar.start();
 
             vm.updatePassengers = function(type, direction){
-                console.log(type);
+                
                 if(direction == 'up' && vm.passengers < 7){
                     if(type=='adult'){
                        vm.passengersAdult = vm.passengersAdult + 1;  
@@ -438,6 +513,26 @@
                 $('#select_passengers').val(vm.passengers);
             };
 
+            vm.updateSearchMobile = function(){
+                vm.searchMobile = !vm.searchMobile;
+            };
+
+            vm.searchMobile = screenSize.on('xs, sm', function(isMatch){
+                vm.searchMobile = !isMatch;
+            });
+
+            vm.tripDetails = function($event){
+                var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                $(elementId).slideToggle( "slow" );
+            };
+
+            if (screenSize.is('xs, sm')) {
+                // it's a mobile device so fetch a small image
+                vm.searchMobile = false;
+            }else {
+                // it's a desktop size so do the complicated calculations and render that
+                vm.searchMobile = true;
+            }
 
             var url = '/search/' + $stateParams.origin + '/' + $stateParams.originCountryCode + '/' + $stateParams.destination + '/' +$stateParams.destinationCountryCode + '/' + $stateParams.departureDate + '/' + $stateParams.returnDate;
             utilityService.setSearch(url);
@@ -445,8 +540,11 @@
             $rootScope.$broadcast('counterEvent', 1, false);
 
             if(params.origin != null){
-                var title = "Resertrip "+params.origin+"-"+params.destination;
+                var title = "Billetes de Autobús | "+params.origin+" a "+params.destination+" | Resertrip ";
+                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
+                $rootScope.$broadcast('descriptionEvent', description);
+
                 vm.results = false;
                 vm.trips = [];
                 vm.scraperTrips = [];
@@ -640,8 +738,11 @@
                 setTimeout(function () {
                         $('.pikaday__display').prop('disabled', true);
                 }, 100);
-                var title = 'Resertrip ' + $stateParams.origin + '-' + $stateParams.destination;
+
+                var title = "Billetes de Autobús | "+$stateParams.origin+" a "+$stateParams.destination+" | Resertrip ";
+                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
+                $rootScope.$broadcast('descriptionEvent', description);
                 vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
                 vm.weather_progressbar.reset();
                 vm.weather_progressbar.start();
@@ -671,6 +772,7 @@
                         vm.isMixedTrips = data.isMixedTrips;
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
+                       
 
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
@@ -688,6 +790,7 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+
                         scraperFactory
                             .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
                             vm.scraperFlag = true;
@@ -761,7 +864,7 @@
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -771,7 +874,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
@@ -781,7 +884,7 @@
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
-                if (newVal != oldVal && newVal != undefined) {
+                if (newVal != oldVal && newVal !== undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
                     if (oldVal != 'Invalid date') {
                         vm.seats = [];
@@ -803,6 +906,8 @@
                     searchTrip();
                 }
             }, true);
+
+            
 
             function searchTrip() {
                 angular.forEach(vm.myOptions, function(value, key) {
@@ -1075,6 +1180,22 @@
                 }
             }
 
+            function returnSelectTrain(id) {
+                 urlTrainFactory
+                    .getUrl(vm.departureId, id)
+                    .then(function(data){
+                        //console.log(data);
+                        if(data.url != null ){
+                           window.location.href = data.url;
+                        }else{
+                            alert('No es posible utilizar esa combinacion de viajes');
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+            }
+
             function scraperManager(scraper){
                 var companies = {};
                 var seats = {};
@@ -1317,7 +1438,6 @@
                 return dias;
             }
 
-
             $('.btn-filters').on('click', function(){
                 $('#filters-container').toggleClass('hidden-xs');
             });
@@ -1329,10 +1449,10 @@
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
 
-             $('#popover-bg').on('click', function(){
+            $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
-
         }
+
 })();

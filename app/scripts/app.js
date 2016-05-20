@@ -29,7 +29,8 @@
        'angulartics',
        'angulartics.google.analytics',
        'satellizer',
-       'ngImgCrop'
+       'ngImgCrop',
+       'matchMedia'
      ]);
 
      app.config(function ($stateProvider, $urlRouterProvider) {

@@ -56,7 +56,7 @@ body {
     font-weight: lighter;
 }
 
-#cta .container-text h1 {
+#cta .container-text h3.mobile{
     font-size: 120px;
     text-align: right;
     font-weight: bolder;
@@ -169,7 +169,7 @@ body {
     cursor: pointer;
 }
 
-.popular-trip figure h2 {
+.popular-trip figure h3 {
     font-family: "Ubuntu", sans-serif;
     word-spacing: -0.15em;
     font-weight: 300 !important;
@@ -284,7 +284,7 @@ ul.pasajes li a {
 }
 
 #search-form-wrapper h1,
-h3 {
+h2 {
     text-align: center;
     color: #fff;
     margin-top: 20px;
@@ -296,7 +296,7 @@ h3 {
     font-size: 40px !important;
 }
 
-#search-form-wrapper h3 {
+#search-form-wrapper h2 {
     font-weight: 400;
     font-size: 24px;
 }

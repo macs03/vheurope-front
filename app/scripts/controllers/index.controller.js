@@ -17,6 +17,7 @@
 
         function indexController ($scope,$interval,utilityService,$location,sessionStorageService,$timeout) {
             $scope.pageTitle = "Resertrip Viaja inteligente";
+            $scope.pageDescription = "Compara horarios y precios de más de 90 empresas de autobús en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
             $scope.showCLock = false;
             $scope.completeTime = false;
             $scope.initials = localStorage.getItem("resertrip_initials");
@@ -30,6 +31,10 @@
                 $scope.pageTitle = title;
             }
             $scope.$on('titleEvent', changeTitle)
+            function changeDescription(ev, title){
+                $scope.pageDescription = title;
+            }
+            $scope.$on('descriptionEvent', changeDescription)
 
             var token = localStorage.getItem("resertrip_token");
             if (token != null) {
