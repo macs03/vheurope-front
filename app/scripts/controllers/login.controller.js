@@ -12,11 +12,13 @@
         .module('vhEurope')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$scope', '$auth', '$location', '$rootScope'];
+    LoginController.$inject = ['$scope', '$auth', '$location', '$rootScope', 'customerInfoFactory'];
 
-    function LoginController($scope, $auth, $location, $rootScope) {
+    function LoginController($scope, $auth, $location, $rootScope, customerInfoFactory) {
         var vm = this;
         vm.reset = reset;
+        vm.passChanged = false;
+        vm.resetPassword = resetPassword;
         var token = localStorage.getItem("resertrip_token");
         vm.error = false;
         if (token != null) {
@@ -42,6 +44,21 @@
 
         function reset() {
             vm.error = false;
+            vm.passChanged = false;
+        }
+
+        function resetPassword() {
+            if (vm.email) {
+                customerInfoFactory
+                    .resetPassword(vm.email)
+                    .then(function (data) {
+                        vm.passChanged = true;
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+                $('#myModal').modal('hide');
+            }
         }
     }
 

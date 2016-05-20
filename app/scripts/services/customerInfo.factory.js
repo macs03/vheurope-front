@@ -20,7 +20,8 @@
             postNewPassword: postNewPassword,
             postNewAvatar: postNewAvatar,
             deleteUser: deleteUser,
-            getCustomerPurchases: getCustomerPurchases
+            getCustomerPurchases: getCustomerPurchases,
+            resetPassword: resetPassword
         }
         var aux = null;
         var flag = false;
@@ -146,6 +147,28 @@
             $http({
                     method: 'GET',
                     url: apiUrl + 'customer/trips'
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
+        function resetPassword(email) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            $http({
+                    //cache: flag,
+                    method: 'PUT',
+                    url: apiUrl + 'resetPassword',
+                    data: {
+                        email: email
+                    }
                 })
                 .success(function(data) {
                     defered.resolve(data);

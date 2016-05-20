@@ -28,7 +28,11 @@
             <div class="col-md-12 inputs">
                 <div class="alert alert-warning alert-dismissible" role="alert" ng-show="login.error">
                     <button type="button" class="close" aria-label="Close" ng-click="login.reset()"><span aria-hidden="true">&times;</span></button>
-                    <strong>Ups!</strong> Revisa el email y/o contraseña.
+                    <strong>¡Ups!</strong> Revisa el email y/o contraseña.
+                </div>
+                <div class="alert alert-success alert-dismissible" role="alert" ng-show="login.passChanged">
+                    <button type="button" class="close" aria-label="Close" ng-click="login.reset()"><span aria-hidden="true">&times;</span></button>
+                    <strong>¡Bien!</strong> Se ha restablecido correctamente tu contraseña, por favor revisa tu correo.
                 </div>
                 <form class="" ng-submit="login.login()" method="post">
                     <div class="form-group">
@@ -55,9 +59,30 @@
                 </div>
                 <br>
                 <div class="text-center">
-                    <a href="#">¿Olvido su contraseña?</a>
+                    <a data-toggle="modal" data-target="#myModal">¿Olvido su contraseña?</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Recupera tu contraseña</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <input ng-model="login.email" type="email" name="email" value="" placeholder="Email" class="form-control form-inputs" required>
+        </div>
+        <p style="text-align: center;font-size: 12px;font-style: italic;color: #969696;">Por favor, ingresa tu correo electrónico y proximamente le enviaremos a esa dirección los pasos para proceder a recuperar la contraseña</p>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="login.resetPassword()" type="button" class="pull-right form-control button-send form-inputs" style="width: 190px !important;">Recuperar contraseña</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div><!-- /.modal -->
