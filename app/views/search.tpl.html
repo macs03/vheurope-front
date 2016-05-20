@@ -682,7 +682,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips" >
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <img ng-src="{{ trip.data.enterprise__image }}" src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
+                                        <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
                                         <small class="text-muted smallest-font truncate">{{ trip.data.enterprise__name }}</small>
                                     </div>
 
@@ -720,7 +720,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
-                                        <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small" src="{{ trip.data.enterprise__image }}">
+                                        <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small">
                                         <br>
                                         <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">
                                             <span ng-show="trip.data.segments.length == 1">Directo</span>

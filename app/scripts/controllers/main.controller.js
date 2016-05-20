@@ -137,8 +137,8 @@
         	vm.configOrigin = {
           		//create: true,
           		valueField: 'id',
-          		labelField: 'name__es',
-                searchField: ['name__es'],
+          		labelField: 'name',
+                searchField: ['name'],
           		delimiter: '|',
           		placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
           		onInitialize: function(selectize){
@@ -165,8 +165,8 @@
             vm.configDestination = {
                 //create: true,
                 valueField: 'id',
-                labelField: 'name__es',
-                searchField: ['name__es'],
+                labelField: 'name',
+                searchField: ['name'],
                 delimiter: '|',
                 placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu destino' : 'Choose your destination',
                 onInitialize: function(selectize){
@@ -197,6 +197,20 @@
                 maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
             };
 
+            locationsRtFactory
+                .getNearly()
+                .then(function (data) {
+                    // callback(data.items);
+                    vm.myOptionsOrigin = data.nearPlaces;
+                    vm.myOptionsDestination = data.nearPlaces;
+                    console.log(data);
+                    //sessionStorageService.setLocations(data);
+                    //sessionStorageService.setFlag(true);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    //  callback();
+                });
             /*
             var session = sessionStorageService.getFlag();
             if (session == null || session == false) {

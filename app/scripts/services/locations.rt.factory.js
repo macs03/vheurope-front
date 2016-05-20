@@ -15,7 +15,8 @@
 
       function locationsRtFactory($http,$q,apiRtUrl) {
         return {
-            getAll: getAll
+            getAll: getAll,
+            getNearly: getNearly
         }
 
         function getAll (query) {
@@ -36,5 +37,25 @@
 
             return promise;
         }
+
+        function getNearly() {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            $http({
+                    cache: false,
+                    method:'GET',
+                    url: apiRtUrl+'geolocate/?language=es',
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
       }
 })();
