@@ -49,6 +49,15 @@
                 })
                 .catch(function(err) {
                     console.log(err);
+                    if (err == 401) {
+                        $auth.logout()
+                            .then(function() {
+                                // Desconectamos al usuario y lo redirijimos
+                                var token = localStorage.getItem("resertrip_token");
+                                $rootScope.$broadcast('tokenEvent', token);
+                                $location.path("/login")
+                            });
+                    }
                 })
         }
 

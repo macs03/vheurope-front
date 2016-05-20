@@ -43,8 +43,8 @@
                 .success(function(data) {
                     defered.resolve(data);
                 })
-                .error(function(err) {
-                    defered.reject(err);
+                .error(function(data,status) {
+                    defered.reject(status);
                 });
 
             return promise;
@@ -151,8 +151,8 @@
                 .success(function(data) {
                     defered.resolve(data);
                 })
-                .error(function(err) {
-                    defered.reject(err);
+                .error(function(data,status) {
+                    defered.reject(status);
                 });
 
             return promise;

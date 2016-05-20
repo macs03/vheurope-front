@@ -44,6 +44,8 @@
                     $scope.login = true;
                 }else{
                     $scope.login = false;
+                    localStorage.removeItem("resertrip_avatar");
+                    localStorage.removeItem("resertrip_initials");
                 }
             }
             $scope.$on('tokenEvent', changeStatus)
