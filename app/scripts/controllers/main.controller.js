@@ -242,6 +242,7 @@
                         vm.originCity = vm.myOptionsOrigin[key].id;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
+
                     }
                 });
 
@@ -251,6 +252,7 @@
                         vm.destinationCity = vm.myOptionsDestination[key].id;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
+
                     }
                 });
 
@@ -342,7 +344,7 @@
                 sessionStorageService.setPassengers(1,0,0);
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
-                    $location.path ("/search/"+origin+"/ESP/"+destination+"/ES/"+departureDate+"/NaN");
+                    $location.path ("/search/"+origin+"/ES/"+destination+"/ES/"+departureDate+"/NaN");
                 })
             }
 

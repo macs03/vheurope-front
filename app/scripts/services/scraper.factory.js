@@ -33,8 +33,8 @@
                 var split2 = returns.split('/');
                 returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
-            var formatOrigin = origin.toLowerCase() + '--' + departureCountry;
-            var formatDestination = destination.toLowerCase() + '--' + arrivalCountry;
+            var formatOrigin = origin;
+            var formatDestination = destination;
             formatOrigin = formatOrigin.replace(/\s/g, '-');
             formatOrigin = formatOrigin.replace(/ñ/g, 'n');
             formatDestination = formatDestination.replace(/\s/g, '-');
@@ -47,7 +47,7 @@
             var promise = defered.promise;
             $http({
                     method:'GET',
-                    url: 'https://api.voyhoy.com/tickets/',
+                    url: 'https://api-rt.resertrip.com/tickets/',
                     params: {
                         origin: formatOrigin,
                         destination: formatDestination,

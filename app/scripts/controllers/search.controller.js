@@ -313,8 +313,9 @@
 
             vm.myOptionsOrigin = [];
             vm.myOptionsDestination = [];
+
         	
-            vm.configOrigin = {
+            vm.myConfigOrigin = {
                 //create: true,
                 valueField: 'id',
                 labelField: 'name',
@@ -345,7 +346,7 @@
                 }
             };
 
-            vm.configDestination = {
+            vm.myConfigDestination = {
                 //create: true,
                 valueField: 'id',
                 labelField: 'name',
@@ -548,6 +549,10 @@
              }else{
                  vm.myOptions = sessionStorageService.getLocations()
              }*/
+
+             vm.myOptionsOrigin = sessionStorageService.getLocations()
+              vm.myOptionsDestination = sessionStorageService.getLocations()
+
 
             var params = utilityService.getData();
           	vm.origin = params.origin + ', ' + params.countryOrigin;
@@ -752,10 +757,6 @@
 
             }else{
                 console.log('POR AQIO');
-                //vm.myOptionsOrigin = sessionStorageService.getLocations();
-                //vm.myOptionsDestination = sessionStorageService.getLocations();
-                console.log(sessionStorageService.getLocations());
-               
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
 
@@ -833,6 +834,8 @@
                         vm.destinationCountry = vm.cnames_es[key].value;
                     }
                 });
+
+
 
                 vm.origin = formatOrigin + ', ' + vm.originCountry;
                 vm.originCountryCode= $stateParams.originCountryCode;
@@ -1064,7 +1067,6 @@
 
             function searchTrip() {
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    console.log(value+key);
                     if(vm.myOptionsOrigin[key].id === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].id;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
