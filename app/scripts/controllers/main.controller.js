@@ -239,8 +239,8 @@
                     console.log(value+key);
                     if(vm.myOptionsOrigin[key].id === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].id;
-                        vm.originCountryCode = 'ESP'; //vm.myOptionsOrigin[key].country.id;
-                        vm.originCountry = vm.myOptionsOrigin[key].country.name__es;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].country.id;
+                        vm.originCountry = vm.myOptionsOrigin[key].country.name;
                     }
                 });
 
@@ -248,8 +248,8 @@
                    
                     if(vm.myOptionsDestination[key].id === vm.destination){
                         vm.destinationCity = vm.myOptionsDestination[key].id;
-                        vm.destinationCountryCode = 'ESP'; //vm.myOptionsDestination[key].country.id;
-                        vm.destinationCountry = vm.myOptionsDestination[key].country.name__es;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].country.id;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country.name;
                     }
                 });
 

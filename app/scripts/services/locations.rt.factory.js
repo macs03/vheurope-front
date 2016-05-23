@@ -57,5 +57,24 @@
             return promise;
         }
 
+        function getInformation(query) {
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            $http({
+                    cache: false,
+                    method:'GET',
+                    url: apiRtUrl+'destinations/?id=' + query,
+                })
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err);
+                });
+
+            return promise;
+        }
+
       }
 })();

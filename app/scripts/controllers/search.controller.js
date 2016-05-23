@@ -316,8 +316,8 @@
         	vm.myConfigOrigin = {
           		//create: true,
           		valueField: 'id',
-          		labelField: 'name__es',
-                searchField: ['name__es'],
+          		labelField: 'name',
+                searchField: ['name'],
           		delimiter: '|',
           		placeholder: 'Pick something',
           		onInitialize: function(selectize){
@@ -343,8 +343,8 @@
             vm.myConfigDestination = {
                 //create: true,
                 valueField: 'id',
-                labelField: 'name__es',
-                searchField: ['name__es'],
+                labelField: 'name',
+                searchField: ['name'],
                 delimiter: '|',
                 placeholder: 'Pick something',
                 onInitialize: function(selectize){
