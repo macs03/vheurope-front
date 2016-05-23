@@ -22,6 +22,8 @@
         function getAll (query) {
             var defered = $q.defer();
             var promise = defered.promise;
+            var destinations = [];
+
 
             $http({
                     cache: false,
@@ -29,7 +31,10 @@
                     url: apiRtUrl+'destinations/?q='+query,
                 })
                 .success(function(data) {
-                    defered.resolve(data);
+                    for (var i = 0; i < data.items.length; i++) {
+                      destinations.push({id: data.items[i].id, name: data.items[i].name+', '+data.items[i].country.name, country: data.items[i].country.name, countryCode: data.items[i].country.id});
+                    }
+                    defered.resolve(destinations);
                 })
                 .error(function(err) {
                     defered.reject(err);

@@ -140,19 +140,22 @@
           		labelField: 'name',
                 searchField: ['name'],
           		delimiter: '|',
+                openOnFocus: true,
           		placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
           		maxItems: 1,
+                preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
                     vm.myOptionsOrigin = [];
                     locationsRtFactory
                     .getAll(query)
                     .then(function (data) {
-                        callback(data.items);
-                        vm.myOptionsOrigin = data.items;
+
+                        callback(data);
+                        vm.myOptionsOrigin = data;
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
@@ -173,14 +176,16 @@
                     // receives the selectize object as an argument
                 },
                 maxItems: 1,
+                preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
                     vm.myOptionsDestination = [];
                     locationsRtFactory
                     .getAll(query)
                     .then(function (data) {
-                        callback(data.items);
-                        vm.myOptionsDestination = data.items;
+                        callback(data);
+                        vm.myOptionsDestination = data;
+
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
@@ -203,7 +208,6 @@
                     // callback(data.items);
                     vm.myOptionsOrigin = data.nearPlaces;
                     vm.myOptionsDestination = data.nearPlaces;
-                    console.log(data);
                     //sessionStorageService.setLocations(data);
                     //sessionStorageService.setFlag(true);
                 })
@@ -232,15 +236,12 @@
 
         	vm.searchTrips = function () {
 
-                console.log(vm.myOptionsOrigin);
-                console.log(vm.myOptionsDestination);
-                console.log( vm.origin);
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
                     console.log(value+key);
                     if(vm.myOptionsOrigin[key].id === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].id;
-                        vm.originCountryCode = 'ESP'; //vm.myOptionsOrigin[key].country.id;
-                        vm.originCountry = vm.myOptionsOrigin[key].country.name__es;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                        vm.originCountry = vm.myOptionsOrigin[key].country;
                     }
                 });
 
@@ -248,8 +249,8 @@
                    
                     if(vm.myOptionsDestination[key].id === vm.destination){
                         vm.destinationCity = vm.myOptionsDestination[key].id;
-                        vm.destinationCountryCode = 'ESP'; //vm.myOptionsDestination[key].country.id;
-                        vm.destinationCountry = vm.myOptionsDestination[key].country.name__es;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country;
                     }
                 });
 
@@ -289,6 +290,7 @@
                             console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                            sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                             vm.good = true;
                             $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
@@ -313,6 +315,7 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
                         utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                         sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                        sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                         vm.good = true;
                         $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
@@ -339,7 +342,7 @@
                 sessionStorageService.setPassengers(1,0,0);
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
-                    $location.path ("/search/"+origin+"/ESP/"+destination+"/ESP/"+departureDate+"/NaN");
+                    $location.path ("/search/"+origin+"/ESP/"+destination+"/ES/"+departureDate+"/NaN");
                 })
             }
 

@@ -113,7 +113,7 @@
             { name: 'EGY', value:'Egipto' },
             { name: 'ERI', value:'Eritrea' },
             { name: 'ESH', value:'Sahara Occidental' },
-            { name: 'ESP', value:'España' },
+            { name: 'ES', value:'España' },
             { name: 'EST', value:'Estonia' },
             { name: 'ETH', value:'Etiopía' },
             { name: 'FIN', value:'Finlandia' },
@@ -313,51 +313,29 @@
 
             vm.myOptionsOrigin = [];
             vm.myOptionsDestination = [];
-        	vm.myConfigOrigin = {
-          		//create: true,
-          		valueField: 'id',
-          		labelField: 'name__es',
-                searchField: ['name__es'],
-          		delimiter: '|',
-          		placeholder: 'Pick something',
-          		onInitialize: function(selectize){
-            		// receives the selectize object as an argument
-          		},
-          		maxItems: 1,
-                load: function(query, callback) {
-                    if (!query.length) return callback();
-                    locationsRtFactory
-                    .getAll(query)
-                    .then(function (data) {
-                        callback(data.items);
-                        vm.myOptionsOrigin = data.items;
-                        //sessionStorageService.setLocations(data);
-                        //sessionStorageService.setFlag(true);
-                    })
-                    .catch(function (err) {
-                         callback();
-                    });
-                }
-        	};
-
-            vm.myConfigDestination = {
+        	
+            vm.configOrigin = {
                 //create: true,
                 valueField: 'id',
-                labelField: 'name__es',
-                searchField: ['name__es'],
+                labelField: 'name',
+                searchField: ['name'],
                 delimiter: '|',
-                placeholder: 'Pick something',
+                openOnFocus: true,
+                placeholder: 'Elige tu origen',
                 onInitialize: function(selectize){
                     // receives the selectize object as an argument
                 },
                 maxItems: 1,
+                preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
+                    vm.myOptionsOrigin = [];
                     locationsRtFactory
                     .getAll(query)
                     .then(function (data) {
-                        callback(data.items);
-                        vm.myOptionsDestination = data.items;
+
+                        callback(data);
+                        vm.myOptionsOrigin = data;
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
@@ -366,6 +344,51 @@
                     });
                 }
             };
+
+            vm.configDestination = {
+                //create: true,
+                valueField: 'id',
+                labelField: 'name',
+                searchField: ['name'],
+                delimiter: '|',
+                placeholder: 'Elige tu destino',
+                onInitialize: function(selectize){
+                    // receives the selectize object as an argument
+                },
+                maxItems: 1,
+                preload: true,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    vm.myOptionsDestination = [];
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data);
+                        vm.myOptionsDestination = data;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
+            };
+
+            locationsRtFactory
+                .getNearly()
+                .then(function (data) {
+                    // callback(data.items);
+                    vm.myOptionsOrigin = data.nearPlaces;
+                    vm.myOptionsDestination = data.nearPlaces;
+                    //sessionStorageService.setLocations(data);
+                    //sessionStorageService.setFlag(true);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    //  callback();
+                });
+
+            
             vm.dates = {
                 departureDate: '',
                 returnDate: '',
@@ -383,7 +406,6 @@
             };
 
             var mixedTripIcon = function(tripSection, typeTrip){
-                
                 if(tripSection <= 1 && tripSection >= 0){
                     var sections = typeTrip.split('_');
                     return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
@@ -426,7 +448,6 @@
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
-
                return range;          
             }
 
@@ -436,7 +457,6 @@
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
-
                return range;          
             }
 
@@ -732,8 +752,13 @@
 
             }else{
                 console.log('POR AQIO');
+                //vm.myOptionsOrigin = sessionStorageService.getLocations();
+                //vm.myOptionsDestination = sessionStorageService.getLocations();
+                console.log(sessionStorageService.getLocations());
+               
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
+
                 var dateDeparture = new Date(parseInt($stateParams.departureDate));
                 var dateReturn = ""
                 var returnDateFormat = ""
@@ -799,7 +824,7 @@
                     departureMonth = '0'+departureMonth;
                 }
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
-
+                
                 angular.forEach(vm.cnames_es, function(value, key) {
                     if(vm.cnames_es[key].name === $stateParams.originCountryCode){
                         vm.originCountry = vm.cnames_es[key].value;
@@ -1037,19 +1062,22 @@
                 }
             }, true);
 
-            
-
             function searchTrip() {
-                angular.forEach(vm.myOptions, function(value, key) {
-                    if(vm.myOptions[key].label === vm.origin){
-                        vm.originCity = vm.myOptions[key].city;
-                        vm.originCountryCode = vm.myOptions[key].countryCode;
-                        vm.originCountry = vm.myOptions[key].country;
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                    console.log(value+key);
+                    if(vm.myOptionsOrigin[key].id === vm.origin){
+                        vm.originCity = vm.myOptionsOrigin[key].id;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                        vm.originCountry = vm.myOptionsOrigin[key].country;
                     }
-                    if(vm.myOptions[key].label === vm.destination){
-                        vm.destinationCity = vm.myOptions[key].city;
-                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
-                        vm.destinationCountry = vm.myOptions[key].country;
+                });
+
+                angular.forEach(vm.myOptionsDestination, function(value, key) {
+                   
+                    if(vm.myOptionsDestination[key].id === vm.destination){
+                        vm.destinationCity = vm.myOptionsDestination[key].id;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country;
                     }
                 });
                 var origin = vm.origin.split(',');
