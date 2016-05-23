@@ -136,7 +136,7 @@
 
         	vm.configOrigin = {
           		//create: true,
-          		valueField: 'id',
+          		valueField: 'rt',
           		labelField: 'name',
                 searchField: ['name'],
           		delimiter: '|',
@@ -169,7 +169,7 @@
 
             vm.configDestination = {
                 //create: true,
-                valueField: 'id',
+                valueField: 'rt',
                 labelField: 'name',
                 searchField: ['name'],
                 delimiter: '|',
@@ -242,8 +242,8 @@
 
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
                     console.log(value+key);
-                    if(vm.myOptionsOrigin[key].id === vm.origin){
-                        vm.originCity = vm.myOptionsOrigin[key].id;
+                    if(vm.myOptionsOrigin[key].rt === vm.origin){
+                        vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
 
@@ -252,8 +252,8 @@
 
                  angular.forEach(vm.myOptionsDestination, function(value, key) {
                    
-                    if(vm.myOptionsDestination[key].id === vm.destination){
-                        vm.destinationCity = vm.myOptionsDestination[key].id;
+                    if(vm.myOptionsDestination[key].rt === vm.destination){
+                        vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
 

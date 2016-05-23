@@ -317,7 +317,7 @@
         	
             vm.myConfigOrigin = {
                 //create: true,
-                valueField: 'id',
+                valueField: 'rt',
                 labelField: 'name',
                 searchField: ['name'],
                 delimiter: '|',
@@ -348,7 +348,7 @@
 
             vm.myConfigDestination = {
                 //create: true,
-                valueField: 'id',
+                valueField: 'rt',
                 labelField: 'name',
                 searchField: ['name'],
                 delimiter: '|',
@@ -550,8 +550,8 @@
                  vm.myOptions = sessionStorageService.getLocations()
              }*/
 
-             vm.myOptionsOrigin = sessionStorageService.getLocations()
-              vm.myOptionsDestination = sessionStorageService.getLocations()
+            vm.myOptionsOrigin = sessionStorageService.getLocations();
+            vm.myOptionsDestination = sessionStorageService.getLocations();
 
 
             var params = utilityService.getData();
@@ -835,8 +835,6 @@
                     }
                 });
 
-
-
                 vm.origin = formatOrigin + ', ' + vm.originCountry;
                 vm.originCountryCode= $stateParams.originCountryCode;
                 vm.destination = formatDestination + ', ' + vm.destinationCountry;
@@ -1067,8 +1065,8 @@
 
             function searchTrip() {
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    if(vm.myOptionsOrigin[key].id === vm.origin){
-                        vm.originCity = vm.myOptionsOrigin[key].id;
+                    if(vm.myOptionsOrigin[key].rt === vm.origin){
+                        vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
                     }
@@ -1076,8 +1074,8 @@
 
                 angular.forEach(vm.myOptionsDestination, function(value, key) {
                    
-                    if(vm.myOptionsDestination[key].id === vm.destination){
-                        vm.destinationCity = vm.myOptionsDestination[key].id;
+                    if(vm.myOptionsDestination[key].rt === vm.destination){
+                        vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
                     }

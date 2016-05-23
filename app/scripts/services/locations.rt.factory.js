@@ -32,7 +32,7 @@
                 })
                 .success(function(data) {
                     for (var i = 0; i < data.items.length; i++) {
-                      destinations.push({id: data.items[i].id, name: data.items[i].name+', '+data.items[i].country.name, country: data.items[i].country.name, countryCode: data.items[i].country.id});
+                      destinations.push({rt: data.items[i].rt, id: data.items[i].id, name: data.items[i].name+', '+data.items[i].country.name, country: data.items[i].country.name, countryCode: data.items[i].country.id});
                     }
                     defered.resolve(destinations);
                 })
