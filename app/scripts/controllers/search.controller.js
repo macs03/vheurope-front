@@ -319,9 +319,9 @@
         	
             vm.myConfigOrigin = {
                 //create: true,
-                valueField: 'rt',
-                labelField: 'name',
-                searchField: ['name'],
+                valueField: 'label',
+                labelField: 'label',
+                searchField: ['label'],
                 delimiter: '|',
                 openOnFocus: true,
                 placeholder: 'Elige tu origen',
@@ -350,9 +350,9 @@
 
             vm.myConfigDestination = {
                 //create: true,
-                valueField: 'rt',
-                labelField: 'name',
-                searchField: ['name'],
+                valueField: 'label',
+                labelField: 'label',
+                searchField: ['label'],
                 delimiter: '|',
                 placeholder: 'Elige tu destino',
                 onInitialize: function(selectize){
@@ -383,6 +383,10 @@
                     // callback(data.items);
                     vm.myOptionsOrigin = data.nearPlaces;
                     vm.myOptionsDestination = data.nearPlaces;
+                    var dataInitialOrigin = { label: vm.origin};
+                    var dataInitialDestination = { label: vm.destination};
+                    vm.myOptionsOrigin.push(dataInitialOrigin);
+                    vm.myOptionsDestination.push(dataInitialDestination);
                     //sessionStorageService.setLocations(data);
                     //sessionStorageService.setFlag(true);
                 })
