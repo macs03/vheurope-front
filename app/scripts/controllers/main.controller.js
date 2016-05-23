@@ -149,19 +149,21 @@
                 preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
-                    vm.myOptionsOrigin = [];
-                    locationsRtFactory
-                    .getAll(query)
-                    .then(function (data) {
+                    if (query.length >= 3){
+                        vm.myOptionsOrigin = [];
+                        locationsRtFactory
+                        .getAll(query)
+                        .then(function (data) {
 
-                        callback(data);
-                        vm.myOptionsOrigin = data;
-                        //sessionStorageService.setLocations(data);
-                        //sessionStorageService.setFlag(true);
-                    })
-                    .catch(function (err) {
-                         callback();
-                    });
+                            callback(data);
+                            vm.myOptionsOrigin = data;
+                            //sessionStorageService.setLocations(data);
+                            //sessionStorageService.setFlag(true);
+                        })
+                        .catch(function (err) {
+                             callback();
+                        });
+                    }
                 }
         	};
 
@@ -179,19 +181,21 @@
                 preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
-                    vm.myOptionsDestination = [];
-                    locationsRtFactory
-                    .getAll(query)
-                    .then(function (data) {
-                        callback(data);
-                        vm.myOptionsDestination = data;
+                    if (query.length >= 3){
+                        vm.myOptionsDestination = [];
+                        locationsRtFactory
+                        .getAll(query)
+                        .then(function (data) {
+                            callback(data);
+                            vm.myOptionsDestination = data;
 
-                        //sessionStorageService.setLocations(data);
-                        //sessionStorageService.setFlag(true);
-                    })
-                    .catch(function (err) {
-                         callback();
-                    });
+                            //sessionStorageService.setLocations(data);
+                            //sessionStorageService.setFlag(true);
+                        })
+                        .catch(function (err) {
+                             callback();
+                        });
+                    }
                 }
             };
 
