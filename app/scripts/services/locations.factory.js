@@ -26,6 +26,7 @@
                     cache: true,
                     method:'GET',
                     url: apiUrl + 'locations',
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);

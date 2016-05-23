@@ -26,14 +26,14 @@
             $http({
                     method:'GET',
                     url: 'https://api.voyhoy.com/destinations/info/?language=es&q='+$city+'&country='+$country_code,
-                    
+                    skipAuthorization: true
                 })
             .success(function(data) {
               if (data) {
 
                 if (data.success == true) {
                   //var sunrise = new Date(data.sys.sunrise * 1000);
-                  //var sunset = new Date(data.sys.sunset * 1000); 
+                  //var sunset = new Date(data.sys.sunset * 1000);
                   //weather.description = data.weather[0].description;
                   //weather.temp.current = data.main.temp;
                   //weather.temp.min = data.main.temp_min;

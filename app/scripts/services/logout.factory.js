@@ -1,30 +1,33 @@
-(function () {
+(function() {
     'use strict';
 
     /**
      * @ngdoc service
-     * @name vhEurope.cancel.factory
+     * @name vhEurope.logout.factory
      * @description
-     * # cancel.factory
+     * # logout.factory
      * Service in the vhEurope.
      */
     angular.module('vhEurope')
-      .factory('cancelFactory', cancelFactory);
+        .factory('logoutFactory', logoutFactory);
 
-      cancelFactory.$inject =['$http','$q','apiUrl'];
+    logoutFactory.$inject = ['$http', '$q', 'apiUrl'];
 
-      function cancelFactory($http,$q,apiUrl) {
+    function logoutFactory($http, $q, apiUrl) {
         return {
-            getAll: getAll
+            logout: logout
         }
 
-        function getAll (uuid) {
+        function logout(token) {
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'POST',
-                    url: apiUrl + 'cancelTrip/'+uuid,
-                    skipAuthorization: true
+                    cache: true,
+                    method: 'POST',
+                    url: apiUrl + 'logout',
+                    headers: {
+                       'Authorization': token
+                    }
                 })
                 .success(function(data) {
                     defered.resolve(data);
@@ -35,5 +38,5 @@
 
             return promise;
         }
-      }
+    }
 })();

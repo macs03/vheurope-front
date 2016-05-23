@@ -101,7 +101,7 @@ input.ng-valid.ng-touched {
                             </div>
                             <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
                                 <small class="text-muted smallest-font company"> {{ seat.trips.round[i].company }}</small>
-                                <img src="{{ seat.trips.round[i].companyLogo }}" title="{{ seat.trips.round[i].company }}" class="logo_small">
+                                <img ng-src="{{ seat.trips.round[i].companyLogo }}" title="{{ seat.trips.round[i].company }}" class="logo_small">
                             </div>
                             <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
                                 <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.round[i].duration }}</p>
@@ -249,7 +249,7 @@ input.ng-valid.ng-touched {
                             </div>
                             <div class="col-md-6 col-xs-6 c-company nbt" style="border-top: 1px solid #bbb;">
                                 <small class="text-muted smallest-font company"> {{ seat.trips.return[i].company }}</small>
-                                <img src="{{ seat.trips.return[i].companyLogo }}" title="{{ seat.trips.return[i].company }}" class="logo_small">
+                                <img ng-src="{{ seat.trips.return[i].companyLogo }}" title="{{ seat.trips.return[i].company }}" class="logo_small">
                             </div>
                             <div class="col-md-6 col-xs-6 c-approximate-time nbt" style="border-top: 1px solid #bbb;">
                                 <p class="text-muted smallest-font"><i class="fa fa-clock-o"></i> {{ seat.trips.return[i].duration }}</p>

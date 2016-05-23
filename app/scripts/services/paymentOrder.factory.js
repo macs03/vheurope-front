@@ -24,7 +24,7 @@
             $http({
                     method:'GET',
                     url: apiUrl + 'paymentOrder/'+uuid,
-
+                    skipAuthorization: true
                 })
                 .success(function(data) {
                     defered.resolve(data);

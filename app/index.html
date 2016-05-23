@@ -17,6 +17,7 @@
     <link rel='stylesheet' href='bower_components/weather-icons/css/weather-icons-wind.css' />
     <link rel='stylesheet' href='bower_components/weather-icons/css/weather-icons-wind.min.css' />
     <link rel='stylesheet' href='bower_components/ngprogress/ngProgress.css' />
+    <link rel='stylesheet' href='bower_components/ng-img-crop/compile/minified/ng-img-crop.css' />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -77,8 +78,27 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="hidden-xs hidden-sm" id="passages_link"><a href="#/" translate>NAVBAR.PASSAGES</a></li>
-              <switch-language-directive></switch-language-directive>
-
+                <ul class="nav navbar-nav navbar-right" ng-show="!login">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_login_title"> Ingresar <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="switch_login">
+                            <li><a href="#/login"><span>Iniciar Sesion</span></a></li>
+                            <li><a href="#/signup" ><span>Registrarse</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="login">
+                    <li class="dropdown">
+                        <a ng-show="!avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-letters-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> {{initials | uppercase}} </a>
+                        <a ng-show="avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-img-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> <img ng-src="{{avatar}}" alt="foto de perfil" /> </a>
+                        <ul class="dropdown-menu" id="switch_logout">
+                            <li><a href="#/logout"><span>Salir</span></a></li>
+                            <li><a href="#/customer-profile" ><span>Perfil</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <switch-language-directive></switch-language-directive>
 
             </ul>
 
@@ -105,7 +125,7 @@
 
 <br><br>
 <!-- FOOTER AQUI -->
-<vhfooter-directive></vhfooter-directive> 
+<vhfooter-directive></vhfooter-directive>
 
 
 <div class="bus  hidden-xs row-fluid" style="background: #fff; padding-top: 40px; padding-bottom: 40px;">
@@ -200,6 +220,8 @@
     <script src="bower_components/SHA-1/sha1.js"></script>
     <script src="bower_components/angulartics/src/angulartics.js"></script>
     <script src="bower_components/angulartics-google-analytics/lib/angulartics-google-analytics.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
+    <script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
     <script src="bower_components/angular-media-queries/match-media.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -215,6 +237,8 @@
         <script src="scripts/directives/footer.directive.js"></script>
         <script src="scripts/directives/datepicker.directive.js"></script>
         <script src="scripts/directives/switchLanguage.directive.js"></script>
+        <script src="scripts/directives/profileMenu.directive.js"></script>
+        <script src="scripts/directives/password.directive.js"></script>
         <script src="scripts/services/locations.factory.js"></script>
         <script src="scripts/services/locations.rt.factory.js"></script>
         <script src="scripts/services/travels.factory.js"></script>
@@ -229,6 +253,8 @@
         <script src="scripts/services/utility.service.js"></script>
         <script src="scripts/services/sessionStorage.service.js"></script>
         <script src="scripts/services/weather.factory.js"></script>
+        <script src="scripts/services/customerInfo.factory.js"></script>
+        <script src="scripts/services/logout.factory.js"></script>
         <script src="scripts/filters/price.filter.js"></script>
         <script src="scripts/filters/hour.filter.js"></script>
         <script src="scripts/filters/seat.filter.js"></script>
@@ -246,6 +272,12 @@
         <script src="scripts/controllers/cancel.controller.js"></script>
         <script src="scripts/controllers/footer.controller.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.controller.js"></script>
+        <script src="scripts/controllers/signup.controller.js"></script>
+        <script src="scripts/controllers/logout.controller.js"></script>
+        <script src="scripts/controllers/customerProfile.controller.js"></script>
+        <script src="scripts/controllers/customerPurchases.controller.js"></script>
+        <script src="scripts/controllers/customerSettings.controller.js"></script>
         <!-- endbuild -->
 </body>
 </html>
