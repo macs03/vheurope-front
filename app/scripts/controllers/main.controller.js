@@ -149,7 +149,7 @@
                 preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
-                    if (query.length >= 3){
+                    //if (query.length >= 3){
                         vm.myOptionsOrigin = [];
                         locationsRtFactory
                         .getAll(query)
@@ -163,7 +163,7 @@
                         .catch(function (err) {
                              callback();
                         });
-                    }
+                    //}
                 }
         	};
 
@@ -181,7 +181,7 @@
                 preload: true,
                 load: function(query, callback) {
                     if (!query.length) return callback();
-                    if (query.length >= 3){
+                    //if (query.length >= 3){
                         vm.myOptionsDestination = [];
                         locationsRtFactory
                         .getAll(query)
@@ -195,7 +195,7 @@
                         .catch(function (err) {
                              callback();
                         });
-                    }
+                    //}
                 }
             };
 
