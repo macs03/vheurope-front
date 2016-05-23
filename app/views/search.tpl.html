@@ -1467,12 +1467,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <h5 class="hidden-xs hidden-sm hidden" ng-class="{'hidden-bus': !search.showBus}">
                         <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.tickets.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
                     </h5>
-                    <div class="new-results" ">
+                    <div class="new-results">
                         <div class="results list" id="trips_no_tickeables" >
                               <div class="row result nu" data-type="{{ trip.data.transportation }}" ng-class="{'hidden-bus': !search.showBus && trip.data.transportation == 'bus', 'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
                                 <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <img src="{{trip.data.enterprise__image}}" title="{{trip.data.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <img ng-src="{{trip.data.enterprise__image}}" title="{{trip.data.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
                                         <p class="truncate"><small class="text-muted smallest-font">{{trip.data.enterprise__name}}</small></p>
                                     </div>
 
