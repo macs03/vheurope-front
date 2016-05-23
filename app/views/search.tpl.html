@@ -453,29 +453,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
                 
-                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.hasBusTrips && search.hasTrainTrips && !search.isMixedTrips">
-                    <div class="row time-resume-trip" ng-show="search.hasBusTrips">
+                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="!search.isMixedTrips">
+                    <div class="row time-resume-trip">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
+                            <i class="fa fa-bus text-muted"></i>  
+                            <b ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.price | currency : '' }} €</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 60%;">
-                            <span>{{ search.trips.lowest.bus.duration }}</span>
+                            <span ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.duration }}</span>
+                            <span ng-show="!search.hasBusTrips">No hay salidas</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip" ng-show="search.hasPlaneTrips">
+                    <div class="row time-resume-trip">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-plane text-muted"></i>  <b>92.65 $</b>
+                            <i class="fa fa-plane text-muted"></i>  
+                            <b ng-show="search.hasPlaneTrips">92.65 $</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 20%;">
-                            <span>2h 10 min</span>
+                            <span ng-show="search.hasPlaneTrips">2h 10 min</span>
+                            <span ng-show="!search.hasPlaneTrips">No hay salidas</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip" ng-show="search.hasTrainTrips">
+                    <div class="row time-resume-trip">
                         <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-train text-muted"></i>  <b>{{ search.trips.lowest.train.price | currency : '' }} €</b>
+                            <i class="fa fa-train text-muted"></i>  
+                            <b ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.price | currency : '' }} €</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" style="width: 35%;">
-                            <span>{{ search.trips.lowest.train.duration }}</span>
+                            <span ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.duration }}</span>
+                            <span ng-show="!search.hasTrainTrips">No hay salidas</span>
                         </div>
                     </div>
                     
