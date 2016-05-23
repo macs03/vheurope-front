@@ -1493,6 +1493,8 @@
                         vm.results = true;
                         vm.trips = data;
                         vm.isMixedTrips = data.isMixedTrips
+                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.updateTripsType();
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
