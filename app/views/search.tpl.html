@@ -453,8 +453,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
                 
-                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.trips.hasBusTrips && search.trips.hasTrainTrips && !search.isMixedTrips">
-                    <div class="row time-resume-trip" ng-show="search.trips.hasBusTrips">
+                <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.hasBusTrips && search.hasTrainTrips && !search.isMixedTrips">
+                    <div class="row time-resume-trip" ng-show="search.hasBusTrips">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  <b>{{ search.trips.lowest.bus.price | currency : '' }} €</b>
                         </div>
@@ -470,7 +470,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <span>2h 10 min</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip" ng-show="search.trips.hasTrainTrips">
+                    <div class="row time-resume-trip" ng-show="search.hasTrainTrips">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-train text-muted"></i>  <b>{{ search.trips.lowest.train.price | currency : '' }} €</b>
                         </div>
@@ -511,7 +511,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                
                 <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
                     <div class="col-md-3 np hidden-xs">
-                        <div class="row chk-input" ng-class="{'visible-chk': search.trips.hasBusTrips && search.trips.hasTrainTrips}" >
+                        <div class="row chk-input" ng-class="{'visible-chk': search.hasBusTrips && search.hasTrainTrips}" >
                             <div class="col-md-6">
                                  <small class="pull-right text-muted">Combinar</small>
                             </div>
@@ -529,13 +529,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                             <i class="fa fa-bus fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pl0">
-                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                             <i class="fa fa-train fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                         </div>
@@ -918,7 +918,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                               <div class="row tabs-filter" >
                                   
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
-                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                                       </div>
@@ -932,7 +932,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   </div>
                                   -->
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
-                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                                       </div>
@@ -1109,7 +1109,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                               <div class="row tabs-filter" >
                                   
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
-                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.trips.hasBusTrips">
+                                      <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                                       </div>
@@ -1123,7 +1123,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   </div>
                                   -->
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
-                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.trips.hasTrainTrips">
+                                      <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
                                       </div>

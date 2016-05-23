@@ -42,6 +42,8 @@
             vm.showTrain = false;
             vm.showPlane = false;
             vm.hasPlaneTrips = false;
+            vm.hasTrainTrips = false;
+            vm.hasBusTrips = false;
             vm.combineTrips = false;
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
@@ -442,6 +444,33 @@
                 }              
             }
 
+            var updateTripsType = function(){
+                if(vm.hasTrainTrips && vm.hasBusTrips){
+                    vm.showBus = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(vm.hasTrainTrips && !vm.hasBusTrips){
+                    vm.showTrain = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_train').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && vm.hasBusTrips){
+                    vm.showBus = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && !vm.hasBusTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    $('.tab-filter').removeClass('active');
+                }
+
+            };
+
             var getTripsSteps = function(maxDuration, tripDuration){
                 var step = Math.floor(maxDuration/4);
                 var total = Math.floor(tripDuration/step);
@@ -493,6 +522,7 @@
             vm.getTripsSteps = getTripsSteps;
             vm.getPlanesSteps = getPlanesSteps;
             vm.getHourMinPlanes = getHourMinPlanes;
+            vm.updateTripsType = updateTripsType;
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -667,6 +697,9 @@
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
+                        vm.hasTrainTrips = data.hasTrainTrips;
+                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.updateTripsType();
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -893,6 +926,9 @@
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
+                        vm.hasTrainTrips = data.hasTrainTrips;
+                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.updateTripsType();
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                        
@@ -1155,6 +1191,9 @@
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
+                        vm.hasTrainTrips = data.hasTrainTrips;
+                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.updateTripsType();
                         vm.selectDeparture = true;
                         vm.idIda_1 = 0;
                         vm.idVuelta_1 = 0;
