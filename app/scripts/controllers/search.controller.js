@@ -450,36 +450,75 @@
             }
 
             var updateTripsType = function(){
-                if(vm.hasTrainTrips && vm.hasBusTrips){
+                if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
+                    vm.showTrain = true;
+                    vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
-                if(vm.hasTrainTrips && !vm.hasBusTrips){
+                if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = true;
                     vm.showTrain = true;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = true;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
 
-                if(!vm.hasTrainTrips && vm.hasBusTrips){
+                if(!vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                }
+
+                if(!vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    vm.showPlane = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_plane').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
+                    vm.showTrain = false;
+                    vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
-                if(!vm.hasTrainTrips && !vm.hasBusTrips){
-                    vm.showBus = false;
+                if(!vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = true;
                     vm.showTrain = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
                 }
 
+                if(vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = true;
+                    vm.showPlane = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_train').addClass('active');
+                }
             };
 
             var getTripsSteps = function(maxDuration, tripDuration){
                 var step = Math.floor(maxDuration/4);
                 var total = Math.floor(tripDuration/step);
                 var range = [];
+                total == 0 ? total = 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
@@ -1520,6 +1559,7 @@
                           if (planesData.data.tickets.length != 0) {
                               vm.planesFlag = true;
                               vm.hasPlaneTrips = true;
+                              vm.updateTripsType();
                               //scraperManager(scraperData.data.tickets);
                           }else{
                               vm.planesFlag = false;
