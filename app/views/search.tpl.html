@@ -55,6 +55,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29aae1', endColorstr='#0193d2', GradientType=0 );
 }
 
+.time-resumen-trips .time-resume-trip-time.no-trips{
+    background: #fff !important;
+    color: #666;
+    text-align: center;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 .time-resumen-trips .time-resume-trip-time span{
   font-weight: lighter;
   font-size: .9em;
@@ -458,8 +467,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  
                             <b ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.price | currency : '' }} €</b>
+                            <b ng-show="!search.hasBusTrips">N/A</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 60%;">
+                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                             <span ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.duration }}</span>
                             <span ng-show="!search.hasBusTrips">No hay salidas</span>
                         </div>
@@ -468,8 +478,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-plane text-muted"></i>  
                             <b ng-show="search.hasPlaneTrips">92.65 $</b>
+                            <b ng-show="!search.hasPlaneTrips">N/A</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 20%;">
+                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width: 20%;">
                             <span ng-show="search.hasPlaneTrips">2h 10 min</span>
                             <span ng-show="!search.hasPlaneTrips">No hay salidas</span>
                         </div>
@@ -478,8 +489,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-train text-muted"></i>  
                             <b ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.price | currency : '' }} €</b>
+                            <b ng-show="!search.hasTrainTrips">N/A</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" style="width: 35%;">
+                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.duration }}</span>
                             <span ng-show="!search.hasTrainTrips">No hay salidas</span>
                         </div>

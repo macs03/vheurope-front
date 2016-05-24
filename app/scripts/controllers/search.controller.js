@@ -46,6 +46,9 @@
             vm.hasTrainTrips = false;
             vm.hasBusTrips = false;
             vm.combineTrips = false;
+            vm.percentageBus = 0;
+            vm.percentageTrain = 0;
+            vm.percentagePlane = 0;
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -534,6 +537,33 @@
                return range;          
             }
 
+            var updatePercentageBar = function(bus, train){
+                var bus= bus;
+                var train= train;
+                var plane= 60;
+            
+                var barList = [bus,train];
+                var mayor = barList[0];
+                var pos = 0;
+                for(i=1;i<barList.length;i++){
+                    if(barList[i] > mayor){
+                        mayor=barList[i];
+                        pos = i;
+                    }
+                }
+
+                // TRAIN
+                if(pos == 1){
+                    vm.percentageTrain = 50;
+                    vm.percentageBus = ((bus * 100)/train)/2;
+                }
+                //BUS
+                if(pos == 0){
+                    vm.percentageBus = 50;
+                    vm.percentageTrain = ((train * 100)/bus)/2;
+                }
+            }
+
             var getHourMinPlanes = function(minutes){
                 var realmin = minutes % 60
                 var hours = Math.floor(minutes / 60)
@@ -567,6 +597,7 @@
             vm.getPlanesSteps = getPlanesSteps;
             vm.getHourMinPlanes = getHourMinPlanes;
             vm.updateTripsType = updateTripsType;
+            vm.updatePercentageBar = updatePercentageBar();
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -744,6 +775,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -761,6 +793,38 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+                        //AVIONES
+                          planesFactory
+                              .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                              vm.scraperFlag = true;
+                              var planesTime = $timeout(function () {
+                                  var planesData = planesFactory.getData();
+                                  if (!planesData.data.id || planesData.data.tickets.length ==0) {
+                                      var planesTime2 = $timeout(function () {
+                                          vm.planesTrips = planesData.data.tickets;
+                      //                    scraperManager(scraperData.data.tickets);
+                                          if (planesData.data.tickets.length ==0) {
+                                              vm.planesFlag = false;
+                                          }else{
+                                              vm.planesFlag = false;
+                                          }
+                                      }, 20000);
+                                  }
+                                  vm.planesTrips = planesData.data.tickets;
+                                  if (planesData.data.tickets != undefined) {
+                                      if (planesData.data.tickets.length != 0) {
+                                          vm.planesFlag = true;
+                                          vm.hasPlaneTrips = true;
+                                          vm.updateTripsType();
+                                          //scraperManager(scraperData.data.tickets);
+                                      }else{
+                                          vm.planesFlag = false;
+                                      }
+                                  }
+                              }, 15000);
+
+                              // END AVIONES
+
 
                         scraperFactory
                             .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
@@ -801,7 +865,7 @@
                         utilityService.setData(null,null,null,null, null, null, null);
                     })
 
-                vm.callPlanes(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                //vm.callPlanes(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
 
             }else{
                 console.log('POR AQIO');
@@ -944,6 +1008,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                        
@@ -964,6 +1029,38 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+
+                          //AVIONES
+                          planesFactory
+                              .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
+                              vm.scraperFlag = true;
+                              var planesTime = $timeout(function () {
+                                  var planesData = planesFactory.getData();
+                                  if (!planesData.data.id || planesData.data.tickets.length ==0) {
+                                      var planesTime2 = $timeout(function () {
+                                          vm.planesTrips = planesData.data.tickets;
+                      //                    scraperManager(scraperData.data.tickets);
+                                          if (planesData.data.tickets.length ==0) {
+                                              vm.planesFlag = false;
+                                          }else{
+                                              vm.planesFlag = false;
+                                          }
+                                      }, 20000);
+                                  }
+                                  vm.planesTrips = planesData.data.tickets;
+                                  if (planesData.data.tickets != undefined) {
+                                      if (planesData.data.tickets.length != 0) {
+                                          vm.planesFlag = true;
+                                          vm.hasPlaneTrips = true;
+                                          vm.updateTripsType();
+                                          //scraperManager(scraperData.data.tickets);
+                                      }else{
+                                          vm.planesFlag = false;
+                                      }
+                                  }
+                              }, 15000);
+
+                              // END AVIONES
 
                         scraperFactory
                             .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
@@ -1005,7 +1102,7 @@
                         apiError();
                     })
 
-                vm.callPlanes(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                //vm.callPlanes(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
             }
 
             function order(type) {
@@ -1181,6 +1278,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
                         vm.selectDeparture = true;
                         vm.idIda_1 = 0;
                         vm.idVuelta_1 = 0;
@@ -1203,6 +1301,38 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+
+                        //AVIONES
+                          planesFactory
+                              .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry);
+                              vm.scraperFlag = true;
+                              var planesTime = $timeout(function () {
+                                  var planesData = planesFactory.getData();
+                                  if (!planesData.data.id || planesData.data.tickets.length ==0) {
+                                      var planesTime2 = $timeout(function () {
+                                          vm.planesTrips = planesData.data.tickets;
+                      //                    scraperManager(scraperData.data.tickets);
+                                          if (planesData.data.tickets.length ==0) {
+                                              vm.planesFlag = false;
+                                          }else{
+                                              vm.planesFlag = false;
+                                          }
+                                      }, 20000);
+                                  }
+                                  vm.planesTrips = planesData.data.tickets;
+                                  if (planesData.data.tickets != undefined) {
+                                      if (planesData.data.tickets.length != 0) {
+                                          vm.planesFlag = true;
+                                          vm.hasPlaneTrips = true;
+                                          vm.updateTripsType();
+                                          //scraperManager(scraperData.data.tickets);
+                                      }else{
+                                          vm.planesFlag = false;
+                                      }
+                                  }
+                              }, 15000);
+
+                              // END AVIONES
 
                         scraperFactory
                             .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
@@ -1241,7 +1371,7 @@
                         apiError();
                     })
 
-                vm.callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                //vm.callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
 
             }
             var listCompanies = new Set();
@@ -1552,7 +1682,7 @@
                               }else{
                                   vm.planesFlag = false;
                               }
-                          }, 20000);
+                          }, 40000);
                       }
                       vm.planesTrips = planesData.data.tickets;
                       if (planesData.data.tickets != undefined) {
@@ -1565,7 +1695,7 @@
                               vm.planesFlag = false;
                           }
                       }
-                  }, 15000);
+                  }, 30000);
 
                   // END AVIONES
             }
