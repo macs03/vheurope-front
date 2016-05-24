@@ -455,24 +455,24 @@
             var updateTripsType = function(){
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
-                    vm.showTrain = true;
-                    vm.showPlane = true;
+                    //vm.showTrain = true;
+                    //vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
                     vm.showBus = true;
-                    vm.showTrain = true;
-                    vm.showPlane = false;
+                    //vm.showTrain = true;
+                    //vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
-                    vm.showBus = false;
+                    //vm.showBus = false;
                     vm.showTrain = true;
-                    vm.showPlane = false;
+                    //vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
@@ -485,8 +485,8 @@
                 }
 
                 if(!vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
-                    vm.showBus = false;
-                    vm.showTrain = false;
+                    //vm.showBus = false;
+                    //vm.showTrain = false;
                     vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_plane').addClass('active');
@@ -494,24 +494,24 @@
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
-                    vm.showTrain = false;
-                    vm.showPlane = true;
+                    //vm.showTrain = false;
+                    //vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
                     vm.showBus = true;
-                    vm.showTrain = false;
-                    vm.showPlane = false;
+                    //vm.showTrain = false;
+                    //vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
-                    vm.showBus = false;
+                    //vm.showBus = false;
                     vm.showTrain = true;
-                    vm.showPlane = true;
+                    //vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
