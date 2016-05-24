@@ -409,9 +409,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
-                            <li ng-repeat="typeSeat in search.scraperSeats">
+                            <!-- <li ng-repeat="typeSeat in search.scraperSeats">
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
+                            </li> -->
+                            <li ng-repeat="typeSeat in search.planesSeats">
+                                <input class="seatType" id="{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <label for="{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -430,9 +434,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
-                            <li ng-repeat="company in search.scraperCompanies">
+                            <!-- <li ng-repeat="company in search.scraperCompanies">
                                 <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
+                            </li> -->
+                            <li ng-repeat="company in search.planesCompanies">
+                                <input id="{{$index}}" type="checkbox"  name="{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <label for="{{$index}}" class="capitalize" >{{company.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -710,7 +718,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                             <!-- AVIONES -->
                             <div ng-show="search.planesFlag">
-                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips" >
+                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price track by $index" >
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
@@ -1500,7 +1508,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </h5>
                     <div class="new-results">
                         <div class="results list" id="trips_no_tickeables" >
-                              <div class="row result nu" data-type="{{ trip.data.transportation }}" ng-class="{'hidden-bus': !search.showBus && trip.data.transportation == 'bus', 'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
+                              <!-- <div class="row result nu" data-type="{{ trip.data.transportation }}" ng-class="{'hidden-bus': !search.showBus && trip.data.transportation == 'bus', 'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
                                 <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{trip.data.enterprise__image}}" title="{{trip.data.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
@@ -1575,7 +1583,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                       <strong class="price hidden-md hidden-lg">{{trip.data.price | currency : '' }} €</strong>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
