@@ -52,6 +52,7 @@
             vm.lowestPricePlane = 0;
             vm.lowestDurationPlane = 0;
             vm.searchingTripsPlane = false;
+            vm.showCombineTrips = false;
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -458,6 +459,7 @@
             var updateTripsType = function(){
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
+                    vm.showCombineTrips = true;
                     //vm.showTrain = true;
                     //vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
@@ -466,6 +468,7 @@
 
                 if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
                     vm.showBus = true;
+                    vm.showCombineTrips = true;
                     //vm.showTrain = true;
                     //vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
@@ -497,6 +500,7 @@
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
+                    vm.showCombineTrips = true;
                     //vm.showTrain = false;
                     //vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
@@ -515,6 +519,7 @@
                     //vm.showBus = false;
                     vm.showTrain = true;
                     //vm.showPlane = true;
+                    vm.showCombineTrips = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
@@ -549,7 +554,14 @@
                 var mayor = 0;
                 var pos = 0;
 
+                
+
                 if(plane != 0){
+
+                    if(bus == null) bus = 120;
+                    if(train == null) train = 120;
+                    if(plane == NaN) plane = 120;
+                    
                     barList = [bus,train,plane];
                     mayor = barList[0];
                     pos = 0;
@@ -577,8 +589,17 @@
                         vm.percentageTrain = ((train * 60)/plane);
                         vm.percentageBus = ((bus * 60)/plane);
                     }
+
+                    if(vm.percentagePlane < 10){
+                        vm.percentagePlane = 14;
+                    }
+                    
                     
                 }else{
+                    if(bus == null) bus = 120;
+                    if(train == null) train = 120;
+                    if(plane == 0) plane = 120;
+
                     barList = [bus,train];
                     mayor = barList[0];
                     pos = 0;
@@ -598,6 +619,8 @@
                         vm.percentageBus = 60;
                         vm.percentageTrain = ((train * 60)/bus);
                     }
+                    vm.percentagePlane = 20;
+                    
                 }
             
                
@@ -619,10 +642,25 @@
                         $('.fa-trip-type').removeClass('hidden');
 
                     }else{
-                        vm.showBus = true;
-                        vm.showPlane = false;
-                        vm.showTrain = false;
-                        $('#tab_bus').addClass('active');
+                        if(vm.hasBusTrips){
+                            vm.showBus = true;
+                            vm.showPlane = false;
+                            vm.showTrain = false;
+                            $('#tab_bus').addClass('active');
+                        }else if(vm.hasTrainTrips){
+                            vm.showBus = false;
+                            vm.showPlane = false;
+                            vm.showTrain = true;
+                            $('#tab_train').addClass('active');
+
+                        }else{
+                            vm.showBus = false;
+                            vm.showPlane = true;
+                            vm.showTrain = false;
+                            $('#tab_plane').addClass('active');
+                        }
+                        
+                        
                     }
                    
                 }

@@ -531,7 +531,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                
                 <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
                     <div class="col-md-3 np hidden-xs">
-                        <div class="row chk-input" ng-class="{'visible-chk': search.hasBusTrips && search.hasTrainTrips}" >
+                        <div class="row chk-input" ng-class="{'visible-chk': search.showCombineTrips }" >
                             <div class="col-md-6">
                                  <small class="pull-right text-muted">Combinar</small>
                             </div>
@@ -573,7 +573,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 
 
                 <!-- SIN RESULTADOS -->
-                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips" >
+                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips && search.hasPlaneTrips"  >
                 
 
                     <div class="col-md-12">
