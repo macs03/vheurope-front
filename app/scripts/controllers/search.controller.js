@@ -48,7 +48,8 @@
             vm.combineTrips = false;
             vm.percentageBus = 0;
             vm.percentageTrain = 0;
-            vm.percentagePlane = 0;
+            vm.percentagePlane = 20;
+            vm.lowestPricePlane = 0;
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -531,37 +532,73 @@
             var getPlanesSteps = function(segments){
                 var total = Math.floor(segments);
                 var range = [];
+                total > 1 ? total = total - 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
                return range;          
             }
 
-            var updatePercentageBar = function(bus, train){
+            var updatePercentageBar = function(bus, train, plane = null){
                 var bus= bus;
                 var train= train;
-                var plane= 60;
-            
-                var barList = [bus,train];
-                var mayor = barList[0];
+                var plane= plane;
+                var barList = [];
+                var mayor = 0;
                 var pos = 0;
-                for(i=1;i<barList.length;i++){
-                    if(barList[i] > mayor){
-                        mayor=barList[i];
-                        pos = i;
+
+                if(plane != null){
+                    barList = [bus,train,plane];
+                    mayor = barList[0];
+                    pos = 0;
+                    for(i=1;i<barList.length;i++){
+                        if(barList[i] > mayor){
+                            mayor=barList[i];
+                            pos = i;
+                        }
+                    }
+                     // TRAIN
+                    if(pos == 1){
+                        vm.percentageTrain = 50;
+                        vm.percentageBus = ((bus * 100)/train)/2;
+                        vm.percentagePlane = ((plane * 100)/train)/2;
+                    }
+                    //BUS
+                    if(pos == 0){
+                        vm.percentageBus = 50;
+                        vm.percentageTrain = ((train * 100)/bus)/2;
+                        vm.percentagePlane = ((plane * 100)/bus)/2;
+                    }
+                    //PLANE
+                    if(pos == 2){
+                        vm.percentagePlane = 50;
+                        vm.percentageTrain = ((train * 100)/plane)/2;
+                        vm.percentageBus = ((bus * 100)/plane)/2;
+                    }
+
+                }else{
+                    barList = [bus,train];
+                    mayor = barList[0];
+                    pos = 0;
+                    for(i=1;i<barList.length;i++){
+                        if(barList[i] > mayor){
+                            mayor=barList[i];
+                            pos = i;
+                        }
+                    }
+                    // TRAIN
+                    if(pos == 1){
+                        vm.percentageTrain = 50;
+                        vm.percentageBus = ((bus * 100)/train)/2;
+                    }
+                    //BUS
+                    if(pos == 0){
+                        vm.percentageBus = 50;
+                        vm.percentageTrain = ((train * 100)/bus)/2;
                     }
                 }
-
-                // TRAIN
-                if(pos == 1){
-                    vm.percentageTrain = 50;
-                    vm.percentageBus = ((bus * 100)/train)/2;
-                }
-                //BUS
-                if(pos == 0){
-                    vm.percentageBus = 50;
-                    vm.percentageTrain = ((train * 100)/bus)/2;
-                }
+            
+               
             }
 
             var getHourMinPlanes = function(minutes){
@@ -816,6 +853,8 @@
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
                                           vm.updateTripsType();
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
+                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
@@ -1053,6 +1092,8 @@
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
                                           vm.updateTripsType();
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
+                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
@@ -1325,6 +1366,8 @@
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
                                           vm.updateTripsType();
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
+                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
