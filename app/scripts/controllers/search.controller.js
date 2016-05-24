@@ -388,8 +388,8 @@
                 .getNearly()
                 .then(function (data) {
                     // callback(data.items);
-                    vm.myOptionsOrigin = data.nearPlaces;
-                    vm.myOptionsDestination = data.nearPlaces;
+                    vm.myOptionsOrigin = data;
+                    vm.myOptionsDestination = data;
                     var dataInitialOrigin = { label: vm.origin};
                     var dataInitialDestination = { label: vm.destination};
                     vm.myOptionsOrigin.push(dataInitialOrigin);
@@ -541,7 +541,7 @@
                return range;          
             }
 
-            var updatePercentageBar = function(bus, train, plane = null){
+            var updatePercentageBar = function(bus, train, plane){
                 var bus= bus;
                 var train= train;
                 var plane= plane;
@@ -549,7 +549,7 @@
                 var mayor = 0;
                 var pos = 0;
 
-                if(plane != null){
+                if(plane != 0){
                     barList = [bus,train,plane];
                     mayor = barList[0];
                     pos = 0;
@@ -814,7 +814,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -1054,7 +1054,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                        
@@ -1330,7 +1330,7 @@
                         vm.hasTrainTrips = data.hasTrainTrips;
                         vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes);
+                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         vm.selectDeparture = true;
                         vm.idIda_1 = 0;
                         vm.idVuelta_1 = 0;

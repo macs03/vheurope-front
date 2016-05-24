@@ -46,6 +46,7 @@
         function getNearly() {
             var defered = $q.defer();
             var promise = defered.promise;
+            var destinations = [];
 
             $http({
                     cache: false,
@@ -53,7 +54,12 @@
                     url: apiRtUrl+'geolocate/?language=es',
                 })
                 .success(function(data) {
-                    defered.resolve(data);
+                    //console.log(data.nearPlaces);
+                    for (var i = 0; i < data.nearPlaces.length; i++) {
+                      destinations.push({label: data.nearPlaces[i].name+', '+data.nearPlaces[i].country.name, rt: data.nearPlaces[i].rt, id: data.nearPlaces[i].id, name: data.nearPlaces[i].name+', '+data.nearPlaces[i].country.name, country: data.nearPlaces[i].country.name, countryCode: data.nearPlaces[i].country.id});
+                    }
+                    defered.resolve(destinations);
+                    //defered.resolve(data);
                 })
                 .error(function(err) {
                     defered.reject(err);

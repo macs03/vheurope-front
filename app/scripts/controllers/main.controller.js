@@ -210,8 +210,8 @@
                 .getNearly()
                 .then(function (data) {
                     // callback(data.items);
-                    vm.myOptionsOrigin = data.nearPlaces;
-                    vm.myOptionsDestination = data.nearPlaces;
+                    vm.myOptionsOrigin = data;
+                    vm.myOptionsDestination = data;
                     //sessionStorageService.setLocations(data);
                     //sessionStorageService.setFlag(true);
                 })
