@@ -654,9 +654,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                         <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class=""><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                        <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <div ng-class="{'disable-box':search.selectMixTrip}" >
+                                            <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                            <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'" class="" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        </div>
 
-                                        <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <div ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}">
+                                            <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                            <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        </div>
 
                                          <!-- BOTON PARA TREN-->
                                       <a href="{{ trip.url }}" ng-show="trip.transportType == 'train'" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
@@ -670,10 +676,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
 
                                       <a href="#/seat/{{trip.id}}/-1" ng-show="search.trips.directDepartureTrips.length == 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <div ng-class="{'disable-box':search.selectMixTrip}">
+                                            <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
+                                            <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
+                                      </div>
 
-                                      <a href="" ng-show="outindex == 0 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-click="search.firstStep(trip.id,1,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival)" translate>SEARCH.TRIPS.BUTTON</a>
-
-                                      <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <div ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}">
+                                          <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'ship'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                          <a href="#/seat/{{search.idIda_1}}~{{trip.id}}/-1" ng-show="outindex == 1 && search.trips.directDepartureTrips.length > 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      </div>
 
                                       <!-- BOTON PARA TREN-->
                                       <a href="{{ trip.url }}" target="_blank" ng-show="trip.transportType == 'train'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
