@@ -50,6 +50,8 @@
             vm.percentageTrain = 0;
             vm.percentagePlane = 20;
             vm.lowestPricePlane = 0;
+            vm.lowestDurationPlane = 0;
+            vm.searchingTripsPlane = false;
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -559,23 +561,23 @@
                     }
                      // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 50;
-                        vm.percentageBus = ((bus * 100)/train)/2;
-                        vm.percentagePlane = ((plane * 100)/train)/2;
+                        vm.percentageTrain = 60;
+                        vm.percentageBus = ((bus * 60)/train);
+                        vm.percentagePlane = ((plane * 60)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 50;
-                        vm.percentageTrain = ((train * 100)/bus)/2;
-                        vm.percentagePlane = ((plane * 100)/bus)/2;
+                        vm.percentageBus = 60;
+                        vm.percentageTrain = ((train * 60)/bus);
+                        vm.percentagePlane = ((plane * 60)/bus);
                     }
                     //PLANE
                     if(pos == 2){
                         vm.percentagePlane = 50;
-                        vm.percentageTrain = ((train * 100)/plane)/2;
-                        vm.percentageBus = ((bus * 100)/plane)/2;
+                        vm.percentageTrain = ((train * 60)/plane);
+                        vm.percentageBus = ((bus * 60)/plane);
                     }
-
+                    
                 }else{
                     barList = [bus,train];
                     mayor = barList[0];
@@ -588,13 +590,13 @@
                     }
                     // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 50;
-                        vm.percentageBus = ((bus * 100)/train)/2;
+                        vm.percentageTrain = 60;
+                        vm.percentageBus = ((bus * 60)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 50;
-                        vm.percentageTrain = ((train * 100)/bus)/2;
+                        vm.percentageBus = 60;
+                        vm.percentageTrain = ((train * 60)/bus);
                     }
                 }
             
@@ -830,7 +832,9 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+                        
                         //AVIONES
+                        vm.searchingTripsPlane = true; 
                           planesFactory
                               .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
                               vm.scraperFlag = true;
@@ -855,9 +859,12 @@
                                           vm.updateTripsType();
                                           updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
                                           vm.lowestPricePlane = vm.planesTrips[0].data.price;
+                                          vm.searchingTripsPlane = false; 
+                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
+                                          vm.searchingTripsPlane = false; 
                                       }
                                   }
                               }, 15000);
@@ -1069,6 +1076,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        vm.searchingTripsPlane = true; 
                           //AVIONES
                           planesFactory
                               .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
@@ -1091,12 +1099,15 @@
                                       if (planesData.data.tickets.length != 0) {
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
+                                          vm.searchingTripsPlane = false;
                                           vm.updateTripsType();
                                           updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
                                           vm.lowestPricePlane = vm.planesTrips[0].data.price;
+                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
+                                          vm.searchingTripsPlane = false;
                                       }
                                   }
                               }, 15000);
@@ -1344,6 +1355,7 @@
                         vm.weather_progress_scraper.start();
 
                         //AVIONES
+                        vm.searchingTripsPlane = true; 
                           planesFactory
                               .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry);
                               vm.scraperFlag = true;
@@ -1365,12 +1377,15 @@
                                       if (planesData.data.tickets.length != 0) {
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
+                                          vm.searchingTripsPlane = false; 
                                           vm.updateTripsType();
                                           updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
                                           vm.lowestPricePlane = vm.planesTrips[0].data.price;
+                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
                                           //scraperManager(scraperData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
+                                          vm.searchingTripsPlane = false; 
                                       }
                                   }
                               }, 15000);
