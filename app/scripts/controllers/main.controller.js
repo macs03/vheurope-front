@@ -387,7 +387,6 @@
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/1.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/2.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/3.jpg",
-                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/4.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/5.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/6.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/7.jpg",
