@@ -401,7 +401,7 @@
         "BLOG": "Blog",
         "SPANISH": "Español",
         "ENGLISH": "Inglés",
-        "MESSAGE": "Compra billetes de autobús en España",
+        "MESSAGE": "Todas tus opciones de transporte",
         "LANGUAGE": "Idioma"
       },
       "FOOTER": {
