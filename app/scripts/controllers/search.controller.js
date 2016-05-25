@@ -554,8 +554,6 @@
                 var mayor = 0;
                 var pos = 0;
 
-                
-
                 if(plane != 0){
 
                     if(bus == null) bus = 120;
@@ -632,6 +630,37 @@
                 return hours+'hrs '+realmin+'min';          
             }
 
+            var getLowestPlanes = function(trips, tipo){
+                  var menor = 0;
+                  var pos = 0;
+
+                  if(tipo == 1){
+                        if(trips != undefined){
+                              menor = trips[0].data.duration;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.duration < menor){
+                                        menor=trips[i].data.duration;
+                                        pos = i;
+                                    }
+                              }
+                              return menor;
+                        }
+                  }else{
+                        if(trips != undefined){
+                              menor = trips[0].data.price;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.price < menor){
+                                        menor=trips[i].data.price;
+                                        pos = i;
+                                    }
+                              }
+                              return menor;
+                        }
+                  }
+            };
+
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     if(newVal === true){
@@ -675,6 +704,7 @@
             vm.getHourMinPlanes = getHourMinPlanes;
             vm.updateTripsType = updateTripsType;
             vm.updatePercentageBar = updatePercentageBar();
+            vm.getLowestPlanes = getLowestPlanes();
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -894,12 +924,11 @@
                                       if (planesData.data.tickets.length != 0) {
                                           vm.planesFlag = true;
                                           vm.hasPlaneTrips = true;
-                                          vm.updateTripsType();
-                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
-                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
                                           vm.searchingTripsPlane = false;
-                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
-
+                                          vm.updateTripsType();
+                                          vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
+                                          vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                           planesManager(planesData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
@@ -1139,11 +1168,10 @@
                                           vm.hasPlaneTrips = true;
                                           vm.searchingTripsPlane = false;
                                           vm.updateTripsType();
-                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
-                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
-                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
-
-                                            planesManager(planesData.data.tickets);
+                                          vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
+                                          vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
+                                          planesManager(planesData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
                                           vm.searchingTripsPlane = false;
@@ -1418,10 +1446,9 @@
                                           vm.hasPlaneTrips = true;
                                           vm.searchingTripsPlane = false;
                                           vm.updateTripsType();
-                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes,vm.planesTrips[0].data.duration);
-                                          vm.lowestPricePlane = vm.planesTrips[0].data.price;
-                                          vm.lowestDurationPlane = vm.planesTrips[0].data.duration;
-
+                                          vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
+                                          vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                          updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                           planesManager(planesData.data.tickets);
                                       }else{
                                           vm.planesFlag = false;
