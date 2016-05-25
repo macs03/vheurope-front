@@ -563,7 +563,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                      <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
                         <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                             <i class="fa fa-plane fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE $32.55</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                         </div>
                     </div>
                     
@@ -775,7 +775,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             <span ng-show="trip.data.segments.length == 1">Directo</span>
                                             <span ng-show="trip.data.segments.length > 1">{{ trip.data.segments.length - 1 }} Escalas</span>
                                         </small>
-                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="001" ng-click="search.tripDetails($event)"></i>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
