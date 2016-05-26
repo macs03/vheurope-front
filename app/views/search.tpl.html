@@ -479,7 +479,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                             <span ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.duration }}</span>
-                            <span ng-show="!search.hasBusTrips">No hay salidas</span>
+                            <span class="pull-right" ng-show="!search.hasBusTrips">No hay salidas</span>
                         </div>
                     </div>
                     
@@ -491,7 +491,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.duration }}</span>
-                            <span ng-show="!search.hasTrainTrips">No hay salidas</span>
+                            <span class="pull-right" ng-show="!search.hasTrainTrips">No hay salidas</span>
                         </div>
                     </div>
                     <div class="row time-resume-trip">
@@ -502,7 +502,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
                             <span ng-show="search.hasPlaneTrips">{{ search.getHourMinPlanes(search.lowestDurationPlane) }}</span>
-                            <span ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">No hay salidas</span>
+                            <span  class="pull-right" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">No hay salidas</span>
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
@@ -537,7 +537,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                 <!-- PESTAÑAS DE RESULTADOS -->
                
-                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
+                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0 || search.hasPlaneTrips" >
                     <div class="col-md-3 np hidden-xs">
                         <div class="row chk-input" ng-class="{'visible-chk': search.showCombineTrips }" >
                             <div class="col-md-6">
@@ -581,7 +581,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 
 
                 <!-- SIN RESULTADOS -->
-                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips && search.hasPlaneTrips"  >
+                <div class="row" ng-show="search.trips.directDepartureTrips.length == 0 && search.scraperTrips.tickets.length == 0 && search.trips.alternativeTrips.length == 0 && !search.isMixedTrips && !search.hasPlaneTrips" >
                 
 
                     <div class="col-md-12">
