@@ -16,16 +16,15 @@
       function planesFactory($http,$q,apiUrl,$filter) {
         return {
             self : this,
-            getAll : getAll,
             getFirstStep : getFirstStep,
             getApiData : getApiData,
             getApiStatus : getApiStatus,
-            dataApi : '',
-            allData : {},
-            getData : getData
+            flag : ''
         }
 
-        function getAll(origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
+
+        function getFirstStep (origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
+            self.flag = 0;
             var split1 = departure.split('/');
             var departureFormated = split1[2] + '-' + split1[1] + '-' + split1[0];
             var returnsFormated = '';
@@ -39,10 +38,6 @@
             formatOrigin = formatOrigin.replace(/ñ/g, 'n');
             formatDestination = formatDestination.replace(/\s/g, '-');
             formatDestination = formatDestination.replace(/ñ/g, 'n');
-            getFirstStep(formatOrigin,formatDestination,departureFormated,returnsFormated,1);
-        }
-
-        function getFirstStep (formatOrigin,formatDestination,departureFormated,returnsFormated,passengers) {
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
@@ -58,9 +53,7 @@
 
                 })
                 .success(function(data) {
-
                     defered.resolve(data);
-                    getApiStatus(data.status);
                     self.dataApi = data.data;
                 })
                 .error(function(err) {
@@ -79,18 +72,9 @@
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    if (data.progress == 0) {
-                        setTimeout(function () {
-                            getApiData(self.dataApi);
-                        }, 10000)
-                    }else{
-                        setTimeout(function () {
-                            getApiData(self.dataApi);
-                        }, 4000)
-                    }
                 })
                 .error(function(err) {
-                    defered.reject(err)
+                    defered.reject(err);
                 });
 
             return promise;
@@ -105,18 +89,11 @@
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    self.allData = data;
                 })
                 .error(function(err) {
                     defered.reject(err)
                 });
             return promise;
-        }
-
-        function getData(){
-            return {
-                data : self.allData
-            }
         }
 
       }
