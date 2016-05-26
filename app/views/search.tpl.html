@@ -414,8 +414,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li> -->
                             <li ng-repeat="typeSeat in search.planesSeats">
-                                <input class="seatType" id="{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
-                                <label for="{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
+                                <input class="seatType" id="seat-{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="seat-{{$index}}" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <label for="seat-{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -439,8 +439,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
                             </li> -->
                             <li ng-repeat="company in search.planesCompanies">
-                                <input id="{{$index}}" type="checkbox"  name="{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
-                                <label for="{{$index}}" class="capitalize" >{{company.name}}</label>
+                                <input id="company-{{$index}}" type="checkbox"  name="company-{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <label for="company-{{$index}}" class="capitalize" >{{company.name}}</label>
                             </li>
                         </ul>
                     </div>
@@ -718,7 +718,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                             <!-- AVIONES -->
                             <div ng-show="search.planesFlag">
-                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price track by $index" >
+                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{ trip.data.enterprise__image }}" title="{{ trip.data.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
