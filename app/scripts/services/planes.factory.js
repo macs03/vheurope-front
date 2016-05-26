@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     /**
@@ -9,26 +9,26 @@
      * Service in the vhEurope.
      */
     angular.module('vhEurope')
-      .factory('planesFactory', planesFactory);
+        .factory('planesFactory', planesFactory);
 
-      planesFactory.$inject =['$http','$q','apiUrl','$filter'];
+    planesFactory.$inject = ['$http', '$q', 'apiUrl', '$filter'];
 
-      function planesFactory($http,$q,apiUrl,$filter) {
+    function planesFactory($http, $q, apiUrl, $filter) {
         return {
-            self : this,
-            getFirstStep : getFirstStep,
-            getApiData : getApiData,
-            getApiStatus : getApiStatus,
-            flag : ''
+            self: this,
+            getFirstStep: getFirstStep,
+            getApiData: getApiData,
+            getApiStatus: getApiStatus,
+            flag: ''
         }
 
 
-        function getFirstStep (origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
+        function getFirstStep(origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
             self.flag = 0;
             var split1 = departure.split('/');
             var departureFormated = split1[2] + '-' + split1[1] + '-' + split1[0];
             var returnsFormated = '';
-            if (returns != ''){
+            if (returns != '') {
                 var split2 = returns.split('/');
                 returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
@@ -41,7 +41,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
+                    method: 'GET',
                     url: 'https://api-rt.resertrip.com/tickets/',
                     params: {
                         origin: formatOrigin,
@@ -67,7 +67,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
+                    method: 'GET',
                     url: apiStatus
                 })
                 .success(function(data) {
@@ -84,7 +84,7 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
+                    method: 'GET',
                     url: apiData
                 })
                 .success(function(data) {
@@ -96,5 +96,5 @@
             return promise;
         }
 
-      }
+    }
 })();
