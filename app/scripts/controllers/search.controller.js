@@ -641,7 +641,6 @@
                                         pos = i;
                                     }
                               }
-                              console.log(menor);
                               return menor;
                         }
                   }else{
@@ -654,7 +653,6 @@
                                         pos = i;
                                     }
                               }
-                              console.log(menor);
                               return menor;
                         }
                   }
@@ -1118,7 +1116,7 @@
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
                         vm.updateTripsType();
                         updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
@@ -1738,7 +1736,7 @@
                         vm.results = true;
                         vm.trips = data;
                         vm.isMixedTrips = data.isMixedTrips
-                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.hasBusTrips = data.isMixedTrips;
                         vm.updateTripsType();
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;

@@ -479,7 +479,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                             <span ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.duration }}</span>
-                            <span class="pull-right" ng-show="!search.hasBusTrips">No hay salidas</span>
+                            <span class="pull-left" ng-show="!search.hasBusTrips">No hay salidas</span>
                         </div>
                     </div>
                     
@@ -491,7 +491,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.duration }}</span>
-                            <span class="pull-right" ng-show="!search.hasTrainTrips">No hay salidas</span>
+                            <span class="pull-left" ng-show="!search.hasTrainTrips">No hay salidas</span>
                         </div>
                     </div>
                     <div class="row time-resume-trip">
@@ -502,7 +502,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
                             <span ng-show="search.hasPlaneTrips">{{ search.getHourMinPlanes(search.lowestDurationPlane) }}</span>
-                            <span  class="pull-right" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">No hay salidas</span>
+                            <span  class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">No hay salidas</span>
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
@@ -537,7 +537,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                 <!-- PESTAÑAS DE RESULTADOS -->
                
-                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
+                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0 || search.isMixedTrips" >
                     <div class="col-md-3 np hidden-xs">
                         <div class="row chk-input" ng-class="{'visible-chk': search.showCombineTrips }" >
                             <div class="col-md-6">
@@ -557,7 +557,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                        
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pr5">
-                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
+                        <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips" >
                             <i class="fa fa-bus fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
                         </div>
@@ -1328,7 +1328,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 <div class="col-xs-12 col-md-12 " >
                     <div class="new-results" ng-repeat="trip in search.trips.mixedTrips | orderBy:search.typeDeparture:search.reverseDeparture">
                         <div class="results list" id="trips_mixed" >
-                           <div class="row result nu" data-type="plane">
+                           <div class="row result nu" data-type="bus">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <small class="text-muted smallest-font truncate">Varias empresas</small>
