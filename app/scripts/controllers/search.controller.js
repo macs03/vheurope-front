@@ -1215,7 +1215,33 @@
                         $('.pikaday__display').prop('disabled', false);
                         apiError();
                     })
-                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                var originPlaneCity = vm.origin.split(',');
+                var destinationPlaneCity = vm.destination.split(',');
+                var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+                var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+                for (var i=0; i<acentos.length; i++) {
+                  originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                  destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                }
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                    if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
+                        vm.originCity = vm.myOptionsOrigin[key].rt;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                        vm.originCountry = vm.myOptionsOrigin[key].country;
+                        vm.originId = vm.myOptionsOrigin[key].id;
+                    }
+                });
+
+                angular.forEach(vm.myOptionsDestination, function(value, key) {
+                    if(vm.myOptionsDestination[key].rt === destinationPlaneCity[0]){
+                        vm.destinationCity = vm.myOptionsDestination[key].rt;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country;
+                        vm.destinationId = vm.myOptionsDestination[key].id;
+                    }
+                });
+                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                var destiniesPlanes = sessionStorageService.getIdForPlanes();
                 vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
             }
 
