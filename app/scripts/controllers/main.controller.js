@@ -246,19 +246,21 @@
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
-
+                        vm.originId = vm.myOptionsOrigin[key].id;
                     }
                 });
 
                  angular.forEach(vm.myOptionsDestination, function(value, key) {
-                   
+
                     if(vm.myOptionsDestination[key].rt === vm.destination){
                         vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
-
+                        vm.destinationId = vm.myOptionsDestination[key].id;
                     }
                 });
+
+                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
 
                 var formatOrigin;
                 var formatDestination;

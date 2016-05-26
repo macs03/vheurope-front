@@ -975,8 +975,8 @@
                         apiError();
                         utilityService.setData(null,null,null,null, null, null, null);
                     })
-
-                vm.callPlanes(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
 
             }else{
                 var origin = $stateParams.origin.split(",");
@@ -1215,8 +1215,8 @@
                         $('.pikaday__display').prop('disabled', false);
                         apiError();
                     })
-
-                vm.callPlanes(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
             }
 
             function order(type) {
@@ -1298,22 +1298,33 @@
             }, true);
 
             function searchTrip() {
+                var originPlaneCity = vm.origin.split(',');
+                var destinationPlaneCity = vm.destination.split(',');
+                var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+                var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+                for (var i=0; i<acentos.length; i++) {
+                  originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                  destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                }
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    if(vm.myOptionsOrigin[key].rt === vm.origin){
+                    if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
+                        vm.originId = vm.myOptionsOrigin[key].id;
                     }
                 });
 
                 angular.forEach(vm.myOptionsDestination, function(value, key) {
-                   
-                    if(vm.myOptionsDestination[key].rt === vm.destination){
+                    if(vm.myOptionsDestination[key].rt === destinationPlaneCity[0]){
                         vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
+                        vm.destinationId = vm.myOptionsDestination[key].id;
                     }
                 });
+                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+
                 var origin = vm.origin.split(',');
                 var destination = vm.destination.split(',');
                 if (vm.origin === vm.destination || vm.origin == '' || vm.destination == '' ) {
@@ -1488,8 +1499,8 @@
                         $('.pikaday__display').prop('disabled', false);
                         apiError();
                     })
-
-                vm.callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
 
             }
             var listCompanies = new Set();
