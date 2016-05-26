@@ -589,7 +589,7 @@
                     }
 
                     if(vm.percentagePlane < 10){
-                        vm.percentagePlane = 14;
+                        vm.percentagePlane = 12;
                     }
                     
                     
@@ -617,11 +617,8 @@
                         vm.percentageBus = 60;
                         vm.percentageTrain = ((train * 60)/bus);
                     }
-                    vm.percentagePlane = 20;
-                    
+                    vm.percentagePlane = 12;
                 }
-            
-               
             }
 
             var getHourMinPlanes = function(minutes){
@@ -644,6 +641,7 @@
                                         pos = i;
                                     }
                               }
+                              console.log(menor);
                               return menor;
                         }
                   }else{
@@ -656,6 +654,7 @@
                                         pos = i;
                                     }
                               }
+                              console.log(menor);
                               return menor;
                         }
                   }
@@ -688,10 +687,7 @@
                             vm.showTrain = false;
                             $('#tab_plane').addClass('active');
                         }
-                        
-                        
                     }
-                   
                 }
             }, true);
 
@@ -1835,24 +1831,24 @@
                 planesFactory
                     .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                     .then(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         planesFactory
                             .getApiStatus(data.status)
                             .then(function (data1) {
-                                console.log(data1.progress);
+                                //console.log(data1.progress);
                                 if (data1.progress === 1) {
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
-                                            console.log('data 2');
-                                            console.log(data2);
+                                            //console.log('data 2');
+                                            //console.log(data2);
                                             vm.planesTrips = data2.tickets;
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
                                             vm.updateTripsType();
-                                            vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
-                                            vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                            vm.lowestPricePlane = getLowestPlanes(data2.tickets, 2);
+                                            vm.lowestDurationPlane = getLowestPlanes(data2.tickets, 1);
                                             if (vm.trips.lowest) {
                                                 updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                             }else{
@@ -1871,24 +1867,24 @@
                                         planesFactory
                                             .getApiStatus(data.status)
                                             .then(function (data3) {
-                                                console.log(data3.progress);
+                                                //console.log(data3.progress);
                                                 if (data3.progress === 1) {
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
-                                                            console.log('data 4');
-                                                            console.log(vm.planesTrips);
+                                                            //console.log('data 4');
+                                                            //console.log(vm.planesTrips);
                                                             vm.planesTrips = [];
-                                                            console.log(vm.planesTrips);
-                                                            console.log(data4);
+                                                            //console.log(vm.planesTrips);
+                                                            //console.log(data4);
                                                             vm.planesTrips = data4.tickets;
-                                                            console.log(vm.planesTrips);
+                                                            //console.log(vm.planesTrips);
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
                                                             vm.updateTripsType();
-                                                            vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
-                                                            vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                                            vm.lowestPricePlane = getLowestPlanes(data4.tickets, 2);
+                                                            vm.lowestDurationPlane = getLowestPlanes(data4.tickets, 1);
                                                             if (vm.trips.lowest) {
                                                                 updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                                             }else{
@@ -1907,20 +1903,20 @@
                                                         planesFactory
                                                             .getApiStatus(data.status)
                                                             .then(function (data5) {
-                                                                console.log(data5.progress);
+                                                                //console.log(data5.progress);
                                                                 if (data5.progress === 1) {
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
-                                                                            console.log('data 6');
-                                                                            console.log(data6);
+                                                                            //console.log('data 6');
+                                                                            //console.log(data6);
                                                                             vm.planesTrips = data6.tickets;
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
                                                                             vm.hasPlaneTrips = true;
                                                                             vm.updateTripsType();
-                                                                            vm.lowestPricePlane = getLowestPlanes(vm.planesTrips, 2);
-                                                                            vm.lowestDurationPlane = getLowestPlanes(vm.planesTrips, 1);
+                                                                            vm.lowestPricePlane = getLowestPlanes(data6.tickets, 2);
+                                                                            vm.lowestDurationPlane = getLowestPlanes(data6.tickets, 1);
                                                                             if (vm.trips.lowest) {
                                                                                 updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                                                             }else{

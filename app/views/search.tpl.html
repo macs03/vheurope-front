@@ -39,7 +39,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 .time-resumen-trips .time-resume-trip-price i { margin-right: 20px }
 .time-resumen-trips .time-resume-trip-time {
     background-color: #0192D2;
-    padding: 5px 0 5px 20px;
+    padding: 5px 0 5px 5px;
     color: #fff;
     text-align: center;
     -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
@@ -537,7 +537,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                 <!-- PESTAÑAS DE RESULTADOS -->
                
-                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0 || search.hasPlaneTrips" >
+                <div class="row tabs-filter" ng-show="search.trips.directReturnTrips.length == 0" >
                     <div class="col-md-3 np hidden-xs">
                         <div class="row chk-input" ng-class="{'visible-chk': search.showCombineTrips }" >
                             <div class="col-md-6">
