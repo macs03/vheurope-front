@@ -324,7 +324,9 @@
             vm.myOptionsOrigin = [];
             vm.myOptionsDestination = [];
 
-        	
+            vm.switcher = switcher;
+
+
             vm.myConfigOrigin = {
                 //create: true,
                 valueField: 'label',
@@ -1270,7 +1272,7 @@
                     vm.type = type;
                 }
             }
-
+            vm.multipleChange = false;
             $scope.$watch('search.origin', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
@@ -1278,7 +1280,11 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
-                    searchTrip();
+                    if (!vm.multipleChange) {
+                        searchTrip();
+                    }else{
+                        vm.multipleChange = false;
+                    }
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
@@ -2006,6 +2012,21 @@
                         vm.searchingTripsPlane = false;
                     })
 
+            }
+
+            function switcher() {
+                var splitOrigin = vm.origin.split(',')
+                var splitDestination = vm.destination.split(',')
+                var originSwitch;
+                var destinationSwitch;
+                if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
+                    originSwitch =  vm.destination;
+                    destinationSwitch = vm.origin;
+                    // change the cities
+                    vm.origin = originSwitch;
+                    vm.destination = destinationSwitch;
+                    vm.multipleChange = true;
+                }
             }
 
             function resetFirstSetep(type) {
