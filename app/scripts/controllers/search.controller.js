@@ -457,11 +457,12 @@
             }
 
             var updateTripsType = function(){
+                  
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
                     vm.showCombineTrips = true;
-                    //vm.showTrain = true;
-                    //vm.showPlane = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -469,16 +470,16 @@
                 if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
                     vm.showBus = true;
                     vm.showCombineTrips = true;
-                    //vm.showTrain = true;
-                    //vm.showPlane = false;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
-                    //vm.showBus = false;
+                    vm.showBus = false;
                     vm.showTrain = true;
-                    //vm.showPlane = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
@@ -488,11 +489,12 @@
                     vm.showTrain = false;
                     vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
                 }
 
                 if(!vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
-                    //vm.showBus = false;
-                    //vm.showTrain = false;
+                    vm.showBus = false;
+                    vm.showTrain = false;
                     vm.showPlane = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_plane').addClass('active');
@@ -501,24 +503,24 @@
                 if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
                     vm.showCombineTrips = true;
-                    //vm.showTrain = false;
-                    //vm.showPlane = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
                     vm.showBus = true;
-                    //vm.showTrain = false;
-                    //vm.showPlane = false;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
-                    //vm.showBus = false;
+                    vm.showBus = false;
                     vm.showTrain = true;
-                    //vm.showPlane = true;
+                    vm.showPlane = false;
                     vm.showCombineTrips = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
@@ -572,20 +574,20 @@
                      // TRAIN
                     if(pos == 1){
                         vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train);
-                        vm.percentagePlane = ((plane * 60)/train);
+                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                        vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
                     }
                     //BUS
                     if(pos == 0){
                         vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus);
-                        vm.percentagePlane = ((plane * 60)/bus);
+                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                        vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
                     }
                     //PLANE
                     if(pos == 2){
-                        vm.percentagePlane = 50;
-                        vm.percentageTrain = ((train * 60)/plane);
-                        vm.percentageBus = ((bus * 60)/plane);
+                        vm.percentagePlane = 60;
+                        vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
+                        vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
                     }
 
                     if(vm.percentagePlane < 10){
@@ -610,12 +612,12 @@
                     // TRAIN
                     if(pos == 1){
                         vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train);
+                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
                     }
                     //BUS
                     if(pos == 0){
                         vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus);
+                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
                     }
                     vm.percentagePlane = 12;
                 }
@@ -879,7 +881,7 @@
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
                         vm.updateTripsType();
                         updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
                         $('.pikaday__display').prop('disabled', false);
@@ -1427,7 +1429,7 @@
                         vm.minDuration = data.minDuration;
                         vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips;
+                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
                         vm.updateTripsType();
                         updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         vm.selectDeparture = true;
