@@ -105,6 +105,7 @@
             vm.quickSearch = quickSearch;
         	vm.myOptionsOrigin = [];
             vm.myOptionsDestination = [];
+            vm.switcher = switcher;
 
             vm.updatePassengers = function(type, direction){
                 if(direction == 'up' && vm.passengers < 7){
@@ -352,6 +353,20 @@
                     var departureDate = $('#departureDate-quick-'+id).val();
                     $location.path ("/search/"+origin+"/ES/"+destination+"/ES/"+departureDate+"/NaN");
                 })
+            }
+
+            function switcher() {
+                var splitOrigin = vm.origin.split(',')
+                var splitDestination = vm.destination.split(',')
+                var originSwitch;
+                var destinationSwitch;
+                if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
+                    originSwitch =  vm.destination;
+                    destinationSwitch = vm.origin;
+                    // change the cities
+                    vm.origin = originSwitch;
+                    vm.destination = destinationSwitch;
+                }
             }
 
             //$('#switch_language_title').html($('#switch_language li.active').find('a').html() + '<span class="caret"></span>');
