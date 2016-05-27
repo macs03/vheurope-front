@@ -172,9 +172,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
     <div class="popover-select-passengers-wrapper">
-        <h5>Pasajeros</h5>
+        <h5 translate>PASSENGERS.TITLE</h5>
         <div class="input-group number-spinner pull-right">
-            <label for="">Adultos</label>
+            <label for="" translate>PASSENGERS.ADULTS</label>
             <span class="input-group-btn">
                 <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('adult', 'dwn')">
                     <i class="fa fa-minus"></i>
@@ -188,7 +188,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             </span>
         </div>
         <div class="input-group number-spinner pull-right">
-            <label for="">Niños</label>
+            <label for="" translate>PASSENGERS.CHILDREN</label>
             <span class="input-group-btn">
                 <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('child', 'dwn')">
                     <i class="fa fa-minus"></i>
@@ -202,7 +202,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             </span>
         </div>
         <div class="input-group number-spinner pull-right">
-            <label for="">Bebes</label>
+            <label for="" translate>PASSENGERS.BABIES</label>
             <span class="input-group-btn">
                 <button class="btn btn-default btn-xs" data-dir="dwn" ng-click="search.updatePassengers('baby', 'dwn')">
                     <i class="fa fa-minus"></i>
@@ -479,7 +479,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                             <span ng-show="search.hasBusTrips">{{ search.trips.lowest.bus.duration }}</span>
-                            <span class="pull-left" ng-show="!search.hasBusTrips">No hay salidas</span>
+                            <span class="pull-left" ng-show="!search.hasBusTrips" translate>SEARCH.NO_DEPARTURES</span>
                         </div>
                     </div>
                     
@@ -491,7 +491,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.trips.lowest.train.duration }}</span>
-                            <span class="pull-left" ng-show="!search.hasTrainTrips">No hay salidas</span>
+                            <span class="pull-left" ng-show="!search.hasTrainTrips" translate>SEARCH.NO_DEPARTURES</span>
                         </div>
                     </div>
                     <div class="row time-resume-trip">
@@ -502,7 +502,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
                             <span ng-show="search.hasPlaneTrips">{{ search.getHourMinPlanes(search.lowestDurationPlane) }}</span>
-                            <span  class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">No hay salidas</span>
+                            <span  class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane" translate>SEARCH.NO_DEPARTURES</span>
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
