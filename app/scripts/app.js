@@ -166,8 +166,8 @@
 
     var translationsEN = {
           "MAIN": {
-            "TITLE": "TRAVEL INTELLIGENTLY WITH RESERTRIP",
-            "SUBTITLE": "The easiest way to buy and compare bus tickets",
+            "TITLE": "TRAVEL SMART WITH RESERTRIP",
+            "SUBTITLE": "Buy and compare",
             "FIND_PASSAGES": "Find your bus ticket in Spain",
             "CTA_BUY": "Purchase from your",
             "CTA_PHONE": "MOBILE",
@@ -192,7 +192,7 @@
             "BLOG": "Blog",
             "SPANISH": "Spanish",
             "ENGLISH": "English",
-            "MESSAGE": "Purchase your bus tickets in Spain",
+            "MESSAGE": "All of your transport options",
             "LANGUAGE": "Language"
           },
           "FOOTER": {
@@ -376,7 +376,7 @@
     var translationsES = {
       "MAIN": {
         "TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
-        "SUBTITLE": "La manera más fácil de comprar y comparar billetes de autobús",
+        "SUBTITLE": "Compra y compara",
         "FIND_PASSAGES": "Encuentra tus billetes de autobús en España",
         "CTA_BUY": "Compra desde tu",
         "CTA_PHONE": "MOVIL",
