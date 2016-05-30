@@ -735,7 +735,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <div class="results list" id="trips_tickeables" >
 
                                 <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
-                                    {{search.typeDeparturePlanes}}
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
