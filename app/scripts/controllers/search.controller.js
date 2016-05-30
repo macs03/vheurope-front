@@ -551,12 +551,16 @@
             }
 
             var updatePercentageBar = function(bus, train, plane){
-                var bus= bus;
+                var bus = bus;
                 var train= train;
                 var plane= plane;
                 var barList = [];
                 var mayor = 0;
                 var pos = 0;
+
+                if(plane == 0 && vm.lowestDurationPlane > 0){
+                  plane = vm.lowestDurationPlane;
+                }
 
                 if(plane != 0){
 
