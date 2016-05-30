@@ -22,7 +22,7 @@
             vm.searching = false;
             vm.error = false;
             vm.order = order;
-            vm.type = 'salida';
+            vm.type = 'departure';
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
@@ -1259,6 +1259,9 @@
                         vm.reverse = false;
                     }
                     vm.typeDeparture = type;
+                    if (type === 'departure') {
+                        vm.typeDeparturePlanes = 'start';
+                    }
                     vm.type = type;
                 }else {
                     if(vm.typeReturn === type) {
@@ -1874,18 +1877,17 @@
                 planesFactory
                     .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                     .then(function (data) {
-                        //console.log(data);
                         planesFactory
                             .getApiStatus(data.status)
                             .then(function (data1) {
-                                //console.log(data1.progress);
                                 if (data1.progress != 0) {
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
-                                            //console.log('data 2');
-                                            //console.log(data2);
-                                            vm.planesTrips = data2.tickets;
+                                            vm.planesTrips = [];
+                                            angular.forEach(data2.tickets, function(value, key) {
+                                              vm.planesTrips.push(value.data);
+                                            });
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
@@ -1910,18 +1912,14 @@
                                         planesFactory
                                             .getApiStatus(data.status)
                                             .then(function (data3) {
-                                                //console.log(data3.progress);
                                                 if (data3.progress != 0) {
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
-                                                            //console.log('data 4');
-                                                            //console.log(vm.planesTrips);
                                                             vm.planesTrips = [];
-                                                            //console.log(vm.planesTrips);
-                                                            //console.log(data4);
-                                                            vm.planesTrips = data4.tickets;
-                                                            //console.log(vm.planesTrips);
+                                                            angular.forEach(data4.tickets, function(value, key) {
+                                                              vm.planesTrips.push(value.data);
+                                                            });
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
@@ -1946,14 +1944,14 @@
                                                         planesFactory
                                                             .getApiStatus(data.status)
                                                             .then(function (data5) {
-                                                                //console.log(data5.progress);
                                                                 if (data5.progress != 0) {
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
-                                                                            //console.log('data 6');
-                                                                            //console.log(data6);
-                                                                            vm.planesTrips = data6.tickets;
+                                                                            vm.planesTrips = [];
+                                                                            angular.forEach(data6.tickets, function(value, key) {
+                                                                              vm.planesTrips.push(value.data);
+                                                                            });
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
                                                                             vm.hasPlaneTrips = true;

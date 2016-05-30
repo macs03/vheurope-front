@@ -18,7 +18,7 @@
             var salida = [];
             angular.forEach(input, function(value,key) {
                 for (var i = 0; i < seats.length; i++) {
-                    if (input[key].data.type__name === seats[i] ) {
+                    if (input[key].type__name === seats[i] ) {
                         salida.push(value)
                     }
                 }
