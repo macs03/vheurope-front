@@ -20,7 +20,7 @@
             // console.log(companies);
             angular.forEach(input, function(value,key) {
                 for (var i = 0; i < companies.length; i++) {
-                    if (input[key].data.enterprise__name === companies[i] ) {
+                    if (input[key].enterprise__name === companies[i] ) {
                         salida.push(value);
                     }
                 }
