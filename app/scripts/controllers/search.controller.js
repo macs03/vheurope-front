@@ -877,6 +877,7 @@
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(params.departure,params.returns) });
                 }
 
+
                 travelsFactory
                     .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
                     .then(function(data){
@@ -989,6 +990,8 @@
                 vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
 
             }else{
+                console.log('Por AQUI');
+
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
 
@@ -1227,13 +1230,17 @@
                     })
                 var originPlaneCity = vm.origin.split(',');
                 var destinationPlaneCity = vm.destination.split(',');
+
+
                 var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
                 var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
                 for (var i=0; i<acentos.length; i++) {
                   originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
                   destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
                 }
+
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                  
                     if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
@@ -1250,8 +1257,15 @@
                         vm.destinationId = vm.myOptionsDestination[key].id;
                     }
                 });
+
+                  if(vm.originId == undefined){
+                        vm.originId = originPlaneCity[0];
+                        vm.destinationId = destinationPlaneCity[0];
+                  }
+
                 sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
+
                 vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
             }
 

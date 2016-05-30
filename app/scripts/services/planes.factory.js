@@ -32,6 +32,7 @@
                 var split2 = returns.split('/');
                 returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
+            
             var formatOrigin = origin.toLowerCase(); // + '--' + 'ES';
             var formatDestination = destination.toLowerCase(); // + '--' + 'ES';
             formatOrigin = formatOrigin.replace(/\s/g, '-');
