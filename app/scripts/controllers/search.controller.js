@@ -1879,7 +1879,7 @@
                             .getApiStatus(data.status)
                             .then(function (data1) {
                                 //console.log(data1.progress);
-                                if (data1.progress === 1) {
+                                if (data1.progress != 0) {
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
@@ -1911,7 +1911,7 @@
                                             .getApiStatus(data.status)
                                             .then(function (data3) {
                                                 //console.log(data3.progress);
-                                                if (data3.progress === 1) {
+                                                if (data3.progress != 0) {
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
@@ -1947,7 +1947,7 @@
                                                             .getApiStatus(data.status)
                                                             .then(function (data5) {
                                                                 //console.log(data5.progress);
-                                                                if (data5.progress === 1) {
+                                                                if (data5.progress != 0) {
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
