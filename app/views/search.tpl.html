@@ -797,7 +797,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                               <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.segments.length)">
                                                 <div class="timestamp"></div>
-                                                <div class="status plane" ng-class="{'last':$last, 'scale': trip.segments.length > 1, 'no-scale': trip.segments.length == 1}"></div>
+                                                <div class="status plane" ng-class="{'scale': trip.segments.length > 1, 'no-scale': trip.segments.length == 1}"></div>
+                                              </li>
+                                              <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status plane last" ></div>
                                               </li>
                                               <small class="hidden-xs hidden-sm" style="margin-top: 18px;margin-left: 20px;"> 
                                                 <span ng-show="trip.segments.length == 1">Directo</span>

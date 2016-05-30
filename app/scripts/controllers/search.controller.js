@@ -543,7 +543,7 @@
             var getPlanesSteps = function(segments){
                 var total = Math.floor(segments);
                 var range = [];
-                total > 1 ? total = total  : total = total;
+                total > 1 ? total = total - 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
