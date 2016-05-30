@@ -846,7 +846,7 @@
 
             if(params.origin != null){
                 var title = "Billetes de Autobús | "+params.origin+" a "+params.destination+" | Resertrip ";
-                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
+                var description = "Compra billetes de autobús, tren y avión online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
                 $rootScope.$broadcast('descriptionEvent', description);
 
