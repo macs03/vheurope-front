@@ -1882,7 +1882,7 @@
                         planesFactory
                             .getApiStatus(data.status)
                             .then(function (data1) {
-                                if (data1.progress != 0) {
+                                if (data1.progress != 0 && data1.results !=0) {
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
@@ -1920,7 +1920,7 @@
                                         planesFactory
                                             .getApiStatus(data.status)
                                             .then(function (data3) {
-                                                if (data3.progress != 0) {
+                                                if (data3.progress != 0 && data3.results !=0) {
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
@@ -1955,7 +1955,7 @@
                                                         planesFactory
                                                             .getApiStatus(data.status)
                                                             .then(function (data5) {
-                                                                if (data5.progress != 0) {
+                                                                if (data5.progress != 0 && data5.results !=0) {
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
