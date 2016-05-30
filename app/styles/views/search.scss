@@ -1392,6 +1392,20 @@ button.theme-search,
     width: 0;
     height: 0;
 }
+
+.status.end:after {
+    content: none;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -6px;
+    left: 42%;
+    transition: all 200ms ease-in;
+}
 .li.complete .status { border-top: 2px solid #d1d1d1 }
 .li.complete .status:before {
     background-color: #fff;
@@ -1422,6 +1436,7 @@ button.theme-search,
     margin-left: -12px;
     color: #d1d1d1;
 }
+
 .timeline-centered {
 
     position: relative;
@@ -1628,6 +1643,9 @@ button.theme-search,
     text-align: center;
     padding: 10px 10px;
     margin: 0 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
 }
 .tabs-filter .tab-filter i { color: #29abe5 }
 .tabs-filter .tab-filter span { display: block }

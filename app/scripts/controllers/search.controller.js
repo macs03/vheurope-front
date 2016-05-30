@@ -636,7 +636,8 @@
                   var pos = 0;
 
                   if(tipo == 1){
-                        if(trips != undefined){
+                        //console.log(trips);
+                        if(trips != undefined && trips.length > 0){
                               menor = trips[0].data.duration;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
@@ -646,9 +647,15 @@
                                     }
                               }
                               return menor;
+                        }else{
+                              vm.hasPlaneTrips = false;
+                              vm.searchingTripsPlane = false;
+                              vm.planesFlag = false;
+                              return menor = 0;
                         }
                   }else{
-                        if(trips != undefined){
+                        //console.log(trips);
+                        if(trips != undefined && trips.length > 0){
                               menor = trips[0].data.price;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
@@ -658,6 +665,11 @@
                                     }
                               }
                               return menor;
+                        }else{
+                              vm.hasPlaneTrips = false;
+                              vm.searchingTripsPlane = false;
+                              vm.planesFlag = false;
+                              return menor = 0;
                         }
                   }
             };
@@ -1883,7 +1895,7 @@
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
-                                            //console.log('data 2');
+                                            console.log('data 2');
                                             //console.log(data2);
                                             vm.planesTrips = data2.tickets;
                                             vm.planesFlag = true;
@@ -1915,8 +1927,8 @@
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
-                                                            //console.log('data 4');
-                                                            //console.log(vm.planesTrips);
+                                                            console.log('data 4');
+                                                            console.log(vm.planesTrips);
                                                             vm.planesTrips = [];
                                                             //console.log(vm.planesTrips);
                                                             //console.log(data4);
@@ -1951,8 +1963,8 @@
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
-                                                                            //console.log('data 6');
-                                                                            //console.log(data6);
+                                                                            console.log('data 6');
+                                                                            console.log(data6);
                                                                             vm.planesTrips = data6.tickets;
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
