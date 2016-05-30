@@ -22,8 +22,8 @@
             vm.popular_searches = [];
             vm.today = String(new Date().getTime()/1000).replace('.','');
             $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
-            var title = "Compra Billetes de Autobús en España | Resertrip ";
-            var description = "Compara horarios y precios de más de 90 empresas de autobús en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
+            var title = "Compra Billetes de Autobús, Tren y Avión en España | Resertrip ";
+            var description = "Compara horarios y precios de empresas de autobús, tren y avión en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
             $rootScope.$broadcast('titleEvent', title);
             $rootScope.$broadcast('descriptionEvent', description);
             $rootScope.$broadcast('counterEvent', 1, false);
