@@ -409,10 +409,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
-                            <!-- <li ng-repeat="typeSeat in search.scraperSeats">
-                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
-                                <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
-                            </li> -->
                             <li ng-repeat="typeSeat in search.planesSeats">
                                 <input class="seatType" id="seat-{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="seat-{{$index}}" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="seat-{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
@@ -434,13 +430,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
-                            <!-- <li ng-repeat="company in search.scraperCompanies">
-                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
-                                <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
-                            </li> -->
                             <li ng-repeat="company in search.planesCompanies">
                                 <input id="company-{{$index}}" type="checkbox"  name="company-{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
-                                <label for="company-{{$index}}" class="capitalize" >{{company.name}}</label>
+                                <label for="company-{{$index}}" class="capitalize" ng-hide="company.name =='Auto-Res, S.L.U.'">{{company.name}}</label>
+                                <label for="company-{{$index}}" class="capitalize" ng-show="company.name =='Auto-Res, S.L.U.'"><small>AVANZABUS</small></label>
                             </li>
                         </ul>
                     </div>
@@ -1533,75 +1526,75 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </div>
                 </div>
             </div>
-            <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.tickets.length > 0">
+            <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.length > 0">
                 <div class="col-xs-12 col-md-12 " >
                     <h5 class="hidden-xs hidden-sm hidden" ng-class="{'hidden-bus': !search.showBus}">
-                        <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.tickets.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
+                        <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
                     </h5>
                     <div class="new-results">
                         <div class="results list" id="trips_no_tickeables" >
-                              <!-- <div class="row result nu" data-type="{{ trip.data.transportation }}" ng-class="{'hidden-bus': !search.showBus && trip.data.transportation == 'bus', 'hidden-plane': !search.showPlane  && trip.data.transportation == 'airplane'}" ng-repeat="trip in search.scraperTrips.tickets | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
+                              <div class="row result nu" data-type="{{ trip.data.transportation }}"  ng-repeat="trip in search.scraperTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price">
                                 <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <img ng-src="{{trip.data.enterprise__image}}" title="{{trip.data.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
-                                        <p class="truncate"><small class="text-muted smallest-font">{{trip.data.enterprise__name}}</small></p>
+                                        <img ng-src="{{trip.enterprise__image}}" title="{{trip.enterprise__name}}" class="logo_small hidden-xs hidden-sm"><br>
+                                        <p class="truncate"><small class="text-muted smallest-font">{{trip.enterprise__name}}</small></p>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
-                                        <strong>{{ search.millisToUTCDate(trip.data.start * 1000) | date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.start * 1000) | date:'HH:mm'}}</strong>
                                         <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.data.origin}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.origin}}</small>
                                       </p>
                                     </div>
 
                                     <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
-                                        <p class="approximate-time text-muted smallest-font">{{ search.durationFormatted(trip.data.duration) }}</p>
+                                        <p class="approximate-time text-muted smallest-font">{{ search.durationFormatted(trip.duration) }}</p>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                       <p class="vh-pull-right">
-                                        <strong>{{ search.millisToUTCDate(trip.data.end * 1000) | date:'HH:mm'}}</strong>
+                                        <strong>{{ search.millisToUTCDate(trip.end * 1000) | date:'HH:mm'}}</strong>
                                         <small class="smallest-font text-theme-blue hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.data.destination}}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.destination}}</small>
                                       </p>
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <p class="pull-right">
-                                          <strong class="price-full">{{trip.data.price | currency : '' }} €</strong>
+                                          <strong class="price-full">{{trip.price | currency : '' }} €</strong>
                                           <span class="pull-right type-service">
-                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.data.type__name}}</small>
+                                            <small class="text-muted smallest-font" style="margin-top: -10px;">{{trip.type__name}}</small>
                                           </span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
-                                        <img ng-src="{{trip.data.enterprise__image}}" title="{{trip.data.enterprise__name}}" class="logo_small">
+                                        <img ng-src="{{trip.enterprise__image}}" title="{{trip.enterprise__name}}" class="logo_small">
                                         <br>
                                         <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">Directo</small>
                                     </div>
-                                       
+
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
                                         <div class="arrow-box hidden-xs hidden-sm">
-                                            <span class=" hidden-xs hidden-sm">{{ search.durationFormatted(trip.data.duration) }}</span> 
+                                            <span class=" hidden-xs hidden-sm">{{ search.durationFormatted(trip.duration) }}</span>
                                         </div>
-                                           
+
                                         <ul class="timeline hidden-xs hidden-sm">
                                             <li class="li complete">
                                                  <div class="timestamp"></div>
                                                 <div class="status no-scale"></div>
                                             </li>
-                                            
 
-                                        </ul> 
-                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>   
+
+                                        </ul>
+                                        <i class="fa fa-chevron-right hidden-xs hidden-sm"></i>
                                         <small class="hidden-xs hidden-sm">Directo</small>
-                                      
-                                      <a href="{{trip.data.redirect}}" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                      <a href="{{trip.redirect}}" class="" target="_blank"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
 
@@ -1610,12 +1603,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
-                                      <a href="{{trip.data.redirect}}" target="_blank" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a href="{{trip.redirect}}" target="_blank" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                      <strong class="price hidden-md hidden-lg">{{trip.data.price | currency : '' }} €</strong>
+                                      <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1662,7 +1655,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                  <div class="modal-content" style="background-color: #F2DEDD !important;">
                    <div class="modal-header">
                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                       <h2>Error</h2>
+                       <h2 style="color:#333;">Error</h2>
                    </div>
                    <div class="modal-body">
                        <p>
@@ -1678,7 +1671,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                  <div class="modal-content" style="background-color: #F2DEDD !important;">
                    <div class="modal-header">
                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                       <h2>Error</h2>
+                       <h2 style="color:#333;">Error</h2>
                    </div>
                    <div class="modal-body">
                        <p>
@@ -1694,7 +1687,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                  <div class="modal-content" style="background-color: #F2DEDD !important;">
                    <div class="modal-header">
                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                       <h2>Error</h2>
+                       <h2 style="color:#333;">Error</h2>
                    </div>
                    <div class="modal-body">
                        <p>
