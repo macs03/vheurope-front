@@ -1711,6 +1711,7 @@
                                                     vm.planesTrips.push(value.data);
                                                 }else{
                                                     vm.scraperTrips.push(value.data);
+                                                    vm.hasBusTrips = true;
                                                 }
                                             });
                                             vm.planesFlag = true;
@@ -1748,6 +1749,7 @@
                                                                     vm.planesTrips.push(value.data);
                                                                 }else{
                                                                     vm.scraperTrips.push(value.data);
+                                                                    vm.hasBusTrips = true;
                                                                 }
                                                             });
                                                             vm.planesFlag = true;
@@ -1785,6 +1787,7 @@
                                                                                     vm.planesTrips.push(value.data);
                                                                                 }else{
                                                                                     vm.scraperTrips.push(value.data);
+                                                                                    vm.hasBusTrips = true;
                                                                                 }
                                                                             });
                                                                             vm.planesFlag = true;

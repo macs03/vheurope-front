@@ -1526,7 +1526,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </div>
                 </div>
             </div>
-            <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.length > 0">
+            <div class="row  container-responsive" id="scraper-results" ng-show="search.scraperTrips.length > 0 && search.showBus">
                 <div class="col-xs-12 col-md-12 " >
                     <h5 class="hidden-xs hidden-sm hidden" ng-class="{'hidden-bus': !search.showBus}">
                         <span translate>SEARCH.SCRAPER.TITLE</span> <small><span translate>SEARCH.SCRAPER.MESSAGE</span></small> {{search.scraperTrips.length}} <span translate>SEARCH.TRIPS.RESULTS</span>
