@@ -1258,15 +1258,43 @@
                     }
                 });
 
-                  if(vm.originId == undefined){
-                        vm.originId = originPlaneCity[0];
-                        vm.destinationId = destinationPlaneCity[0];
-                  }
+                if(vm.originId == undefined){
 
-                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
-                var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                    locationsRtFactory
+                        .getAll(originPlaneCity[0])
+                        .then(function (data) {
+                            if(data.length == 1){
+                              vm.originId = data[0].id  
+                            }else{
+                               vm.originId = originPlaneCity[0]; 
+                            }
+                            locationsRtFactory
+                                .getAll(destinationPlaneCity[0])
+                                .then(function (data) {
+                                    if(data.length == 1){
+                                        vm.destinationId = data[0].id  
+                                    }else{
+                                       vm.destinationId = destinationPlaneCity[0]; 
+                                    }
+                                    console.log(vm.originId+'-'+vm.destinationId);
+                                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
-                vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                                    vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                                })
+                                .catch(function (err) {
+                                    console.log('Error');
+                                });
+                        })
+                        .catch(function (err) {
+                            console.log('Error');
+                        });
+                }else{
+                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+
+                    vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                }
             }
 
             function order(type) {
