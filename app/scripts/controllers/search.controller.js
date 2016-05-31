@@ -1170,6 +1170,8 @@
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(params.departure,params.returns) });
                 }
 
+                //Reseteo los arrays basicos
+                resetGlobal();
 
                 travelsFactory
                     .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "logitravel")
@@ -1396,6 +1398,9 @@
                     $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDateFormat,returnDateFormat) });
                 }
+
+                //Reseteo los arrays basicos
+                resetGlobal();
 
                 travelsFactory
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
