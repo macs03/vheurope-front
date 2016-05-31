@@ -51,8 +51,19 @@
             vm.percentagePlane = 20;
             vm.lowestPricePlane = 0;
             vm.lowestDurationPlane = 0;
+            vm.lowestPriceBus = 0;
+            vm.lowestDurationBus = 0;
+            vm.lowestPriceTrain = 0;
+            vm.lowestDurationTrain = 0;
             vm.searchingTripsPlane = false;
             vm.showCombineTrips = false;
+            vm.globalTrips = [];
+            vm.globalAlternativeTrips = [];
+            vm.globalDirectDepartureTrips = [];
+            vm.globalDirectReturnTrips = [];
+            vm.globalMixedTrips = [];
+            vm.globalCompanies = [];
+            vm.globalTypeServices = [];
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -629,6 +640,64 @@
                 }
             }
 
+            var updatePercentageBar2 = function(){
+                var bus = 0;
+                var train= 0;
+                var plane= 0;
+                var barList = [];
+                var mayor = 0;
+                var pos = 0;
+
+                if(vm.lowestDurationBus > 0){
+                  bus = vm.lowestDurationBus;
+                }else{
+                    bus = 120;
+                }
+
+                if(vm.lowestDurationTrain > 0){
+                  train = vm.lowestDurationTrain;
+                }else{
+                    train = 120;
+                }
+
+                if(vm.lowestDurationPlane > 0){
+                  plane = vm.lowestDurationPlane;
+                }else{
+                    plane = 120;
+                }
+
+                console.log(bus+'-'+train+'-'+plane);
+                console.log(vm.lowestDurationBus+'-'+vm.lowestDurationTrain+'-'+vm.lowestDurationPlane);
+
+                barList = [bus,train,plane];
+                mayor = barList[0];
+                pos = 0;
+                for(i=1;i<barList.length;i++){
+                    if(barList[i] > mayor){
+                        mayor=barList[i];
+                        pos = i;
+                    }
+                }
+                // TRAIN
+                if(pos == 1){
+                    vm.percentageTrain = 60;
+                    vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                    vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                }
+                //BUS
+                if(pos == 0){
+                    vm.percentageBus = 60;
+                    vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                    vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                }
+                //PLANE
+                if(pos == 2){
+                    vm.percentagePlane = 60;
+                    vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
+                    vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                }
+            }
+
             var getHourMinPlanes = function(minutes){
                 var realmin = minutes % 60
                 var hours = Math.floor(minutes / 60)
@@ -666,6 +735,225 @@
                               return menor;
                         }
                   }
+            };
+
+            var getLowest = function(){
+                var menor = 0;
+                var pos = 0;
+                console.log('GLOBAL EN LOWEST');
+                console.log(vm.globalTrips);
+                //BUSCO EL VIAJE MAS CORTO EN BUS
+                if(vm.globalTrips.length > 0){
+                    //Filtro los viajes en tren
+                    var tt = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'train';
+                    });
+
+                    if(tt.length > 0){
+                        console.log('SI HAY VIAJES DE TREN');
+                        //Busco la duracion menor en trenes
+                        menor = tt[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tt.length;i++){
+                            if(tt[i].durationMinutes < menor){
+                                menor=tt[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestDurationTrain = tt[pos].durationMinutes;
+                        console.log('DURACION MENOR EN TREN')
+                        console.log(vm.lowestDurationTrain);
+
+                        //Busco el precio menor en trenes
+                        menor = tt[0].price;
+                        pos = 0;
+                        for(i=1;i<tt.length;i++){
+                            if(tt[i].price < menor){
+                                menor=tt[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPriceTrain = tt[pos].price;
+                        console.log('PRECIO MENOR EN TREN')
+                        console.log(vm.lowestPriceTrain);
+                    }
+
+                    //Filtro los viajes en bus
+                    var tb = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'bus';
+                    });
+
+                    if(tb.length > 0){
+                        console.log('SI HAY VIAJES DE BUS');
+                        //Busco la duracion menor en trenes
+                        menor = tb[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tb.length;i++){
+                            if(tb[i].durationMinutes < menor){
+                                menor=tb[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestDurationBus = tb[pos].durationMinutes;
+                        console.log('DURACION MENOR EN BUS')
+                        console.log(vm.lowestDurationBus);
+
+                        //Busco el precio menor en buses
+                        menor = tb[0].price;
+                        pos = 0;
+                        for(i=1;i<tb.length;i++){
+                            if(tb[i].price < menor){
+                                menor=tb[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPriceBus = tb[pos].price;
+                        console.log('PRECIO MENOR EN TREN')
+                        console.log(vm.lowestPriceBus);
+                    }
+
+                    //Filtro los viajes en avion
+                    var tp = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'plane';
+                    });
+
+                    if(tp.length > 0){
+                        console.log('SI HAY VIAJES DE AVION');
+                        //Busco la duracion menor en trenes
+                        menor = tp[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tp.length;i++){
+                            if(tp[i].durationMinutes < menor){
+                                menor=tp[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestDurationPlane = tp[pos].durationMinutes;
+                        console.log('DURACION MENOR EN AVION')
+                        console.log(vm.lowestDurationPlane);
+
+                        //Busco el precio menor en aviones
+                        menor = tp[0].price;
+                        pos = 0;
+                        for(i=1;i<tp.length;i++){
+                            if(tp[i].price < menor){
+                                menor=tp[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPricePlane = tp[pos].price;
+                        console.log('PRECIO MENOR EN AVION')
+                        console.log(vm.lowestPricePlane);
+                    }
+
+                    updatePercentageBar2();
+
+                }
+            };
+
+            var resetGlobal = function(){
+                vm.globalDirectDepartureTrips = [];
+                vm.globalDirectReturnTrips = [];
+                vm.globalTrips = [];
+                vm.globalCompanies = [];
+                vm.globalAlternativeTrips = [];
+                vm.globalMixedTrips = [];
+                vm.globalTypeServices = [];
+            };
+
+            var loadGlobal = function(data, isMixed, isPlane){
+                if(data != undefined){
+
+                    if(isPlane  == false){
+
+                        if(data.directDepartureTrips.length > 0){
+                            if(data.directDepartureTrips[0] != undefined && data.directDepartureTrips[0].length > 0){
+                                if(vm.globalDirectDepartureTrips[0] == undefined){
+                                    vm.globalDirectDepartureTrips.push([]);
+                                }
+
+                                angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                    vm.globalDirectDepartureTrips[0].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                });
+                            }
+
+                            if(data.directDepartureTrips[1] != undefined && data.directDepartureTrips[1].length > 0){
+                                if(vm.globalDirectDepartureTrips[1] == undefined){
+                                    vm.globalDirectDepartureTrips.push([]);
+                                }
+
+                                angular.forEach(data.directDepartureTrips[1], function(value, key) {
+                                    vm.globalDirectDepartureTrips[1].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                });
+                            }
+                        }
+                        if(data.directReturnTrips.length > 0){
+
+                            if(data.directReturnTrips[0] != undefined && data.directReturnTrips[0].length > 0){
+                                if(vm.globalDirectReturnTrips[0] == undefined){
+                                    vm.globalDirectReturnTrips.push([]);
+                                }
+
+                                angular.forEach(data.directReturnTrips[0], function(value, key) {
+                                    vm.globalDirectReturnTrips[0].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                });
+                            }
+
+                            if(data.directReturnTrips[1] != undefined && data.directReturnTrips[1].length > 0){
+                                if(vm.globalDirectReturnTrips[1] == undefined){
+                                    vm.globalDirectReturnTrips.push([]);
+                                }
+
+                                angular.forEach(data.directReturnTrips[1], function(value, key) {
+                                    vm.globalDirectReturnTrips[1].push(value);  
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                });
+                            }
+                        }
+                        if(data.alternativeTrips.length > 0){
+                            angular.forEach(data.alternativeTrips, function(value, key) {
+                                vm.globalAlternativeTrips.push(value);    
+                            });
+                        }
+                        if(data.mixedTrips.length > 0){
+                            angular.forEach(data.mixedTrips, function(value, key) {
+                                vm.globalMixedTrips.push(value);    
+                            });
+                        }
+                        if(data.companies.length > 0){
+                            angular.forEach(data.companies, function(value, key) {
+                                vm.globalCompanies.push(value);    
+                            });
+                        }
+                        if(data.typeServices.length > 0){
+                            angular.forEach(data.typeServices, function(value, key) {
+                                vm.globalTypeServices.push(value);    
+                            });
+                        }
+
+                        
+                    }else{
+                        if(data.length > 0){
+                            angular.forEach(data, function(value, key) {
+                                vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });    
+                            });
+                        }
+                    }
+
+                    if(vm.globalTrips.length > 0){
+                        getLowest();
+                    }
+
+                }
             };
 
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
@@ -709,6 +997,11 @@
             vm.updateTripsType = updateTripsType;
             vm.updatePercentageBar = updatePercentageBar();
             vm.getLowestPlanes = getLowestPlanes();
+            vm.loadGlobal = loadGlobal();
+            vm.resetGlobal = resetGlobal();
+            vm.getLowest = getLowest();
+            vm.updatePercentageBar2 = updatePercentageBar2();
+
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
@@ -883,16 +1176,18 @@
                     .then(function(data){
 
                         vm.isLoading = false;
-                        vm.trips = data;
+                        //vm.trips = data;
+                        loadGlobal(data, false, false);
+                        //getLowest();
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
+                        //vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
+                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
+                       // updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -928,16 +1223,18 @@
                     .then(function(data){
 
                         vm.isLoading = false;
-                        vm.trips = data;
+                        //vm.trips = data;
+                        loadGlobal(data, false, false);
+                        //getLowest();
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
+                        //vm.isMixedTrips = data.isMixedTrips;
+                        //vm.hasTrainTrips = data.hasTrainTrips;
+                        vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes, 0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         var time = $timeout(function () {
@@ -967,8 +1264,9 @@
                         apiError();
                         utilityService.setData(null,null,null,null, null, null, null);
                     })
+                    
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
-                vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                    vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
 
             }else{
                 console.log('Por AQUI');
@@ -1102,17 +1400,21 @@
                 travelsFactory
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
                     .then(function(data){
+                        console.log('1');
+                        console.log(data);
+                        loadGlobal(data, false, false);
+                        //getLowest();
                         vm.isLoading = false;
-                        vm.trips = data;
+                        //vm.trips = data;
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
+                        //vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
+                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                        
@@ -1150,16 +1452,21 @@
                     .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud")
                     .then(function(data){
                         vm.isLoading = false;
-                        vm.trips = data;
+                        //vm.trips = data;
+                        
+                        console.log('2');
+                        console.log(data);
+                        loadGlobal(data, false,false);
+                        //getLowest();
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        vm.hasTrainTrips = data.hasTrainTrips;
-                        vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
+                        //vm.isMixedTrips = data.isMixedTrips;
+                        //vm.hasTrainTrips = data.hasTrainTrips;
+                        vm.hasBusTrips = data.hasBusTrips;
                         vm.updateTripsType();
-                        updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                        
@@ -1890,6 +2197,7 @@
                                             angular.forEach(data2.tickets, function(value, key) {
                                               vm.planesTrips.push(value.data);
                                             });
+                                            loadGlobal(vm.planesTrips, false, true);
 
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
@@ -1898,9 +2206,9 @@
                                             vm.lowestPricePlane = getLowestPlanes(data2.tickets, 2);
                                             vm.lowestDurationPlane = getLowestPlanes(data2.tickets, 1);
                                             if (vm.trips.lowest) {
-                                                updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
+                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                             }else{
-                                                updatePercentageBar(0, 0, vm.lowestDurationPlane);
+                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
                                             }
                                             planesManager(data2.tickets);
                                         })
@@ -1926,6 +2234,7 @@
                                                             angular.forEach(data4.tickets, function(value, key) {
                                                               vm.planesTrips.push(value.data);
                                                             });
+                                                            loadGlobal(vm.planesTrips, false, true);
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
@@ -1933,9 +2242,9 @@
                                                             vm.lowestPricePlane = getLowestPlanes(data4.tickets, 2);
                                                             vm.lowestDurationPlane = getLowestPlanes(data4.tickets, 1);
                                                             if (vm.trips.lowest) {
-                                                                updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
+                                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                                             }else{
-                                                                updatePercentageBar(0, 0, vm.lowestDurationPlane);
+                                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
                                                             }
                                                             planesManager(data4.tickets);
                                                         })
@@ -1963,6 +2272,7 @@
                                                                             angular.forEach(data6.tickets, function(value, key) {
                                                                               vm.planesTrips.push(value.data);
                                                                             });
+                                                                            loadGlobal(vm.planesTrips, false, true);
 
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
@@ -1971,9 +2281,9 @@
                                                                             vm.lowestPricePlane = getLowestPlanes(data6.tickets, 2);
                                                                             vm.lowestDurationPlane = getLowestPlanes(data6.tickets, 1);
                                                                             if (vm.trips.lowest) {
-                                                                                updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
+                                                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
                                                                             }else{
-                                                                                updatePercentageBar(0, 0, vm.lowestDurationPlane);
+                                                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
                                                                             }
                                                                             planesManager(data6.tickets);
                                                                         })
