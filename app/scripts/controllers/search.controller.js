@@ -1189,181 +1189,9 @@
                 //Reseteo los arrays basicos
                 resetGlobal();
 
-                travelsFactory
-                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "logitravel")
-                    .then(function(data){
-
-                        console.log('1');
-                        console.log(data);
-                        loadGlobal(data, false, false);
-                        //getLowest();
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        vm.hasTrainTrips = data.hasTrainTrips;
-                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
-                    })
-
-                  travelsFactory
-                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud")
-                    .then(function(data){
-
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('2');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        //vm.hasTrainTrips = data.hasTrainTrips;
-                        if(!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
-                    })
-
-                  travelsFactory
-                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia")
-                    .then(function(data){
-
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('3');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        if(!data.isMixedTrips){
-                            vm.minDuration = data.minDuration; //REVISAR
-                        }
-                        vm.isMixedTrips = data.isMixedTrips;
-
-                        if(!vm.hasBusTrips){
-                            vm.hasBusTrips = data.hasBusTrips;
-                            if(data.isMixedTrips){
-                              vm.hasBusTrips = true;
-                            }
-                        }
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
-                    })
+                callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "logitravel");
+                callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud");
+                callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
                     
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
                     vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
@@ -1500,175 +1328,9 @@
                 //Reseteo los arrays basicos
                 resetGlobal();
 
-                travelsFactory
-                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
-                    .then(function(data){
-                        console.log('1');
-                        console.log(data);
-                        loadGlobal(data, false, false);
-                        //getLowest();
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        vm.hasTrainTrips = data.hasTrainTrips;
-                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
-
-                  travelsFactory
-                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud")
-                    .then(function(data){
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('2');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        //vm.hasTrainTrips = data.hasTrainTrips;
-                        if(!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
-
-                  travelsFactory
-                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia")
-                    .then(function(data){
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('3');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        if(!data.isMixedTrips){
-                            vm.minDuration = data.minDuration; //REVISAR
-                        }
-                        vm.isMixedTrips = data.isMixedTrips;
-
-                        if(!vm.hasBusTrips){
-                            vm.hasBusTrips = data.hasBusTrips;
-                            if(data.isMixedTrips){
-                              vm.hasBusTrips = true;
-                            }
-                        }
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
+                callLogitravel(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel");
+                callBusbud(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
+                callMovelia(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
 
                 var originPlaneCity = vm.origin.split(',');
                 var destinationPlaneCity = vm.destination.split(',');
@@ -1920,176 +1582,11 @@
                 //Reseteo los arrays basicos
                 resetGlobal();
                 
-                travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
-                    .then(function(data){
-                        console.log('1');
-                        console.log(data);
-                        loadGlobal(data, false, false);
-                        //getLowest();
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        vm.hasTrainTrips = data.hasTrainTrips;
-                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
+                callLogitravel(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
+                callBusbud(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
+                callMovelia(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
 
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
-
-                  travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud")
-                    .then(function(data){
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('2');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        //vm.hasTrainTrips = data.hasTrainTrips;
-                        if(!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
-
-                  travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia")
-                    .then(function(data){
-                        vm.isLoading = false;
-                        //vm.trips = data;
-                        
-                        console.log('3');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        if(!data.isMixedTrips){
-                            vm.minDuration = data.minDuration; //REVISAR
-                        }
-                        vm.isMixedTrips = data.isMixedTrips;
-
-                        if(!vm.hasBusTrips){
-                            vm.hasBusTrips = data.hasBusTrips;
-                            if(data.isMixedTrips){
-                              vm.hasBusTrips = true;
-                            }
-                        }
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
-
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-
-                        vm.searchingTripsPlane = true;
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
-                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                var destiniesPlanes = sessionStorageService.getIdForPlanes();
                 vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
 
             }
@@ -2296,17 +1793,25 @@
                 vm.planesCompanies = listCompaniesArr;
                 var arraySetSeats = Array.from(listSeats);
                 var listSeatsArr = [];
+                
                 for (var i = 0; i < arraySetSeats.length; i++) {
                     listSeatsArr.push({id: i, name:arraySetSeats[i]});
                 }
                 vm.planesSeats = listSeatsArr;
+                
                 for (var i = 0; i < vm.planesCompanies.length; i++) {
                     vm.companies.push(vm.planesCompanies[i].name);
                 }
-                for (var i = 0; i < vm.planesSeats.length; i++) {
-                    vm.seats.push(vm.planesSeats[i].name);
-                }
                 vm.companiesReset = vm.companies;
+
+                var setSeats = new Set(); // Para los de los otros servicios
+                for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                      setSeats.add(vm.globalTypeServices[i].name)
+                }
+                for (var i = 0; i < vm.planesSeats.length; i++) {
+                    setSeats.add(vm.planesSeats[i].name);
+                }
+                vm.seats = Array.from(setSeats);
                 vm.seatsReset = vm.seats;
             }
 
@@ -2423,6 +1928,188 @@
                     vm.returnCompanyName = companyName;
                     vm.returnLogo = logo;
                 }
+            }
+
+            function callLogitravel (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                  travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                    .then(function(data){
+
+                        console.log('1');
+                        console.log(data);
+                        loadGlobal(data, false, false);
+                        //getLowest();
+                        vm.isLoading = false;
+                        //vm.trips = data;
+                        vm.searching = false;
+                        vm.results = true;
+                        vm.disabled = false;
+                        vm.minDuration = data.minDuration;
+                        //vm.isMixedTrips = data.isMixedTrips;
+                        vm.hasTrainTrips = data.hasTrainTrips;
+                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
+                        vm.updateTripsType();
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
+                       
+
+                        var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+
+                        var setSeats = new Set();
+                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                            setSeats.add(vm.globalTypeServices[i].name)
+                        }
+                        vm.seats = Array.from(setSeats);
+                        vm.seatsReset = vm.seats;
+
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
+
+                        vm.searchingTripsPlane = true;
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.searching = false;
+                        vm.error = true;
+                        vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        apiError();
+                        utilityService.setData(null,null,null,null, null, null, null);
+                    })
+            }
+
+            function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                   travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                    .then(function(data){
+
+                        vm.isLoading = false;
+                        //vm.trips = data;
+                        
+                        console.log('2');
+                        console.log(data);
+                        loadGlobal(data, false,false);
+                        //getLowest();
+                        vm.searching = false;
+                        vm.results = true;
+                        vm.disabled = false;
+                        vm.minDuration = data.minDuration;
+                        //vm.isMixedTrips = data.isMixedTrips;
+                        //vm.hasTrainTrips = data.hasTrainTrips;
+                        if(!vm.hasBusTrips)
+                            vm.hasBusTrips = data.hasBusTrips;
+                        vm.updateTripsType();
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
+                       
+
+                        var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+
+                        var setSeats = new Set();
+                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                            setSeats.add(vm.globalTypeServices[i].name)
+                        }
+                        vm.seats = Array.from(setSeats);
+                        vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
+
+                        vm.searchingTripsPlane = true;
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.searching = false;
+                        vm.error = true;
+                        vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        apiError();
+                        utilityService.setData(null,null,null,null, null, null, null);
+                    })
+            }
+
+            function callMovelia (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
+                  travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
+                    .then(function(data){
+
+                        vm.isLoading = false;
+                        //vm.trips = data;
+                        
+                        console.log('3');
+                        console.log(data);
+                        loadGlobal(data, false,false);
+                        //getLowest();
+                        vm.searching = false;
+                        vm.results = true;
+                        vm.disabled = false;
+                        if(!data.isMixedTrips){
+                            vm.minDuration = data.minDuration; //REVISAR
+                        }
+                        vm.isMixedTrips = data.isMixedTrips;
+
+                        if(!vm.hasBusTrips){
+                            vm.hasBusTrips = data.hasBusTrips;
+                            if(data.isMixedTrips){
+                              vm.hasBusTrips = true;
+                            }
+                        }
+                        vm.updateTripsType();
+                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        $('.pikaday__display').prop('disabled', false);
+                        vm.weather_progressbar.stop();
+                       
+
+                        var time = $timeout(function () {
+                            vm.maxPrice = data.maxPrice;
+                            vm.minPrice = data.minPrice;
+                            setDateFilterRange(data.maxPrice,data.minPrice);
+                        }, 100);
+
+                        var setSeats = new Set();
+                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                            setSeats.add(vm.globalTypeServices[i].name)
+                        }
+                        vm.seats = Array.from(setSeats);
+                        vm.seatsReset = vm.seats;
+                        for (var i = 0; i < data.companies.length; i++) {
+                            vm.companies.push(data.companies[i].name)
+                        }
+                        vm.companiesReset = vm.companies;
+                        vm.weather_progress_scraper.reset();
+                        vm.weather_progress_scraper.start();
+
+                        vm.searchingTripsPlane = true;
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.searching = false;
+                        vm.error = true;
+                        vm.msgError = err;
+                        vm.disabled = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        apiError();
+                        utilityService.setData(null,null,null,null, null, null, null);
+                    })
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
