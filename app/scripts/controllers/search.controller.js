@@ -1974,7 +1974,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.searchingTripsPlane = true;
+                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -2033,7 +2033,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.searchingTripsPlane = true;
+                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -2098,7 +2098,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.searchingTripsPlane = true;
+                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
