@@ -242,7 +242,7 @@
         	vm.searchTrips = function () {
 
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    console.log(value+key);
+                    //console.log(value+key);
                     if(vm.myOptionsOrigin[key].rt === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
