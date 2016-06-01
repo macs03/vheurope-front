@@ -1135,15 +1135,21 @@
                     }
                 });
 
-                if(vm.originId == undefined){
 
+                if(vm.originId == undefined || vm.destinationId == undefined ){
+                    var specials = [];
+                    specials['A Coruna'] = 'la-coruna';
                     locationsRtFactory
                         .getAll(originPlaneCity[0])
                         .then(function (data) {
                             if(data.length == 1){
                               vm.originId = data[0].id  
                             }else{
-                               vm.originId = originPlaneCity[0]; 
+                                if(specials[originPlaneCity[0]] != undefined){
+                                    vm.originId = specials[originPlaneCity[0]]; 
+                                }else{
+                                    vm.originId = originPlaneCity[0]; 
+                                }
                             }
                             locationsRtFactory
                                 .getAll(destinationPlaneCity[0])
@@ -1151,8 +1157,13 @@
                                     if(data.length == 1){
                                         vm.destinationId = data[0].id  
                                     }else{
-                                       vm.destinationId = destinationPlaneCity[0]; 
+                                        if(specials[destinationPlaneCity[0]] != undefined){
+                                            vm.destinationId = specials[destinationPlaneCity[0]]; 
+                                        }else{
+                                            vm.destinationId = destinationPlaneCity[0]; 
+                                        }
                                     }
+
                                     console.log(vm.originId+'-'+vm.destinationId);
                                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
@@ -1166,7 +1177,9 @@
                         .catch(function (err) {
                             console.log('Error');
                         });
+
                 }else{
+                    console.log(vm.originId+'-'+vm.destinationId);
                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
