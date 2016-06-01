@@ -51,6 +51,8 @@
             vm.percentagePlane = 20;
             vm.lowestPricePlane = 0;
             vm.lowestDurationPlane = 0;
+            vm.lowestPriceScraper = 0;
+            vm.lowestDurationScraper = 0;
             vm.searchingTripsPlane = false;
             vm.showCombineTrips = false;
             vm.cnames_es = [
@@ -459,7 +461,12 @@
             }
 
             var updateTripsType = function(){
-                  
+
+                //console.log(vm.scraperTrips.length);
+                if(vm.scraperTrips.length > 0){
+                   vm.hasBusTrips = true; 
+                }  
+                //console.log(vm.hasTrainTrips +'-'+ vm.hasBusTrips +'-'+ vm.hasPlaneTrips) ; 
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
                     vm.showCombineTrips = true;
@@ -552,8 +559,8 @@
 
             var updatePercentageBar = function(bus, train, plane){
                 var bus = bus;
-                var train= train;
-                var plane= plane;
+                var train = train;
+                var plane = plane;
                 var barList = [];
                 var mayor = 0;
                 var pos = 0;
@@ -1717,6 +1724,7 @@
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
+
                                             vm.updateTripsType();
                                             vm.lowestPricePlane = getLowestPlanes(data2.tickets, 2);
                                             vm.lowestDurationPlane = getLowestPlanes(data2.tickets, 1);
