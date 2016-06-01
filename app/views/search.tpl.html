@@ -1356,11 +1356,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </div>
             </div>
 
-            <div class="row  container-responsive" id="mixed-results" ng-show="search.trips.mixedTrips.length > 0">
+            <div class="row  container-responsive" id="mixed-results" ng-show="search.globalMixedTrips.length > 0">
                 <div class="col-xs-12 col-md-12 " >
                     <div class="new-results">
                         <div class="results list" id="trips_mixed" >
-                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.trips.mixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus}">
+                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus}">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <small class="text-muted smallest-font truncate">Varias empresas</small>
@@ -1621,12 +1621,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 </div>
             </div>
 
-            <div class="row  container-responsive" id="alternative-results" ng-show="search.trips.alternativeTrips.length > 0">
+            <div class="row  container-responsive" id="alternative-results" ng-show="search.globalAlternativeTrips.length > 0">
                 <div class="col-xs-12 col-md-12" >
                     <h5 class="hidden-xs hidden-sm" >
-                        Viajes Alternativos: {{search.trips.alternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
+                        Viajes Alternativos: {{search.globalAlternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5>
-                    <div class="new-results" ng-repeat="trip in search.trips.alternativeTrips">
+                    <div class="new-results" ng-repeat="trip in search.globalAlternativeTrips">
                         <div class="results list" >
                             <div class="row result result-iv" >
 
