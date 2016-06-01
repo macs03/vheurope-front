@@ -891,6 +891,7 @@
 
                         vm.isLoading = false;
                         vm.trips = data;
+                        vm.order('departure');
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
@@ -1065,6 +1066,7 @@
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
+                        vm.order('departure');
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
@@ -1370,6 +1372,7 @@
                     .then(function(data){
                         vm.isLoading = false;
                         vm.trips = data;
+                        vm.order('departure');
                         vm.searching = false;
                         vm.results = true;
                         vm.disabled = false;
@@ -1734,6 +1737,11 @@
                                                     vm.hasBusTrips = true;
                                                 }
                                             });
+                                            if (vm.trips.directDepartureTrips != undefined) {
+                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                    vm.order('departure');
+                                                }
+                                            }
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
@@ -1773,6 +1781,11 @@
                                                                     vm.hasBusTrips = true;
                                                                 }
                                                             });
+                                                            if (vm.trips.directDepartureTrips != undefined) {
+                                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                                    vm.order('departure');
+                                                                }
+                                                            }
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
@@ -1811,6 +1824,11 @@
                                                                                     vm.hasBusTrips = true;
                                                                                 }
                                                                             });
+                                                                            if (vm.trips.directDepartureTrips != undefined) {
+                                                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                                                    vm.order('departure');
+                                                                                }
+                                                                            }
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
                                                                             vm.hasPlaneTrips = true;
