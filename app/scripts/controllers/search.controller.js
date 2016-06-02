@@ -1738,7 +1738,7 @@
                                                 }
                                             });
                                             if (vm.trips.directDepartureTrips != undefined) {
-                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                if (vm.trips.directDepartureTrips[0] != undefined && vm.trips.directDepartureTrips[0].length == 0) {
                                                     vm.order('departure');
                                                 }
                                             }
@@ -1782,7 +1782,7 @@
                                                                 }
                                                             });
                                                             if (vm.trips.directDepartureTrips != undefined) {
-                                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                                if (vm.trips.directDepartureTrips[0] != undefined && vm.trips.directDepartureTrips[0].length == 0) {
                                                                     vm.order('departure');
                                                                 }
                                                             }
@@ -1825,7 +1825,7 @@
                                                                                 }
                                                                             });
                                                                             if (vm.trips.directDepartureTrips != undefined) {
-                                                                                if (vm.trips.directDepartureTrips[0].length == 0) {
+                                                                                if (vm.trips.directDepartureTrips[0] != undefined && vm.trips.directDepartureTrips[0].length == 0) {
                                                                                     vm.order('departure');
                                                                                 }
                                                                             }
