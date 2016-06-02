@@ -487,7 +487,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <span class="pull-left" ng-show="!search.hasTrainTrips" translate>SEARCH.NO_DEPARTURES</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip">
+                    <div class="row time-resume-trip" ng-class="{'hidden': search.trips.directReturnTrips.length > 0}">
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-plane text-muted"></i>  
                             <b ng-show="search.hasPlaneTrips">{{ search.lowestPricePlane | currency : '' }} €</b>
