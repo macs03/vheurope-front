@@ -31,8 +31,14 @@
                     url: apiRtUrl+'destinations/?q='+query,
                 })
                 .success(function(data) {
+                    var rt = '';
                     for (var i = 0; i < data.items.length; i++) {
-                      destinations.push({label: data.items[i].name+', '+data.items[i].country.name, rt: data.items[i].rt, id: data.items[i].id, name: data.items[i].name+', '+data.items[i].country.name, country: data.items[i].country.name, countryCode: data.items[i].country.id});
+                       if(data.items[i].rt == '-'){
+                        rt = data.items[i].id;
+                       }else{
+                        rt = data.items[i].rt;
+                       } 
+                      destinations.push({label: data.items[i].name+', '+data.items[i].country.name, rt: rt, id: data.items[i].id, name: data.items[i].name+', '+data.items[i].country.name, country: data.items[i].country.name, countryCode: data.items[i].country.id});
                     }
                     defered.resolve(destinations);
                 })
@@ -58,8 +64,14 @@
                     //for (var i = 0; i < data.nearPlaces.length; i++) {
                     //  destinations.push({label: data.nearPlaces[i].name+', '+data.nearPlaces[i].country.name, rt: data.nearPlaces[i].rt, id: data.nearPlaces[i].id, name: data.nearPlaces[i].name+', '+data.nearPlaces[i].country.name, country: data.nearPlaces[i].country.name, countryCode: data.nearPlaces[i].country.id});
                     //}
+                    var rt = '';
                     for (var i = 0; i < data.suggestions.length; i++) {
                         if(data.suggestions[i].length == undefined){
+                            if(data.suggestions[i].rt == '-'){
+                                rt = data.suggestions[i].id;
+                            }else{
+                                rt = data.suggestions[i].rt;
+                            } 
                             destinations.push({label: data.suggestions[i].name+', '+data.suggestions[i].country.name, rt: data.suggestions[i].rt, id: data.suggestions[i].id, name: data.suggestions[i].name+', '+data.suggestions[i].country.name, country: data.suggestions[i].country.name, countryCode: data.suggestions[i].country.id});
                         }
                     }
