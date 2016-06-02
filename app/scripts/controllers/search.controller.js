@@ -23,6 +23,7 @@
             vm.error = false;
             vm.order = order;
             vm.type = 'departure';
+            vm.countOrder = 0;
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
@@ -1974,6 +1975,12 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        vm.countOrder = vm.countOrder + 1;
+                        if (vm.countOrder == 4) {
+                            order('departure');
+                            vm.countOrder = 0;
+                        }
+
                         //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
@@ -2032,6 +2039,12 @@
                         vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
+
+                        vm.countOrder = vm.countOrder + 1;
+                        if (vm.countOrder == 4) {
+                            order('departure');
+                            vm.countOrder = 0;
+                        }
 
                         //vm.searchingTripsPlane = true;
                     })
@@ -2098,6 +2111,12 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        vm.countOrder = vm.countOrder + 1;
+                        if (vm.countOrder == 4) {
+                            order('departure');
+                            vm.countOrder = 0;
+                        }
+
                         //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
@@ -2134,7 +2153,11 @@
                                               vm.planesTrips.push(value.data);
                                             });
                                             loadGlobal(vm.planesTrips, false, true);
-
+                                            vm.countOrder = vm.countOrder + 1;
+                                            if (vm.countOrder == 4) {
+                                                console.log('ordenar inicialmente');
+                                                order('departure');
+                                            }
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
@@ -2171,6 +2194,11 @@
                                                               vm.planesTrips.push(value.data);
                                                             });
                                                             loadGlobal(vm.planesTrips, false, true);
+                                                            vm.countOrder = vm.countOrder + 1;
+                                                            if (vm.countOrder == 4) {
+                                                                order('departure');
+                                                                vm.countOrder = 0;
+                                                            }
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
@@ -2209,7 +2237,11 @@
                                                                               vm.planesTrips.push(value.data);
                                                                             });
                                                                             loadGlobal(vm.planesTrips, false, true);
-
+                                                                            vm.countOrder = vm.countOrder + 1;
+                                                                            if (vm.countOrder == 4) {
+                                                                                order('departure');
+                                                                                vm.countOrder = 0;
+                                                                            }
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
                                                                             vm.hasPlaneTrips = true;
