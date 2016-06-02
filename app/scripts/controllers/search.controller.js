@@ -24,6 +24,7 @@
             vm.order = order;
             vm.type = 'departure';
             vm.countOrder = 0;
+            vm.allTrips = [];
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
@@ -1436,6 +1437,7 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
+                    vm.allTrips = [];
                     if (!vm.multipleChange) {
                         searchTrip();
                     }else{
@@ -1450,6 +1452,7 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
+                    vm.allTrips = [];
                     searchTrip();
                 }
             }, true);
@@ -1460,6 +1463,7 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
+                    vm.allTrips = [];
                     searchTrip();
                 }
             }, true);
@@ -1471,6 +1475,7 @@
                         vm.seatsReset = [];
                         vm.companies = [];
                         vm.companiesReset = [];
+                        vm.allTrips = [];
                         searchTrip();
                     }
                 }
@@ -1483,6 +1488,7 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
+                    vm.allTrips = [];
                     searchTrip();
                 }
             }, true);
@@ -1953,8 +1959,12 @@
                         //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
-                       
-
+                        console.log('**********');
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                          vm.allTrips.push(value);
+                        });
+                        console.log(vm.allTrips);
+                        console.log('**********');
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
@@ -2019,8 +2029,12 @@
                         //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
-                       
-
+                        console.log('**********');
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                          vm.allTrips.push(value);
+                        });
+                        console.log(vm.allTrips);
+                        console.log('**********');
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
@@ -2090,8 +2104,12 @@
                         //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
-                       
-
+                        console.log('**********');
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                          vm.allTrips.push(value);
+                        });
+                        console.log(vm.allTrips);
+                        console.log('**********');
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
@@ -2149,8 +2167,22 @@
                                             //vm.planesTrips = data2.tickets;
 
                                             vm.planesTrips = [];
+                                            var auxTrip = {};
                                             angular.forEach(data2.tickets, function(value, key) {
                                               vm.planesTrips.push(value.data);
+                                              auxTrip.arrival = value.data.end;
+                                              auxTrip.companyName = value.data.enterprise__name;
+                                              auxTrip.departure = value.data.start;
+                                              auxTrip.destination = value.data.destination;
+                                              auxTrip.duration = value.data.duration;
+                                              auxTrip.logo = value.data.enterprise__image;
+                                              auxTrip.origin = value.data.origin;
+                                              auxTrip.price = value.data.price;
+                                              auxTrip.transportType = value.data.transportation;
+                                              auxTrip.typeServices = value.data.type__name;
+                                              auxTrip.url = value.data.redirect;
+                                              vm.allTrips.push(auxTrip);
+                                              auxTrip = {};
                                             });
                                             loadGlobal(vm.planesTrips, false, true);
                                             vm.countOrder = vm.countOrder + 1;
@@ -2158,6 +2190,10 @@
                                                 console.log('ordenar inicialmente');
                                                 order('departure');
                                             }
+                                            console.log('llamada 1');
+                                            console.log('**********');
+                                            console.log(vm.allTrips);
+                                            console.log('**********');
                                             vm.planesFlag = true;
                                             vm.scraperFlag = false;
                                             vm.hasPlaneTrips = true;
@@ -2190,8 +2226,22 @@
                                                             console.log(vm.planesTrips);
 
                                                             vm.planesTrips = [];
+                                                            var auxTrip = {};
                                                             angular.forEach(data4.tickets, function(value, key) {
                                                               vm.planesTrips.push(value.data);
+                                                              auxTrip.arrival = value.data.end;
+                                                              auxTrip.companyName = value.data.enterprise__name;
+                                                              auxTrip.departure = value.data.start;
+                                                              auxTrip.destination = value.data.destination;
+                                                              auxTrip.duration = value.data.duration;
+                                                              auxTrip.logo = value.data.enterprise__image;
+                                                              auxTrip.origin = value.data.origin;
+                                                              auxTrip.price = value.data.price;
+                                                              auxTrip.transportType = value.data.transportation;
+                                                              auxTrip.typeServices = value.data.type__name;
+                                                              auxTrip.url = value.data.redirect;
+                                                              vm.allTrips.push(auxTrip);
+                                                              auxTrip = {};
                                                             });
                                                             loadGlobal(vm.planesTrips, false, true);
                                                             vm.countOrder = vm.countOrder + 1;
@@ -2199,6 +2249,10 @@
                                                                 order('departure');
                                                                 vm.countOrder = 0;
                                                             }
+                                                            console.log('llamada 2');
+                                                            console.log('**********');
+                                                            console.log(vm.allTrips);
+                                                            console.log('**********');
                                                             vm.planesFlag = true;
                                                             vm.scraperFlag = false;
                                                             vm.hasPlaneTrips = true;
@@ -2233,9 +2287,27 @@
                                                                             //vm.planesTrips = data6.tickets;
 
                                                                             vm.planesTrips = [];
+                                                                            var auxTrip = {};
                                                                             angular.forEach(data6.tickets, function(value, key) {
                                                                               vm.planesTrips.push(value.data);
+                                                                              auxTrip.arrival = value.data.end;
+                                                                              auxTrip.companyName = value.data.enterprise__name;
+                                                                              auxTrip.departure = value.data.start;
+                                                                              auxTrip.destination = value.data.destination;
+                                                                              auxTrip.duration = value.data.duration;
+                                                                              auxTrip.logo = value.data.enterprise__image;
+                                                                              auxTrip.origin = value.data.origin;
+                                                                              auxTrip.price = value.data.price;
+                                                                              auxTrip.transportType = value.data.transportation;
+                                                                              auxTrip.typeServices = value.data.type__name;
+                                                                              auxTrip.url = value.data.redirect;
+                                                                              vm.allTrips.push(auxTrip);
+                                                                              auxTrip = {};
                                                                             });
+                                                                            console.log('llamada 3');
+                                                                            console.log('**********');
+                                                                            console.log(vm.allTrips);
+                                                                            console.log('**********');
                                                                             loadGlobal(vm.planesTrips, false, true);
                                                                             vm.countOrder = vm.countOrder + 1;
                                                                             if (vm.countOrder == 4) {
