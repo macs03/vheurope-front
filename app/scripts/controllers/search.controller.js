@@ -1822,15 +1822,26 @@
                 }
                 vm.companiesReset = vm.companies;
 
+                // Para actualizar el globalTypeServices con los resultados de las de aviones
+                angular.forEach(vm.planesSeats, function(value, key) {
+                  var exist = false;
+                  for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                        if(vm.globalTypeServices[i].name == value.name){
+                              exist = true;
+                        }
+                  }
+                  if(!exist){
+                        vm.globalTypeServices.push({id: value.id, name:value.name});
+                  }
+                });
+
                 var setSeats = new Set(); // Para los de los otros servicios
                 for (var i = 0; i < vm.globalTypeServices.length; i++) {
                       setSeats.add(vm.globalTypeServices[i].name)
                 }
-                for (var i = 0; i < vm.planesSeats.length; i++) {
-                    setSeats.add(vm.planesSeats[i].name);
-                }
                 vm.seats = Array.from(setSeats);
                 vm.seatsReset = vm.seats;
+
             }
 
             function nextDay() {

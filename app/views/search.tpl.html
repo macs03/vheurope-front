@@ -412,11 +412,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <!-- <li ng-repeat="typeSeat in search.scraperSeats">
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
-                            </li> -->
+                            </li> 
                             <li ng-repeat="typeSeat in search.planesSeats">
                                 <input class="seatType" id="seat-{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="seat-{{$index}}" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
                                 <label for="seat-{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- End Filter Seats -->
@@ -1497,7 +1497,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 </div>
             </div>
 
-            <div class="container" ng-show="search.scraperFlag" style="margin-top: 80px; margin-bottom: 80px;">
+            <div class="container" ng-show="search.scraperFlag || search.searching" style="margin-top: 80px; margin-bottom: 80px;">
                 <div class="row">
                      <div class="modal-backdrop" style="background: rgba(0,0,0,0.5); padding-top: 50%; " ng-show="search.scraperFlag &&  search.trips.directDepartureTrips.length == 0 && !search.isMixedTrips">
                         <div class="modal show" id="weather-widget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
