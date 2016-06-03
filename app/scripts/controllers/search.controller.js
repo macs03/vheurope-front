@@ -1970,6 +1970,13 @@
                         console.log('1');
                         console.log(data);
                         loadGlobal(data, false, false);
+
+                        if (data.maxDuration) {
+                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
+                                    vm.trips.maxDuration = data.maxDuration
+                              }
+                        }
+
                         //getLowest();
                         vm.isLoading = false;
                         //vm.trips = data;
@@ -2043,6 +2050,13 @@
                         console.log('2');
                         console.log(data);
                         loadGlobal(data, false,false);
+
+                        if (data.maxDuration) {
+                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
+                                    vm.trips.maxDuration = data.maxDuration
+                              }
+                        }
+
                         //getLowest();
                         //vm.searching = false;
                         //vm.results = true;
@@ -2114,6 +2128,13 @@
                         console.log('3');
                         console.log(data);
                         loadGlobal(data, false,false);
+
+                        if (data.maxDuration) {
+                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
+                                    vm.trips.maxDuration = data.maxDuration
+                              }
+                        }
+
                         //getLowest();
                         //vm.searching = false;
                         //vm.results = true;
