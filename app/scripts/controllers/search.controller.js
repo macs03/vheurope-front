@@ -972,6 +972,9 @@
                         
                     }else{
                         if(data.length > 0){
+
+                              vm.results = true;
+
                             angular.forEach(data, function(value, key) {
                                 vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });    
                             });
