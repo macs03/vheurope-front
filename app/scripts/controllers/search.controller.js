@@ -717,7 +717,7 @@
                               menor = trips[0].data.duration;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
-                                    if(trips[i].data.duration < menor){
+                                    if(trips[i].data.duration < menor && trips[i].data.transportation == "airplane"){
                                         menor=trips[i].data.duration;
                                         pos = i;
                                     }
@@ -737,7 +737,7 @@
                               menor = trips[0].data.price;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
-                                    if(trips[i].data.price < menor){
+                                    if(trips[i].data.price < menor  && trips[i].data.transportation == "airplane"){
                                         menor=trips[i].data.price;
                                         pos = i;
                                     }
