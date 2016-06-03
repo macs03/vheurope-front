@@ -2345,7 +2345,6 @@
 
                         if (value.data.transportation == "bus"){
                               vm.hasBusTrips = true;
-                              $('.tab_bus').addClass('active');
                         }
 
                         auxTrip = {};
