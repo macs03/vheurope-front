@@ -66,6 +66,7 @@
             vm.globalMixedTrips = [];
             vm.globalCompanies = [];
             vm.globalTypeServices = [];
+            vm.globalMinDuration = "";
             vm.cnames_es = [
             { name: 'AW', value:'Aruba' },
             { name: 'AF', value:'Afganistan' },
@@ -721,6 +722,13 @@
                                         pos = i;
                                     }
                               }
+
+                              //Para agregar a la duración menor
+                              if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
+
                               return menor;
                         }
                   }else{
@@ -867,6 +875,7 @@
                 vm.globalAlternativeTrips = [];
                 vm.globalMixedTrips = [];
                 vm.globalTypeServices = [];
+                vm.globalMinDuration = "";
                 vm.hasBusTrips = false;
                 vm.hasTrainTrips = false;
                 vm.hasPlaneTrips = false;
@@ -1977,13 +1986,20 @@
                               }
                         }
 
+                        if (data.lowest.train.duration) {
+                              if (vm.globalMinDuration.durationMinutes > data.lowest.train.durationMinutes || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: data.lowest.train.duration, durationMinutes: data.lowest.train.durationMinutes});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
+                        }
+
                         //getLowest();
                         vm.isLoading = false;
                         //vm.trips = data;
                         //vm.searching = false;
                         //vm.results = true;
                         vm.disabled = false;
-                        vm.minDuration = data.minDuration;
+                        
                         //vm.isMixedTrips = data.isMixedTrips;
                         vm.hasTrainTrips = data.hasTrainTrips;
                         //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
@@ -2057,11 +2073,17 @@
                               }
                         }
 
+                        if (data.lowest.bus.duration) {
+                              if (vm.globalMinDuration.durationMinutes > data.lowest.bus.durationMinutes || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: data.lowest.bus.duration, durationMinutes: data.lowest.bus.durationMinutes});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
+                        }
+
                         //getLowest();
                         //vm.searching = false;
                         //vm.results = true;
                         vm.disabled = false;
-                        vm.minDuration = data.minDuration;
                         //vm.isMixedTrips = data.isMixedTrips;
                         //vm.hasTrainTrips = data.hasTrainTrips;
                         if(!vm.hasBusTrips)
@@ -2135,13 +2157,17 @@
                               }
                         }
 
+                        if (data.lowest.bus.duration) {
+                              if (vm.globalMinDuration.durationMinutes > data.lowest.bus.durationMinutes || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: data.lowest.bus.duration, durationMinutes: data.lowest.bus.durationMinutes});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
+                        }
+
                         //getLowest();
                         //vm.searching = false;
                         //vm.results = true;
                         vm.disabled = false;
-                        if(!data.isMixedTrips){
-                            vm.minDuration = data.minDuration; //REVISAR
-                        }
                         vm.isMixedTrips = data.isMixedTrips;
 
                         if(!vm.hasBusTrips){
