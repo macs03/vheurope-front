@@ -747,6 +747,48 @@
                   }
             };
 
+            function getLowestAvanzaBus (trips) {
+                  var menor = 0;
+                  var pos = 0;
+
+                  if(trips != undefined && trips.length > 0){
+                        menor = trips[0].data.duration;
+                        pos = 0;
+                        for(i=1;i<trips.length;i++){
+                              if(trips[i].data.duration < menor && trips[i].data.transportation == "bus"){
+                                  menor=trips[i].data.duration;
+                                  pos = i;
+                              }
+                        }
+
+                        if (vm.lowestDurationBus > menor || vm.lowestDurationBus == 0) {
+                              vm.lowestDurationBus = menor;
+                        }
+
+                        //Para agregar a la duración menor
+                        if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+
+                        if(trips != undefined && trips.length > 0){
+                              menor = trips[0].data.price;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.price < menor  && trips[i].data.transportation == "bus"){
+                                        menor=trips[i].data.price;
+                                        pos = i;
+                                    }
+                              }
+                        }
+
+                        if (vm.lowestPriceBus > menor || vm.lowestPriceBus == 0) {
+                              vm.lowestPriceBus = menor;
+                        }
+
+                  }
+            }
+
             var getLowest = function(){
                 var menor = 0;
                 var pos = 0;
@@ -807,7 +849,9 @@
                             }
                         }
                         
-                        vm.lowestDurationBus = tb[pos].durationMinutes;
+                        if (vm.lowestDurationBus > tb[pos].durationMinutes || vm.lowestDurationBus == 0) {
+                              vm.lowestDurationBus = tb[pos].durationMinutes;
+                        }
                         console.log('DURACION MENOR EN BUS')
                         console.log(vm.lowestDurationBus);
 
@@ -2312,6 +2356,7 @@
                   vm.scraperFlag = false;
                   vm.hasPlaneTrips = true;
                   vm.updateTripsType();
+                  getLowestAvanzaBus(data.tickets)
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
                   vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
                   planesManager(data.tickets);
