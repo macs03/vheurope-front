@@ -2221,53 +2221,7 @@
                                     planesFactory
                                         .getApiData(data.data)
                                         .then(function (data2) {
-
-                                            console.log('data 2');
-                                            //console.log(data2);
-                                            //vm.planesTrips = data2.tickets;
-
-                                            vm.planesTrips = [];
-                                            var auxTrip = {};
-                                            angular.forEach(data2.tickets, function(value, key) {
-                                              vm.planesTrips.push(value.data);
-                                              auxTrip.arrival = value.data.end;
-                                              auxTrip.companyName = value.data.enterprise__name;
-                                              auxTrip.departure = value.data.start;
-                                              auxTrip.destination = value.data.destination;
-                                              auxTrip.duration = value.data.duration;
-                                              auxTrip.logo = value.data.enterprise__image;
-                                              auxTrip.origin = value.data.origin;
-                                              auxTrip.price = value.data.price;
-                                              auxTrip.transportType = value.data.transportation;
-                                              auxTrip.typeServices = value.data.type__name;
-                                              auxTrip.url = value.data.redirect;
-                                              vm.allTrips.push(auxTrip);
-                                              auxTrip = {};
-                                            });
-                                            loadGlobal(vm.planesTrips, false, true);
-                                            vm.countOrder = vm.countOrder + 1;
-                                            if (vm.countOrder == 4) {
-                                                console.log('ordenar inicialmente');
-                                                order('departure');
-                                                vm.searching = false;
-                                                vm.results = true; //para quitar el modal del clima
-                                            }
-                                            console.log('llamada 1');
-                                            console.log('**********');
-                                            console.log(vm.allTrips);
-                                            console.log('**********');
-                                            vm.planesFlag = true;
-                                            vm.scraperFlag = false;
-                                            vm.hasPlaneTrips = true;
-                                            vm.updateTripsType();
-                                            vm.lowestPricePlane = getLowestPlanes(data2.tickets, 2);
-                                            vm.lowestDurationPlane = getLowestPlanes(data2.tickets, 1);
-                                            if (vm.trips.lowest) {
-                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
-                                            }else{
-                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
-                                            }
-                                            planesManager(data2.tickets);
+                                            processPlanes(data2);
                                         })
                                         .catch(function (){
                                             catchPlanes();
@@ -2281,51 +2235,7 @@
                                                     planesFactory
                                                         .getApiData(data.data)
                                                         .then(function (data4) {
-                                                            console.log('data 4');
-                                                            console.log(vm.planesTrips);
-
-                                                            vm.planesTrips = [];
-                                                            var auxTrip = {};
-                                                            angular.forEach(data4.tickets, function(value, key) {
-                                                              vm.planesTrips.push(value.data);
-                                                              auxTrip.arrival = value.data.end;
-                                                              auxTrip.companyName = value.data.enterprise__name;
-                                                              auxTrip.departure = value.data.start;
-                                                              auxTrip.destination = value.data.destination;
-                                                              auxTrip.duration = value.data.duration;
-                                                              auxTrip.logo = value.data.enterprise__image;
-                                                              auxTrip.origin = value.data.origin;
-                                                              auxTrip.price = value.data.price;
-                                                              auxTrip.transportType = value.data.transportation;
-                                                              auxTrip.typeServices = value.data.type__name;
-                                                              auxTrip.url = value.data.redirect;
-                                                              vm.allTrips.push(auxTrip);
-                                                              auxTrip = {};
-                                                            });
-                                                            loadGlobal(vm.planesTrips, false, true);
-                                                            vm.countOrder = vm.countOrder + 1;
-                                                            if (vm.countOrder == 4) {
-                                                                order('departure');
-                                                                vm.countOrder = 0;
-                                                                vm.searching = false;
-                                                                vm.results = true; //para quitar el modal del clima
-                                                            }
-                                                            console.log('llamada 2');
-                                                            console.log('**********');
-                                                            console.log(vm.allTrips);
-                                                            console.log('**********');
-                                                            vm.planesFlag = true;
-                                                            vm.scraperFlag = false;
-                                                            vm.hasPlaneTrips = true;
-                                                            vm.updateTripsType();
-                                                            vm.lowestPricePlane = getLowestPlanes(data4.tickets, 2);
-                                                            vm.lowestDurationPlane = getLowestPlanes(data4.tickets, 1);
-                                                            if (vm.trips.lowest) {
-                                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
-                                                            }else{
-                                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
-                                                            }
-                                                            planesManager(data4.tickets);
+                                                            processPlanes(data4);
                                                         })
                                                         .catch(function (){
                                                             catchPlanes();
@@ -2339,53 +2249,7 @@
                                                                     planesFactory
                                                                         .getApiData(data.data)
                                                                         .then(function (data6) {
-
-                                                                            console.log('data 6');
-                                                                            console.log(data6);
-                                                                            //vm.planesTrips = data6.tickets;
-
-                                                                            vm.planesTrips = [];
-                                                                            var auxTrip = {};
-                                                                            angular.forEach(data6.tickets, function(value, key) {
-                                                                              vm.planesTrips.push(value.data);
-                                                                              auxTrip.arrival = value.data.end;
-                                                                              auxTrip.companyName = value.data.enterprise__name;
-                                                                              auxTrip.departure = value.data.start;
-                                                                              auxTrip.destination = value.data.destination;
-                                                                              auxTrip.duration = value.data.duration;
-                                                                              auxTrip.logo = value.data.enterprise__image;
-                                                                              auxTrip.origin = value.data.origin;
-                                                                              auxTrip.price = value.data.price;
-                                                                              auxTrip.transportType = value.data.transportation;
-                                                                              auxTrip.typeServices = value.data.type__name;
-                                                                              auxTrip.url = value.data.redirect;
-                                                                              vm.allTrips.push(auxTrip);
-                                                                              auxTrip = {};
-                                                                            });
-                                                                            console.log('llamada 3');
-                                                                            console.log('**********');
-                                                                            console.log(vm.allTrips);
-                                                                            console.log('**********');
-                                                                            loadGlobal(vm.planesTrips, false, true);
-                                                                            vm.countOrder = vm.countOrder + 1;
-                                                                            if (vm.countOrder == 4) {
-                                                                                order('departure');
-                                                                                vm.countOrder = 0;
-                                                                                vm.searching = false;
-                                                                                vm.results = true; //para quitar el modal del clima
-                                                                            }
-                                                                            vm.planesFlag = true;
-                                                                            vm.scraperFlag = false;
-                                                                            vm.hasPlaneTrips = true;
-                                                                            vm.updateTripsType();
-                                                                            vm.lowestPricePlane = getLowestPlanes(data6.tickets, 2);
-                                                                            vm.lowestDurationPlane = getLowestPlanes(data6.tickets, 1);
-                                                                            if (vm.trips.lowest) {
-                                                                                //updatePercentageBar(vm.trips.lowest.bus.durationMinutes, vm.trips.lowest.train.durationMinutes, vm.lowestDurationPlane);
-                                                                            }else{
-                                                                                //updatePercentageBar(0, 0, vm.lowestDurationPlane);
-                                                                            }
-                                                                            planesManager(data6.tickets);
+                                                                            processPlanes(data6);
                                                                         })
                                                                         .catch(function (){
                                                                             catchPlanes();
@@ -2415,6 +2279,42 @@
                         catchPlanes();
                     })
 
+            }
+
+            function processPlanes (data) {
+                  vm.planesTrips = [];
+                  var auxTrip = {};
+                  angular.forEach(data.tickets, function(value, key) {
+                        vm.planesTrips.push(value.data);
+                        auxTrip.arrival = value.data.end;
+                        auxTrip.companyName = value.data.enterprise__name;
+                        auxTrip.departure = value.data.start;
+                        auxTrip.destination = value.data.destination;
+                        auxTrip.duration = value.data.duration;
+                        auxTrip.logo = value.data.enterprise__image;
+                        auxTrip.origin = value.data.origin;
+                        auxTrip.price = value.data.price;
+                        auxTrip.transportType = value.data.transportation;
+                        auxTrip.typeServices = value.data.type__name;
+                        auxTrip.url = value.data.redirect;
+                        vm.allTrips.push(auxTrip);
+
+                        if (value.data.transportation == "bus"){
+                              vm.hasBusTrips = true;
+                              $('.tab_bus').addClass('active');
+                        }
+
+                        auxTrip = {};
+                  });
+                  loadGlobal(vm.planesTrips, false, true);
+                  processCountOrder();
+                  vm.planesFlag = true;
+                  vm.scraperFlag = false;
+                  vm.hasPlaneTrips = true;
+                  vm.updateTripsType();
+                  vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
+                  vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
+                  planesManager(data.tickets);
             }
 
             function catchPlanes () {
