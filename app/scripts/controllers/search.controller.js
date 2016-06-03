@@ -2270,10 +2270,7 @@
                                             planesManager(data2.tickets);
                                         })
                                         .catch(function (){
-                                            vm.planesFlag = false;
-                                            vm.scraperFlag = false;
-                                            vm.hasPlaneTrips = false;
-                                            vm.searchingTripsPlane = false;
+                                            catchPlanes();
                                         })
                                 }else{
                                     $timeout(function () {
@@ -2331,10 +2328,7 @@
                                                             planesManager(data4.tickets);
                                                         })
                                                         .catch(function (){
-                                                            vm.planesFlag = false;
-                                                            vm.scraperFlag = false;
-                                                            vm.hasPlaneTrips = false;
-                                                            vm.searchingTripsPlane = false;
+                                                            catchPlanes();
                                                         })
                                                 }else{
                                                     $timeout(function () {
@@ -2394,57 +2388,40 @@
                                                                             planesManager(data6.tickets);
                                                                         })
                                                                         .catch(function (){
-                                                                            vm.planesFlag = false;
-                                                                            vm.scraperFlag = false;
-                                                                            vm.hasPlaneTrips = false;
-                                                                            vm.searchingTripsPlane = false;
+                                                                            catchPlanes();
                                                                         })
                                                                 }else{
-                                                                    vm.planesFlag = false;
-                                                                    vm.scraperFlag = false;
-                                                                    vm.hasPlaneTrips = false;
-                                                                    vm.searchingTripsPlane = false;
-                                                                    vm.countOrder = vm.countOrder + 1;
-                                                                    if (vm.countOrder == 4) {
-                                                                        order('departure');
-                                                                        vm.countOrder = 0;
-                                                                        vm.searching = false;
-                                                                        vm.results = true; //para quitar el modal del clima
-                                                                    }
+                                                                    catchPlanes();
+                                                                    processCountOrder();
                                                                 }
                                                             })
                                                             .catch(function (){
-                                                                vm.planesFlag = false;
-                                                                vm.scraperFlag = false;
-                                                                vm.hasPlaneTrips = false;
-                                                                vm.searchingTripsPlane = false;
+                                                                catchPlanes();
                                                             })
                                                     }, 5000);
                                                 }
                                             })
                                             .catch(function (){
-                                                vm.planesFlag = false;
-                                                vm.scraperFlag = false;
-                                                vm.hasPlaneTrips = false;
-                                                vm.searchingTripsPlane = false;
+                                                catchPlanes();
                                             })
                                     }, 5000);
                                 }
                             })
                             .catch(function (){
-                                vm.planesFlag = false;
-                                vm.scraperFlag = false;
-                                vm.hasPlaneTrips = false;
-                                vm.searchingTripsPlane = false;
+                                catchPlanes();
                             })
                     })
                     .catch(function (){
-                        vm.planesFlag = false;
-                        vm.scraperFlag = false;
-                        vm.hasPlaneTrips = false;
-                        vm.searchingTripsPlane = false;
+                        catchPlanes();
                     })
 
+            }
+
+            function catchPlanes () {
+                  vm.planesFlag = false;
+                  vm.scraperFlag = false;
+                  vm.hasPlaneTrips = false;
+                  vm.searchingTripsPlane = false;
             }
 
             function processCountOrder () {
