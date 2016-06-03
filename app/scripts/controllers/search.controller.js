@@ -1051,6 +1051,7 @@
                         $('.fa-trip-type').removeClass('hidden');
 
                     }else{
+                        $('.fa-trip-type').addClass('hidden');
                         if(vm.hasBusTrips){
                             vm.showBus = true;
                             vm.showPlane = false;
