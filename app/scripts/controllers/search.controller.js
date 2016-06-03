@@ -2015,6 +2015,7 @@
                             order('departure');
                             vm.countOrder = 0;
                             vm.searching = false;
+                            vm.results = true; //para quitar el modal del clima
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2085,6 +2086,7 @@
                             order('departure');
                             vm.countOrder = 0;
                             vm.searching = false;
+                            vm.results = true; //para quitar el modal del clima
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2161,6 +2163,7 @@
                             order('departure');
                             vm.countOrder = 0;
                             vm.searching = false;
+                            vm.results = true; //para quitar el modal del clima
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2218,6 +2221,7 @@
                                                 console.log('ordenar inicialmente');
                                                 order('departure');
                                                 vm.searching = false;
+                                                vm.results = true; //para quitar el modal del clima
                                             }
                                             console.log('llamada 1');
                                             console.log('**********');
@@ -2278,6 +2282,7 @@
                                                                 order('departure');
                                                                 vm.countOrder = 0;
                                                                 vm.searching = false;
+                                                                vm.results = true; //para quitar el modal del clima
                                                             }
                                                             console.log('llamada 2');
                                                             console.log('**********');
@@ -2344,6 +2349,7 @@
                                                                                 order('departure');
                                                                                 vm.countOrder = 0;
                                                                                 vm.searching = false;
+                                                                                vm.results = true; //para quitar el modal del clima
                                                                             }
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
