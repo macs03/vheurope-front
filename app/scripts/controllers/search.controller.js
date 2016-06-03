@@ -883,6 +883,9 @@
                     if(isPlane  == false){
 
                         if(data.directDepartureTrips.length > 0){
+
+                              vm.results = true;
+
                             if(data.directDepartureTrips[0] != undefined && data.directDepartureTrips[0].length > 0){
                                 if(vm.globalDirectDepartureTrips[0] == undefined){
                                     vm.globalDirectDepartureTrips.push([]);
@@ -907,6 +910,8 @@
                         }
                         if(data.directReturnTrips.length > 0){
 
+                              vm.results = true;
+
                             if(data.directReturnTrips[0] != undefined && data.directReturnTrips[0].length > 0){
                                 if(vm.globalDirectReturnTrips[0] == undefined){
                                     vm.globalDirectReturnTrips.push([]);
@@ -930,11 +935,17 @@
                             }
                         }
                         if(data.alternativeTrips.length > 0){
+
+                              vm.results = true;
+
                             angular.forEach(data.alternativeTrips, function(value, key) {
                                 vm.globalAlternativeTrips.push(value);    
                             });
                         }
                         if(data.mixedTrips.length > 0){
+
+                              vm.results = true;
+
                             angular.forEach(data.mixedTrips, function(value, key) {
                                 vm.globalMixedTrips.push(value);    
                             });
@@ -1948,8 +1959,8 @@
                         //getLowest();
                         vm.isLoading = false;
                         //vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
+                        //vm.searching = false;
+                        //vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         //vm.isMixedTrips = data.isMixedTrips;
@@ -1989,6 +2000,7 @@
                         if (vm.countOrder == 4) {
                             order('departure');
                             vm.countOrder = 0;
+                            vm.searching = false;
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2017,8 +2029,8 @@
                         console.log(data);
                         loadGlobal(data, false,false);
                         //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
+                        //vm.searching = false;
+                        //vm.results = true;
                         vm.disabled = false;
                         vm.minDuration = data.minDuration;
                         //vm.isMixedTrips = data.isMixedTrips;
@@ -2058,6 +2070,7 @@
                         if (vm.countOrder == 4) {
                             order('departure');
                             vm.countOrder = 0;
+                            vm.searching = false;
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2086,8 +2099,8 @@
                         console.log(data);
                         loadGlobal(data, false,false);
                         //getLowest();
-                        vm.searching = false;
-                        vm.results = true;
+                        //vm.searching = false;
+                        //vm.results = true;
                         vm.disabled = false;
                         if(!data.isMixedTrips){
                             vm.minDuration = data.minDuration; //REVISAR
@@ -2133,6 +2146,7 @@
                         if (vm.countOrder == 4) {
                             order('departure');
                             vm.countOrder = 0;
+                            vm.searching = false;
                         }
 
                         //vm.searchingTripsPlane = true;
@@ -2189,6 +2203,7 @@
                                             if (vm.countOrder == 4) {
                                                 console.log('ordenar inicialmente');
                                                 order('departure');
+                                                vm.searching = false;
                                             }
                                             console.log('llamada 1');
                                             console.log('**********');
@@ -2248,6 +2263,7 @@
                                                             if (vm.countOrder == 4) {
                                                                 order('departure');
                                                                 vm.countOrder = 0;
+                                                                vm.searching = false;
                                                             }
                                                             console.log('llamada 2');
                                                             console.log('**********');
@@ -2313,6 +2329,7 @@
                                                                             if (vm.countOrder == 4) {
                                                                                 order('departure');
                                                                                 vm.countOrder = 0;
+                                                                                vm.searching = false;
                                                                             }
                                                                             vm.planesFlag = true;
                                                                             vm.scraperFlag = false;
