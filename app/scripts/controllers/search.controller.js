@@ -2033,13 +2033,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.countOrder = vm.countOrder + 1;
-                        if (vm.countOrder == 4) {
-                            order('departure');
-                            vm.countOrder = 0;
-                            vm.searching = false;
-                            vm.results = true; //para quitar el modal del clima
-                        }
+                        processCountOrder();
 
                         //vm.searchingTripsPlane = true;
                     })
@@ -2117,13 +2111,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.countOrder = vm.countOrder + 1;
-                        if (vm.countOrder == 4) {
-                            order('departure');
-                            vm.countOrder = 0;
-                            vm.searching = false;
-                            vm.results = true; //para quitar el modal del clima
-                        }
+                        processCountOrder();
 
                         //vm.searchingTripsPlane = true;
                     })
@@ -2205,13 +2193,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
-                        vm.countOrder = vm.countOrder + 1;
-                        if (vm.countOrder == 4) {
-                            order('departure');
-                            vm.countOrder = 0;
-                            vm.searching = false;
-                            vm.results = true; //para quitar el modal del clima
-                        }
+                        processCountOrder();
 
                         //vm.searchingTripsPlane = true;
                     })
@@ -2463,6 +2445,16 @@
                         vm.searchingTripsPlane = false;
                     })
 
+            }
+
+            function processCountOrder () {
+                  vm.countOrder = vm.countOrder + 1;
+                  if (vm.countOrder == 4) {
+                        order('departure');
+                        vm.countOrder = 0;
+                        vm.searching = false;
+                        vm.results = true; //para quitar el modal del clima
+                  }
             }
 
             function switcher() {
