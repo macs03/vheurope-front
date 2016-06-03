@@ -2375,6 +2375,13 @@
                                                                     vm.scraperFlag = false;
                                                                     vm.hasPlaneTrips = false;
                                                                     vm.searchingTripsPlane = false;
+                                                                    vm.countOrder = vm.countOrder + 1;
+                                                                    if (vm.countOrder == 4) {
+                                                                        order('departure');
+                                                                        vm.countOrder = 0;
+                                                                        vm.searching = false;
+                                                                        vm.results = true; //para quitar el modal del clima
+                                                                    }
                                                                 }
                                                             })
                                                             .catch(function (){
