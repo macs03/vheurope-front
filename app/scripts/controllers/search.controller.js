@@ -755,7 +755,7 @@
                   var pos = 0;
 
                   if(trips != undefined && trips.length > 0){
-                        menor = trips[0].data.duration;
+                        menor = vm.lowestDurationBus + 1;
                         pos = 0;
                         for(i=1;i<trips.length;i++){
                               if(trips[i].data.duration < menor && trips[i].data.transportation == "bus"){
