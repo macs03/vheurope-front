@@ -1935,11 +1935,7 @@
                         vm.isMixedTrips = data.isMixedTrips
                         vm.hasBusTrips = data.isMixedTrips;
                         vm.updateTripsType();
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                         for (var i = 0; i < data.typeServices.length; i++) {
                             vm.seats.push(data.typeServices[i].name)
                         }
@@ -2044,13 +2040,8 @@
                         });
                         console.log(vm.allTrips);
                         console.log('**********');
-                        
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-                        
+
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                         setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
@@ -2091,12 +2082,7 @@
                         console.log(vm.allTrips);
                         console.log('**********');
 
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
@@ -2145,12 +2131,7 @@
                         console.log(vm.allTrips);
                         console.log('**********');
 
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-
+                        setDateFilterRange(data.maxPrice,data.minPrice);
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
