@@ -475,11 +475,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-bus text-muted"></i>  
                             <b ng-show="search.hasBusTrips">{{ search.lowestPriceBus | currency : '' }} €</b>
-                            <b ng-show="!search.hasBusTrips">N/A</b>
+                            <b ng-show="!search.hasBusTrips && !search.searchingTripsBus">N/A</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                             <span ng-show="search.hasBusTrips">{{ search.getHourMinPlanes(search.lowestDurationBus) }}</span>
-                            <span class="pull-left" ng-show="!search.hasBusTrips" translate>SEARCH.NO_DEPARTURES</span>
+                            <span class="pull-left" ng-show="!search.hasBusTrips && !search.searchingTripsBus" translate>SEARCH.NO_DEPARTURES</span>
+                            <span ng-show="!search.hasBusTrips && search.searchingTripsBus"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
                     
@@ -487,11 +488,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="col-md-3 time-resume-trip-price">
                             <i class="fa fa-train text-muted"></i>  
                             <b ng-show="search.hasTrainTrips">{{ search.lowestPriceTrain | currency : '' }} €</b>
-                            <b ng-show="!search.hasTrainTrips">N/A</b>
+                            <b ng-show="!search.hasTrainTrips && !search.searchingTripsTrain">N/A</b>
                         </div>
                         <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.getHourMinPlanes(search.lowestDurationTrain) }}</span>
-                            <span class="pull-left" ng-show="!search.hasTrainTrips" translate>SEARCH.NO_DEPARTURES</span>
+                            <span class="pull-left" ng-show="!search.hasTrainTrips && !search.searchingTripsTrain" translate>SEARCH.NO_DEPARTURES</span>
+                            <span ng-show="!search.hasTrainTrips && search.searchingTripsTrain"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
                     <div class="row time-resume-trip">

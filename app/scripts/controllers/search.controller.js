@@ -24,6 +24,7 @@
             vm.order = order;
             vm.type = 'departure';
             vm.countOrder = 0;
+            vm.countBusSearch = 0;
             vm.allTrips = [];
             vm.reverse = true;
             vm.companyFilter = companyFilter;
@@ -58,6 +59,8 @@
             vm.lowestPriceTrain = 0;
             vm.lowestDurationTrain = 0;
             vm.searchingTripsPlane = false;
+            vm.searchingTripsBus = false;
+            vm.searchingTripsTrain = false;
             vm.showCombineTrips = false;
             vm.globalTrips = [];
             vm.globalAlternativeTrips = [];
@@ -2017,12 +2020,14 @@
             }
 
             function callLogitravel (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                  vm.searchingTripsTrain = true;
                   travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
                         console.log('1');
                         console.log(data);
+                        vm.searchingTripsTrain = false;
                         loadGlobal(data, false, false);
 
                         if (data.maxDuration) {
@@ -2085,6 +2090,7 @@
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
+                        vm.searchingTripsTrain = false;
                         vm.error = true;
                         vm.msgError = err;
                         vm.disabled = false;
@@ -2095,11 +2101,16 @@
             }
 
             function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                  vm.searchingTripsBus = true;
                    travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
                         vm.isLoading = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
                         //vm.trips = data;
                         
                         console.log('2');
@@ -2163,6 +2174,10 @@
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
                         vm.error = true;
                         vm.msgError = err;
                         vm.disabled = false;
@@ -2173,11 +2188,16 @@
             }
 
             function callMovelia (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
+                  vm.searchingTripsBus = true;
                   travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
                     .then(function(data){
 
                         vm.isLoading = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
                         //vm.trips = data;
                         
                         console.log('3');
@@ -2245,6 +2265,10 @@
                     .catch(function(err){
                         console.log(err);
                         vm.searching = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
                         vm.error = true;
                         vm.msgError = err;
                         vm.disabled = false;
@@ -2359,6 +2383,10 @@
                   vm.scraperFlag = false;
                   vm.hasPlaneTrips = flagPlanes;
                   vm.searchingTripsPlane = false;
+                  vm.countBusSearch = vm.countBusSearch + 1;
+                  if(vm.countBusSearch == 3){
+                        vm.searchingTripsBus = false;
+                  }
                   vm.updateTripsType();
                   getLowestAvanzaBus(data.tickets)
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
@@ -2371,6 +2399,10 @@
                   vm.scraperFlag = false;
                   vm.hasPlaneTrips = false;
                   vm.searchingTripsPlane = false;
+                  vm.countBusSearch = vm.countBusSearch + 1;
+                  if(vm.countBusSearch == 3){
+                        vm.searchingTripsBus = false;
+                  }
             }
 
             function processCountOrder () {
