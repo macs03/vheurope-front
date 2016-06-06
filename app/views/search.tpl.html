@@ -1502,7 +1502,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             <div class="allTrips" ng-show="search.combineTrips">
                 <div class="new-results" id="new-results-tickeables">
                     <div class="results list" id="trips_tickeables" >
-                        <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-repeat="trip in search.allTrips | orderBy:search.typeDeparture:search.reverseDeparture  track by $index" >
+                        <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-repeat="trip in search.allTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue track by $index" >
                          <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                         <div class="row" >
                             <div class="col-md-3 hidden-xs hidden-sm">
