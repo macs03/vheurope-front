@@ -2073,14 +2073,9 @@
                     })
                     .catch(function(err){
                         console.log(err);
-                        vm.searching = false;
                         vm.searchingTripsTrain = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
+
+                        catchTravelsFactory(err);
                     })
             }
 
@@ -2139,17 +2134,12 @@
                     })
                     .catch(function(err){
                         console.log(err);
-                        vm.searching = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false;
                         }
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
+
+                        catchTravelsFactory(err);
                     })
             }
 
@@ -2213,17 +2203,12 @@
                     })
                     .catch(function(err){
                         console.log(err);
-                        vm.searching = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false;
                         }
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
+
+                        catchTravelsFactory(err);
                     })
             }
 
@@ -2342,6 +2327,16 @@
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
                   vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
                   planesManager(data.tickets);
+            }
+
+            function catchTravelsFactory (err) {
+                  vm.searching = false;
+                  vm.error = true;
+                  vm.msgError = err;
+                  vm.disabled = false;
+                  $('.pikaday__display').prop('disabled', false);
+                  apiError();
+                  utilityService.setData(null,null,null,null, null, null, null);
             }
 
             function catchPlanes () {
