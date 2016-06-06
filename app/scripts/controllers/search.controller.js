@@ -2329,6 +2329,7 @@
             function processPlanes (data) {
                   vm.planesTrips = [];
                   var auxTrip = {};
+                  var flagPlanes = false;
                   angular.forEach(data.tickets, function(value, key) {
                         vm.planesTrips.push(value.data);
                         auxTrip.arrival = value.data.end;
@@ -2346,6 +2347,8 @@
 
                         if (value.data.transportation == "bus"){
                               vm.hasBusTrips = true;
+                        }else {
+                              flagPlanes = true;
                         }
 
                         auxTrip = {};
@@ -2354,7 +2357,8 @@
                   processCountOrder();
                   vm.planesFlag = true;
                   vm.scraperFlag = false;
-                  vm.hasPlaneTrips = true;
+                  vm.hasPlaneTrips = flagPlanes;
+                  vm.searchingTripsPlane = false;
                   vm.updateTripsType();
                   getLowestAvanzaBus(data.tickets)
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
