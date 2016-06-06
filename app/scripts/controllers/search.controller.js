@@ -998,13 +998,17 @@
                                 vm.globalAlternativeTrips.push(value);    
                             });
                         }
-                        if(data.mixedTrips.length > 0){
+                        if(!isMixed){
+                              if(data.mixedTrips.length > 0){
 
-                              vm.results = true;
+                                  vm.results = true;
 
-                            angular.forEach(data.mixedTrips, function(value, key) {
-                                vm.globalMixedTrips.push(value);    
-                            });
+                                  angular.forEach(data.mixedTrips, function(value, key) {
+                                      vm.globalMixedTrips.push(value);    
+                                  });
+                              }
+                        } else {
+                              vm.globalMixedTrips = [];
                         }
                         if(data.companies.length > 0){
                             angular.forEach(data.companies, function(value, key) {
@@ -1929,21 +1933,17 @@
                 travelsFactory
                     .getMixedTrips(id)
                     .then(function (data) {
+
+                        loadGlobal(data, true, false);
+
                         vm.searchingMix = false;
-                        vm.results = true;
-                        vm.trips = data;
                         vm.isMixedTrips = data.isMixedTrips
-                        vm.hasBusTrips = data.isMixedTrips;
-                        vm.updateTripsType();
+                        vm.hasBusTrips = data.hasBusTrips;
+
                         setDateFilterRange(data.maxPrice,data.minPrice);
-                        for (var i = 0; i < data.typeServices.length; i++) {
-                            vm.seats.push(data.typeServices[i].name)
-                        }
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                        setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
