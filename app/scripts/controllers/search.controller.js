@@ -1580,7 +1580,7 @@
                   destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
                 }
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
+                    if(vm.myOptionsOrigin[key].name === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
@@ -1589,7 +1589,7 @@
                 });
 
                 angular.forEach(vm.myOptionsDestination, function(value, key) {
-                    if(vm.myOptionsDestination[key].rt === destinationPlaneCity[0]){
+                    if(vm.myOptionsDestination[key].name === vm.destination){
                         vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
@@ -1619,7 +1619,7 @@
                             vm.weather_progressbar.reset();
                             vm.weather_progressbar.start();
 
-                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                            callSearch(vm.originCity,vm.destinationCity,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                             vm.good = true;
 
                         }else {
@@ -1631,7 +1631,7 @@
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
 
-                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                        callSearch(vm.originCity,vm.destinationCity,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                         vm.good = true;
                     }
                 }
