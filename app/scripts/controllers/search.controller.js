@@ -2022,14 +2022,14 @@
             }
 
             function callLogitravel (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-                  vm.searchingTripsTrain = true;
+                  vm.searchingTripsTrain = true; // Buscando trenes
                   travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
                         console.log('1');
                         console.log(data);
-                        vm.searchingTripsTrain = false;
+
                         loadGlobal(data, false, false);
 
                         if (data.maxDuration) {
@@ -2045,18 +2045,11 @@
                               vm.minDuration = vm.globalMinDuration.duration;
                         }
 
-                        //getLowest();
+                        vm.searchingTripsTrain = false; //Ya buscó
                         vm.isLoading = false;
-                        //vm.trips = data;
-                        //vm.searching = false;
-                        //vm.results = true;
-                        vm.disabled = false;
-                        
-                        //vm.isMixedTrips = data.isMixedTrips;
+                        vm.disabled = false;                        
                         vm.hasTrainTrips = data.hasTrainTrips;
-                        //vm.hasBusTrips = data.hasBusTrips || data.isMixedTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         console.log('**********');
@@ -2071,23 +2064,12 @@
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
 
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
-
+                        
+                        vm.updateTripsType();
+                        setCompaniesAndSeatsReset(data.companies);
                         processCountOrder();
-
-                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -2103,21 +2085,14 @@
             }
 
             function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-                  vm.searchingTripsBus = true;
+                  vm.searchingTripsBus = true; // Buscando buses
                    travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
-                        vm.isLoading = false;
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
-                              vm.searchingTripsBus = false;
-                        }
-                        //vm.trips = data;
-                        
                         console.log('2');
                         console.log(data);
-                        loadGlobal(data, false,false);
+                        loadGlobal(data, false,false);                       
 
                         if (data.maxDuration) {
                               if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
@@ -2132,16 +2107,15 @@
                               vm.minDuration = vm.globalMinDuration.duration;
                         }
 
-                        //getLowest();
-                        //vm.searching = false;
-                        //vm.results = true;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                        }
+                        vm.isLoading = false;
                         vm.disabled = false;
-                        //vm.isMixedTrips = data.isMixedTrips;
-                        //vm.hasTrainTrips = data.hasTrainTrips;
                         if(!vm.hasBusTrips)
                             vm.hasBusTrips = data.hasBusTrips;
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         console.log('**********');
@@ -2156,22 +2130,12 @@
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
 
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
                         processCountOrder();
-
-                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -2190,18 +2154,11 @@
             }
 
             function callMovelia (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
-                  vm.searchingTripsBus = true;
+                  vm.searchingTripsBus = true; // Buscando buses
                   travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
                     .then(function(data){
 
-                        vm.isLoading = false;
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
-                              vm.searchingTripsBus = false;
-                        }
-                        //vm.trips = data;
-                        
                         console.log('3');
                         console.log(data);
                         loadGlobal(data, false,false);
@@ -2219,20 +2176,20 @@
                               vm.minDuration = vm.globalMinDuration.duration;
                         }
 
-                        //getLowest();
-                        //vm.searching = false;
-                        //vm.results = true;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
+                        vm.isLoading = false;
                         vm.disabled = false;
                         vm.isMixedTrips = data.isMixedTrips;
-
                         if(!vm.hasBusTrips){
                             vm.hasBusTrips = data.hasBusTrips;
                             if(data.isMixedTrips){
-                              vm.hasBusTrips = true;
+                              vm.hasBusTrips = true; // Ya buscó por todos los servicios de buses
                             }
                         }
-                        vm.updateTripsType();
-                        //updatePercentageBar(data.lowest.bus.durationMinutes, data.lowest.train.durationMinutes,0);
+                        
                         $('.pikaday__display').prop('disabled', false);
                         vm.weather_progressbar.stop();
                         console.log('**********');
@@ -2247,22 +2204,12 @@
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
 
-                        var setSeats = new Set();
-                        for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                            setSeats.add(vm.globalTypeServices[i].name)
-                        }
-                        vm.seats = Array.from(setSeats);
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
                         processCountOrder();
-
-                        //vm.searchingTripsPlane = true;
                     })
                     .catch(function(err){
                         console.log(err);
@@ -2281,7 +2228,7 @@
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
-                vm.searchingTripsPlane = true;
+                vm.searchingTripsPlane = true; // Buscabdo trenes
                 planesFactory
                     .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
                     .then(function (data) {
@@ -2416,6 +2363,20 @@
                         vm.searching = false;
                         vm.results = true; //para quitar el modal del clima
                   }
+            }
+
+            function setCompaniesAndSeatsReset (companies) {
+                  var setSeats = new Set();
+                  for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                        setSeats.add(vm.globalTypeServices[i].name)
+                  }
+                  vm.seats = Array.from(setSeats);
+                  vm.seatsReset = vm.seats;
+
+                  for (var i = 0; i < companies.length; i++) {
+                        vm.companies.push(companies[i].name)
+                  }
+                  vm.companiesReset = vm.companies;
             }
 
             function switcher() {
