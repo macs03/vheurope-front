@@ -2032,19 +2032,6 @@
 
                         loadGlobal(data, false, false);
 
-                        if (data.maxDuration) {
-                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
-                                    vm.trips.maxDuration = data.maxDuration
-                              }
-                        }
-
-                        if (data.lowest.train.duration) {
-                              if (vm.globalMinDuration.durationMinutes > data.lowest.train.durationMinutes || vm.globalMinDuration == "") {
-                                    vm.globalMinDuration = ({duration: data.lowest.train.duration, durationMinutes: data.lowest.train.durationMinutes});
-                              }
-                              vm.minDuration = vm.globalMinDuration.duration;
-                        }
-
                         vm.searchingTripsTrain = false; //Ya buscó
                         vm.isLoading = false;
                         vm.disabled = false;                        
@@ -2067,8 +2054,9 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
                         
-                        vm.updateTripsType();
+                        setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
                         processCountOrder();
                     })
                     .catch(function(err){
@@ -2088,19 +2076,6 @@
                         console.log('2');
                         console.log(data);
                         loadGlobal(data, false,false);                       
-
-                        if (data.maxDuration) {
-                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
-                                    vm.trips.maxDuration = data.maxDuration
-                              }
-                        }
-
-                        if (data.lowest.bus.duration) {
-                              if (vm.globalMinDuration.durationMinutes > data.lowest.bus.durationMinutes || vm.globalMinDuration == "") {
-                                    vm.globalMinDuration = ({duration: data.lowest.bus.duration, durationMinutes: data.lowest.bus.durationMinutes});
-                              }
-                              vm.minDuration = vm.globalMinDuration.duration;
-                        }
 
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
@@ -2128,6 +2103,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
                         processCountOrder();
@@ -2152,19 +2128,6 @@
                         console.log('3');
                         console.log(data);
                         loadGlobal(data, false,false);
-
-                        if (data.maxDuration) {
-                              if (vm.trips.maxDuration < data.maxDuration || vm.trips.maxDuration == undefined) {
-                                    vm.trips.maxDuration = data.maxDuration
-                              }
-                        }
-
-                        if (data.lowest.bus.duration) {
-                              if (vm.globalMinDuration.durationMinutes > data.lowest.bus.durationMinutes || vm.globalMinDuration == "") {
-                                    vm.globalMinDuration = ({duration: data.lowest.bus.duration, durationMinutes: data.lowest.bus.durationMinutes});
-                              }
-                              vm.minDuration = vm.globalMinDuration.duration;
-                        }
 
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
@@ -2197,6 +2160,7 @@
                         vm.weather_progress_scraper.reset();
                         vm.weather_progress_scraper.start();
 
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
                         processCountOrder();
@@ -2372,6 +2336,28 @@
                         vm.companies.push(companies[i].name)
                   }
                   vm.companiesReset = vm.companies;
+            }
+
+            function setMaxDurationAndMinDuration (maxDuration, tipo, lowest) {
+                  if (maxDuration) {
+                        if (vm.trips.maxDuration < maxDuration || vm.trips.maxDuration == undefined) {
+                              vm.trips.maxDuration = maxDuration
+                        }
+                  }
+
+                  if (lowest.train.duration && tipo == "tren") {
+                        if (vm.globalMinDuration.durationMinutes > lowest.train.durationMinutes || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: lowest.train.duration, durationMinutes: lowest.train.durationMinutes});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+                  }
+
+                  if (lowest.bus.duration && tipo == "bus") {
+                        if (vm.globalMinDuration.durationMinutes > lowest.bus.durationMinutes || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: lowest.bus.duration, durationMinutes: lowest.bus.durationMinutes});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+                  }
             }
 
             function switcher() {
