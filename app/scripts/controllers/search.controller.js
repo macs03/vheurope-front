@@ -2036,23 +2036,20 @@
                         vm.isLoading = false;
                         vm.disabled = false;                        
                         vm.hasTrainTrips = data.hasTrainTrips;
-
                         $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
+
                         console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
                         console.log(vm.allTrips);
                         console.log('**********');
+                        
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
-
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
                         
                         setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
@@ -2085,23 +2082,20 @@
                         vm.disabled = false;
                         if(!vm.hasBusTrips)
                             vm.hasBusTrips = data.hasBusTrips;
-
                         $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
+
                         console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
                         console.log(vm.allTrips);
                         console.log('**********');
+
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
-
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
 
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
@@ -2142,23 +2136,20 @@
                               vm.hasBusTrips = true; // Ya buscó por todos los servicios de buses
                             }
                         }
-                        
                         $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
+
                         console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
                         console.log(vm.allTrips);
                         console.log('**********');
+
                         var time = $timeout(function () {
                             vm.maxPrice = data.maxPrice;
                             vm.minPrice = data.minPrice;
                             setDateFilterRange(data.maxPrice,data.minPrice);
                         }, 100);
-
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
 
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
                         setCompaniesAndSeatsReset(data.companies);
