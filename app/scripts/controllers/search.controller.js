@@ -1214,7 +1214,9 @@
 
             vm.tripDetails = function($event){
                 var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId2 = '#trip_details_mix_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 $(elementId).slideToggle( "slow" );
+                $(elementId2).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {
@@ -2356,17 +2358,18 @@
                   var flagPlanes = false;
                   angular.forEach(data.tickets, function(value, key) {
                         vm.planesTrips.push(value.data);
-                        auxTrip.arrival = value.data.end;
+                        auxTrip.arrival = value.data.end * 1000;
                         auxTrip.companyName = value.data.enterprise__name;
-                        auxTrip.departure = value.data.start;
+                        auxTrip.departure = value.data.start * 1000;
                         auxTrip.destination = value.data.destination;
                         auxTrip.duration = value.data.duration;
                         auxTrip.logo = value.data.enterprise__image;
                         auxTrip.origin = value.data.origin;
                         auxTrip.price = value.data.price;
                         auxTrip.transportType = value.data.transportation;
-                        auxTrip.typeServices = value.data.type__name;
+                        auxTrip.typeService = value.data.type__name;
                         auxTrip.url = value.data.redirect;
+                        auxTrip.segments = value.data.segments;
                         vm.allTrips.push(auxTrip);
 
                         if (value.data.transportation == "bus"){
