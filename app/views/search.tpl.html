@@ -406,8 +406,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="typeSeat in search.globalTypeServices">
-                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
-                                <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
+                                <input class="seatType" id="seat-{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <label for="seat-{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                             <!-- <li ng-repeat="typeSeat in search.scraperSeats">
                                 <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
