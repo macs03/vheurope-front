@@ -2350,6 +2350,7 @@
 
             function processCountOrder () {
                   $('[data-toggle="tooltip"]').tooltip();
+                  $('.fa-trip-type').addClass('hidden');
                   vm.countOrder = vm.countOrder + 1;
                   if (vm.countOrder == 4) {
                         order('departure');
