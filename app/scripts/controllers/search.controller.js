@@ -1532,6 +1532,7 @@
                         vm.reverse = false;
                     }
                     vm.typeDeparture = type;
+                    vm.typeDeparturePlanes = type;
                     if (type === 'departure') {
                         vm.typeDeparturePlanes = 'start';
                     }
