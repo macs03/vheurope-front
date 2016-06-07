@@ -1559,7 +1559,7 @@
                     vm.companiesReset = [];
                     vm.allTrips = [];
                     if (!vm.multipleChange) {
-                        searchTrip();
+                        searchTrip('city');
                     }else{
                         vm.multipleChange = false;
                     }
@@ -1573,7 +1573,7 @@
                     vm.companies = [];
                     vm.companiesReset = [];
                     vm.allTrips = [];
-                    searchTrip();
+                    searchTrip('city');
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
@@ -1584,7 +1584,7 @@
                     vm.companies = [];
                     vm.companiesReset = [];
                     vm.allTrips = [];
-                    searchTrip();
+                    searchTrip('date');
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
@@ -1596,7 +1596,7 @@
                         vm.companies = [];
                         vm.companiesReset = [];
                         vm.allTrips = [];
-                        searchTrip();
+                        searchTrip('date');
                     }
                 }
             }, true);
@@ -1609,11 +1609,11 @@
                     vm.companies = [];
                     vm.companiesReset = [];
                     vm.allTrips = [];
-                    searchTrip();
+                    searchTrip('passenger');
                 }
             }, true);
 
-            function searchTrip() {
+            function searchTrip(changeType) {
                 var originPlaneCity = vm.origin.split(',');
                 var destinationPlaneCity = vm.destination.split(',');
                 var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
@@ -1622,24 +1622,26 @@
                   originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
                   destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
                 }
-                angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    if(vm.myOptionsOrigin[key].name === vm.origin){
-                        vm.originCity = vm.myOptionsOrigin[key].rt;
-                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
-                        vm.originCountry = vm.myOptionsOrigin[key].country;
-                        vm.originId = vm.myOptionsOrigin[key].id;
-                    }
-                });
+                if (changeType == 'city') {
+                    angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                        if(vm.myOptionsOrigin[key].name === vm.origin){
+                            vm.originCity = vm.myOptionsOrigin[key].rt;
+                            vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                            vm.originCountry = vm.myOptionsOrigin[key].country;
+                            vm.originId = vm.myOptionsOrigin[key].id;
+                        }
+                    });
 
-                angular.forEach(vm.myOptionsDestination, function(value, key) {
-                    if(vm.myOptionsDestination[key].name === vm.destination){
-                        vm.destinationCity = vm.myOptionsDestination[key].rt;
-                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
-                        vm.destinationCountry = vm.myOptionsDestination[key].country;
-                        vm.destinationId = vm.myOptionsDestination[key].id;
-                    }
-                });
-                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                    angular.forEach(vm.myOptionsDestination, function(value, key) {
+                        if(vm.myOptionsDestination[key].name === vm.destination){
+                            vm.destinationCity = vm.myOptionsDestination[key].rt;
+                            vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                            vm.destinationCountry = vm.myOptionsDestination[key].country;
+                            vm.destinationId = vm.myOptionsDestination[key].id;
+                        }
+                    });
+                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                }
 
                 var origin = vm.origin.split(',');
                 var destination = vm.destination.split(',');
@@ -1713,11 +1715,12 @@
 
                 //Reseteo los arrays basicos
                 resetGlobal();
-                
+
                 callLogitravel(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
                 callBusbud(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
                 callMovelia(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
 
+                // sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
                 if(destiniesPlanes.origin && destiniesPlanes.destination) {
                   vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
