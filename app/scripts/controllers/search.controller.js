@@ -2041,10 +2041,12 @@
                         console.log(vm.allTrips);
                         console.log('**********');
 
-                        setDateFilterRange(data.maxPrice,data.minPrice);
-                        setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
-                        setCompaniesAndSeatsReset(data.companies);
-                        vm.updateTripsType();
+                        if(vm.hasTrainTrips){
+                              setDateFilterRange(data.maxPrice,data.minPrice);
+                              setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
+                              setCompaniesAndSeatsReset(data.companies);
+                              vm.updateTripsType();
+                        }
                         processCountOrder();
                     })
                     .catch(function(err){
@@ -2082,10 +2084,12 @@
                         console.log(vm.allTrips);
                         console.log('**********');
 
-                        setDateFilterRange(data.maxPrice,data.minPrice);
-                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        setCompaniesAndSeatsReset(data.companies);
-                        vm.updateTripsType();
+                        if (vm.hasBusTrips) {
+                              setDateFilterRange(data.maxPrice,data.minPrice);
+                              setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                              setCompaniesAndSeatsReset(data.companies);
+                              vm.updateTripsType();
+                        }
                         processCountOrder();
                     })
                     .catch(function(err){
@@ -2131,10 +2135,12 @@
                         console.log(vm.allTrips);
                         console.log('**********');
 
-                        setDateFilterRange(data.maxPrice,data.minPrice);
-                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        setCompaniesAndSeatsReset(data.companies);
-                        vm.updateTripsType();
+                        if (vm.hasBusTrips) {
+                              setDateFilterRange(data.maxPrice,data.minPrice);
+                              setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                              setCompaniesAndSeatsReset(data.companies);
+                              vm.updateTripsType();
+                        }
                         processCountOrder();
                     })
                     .catch(function(err){
