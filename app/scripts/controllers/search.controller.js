@@ -68,6 +68,7 @@
             vm.globalDirectReturnTrips = [];
             vm.globalMixedTrips = [];
             vm.globalCompanies = [];
+            vm.planesCompanies = [];
             vm.globalTypeServices = [];
             vm.globalMinDuration = "";
             vm.cnames_es = [
@@ -944,6 +945,7 @@
                    }
                 };
                 auxPrice = 0;
+                vm.planesCompanies = [];
 
             };
 
