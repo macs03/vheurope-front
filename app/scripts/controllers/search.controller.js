@@ -2335,6 +2335,7 @@
             }
 
             function processCountOrder () {
+                  $('[data-toggle="tooltip"]').tooltip();
                   vm.countOrder = vm.countOrder + 1;
                   if (vm.countOrder == 4) {
                         order('departure');
