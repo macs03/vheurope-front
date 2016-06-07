@@ -1276,7 +1276,7 @@
                 callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
                     
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
-                    if(destiniesPlanes) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                    if(destiniesPlanes.origin && destiniesPlanes.destination) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
 
             }else{
                 console.log('Por AQUI');
@@ -1465,7 +1465,7 @@
                                     console.log(vm.originId+'-'+vm.destinationId);
                                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
-                                    if(destiniesPlanes) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                                    if(destiniesPlanes.origin && destiniesPlanes.destination) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
                                 })
                                 .catch(function (err) {
                                     console.log('Error');
@@ -1478,7 +1478,7 @@
                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
-                    if(destiniesPlanes) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                    if(destiniesPlanes.origin && destiniesPlanes.destination) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
                 }
             }
 
@@ -1678,7 +1678,7 @@
                 callMovelia(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
 
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
-                if(destiniesPlanes) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                if(destiniesPlanes.origin && destiniesPlanes.destination) vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
 
             }
             var listCompanies = new Set();
