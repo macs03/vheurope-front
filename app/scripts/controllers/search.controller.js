@@ -932,6 +932,19 @@
                 vm.isLoading = true;
                 vm.countBusSearch = 0;
                 vm.minDuration = 0;
+                vm.priceSlider = {
+                   price: 0,
+                   options: {
+                       showSelectionBar: true,
+                       translate: function(value) {
+                           return '€' + value;
+                       },
+                       floor: 0,
+                       ceil: 0,
+                   }
+                };
+                auxPrice = 0;
+
             };
 
             var loadGlobal = function(data, isMixed, isPlane){
