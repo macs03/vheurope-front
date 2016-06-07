@@ -1607,6 +1607,11 @@
                 } else {
                     if(vm.dates.returnDate == 'Invalid date' || vm.dates.returnDate == undefined) vm.dates.returnDate = ''
 
+                    var origen = vm.originCity ? vm.originCity : origin[0];
+                    var destino = vm.destinationCity ? vm.destinationCity : destination[0];
+
+                    console.log(origen + " - " + destino);
+
                     if (vm.dates.returnDate != '' && vm.dates.returnDate != 'Invalid date') {
                         var date1 = vm.dates.departureDate;
                         var date2 = vm.dates.returnDate;
@@ -1619,7 +1624,7 @@
                             vm.weather_progressbar.reset();
                             vm.weather_progressbar.start();
 
-                            callSearch(vm.originCity,vm.destinationCity,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                            callSearch(origen,destino,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                             vm.good = true;
 
                         }else {
@@ -1631,7 +1636,7 @@
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
 
-                        callSearch(vm.originCity,vm.destinationCity,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                        callSearch(origen,destino,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                         vm.good = true;
                     }
                 }
@@ -2342,11 +2347,17 @@
                 var splitOrigin = vm.origin.split(',')
                 var splitDestination = vm.destination.split(',')
                 var originSwitch;
+                var originCity;
                 var destinationSwitch;
+                var destinationCity;
                 if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
                     originSwitch =  vm.destination;
+                    originCity = vm.destinationCity;
                     destinationSwitch = vm.origin;
+                    destinationCity = vm.originCity;
                     // change the cities
+                    vm.originCity = originCity;
+                    vm.destinationCity = destinationCity;
                     vm.origin = originSwitch;
                     vm.destination = destinationSwitch;
                     vm.multipleChange = true;
