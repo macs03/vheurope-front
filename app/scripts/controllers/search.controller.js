@@ -751,11 +751,10 @@
             };
 
             function getLowestAvanzaBus (trips) {
-                  var menor = 0;
+                  var menor = 99999999;
                   var pos = 0;
 
                   if(trips != undefined && trips.length > 0){
-                        menor = vm.lowestDurationBus + 1;
                         pos = 0;
                         for(i=1;i<trips.length;i++){
                               if(trips[i].data.duration < menor && trips[i].data.transportation == "bus"){
