@@ -569,6 +569,10 @@
                   plane = vm.lowestDurationPlane;
                 }
 
+                if(vm.planesTrips == undefined){
+                  vm.searchingTripsPlane = false;
+                }
+
                 if(plane != 0){
 
                     if(bus == null) bus = 120;
@@ -1732,6 +1736,8 @@
                                             angular.forEach(data2.tickets, function(value, key) {
                                                 if (value.data.transportation == 'airplane') {
                                                     vm.planesTrips.push(value.data);
+                                                    vm.hasPlaneTrips = true;
+                                                     vm.planesFlag = true;
                                                 }else{
                                                     vm.scraperTrips.push(value.data);
                                                     vm.hasBusTrips = true;
@@ -1742,9 +1748,9 @@
                                                     vm.order('departure');
                                                 }
                                             }
-                                            vm.planesFlag = true;
+                                           
                                             vm.scraperFlag = false;
-                                            vm.hasPlaneTrips = true;
+                                            
 
                                             vm.updateTripsType();
                                             vm.lowestPricePlane = getLowestPlanes(data2.tickets, 2);
@@ -1776,6 +1782,8 @@
                                                             angular.forEach(data4.tickets, function(value, key) {
                                                                 if (value.data.transportation == 'airplane') {
                                                                     vm.planesTrips.push(value.data);
+                                                                     vm.hasPlaneTrips = true;
+                                                                     vm.planesFlag = true;
                                                                 }else{
                                                                     vm.scraperTrips.push(value.data);
                                                                     vm.hasBusTrips = true;
@@ -1786,9 +1794,9 @@
                                                                     vm.order('departure');
                                                                 }
                                                             }
-                                                            vm.planesFlag = true;
+                                                            
                                                             vm.scraperFlag = false;
-                                                            vm.hasPlaneTrips = true;
+                                                           
                                                             vm.updateTripsType();
                                                             vm.lowestPricePlane = getLowestPlanes(data4.tickets, 2);
                                                             vm.lowestDurationPlane = getLowestPlanes(data4.tickets, 1);
@@ -1819,6 +1827,8 @@
                                                                             angular.forEach(data6.tickets, function(value, key) {
                                                                                 if (value.data.transportation == 'airplane') {
                                                                                     vm.planesTrips.push(value.data);
+                                                                                    vm.hasPlaneTrips = true;
+                                                                                     vm.planesFlag = true;
                                                                                 }else{
                                                                                     vm.scraperTrips.push(value.data);
                                                                                     vm.hasBusTrips = true;
@@ -1829,9 +1839,9 @@
                                                                                     vm.order('departure');
                                                                                 }
                                                                             }
-                                                                            vm.planesFlag = true;
+                                                                           
                                                                             vm.scraperFlag = false;
-                                                                            vm.hasPlaneTrips = true;
+                                                                            
                                                                             vm.updateTripsType();
                                                                             vm.lowestPricePlane = getLowestPlanes(data6.tickets, 2);
                                                                             vm.lowestDurationPlane = getLowestPlanes(data6.tickets, 1);
