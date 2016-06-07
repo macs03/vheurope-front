@@ -2111,7 +2111,7 @@
 
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
-                              vm.searchingTripsBus = false;
+                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         vm.isLoading = false;
                         vm.disabled = false;
@@ -2119,7 +2119,7 @@
                         if(!vm.hasBusTrips){
                             vm.hasBusTrips = data.hasBusTrips;
                             if(data.isMixedTrips){
-                              vm.hasBusTrips = true; // Ya buscó por todos los servicios de buses
+                              vm.hasBusTrips = true; 
                             }
                         }
                         $('.pikaday__display').prop('disabled', false);
