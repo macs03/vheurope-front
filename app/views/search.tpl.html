@@ -440,7 +440,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </li> -->
                             <li ng-repeat="company in search.planesCompanies">
                                 <input id="company-{{$index}}" type="checkbox"  name="company-{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
-                                <label for="company-{{$index}}" class="capitalize" >{{company.name}}</label>
+                                <label for="company-{{$index}}" class="capitalize" ng-hide="company.name =='Auto-Res, S.L.U.'">{{company.name}}</label>
+                                <label for="company-{{$index}}" class="capitalize" ng-show="company.name =='Auto-Res, S.L.U.'"><small>AVANZABUS</small></label>
                             </li>
                         </ul>
                     </div>
@@ -652,7 +653,104 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- AVANZABUS -->
+                                <div class="row" ng-show="trip.segments.length > 0">
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <img ng-src="{{ trip.logo }}" title="{{ trip.companyName }}" class="logo_small">
+                                        <br>
+                                        <small class="text-muted hidden-xs hidden-sm" style="margin-left: 25px;">
+                                            <span ng-show="trip.segments.length == 1">Directo</span>
+                                            <span ng-show="trip.segments.length > 1">{{ trip.segments.length - 1 }} Escalas</span>
+                                        </small>
+                                    </div>
+                                    <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <div class="row hidden-xs hidden-sm">
+                                          <div class="col-md-3">
+                                            <small class="text-muted-dark">
+                                              {{ search.getHourMinPlanes(trip.duration) }}
+                                            </small>
+                                          </div>
+                                          <div class="col-md-9">
+                                            <ul class="timeline hidden-xs hidden-sm">
+
+                                              <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.segments.length)">
+                                                <div class="timestamp"></div>
+                                                <div class="status plane" ng-class="{'scale': trip.segments.length > 1, 'no-scale': trip.segments.length == 1}"></div>
+                                              </li>
+                                              <li class="li complete">
+                                                <div class="timestamp"></div>
+                                                <div class="status plane last" ></div>
+                                              </li>
+                                              <small class="hidden-xs hidden-sm" style="margin-top: 18px;margin-left: 20px;">
+                                                <span ng-show="trip.segments.length == 1">Directo</span>
+                                                <span ng-show="trip.segments.length > 1">{{ trip.segments.length - 1 }} Escalas</span>
+                                              </small>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                        <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
+                                    </div>
+                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type hidden" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus'}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.typeService }}</small>
+                                    </div>
+                                    <div class="col-md-3 col-xs-4 col-sm-4">
+                                        <button data-trip-id="{{$index}}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                        <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
+                                    </div>
+                                </div>
+                                <div class="row" id="trip_details_avanza_{{$index}}"  style="margin-top: 30px; display: none;">
+                                    <div class="timeline-centered">
+                                        <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</span>
+                                                    <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
+                                                </time>
+                                                <div class="timeline-icon bg-theme-blue">
+                                                    <i class="fa fa-plane"></i>
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{ segment.origin }}</h2>
+                                                    <p>
+                                                        <b>{{ segment.enterprise__name }}</b> | Vuelo No: <b>{{ segment.number }}</b>
+                                                        <span class="label label-default pull-right"><b>{{ search.getHourMinPlanes(segment.duration) }}</b></span>
+                                                        <br>
+                                                        <b>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</b> <i class="fa fa-angle-right"></i> <b>{{ search.millisToUTCDate(segment.end*1000) | date:'HH:mm'}}</b>
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-sublabel">
+                                                    <p class="text-muted smallest-font hidden">
+                                                      <i class="fa fa-clock-o"></i> Layover in Concepcion for 1h 26min <br>
+                                                      <i class="fa fa-suitcase"></i> Recheck of checked luggage needed
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <article class="timeline-entry begin">
+                                            <div class="timeline-entry-inner">
+                                                <time class="timeline-time" datetime="2014-01-10T03:45">
+                                                    <span>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</span>
+                                                    <span>{{ search.millisToUTCDate(trip.arrival) | date:'EEE, dd MMM'}}</span>
+                                                </time>
+                                                <div class="timeline-icon">
+
+                                                </div>
+                                                <div class="timeline-label">
+                                                    <h2>{{ trip.destination }}</h2>
+                                                </div>
+
+                                            </div>
+                                        </article>
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12">
+                                                 <a href="{{ trip.url }}" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END AVANZABUS -->
+                                <div class="row" ng-hide="trip.segments.length > 0">
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                         <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small">
                                         <br>
@@ -736,7 +834,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </div> 
 
                     <!-- AVIONES -->
-                          <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips">
+                          <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus">
                             <div class="results list" id="trips_tickeables" >
                                 <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                 <div class="row">
@@ -1542,7 +1640,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
                         </div>
                         <!-- NEW AVIONES -->
-                        <div class="row" ng-show="trip.transportType == 'airplane'">
+                        <div class="row" ng-show="trip.transportType == 'airplane' || trip.segments.length > 0">
                             <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                 <img ng-src="{{ trip.logo }}" title="{{ trip.companyName }}" class="logo_small">
                                 <br>
@@ -1587,7 +1685,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                             </div>
                         </div>
-                        <div class="row" id="trip_details_mix_{{$index}}"  style="margin-top: 30px; display: none;" ng-show="trip.transportType == 'airplane'">
+                        <div class="row" id="trip_details_mix_{{$index}}"  style="margin-top: 30px; display: none;" ng-show="trip.segments.length > 0">
                             <div class="timeline-centered">
                                 <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
                                     <div class="timeline-entry-inner">
@@ -1638,7 +1736,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
                         </div>
                         <!-- END NEW AVIONES -->
-                        <div class="row" ng-hide="trip.transportType == 'airplane'">
+                        <div class="row" ng-hide="trip.transportType == 'airplane' || trip.segments.length > 0">
                             <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                 <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small">
                                 <br>

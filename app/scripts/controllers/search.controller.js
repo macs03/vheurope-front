@@ -1219,8 +1219,10 @@
             vm.tripDetails = function($event){
                 var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 var elementId2 = '#trip_details_mix_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId3 = '#trip_details_avanza_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 $(elementId).slideToggle( "slow" );
                 $(elementId2).slideToggle( "slow" );
+                $(elementId3).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {
@@ -2035,16 +2037,13 @@
 
                         vm.searchingTripsTrain = false; //Ya buscó
                         vm.isLoading = false;
-                        vm.disabled = false;                        
+                        vm.disabled = false;
                         vm.hasTrainTrips = data.hasTrainTrips;
                         $('.pikaday__display').prop('disabled', false);
 
-                        console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
-                        console.log(vm.allTrips);
-                        console.log('**********');
 
                         if(vm.hasTrainTrips){
                               setDateFilterRange(data.maxPrice,data.minPrice);
@@ -2082,12 +2081,9 @@
                             vm.hasBusTrips = data.hasBusTrips;
                         $('.pikaday__display').prop('disabled', false);
 
-                        console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
-                        console.log(vm.allTrips);
-                        console.log('**********');
 
                         if (vm.hasBusTrips) {
                               setDateFilterRange(data.maxPrice,data.minPrice);
@@ -2133,12 +2129,9 @@
                         }
                         $('.pikaday__display').prop('disabled', false);
 
-                        console.log('**********');
                         angular.forEach(data.directDepartureTrips[0], function(value, key) {
                           vm.allTrips.push(value);
                         });
-                        console.log(vm.allTrips);
-                        console.log('**********');
 
                         if (vm.hasBusTrips) {
                               setDateFilterRange(data.maxPrice,data.minPrice);
@@ -2252,7 +2245,13 @@
                         vm.allTrips.push(auxTrip);
 
                         if (value.data.transportation == "bus"){
-                              vm.hasBusTrips = true;
+                            if (vm.globalDirectDepartureTrips.length > 0) {
+                                vm.globalDirectDepartureTrips[0].push(auxTrip);
+                            }else{
+                                vm.globalDirectDepartureTrips.push([]);
+                                vm.globalDirectDepartureTrips[0].push(auxTrip);
+                            }
+                            vm.hasBusTrips = true;
                         }else {
                               flagPlanes = true;
                         }
