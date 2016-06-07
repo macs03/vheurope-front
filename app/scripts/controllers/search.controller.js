@@ -2227,6 +2227,7 @@
                   vm.planesTrips = [];
                   var auxTrip = {};
                   var flagPlanes = false;
+                  var flagBus = false;
                   angular.forEach(data.tickets, function(value, key) {
                         vm.planesTrips.push(value.data);
                         auxTrip.arrival = value.data.end * 1000;
@@ -2251,6 +2252,7 @@
                                 vm.globalDirectDepartureTrips[0].push(auxTrip);
                             }
                             vm.hasBusTrips = true;
+                            flagBus = true;
                         }else {
                               flagPlanes = true;
                         }
@@ -2268,7 +2270,7 @@
                         vm.searchingTripsBus = false;
                   }
                   vm.updateTripsType();
-                  getLowestAvanzaBus(data.tickets)
+                  if(flagBus) getLowestAvanzaBus(data.tickets);
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
                   vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
                   planesManager(data.tickets);
