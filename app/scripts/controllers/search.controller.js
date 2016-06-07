@@ -930,6 +930,7 @@
                 vm.showTrain = false;
                 vm.showPlane = false;
                 vm.isLoading = true;
+                vm.countBusSearch = 0;
             };
 
             var loadGlobal = function(data, isMixed, isPlane){
