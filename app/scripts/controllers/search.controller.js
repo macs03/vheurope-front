@@ -2348,14 +2348,20 @@
                 var splitDestination = vm.destination.split(',')
                 var originSwitch;
                 var originCity;
+                var optionsOrigin;
                 var destinationSwitch;
                 var destinationCity;
+                var optionsDestination;
                 if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
                     originSwitch =  vm.destination;
                     originCity = vm.destinationCity;
+                    optionsOrigin = vm.myOptionsDestination;
                     destinationSwitch = vm.origin;
                     destinationCity = vm.originCity;
+                    optionsDestination = vm.myOptionsOrigin;
                     // change the cities
+                    vm.myOptionsOrigin = optionsOrigin;
+                    vm.myOptionsDestination = optionsDestination;
                     vm.originCity = originCity;
                     vm.destinationCity = destinationCity;
                     vm.origin = originSwitch;
