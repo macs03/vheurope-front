@@ -1128,7 +1128,7 @@
                          options: {
                              showSelectionBar: true,
                              translate: function(value) {
-                                 return '€' + value;
+                                 return value + ' €';
                              },
                              floor: 0,
                              ceil: maxprice+1,
