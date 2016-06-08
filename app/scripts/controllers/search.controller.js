@@ -2542,6 +2542,12 @@
                 $('.popover-select-passengers').toggleClass('open');
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
+            $('#select_passengers').siblings('span').on('click', function(){
+                var offset = $('#select_passengers').offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top+55)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
 
             $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
