@@ -1866,7 +1866,7 @@
                     .then(function(data){
                         //console.log(data);
                         if(data.url != null ){
-                           window.location.href = data.url;
+                           window.open(data.url,'_blank');
                         }else{
                             alert('No es posible utilizar esa combinacion de viajes');
                         }
