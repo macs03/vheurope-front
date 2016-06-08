@@ -1146,11 +1146,11 @@
                     translate: function(value, sliderId, label) {
                         switch (label) {
                             case 'model':
-                              return value+':00 HRS';
+                              return value+':00';
                             case 'high':
-                              return value+':59 HRS';
+                              return value+':59';
                             default:
-                              return value+':HRS'
+                              return value
                           }
                     },
                     step: 1
