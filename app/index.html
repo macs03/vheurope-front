@@ -2,7 +2,7 @@
 <html ng-app="vhEurope" ng-controller="indexController">
   <head>
     <meta charset="utf-8">
-    <title ng-cloak>{{pageTitle}}</title>
+    <title ng-bind="pageTitle">Resertrip Viaja inteligente</title>
     <meta name="description" content="{{ pageDescription }}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -191,7 +191,6 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
