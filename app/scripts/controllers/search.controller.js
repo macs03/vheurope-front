@@ -1997,6 +1997,7 @@
                     .then(function (data) {
 
                         loadGlobal(data, true, false);
+                        saveOtherInfoInTrips(data);
 
                         vm.searchingMix = false;
                         vm.isMixedTrips = data.isMixedTrips
@@ -2089,6 +2090,7 @@
                         console.log(data);
 
                         loadGlobal(data, false, false);
+                        saveOtherInfoInTrips(data);
 
                         vm.searchingTripsTrain = false; //Ya buscó
                         vm.isLoading = false;
@@ -2125,6 +2127,7 @@
                         console.log('2');
                         console.log(data);
                         loadGlobal(data, false,false);                       
+                        saveOtherInfoInTrips(data);                   
 
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
@@ -2168,6 +2171,7 @@
                         console.log('3');
                         console.log(data);
                         loadGlobal(data, false,false);
+                        saveOtherInfoInTrips(data);
 
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
@@ -2277,6 +2281,13 @@
                         catchPlanes();
                     })
 
+            }
+
+            function saveOtherInfoInTrips(data) {
+                  vm.trips.departureDate = data.departureDate
+                  vm.trips.returnDate = data.returnDate
+                  vm.trips.destination = data.destination
+                  vm.trips.origin = data.origin
             }
 
             function processPlanes (data) {
