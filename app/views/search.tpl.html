@@ -406,15 +406,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="typeSeat in search.globalTypeServices">
-                                <input class="seatType" id="seat-{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <input class="seatType" id="seat-{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.globalTypeServices.length)" ng-model="typeSeat.checked">
                                 <label for="seat-{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li>
                             <!-- <li ng-repeat="typeSeat in search.scraperSeats">
-                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <input class="seatType" id="{{typeSeat.id}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="semi-cama" data-value="{{typeSeat.name}}" ng-click="search.seatFilter(typeSeat,search.globalTypeServices.length)" ng-model="typeSeat.checked">
                                 <label for="{{typeSeat.id}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li> 
                             <li ng-repeat="typeSeat in search.planesSeats">
-                                <input class="seatType" id="seat-{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="seat-{{$index}}" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.trips.typeServices.length)" ng-model="typeSeat.checked">
+                                <input class="seatType" id="seat-{{$index}}" data="{{typeSeat.name}}" type="checkbox" ${checked} name="seat-{{$index}}" data-value="{{typeSeat}}" ng-click="search.seatFilter(typeSeat,search.globalTypeServices.length)" ng-model="typeSeat.checked">
                                 <label for="seat-{{$index}}" class="capitalize" >{{typeSeat.name}}</label>
                             </li> -->
                         </ul>
@@ -435,7 +435,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
                             <!-- <li ng-repeat="company in search.scraperCompanies">
-                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.globalCompanies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
                             </li> -->
                             <li ng-repeat="company in search.planesCompanies">
@@ -562,13 +562,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <div class="col-md-2 col-xs-4 np-tab pr5" ng-show="search.hasBusTrips">
                         <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')"  >
                             <i class="fa fa-bus fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-4 np-tab pl0" ng-show="search.hasTrainTrips">
                         <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" >
                             <i class="fa fa-train fa-2x"></i>
-                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                            <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                         </div>
                     </div>
                      <div class="col-md-2 col-xs-4 np-tab pr5 pl0" ng-show="search.hasPlaneTrips">
@@ -1090,7 +1090,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
-                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
                                   <!--
@@ -1104,7 +1104,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
-                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
                                   
@@ -1282,7 +1282,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
-                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.bus.price | currency : '' }} €</small></span>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
                                   <!--
@@ -1296,7 +1296,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                   <div class="col-md-2 col-xs-4 np-tab pl0">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
-                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.trips.lowest.train.price | currency : '' }} €</small></span>
+                                          <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
                                   
