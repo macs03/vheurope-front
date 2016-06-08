@@ -1869,6 +1869,7 @@
                            window.open(data.url,'_blank');
                         }else{
                             //alert('No es posible utilizar esa combinacion de viajes');
+                            alertify.logPosition("top right");
                             alertify.log("No es posible utilizar esa combinacion de viajes");
                         }
                     })
