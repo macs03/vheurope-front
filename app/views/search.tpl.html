@@ -431,7 +431,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <div class="filter-module">
                         <ul class="list-unstyled">
                             <li ng-repeat="company in search.globalCompanies">
-                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <input id="{{company.id}}" type="checkbox"  name="{{company.id}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.globalCompanies.length)" ng-model="company.checked">
                                 <label for="{{company.id}}" class="capitalize" >{{company.name}}</label>
                             </li>
                             <!-- <li ng-repeat="company in search.scraperCompanies">
@@ -439,7 +439,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <label for="{{company.id}}" class="capitalize" >{{company.nickName}}</label>
                             </li> -->
                             <li ng-repeat="company in search.planesCompanies">
-                                <input id="company-{{$index}}" type="checkbox"  name="company-{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.trips.companies.length)" ng-model="company.checked">
+                                <input id="company-{{$index}}" type="checkbox"  name="company-{{$index}}" data="{{company.name}}" class="company" ng-click="search.companyFilter(company,search.globalCompanies.length)" ng-model="company.checked">
                                 <label for="company-{{$index}}" class="capitalize" ng-hide="company.name =='Auto-Res, S.L.U.'">{{company.name}}</label>
                                 <label for="company-{{$index}}" class="capitalize" ng-show="company.name =='Auto-Res, S.L.U.'"><small>AVANZABUS</small></label>
                             </li>
