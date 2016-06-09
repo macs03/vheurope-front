@@ -2553,6 +2553,17 @@
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
+
+            vm.openReturnCalendar = openReturnCalendar;
+            vm.openDepartureCalendar = openDepartureCalendar
+
+            function openReturnCalendar() {
+                $('#returnDate').siblings('input').click();
+            }
+
+            function openDepartureCalendar() {
+                $('#departureDate').siblings('input').click();
+            }
         }
 
 })();
