@@ -2270,7 +2270,6 @@
                                                                               })
                                                                       }else{
                                                                           catchPlanes();
-                                                                          processCountOrder();
                                                                       }
                                                                   })
                                                                   .catch(function (){
@@ -2384,6 +2383,7 @@
                   if(vm.countBusSearch == 3){
                         vm.searchingTripsBus = false;
                   }
+                  processCountOrder();
             }
 
             function processCountOrder () {
