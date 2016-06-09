@@ -2121,47 +2121,56 @@
             }
 
             function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-                  vm.searchingTripsBus = true; // Buscando buses
-                   travelsFactory
-                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                    .then(function(data){
+                  if (returns == "") {
+                        vm.searchingTripsBus = true; // Buscando buses
+                         travelsFactory
+                          .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                          .then(function(data){
 
-                        console.log('2');
-                        console.log(data);
-                        loadGlobal(data, false,false);                       
-                        saveOtherInfoInTrips(data);                   
+                              console.log('2');
+                              console.log(data);
+                              loadGlobal(data, false,false);                       
+                              saveOtherInfoInTrips(data);                   
 
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 3){
+                                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                              }
+                              vm.isLoading = false;
+                              vm.disabled = false;
+                              if(!vm.hasBusTrips)
+                                  vm.hasBusTrips = data.hasBusTrips;
+                              $('.pikaday__display').prop('disabled', false);
+
+                              angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                vm.allTrips.push(value);
+                              });
+
+                              if (vm.hasBusTrips) {
+                                    setDateFilterRange(data.maxPrice,data.minPrice);
+                                    setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                                    setCompaniesAndSeatsReset(data.companies);
+                                    vm.updateTripsType();
+                              }
+                              processCountOrder();
+                          })
+                          .catch(function(err){
+                              console.log(err);
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 3){
+                                    vm.searchingTripsBus = false;
+                              }
+
+                              catchTravelsFactory(err);
+                          })
+                  } else {
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
-                        vm.isLoading = false;
-                        vm.disabled = false;
-                        if(!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
                         $('.pikaday__display').prop('disabled', false);
-
-                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
-                          vm.allTrips.push(value);
-                        });
-
-                        if (vm.hasBusTrips) {
-                              setDateFilterRange(data.maxPrice,data.minPrice);
-                              setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                              setCompaniesAndSeatsReset(data.companies);
-                              vm.updateTripsType();
-                        }
                         processCountOrder();
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
-                              vm.searchingTripsBus = false;
-                        }
-
-                        catchTravelsFactory(err);
-                    })
+                  }
             }
 
             function callMovelia (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
@@ -2214,74 +2223,84 @@
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
-                vm.searchingTripsPlane = true; // Buscabdo trenes
-                planesFactory
-                    .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
-                    .then(function (data) {
-                        planesFactory
-                            .getApiStatus(data.status)
-                            .then(function (data1) {
-                                if (data1.progress != 0 && data1.results !=0) {
-                                    planesFactory
-                                        .getApiData(data.data)
-                                        .then(function (data2) {
-                                            processPlanes(data2);
-                                        })
-                                        .catch(function (){
-                                            catchPlanes();
-                                        })
-                                }else{
-                                    $timeout(function () {
-                                        planesFactory
-                                            .getApiStatus(data.status)
-                                            .then(function (data3) {
-                                                if (data3.progress != 0 && data3.results !=0) {
-                                                    planesFactory
-                                                        .getApiData(data.data)
-                                                        .then(function (data4) {
-                                                            processPlanes(data4);
-                                                        })
-                                                        .catch(function (){
-                                                            catchPlanes();
-                                                        })
-                                                }else{
-                                                    $timeout(function () {
-                                                        planesFactory
-                                                            .getApiStatus(data.status)
-                                                            .then(function (data5) {
-                                                                if (data5.progress != 0 && data5.results !=0) {
-                                                                    planesFactory
-                                                                        .getApiData(data.data)
-                                                                        .then(function (data6) {
-                                                                            processPlanes(data6);
-                                                                        })
-                                                                        .catch(function (){
-                                                                            catchPlanes();
-                                                                        })
-                                                                }else{
-                                                                    catchPlanes();
-                                                                    processCountOrder();
-                                                                }
-                                                            })
-                                                            .catch(function (){
-                                                                catchPlanes();
-                                                            })
-                                                    }, 5000);
-                                                }
-                                            })
-                                            .catch(function (){
-                                                catchPlanes();
-                                            })
-                                    }, 5000);
-                                }
-                            })
-                            .catch(function (){
-                                catchPlanes();
-                            })
-                    })
-                    .catch(function (){
-                        catchPlanes();
-                    })
+                  if (returnDate == "") {
+                      vm.searchingTripsPlane = true; // Buscabdo trenes
+                      planesFactory
+                          .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                          .then(function (data) {
+                              planesFactory
+                                  .getApiStatus(data.status)
+                                  .then(function (data1) {
+                                      if (data1.progress != 0 && data1.results !=0) {
+                                          planesFactory
+                                              .getApiData(data.data)
+                                              .then(function (data2) {
+                                                  processPlanes(data2);
+                                              })
+                                              .catch(function (){
+                                                  catchPlanes();
+                                              })
+                                      }else{
+                                          $timeout(function () {
+                                              planesFactory
+                                                  .getApiStatus(data.status)
+                                                  .then(function (data3) {
+                                                      if (data3.progress != 0 && data3.results !=0) {
+                                                          planesFactory
+                                                              .getApiData(data.data)
+                                                              .then(function (data4) {
+                                                                  processPlanes(data4);
+                                                              })
+                                                              .catch(function (){
+                                                                  catchPlanes();
+                                                              })
+                                                      }else{
+                                                          $timeout(function () {
+                                                              planesFactory
+                                                                  .getApiStatus(data.status)
+                                                                  .then(function (data5) {
+                                                                      if (data5.progress != 0 && data5.results !=0) {
+                                                                          planesFactory
+                                                                              .getApiData(data.data)
+                                                                              .then(function (data6) {
+                                                                                  processPlanes(data6);
+                                                                              })
+                                                                              .catch(function (){
+                                                                                  catchPlanes();
+                                                                              })
+                                                                      }else{
+                                                                          catchPlanes();
+                                                                          processCountOrder();
+                                                                      }
+                                                                  })
+                                                                  .catch(function (){
+                                                                      catchPlanes();
+                                                                  })
+                                                          }, 5000);
+                                                      }
+                                                  })
+                                                  .catch(function (){
+                                                      catchPlanes();
+                                                  })
+                                          }, 5000);
+                                      }
+                                  })
+                                  .catch(function (){
+                                      catchPlanes();
+                                  })
+                          })
+                          .catch(function (){
+                              catchPlanes();
+                          })
+                  } else {
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
+                        vm.searchingTripsPlane = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        processCountOrder();
+                  }
 
             }
 
