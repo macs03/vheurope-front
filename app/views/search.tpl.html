@@ -1616,7 +1616,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
 
                             <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
-                                <p class="approximate-time text-muted smallest-font">{{trip.duration}}.</p>
+                                <p class="approximate-time text-muted smallest-font">{{trip.durationMinutes}}.</p>
                             </div>
 
                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -1651,7 +1651,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <div class="row hidden-xs hidden-sm">
                                   <div class="col-md-3">
                                     <small class="text-muted-dark">
-                                      {{ search.getHourMinPlanes(trip.duration) }}
+                                      {{ search.getHourMinPlanes(trip.durationMinutes) }}
                                     </small>
                                   </div>
                                   <div class="col-md-9">

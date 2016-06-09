@@ -1538,6 +1538,9 @@
                     if (type === 'departure') {
                         vm.typeDeparturePlanes = 'start';
                     }
+                    if (type === 'durationMinutes') {
+                        vm.typeDeparturePlanes = 'duration';
+                    }
                     vm.type = type;
                 }else {
                     if(vm.typeReturn === type) {
@@ -2321,7 +2324,7 @@
                         auxTrip.companyName = value.data.enterprise__name;
                         auxTrip.departure = value.data.start * 1000;
                         auxTrip.destination = value.data.destination;
-                        auxTrip.duration = value.data.duration;
+                        auxTrip.durationMinutes = value.data.duration;
                         auxTrip.logo = value.data.enterprise__image;
                         auxTrip.origin = value.data.origin;
                         auxTrip.price = value.data.price;
