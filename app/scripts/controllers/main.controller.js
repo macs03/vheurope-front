@@ -382,11 +382,28 @@
                 $('.popover-select-passengers').toggleClass('open');
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
+            $('#select_passengers').siblings('span').on('click', function(){
+                var offset = $('#select_passengers').offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top-132)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
 
              $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
+
+            vm.openReturnCalendar = openReturnCalendar;
+            vm.openDepartureCalendar = openDepartureCalendar
+
+            function openReturnCalendar() {
+                $('#returnDate').siblings('input').click();
+            }
+
+            function openDepartureCalendar() {
+                $('#departureDate').siblings('input').click();
+            }
 
             var bg_images = [
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/barcelona_desde_arriba.jpg",

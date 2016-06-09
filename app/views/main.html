@@ -95,17 +95,15 @@
                                         </div>
                                         <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
                                            <vhdatepicker class="form-departure" id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
-                                            <span class="fa fa-calendar departure-calendar vh-calendar"></span>
-                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                            <span ng-click="main.openDepartureCalendar()" class="fa fa-calendar departure-calendar vh-calendar" style="cursor:pointer;"></span>
                                         </div>
                                         <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
                                             <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}"  data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
-                                            <span class="fa fa-calendar return-calendar vh-calendar"></span>
-                                            <span class="fa fa-times clear-calendar vh-calendar"></span>
+                                            <span ng-click="main.openReturnCalendar()" class="fa fa-calendar return-calendar vh-calendar" style="cursor:pointer;"></span>
                                         </div>
                                         <div class="col-md-1 col-xs-12 np">
                                             <input type="text" id="select_passengers" ng-model="main.passengers">
-                                            <span class="fa fa-users vh-calendar" style="margin-right: 15px;"></span>
+                                            <span class="fa fa-users vh-calendar" style="margin-right: 15px;cursor:pointer;"></span>
                                         </div>
                                         <div class="col-md-1 col-xs-12 np">
                                             <a class="btn btn-block btn-success btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()"><i class="fa fa-search"></i></a>
