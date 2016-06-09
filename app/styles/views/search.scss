@@ -123,8 +123,8 @@ border-radius: 1px;
 .selectize-control.single .selectize-input:after { right: 20px !important; }
 
 
-.selectize-input input { margin-top: -5px !important; margin-left: 16px !important; }
-.selectize-input.items { 
+.selectize-input input { margin-top: -5px !important; margin-left: 10px !important; }
+.selectize-input.items {
 }
 
 .selectize-input .item { 
@@ -135,7 +135,7 @@ border-radius: 1px;
 
 .selectize-control.single .selectize-input, .selectize-control.single .selectize-input input {
     min-height: 48px !important;
-    min-width: 100px;
+    min-width: 50px;
     border-top: 0;
     border-bottom: 0;
     border-left: 0;
