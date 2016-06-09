@@ -2366,12 +2366,13 @@
 
             function catchTravelsFactory (err) {
                   vm.searching = false;
-                  vm.error = true;
-                  vm.msgError = err;
+                  //vm.error = true;
+                  //vm.msgError = err;
                   vm.disabled = false;
                   $('.pikaday__display').prop('disabled', false);
-                  apiError();
+                  //apiError();
                   utilityService.setData(null,null,null,null, null, null, null);
+                  processCountOrder();
             }
 
             function catchPlanes () {
