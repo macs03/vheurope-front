@@ -2124,7 +2124,7 @@
             }
 
             function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-                  if (returns == "") {
+                  if (false) {//returns == "" Esta es la condición que debe ir
                         vm.searchingTripsBus = true; // Buscando buses
                          travelsFactory
                           .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
@@ -2167,6 +2167,7 @@
                               catchTravelsFactory(err);
                           })
                   } else {
+                        console.log("No llamó a Busbud");
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
