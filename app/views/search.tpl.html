@@ -276,18 +276,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <div class="row destination-search">
+                            <div class="row">
                                 <form role="form" >
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12 ">
                                             <div class="row destination-search">
                                                 <div class="col-md-3 col-xs-12 np">
-                                                    <selectize config='search.myConfigOrigin' options='search.myOptionsOrigin' ng-model="search.origin"></selectize>
+                                                    <place-picker config='search.myConfigOrigin' options='search.myOptionsOrigin' ng-model="search.origin" ng-disabled="search.disabled"></place-picker>
+                                                    <!-- <selectize config='search.myConfigOrigin' options='search.myOptionsOrigin' ng-model="search.origin"></selectize> -->
                                                     <!-- <span class="fa fa-times clear-field vh-calendar" ng-show="search.destination"></span> -->
                                                 </div>
                                                 <div class="switcheroo hidden-xs hidden-sm" ng-click="search.switcher()"></div>
                                                 <div class="col-md-3 col-xs-12  np">
-                                                    <selectize config='search.myConfigDestination' options='search.myOptionsDestination' ng-model="search.destination"></selectize>
+                                                    <place-picker config='search.myConfigDestination' options='search.myOptionsDestination' ng-model="search.destination" ng-disabled="search.disabled"></place-picker>
+                                                    <!-- <selectize config='search.myConfigDestination' options='search.myOptionsDestination' ng-model="search.destination"></selectize> -->
                                                     <!-- <span class="fa fa-times clear-field vh-calendar" ng-show="search.destination"></span> -->
 
                                                 </div>

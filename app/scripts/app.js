@@ -17,7 +17,6 @@
        'ngRoute',
        'ngSanitize',
        'ngTouch',
-       'selectize',
        'rzModule',
        'pascalprecht.translate',
        'angular-loading-bar',

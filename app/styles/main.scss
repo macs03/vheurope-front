@@ -7,10 +7,13 @@ $fa-font-path:   "../bower_components/font-awesome/fonts" !default;
 // endbower
 
 
-@import "views/variables.scss";
-@import "views/mixins.scss";
-@import "views/pikaday.scss";
-@import "views/_weather.scss";
+@import "utils/variables.scss";
+@import "utils/mixins.scss";
+
+@import "assets/pikaday.scss";
+@import "assets/weather.scss";
+
+@import "modules/searchEngine.scss";
 
 @import "views/homepage.scss";
 @import "views/search.scss";
@@ -31,6 +34,40 @@ body {
 a {
    outline: 0 !important;
 }
+
+select {
+  height: 48px !important;
+  min-height: 48px !important;
+  background-color: transparent;
+  width: 99% !important;
+  border: none;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+
+input[type="text"] {
+  border-radius: 0px !important;
+  min-height: 48px !important;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  // border-right: 1px solid #dedede;
+  box-shadow: none;
+  padding-left: 10px;
+  width: 99%;
+}                             
+   
+input[type="checkbox"] + label,
+input[type="radio"] + label 
+{ 
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+}
+
+input[type="checkbox"],
+input[type="radio"] { margin-bottom: 10px !important }    
 
 .italic {
    font-style: italic;
@@ -75,16 +112,6 @@ rzslider .rz-bar.rz-selection {
 }
 rzslider .rz-pointer.rz-active:after{
     background-color: transparent;
-}
-
-.selectize-dropdown [data-selectable] .highlight {
-  background: #29abe5;
-  color: #fff;
-}
-
-.selectize-dropdown .active {
-  background-color: #29abe5;
-  color: #fff;
 }
 
 .text-justify {
