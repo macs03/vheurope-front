@@ -1,40 +1,8 @@
-# vheurope-front
+# Buscador branch
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+The purpose of this branch is to implement a **nice search-engine's front-end**. First inspiration came from [Kiwi](https://kiwi.com/)
 
-## Build & development
 
-If you node and npm are not updated Run like sudo
-- `sudo npm cache clean -f`
-- `sudo npm install -g n`
-- `sudo n stable`
-- `sudo npm -g install npm`
+## Changelog
 
-For install necessary packages in case do not exist it
-
-- `sudo npm install -g grunt-cli bower yo generator-karma generator-angular`
-
-Verify that packages are installed
-- `yo --version && bower --version && grunt --version`
-
-For install node modules Run
-
-- `sudo npm install`
-
-For install bower modules Run
-
-- `bower install`
-
-For install compass gem
-- `sudo gem update --system`
-- `sudo gem install compass`
-
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
-
-## Notes
-Note: This commands are for run on MacOS OX
+- **issue #7 (Page title) solved**: Title latence with the {{pageTitle}} title at loading fixed: the default title which was in `app/scripts/controllers/index.controller.js` is now in `app/index.html`. It uses the `ng-bind` AngularJS directive.
