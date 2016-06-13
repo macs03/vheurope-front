@@ -167,7 +167,12 @@
     var translationsEN = {
           "MAIN": {
             "TITLE": "TRAVEL SMART WITH RESERTRIP",
-            "SUBTITLE": "Buy and compare",
+            "SUBTITLE": "Compare and buy",
+            "BUS": "Bus",
+            "TRAIN": "Train",
+            "PLANE": "Plane",
+            "FERRY": "Ferry",
+            "CAR": "Car",
             "FIND_PASSAGES": "Find your bus ticket in Spain",
             "CTA_BUY": "Purchase from your",
             "CTA_PHONE": "MOBILE",
@@ -383,7 +388,12 @@
     var translationsES = {
       "MAIN": {
         "TITLE": "VIAJA INTELIGENTE CON RESERTRIP",
-        "SUBTITLE": "Compra y compara",
+        "SUBTITLE": "Compara y compra",
+        "BUS": "Autobús",
+        "TRAIN": "Tren",
+        "PLANE": "Avión",
+        "FERRY": "Barco",
+        "CAR": "Auto",
         "FIND_PASSAGES": "Encuentra tus billetes de autobús en España",
         "CTA_BUY": "Compra desde tu",
         "CTA_PHONE": "MOVIL",
