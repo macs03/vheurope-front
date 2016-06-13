@@ -597,25 +597,25 @@
                     }
                      // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
-                        vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                        vm.percentageTrain = 80;
+                        vm.percentageBus = ((bus *80)/train) < 11 ? 12 : ((bus * 80)/train);
+                        vm.percentagePlane = ((plane * 80)/train) < 11 ? 12 : ((plane * 80)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
-                        vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                        vm.percentageBus = 80;
+                        vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
+                        vm.percentagePlane = ((plane * 80)/bus) < 11 ? 12 : ((plane * 80)/bus);
                     }
                     //PLANE
                     if(pos == 2){
-                        vm.percentagePlane = 60;
-                        vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
-                        vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                        vm.percentagePlane = 80;
+                        vm.percentageTrain = ((train * 80)/plane) < 11 ? 12 : ((train * 80)/plane);
+                        vm.percentageBus = ((bus * 80)/plane) < 11 ? 12 : ((bus * 80)/plane);
                     }
 
                     if(vm.percentagePlane < 10){
-                        vm.percentagePlane = 12;
+                        vm.percentagePlane = 16;
                     }
                     
                     
@@ -635,15 +635,15 @@
                     }
                     // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                        vm.percentageTrain = 80;
+                        vm.percentageBus = ((bus * 80)/train) < 11 ? 12 : ((bus * 80)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                        vm.percentageBus = 80;
+                        vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
                     }
-                    vm.percentagePlane = 12;
+                    vm.percentagePlane = 16;
                 }
             }
 
@@ -687,21 +687,21 @@
                 }
                 // TRAIN
                 if(pos == 1){
-                    vm.percentageTrain = 60;
-                    vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
-                    vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                    vm.percentageTrain = 80;
+                    vm.percentageBus = ((bus * 80)/train) < 11 ? 12 : ((bus * 80)/train);
+                    vm.percentagePlane = ((plane * 80)/train) < 11 ? 12 : ((plane * 80)/train);
                 }
                 //BUS
                 if(pos == 0){
-                    vm.percentageBus = 60;
-                    vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
-                    vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                    vm.percentageBus = 80;
+                    vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
+                    vm.percentagePlane = ((plane * 80)/bus) < 11 ? 12 : ((plane * 80)/bus);
                 }
                 //PLANE
                 if(pos == 2){
-                    vm.percentagePlane = 60;
-                    vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
-                    vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                    vm.percentagePlane = 80;
+                    vm.percentageTrain = ((train * 80)/plane) < 11 ? 12 : ((train * 80)/plane);
+                    vm.percentageBus = ((bus * 80)/plane) < 11 ? 12 : ((bus * 80)/plane);
                 }
             }
 
