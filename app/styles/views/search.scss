@@ -108,14 +108,14 @@ h2.text-fucsia {
 }
 
 select {
-  height: 48px !important;
-  min-height: 48px !important;
-  background-color: transparent; 
-  width: 99% !important;
-  border: none;
-  -webkit-border-radius: 1px;
--moz-border-radius: 1px;
-border-radius: 1px;
+    height: 48px !important;
+    min-height: 48px !important;
+    background-color: transparent; 
+    width: 99% !important;
+    border: none;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
 
 
 }
@@ -146,7 +146,7 @@ border-radius: 1px;
     border-radius: 0px;
 }
 
-.filter#filters-container {
+.filter {
     -webkit-box-shadow: 7px 7px 11px 0px rgba(209,208,208,1);
     -moz-box-shadow: 7px 7px 11px 0px rgba(209,208,208,1);
     box-shadow: 7px 7px 11px 0px rgba(209,208,208,1);
@@ -172,6 +172,8 @@ border-radius: 1px;
 
 .filter {
     margin-bottom: 20px;
+    border-radius: 5px;
+
 }
 
 .filter-module {
@@ -202,10 +204,6 @@ border-radius: 1px;
 select {
     background: #fff !important;
 }
-
-
-
-
 
 .text-fucsia {
     color: #29aae3 !important;
@@ -331,6 +329,7 @@ input[type="radio"] { margin-bottom: 10px !important }
     display: block;
     margin-bottom: 0px;
     margin-top: -20px;
+    padding: 5px;
 }
 .trip-info {
     background-color: #fff;
@@ -412,6 +411,7 @@ input[type="radio"] { margin-bottom: 10px !important }
     margin-bottom: 10px;
     padding: 15px;
     position: relative;
+    border-radius: 5px;
 }
 
 .new-results .results .result:hover {
@@ -1223,7 +1223,7 @@ button.theme-search,
     min-height: 240px;
     display: block;
     margin-bottom: 0px;
-    margin-top: -20px;
+    margin-top: 0px;
 }
 
 .selectize-control.single .selectize-input:after {
