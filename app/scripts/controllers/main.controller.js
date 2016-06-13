@@ -12,18 +12,18 @@
         .module('vhEurope')
         .controller('MainController', MainController)
 
-        MainController.$inject =['$scope','locationsFactory','utilityService','$location','$rootScope','$translate','$cookieStore','sessionStorageService'];
+        MainController.$inject =['$scope','locationsFactory', 'locationsRtFactory','utilityService','$location','$rootScope','$translate','$cookieStore','sessionStorageService'];
 
 
-        function MainController ($scope,locationsFactory,utilityService,$location,$rootScope,$translate,$cookieStore,sessionStorageService) {
+        function MainController ($scope,locationsFactory,locationsRtFactory,utilityService,$location,$rootScope,$translate,$cookieStore,sessionStorageService) {
 
             var vm = this;
             var params = utilityService.getData();
             vm.popular_searches = [];
             vm.today = String(new Date().getTime()/1000).replace('.','');
             $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
-            var title = "Compra Billetes de Autobús en España | Resertrip ";
-            var description = "Compara horarios y precios de más de 90 empresas de autobús en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
+            var title = "Compra Billetes de Autobús, Tren y Avión en España | Resertrip ";
+            var description = "Compara horarios y precios de empresas de autobús, tren y avión en España y reserva fácilmente online. Viaja inteligente con Resertrip.";
             $rootScope.$broadcast('titleEvent', title);
             $rootScope.$broadcast('descriptionEvent', description);
             $rootScope.$broadcast('counterEvent', 1, false);
@@ -34,7 +34,7 @@
                 destination: 'Barcelona',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
                 price: '32.41',
-                href: "/#/search/Madrid/ESP/Barcelona/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Madrid/ES/Barcelona/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 1,
@@ -42,7 +42,7 @@
                 destination: 'Bilbao',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
                 price: '31.27',
-                href: "/#/search/Madrid/ESP/Bilbao/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Madrid/ES/Bilbao/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 2,
@@ -50,7 +50,7 @@
                 destination: 'Madrid',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
                 price: '32.41',
-                href: "/#/search/Barcelona/ESP/Madrid/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Barcelona/ES/Madrid/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 3,
@@ -58,7 +58,7 @@
                 destination: 'Malaga',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
                 price: '18.57',
-                href: "/#/search/Sevilla/ESP/Malaga/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Sevilla/ES/Malaga/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 4,
@@ -66,7 +66,7 @@
                 destination: 'Salamanca',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
                 price: '32.41',
-                href: "/#/search/Madrid/ESP/Salamanca/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Madrid/ES/Salamanca/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 5,
@@ -74,7 +74,7 @@
                 destination: 'Sevilla',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
                 price: '18.57',
-                href: "/#/search/Malaga/ESP/Sevilla/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Malaga/ES/Sevilla/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 6,
@@ -82,7 +82,7 @@
                 destination: 'Valencia',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
                 price: '29.16',
-                href: "/#/search/Barcelona/ESP/Valencia/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Barcelona/ES/Valencia/ES/"+vm.today+"/NaN"
             });
             vm.popular_searches.push({
                 id: 7,
@@ -90,7 +90,7 @@
                 destination: 'Zaragoza',
                 image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
                 price: '15.77',
-                href: "/#/search/Barcelona/ESP/Zaragoza/ESP/"+vm.today+"/NaN"
+                href: "/#/search/Barcelona/ES/Zaragoza/ES/"+vm.today+"/NaN"
             });
 
           	vm.origin = params.origin+","+params.countryOrigin;
@@ -103,7 +103,9 @@
             vm.passengersBaby  = 0;
             vm.changeDate = changeDate;
             vm.quickSearch = quickSearch;
-        	vm.myOptions = [];
+        	vm.myOptionsOrigin = [];
+            vm.myOptionsDestination = [];
+            vm.switcher = switcher;
 
             vm.updatePassengers = function(type, direction){
                 if(direction == 'up' && vm.passengers < 7){
@@ -135,28 +137,67 @@
 
         	vm.configOrigin = {
           		//create: true,
-          		valueField: 'id',
-          		labelField: 'label',
-                searchField: ['label'],
+          		valueField: 'rt',
+          		labelField: 'name',
+                searchField: ['name'],
           		delimiter: '|',
+                openOnFocus: true,
           		placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
           		onInitialize: function(selectize){
             		// receives the selectize object as an argument
           		},
-          		maxItems: 1
+          		maxItems: 1,
+                preload: true,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    if (query.length >= 3){
+                        vm.myOptionsOrigin = [];
+                        locationsRtFactory
+                        .getAll(query)
+                        .then(function (data) {
+
+                            callback(data);
+                            vm.myOptionsOrigin = data;
+                            //sessionStorageService.setLocations(data);
+                            //sessionStorageService.setFlag(true);
+                        })
+                        .catch(function (err) {
+                             callback();
+                        });
+                    }
+                }
         	};
 
             vm.configDestination = {
                 //create: true,
-                valueField: 'id',
-                labelField: 'label',
-                searchField: ['label'],
+                valueField: 'rt',
+                labelField: 'name',
+                searchField: ['name'],
                 delimiter: '|',
                 placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu destino' : 'Choose your destination',
                 onInitialize: function(selectize){
                     // receives the selectize object as an argument
                 },
-                maxItems: 1
+                maxItems: 1,
+                preload: true,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    //if (query.length >= 3){
+                        vm.myOptionsDestination = [];
+                        locationsRtFactory
+                        .getAll(query)
+                        .then(function (data) {
+                            callback(data);
+                            vm.myOptionsDestination = data;
+
+                            //sessionStorageService.setLocations(data);
+                            //sessionStorageService.setFlag(true);
+                        })
+                        .catch(function (err) {
+                             callback();
+                        });
+                    //}
+                }
             };
 
             vm.dates = {
@@ -166,6 +207,20 @@
                 maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
             };
 
+            locationsRtFactory
+                .getNearly()
+                .then(function (data) {
+                    // callback(data.items);
+                    vm.myOptionsOrigin = data;
+                    vm.myOptionsDestination = data;
+                    //sessionStorageService.setLocations(data);
+                    //sessionStorageService.setFlag(true);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    //  callback();
+                });
+            /*
             var session = sessionStorageService.getFlag();
             if (session == null || session == false) {
                 locationsFactory
@@ -181,21 +236,33 @@
             }else{
                 vm.myOptions = sessionStorageService.getLocations()
             }
+            */
+            
 
         	vm.searchTrips = function () {
 
-                angular.forEach(vm.myOptions, function(value, key) {
-                    if(vm.myOptions[key].id === vm.origin){
-                        vm.originCity = vm.myOptions[key].city;
-                        vm.originCountryCode = vm.myOptions[key].countryCode;
-                        vm.originCountry = vm.myOptions[key].country;
-                    }
-                    if(vm.myOptions[key].id === vm.destination){
-                        vm.destinationCity = vm.myOptions[key].city;
-                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
-                        vm.destinationCountry = vm.myOptions[key].country;
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                    console.log(value+key);
+                    if(vm.myOptionsOrigin[key].rt === vm.origin){
+                        vm.originCity = vm.myOptionsOrigin[key].rt;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                        vm.originCountry = vm.myOptionsOrigin[key].country;
+                        vm.originId = vm.myOptionsOrigin[key].id;
                     }
                 });
+
+                 angular.forEach(vm.myOptionsDestination, function(value, key) {
+
+                    if(vm.myOptionsDestination[key].rt === vm.destination){
+                        vm.destinationCity = vm.myOptionsDestination[key].rt;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country;
+                        vm.destinationId = vm.myOptionsDestination[key].id;
+                    }
+                });
+
+                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+
                 var formatOrigin;
                 var formatDestination;
                 formatOrigin = vm.originCity.replace(/\s/g, '_');
@@ -232,6 +299,7 @@
                             console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                            sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                             vm.good = true;
                             $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
@@ -256,6 +324,7 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
                         utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                         sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
+                        sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                         vm.good = true;
                         $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
                     }
@@ -282,8 +351,22 @@
                 sessionStorageService.setPassengers(1,0,0);
                 $('#departureDate-quick-'+id).change(function () {
                     var departureDate = $('#departureDate-quick-'+id).val();
-                    $location.path ("/search/"+origin+"/ESP/"+destination+"/ESP/"+departureDate+"/NaN");
+                    $location.path ("/search/"+origin+"/ES/"+destination+"/ES/"+departureDate+"/NaN");
                 })
+            }
+
+            function switcher() {
+                var splitOrigin = vm.origin.split(',')
+                var splitDestination = vm.destination.split(',')
+                var originSwitch;
+                var destinationSwitch;
+                if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
+                    originSwitch =  vm.destination;
+                    destinationSwitch = vm.origin;
+                    // change the cities
+                    vm.origin = originSwitch;
+                    vm.destination = destinationSwitch;
+                }
             }
 
             //$('#switch_language_title').html($('#switch_language li.active').find('a').html() + '<span class="caret"></span>');
@@ -299,11 +382,28 @@
                 $('.popover-select-passengers').toggleClass('open');
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
+            $('#select_passengers').siblings('span').on('click', function(){
+                var offset = $('#select_passengers').offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top-132)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
 
              $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
+
+            vm.openReturnCalendar = openReturnCalendar;
+            vm.openDepartureCalendar = openDepartureCalendar
+
+            function openReturnCalendar() {
+                $('#returnDate').siblings('input').click();
+            }
+
+            function openDepartureCalendar() {
+                $('#departureDate').siblings('input').click();
+            }
 
             var bg_images = [
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/barcelona_desde_arriba.jpg",
@@ -321,7 +421,6 @@
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/1.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/2.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/3.jpg",
-                "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/4.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/5.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/6.jpg",
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/7.jpg",
@@ -335,7 +434,7 @@
                 "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/15.jpg"
                 ];
                 
-                $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 26) + 1)]+') no-repeat center center fixed; background-size: cover;');
+                $('.header-home.spain').attr('style','background: url('+bg_images[Math.floor((Math.random() * 25) + 1)]+') no-repeat center center fixed; background-size: cover;');
                 $('.cookie-message').cookieBar();
         }
 })();

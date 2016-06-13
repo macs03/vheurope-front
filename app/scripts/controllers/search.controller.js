@@ -12,16 +12,20 @@
         .module('vhEurope')
         .controller('SearchController',SearchController);
 
-        SearchController.$inject =['locationsFactory','travelsFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
+        SearchController.$inject =['locationsFactory','locationsRtFactory','travelsFactory','planesFactory','urlTrainFactory','weatherFactory','utilityService','$scope','$interval','$stateParams','$timeout','$rootScope','sessionStorageService','scraperFactory','ngProgressFactory','$analytics','screenSize'];
 
-        function SearchController (locationsFactory,travelsFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+        function SearchController (locationsFactory,locationsRtFactory,travelsFactory,planesFactory,urlTrainFactory,weatherFactory,utilityService,$scope,$interval,$stateParams,$timeout,$rootScope,sessionStorageService,scraperFactory,ngProgressFactory,$analytics,screenSize) {
+
             var vm = this;
             vm.searchMobile = false;
             vm.searchTrip = searchTrip;
             vm.searching = false;
             vm.error = false;
             vm.order = order;
-            vm.type = 'salida';
+            vm.type = 'departure';
+            vm.countOrder = 0;
+            vm.countBusSearch = 0;
+            vm.allTrips = [];
             vm.reverse = true;
             vm.companyFilter = companyFilter;
             vm.seatFilter = seatFilter;
@@ -30,6 +34,7 @@
             vm.selectDeparture = true;
             vm.departureSelect = departureSelect;
             vm.returnSelectTrain = returnSelectTrain;
+            vm.callPlanes = callPlanes;
             vm.isLoading = true;
             vm.good = true;
             vm.seats = [];
@@ -40,256 +45,281 @@
             vm.showBus = true;
             vm.showTrain = false;
             vm.showPlane = false;
+            vm.hasPlaneTrips = false;
+            vm.hasTrainTrips = false;
+            vm.hasBusTrips = false;
             vm.combineTrips = false;
+            vm.percentageBus = 0;
+            vm.percentageTrain = 0;
+            vm.percentagePlane = 20;
+            vm.lowestPricePlane = 0;
+            vm.lowestDurationPlane = 0;
+            vm.lowestPriceBus = 0;
+            vm.lowestDurationBus = 0;
+            vm.lowestPriceTrain = 0;
+            vm.lowestDurationTrain = 0;
+            vm.searchingTripsPlane = false;
+            vm.searchingTripsBus = false;
+            vm.searchingTripsTrain = false;
+            vm.showCombineTrips = false;
+            vm.globalTrips = [];
+            vm.globalAlternativeTrips = [];
+            vm.globalDirectDepartureTrips = [];
+            vm.globalDirectReturnTrips = [];
+            vm.globalMixedTrips = [];
+            vm.globalCompanies = [];
+            vm.planesCompanies = [];
+            vm.globalTypeServices = [];
+            vm.globalMinDuration = "";
             vm.cnames_es = [
-            { name: 'ABW', value:'Aruba' },
-            { name: 'AFG', value:'Afganistan' },
-            { name: 'AGO', value:'Angola' },
-            { name: 'AIA', value:'Anguilla' },
-            { name: 'ALA', value:'Islas Aland' },
-            { name: 'ALB', value:'Albania' },
-            { name: 'AND', value:'Andorra' },
-            { name: 'ARE', value:'Emiratos Arabes Unidos' },
-            { name: 'ARG', value:'Argentina' },
-            { name: 'ARM', value:'Armenia' },
-            { name: 'ASM', value:'Samoa Americana' },
+            { name: 'AW', value:'Aruba' },
+            { name: 'AF', value:'Afganistan' },
+            { name: 'AO', value:'Angola' },
+            { name: 'AI', value:'Anguilla' },
+            { name: 'AX', value:'Islas Aland' },
+            { name: 'AL', value:'Albania' },
+            { name: 'AD', value:'Andorra' },
+            { name: 'AE', value:'Emiratos Arabes Unidos' },
+            { name: 'AR', value:'Argentina' },
+            { name: 'AM', value:'Armenia' },
+            { name: 'AS', value:'Samoa Americana' },
             { name: 'ATA', value:'Antartica' },
             { name: 'ATF', value:'Territorios Franceses del Sur' },
-            { name: 'ATG', value:'Antigua y Barbuda' },
-            { name: 'AUS', value:'Australia' },
-            { name: 'AUT', value:'Austria' },
-            { name: 'AZE', value:'Azerbaiyán' },
-            { name: 'BDI', value:'Burundi' },
-            { name: 'BEL', value:'Belgica' },
-            { name: 'BEN', value:'Benin' },
-            { name: 'BES', value:'Bonaire, San Eustaquio y Saba' },
-            { name: 'BFA', value:'Burkina Faso' },
-            { name: 'BGD', value:'Bangladesh' },
-            { name: 'BGR', value:'Bulgaria' },
+            { name: 'AG', value:'Antigua y Barbuda' },
+            { name: 'AU', value:'Australia' },
+            { name: 'AT', value:'Austria' },
+            { name: 'AZ', value:'Azerbaiyán' },
+            { name: 'BI', value:'Burundi' },
+            { name: 'BE', value:'Belgica' },
+            { name: 'BJ', value:'Benin' },
+            { name: 'BQ', value:'Bonaire, San Eustaquio y Saba' },
+            { name: 'BF', value:'Burkina Faso' },
+            { name: 'BD', value:'Bangladesh' },
+            { name: 'BG', value:'Bulgaria' },
             { name: 'BHR', value:'Bahrein' },
-            { name: 'BHS', value:'Bahamas' },
-            { name: 'BIH', value:'Bosnia y Herzegovina' },
-            { name: 'BLM', value:'San Bartolomé' },
-            { name: 'BLR', value:'Bielorrusia' },
-            { name: 'BLZ', value:'Belice' },
-            { name: 'BMU', value:'Bermuda' },
-            { name: 'BOL', value:'Bolivia, Estado Plurinacional de' },
-            { name: 'BRA', value:'Brasil' },
-            { name: 'BRB', value:'Barbados' },
-            { name: 'BRN', value:'Brunei Darussalam' },
+            { name: 'BS', value:'Bahamas' },
+            { name: 'BA', value:'Bosnia y Herzegovina' },
+            { name: 'BL', value:'San Bartolomé' },
+            { name: 'BY', value:'Bielorrusia' },
+            { name: 'BZ', value:'Belice' },
+            { name: 'BM', value:'Bermuda' },
+            { name: 'BO', value:'Bolivia, Estado Plurinacional de' },
+            { name: 'BR', value:'Brasil' },
+            { name: 'BB', value:'Barbados' },
+            { name: 'BN', value:'Brunei Darussalam' },
             { name: 'BTN', value:'Bhután' },
-            { name: 'BVT', value:'Isla Bouvet' },
-            { name: 'BWA', value:'Botswana' },
-            { name: 'CAF', value:'República Centroafricana' },
-            { name: 'CAN', value:'Canadá' },
-            { name: 'CCK', value:'Islas Cocos (Keeling)' },
-            { name: 'CHE', value:'Suiza' },
-            { name: 'CHL', value:'Chile' },
-            { name: 'CHN', value:'China' },
+            { name: 'BT', value:'Isla Bouvet' },
+            { name: 'BW', value:'Botswana' },
+            { name: 'CF', value:'República Centroafricana' },
+            { name: 'CA', value:'Canadá' },
+            { name: 'CC', value:'Islas Cocos (Keeling)' },
+            { name: 'CH', value:'Suiza' },
+            { name: 'CL', value:'Chile' },
+            { name: 'CN', value:'China' },
             { name: 'CIV', value:'Côte d\'Ivoire' },
-            { name: 'CMR', value:'Camerún' },
-            { name: 'COD', value:'Congo, la República Democrática del' },
-            { name: 'COG', value:'Congo' },
-            { name: 'COK', value:'Islas Cook' },
-            { name: 'COL', value:'Colombia' },
-            { name: 'COM', value:'Comoras' },
-            { name: 'CPV', value:'Cabo Verde' },
-            { name: 'CRI', value:'Costa Rica' },
-            { name: 'CUB', value:'Cuba' },
-            { name: 'CUW', value:'Curazao' },
-            { name: 'CXR', value:'Islas Navidad' },
-            { name: 'CYM', value:'Islas Caimán' },
-            { name: 'CYP', value:'Chipre' },
-            { name: 'CZE', value:'República Checa ' },
-            { name: 'DEU', value:'Alemania' },
+            { name: 'CM', value:'Camerún' },
+            { name: 'CD', value:'Congo, la República Democrática del' },
+            { name: 'CG', value:'Congo' },
+            { name: 'CK', value:'Islas Cook' },
+            { name: 'CO', value:'Colombia' },
+            { name: 'KM', value:'Comoras' },
+            { name: 'CV', value:'Cabo Verde' },
+            { name: 'CR', value:'Costa Rica' },
+            { name: 'CU', value:'Cuba' },
+            { name: 'CW', value:'Curazao' },
+            { name: 'CX', value:'Islas Navidad' },
+            { name: 'KY', value:'Islas Caimán' },
+            { name: 'CY', value:'Chipre' },
+            { name: 'CZ', value:'República Checa' },
+            { name: 'DE', value:'Alemania' },
             { name: 'DJI', value:'Djibouti' },
-            { name: 'DMA', value:'Dominica' },
-            { name: 'DNK', value:'Dinamarca' },
-            { name: 'DOM', value:'República Dominicana' },
-            { name: 'DZA', value:'Algelia' },
-            { name: 'ECU', value:'Ecuador' },
-            { name: 'EGY', value:'Egipto' },
-            { name: 'ERI', value:'Eritrea' },
-            { name: 'ESH', value:'Sahara Occidental' },
-            { name: 'ESP', value:'España' },
-            { name: 'EST', value:'Estonia' },
-            { name: 'ETH', value:'Etiopía' },
-            { name: 'FIN', value:'Finlandia' },
-            { name: 'FJI', value:'Fiji' },
-            { name: 'FLK', value:'Islas Malvinas (Falkland)' },
-            { name: 'FRA', value:'Francia' },
-            { name: 'FRO', value:'Islas Feroe' },
-            { name: 'FSM', value:'Micronesia, Estados Federados de' },
-            { name: 'GAB', value:'Gabón' },
-            { name: 'GBR', value:'Reino Unido' },
-            { name: 'GEO', value:'Georgia' },
-            { name: 'GGY', value:'Guernsey' },
-            { name: 'GHA', value:'Ghana' },
-            { name: 'GIB', value:'Gibralta' },
-            { name: 'GIN', value:'Guinea' },
-            { name: 'GLP', value:'Guadelupe' },
-            { name: 'GMB', value:'Gambia' },
-            { name: 'GNB', value:'Guinea-Bissau' },
-            { name: 'GNQ', value:'Guinea Ecuatorial' },
-            { name: 'GRC', value:'Grecia' },
-            { name: 'GRD', value:'Granada' },
-            { name: 'GRL', value:'Groenlandia' },
-            { name: 'GTM', value:'Guatemala' },
-            { name: 'GUF', value:'Guayana Francesa' },
-            { name: 'GUM', value:'Guam' },
-            { name: 'GUY', value:'Guyana' },
-            { name: 'HKG', value:'Hong Kong' },
-            { name: 'HMD', value:'Islas Heard Island and McDonald' },
-            { name: 'HND', value:'Honduras' },
-            { name: 'HRV', value:'Croacia' },
-            { name: 'HTI', value:'Haití' },
-            { name: 'HUN', value:'Hungria' },
-            { name: 'IDN', value:'Indonesia' },
-            { name: 'IMN', value:'Isla de Man' },
-            { name: 'IND', value:'India' },
-            { name: 'IOT', value:'Territorio Británico del Océano Índico' },
-            { name: 'IRL', value:'Irlanda' },
-            { name: 'IRN', value:'Irán, República Islámica de' },
-            { name: 'IRQ', value:'Irak' },
-            { name: 'ISL', value:'Islandia' },
-            { name: 'ISR', value:'Israel' },
-            { name: 'ITA', value:'Italia' },
-            { name: 'JAM', value:'Jamaica' },
-            { name: 'JEY', value:'Jersey' },
-            { name: 'JOR', value:'Jordan' },
-            { name: 'JPN', value:'Japón' },
-            { name: 'KAZ', value:'Kazajstán' },
-            { name: 'KEN', value:'Kenia' },
-            { name: 'KGZ', value:'Kirguistán' },
-            { name: 'KHM', value:'Camboya' },
-            { name: 'KIR', value:'Kiribati' },
+            { name: 'DM', value:'Dominica' },
+            { name: 'DK', value:'Dinamarca' },
+            { name: 'DO', value:'República Dominicana' },
+            { name: 'DZ', value:'Argelia' },
+            { name: 'EC', value:'Ecuador' },
+            { name: 'EG', value:'Egipto' },
+            { name: 'ER', value:'Eritrea' },
+            { name: 'EH', value:'Sahara Occidental' },
+            { name: 'ES', value:'España' },
+            { name: 'EE', value:'Estonia' },
+            { name: 'ET', value:'Etiopía' },
+            { name: 'FI', value:'Finlandia' },
+            { name: 'FJ', value:'Fiji' },
+            { name: 'FK', value:'Islas Malvinas (Falkland)' },
+            { name: 'FR', value:'Francia' },
+            { name: 'FO', value:'Islas Feroe' },
+            { name: 'FM', value:'Micronesia, Estados Federados de' },
+            { name: 'GA', value:'Gabón' },
+            { name: 'GB', value:'Reino Unido' },
+            { name: 'GE', value:'Georgia' },
+            { name: 'GG', value:'Guernsey' },
+            { name: 'GA', value:'Ghana' },
+            { name: 'GI', value:'Gibralta' },
+            { name: 'GN', value:'Guinea' },
+            { name: 'GP', value:'Guadalupe' },
+            { name: 'GM', value:'Gambia' },
+            { name: 'GW', value:'Guinea-Bissau' },
+            { name: 'GQ', value:'Guinea Ecuatorial' },
+            { name: 'GR', value:'Grecia' },
+            { name: 'GD', value:'Granada' },
+            { name: 'GL', value:'Groenlandia' },
+            { name: 'GT', value:'Guatemala' },
+            { name: 'GF', value:'Guayana Francesa' },
+            { name: 'GU', value:'Guam' },
+            { name: 'GY', value:'Guyana' },
+            { name: 'HK', value:'Hong Kong' },
+            { name: 'HM', value:'Islas Heard Island and McDonald' },
+            { name: 'HN', value:'Honduras' },
+            { name: 'HR', value:'Croacia' },
+            { name: 'HT', value:'Haití' },
+            { name: 'HU', value:'Hungria' },
+            { name: 'ID', value:'Indonesia' },
+            { name: 'IM', value:'Isla de Man' },
+            { name: 'IN', value:'India' },
+            { name: 'IO', value:'Territorio Británico del Océano Índico' },
+            { name: 'IE', value:'Irlanda' },
+            { name: 'IR', value:'Irán, República Islámica de' },
+            { name: 'IQ', value:'Irak' },
+            { name: 'IS', value:'Islandia' },
+            { name: 'IL', value:'Israel' },
+            { name: 'IT', value:'Italia' },
+            { name: 'JM', value:'Jamaica' },
+            { name: 'JE', value:'Jersey' },
+            { name: 'JO', value:'Jordan' },
+            { name: 'JP', value:'Japón' },
+            { name: 'KZ', value:'Kazajstán' },
+            { name: 'KE', value:'Kenia' },
+            { name: 'KG', value:'Kirguistán' },
+            { name: 'KH', value:'Camboya' },
+            { name: 'KI', value:'Kiribati' },
             { name: 'KNA', value:'Saint Kitts and Nevis' },
-            { name: 'KOR', value:'Corea del Sur' },
-            { name: 'KWT', value:'Kuwait' },
+            { name: 'KR', value:'Corea del Sur' },
+            { name: 'KW', value:'Kuwait' },
             { name: 'LAO', value:'Lao People\'s República Democrática' },
-            { name: 'LBN', value:'Líbano' },
-            { name: 'LBR', value:'Liberia' },
+            { name: 'LB', value:'Líbano' },
+            { name: 'LR', value:'Liberia' },
             { name: 'LBY', value:'Jamahiriya Árabe Libia' },
-            { name: 'LCA', value:'Santa Lucia' },
+            { name: 'LC', value:'Santa Lucia' },
             { name: 'LIE', value:'Liechtenstein' },
-            { name: 'LKA', value:'Sri Lanka' },
-            { name: 'LSO', value:'Lesotho' },
-            { name: 'LTU', value:'Lituania' },
-            { name: 'LUX', value:'Luxemburgo' },
-            { name: 'LVA', value:'Letonia' },
-            { name: 'MAC', value:'Macao' },
-            { name: 'MAF', value:'San Martín (parte francesa)' },
-            { name: 'MAR', value:'Marruecos' },
-            { name: 'MCO', value:'Monaco' },
-            { name: 'MDA', value:'Moldova, República de' },
-            { name: 'MDG', value:'Madagascar' },
-            { name: 'MDV', value:'Maldivas' },
-            { name: 'MEX', value:'México' },
-            { name: 'MHL', value:'Islas Marshal' },
-            { name: 'MKD', value:'Macedonia, la ex República Yugoslava de' },
-            { name: 'MLI', value:'Mali' },
-            { name: 'MLT', value:'Malta' },
-            { name: 'MMR', value:'Myanmar' },
-            { name: 'MNE', value:'Montenegro' },
-            { name: 'MNG', value:'Mongolia' },
-            { name: 'MNP', value:'Islas Marianas del Norte' },
-            { name: 'MOZ', value:'Mozambique' },
-            { name: 'MRT', value:'Mauritania' },
-            { name: 'MSR', value:'Montserrat' },
-            { name: 'MTQ', value:'Martinica' },
-            { name: 'MUS', value:'Mauricio' },
+            { name: 'LK', value:'Sri Lanka' },
+            { name: 'LS', value:'Lesotho' },
+            { name: 'LT', value:'Lituania' },
+            { name: 'LU', value:'Luxemburgo' },
+            { name: 'LV', value:'Letonia' },
+            { name: 'MO', value:'Macao' },
+            { name: 'MF', value:'San Martín (parte francesa)' },
+            { name: 'MA', value:'Marruecos' },
+            { name: 'MC', value:'Monaco' },
+            { name: 'MD', value:'Moldova, República de' },
+            { name: 'MG', value:'Madagascar' },
+            { name: 'MV', value:'Maldivas' },
+            { name: 'MX', value:'México' },
+            { name: 'MH', value:'Islas Marshal' },
+            { name: 'MK', value:'Macedonia, la ex República Yugoslava de' },
+            { name: 'ML', value:'Mali' },
+            { name: 'MT', value:'Malta' },
+            { name: 'MM', value:'Myanmar' },
+            { name: 'ME', value:'Montenegro' },
+            { name: 'MN', value:'Mongolia' },
+            { name: 'MP', value:'Islas Marianas del Norte' },
+            { name: 'MZ', value:'Mozambique' },
+            { name: 'MR', value:'Mauritania' },
+            { name: 'MS', value:'Montserrat' },
+            { name: 'MQ', value:'Martinica' },
+            { name: 'MU', value:'Mauricio' },
             { name: 'MWI', value:'Malawi' },
-            { name: 'MYS', value:'Malasia' },
-            { name: 'MYT', value:'Mayotte' },
-            { name: 'NAM', value:'Namibia' },
-            { name: 'NCL', value:'Nueva Caledonia' },
-            { name: 'NER', value:'Niger' },
-            { name: 'NFK', value:'Islas Norfolk' },
-            { name: 'NGA', value:'Nigeria' },
-            { name: 'NIC', value:'Nicaragua' },
-            { name: 'NIU', value:'Niue' },
-            { name: 'NLD', value:'Paises Bajos' },
-            { name: 'NOR', value:'Noruega' },
-            { name: 'NPL', value:'Nepal' },
-            { name: 'NRU', value:'Nauru' },
-            { name: 'NZL', value:'Nueva Zelanda' },
-            { name: 'OMN', value:'Omán' },
-            { name: 'PAK', value:'Pakistán' },
-            { name: 'PAN', value:'Panamá' },
-            { name: 'PCN', value:'Pitcairn' },
-            { name: 'PER', value:'Perú' },
-            { name: 'PHL', value:'Filipinas' },
-            { name: 'PLW', value:'Palau' },
-            { name: 'PNG', value:'Papúa Nueva Guinea' },
-            { name: 'POL', value:'Polonia' },
-            { name: 'PRI', value:'Puerto Rico' },
-            { name: 'PRK', value:'Corea Democrática Popular de la República' },
-            { name: 'PRT', value:'Portugal' },
-            { name: 'PRY', value:'Paraguay' },
-            { name: 'PSE', value:'Palestina, Territorio Ocupado' },
-            { name: 'PYF', value:'Polinesia Francesa' },
-            { name: 'QAT', value:'Qatar' },
-            { name: 'REU', value:'Reunión' },
-            { name: 'ROU', value:'Rumanía' },
-            { name: 'RUS', value:'Rusia' },
-            { name: 'RWA', value:'Ruanda' },
-            { name: 'SAU', value:'Arabia Saudita' },
-            { name: 'SDN', value:'Sudán' },
-            { name: 'SEN', value:'Senegal' },
-            { name: 'SGP', value:'Singapur' },
-            { name: 'SGS', value:'Georgia del Sur y las Islas Sandwich del Sur' },
-            { name: 'SHN', value:'Santa Helena, Ascensión y Tristán da Cunha' },
-            { name: 'SJM', value:'Svalbard y Jan Mayen' },
-            { name: 'SLB', value:'Solomon Islands' },
-            { name: 'SLE', value:'Sierra Leona' },
-            { name: 'SLV', value:'El Salvador' },
-            { name: 'SMR', value:'San Marino' },
-            { name: 'SOM', value:'Somalia' },
-            { name: 'SPM', value:'San Pedro y Miquelón' },
-            { name: 'SRB', value:'Serbia' },
-            { name: 'STP', value:'Santo Tomé y Príncipe' },
-            { name: 'SUR', value:'Surinam' },
-            { name: 'SVK', value:'Eslovaquia' },
-            { name: 'SVN', value:'Eslovenia' },
-            { name: 'SWE', value:'Suecia' },
+            { name: 'MY', value:'Malasia' },
+            { name: 'YT', value:'Mayotte' },
+            { name: 'NA', value:'Namibia' },
+            { name: 'NC', value:'Nueva Caledonia' },
+            { name: 'NE', value:'Niger' },
+            { name: 'NF', value:'Islas Norfolk' },
+            { name: 'NG', value:'Nigeria' },
+            { name: 'NI', value:'Nicaragua' },
+            { name: 'NU', value:'Niue' },
+            { name: 'NL', value:'Paises Bajos' },
+            { name: 'NO', value:'Noruega' },
+            { name: 'NP', value:'Nepal' },
+            { name: 'NR', value:'Nauru' },
+            { name: 'NZ', value:'Nueva Zelanda' },
+            { name: 'OM', value:'Omán' },
+            { name: 'PK', value:'Pakistán' },
+            { name: 'PA', value:'Panamá' },
+            { name: 'PN', value:'Pitcairn' },
+            { name: 'PE', value:'Perú' },
+            { name: 'PH', value:'Filipinas' },
+            { name: 'PW', value:'Palau' },
+            { name: 'PG', value:'Papúa Nueva Guinea' },
+            { name: 'PL', value:'Polonia' },
+            { name: 'PR', value:'Puerto Rico' },
+            { name: 'KP', value:'Corea Democrática Popular de la República' },
+            { name: 'PT', value:'Portugal' },
+            { name: 'PY', value:'Paraguay' },
+            { name: 'PS', value:'Palestina, Territorio Ocupado' },
+            { name: 'PF', value:'Polinesia Francesa' },
+            { name: 'QA', value:'Qatar' },
+            { name: 'RE', value:'Reunión' },
+            { name: 'RO', value:'Rumanía' },
+            { name: 'RU', value:'Rusia' },
+            { name: 'RW', value:'Ruanda' },
+            { name: 'SA', value:'Arabia Saudita' },
+            { name: 'SD', value:'Sudán' },
+            { name: 'SN', value:'Senegal' },
+            { name: 'SG', value:'Singapur' },
+            { name: 'GS', value:'Georgia del Sur y las Islas Sandwich del Sur' },
+            { name: 'SH', value:'Santa Helena, Ascensión y Tristán da Cunha' },
+            { name: 'SJ', value:'Svalbard y Jan Mayen' },
+            { name: 'SB', value:'Islas Sálomon' },
+            { name: 'SL', value:'Sierra Leona' },
+            { name: 'SV', value:'El Salvador' },
+            { name: 'SM', value:'San Marino' },
+            { name: 'SO', value:'Somalia' },
+            { name: 'PM', value:'San Pedro y Miquelón' },
+            { name: 'RS', value:'Serbia' },
+            { name: 'ST', value:'Santo Tomé y Príncipe' },
+            { name: 'SR', value:'Surinam' },
+            { name: 'SK', value:'Eslovaquia' },
+            { name: 'SI', value:'Eslovenia' },
+            { name: 'SE', value:'Suecia' },
             { name: 'SWZ', value:'Swazilandia' },
-            { name: 'SXM', value:'Sint Maarten (parte neerlandesa)' },
+            { name: 'SXM', value:'Saint Maarten (parte neerlandesa)' },
             { name: 'SYC', value:'Seychelles' },
-            { name: 'SYR', value:'Siria' },
-            { name: 'TCA', value:'Islas Turcas y Caicos' },
-            { name: 'TCD', value:'Chad' },
-            { name: 'TGO', value:'Togo' },
-            { name: 'THA', value:'Tailandia' },
-            { name: 'TJK', value:'Tayikistán' },
-            { name: 'TKL', value:'Tokelau' },
-            { name: 'TKM', value:'Turkmenistán' },
-            { name: 'TLS', value:'Timor-Leste' },
-            { name: 'TON', value:'Tonga' },
-            { name: 'TTO', value:'Trinidad y Tobago' },
-            { name: 'TUN', value:'Túnez' },
-            { name: 'TUR', value:'Turquía' },
-            { name: 'TUV', value:'Tuvalu' },
-            { name: 'TWN', value:'Taiwán, Provincia de China' },
-            { name: 'TZA', value:'Tanzania, República Unida de' },
-            { name: 'UGA', value:'Uganda' },
-            { name: 'UKR', value:'Ucrania' },
+            { name: 'SY', value:'Siria' },
+            { name: 'TC', value:'Islas Turcas y Caicos' },
+            { name: 'TD', value:'Chad' },
+            { name: 'TG', value:'Togo' },
+            { name: 'TH', value:'Tailandia' },
+            { name: 'TJ', value:'Tayikistán' },
+            { name: 'TK', value:'Tokelau' },
+            { name: 'TM', value:'Turkmenistán' },
+            { name: 'TL', value:'Timor-Leste' },
+            { name: 'TO', value:'Tonga' },
+            { name: 'TT', value:'Trinidad y Tobago' },
+            { name: 'TN', value:'Túnez' },
+            { name: 'TR', value:'Turquía' },
+            { name: 'TV', value:'Tuvalu' },
+            { name: 'TW', value:'Taiwán, Provincia de China' },
+            { name: 'TZ', value:'Tanzania, República Unida de' },
+            { name: 'UG', value:'Uganda' },
+            { name: 'UA', value:'Ucrania' },
             { name: 'UMI', value:'Estados Unidos Islas menores alejadas' },
-            { name: 'URY', value:'Uruguay' },
-            { name: 'USA', value:'Estados Unidos' },
-            { name: 'UZB', value:'Uzbekistán' },
-            { name: 'VAT', value:'Santa Sede (Ciudad del Vaticano)' },
-            { name: 'VCT', value:'San Vicente y las Granadinas' },
-            { name: 'VEN', value:'Venezuela, República Bolivariana de' },
-            { name: 'VGB', value:'Islars Virgenes, Británicas' },
-            { name: 'VIR', value:'Islas Virgenes,, U.S.' },
-            { name: 'VNM', value:'Viet Nam' },
-            { name: 'VUT', value:'Vanuatu' },
-            { name: 'WLF', value:'Wallis and Futuna' },
-            { name: 'WSM', value:'Samoa' },
-            { name: 'YEM', value:'Yemen' },
-            { name: 'ZAF', value:'Sudáfrica' },
-            { name: 'ZMB', value:'Zambia' },
-            { name: 'ZWE', value:'Zimbabwe '}
+            { name: 'UY', value:'Uruguay' },
+            { name: 'US', value:'Estados Unidos' },
+            { name: 'UZ', value:'Uzbekistán' },
+            { name: 'VA', value:'Santa Sede (Ciudad del Vaticano)' },
+            { name: 'VC', value:'San Vicente y las Granadinas' },
+            { name: 'VE', value:'Venezuela, República Bolivariana de' },
+            { name: 'VG', value:'Islars Virgenes, Británicas' },
+            { name: 'VI', value:'Islas Virgenes,, U.S.' },
+            { name: 'VM', value:'Viet Nam' },
+            { name: 'VU', value:'Vanuatu' },
+            { name: 'WF', value:'Wallis and Futuna' },
+            { name: 'WS', value:'Samoa' },
+            { name: 'YE', value:'Yemen' },
+            { name: 'ZA', value:'Sudáfrica' },
+            { name: 'ZM', value:'Zambia' },
+            { name: 'ZW', value:'Zimbabwe '}
         ];
 
             vm.weather_progressbar = ngProgressFactory.createInstance();
@@ -309,19 +339,91 @@
             vm.firstStep = firstStep;
             vm.resetFirstSetep = resetFirstSetep;
 
-            vm.myOptions = [];
-        	vm.myConfig = {
-          		//create: true,
-          		valueField: 'label',
-          		labelField: 'label',
+            vm.myOptionsOrigin = [];
+            vm.myOptionsDestination = [];
+
+            vm.switcher = switcher;
+
+
+            vm.myConfigOrigin = {
+                //create: true,
+                valueField: 'label',
+                labelField: 'label',
                 searchField: ['label'],
-          		delimiter: '|',
-          		placeholder: 'Pick something',
-          		onInitialize: function(selectize){
-            		// receives the selectize object as an argument
-          		},
-          		maxItems: 1
-        	};
+                delimiter: '|',
+                openOnFocus: true,
+                placeholder: 'Elige tu origen',
+                onInitialize: function(selectize){
+                    // receives the selectize object as an argument
+                },
+                maxItems: 1,
+                preload: true,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    vm.myOptionsOrigin = [];
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+
+                        callback(data);
+                        vm.myOptionsOrigin = data;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
+            };
+
+            vm.myConfigDestination = {
+                //create: true,
+                valueField: 'label',
+                labelField: 'label',
+                searchField: ['label'],
+                delimiter: '|',
+                placeholder: 'Elige tu destino',
+                onInitialize: function(selectize){
+                    // receives the selectize object as an argument
+                },
+                maxItems: 1,
+                preload: true,
+                load: function(query, callback) {
+                    if (!query.length) return callback();
+                    vm.myOptionsDestination = [];
+                    locationsRtFactory
+                    .getAll(query)
+                    .then(function (data) {
+                        callback(data);
+                        vm.myOptionsDestination = data;
+                        //sessionStorageService.setLocations(data);
+                        //sessionStorageService.setFlag(true);
+                    })
+                    .catch(function (err) {
+                         callback();
+                    });
+                }
+            };
+
+            locationsRtFactory
+                .getNearly()
+                .then(function (data) {
+                    // callback(data.items);
+                    vm.myOptionsOrigin = data;
+                    vm.myOptionsDestination = data;
+                    var dataInitialOrigin = { label: vm.origin};
+                    var dataInitialDestination = { label: vm.destination};
+                    vm.myOptionsOrigin.push(dataInitialOrigin);
+                    vm.myOptionsDestination.push(dataInitialDestination);
+                    //sessionStorageService.setLocations(data);
+                    //sessionStorageService.setFlag(true);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    //  callback();
+                });
+
+            
             vm.dates = {
                 departureDate: '',
                 returnDate: '',
@@ -339,7 +441,6 @@
             };
 
             var mixedTripIcon = function(tripSection, typeTrip){
-                
                 if(tripSection <= 1 && tripSection >= 0){
                     var sections = typeTrip.split('_');
                     return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
@@ -365,25 +466,603 @@
                         $('.tab-filter').removeClass('active');
                         $('.tab_train').addClass('active');
                         break;
-                    default:
+                    case 'plane':
                         vm.showBus = false;
                         vm.showPlane = true;
                         vm.showTrain = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_plane').addClass('active');
+                        break;
                 }              
             }
+
+            var updateTripsType = function(){
+                  
+                if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = true;
+                    vm.showCombineTrips = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = true;
+                    vm.showCombineTrips = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = true;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_train').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    vm.showPlane = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_plane').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = true;
+                    vm.showCombineTrips = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(!vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = true;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_bus').addClass('active');
+                }
+
+                if(vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = true;
+                    vm.showPlane = false;
+                    vm.showCombineTrips = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_train').addClass('active');
+                }
+            };
 
             var getTripsSteps = function(maxDuration, tripDuration){
                 var step = Math.floor(maxDuration/4);
                 var total = Math.floor(tripDuration/step);
                 var range = [];
+                total == 0 ? total = 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
                }   
-
                return range;          
             }
+
+            var getPlanesSteps = function(segments){
+                var total = Math.floor(segments);
+                var range = [];
+                total > 1 ? total = total - 1 : total = total;
+                for(var i=1;i<=total;i++) {
+                    range.push(i);
+               }   
+               return range;          
+            }
+
+            var updatePercentageBar = function(bus, train, plane){
+                var bus = bus;
+                var train= train;
+                var plane= plane;
+                var barList = [];
+                var mayor = 0;
+                var pos = 0;
+
+                if(plane == 0 && vm.lowestDurationPlane > 0){
+                  plane = vm.lowestDurationPlane;
+                }
+
+                if(plane != 0){
+
+                    if(bus == null) bus = 120;
+                    if(train == null) train = 120;
+                    if(plane == NaN) plane = 120;
+                    
+                    barList = [bus,train,plane];
+                    mayor = barList[0];
+                    pos = 0;
+                    for(i=1;i<barList.length;i++){
+                        if(barList[i] > mayor){
+                            mayor=barList[i];
+                            pos = i;
+                        }
+                    }
+                     // TRAIN
+                    if(pos == 1){
+                        vm.percentageTrain = 60;
+                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                        vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                    }
+                    //BUS
+                    if(pos == 0){
+                        vm.percentageBus = 60;
+                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                        vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                    }
+                    //PLANE
+                    if(pos == 2){
+                        vm.percentagePlane = 60;
+                        vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
+                        vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                    }
+
+                    if(vm.percentagePlane < 10){
+                        vm.percentagePlane = 12;
+                    }
+                    
+                    
+                }else{
+                    if(bus == null) bus = 120;
+                    if(train == null) train = 120;
+                    if(plane == 0) plane = 120;
+
+                    barList = [bus,train];
+                    mayor = barList[0];
+                    pos = 0;
+                    for(i=1;i<barList.length;i++){
+                        if(barList[i] > mayor){
+                            mayor=barList[i];
+                            pos = i;
+                        }
+                    }
+                    // TRAIN
+                    if(pos == 1){
+                        vm.percentageTrain = 60;
+                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                    }
+                    //BUS
+                    if(pos == 0){
+                        vm.percentageBus = 60;
+                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                    }
+                    vm.percentagePlane = 12;
+                }
+            }
+
+            var updatePercentageBar2 = function(){
+                var bus = 0;
+                var train= 0;
+                var plane= 0;
+                var barList = [];
+                var mayor = 0;
+                var pos = 0;
+
+                if(vm.lowestDurationBus > 0){
+                  bus = vm.lowestDurationBus;
+                }else{
+                    bus = 120;
+                }
+
+                if(vm.lowestDurationTrain > 0){
+                  train = vm.lowestDurationTrain;
+                }else{
+                    train = 120;
+                }
+
+                if(vm.lowestDurationPlane > 0){
+                  plane = vm.lowestDurationPlane;
+                }else{
+                    plane = 120;
+                }
+
+                console.log(bus+'-'+train+'-'+plane);
+                console.log(vm.lowestDurationBus+'-'+vm.lowestDurationTrain+'-'+vm.lowestDurationPlane);
+
+                barList = [bus,train,plane];
+                mayor = barList[0];
+                pos = 0;
+                for(i=1;i<barList.length;i++){
+                    if(barList[i] > mayor){
+                        mayor=barList[i];
+                        pos = i;
+                    }
+                }
+                // TRAIN
+                if(pos == 1){
+                    vm.percentageTrain = 60;
+                    vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                    vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                }
+                //BUS
+                if(pos == 0){
+                    vm.percentageBus = 60;
+                    vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                    vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                }
+                //PLANE
+                if(pos == 2){
+                    vm.percentagePlane = 60;
+                    vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
+                    vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                }
+            }
+
+            var getHourMinPlanes = function(minutes){
+                var realmin = minutes % 60
+                var hours = Math.floor(minutes / 60)
+                return hours+'hrs '+realmin+'min';          
+            }
+
+            var getLowestPlanes = function(trips, tipo){
+                  var menor = 0;
+                  var pos = 0;
+
+                  if(tipo == 1){
+                        //console.log(trips);
+                        if(trips != undefined && trips.length > 0){
+                              menor = trips[0].data.duration;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.duration < menor && trips[i].data.transportation == "airplane"){
+                                        menor=trips[i].data.duration;
+                                        pos = i;
+                                    }
+                              }
+
+                              //Para agregar a la duración menor
+                              if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
+
+                              return menor;
+                        }
+                  }else{
+                        //console.log(trips);
+                        if(trips != undefined && trips.length > 0){
+                              menor = trips[0].data.price;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.price < menor  && trips[i].data.transportation == "airplane"){
+                                        menor=trips[i].data.price;
+                                        pos = i;
+                                    }
+                              }
+                              return menor;
+                        }
+                  }
+            };
+
+            function getLowestAvanzaBus (trips) {
+                  var menor = 99999999;
+                  var pos = 0;
+
+                  if(trips != undefined && trips.length > 0){
+                        pos = 0;
+                        for(i=1;i<trips.length;i++){
+                              if(trips[i].data.duration < menor && trips[i].data.transportation == "bus"){
+                                  menor=trips[i].data.duration;
+                                  pos = i;
+                              }
+                        }
+
+                        if (vm.lowestDurationBus > menor || vm.lowestDurationBus == 0) {
+                              vm.lowestDurationBus = menor;
+                        }
+
+                        //Para agregar a la duración menor
+                        if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+
+                        if(trips != undefined && trips.length > 0){
+                              menor = trips[0].data.price;
+                              pos = 0;
+                              for(i=1;i<trips.length;i++){
+                                    if(trips[i].data.price < menor  && trips[i].data.transportation == "bus"){
+                                        menor=trips[i].data.price;
+                                        pos = i;
+                                    }
+                              }
+                        }
+
+                        if (vm.lowestPriceBus > menor || vm.lowestPriceBus == 0) {
+                              vm.lowestPriceBus = menor;
+                        }
+
+                  }
+            }
+
+            var getLowest = function(){
+                var menor = 0;
+                var pos = 0;
+                console.log('GLOBAL EN LOWEST');
+                console.log(vm.globalTrips);
+                //BUSCO EL VIAJE MAS CORTO EN BUS
+                if(vm.globalTrips.length > 0){
+                    //Filtro los viajes en tren
+                    var tt = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'train';
+                    });
+
+                    if(tt.length > 0){
+                        console.log('SI HAY VIAJES DE TREN');
+                        //Busco la duracion menor en trenes
+                        menor = tt[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tt.length;i++){
+                            if(tt[i].durationMinutes < menor){
+                                menor=tt[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestDurationTrain = tt[pos].durationMinutes;
+                        console.log('DURACION MENOR EN TREN')
+                        console.log(vm.lowestDurationTrain);
+
+                        //Busco el precio menor en trenes
+                        menor = tt[0].price;
+                        pos = 0;
+                        for(i=1;i<tt.length;i++){
+                            if(tt[i].price < menor){
+                                menor=tt[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPriceTrain = tt[pos].price;
+                        console.log('PRECIO MENOR EN TREN')
+                        console.log(vm.lowestPriceTrain);
+                    }
+
+                    //Filtro los viajes en bus
+                    var tb = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'bus';
+                    });
+
+                    if(tb.length > 0){
+                        console.log('SI HAY VIAJES DE BUS');
+                        //Busco la duracion menor en trenes
+                        menor = tb[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tb.length;i++){
+                            if(tb[i].durationMinutes < menor){
+                                menor=tb[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        if (vm.lowestDurationBus > tb[pos].durationMinutes || vm.lowestDurationBus == 0) {
+                              vm.lowestDurationBus = tb[pos].durationMinutes;
+                        }
+                        console.log('DURACION MENOR EN BUS')
+                        console.log(vm.lowestDurationBus);
+
+                        //Busco el precio menor en buses
+                        menor = tb[0].price;
+                        pos = 0;
+                        for(i=1;i<tb.length;i++){
+                            if(tb[i].price < menor){
+                                menor=tb[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPriceBus = tb[pos].price;
+                        console.log('PRECIO MENOR EN TREN')
+                        console.log(vm.lowestPriceBus);
+                    }
+
+                    //Filtro los viajes en avion
+                    var tp = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'plane';
+                    });
+
+                    if(tp.length > 0){
+                        console.log('SI HAY VIAJES DE AVION');
+                        //Busco la duracion menor en trenes
+                        menor = tp[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tp.length;i++){
+                            if(tp[i].durationMinutes < menor){
+                                menor=tp[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestDurationPlane = tp[pos].durationMinutes;
+                        console.log('DURACION MENOR EN AVION')
+                        console.log(vm.lowestDurationPlane);
+
+                        //Busco el precio menor en aviones
+                        menor = tp[0].price;
+                        pos = 0;
+                        for(i=1;i<tp.length;i++){
+                            if(tp[i].price < menor){
+                                menor=tp[i].price;
+                                pos = i;
+                            }
+                        }
+                        
+                        vm.lowestPricePlane = tp[pos].price;
+                        console.log('PRECIO MENOR EN AVION')
+                        console.log(vm.lowestPricePlane);
+                    }
+
+                    updatePercentageBar2();
+
+                }
+            };
+
+            var resetGlobal = function(){
+                vm.globalDirectDepartureTrips = [];
+                vm.globalDirectReturnTrips = [];
+                vm.globalTrips = [];
+                vm.globalCompanies = [];
+                vm.globalAlternativeTrips = [];
+                vm.globalMixedTrips = [];
+                vm.globalTypeServices = [];
+                vm.globalMinDuration = "";
+                vm.hasBusTrips = false;
+                vm.hasTrainTrips = false;
+                vm.hasPlaneTrips = false;
+                vm.showBus = false;
+                vm.showCombineTrips = false;
+                vm.showTrain = false;
+                vm.showPlane = false;
+                vm.isLoading = true;
+                vm.countBusSearch = 0;
+                vm.minDuration = 0;
+                vm.priceSlider = {
+                   price: 0,
+                   options: {
+                       showSelectionBar: true,
+                       translate: function(value) {
+                           return '€' + value;
+                       },
+                       floor: 0,
+                       ceil: 0,
+                   }
+                };
+                auxPrice = 0;
+                vm.planesCompanies = [];
+
+            };
+
+            var loadGlobal = function(data, isMixed, isPlane){
+                if(data != undefined){
+
+                    if(isPlane  == false){
+
+                        if(data.directDepartureTrips.length > 0){
+
+                              vm.results = true;
+
+                            if(data.directDepartureTrips[0] != undefined && data.directDepartureTrips[0].length > 0){
+                                if(vm.globalDirectDepartureTrips[0] == undefined){
+                                    vm.globalDirectDepartureTrips.push([]);
+                                }
+
+                                angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                    vm.globalDirectDepartureTrips[0].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                });
+                            }
+
+                            if(data.directDepartureTrips[1] != undefined && data.directDepartureTrips[1].length > 0){
+                                if(vm.globalDirectDepartureTrips[1] == undefined){
+                                    vm.globalDirectDepartureTrips.push([]);
+                                }
+
+                                angular.forEach(data.directDepartureTrips[1], function(value, key) {
+                                    vm.globalDirectDepartureTrips[1].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                });
+                            }
+                        }
+                        if(data.directReturnTrips.length > 0){
+
+                              vm.results = true;
+
+                            if(data.directReturnTrips[0] != undefined && data.directReturnTrips[0].length > 0){
+                                if(vm.globalDirectReturnTrips[0] == undefined){
+                                    vm.globalDirectReturnTrips.push([]);
+                                }
+
+                                angular.forEach(data.directReturnTrips[0], function(value, key) {
+                                    vm.globalDirectReturnTrips[0].push(value); 
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                });
+                            }
+
+                            if(data.directReturnTrips[1] != undefined && data.directReturnTrips[1].length > 0){
+                                if(vm.globalDirectReturnTrips[1] == undefined){
+                                    vm.globalDirectReturnTrips.push([]);
+                                }
+
+                                angular.forEach(data.directReturnTrips[1], function(value, key) {
+                                    vm.globalDirectReturnTrips[1].push(value);  
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                });
+                            }
+                        }
+                        if(data.alternativeTrips.length > 0){
+
+                              vm.results = true;
+
+                            angular.forEach(data.alternativeTrips, function(value, key) {
+                                vm.globalAlternativeTrips.push(value);    
+                            });
+                        }
+                        if(!isMixed){
+                              if(data.mixedTrips.length > 0){
+
+                                  vm.results = true;
+
+                                  angular.forEach(data.mixedTrips, function(value, key) {
+                                      vm.globalMixedTrips.push(value);    
+                                  });
+                              }
+                        } else {
+                              vm.globalMixedTrips = [];
+                        }
+                        if(data.companies.length > 0){
+                            angular.forEach(data.companies, function(value, key) {
+                                vm.globalCompanies.push(value);    
+                            });
+                        }
+                        if(data.typeServices.length > 0){
+                              angular.forEach(data.typeServices, function(value, key) {
+                              var exist = false;
+                              for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                                    if(vm.globalTypeServices[i].name == value.name){
+                                          exist = true;
+                                    }
+                              }
+                              if(!exist){
+                                    vm.globalTypeServices.push(value);
+                              }
+                            });
+                        }
+
+                        
+                    }else{
+                        if(data.length > 0){
+
+                              vm.results = true;
+
+                            angular.forEach(data, function(value, key) {
+                                vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });    
+                            });
+                        }
+                    }
+
+                    if(vm.globalTrips.length > 0){
+                        getLowest();
+                    }
+
+                }
+            };
 
             $scope.$watch('search.combineTrips', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
@@ -395,12 +1074,25 @@
                         $('.fa-trip-type').removeClass('hidden');
 
                     }else{
-                        vm.showBus = true;
-                        vm.showPlane = false;
-                        vm.showTrain = false;
-                        $('#tab_bus').addClass('active');
+                        $('.fa-trip-type').addClass('hidden');
+                        if(vm.hasBusTrips){
+                            vm.showBus = true;
+                            vm.showPlane = false;
+                            vm.showTrain = false;
+                            $('#tab_bus').addClass('active');
+                        }else if(vm.hasTrainTrips){
+                            vm.showBus = false;
+                            vm.showPlane = false;
+                            vm.showTrain = true;
+                            $('#tab_train').addClass('active');
+
+                        }else{
+                            vm.showBus = false;
+                            vm.showPlane = true;
+                            vm.showTrain = false;
+                            $('#tab_plane').addClass('active');
+                        }
                     }
-                   
                 }
             }, true);
 
@@ -409,25 +1101,40 @@
             vm.mixedTripIcon = mixedTripIcon;
             vm.showTripsType = showTripsType;
             vm.getTripsSteps = getTripsSteps;
+            vm.getPlanesSteps = getPlanesSteps;
+            vm.getHourMinPlanes = getHourMinPlanes;
+            vm.updateTripsType = updateTripsType;
+            vm.updatePercentageBar = updatePercentageBar();
+            vm.getLowestPlanes = getLowestPlanes();
+            vm.loadGlobal = loadGlobal();
+            vm.resetGlobal = resetGlobal();
+            vm.getLowest = getLowest();
+            vm.updatePercentageBar2 = updatePercentageBar2();
+
 
             var durationFormatted = function(duration) {
                 return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
             };
 
             vm.durationFormatted = durationFormatted;
-
+            vm.maxPrice = 0;
+            vm.minPrice = 9999999;
+            var auxPrice = 0;
             function setDateFilterRange(maxprice,minprice){
-                vm.priceSlider = {
-                     price: maxprice+1,
-                     options: {
-                         showSelectionBar: true,
-                         translate: function(value) {
-                             return '€' + value;
-                         },
-                         floor: 0,
-                         ceil: maxprice+1,
-                     }
-                 };
+                if (maxprice > auxPrice) {
+                    auxPrice = maxprice;
+                    vm.priceSlider = {
+                         price: maxprice+1,
+                         options: {
+                             showSelectionBar: true,
+                             translate: function(value) {
+                                 return value + ' €';
+                             },
+                             floor: 0,
+                             ceil: maxprice+1,
+                         }
+                     };
+                }
             }
 
             vm.hourSlider = {
@@ -439,18 +1146,18 @@
                     translate: function(value, sliderId, label) {
                         switch (label) {
                             case 'model':
-                              return value+':00 HRS';
+                              return value+':00';
                             case 'high':
-                              return value+':59 HRS';
+                              return value+':59';
                             default:
-                              return value+':HRS'
+                              return value
                           }
                     },
                     step: 1
                 }
              };
 
-             var session = sessionStorageService.getFlag();
+             /*var session = sessionStorageService.getFlag();
              if (session == null || session == false) {
                  locationsFactory
                      .getAll()
@@ -464,7 +1171,11 @@
                      });
              }else{
                  vm.myOptions = sessionStorageService.getLocations()
-             }
+             }*/
+
+            vm.myOptionsOrigin = sessionStorageService.getLocations();
+            vm.myOptionsDestination = sessionStorageService.getLocations();
+
 
             var params = utilityService.getData();
           	vm.origin = params.origin + ', ' + params.countryOrigin;
@@ -523,7 +1234,11 @@
 
             vm.tripDetails = function($event){
                 var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId2 = '#trip_details_mix_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId3 = '#trip_details_avanza_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 $(elementId).slideToggle( "slow" );
+                $(elementId2).slideToggle( "slow" );
+                $(elementId3).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {
@@ -541,7 +1256,7 @@
 
             if(params.origin != null){
                 var title = "Billetes de Autobús | "+params.origin+" a "+params.destination+" | Resertrip ";
-                var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
+                var description = "Compra billetes de autobús, tren y avión online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
                 $rootScope.$broadcast('titleEvent', title);
                 $rootScope.$broadcast('descriptionEvent', description);
 
@@ -568,75 +1283,31 @@
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(params.departure,params.returns) });
                 }
 
-                travelsFactory
-                    .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby)
-                    .then(function(data){
-                        vm.isLoading = false;
-                        vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-                        for (var i = 0; i < data.typeServices.length; i++) {
-                            vm.seats.push(data.typeServices[i].name)
+                //Reseteo los arrays basicos
+                resetGlobal();
+
+                callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "logitravel");
+                callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud");
+                callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
+                    
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                    if(destiniesPlanes.origin && destiniesPlanes.destination) {
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                    }else{
+                        vm.searchingTripsPlane = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
                         }
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-                        scraperFactory
-                            .getAll(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode)
-                            vm.scraperFlag = true;
-                            var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData();
-                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
-                                    var scraperTime2 = $timeout(function () {
-                                        vm.scraperTrips = scraperData.data;
-                                        scraperManager(scraperData.data.tickets);
-                                        if (scraperData.data.tickets.length ==0) {
-                                            vm.scraperFlag = false;
-                                        }else{
-                                            vm.scraperFlag = false;
-                                        }
-                                    }, 20000);
-                                }
-                                vm.scraperTrips = scraperData.data;
-                                if (scraperData.data.tickets != undefined) {
-                                    if (scraperData.data.tickets.length != 0) {
-                                        vm.scraperFlag = false;
-                                        scraperManager(scraperData.data.tickets);
-                                    }else{
-                                        vm.scraperFlag = false;
-                                    }
-                                }
-                            }, 15000);
-                        utilityService.setData(null,null,null,null, null, null, null);
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                        utilityService.setData(null,null,null,null, null, null, null);
-                    })
+                        processCountOrder();
+                    }
 
             }else{
+                console.log('Por AQUI');
+
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
+
                 var dateDeparture = new Date(parseInt($stateParams.departureDate));
                 var dateReturn = ""
                 var returnDateFormat = ""
@@ -702,7 +1373,7 @@
                     departureMonth = '0'+departureMonth;
                 }
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
-
+                
                 angular.forEach(vm.cnames_es, function(value, key) {
                     if(vm.cnames_es[key].name === $stateParams.originCountryCode){
                         vm.originCountry = vm.cnames_es[key].value;
@@ -760,73 +1431,97 @@
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDateFormat,returnDateFormat) });
                 }
 
-                travelsFactory
-                    .getAll(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
-                    .then(function(data){
-                        vm.isLoading = false;
-                        vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                       
+                //Reseteo los arrays basicos
+                resetGlobal();
 
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
+                callLogitravel(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel");
+                callBusbud(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
+                callMovelia(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
 
-                        for (var i = 0; i < data.typeServices.length; i++) {
-                            vm.seats.push(data.typeServices[i].name)
-                        }
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
+                var originPlaneCity = vm.origin.split(',');
+                var destinationPlaneCity = vm.destination.split(',');
 
-                        scraperFactory
-                            .getAll(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode);
-                            vm.scraperFlag = true;
-                            var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData();
-                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
-                                    var scraperTime2 = $timeout(function () {
-                                        vm.scraperTrips = scraperData.data;
-                                        scraperManager(scraperData.data.tickets);
-                                        if (scraperData.data.tickets.length ==0) {
-                                            vm.scraperFlag = false;
-                                        }else{
-                                            vm.scraperFlag = false;
-                                        }
-                                    }, 20000);
-                                }
-                                vm.scraperTrips = scraperData.data;
-                                if (scraperData.data.tickets != undefined) {
-                                    if (scraperData.data.tickets.length != 0) {
-                                        vm.scraperFlag = false;
-                                        scraperManager(scraperData.data.tickets);
+
+                var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+                var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+                for (var i=0; i<acentos.length; i++) {
+                  originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                  destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                }
+
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                  
+                    if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
+                        vm.originCity = vm.myOptionsOrigin[key].rt;
+                        vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                        vm.originCountry = vm.myOptionsOrigin[key].country;
+                        vm.originId = vm.myOptionsOrigin[key].id;
+                    }
+                });
+
+                angular.forEach(vm.myOptionsDestination, function(value, key) {
+                    if(vm.myOptionsDestination[key].rt === destinationPlaneCity[0]){
+                        vm.destinationCity = vm.myOptionsDestination[key].rt;
+                        vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                        vm.destinationCountry = vm.myOptionsDestination[key].country;
+                        vm.destinationId = vm.myOptionsDestination[key].id;
+                    }
+                });
+
+                if(vm.originId == undefined){
+
+                    locationsRtFactory
+                        .getAll(originPlaneCity[0])
+                        .then(function (data) {
+                            if(data.length == 1){
+                              vm.originId = data[0].id  
+                            }else{
+                               vm.originId = originPlaneCity[0]; 
+                            }
+                            locationsRtFactory
+                                .getAll(destinationPlaneCity[0])
+                                .then(function (data) {
+                                    if(data.length == 1){
+                                        vm.destinationId = data[0].id  
                                     }else{
-                                        vm.scraperFlag = false;
+                                       vm.destinationId = destinationPlaneCity[0]; 
                                     }
-                                }
-                            }, 15000);
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
+                                    console.log(vm.originId+'-'+vm.destinationId);
+                                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                                    if(destiniesPlanes.origin && destiniesPlanes.destination) {
+                                          vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                                    }else{
+                                          vm.searchingTripsPlane = false;
+                                          vm.countBusSearch = vm.countBusSearch + 1;
+                                          if(vm.countBusSearch == 3){
+                                                vm.searchingTripsBus = false;
+                                          }
+                                          processCountOrder();
+                                    }
+                                })
+                                .catch(function (err) {
+                                    console.log('Error');
+                                });
+                        })
+                        .catch(function (err) {
+                            console.log('Error');
+                        });
+                }else{
+                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                    var destiniesPlanes = sessionStorageService.getIdForPlanes();
+
+                    if(destiniesPlanes.origin && destiniesPlanes.destination) {
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                    }else{
+                        vm.searchingTripsPlane = false;
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
+                        processCountOrder();
+                    }
+                }
             }
 
             function order(type) {
@@ -839,6 +1534,13 @@
                         vm.reverse = false;
                     }
                     vm.typeDeparture = type;
+                    vm.typeDeparturePlanes = type;
+                    if (type === 'departure') {
+                        vm.typeDeparturePlanes = 'start';
+                    }
+                    if (type === 'durationMinutes') {
+                        vm.typeDeparturePlanes = 'duration';
+                    }
                     vm.type = type;
                 }else {
                     if(vm.typeReturn === type) {
@@ -852,7 +1554,7 @@
                     vm.type = type;
                 }
             }
-
+            vm.multipleChange = false;
             $scope.$watch('search.origin', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
                     console.log('changed '+oldVal+" to "+newVal);
@@ -860,7 +1562,12 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
-                    searchTrip();
+                    vm.allTrips = [];
+                    if (!vm.multipleChange) {
+                        searchTrip('city');
+                    }else{
+                        vm.multipleChange = false;
+                    }
                 }
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
@@ -870,7 +1577,8 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
-                    searchTrip();
+                    vm.allTrips = [];
+                    searchTrip('city');
                 }
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
@@ -880,7 +1588,8 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
-                    searchTrip();
+                    vm.allTrips = [];
+                    searchTrip('date');
                 }
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
@@ -891,7 +1600,8 @@
                         vm.seatsReset = [];
                         vm.companies = [];
                         vm.companiesReset = [];
-                        searchTrip();
+                        vm.allTrips = [];
+                        searchTrip('date');
                     }
                 }
             }, true);
@@ -903,25 +1613,41 @@
                     vm.seatsReset = [];
                     vm.companies = [];
                     vm.companiesReset = [];
-                    searchTrip();
+                    vm.allTrips = [];
+                    searchTrip('passenger');
                 }
             }, true);
 
-            
+            function searchTrip(changeType) {
+                var originPlaneCity = vm.origin.split(',');
+                var destinationPlaneCity = vm.destination.split(',');
+                var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+                var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+                for (var i=0; i<acentos.length; i++) {
+                  originPlaneCity[0] = originPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                  destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
+                }
+                if (changeType == 'city') {
+                    angular.forEach(vm.myOptionsOrigin, function(value, key) {
+                        if(vm.myOptionsOrigin[key].name === vm.origin){
+                            vm.originCity = vm.myOptionsOrigin[key].rt;
+                            vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
+                            vm.originCountry = vm.myOptionsOrigin[key].country;
+                            vm.originId = vm.myOptionsOrigin[key].id;
+                        }
+                    });
 
-            function searchTrip() {
-                angular.forEach(vm.myOptions, function(value, key) {
-                    if(vm.myOptions[key].label === vm.origin){
-                        vm.originCity = vm.myOptions[key].city;
-                        vm.originCountryCode = vm.myOptions[key].countryCode;
-                        vm.originCountry = vm.myOptions[key].country;
-                    }
-                    if(vm.myOptions[key].label === vm.destination){
-                        vm.destinationCity = vm.myOptions[key].city;
-                        vm.destinationCountryCode = vm.myOptions[key].countryCode;
-                        vm.destinationCountry = vm.myOptions[key].country;
-                    }
-                });
+                    angular.forEach(vm.myOptionsDestination, function(value, key) {
+                        if(vm.myOptionsDestination[key].name === vm.destination){
+                            vm.destinationCity = vm.myOptionsDestination[key].rt;
+                            vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
+                            vm.destinationCountry = vm.myOptionsDestination[key].country;
+                            vm.destinationId = vm.myOptionsDestination[key].id;
+                        }
+                    });
+                    sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                }
+
                 var origin = vm.origin.split(',');
                 var destination = vm.destination.split(',');
                 if (vm.origin === vm.destination || vm.origin == '' || vm.destination == '' ) {
@@ -930,6 +1656,11 @@
                     cityError();
                 } else {
                     if(vm.dates.returnDate == 'Invalid date' || vm.dates.returnDate == undefined) vm.dates.returnDate = ''
+
+                    var origen = vm.originCity ? vm.originCity : origin[0];
+                    var destino = vm.destinationCity ? vm.destinationCity : destination[0];
+
+                    console.log(origen + " - " + destino);
 
                     if (vm.dates.returnDate != '' && vm.dates.returnDate != 'Invalid date') {
                         var date1 = vm.dates.departureDate;
@@ -943,7 +1674,7 @@
                             vm.weather_progressbar.reset();
                             vm.weather_progressbar.start();
 
-                            callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                            callSearch(origen,destino,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                             vm.good = true;
 
                         }else {
@@ -955,7 +1686,7 @@
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
 
-                        callSearch(origin[0],destination[0],vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
+                        callSearch(origen,destino,vm.dates.departureDate,vm.dates.returnDate,vm.passengers,vm.originCountryCode,vm.destinationCountryCode);
                         vm.good = true;
                     }
                 }
@@ -986,75 +1717,27 @@
                     $analytics.eventTrack('Trip Type', {  category: 'Search', label: 'Round Trip' });
                     $analytics.eventTrack('Diff Days', {  category: 'Search', label: 'Diff Days', value: diffDays(departureDate,returnDate) });
                 }
-                
-                travelsFactory
-                    .getAll(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby)
-                    .then(function(data){
-                        vm.isLoading = false;
-                        vm.trips = data;
-                        vm.searching = false;
-                        vm.results = true;
-                        vm.disabled = false;
-                        vm.minDuration = data.minDuration;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        vm.selectDeparture = true;
-                        vm.idIda_1 = 0;
-                        vm.idVuelta_1 = 0;
-                        vm.dateIda_1 = 0;
-                        vm.selectMixTrip = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        vm.weather_progressbar.stop();
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-                        for (var i = 0; i < data.typeServices.length; i++) {
-                            vm.seats.push(data.typeServices[i].name)
-                        }
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
-                        vm.weather_progress_scraper.reset();
-                        vm.weather_progress_scraper.start();
-                        scraperFactory
-                            .getAll(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
-                            vm.scraperFlag = true;
-                            var scraperTime = $timeout(function () {
-                                var scraperData = scraperFactory.getData();
-                                if (!scraperData.data.id || scraperData.data.tickets.length ==0) {
-                                    var scraperTime2 = $timeout(function () {
-                                        vm.scraperTrips = scraperData.data;
-                                        scraperManager(scraperData.data.tickets);
-                                        if (scraperData.data.tickets.length ==0) {
-                                            vm.scraperFlag = false;
-                                        }else{
-                                            vm.scraperFlag = false;
-                                        }
-                                    }, 20000);
-                                }
-                                vm.scraperTrips = scraperData.data;
-                                if (scraperData.data.tickets != undefined) {
-                                    if (scraperData.data.tickets.length != 0) {
-                                        vm.scraperFlag = false;
-                                        scraperManager(scraperData.data.tickets);
-                                    }else{
-                                        vm.scraperFlag = false;
-                                    }
-                                }
-                            }, 15000);
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.searching = false;
-                        vm.error = true;
-                        vm.msgError = err;
-                        vm.disabled = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        apiError();
-                    })
+
+                //Reseteo los arrays basicos
+                resetGlobal();
+
+                callLogitravel(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
+                callBusbud(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
+                callMovelia(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
+
+                // sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                var destiniesPlanes = sessionStorageService.getIdForPlanes();
+                if(destiniesPlanes.origin && destiniesPlanes.destination) {
+                  vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                }else{
+                  vm.searchingTripsPlane = false;
+                  vm.countBusSearch = vm.countBusSearch + 1;
+                  if(vm.countBusSearch == 3){
+                        vm.searchingTripsBus = false;
+                  }
+                  processCountOrder();
+                }
+
             }
             var listCompanies = new Set();
             function companyFilter(company,long) {
@@ -1186,9 +1869,11 @@
                     .then(function(data){
                         //console.log(data);
                         if(data.url != null ){
-                           window.location.href = data.url;
+                           window.open(data.url,'_blank');
                         }else{
-                            alert('No es posible utilizar esa combinacion de viajes');
+                            //alert('No es posible utilizar esa combinacion de viajes');
+                            alertify.logPosition("top right");
+                            alertify.log("No es posible utilizar esa combinacion de viajes");
                         }
                     })
                     .catch(function(err){
@@ -1196,41 +1881,100 @@
                     })
             }
 
-            function scraperManager(scraper){
+            // function scraperManager(scraper){
+            //     var companies = {};
+            //     var seats = {};
+            //     var listCompanies = new Set();
+            //     var listSeats = new Set();
+            //     var top = 0;
+            //     angular.forEach(scraper, function(value,key) {
+            //         companies.id = key;
+            //         companies.name = scraper[key].data.enterprise__name;
+            //         if (companies.name == "Auto-Res, S.L.U.") {
+            //             companies.nickName = 'AVANZABUS';
+            //             listCompanies.add(companies);
+            //         }
+            //         seats.id = key;
+            //         seats.name = scraper[key].data.type__name;
+            //         listSeats.add(seats);
+            //         if (top < scraper[key].data.price) {
+            //             top = scraper[key].data.price;
+            //         }
+            //     });
+            //     if (top > vm.maxPrice) {
+            //         setDateFilterRange(top,vm.minPrice);
+            //     }
+            //     var listCompaniesArr = Array.from(listCompanies);
+            //     vm.scraperCompanies = listCompaniesArr;
+            //     var listSeatsArr = Array.from(listSeats);
+            //     vm.scraperSeats = listSeatsArr;
+            //     for (var i = 0; i < vm.scraperCompanies.length; i++) {
+            //         vm.companies.push(vm.scraperCompanies[i].name);
+            //     }
+            //     for (var i = 0; i < vm.scraperSeats.length; i++) {
+            //         vm.seats.push(vm.scraperSeats[i].name);
+            //     }
+            //     vm.companiesReset = vm.companies;
+            //     vm.seatsReset = vm.seats;
+            // }
+
+            function planesManager(planes){
                 var companies = {};
                 var seats = {};
                 var listCompanies = new Set();
                 var listSeats = new Set();
                 var top = 0;
-                angular.forEach(scraper, function(value,key) {
-                    companies.id = key;
-                    companies.name = scraper[key].data.enterprise__name;
-                    if (companies.name == "Auto-Res, S.L.U.") {
-                        companies.nickName = 'AVANZABUS';
-                    }
+                angular.forEach(planes, function(value,key) {
+                    companies = planes[key].data.enterprise__name;
                     listCompanies.add(companies);
-                    seats.id = key;
-                    seats.name = scraper[key].data.type__name;
+                    seats = planes[key].data.type__name;
                     listSeats.add(seats);
-                    if (top < scraper[key].data.price) {
-                        top = scraper[key].data.price;
+                    if (top < planes[key].data.price) {
+                        top = planes[key].data.price;
                     }
                 });
                 if (top > vm.maxPrice) {
                     setDateFilterRange(top,vm.minPrice);
                 }
-                var listCompaniesArr = Array.from(listCompanies);
-                vm.scraperCompanies = listCompaniesArr;
-                var listSeatsArr = Array.from(listSeats);
-                vm.scraperSeats = listSeatsArr;
-                for (var i = 0; i < vm.scraperCompanies.length; i++) {
-                    vm.companies.push(vm.scraperCompanies[i].name);
+                var arraySetCompanies = Array.from(listCompanies);
+                var listCompaniesArr = [];
+                for (var i = 0; i < arraySetCompanies.length; i++) {
+                    listCompaniesArr.push({id: i, name:arraySetCompanies[i]});
                 }
-                for (var i = 0; i < vm.scraperSeats.length; i++) {
-                    vm.seats.push(vm.scraperSeats[i].name);
+                vm.planesCompanies = listCompaniesArr;
+                var arraySetSeats = Array.from(listSeats);
+                var listSeatsArr = [];
+                
+                for (var i = 0; i < arraySetSeats.length; i++) {
+                    listSeatsArr.push({id: i, name:arraySetSeats[i]});
+                }
+                vm.planesSeats = listSeatsArr;
+                
+                for (var i = 0; i < vm.planesCompanies.length; i++) {
+                    vm.companies.push(vm.planesCompanies[i].name);
                 }
                 vm.companiesReset = vm.companies;
+
+                // Para actualizar el globalTypeServices con los resultados de las de aviones
+                angular.forEach(vm.planesSeats, function(value, key) {
+                  var exist = false;
+                  for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                        if(vm.globalTypeServices[i].name == value.name){
+                              exist = true;
+                        }
+                  }
+                  if(!exist){
+                        vm.globalTypeServices.push({id: value.id, name:value.name});
+                  }
+                });
+
+                var setSeats = new Set(); // Para los de los otros servicios
+                for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                      setSeats.add(vm.globalTypeServices[i].name)
+                }
+                vm.seats = Array.from(setSeats);
                 vm.seatsReset = vm.seats;
+
             }
 
             function nextDay() {
@@ -1256,23 +2000,18 @@
                 travelsFactory
                     .getMixedTrips(id)
                     .then(function (data) {
+
+                        loadGlobal(data, true, false);
+                        saveOtherInfoInTrips(data);
+
                         vm.searchingMix = false;
-                        vm.results = true;
-                        vm.trips = data;
                         vm.isMixedTrips = data.isMixedTrips
-                        var time = $timeout(function () {
-                            vm.maxPrice = data.maxPrice;
-                            vm.minPrice = data.minPrice;
-                            setDateFilterRange(data.maxPrice,data.minPrice);
-                        }, 100);
-                        for (var i = 0; i < data.typeServices.length; i++) {
-                            vm.seats.push(data.typeServices[i].name)
-                        }
-                        vm.seatsReset = vm.seats;
-                        for (var i = 0; i < data.companies.length; i++) {
-                            vm.companies.push(data.companies[i].name)
-                        }
-                        vm.companiesReset = vm.companies;
+                        vm.hasBusTrips = data.hasBusTrips;
+
+                        setDateFilterRange(data.maxPrice,data.minPrice);
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                        setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
@@ -1343,6 +2082,385 @@
                     vm.returnTypeService = typeService;
                     vm.returnCompanyName = companyName;
                     vm.returnLogo = logo;
+                }
+            }
+
+            function callLogitravel (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                  vm.searchingTripsTrain = true; // Buscando trenes
+                  travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                    .then(function(data){
+
+                        console.log('1');
+                        console.log(data);
+
+                        loadGlobal(data, false, false);
+                        saveOtherInfoInTrips(data);
+
+                        vm.searchingTripsTrain = false; //Ya buscó
+                        vm.isLoading = false;
+                        vm.disabled = false;
+                        vm.hasTrainTrips = data.hasTrainTrips;
+                        $('.pikaday__display').prop('disabled', false);
+
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                          vm.allTrips.push(value);
+                        });
+
+                        if(vm.hasTrainTrips){
+                              setDateFilterRange(data.maxPrice,data.minPrice);
+                              setMaxDurationAndMinDuration(data.maxDuration, "tren", data.lowest);
+                              setCompaniesAndSeatsReset(data.companies);
+                              vm.updateTripsType();
+                        }
+                        processCountOrder();
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.searchingTripsTrain = false;
+
+                        catchTravelsFactory(err);
+                    })
+            }
+
+            function callBusbud (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+                  if (false) {//returns == "" Esta es la condición que debe ir
+                        vm.searchingTripsBus = true; // Buscando buses
+                         travelsFactory
+                          .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                          .then(function(data){
+
+                              console.log('2');
+                              console.log(data);
+                              loadGlobal(data, false,false);                       
+                              saveOtherInfoInTrips(data);                   
+
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 3){
+                                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                              }
+                              vm.isLoading = false;
+                              vm.disabled = false;
+                              if(!vm.hasBusTrips)
+                                  vm.hasBusTrips = data.hasBusTrips;
+                              $('.pikaday__display').prop('disabled', false);
+
+                              angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                vm.allTrips.push(value);
+                              });
+
+                              if (vm.hasBusTrips) {
+                                    setDateFilterRange(data.maxPrice,data.minPrice);
+                                    setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                                    setCompaniesAndSeatsReset(data.companies);
+                                    vm.updateTripsType();
+                              }
+                              processCountOrder();
+                          })
+                          .catch(function(err){
+                              console.log(err);
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 3){
+                                    vm.searchingTripsBus = false;
+                              }
+
+                              catchTravelsFactory(err);
+                          })
+                  } else {
+                        console.log("No llamó a Busbud");
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                        }
+                        $('.pikaday__display').prop('disabled', false);
+                        processCountOrder();
+                  }
+            }
+
+            function callMovelia (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
+                  vm.searchingTripsBus = true; // Buscando buses
+                  travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
+                    .then(function(data){
+
+                        console.log('3');
+                        console.log(data);
+                        loadGlobal(data, false,false);
+                        saveOtherInfoInTrips(data);
+
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                        }
+                        vm.isLoading = false;
+                        vm.disabled = false;
+                        vm.isMixedTrips = data.isMixedTrips;
+                        if(!vm.hasBusTrips){
+                            vm.hasBusTrips = data.hasBusTrips;
+                            if(data.isMixedTrips){
+                              vm.hasBusTrips = true; 
+                            }
+                        }
+                        $('.pikaday__display').prop('disabled', false);
+
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                          vm.allTrips.push(value);
+                        });
+
+                        if (vm.hasBusTrips) {
+                              setDateFilterRange(data.maxPrice,data.minPrice);
+                              setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                              setCompaniesAndSeatsReset(data.companies);
+                              vm.updateTripsType();
+                        }
+                        processCountOrder();
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
+
+                        catchTravelsFactory(err);
+                    })
+            }
+
+            function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
+                  if (returnDate == "") {
+                      vm.searchingTripsPlane = true; // Buscabdo trenes
+                      planesFactory
+                          .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                          .then(function (data) {
+                              planesFactory
+                                  .getApiStatus(data.status)
+                                  .then(function (data1) {
+                                      if (data1.progress != 0 && data1.results !=0) {
+                                          planesFactory
+                                              .getApiData(data.data)
+                                              .then(function (data2) {
+                                                  processPlanes(data2);
+                                              })
+                                              .catch(function (){
+                                                  catchPlanes();
+                                              })
+                                      }else{
+                                          $timeout(function () {
+                                              planesFactory
+                                                  .getApiStatus(data.status)
+                                                  .then(function (data3) {
+                                                      if (data3.progress != 0 && data3.results !=0) {
+                                                          planesFactory
+                                                              .getApiData(data.data)
+                                                              .then(function (data4) {
+                                                                  processPlanes(data4);
+                                                              })
+                                                              .catch(function (){
+                                                                  catchPlanes();
+                                                              })
+                                                      }else{
+                                                          $timeout(function () {
+                                                              planesFactory
+                                                                  .getApiStatus(data.status)
+                                                                  .then(function (data5) {
+                                                                      if (data5.progress != 0 && data5.results !=0) {
+                                                                          planesFactory
+                                                                              .getApiData(data.data)
+                                                                              .then(function (data6) {
+                                                                                  processPlanes(data6);
+                                                                              })
+                                                                              .catch(function (){
+                                                                                  catchPlanes();
+                                                                              })
+                                                                      }else{
+                                                                          catchPlanes();
+                                                                      }
+                                                                  })
+                                                                  .catch(function (){
+                                                                      catchPlanes();
+                                                                  })
+                                                          }, 5000);
+                                                      }
+                                                  })
+                                                  .catch(function (){
+                                                      catchPlanes();
+                                                  })
+                                          }, 5000);
+                                      }
+                                  })
+                                  .catch(function (){
+                                      catchPlanes();
+                                  })
+                          })
+                          .catch(function (){
+                              catchPlanes();
+                          })
+                  } else {
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 3){
+                              vm.searchingTripsBus = false;
+                        }
+                        vm.searchingTripsPlane = false;
+                        $('.pikaday__display').prop('disabled', false);
+                        processCountOrder();
+                  }
+
+            }
+
+            function saveOtherInfoInTrips(data) {
+                  vm.trips.departureDate = data.departureDate
+                  vm.trips.returnDate = data.returnDate
+                  vm.trips.destination = data.destination
+                  vm.trips.origin = data.origin
+            }
+
+            function processPlanes (data) {
+                  vm.planesTrips = [];
+                  var auxTrip = {};
+                  var flagPlanes = false;
+                  var flagBus = false;
+                  angular.forEach(data.tickets, function(value, key) {
+                        vm.planesTrips.push(value.data);
+                        auxTrip.arrival = value.data.end * 1000;
+                        auxTrip.companyName = value.data.enterprise__name;
+                        auxTrip.departure = value.data.start * 1000;
+                        auxTrip.destination = value.data.destination;
+                        auxTrip.durationMinutes = value.data.duration;
+                        auxTrip.logo = value.data.enterprise__image;
+                        auxTrip.origin = value.data.origin;
+                        auxTrip.price = value.data.price;
+                        auxTrip.transportType = value.data.transportation;
+                        auxTrip.typeService = value.data.type__name;
+                        auxTrip.url = value.data.redirect;
+                        auxTrip.segments = value.data.segments;
+                        vm.allTrips.push(auxTrip);
+
+                        if (value.data.transportation == "bus"){
+                            if (vm.globalDirectDepartureTrips.length > 0) {
+                                vm.globalDirectDepartureTrips[0].push(auxTrip);
+                            }else{
+                                vm.globalDirectDepartureTrips.push([]);
+                                vm.globalDirectDepartureTrips[0].push(auxTrip);
+                            }
+                            vm.hasBusTrips = true;
+                            flagBus = true;
+                        }else {
+                              flagPlanes = true;
+                        }
+
+                        auxTrip = {};
+                  });
+                  loadGlobal(vm.planesTrips, false, true);
+                  processCountOrder();
+                  vm.planesFlag = true;
+                  vm.scraperFlag = false;
+                  vm.hasPlaneTrips = flagPlanes;
+                  vm.searchingTripsPlane = false;
+                  vm.countBusSearch = vm.countBusSearch + 1;
+                  if(vm.countBusSearch == 3){
+                        vm.searchingTripsBus = false;
+                  }
+                  vm.updateTripsType();
+                  if(flagBus) getLowestAvanzaBus(data.tickets);
+                  vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
+                  vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
+                  planesManager(data.tickets);
+            }
+
+            function catchTravelsFactory (err) {
+                  vm.searching = false;
+                  //vm.error = true;
+                  //vm.msgError = err;
+                  vm.disabled = false;
+                  $('.pikaday__display').prop('disabled', false);
+                  //apiError();
+                  utilityService.setData(null,null,null,null, null, null, null);
+                  processCountOrder();
+            }
+
+            function catchPlanes () {
+                  vm.planesFlag = false;
+                  vm.scraperFlag = false;
+                  vm.hasPlaneTrips = false;
+                  vm.searchingTripsPlane = false;
+                  vm.countBusSearch = vm.countBusSearch + 1;
+                  if(vm.countBusSearch == 3){
+                        vm.searchingTripsBus = false;
+                  }
+                  processCountOrder();
+            }
+
+            function processCountOrder () {
+                  $('[data-toggle="tooltip"]').tooltip();
+                  vm.countOrder = vm.countOrder + 1;
+                  if (vm.countOrder == 4) {
+                        order('departure');
+                        vm.countOrder = 0;
+                        vm.searching = false;
+                        vm.results = true; //para quitar el modal del clima
+                  }
+            }
+
+            function setCompaniesAndSeatsReset (companies) {
+                  var setSeats = new Set();
+                  for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                        setSeats.add(vm.globalTypeServices[i].name)
+                  }
+                  vm.seats = Array.from(setSeats);
+                  vm.seatsReset = vm.seats;
+
+                  for (var i = 0; i < companies.length; i++) {
+                        vm.companies.push(companies[i].name)
+                  }
+                  vm.companiesReset = vm.companies;
+            }
+
+            function setMaxDurationAndMinDuration (maxDuration, tipo, lowest) {
+                  if (maxDuration) {
+                        if (vm.trips.maxDuration < maxDuration || vm.trips.maxDuration == undefined) {
+                              vm.trips.maxDuration = maxDuration
+                        }
+                  }
+
+                  if (lowest.train.duration && tipo == "tren") {
+                        if (vm.globalMinDuration.durationMinutes > lowest.train.durationMinutes || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: lowest.train.duration, durationMinutes: lowest.train.durationMinutes});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+                  }
+
+                  if (lowest.bus.duration && tipo == "bus") {
+                        if (vm.globalMinDuration.durationMinutes > lowest.bus.durationMinutes || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: lowest.bus.duration, durationMinutes: lowest.bus.durationMinutes});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+                  }
+            }
+
+            function switcher() {
+                var splitOrigin = vm.origin.split(',')
+                var splitDestination = vm.destination.split(',')
+                var originSwitch;
+                var originCity;
+                var optionsOrigin;
+                var destinationSwitch;
+                var destinationCity;
+                var optionsDestination;
+                if (splitOrigin[0] != 'undefined' && splitDestination[0] != 'undefined') {
+                    originSwitch =  vm.destination;
+                    originCity = vm.destinationCity;
+                    optionsOrigin = vm.myOptionsDestination;
+                    destinationSwitch = vm.origin;
+                    destinationCity = vm.originCity;
+                    optionsDestination = vm.myOptionsOrigin;
+                    // change the cities
+                    vm.myOptionsOrigin = optionsOrigin;
+                    vm.myOptionsDestination = optionsDestination;
+                    vm.originCity = originCity;
+                    vm.destinationCity = destinationCity;
+                    vm.origin = originSwitch;
+                    vm.destination = destinationSwitch;
+                    vm.multipleChange = true;
                 }
             }
 
@@ -1448,11 +2566,28 @@
                 $('.popover-select-passengers').toggleClass('open');
                 $('#popover-bg').attr('style', 'display: block;opacity:0');
             });
+            $('#select_passengers').siblings('span').on('click', function(){
+                var offset = $('#select_passengers').offset();
+                $('.popover-select-passengers').attr('style', 'display: block;top:'+(offset.top+55)+'px;left:'+(offset.left)+'px;');
+                $('.popover-select-passengers').toggleClass('open');
+                $('#popover-bg').attr('style', 'display: block;opacity:0');
+            });
 
             $('#popover-bg').on('click', function(){
                 $('.popover-select-passengers').attr('style', 'display: none;');
                 $('#popover-bg').attr('style', 'display: none;opacity:0');
             });
+
+            vm.openReturnCalendar = openReturnCalendar;
+            vm.openDepartureCalendar = openDepartureCalendar
+
+            function openReturnCalendar() {
+                $('#returnDate').siblings('input').click();
+            }
+
+            function openDepartureCalendar() {
+                $('#departureDate').siblings('input').click();
+            }
         }
 
 })();

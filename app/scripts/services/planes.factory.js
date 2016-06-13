@@ -1,65 +1,60 @@
-(function () {
+(function() {
     'use strict';
 
     /**
      * @ngdoc service
-     * @name vhEurope.scraper.factory
+     * @name vhEurope.planes.factory
      * @description
-     * # scraper.factory
+     * # planes.factory
      * Service in the vhEurope.
      */
     angular.module('vhEurope')
-      .factory('scraperFactory', scraperFactory);
+        .factory('planesFactory', planesFactory);
 
-      scraperFactory.$inject =['$http','$q','apiUrl','$filter'];
+    planesFactory.$inject = ['$http', '$q', 'apiUrl', '$filter'];
 
-      function scraperFactory($http,$q,apiUrl,$filter) {
+    function planesFactory($http, $q, apiUrl, $filter) {
         return {
-            self : this,
-            getAll : getAll,
-            getFirstStep : getFirstStep,
-            getApiData : getApiData,
-            getApiStatus : getApiStatus,
-            dataApi : '',
-            allData : {},
-            getData : getData
+            self: this,
+            getFirstStep: getFirstStep,
+            getApiData: getApiData,
+            getApiStatus: getApiStatus,
+            flag: ''
         }
 
-        function getAll(origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
+
+        function getFirstStep(origin, destination, departure, returns, passengers, departureCountry, arrivalCountry) {
+            self.flag = 0;
             var split1 = departure.split('/');
             var departureFormated = split1[2] + '-' + split1[1] + '-' + split1[0];
             var returnsFormated = '';
-            if (returns != ''){
+            if (returns != '') {
                 var split2 = returns.split('/');
                 returnsFormated = split2[2] + '-' + split2[1] + '-' + split2[0];
             }
-            var formatOrigin = origin;
-            var formatDestination = destination;
+            
+            var formatOrigin = origin.toLowerCase(); // + '--' + 'ES';
+            var formatDestination = destination.toLowerCase(); // + '--' + 'ES';
             formatOrigin = formatOrigin.replace(/\s/g, '-');
             formatOrigin = formatOrigin.replace(/ñ/g, 'n');
             formatDestination = formatDestination.replace(/\s/g, '-');
             formatDestination = formatDestination.replace(/ñ/g, 'n');
-            getFirstStep(formatOrigin,formatDestination,departureFormated,returnsFormated,1);
-        }
-
-        function getFirstStep (formatOrigin,formatDestination,departureFormated,returnsFormated,passengers) {
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
+                    method: 'GET',
                     url: 'https://api-rt.resertrip.com/tickets/',
                     params: {
                         origin: formatOrigin,
                         destination: formatDestination,
                         when: departureFormated,
                         persons: passengers,
-                        referer: 'vh-europe'
+                        referer: 'www'
                     },
 
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    getApiStatus(data.status);
                     self.dataApi = data.data;
                 })
                 .error(function(err) {
@@ -73,24 +68,14 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
-                    url: apiStatus,
-                    skipAuthorization: true
+                    method: 'GET',
+                    url: apiStatus
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    if (data.progress == 0) {
-                        setTimeout(function () {
-                            getApiData(self.dataApi);
-                        }, 10000)
-                    }else{
-                        setTimeout(function () {
-                            getApiData(self.dataApi);
-                        }, 4000)
-                    }
                 })
                 .error(function(err) {
-                    defered.reject(err)
+                    defered.reject(err);
                 });
 
             return promise;
@@ -100,12 +85,11 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http({
-                    method:'GET',
+                    method: 'GET',
                     url: apiData
                 })
                 .success(function(data) {
                     defered.resolve(data);
-                    self.allData = data;
                 })
                 .error(function(err) {
                     defered.reject(err)
@@ -113,11 +97,5 @@
             return promise;
         }
 
-        function getData(){
-            return {
-                data : self.allData
-            }
-        }
-
-      }
+    }
 })();
