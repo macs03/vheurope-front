@@ -197,7 +197,7 @@
             "BLOG": "Blog",
             "SPANISH": "Spanish",
             "ENGLISH": "English",
-            "MESSAGE": "All of your transport options",
+            "MESSAGE": "All your transportation options",
             "LANGUAGE": "Language"
           },
           "FOOTER": {
