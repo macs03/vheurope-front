@@ -53,6 +53,7 @@
             vm.percentageBus = 0;
             vm.percentageTrain = 0;
             vm.percentagePlane = 20;
+            vm.percentageCar = 0;
             vm.lowestPricePlane = 0;
             vm.lowestDurationPlane = 0;
             vm.lowestPriceBus = 0;
@@ -64,6 +65,7 @@
             vm.searchingTripsPlane = false;
             vm.searchingTripsBus = false;
             vm.searchingTripsTrain = false;
+            vm.searchingTripsCar = false;
             vm.showCombineTrips = false;
             vm.globalTrips = [];
             vm.globalAlternativeTrips = [];
@@ -2274,7 +2276,7 @@
 
             function callBlablacar (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
                   if( returns == "" ) {
-                        vm.searchingTripsBus = true; // Buscando buses
+                        vm.searchingTripsCar = true; // Buscando buses
                         travelsFactory
                           .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
                           .then(function(data){
@@ -2284,7 +2286,7 @@
 
                               vm.countBusSearch = vm.countBusSearch + 1;
                               if(vm.countBusSearch == 4){
-                                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                                    vm.searchingTripsCar = false; // Ya buscó por todos los servicios de buses
                               }
                               vm.isLoading = false;
                               vm.disabled = false;
@@ -2312,7 +2314,7 @@
                           .catch(function(err){
                               vm.countBusSearch = vm.countBusSearch + 1;
                               if(vm.countBusSearch == 4){
-                                    vm.searchingTripsBus = false;
+                                    vm.searchingTripsCar = false;
                               }
 
                               catchTravelsFactory(err);
@@ -2321,7 +2323,7 @@
                         //No llamó a blablacar
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 4){
-                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                              vm.searchingTripsCar = false; // Ya buscó por todos los servicios de buses
                         }
                         $('.pikaday__display').prop('disabled', false);
                         processCountOrder();

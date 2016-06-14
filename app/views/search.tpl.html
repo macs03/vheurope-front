@@ -545,6 +545,20 @@
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
+
+                    <div class="row time-resume-trip" ng-hide="search.globalDirectReturnTrips.length > 0">
+                       <div class="col-md-2 time-resume-trip-price">
+                           <span><i class="fa fa-car" style="margin-left: 4px;margin-top: 5px;"></i></span>
+                           <b ng-show="search.hasCarTrips">{{ search.lowestPriceCar| currency : '' }} €</b>
+                           <b ng-show="!search.hasCarTrips && !search.searchingTripsCar">N/A</b>
+                       </div>
+                       <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentageCar }}%;">
+                           <span ng-show="search.hasCarTrips">{{ search.getHourMinPlanes(search.lowestDurationCar) }}</span>
+                           <span  class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane" translate>SEARCH.NO_DEPARTURES</span>
+                           <span ng-show="!search.hasCarTrips && search.searchingTripsCar"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
+                       </div>
+                   </div>
+
                       </div> <!-- End .col-md-9 -->
                       <div class="col-md-3">
                         <h6>Ordenar por</h6>
