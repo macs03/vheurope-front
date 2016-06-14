@@ -427,7 +427,23 @@
             "PURCHASES_TEXT9": "Passenger",
             "PURCHASES_TEXT10": "Date",
             "PURCHASES_TEXT11": "# ticket",
-            "PURCHASES_TEXT12": "Price"
+            "PURCHASES_TEXT12": "Price",
+            "SETTINGS_TEXT1": "General information",
+            "SETTINGS_TEXT2": "Password",
+            "SETTINGS_TEXT3": "Emergency contact",
+            "SETTINGS_TEXT4": "Unsubscribe",
+            "SETTINGS_TEXT5": "<strong>Wait!</strong> Are you sure you want to delete your account?",
+            "SETTINGS_TEXT6": "Yes, I'm sure",
+            "LASTNAME": "Lastname",
+            "DNI": "# DNI",
+            "ADDRESS": "Address",
+            "BIRTHDATE": "Birthdate",
+            "PHONE": "Phone number",
+            "PASSWORD_TEXT1": "Current password",
+            "PASSWORD_TEXT2": "New password",
+            "UPDATE_TEXT1": "Updated information",
+            "UPDATE_TEXT2": "Passwords don't match",
+            "UPDATE_TEXT3": "Check the current password"
           }
         };
     var translationsES = {
@@ -694,7 +710,23 @@
         "PURCHASES_TEXT9": "Pasajero",
         "PURCHASES_TEXT10": "Fecha",
         "PURCHASES_TEXT11": "# Billete",
-        "PURCHASES_TEXT12": "Precio"
+        "PURCHASES_TEXT12": "Precio",
+        "SETTINGS_TEXT1": "Información general",
+        "SETTINGS_TEXT2": "Contraseña",
+        "SETTINGS_TEXT3": "Contacto de Emergencia",
+        "SETTINGS_TEXT4": "Darse de baja",
+        "SETTINGS_TEXT5": "<strong>¡Espera!</strong> ¿Estás seguro que deseas eliminar tu cuenta de usuario?",
+        "SETTINGS_TEXT6": "Si, estoy seguro",
+        "LASTNAME": "Apellido",
+        "DNI": "# Identificación",
+        "ADDRESS": "Dirección",
+        "BIRTHDATE": "Fecha de nacimiento",
+        "PHONE": "Número de teléfono",
+        "PASSWORD_TEXT1": "Contraseña actual",
+        "PASSWORD_TEXT2": "Contraseña nueva",
+        "UPDATE_TEXT1": "Información actualizada",
+        "UPDATE_TEXT2": "Las contraseñas no coinciden",
+        "UPDATE_TEXT3": "Revisa la contraseña actual"
       }
     };
 

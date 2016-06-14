@@ -3,42 +3,42 @@
     <div class="row">
         <div class="col-md-12 alert alert-success alert-dismissible" role="alert" ng-show="csettings.wellDoneData">
             <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
-            <strong>Bien!</strong> Datos actualizados.
+            <strong translate="">SESSION.GOOD</strong> {{ 'SESSION.UPDATE_TEXT1' | translate }}
         </div>
         <div class="col-md-8 form-group">
             <div class="col-md-12 col-xs-12 profile-box-background-blue white">
-                <h4 class="font-14"><i class="fa fa-user icon" aria-hidden="true"></i> Informacion de perfil</h4>
+                <h4 class="font-14"><i class="fa fa-user icon" aria-hidden="true"></i> {{ 'SESSION.SETTINGS_TEXT1' | translate }}</h4>
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="name">NOMBRE</label>
-                <input ng-model="csettings.firstName" class="form-control form-inputs input-text font-14" type="text" name="name" value="" placeholder="Ingrese Nombre">
+                <label class="font-12" for="name" translate>SESSION.NAME</label>
+                <input ng-model="csettings.firstName" class="form-control form-inputs input-text font-14" type="text" name="name" value="" placeholder="{{ 'SESSION.NAME' | translate }}">
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="lastname">APELLIDO</label>
-                <input ng-model="csettings.lastName" class="form-control form-inputs input-text font-14" type="text" name="lastname" value="" placeholder="Ingrese Apellido">
+                <label class="font-12" for="lastname" translate>SESSION.LASTNAME</label>
+                <input ng-model="csettings.lastName" class="form-control form-inputs input-text font-14" type="text" name="lastname" value="" placeholder="{{ 'SESSION.LASTNAME' | translate }}">
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="dni">DNI</label>
-                <input ng-model="csettings.customerData.identificationNumber" class="form-control form-inputs input-text font-14" type="text" name="dni" value="" placeholder="Ingrese DNI">
+                <label class="font-12" for="dni" translate>SESSION.DNI</label>
+                <input ng-model="csettings.customerData.identificationNumber" class="form-control form-inputs input-text font-14" type="text" name="dni" value="" placeholder="{{ 'SESSION.DNI' | translate }}">
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="email">EMAIL</label>
-                <input ng-model="csettings.customerData.email" class="form-control form-inputs" type="email" name="email" value="" placeholder="Ingrese E-mail">
+                <label class="font-12" for="email" translate>SESSION.EMAIL</label>
+                <input ng-model="csettings.customerData.email" class="form-control form-inputs" type="email" name="email" value="" placeholder="{{ 'SESSION.EMAIL' | translate }}">
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="address">DIRECCION</label>
-                <input ng-model="csettings.customerData.address" class="form-control form-inputs input-text font-14" type="text" name="address" value="" placeholder="Ingrese una Dirección">
+                <label class="font-12" for="address" translate>SESSION.ADDRESS</label>
+                <input ng-model="csettings.customerData.address" class="form-control form-inputs input-text font-14" type="text" name="address" value="" placeholder="{{ 'SESSION.ADDRESS' | translate }}">
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="birthdate">FECHA DE NACIMIENTO</label>
+                <label class="font-12" for="birthdate" translate>SESSION.BIRTHDATE</label>
                 <input ng-model="csettings.customerData.birthday" class="form-control form-inputs input-text font-14" type="text" name="birthdate" value="" placeholder="DD/MM/YYYY" ui-mask="99/99/9999" model-view-value="true" />
             </div>
             <div class="col-md-12 padding-15  profile-box-background-white">
-                <label class="font-12" for="phone">NUMERO DE TELEFONO</label>
-                <input ng-model="csettings.customerData.phoneNumber" class="form-control form-inputs input-text font-14" type="text" name="phone" value="" placeholder="Ingrese Numero de Telefono">
+                <label class="font-12" for="phone" translate>SESSION.PHONE</label>
+                <input ng-model="csettings.customerData.phoneNumber" class="form-control form-inputs input-text font-14" type="text" name="phone" value="" placeholder="{{ 'SESSION.PHONE' | translate }}">
             </div>
             <div class="col-md-12 padding-15" style="min-height: 5em; background:white;">
-                <input ng-click="csettings.updateData()" class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="ACTUALIZAR">
+                <input ng-click="csettings.updateData()" class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="{{ 'SESSION.UPDATE_BUTTON' | translate }}">
             </div>
         </div>
         <div class="col-md-4">
@@ -48,7 +48,7 @@
                         <h4 class="panel-title">
                             <i class="fa fa-unlock-alt font-14" aria-hidden="true"></i>
                             <a class="collapsed font-14" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Contraseña
+                                {{ 'SESSION.SETTINGS_TEXT2' | translate }}
                             </a>
                         </h4>
                     </div>
@@ -57,29 +57,29 @@
                             <form ng-submit="csettings.changePassword()">
                                 <div class="alert alert-success alert-dismissible" role="alert" ng-show="csettings.wellDonePassword">
                                     <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Bien!</strong> Contraseña actualizada.
+                                    <strong translate="">SESSION.GOOD</strong> {{ 'SESSION.UPDATE_TEXT1' | translate }}
                                 </div>
                                 <div class="alert alert-warning alert-dismissible" role="alert" ng-show="csettings.error">
                                     <button type="button" class="close" aria-label="Close" ng-click="csettings.reset()"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Ups!</strong> Revisa la contraseña actual.
+                                    <strong>Ups!</strong> {{ 'SESSION.UPDATE_TEXT3' | translate }}
                                 </div>
                                 <div class="padding-15">
-                                    <label class="font-12" for="current-password">CONTRASEÑA ACTUAL</label>
-                                    <input ng-model="csettings.currentPassword" class="form-control form-inputs" type="password" name="current-password" value="" placeholder="Ingrese password" required>
-                                </div>
-                                <div class="alert alert-warning alert-dismissible" role="alert" ng-show="!csettings.passwordConfirmed">
-                                    <strong>Ups!</strong> Las contraseñas no coinciden.
+                                    <label class="font-12" for="current-password" translate>SESSION.PASSWORD_TEXT1</label>
+                                    <input ng-model="csettings.currentPassword" class="form-control form-inputs" type="password" name="current-password" value="" placeholder="{{ 'SESSION.PASSWORD_TEXT1' | translate }}" required>
                                 </div>
                                 <div class="padding-15">
-                                    <label class="font-12" for="new-password">CONTRASEÑA NUEVA</label>
-                                    <input ng-model="csettings.newPassword" class="form-control form-inputs" type="password" name="new-password" value="" placeholder="Ingrese nueva password" required>
+                                    <label class="font-12" for="new-password" translate>SESSION.PASSWORD_TEXT2</label>
+                                    <input ng-model="csettings.newPassword" class="form-control form-inputs" type="password" name="new-password" value="" placeholder="{{ 'SESSION.PASSWORD_TEXT2' | translate }}" required>
                                 </div>
                                 <div class="padding-15">
-                                    <label class="font-12" for="confirm-password">CONFIRMAR CONTRASEÑA</label>
-                                    <input ng-change="csettings.confirm()" ng-model="csettings.newPasswordConfirm" class="form-control form-inputs" type="password" name="confirm-password" value="" placeholder="Confirme nueva password" required>
+                                    <label class="font-12" for="confirm-password" translate>SESSION.CONFIRM_PASSWORD</label>
+                                    <input ng-change="csettings.confirm()" ng-model="csettings.newPasswordConfirm" class="form-control form-inputs" type="password" name="confirm-password" value="" placeholder="{{ 'SESSION.CONFIRM_PASSWORD' | translate }}" required>
+                                </div>
+                                <div class="padding-15" ng-show="!csettings.passwordConfirmed" style="font-style: italic;font-size: small;color: #f00;">
+                                    <strong>Ups!</strong> {{ 'SESSION.UPDATE_TEXT2' | translate }}.
                                 </div>
                                 <div ng-class="{'disable-box':!csettings.passwordConfirmed}" class="padding-15">
-                                    <input class="pull-right form-control button-send form-inputs width-button" type="submit" name="name" value="ACTUALIZAR">
+                                    <input class="pull-right form-control button-send form-inputs width-button" type="submit" name="name" value="{{ 'SESSION.UPDATE_BUTTON' | translate }}">
                                 </div>
                             </form>
                         </div>
@@ -90,39 +90,37 @@
                         <h4 class="panel-title">
                             <i class="fa fa-medkit font-14" aria-hidden="true"></i>
                             <a class="collapsed font-14" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Contacto de Emergencia
+                                {{ 'SESSION.SETTINGS_TEXT3' | translate }}
                             </a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                             <div class="padding-15">
-                                <label class="font-12" for="contact-name">NOMBRE</label>
-                                <input ng-model="csettings.customerData.contactName" class="input-text font-14" type="text" name="contact-name" value="" placeholder="Ingrese Nombre de Contacto">
+                                <label class="font-12" for="contact-name" translate>SESSION.NAME</label>
+                                <input ng-model="csettings.customerData.contactName" class="input-text font-14" type="text" name="contact-name" value="" placeholder="{{ 'SESSION.NAME' | translate }}">
                             </div>
                             <div class="padding-15">
-                                <label class="font-12" for="contact-email">EMAIL</label>
-                                <input ng-model="csettings.customerData.contactEmail" class="form-control form-inputs" type="email" name="contact-email" value="" placeholder="Ingrese Email de Contacto">
+                                <label class="font-12" for="contact-email" translate>SESSION.EMAIL</label>
+                                <input ng-model="csettings.customerData.contactEmail" class="form-control form-inputs" type="email" name="contact-email" value="" placeholder="{{ 'SESSION.EMAIL' | translate }}">
                             </div>
                             <div class="padding-15">
-                                <label class="font-12" for="contact-phone">NUMERO DE TELEFONO</label>
-                                <input ng-model="csettings.customerData.contactPhoneNumber" class="input-text font-14" type="text" name="contact-phone" value="" placeholder="Ingrese telefono de contacto">
+                                <label class="font-12" for="contact-phone" translate>SESSION.PHONE</label>
+                                <input ng-model="csettings.customerData.contactPhoneNumber" class="input-text font-14" type="text" name="contact-phone" value="" placeholder="{{ 'SESSION.PHONE' | translate }}">
                             </div>
                             <div class="padding-15">
-                                <input ng-click="csettings.updateData()" class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="ACTUALIZAR">
+                                <input ng-click="csettings.updateData()" class="pull-right form-control button-send form-inputs width-button" type="button" name="name" value="{{ 'SESSION.UPDATE_BUTTON' | translate }}">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div style="margin-top: 1em;">
-                    <input type="button" ng-show="!csettings.delete" ng-click="csettings.delete = true" class="pull-right form-control button-send form-inputs width-button" style="background:#D9534F; border-color:#D9534F;"  name="name" value="Darse de baja">
+                    <input type="button" ng-show="!csettings.delete" ng-click="csettings.delete = true" class="pull-right form-control button-send form-inputs width-button" style="background:#D9534F; border-color:#D9534F;"  name="name" value="{{ 'SESSION.SETTINGS_TEXT4' | translate }}">
                     <div ng-show="csettings.delete" class="alert alert-danger alert-dismissible" role="alert">
                         <button ng-click="csettings.delete = false" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <p><strong>¡Espera!</strong> ¿Estás seguro que deseas eliminar tu cuenta de usuario?</p> <br>
+                        <p translate>SESSION.SETTINGS_TEXT5</p><br>
                         <div style="text-align: right;">
-                            <button ng-click="csettings.deleteUser()" type="button" id="myButton" data-loading-text="Eliminando cuenta..." class="btn btn-danger" autocomplete="off">
-                                Si, estoy seguro
-                            </button>
+                            <button ng-click="csettings.deleteUser()" type="button" id="myButton" data-loading-text="Eliminando cuenta..." class="btn btn-danger" autocomplete="off" translate>SESSION.SETTINGS_TEXT6</button>
                         </div>
                     </div>
                 </div>
