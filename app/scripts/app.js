@@ -241,6 +241,7 @@
             },
             "TRIPS": {
               "ROUND": "Round",
+              "DEPARTURE": "Departure",
               "RETURN": "Return",
               "RESULTS": "results",
               "BUTTON": "BUY"
@@ -462,6 +463,7 @@
         },
         "TRIPS": {
           "ROUND": "Ida",
+          "DEPARTURE": "Ida",
           "RETURN": "Vuelta",
           "RESULTS": "resultados",
           "BUTTON": "COMPRAR"
