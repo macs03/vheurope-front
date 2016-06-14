@@ -2230,52 +2230,59 @@
             }
 
             function callBlablacar (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
-                  vm.searchingTripsBus = true; // Buscando buses
-                  travelsFactory
-                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
-                    .then(function(data){
+                  if( returns == "" ) {
+                        vm.searchingTripsBus = true; // Buscando buses
+                        travelsFactory
+                          .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
+                          .then(function(data){
 
-                        console.log('4');
-                        console.log(data);
-                        loadGlobal(data, false,false);
-                        saveOtherInfoInTrips(data);
+                              loadGlobal(data, false,false);
+                              saveOtherInfoInTrips(data);
 
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 4){
+                                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                              }
+                              vm.isLoading = false;
+                              vm.disabled = false;
+                              vm.isMixedTrips = data.isMixedTrips;
+                              if(!vm.hasBusTrips){
+                                  vm.hasBusTrips = data.hasBusTrips;
+                                  if(data.isMixedTrips){
+                                    vm.hasBusTrips = true; 
+                                  }
+                              }
+                              $('.pikaday__display').prop('disabled', false);
+
+                              angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                vm.allTrips.push(value);
+                              });
+
+                              if (vm.hasBusTrips) {
+                                    setDateFilterRange(data.maxPrice,data.minPrice);
+                                    setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                                    setCompaniesAndSeatsReset(data.companies);
+                                    vm.updateTripsType();
+                              }
+                              processCountOrder();
+                          })
+                          .catch(function(err){
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 4){
+                                    vm.searchingTripsBus = false;
+                              }
+
+                              catchTravelsFactory(err);
+                          })
+                  } else {
+                        //No llamó a blablacar
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
-                        vm.isLoading = false;
-                        vm.disabled = false;
-                        vm.isMixedTrips = data.isMixedTrips;
-                        if(!vm.hasBusTrips){
-                            vm.hasBusTrips = data.hasBusTrips;
-                            if(data.isMixedTrips){
-                              vm.hasBusTrips = true; 
-                            }
-                        }
                         $('.pikaday__display').prop('disabled', false);
-
-                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
-                          vm.allTrips.push(value);
-                        });
-
-                        if (vm.hasBusTrips) {
-                              setDateFilterRange(data.maxPrice,data.minPrice);
-                              setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                              setCompaniesAndSeatsReset(data.companies);
-                              vm.updateTripsType();
-                        }
                         processCountOrder();
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
-                              vm.searchingTripsBus = false;
-                        }
-
-                        catchTravelsFactory(err);
-                    })
+                  }
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
