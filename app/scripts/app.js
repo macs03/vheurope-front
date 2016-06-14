@@ -415,7 +415,19 @@
             "ERROR_UPLOAD_IMAGE": "Error uploading image",
             "UPLOADING_IMAGE": "Uploading image...",
             "IMAGE_PREVIEW": "Preview",
-            "TEXT_UPLOAD_IMAGE": "Select or drag image here"
+            "TEXT_UPLOAD_IMAGE": "Select or drag image here",
+            "PURCHASES_TEXT1": "Trips purchased",
+            "PURCHASES_TEXT2": "Trips expired",
+            "PURCHASES_TEXT3": "Trips cancelled",
+            "PURCHASES_TEXT4": "Searching trips...",
+            "PURCHASES_TEXT5": "There is not trips purchased",
+            "PURCHASES_TEXT6": "There is not trips expired",
+            "PURCHASES_TEXT7": "There is not trips cancelled",
+            "PURCHASES_TEXT8": "Trip",
+            "PURCHASES_TEXT9": "Passenger",
+            "PURCHASES_TEXT10": "Date",
+            "PURCHASES_TEXT11": "# ticket",
+            "PURCHASES_TEXT12": "Price"
           }
         };
     var translationsES = {
@@ -670,7 +682,19 @@
         "ERROR_UPLOAD_IMAGE": "Error al cargar tu imagen",
         "UPLOADING_IMAGE": "Cargando nueva imagen...",
         "IMAGE_PREVIEW": "Vista Previa",
-        "TEXT_UPLOAD_IMAGE": "Seleccione o Arrastre Imagen aqui"
+        "TEXT_UPLOAD_IMAGE": "Seleccione o Arrastre Imagen aqui",
+        "PURCHASES_TEXT1": "Viajes comprados",
+        "PURCHASES_TEXT2": "Viajes expirados",
+        "PURCHASES_TEXT3": "Viajes anulados",
+        "PURCHASES_TEXT4": "Buscando viajes asociados...",
+        "PURCHASES_TEXT5": "No hay viajes comprados",
+        "PURCHASES_TEXT6": "No hay viajes expirados",
+        "PURCHASES_TEXT7": "No hay viajes cancelados",
+        "PURCHASES_TEXT8": "Viaje",
+        "PURCHASES_TEXT9": "Pasajero",
+        "PURCHASES_TEXT10": "Fecha",
+        "PURCHASES_TEXT11": "# Billete",
+        "PURCHASES_TEXT12": "Precio"
       }
     };
 
