@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="col-md-9 col-xs-12 profile-box profile-box-height profile-box-background-blue">
                 <div class="col-md-12 text-center">
-                    <h3 class="white">Hola,
+                    <h3 class="white">{{ 'SESSION.HELLO' | translate }},
                         {{cprofile.customerData.fullName}}</h3>
                 </div>
                 <div class="col-md-12 text-center white">
@@ -20,7 +20,7 @@
                     </span>
                 </div>
                 <div class="col-md-12 text-center">
-                    <a href="#/customer-settings" class="btn blue-btn white">Actualizar</a>
+                    <a href="#/customer-settings" class="btn blue-btn white" translate>SESSION.UPDATE_BUTTON</a>
                 </div>
             </div>
             <div ng-show="cprofile.avatarFlag" ng-style="{'background-image': 'url(' + cprofile.customerData.avatar + ')'}" class="col-md-3 col-xs-12 profile-box-height profile-box-background-white relative avatar avatar-img">
@@ -43,7 +43,7 @@
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
                 <i class="fa fa-bus" aria-hidden="true"></i>
                 <span>{{cprofile.customerData.numberTrips}}</span>
-                <h4>VIAJES HECHOS</h4>
+                <h4 translate>SESSION.SMS_TRIPS</h4>
             </div>
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
                 <i class="fa fa-male" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
             <div class="col-md-4 col-xs-12 profile-box profile-box-height profile-box-background-gray overview">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>{{cprofile.customerData.totalKilometers | currency : ''}}</span>
-                <h4>kMS RECORRIDOS</h4>
+                <h4 translate>SESSION.SMS_KILOMETERS</h4>
             </div>
         </div>
     </div>
@@ -68,15 +68,15 @@
                 <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Cargar nueva imagen de usuario</h4>
+                <h4 class="modal-title" translate>SESSION.TITTLE_UPLOAD_IMAGE</h4>
             </div>
             <div class="modal-body row">
                 <div class="alert alert-warning alert-dismissible" role="alert" ng-show="cprofile.error">
                     <button type="button" class="close" aria-label="Close" ng-click="cprofile.error = false"><span aria-hidden="true">&times;</span></button>
-                    <strong>Ups!</strong> Error al cargar tu imagen.
+                    <strong>Ups!</strong> {{ 'SESSION.ERROR_UPLOAD_IMAGE' | translate}}
                 </div>
                 <div class="text-center" ng-show="cprofile.uploading" style="margin-bottom:20px;">
-                    <span>Cargando nueva imagen...</span>
+                    <span translate>SESSION.UPLOADING_IMAGE</span>
                     <img src="https://cdn.api.voyhoy.com/loader.gif" style="width:50px;"  class="" alt="cargando imagen ..." />
                 </div>
                 <div class="cropArea col-md-8 col-xs-12" ng-show="cprofile.loadImage">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-md-4 col-xs-12 preview" ng-show="cprofile.loadImage">
                     <div>
-                        <h4>Vista Previa</h4>
+                        <h4 translate>SESSION.IMAGE_PREVIEW</h4>
                     </div>
                     <div class="relative">
                         <img ng-src="{{myCroppedImage}}"/>
@@ -95,9 +95,7 @@
                     </div>
                 </div>
                 <div class="box-file col-md-12">
-                    <p>
-                        Seleccione o Arrastre Imagen aqui
-                    </p>
+                    <p translate>SESSION.TEXT_UPLOAD_IMAGE</p>
                     <input id="fileInput" class="file" type="file" name="picture" value="">
 
                 </div>

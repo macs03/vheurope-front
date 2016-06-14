@@ -403,7 +403,19 @@
             "INF_RECOVER": "You have successfully reset your password, please check your email",
             "GOOD": "Great!",
             "EXIT": "Exit",
-            "PROFILE": "Profile"
+            "PROFILE": "Profile",
+            "DASHBOARD": "Dashboard",
+            "PURCHASES": "Purchases",
+            "SETTINGS": "Settings",
+            "HELLO": "Hello",
+            "SMS_TRIPS": "TRIPS MADE",
+            "SMS_KILOMETERS": "kMS TRAVELS",
+            "UPDATE_BUTTON": "Update",
+            "TITTLE_UPLOAD_IMAGE": "Upload new image",
+            "ERROR_UPLOAD_IMAGE": "Error uploading image",
+            "UPLOADING_IMAGE": "Uploading image...",
+            "IMAGE_PREVIEW": "Preview",
+            "TEXT_UPLOAD_IMAGE": "Select or drag image here"
           }
         };
     var translationsES = {
@@ -646,7 +658,19 @@
         "INF_RECOVER": "Se ha restablecido correctamente tu contraseña, por favor revisa tu correo",
         "GOOD": "¡Bien!",
         "EXIT": "Salir",
-        "PROFILE": "Perfil"
+        "PROFILE": "Perfil",
+        "DASHBOARD": "Control",
+        "PURCHASES": "Compras",
+        "SETTINGS": "Ajustes",
+        "HELLO": "Hola",
+        "SMS_TRIPS": "VIAJES HECHOS",
+        "SMS_KILOMETERS": "kMS RECORRIDOS",
+        "UPDATE_BUTTON": "Actualizar",
+        "TITTLE_UPLOAD_IMAGE": "Cargar nueva imagen de usuario",
+        "ERROR_UPLOAD_IMAGE": "Error al cargar tu imagen",
+        "UPLOADING_IMAGE": "Cargando nueva imagen...",
+        "IMAGE_PREVIEW": "Vista Previa",
+        "TEXT_UPLOAD_IMAGE": "Seleccione o Arrastre Imagen aqui"
       }
     };
 
