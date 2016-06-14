@@ -369,12 +369,6 @@
                 }
             }
 
-            //$('#switch_language_title').html($('#switch_language li.active').find('a').html() + '<span class="caret"></span>');
-
-            $('#switch_language li').on('click', function() {
-                $('#switch_language_title').html($(this).find('a').html() + '<span class="caret"></span>');
-            });
-
 
             $('#select_passengers').on('click', function(){
                 var offset = $(this).offset();
