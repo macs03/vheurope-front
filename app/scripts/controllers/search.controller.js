@@ -2018,7 +2018,6 @@
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
-                        console.log(err);
                     })
             }
 
@@ -2094,9 +2093,6 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
-                        console.log('1');
-                        console.log(data);
-
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
 
@@ -2119,7 +2115,6 @@
                         processCountOrder();
                     })
                     .catch(function(err){
-                        console.log(err);
                         vm.searchingTripsTrain = false;
 
                         catchTravelsFactory(err);
@@ -2133,8 +2128,6 @@
                           .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                           .then(function(data){
 
-                              console.log('2');
-                              console.log(data);
                               loadGlobal(data, false,false);                       
                               saveOtherInfoInTrips(data);                   
 
@@ -2161,7 +2154,6 @@
                               processCountOrder();
                           })
                           .catch(function(err){
-                              console.log(err);
                               vm.countBusSearch = vm.countBusSearch + 1;
                               if(vm.countBusSearch == 4){
                                     vm.searchingTripsBus = false;
@@ -2170,7 +2162,7 @@
                               catchTravelsFactory(err);
                           })
                   } else {
-                        console.log("No llamó a Busbud");
+                        //No llamó a Busbud
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
@@ -2186,8 +2178,6 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
                     .then(function(data){
 
-                        console.log('3');
-                        console.log(data);
                         loadGlobal(data, false,false);
                         saveOtherInfoInTrips(data);
 
@@ -2219,7 +2209,6 @@
                         processCountOrder();
                     })
                     .catch(function(err){
-                        console.log(err);
                         vm.countBusSearch = vm.countBusSearch + 1;
                         if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false;
