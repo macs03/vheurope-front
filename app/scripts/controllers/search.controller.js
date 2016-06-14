@@ -46,6 +46,7 @@
             vm.showTrain = false;
             vm.showPlane = false;
             vm.hasPlaneTrips = false;
+            vm.hasCarTrips = false;
             vm.hasTrainTrips = false;
             vm.hasBusTrips = false;
             vm.combineTrips = false;
@@ -456,6 +457,7 @@
                         vm.showBus = true;
                         vm.showPlane = false;
                         vm.showTrain = false;
+                        vm.showCar = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_bus').addClass('active');
                         break;
@@ -463,6 +465,7 @@
                         vm.showBus = false;
                         vm.showPlane = false;
                         vm.showTrain = true;
+                        vm.showCar = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_train').addClass('active');
                         break;
@@ -470,14 +473,23 @@
                         vm.showBus = false;
                         vm.showPlane = true;
                         vm.showTrain = false;
+                        vm.showCar = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_plane').addClass('active');
                         break;
-                }              
+                    case 'car':
+                        vm.showBus = false;
+                        vm.showPlane = false;
+                        vm.showTrain = false;
+                        vm.showCar = true;
+                        $('.tab-filter').removeClass('active');
+                        $('.tab_car').addClass('active');
+                        break;
+                }
             }
 
             var updateTripsType = function(){
-                  
+
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = true;
                     vm.showCombineTrips = true;
@@ -926,6 +938,7 @@
                 vm.hasBusTrips = false;
                 vm.hasTrainTrips = false;
                 vm.hasPlaneTrips = false;
+                vm.hasCarTrips = false;
                 vm.showBus = false;
                 vm.showCombineTrips = false;
                 vm.showTrain = false;
@@ -2235,10 +2248,10 @@
                               vm.isLoading = false;
                               vm.disabled = false;
                               vm.isMixedTrips = data.isMixedTrips;
-                              if(!vm.hasBusTrips){
-                                  vm.hasBusTrips = data.hasBusTrips;
+                              if(!vm.hasCarTrips){
+                                  vm.hasCarTrips = data.hasCarTrips;
                                   if(data.isMixedTrips){
-                                    vm.hasBusTrips = true; 
+                                    vm.hasCarTrips = true;
                                   }
                               }
                               $('.pikaday__display').prop('disabled', false);
