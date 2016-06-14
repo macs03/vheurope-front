@@ -383,6 +383,25 @@
             "BUTTON" : "Cancel",
             "EXPIRED" : "This purchase has expired",
             "SECTION" : "Section"
+          },
+          "SESSION": {
+            "LOGIN": "Login",
+            "LOGIN_BUTTON": "Login",
+            "REGISTER": "Sign up",
+            "REGISTER_TITLE": "Create account",
+            "SIGNIN": "Sign in",
+            "REMEMBER": "Remember",
+            "FORGOT": "Forgot password?",
+            "EMAIL": "Email",
+            "PASSWORD": "Password",
+            "NAME": "Name",
+            "CONFIRM_PASSWORD": "Confirm password",
+            "RECOVER": "Recover your password",
+            "RECOVER_BUTTON": "Recover password",
+            "RECOVER_TEXT": "Please enter your email and soon we'll send you the steps to proceed to recover the password",
+            "ERROR_LOGIN": "Check the email or password",
+            "INF_RECOVER": "You have successfully reset your password, please check your email",
+            "GOOD": "Great!"
           }
         };
     var translationsES = {
@@ -605,6 +624,25 @@
         "BUTTON" : "Anular",
         "EXPIRED" : "Esta Compra ya ha caducado",
         "SECTION" : "Tramo"
+      },
+      "SESSION": {
+        "LOGIN": "Iniciar sesión",
+        "LOGIN_BUTTON": "Iniciar",
+        "REGISTER": "Regístrate",
+        "REGISTER_TITLE": "Crear cuenta",
+        "SIGNIN": "Ingresar",
+        "REMEMBER": "Recordar",
+        "FORGOT": "¿Olvidó su contraseña?",
+        "EMAIL": "Correo electrónico",
+        "PASSWORD": "Contraseña",
+        "NAME": "Nombre",
+        "CONFIRM_PASSWORD": "Confirmar contraseña",
+        "RECOVER": "Recupera tu contraseña",
+        "RECOVER_BUTTON": "Recupera contraseña",
+        "RECOVER_TEXT": "Por favor, ingresa tu correo electrónico y proximamente le enviaremos a esa dirección los pasos para proceder a recuperar la contraseña",
+        "ERROR_LOGIN": "Revisa el email y/o contraseña",
+        "INF_RECOVER": "Se ha restablecido correctamente tu contraseña, por favor revisa tu correo",
+        "GOOD": "¡Bien!"
       }
     };
 

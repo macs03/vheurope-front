@@ -2,41 +2,21 @@
     <div class="row">
         <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4" style="background: #FFF; margin-top:10px;padding:1em;">
             <div class="text-center" style="margin-top: 15px;">
-                <h4>Crear una cuenta</h4>
+                <h4 translate>SESSION.REGISTER_TITLE</h4>
             </div>
             <br>
-            <!-- <div class="social col-md-12">
-                <div class="facebook text-center">
-                    <a href="#" class="col-md-12 col-xs-12">Registrarse con
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                </div>
-                <div class="google text-center">
-                    <a href="#" class="col-md-12 col-xs-12">Registrarse con
-                        <i class="fa fa-google" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-12 col-xs-12 text-center or">
-                <div class="mask">
-
-                </div>
-                <span>
-                    O
-                </span>
-            </div> -->
             <div class="col-md-12 inputs" style="margin-bottom: 15px;">
                 <form class="" name="form" ng-submit="signup.signup()" method="post">
                     <div class="form-group">
-                        <input ng-model="signup.name" type="text" name="name" value="" placeholder="Nombre" class="form-control form-inputs" style="border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);width: 100%;padding-left: 12px;" required>
+                        <input ng-model="signup.name" type="text" name="name" value="" placeholder="{{ 'SESSION.NAME' | translate }}" class="form-control form-inputs" style="border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);width: 100%;padding-left: 12px;" required>
                         <br>
-                        <input ng-model="signup.email" type="email" name="email" value="" placeholder="Email" class="form-control form-inputs" required>
+                        <input ng-model="signup.email" type="email" name="email" value="" placeholder="{{ 'SESSION.EMAIL' | translate }}" class="form-control form-inputs" required>
                         <br>
                         <div class="alert alert-warning alert-dismissible" role="alert" ng-show="!signup.passwordConfirmed">
                             <strong>Ups!</strong> Las contraseñas no coinciden.
                         </div>
                         <div class="relative">
-                            <input ng-model="signup.password" password-directive="signup.password" type="password" name="password" value="" placeholder="Password" class="form-control form-inputs" required>
+                            <input ng-model="signup.password" password-directive="signup.password" type="password" name="password" value="" placeholder="{{ 'SESSION.PASSWORD' | translate }}" class="form-control form-inputs" required>
                             <div class="absolute box-strength">
                                 <i id="top" class="fa fa-square" aria-hidden="true" ng-class="{'high-strong':form.password.$error.good}"></i>
                                 <i id="middle" class="fa fa-square" aria-hidden="true" ng-class="{'middle-strong':form.password.$error.regular, 'high-strong':form.password.$error.good}"></i>
@@ -44,10 +24,10 @@
                             </div>
                         </div>
                         <br>
-                        <input ng-model="signup.confirmPassword" ng-change="signup.confirm()" type="password" name="confirmPassword" value="" placeholder="Confirmar Password" class="form-control form-inputs" required>
+                        <input ng-model="signup.confirmPassword" ng-change="signup.confirm()" type="password" name="confirmPassword" value="" placeholder="{{ 'SESSION.CONFIRM_PASSWORD' | translate }}" class="form-control form-inputs" required>
                     </div>
                     <div ng-class="{'disable-box':!signup.passwordConfirmed}">
-                        <input type="submit" name="send" value="Registrarse" class="form-control button-send form-inputs">
+                        <input type="submit" name="send" translate translate-attr-value="SESSION.REGISTER" class="form-control button-send form-inputs">
                     </div>
                 </form>
             </div>
