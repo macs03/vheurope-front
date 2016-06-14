@@ -19,40 +19,73 @@
     padding: 20px 0 15px 20px;
 }
 .time-resumen-trips .time-resume-trip {
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin-bottom: 16px;
+    background: #F8F8F8;
+    border-radius: 50px;
+    border: 1px solid #979797;
+    max-height: 30px;
+}
+.time-resumen-trips .time-resume-trip:last-child {
+    margin-bottom: 0;
 }
 .time-resumen-trips .time-resume-trip-price {
-    padding: 5px 0 5px 40px;
-   background: rgba(240,240,240,1);
-background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(240,240,240,1)), color-stop(100%, rgba(230,226,226,1)));
-background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
-background: -o-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
-background: -ms-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
-background: linear-gradient(to bottom, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e2e2', GradientType=0 );
--webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
-    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
+  padding: 5px 0 5px 10px;
+  background: rgba(240,240,240,1);
+  background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(240,240,240,1)), color-stop(100%, rgba(230,226,226,1)));
+  background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+  background: -o-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+  background: -ms-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+  background: linear-gradient(to bottom, rgba(240,240,240,1) 0%, rgba(230,226,226,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e6e2e2', GradientType=0 );
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  max-height: 28px;
 }
-.time-resumen-trips .time-resume-trip-price i { margin-right: 20px }
+
+.time-resumen-trips .time-resume-trip-price span{
+  padding: 4px;
+  background: #FFF;
+  border-radius: 23px;
+  height: 36px;
+  width: 36px;
+  border: 2px solid #A8A9AD;
+  position: absolute;
+  top: -4px;
+  left: 80px;
+  z-index: 10;
+}
+.time-resumen-trips .time-resume-trip-price b { 
+  color: #58585A;
+  font-size: .85em;
+  margin-left: 5px;
+}
+.time-resumen-trips .time-resume-trip-price span i { 
+  margin-left: 6px;
+  margin-top: 6px;
+  color: #25A8E0;
+}
 .time-resumen-trips .time-resume-trip-time {
-    background-color: #0192D2;
-    padding: 5px 0 5px 5px;
-    color: #fff;
-    text-align: center;
-    -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
-    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.24);
-    background: rgba(41,170,225,1);
-    background: -moz-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(41,170,225,1)), color-stop(100%, rgba(1,147,210,1)));
-    background: -webkit-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
-    background: -o-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
-    background: -ms-linear-gradient(top, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
-    background: linear-gradient(to bottom, rgba(41,170,225,1) 0%, rgba(1,147,210,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29aae1', endColorstr='#0193d2', GradientType=0 );
+  background-color: #0192D2;
+  padding: 4px 0 4px 0px;
+  color: #fff;
+  text-align: center;
+  background: rgba(201,201,201,1);
+  background: -moz-linear-gradient(top, rgba(201,201,201,1) 0%, rgba(152,152,152,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(201,201,201,1)), color-stop(100%, rgba(152,152,152,1)));
+  background: -webkit-linear-gradient(top, rgba(201,201,201,1) 0%, rgba(152,152,152,1) 100%);
+  background: -o-linear-gradient(top, rgba(201,201,201,1) 0%, rgba(152,152,152,1) 100%);
+  background: -ms-linear-gradient(top, rgba(201,201,201,1) 0%, rgba(152,152,152,1) 100%);
+  background: linear-gradient(to bottom, rgba(201,201,201,1) 0%, rgba(152,152,152,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#989898', GradientType=0 );
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  max-height: 28px;
+}
+
+.time-resumen-trips .time-resume-trip-time span {
+  font-style: italic;
+  font-size: .85em;
 }
 
 .time-resumen-trips .time-resume-trip-time.no-trips{
@@ -66,7 +99,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
 .time-resumen-trips .time-resume-trip-time span{
   font-weight: lighter;
-  font-size: .9em;
+  font-size: .85em;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -472,43 +505,66 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 <!-- RESUMEN DE TIEMPO DE VIAJES -->
                 
                 <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.hasTrainTrips || search.hasBusTrips || search.hasPlaneTrips">
-                    <div class="row time-resume-trip" ng-hide="search.isMixedTrips">
-                        <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-bus text-muted"></i>  
-                            <b ng-show="search.hasBusTrips">{{ search.lowestPriceBus | currency : '' }} €</b>
-                            <b ng-show="!search.hasBusTrips && !search.searchingTripsBus">N/A</b>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="row time-resume-trip" ng-hide="search.isMixedTrips">
+                          <div class="col-md-2 time-resume-trip-price">
+                              <span><i class="fa fa-bus"></i></span>  
+                              <b ng-show="search.hasBusTrips">{{ search.lowestPriceBus | currency : '' }} €</b>
+                              <b ng-show="!search.hasBusTrips && !search.searchingTripsBus">N/A</b>
+                          </div>
+                          <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
+                              <span ng-show="search.hasBusTrips">{{ search.getHourMinPlanes(search.lowestDurationBus) }}</span>
+                              <span class="pull-left" ng-show="!search.hasBusTrips && !search.searchingTripsBus" translate>SEARCH.NO_DEPARTURES</span>
+                              <span ng-show="!search.hasBusTrips && search.searchingTripsBus"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
+                          </div>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
-                            <span ng-show="search.hasBusTrips">{{ search.getHourMinPlanes(search.lowestDurationBus) }}</span>
-                            <span class="pull-left" ng-show="!search.hasBusTrips && !search.searchingTripsBus" translate>SEARCH.NO_DEPARTURES</span>
-                            <span ng-show="!search.hasBusTrips && search.searchingTripsBus"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
-                        </div>
-                    </div>
-                    
-                    <div class="row time-resume-trip">
-                        <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-train text-muted"></i>  
+
+                     <div class="row time-resume-trip">
+                        <div class="col-md-2 time-resume-trip-price">
+                            <span><i class="fa fa-train"></i></span> 
                             <b ng-show="search.hasTrainTrips">{{ search.lowestPriceTrain | currency : '' }} €</b>
                             <b ng-show="!search.hasTrainTrips && !search.searchingTripsTrain">N/A</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
+                        <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                             <span ng-show="search.hasTrainTrips">{{ search.getHourMinPlanes(search.lowestDurationTrain) }}</span>
                             <span class="pull-left" ng-show="!search.hasTrainTrips && !search.searchingTripsTrain" translate>SEARCH.NO_DEPARTURES</span>
                             <span ng-show="!search.hasTrainTrips && search.searchingTripsTrain"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
-                    <div class="row time-resume-trip" ng-hide="search.globalDirectReturnTrips.length > 0">
-                        <div class="col-md-3 time-resume-trip-price">
-                            <i class="fa fa-plane text-muted"></i>  
+
+                     <div class="row time-resume-trip" ng-hide="search.globalDirectReturnTrips.length > 0">
+                        <div class="col-md-2 time-resume-trip-price">
+                            <span><i class="fa fa-plane"></i></span> 
                             <b ng-show="search.hasPlaneTrips">{{ search.lowestPricePlane | currency : '' }} €</b>
                             <b ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">N/A</b>
                         </div>
-                        <div class="col-md-9 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
+                        <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
                             <span ng-show="search.hasPlaneTrips">{{ search.getHourMinPlanes(search.lowestDurationPlane) }}</span>
                             <span  class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane" translate>SEARCH.NO_DEPARTURES</span>
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
+                        
+                      </div> <!-- End .col-md-9 -->
+                      <div class="col-md-3">
+                        <h6>Ordenar por</h6>
+                        <button class="btn btn-default btn-block btn-xs" ng-click="search.order('price')" ng-class="{'btn-info':search.type === 'price'}" >
+                          MÁS BARATO
+                        </button>
+                        <button class="btn btn-default btn-block btn-xs" ng-click="search.order('durationMinutes')" ng-class="{'btn-info':search.type === 'durationMinutes'}">
+                          MÁS RÁPIDO
+                        </button>
+                        <button class="btn btn-default btn-block btn-xs" ng-click="search.order('departure')" ng-class="{'btn-info':search.type === 'departure'}">
+                          MÁS TEMPRANO
+                        </button>
+                      </div>
+                      
+                    </div>
+                    
+                    
+                   
+                   
                     
                 </div>
                 

@@ -597,25 +597,25 @@
                     }
                      // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
-                        vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                        vm.percentageTrain = 80;
+                        vm.percentageBus = ((bus *80)/train) < 11 ? 12 : ((bus * 80)/train);
+                        vm.percentagePlane = ((plane * 80)/train) < 11 ? 12 : ((plane * 80)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
-                        vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                        vm.percentageBus = 80;
+                        vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
+                        vm.percentagePlane = ((plane * 80)/bus) < 11 ? 12 : ((plane * 80)/bus);
                     }
                     //PLANE
                     if(pos == 2){
-                        vm.percentagePlane = 60;
-                        vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
-                        vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                        vm.percentagePlane = 80;
+                        vm.percentageTrain = ((train * 80)/plane) < 11 ? 12 : ((train * 80)/plane);
+                        vm.percentageBus = ((bus * 80)/plane) < 11 ? 12 : ((bus * 80)/plane);
                     }
 
                     if(vm.percentagePlane < 10){
-                        vm.percentagePlane = 12;
+                        vm.percentagePlane = 16;
                     }
                     
                     
@@ -635,15 +635,15 @@
                     }
                     // TRAIN
                     if(pos == 1){
-                        vm.percentageTrain = 60;
-                        vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
+                        vm.percentageTrain = 80;
+                        vm.percentageBus = ((bus * 80)/train) < 11 ? 12 : ((bus * 80)/train);
                     }
                     //BUS
                     if(pos == 0){
-                        vm.percentageBus = 60;
-                        vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
+                        vm.percentageBus = 80;
+                        vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
                     }
-                    vm.percentagePlane = 12;
+                    vm.percentagePlane = 16;
                 }
             }
 
@@ -687,21 +687,21 @@
                 }
                 // TRAIN
                 if(pos == 1){
-                    vm.percentageTrain = 60;
-                    vm.percentageBus = ((bus * 60)/train) < 11 ? 12 : ((bus * 60)/train);
-                    vm.percentagePlane = ((plane * 60)/train) < 11 ? 12 : ((plane * 60)/train);
+                    vm.percentageTrain = 80;
+                    vm.percentageBus = ((bus * 80)/train) < 11 ? 12 : ((bus * 80)/train);
+                    vm.percentagePlane = ((plane * 80)/train) < 11 ? 12 : ((plane * 80)/train);
                 }
                 //BUS
                 if(pos == 0){
-                    vm.percentageBus = 60;
-                    vm.percentageTrain = ((train * 60)/bus) < 11 ? 12 : ((train * 60)/bus);
-                    vm.percentagePlane = ((plane * 60)/bus) < 11 ? 12 : ((plane * 60)/bus);
+                    vm.percentageBus = 80;
+                    vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
+                    vm.percentagePlane = ((plane * 80)/bus) < 11 ? 12 : ((plane * 80)/bus);
                 }
                 //PLANE
                 if(pos == 2){
-                    vm.percentagePlane = 60;
-                    vm.percentageTrain = ((train * 60)/plane) < 11 ? 12 : ((train * 60)/plane);
-                    vm.percentageBus = ((bus * 60)/plane) < 11 ? 12 : ((bus * 60)/plane);
+                    vm.percentagePlane = 80;
+                    vm.percentageTrain = ((train * 80)/plane) < 11 ? 12 : ((train * 80)/plane);
+                    vm.percentageBus = ((bus * 80)/plane) < 11 ? 12 : ((bus * 80)/plane);
                 }
             }
 
@@ -1289,6 +1289,7 @@
                 callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "logitravel");
                 callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud");
                 callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
+                callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "blablacar");
                     
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
@@ -1437,6 +1438,7 @@
                 callLogitravel(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel");
                 callBusbud(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
                 callMovelia(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
+                callBlablacar(formatOrigin,formatDestination,departureDateFormat,returnDateFormat,vm.passengers,$stateParams.originCountryCode,$stateParams.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "blablacar");
 
                 var originPlaneCity = vm.origin.split(',');
                 var destinationPlaneCity = vm.destination.split(',');
@@ -1724,6 +1726,7 @@
                 callLogitravel(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "logitravel")
                 callBusbud(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "busbud");
                 callMovelia(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "movelia");
+                callBlablacar(origin,destination,departureDate,returnDate,passengers,originCountry,destinationCountry,vm.passengersAdult,vm.passengersChild,vm.passengersBaby, "blablacar");
 
                 // sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
@@ -2015,7 +2018,6 @@
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
-                        console.log(err);
                     })
             }
 
@@ -2091,9 +2093,6 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data){
 
-                        console.log('1');
-                        console.log(data);
-
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
 
@@ -2116,7 +2115,6 @@
                         processCountOrder();
                     })
                     .catch(function(err){
-                        console.log(err);
                         vm.searchingTripsTrain = false;
 
                         catchTravelsFactory(err);
@@ -2130,13 +2128,11 @@
                           .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                           .then(function(data){
 
-                              console.log('2');
-                              console.log(data);
                               loadGlobal(data, false,false);                       
                               saveOtherInfoInTrips(data);                   
 
                               vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 3){
+                              if(vm.countBusSearch == 4){
                                     vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                               }
                               vm.isLoading = false;
@@ -2158,18 +2154,17 @@
                               processCountOrder();
                           })
                           .catch(function(err){
-                              console.log(err);
                               vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 3){
+                              if(vm.countBusSearch == 4){
                                     vm.searchingTripsBus = false;
                               }
 
                               catchTravelsFactory(err);
                           })
                   } else {
-                        console.log("No llamó a Busbud");
+                        //No llamó a Busbud
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
+                        if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         $('.pikaday__display').prop('disabled', false);
@@ -2183,13 +2178,11 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
                     .then(function(data){
 
-                        console.log('3');
-                        console.log(data);
                         loadGlobal(data, false,false);
                         saveOtherInfoInTrips(data);
 
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
+                        if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         vm.isLoading = false;
@@ -2216,14 +2209,69 @@
                         processCountOrder();
                     })
                     .catch(function(err){
-                        console.log(err);
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
+                        if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false;
                         }
 
                         catchTravelsFactory(err);
                     })
+            }
+
+            function callBlablacar (origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source) {
+                  if( returns == "" ) {
+                        vm.searchingTripsBus = true; // Buscando buses
+                        travelsFactory
+                          .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode,passengersAdult,passengersChild,passengersBaby, source)
+                          .then(function(data){
+
+                              loadGlobal(data, false,false);
+                              saveOtherInfoInTrips(data);
+
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 4){
+                                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                              }
+                              vm.isLoading = false;
+                              vm.disabled = false;
+                              vm.isMixedTrips = data.isMixedTrips;
+                              if(!vm.hasBusTrips){
+                                  vm.hasBusTrips = data.hasBusTrips;
+                                  if(data.isMixedTrips){
+                                    vm.hasBusTrips = true; 
+                                  }
+                              }
+                              $('.pikaday__display').prop('disabled', false);
+
+                              angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                                vm.allTrips.push(value);
+                              });
+
+                              if (vm.hasBusTrips) {
+                                    setDateFilterRange(data.maxPrice,data.minPrice);
+                                    setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                                    setCompaniesAndSeatsReset(data.companies);
+                                    vm.updateTripsType();
+                              }
+                              processCountOrder();
+                          })
+                          .catch(function(err){
+                              vm.countBusSearch = vm.countBusSearch + 1;
+                              if(vm.countBusSearch == 4){
+                                    vm.searchingTripsBus = false;
+                              }
+
+                              catchTravelsFactory(err);
+                          })
+                  } else {
+                        //No llamó a blablacar
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if(vm.countBusSearch == 4){
+                              vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                        }
+                        $('.pikaday__display').prop('disabled', false);
+                        processCountOrder();
+                  }
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
@@ -2297,7 +2345,7 @@
                           })
                   } else {
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
+                        if(vm.countBusSearch == 4){
                               vm.searchingTripsBus = false;
                         }
                         vm.searchingTripsPlane = false;
@@ -2357,7 +2405,7 @@
                   vm.hasPlaneTrips = flagPlanes;
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
-                  if(vm.countBusSearch == 3){
+                  if(vm.countBusSearch == 4){
                         vm.searchingTripsBus = false;
                   }
                   vm.updateTripsType();
@@ -2384,7 +2432,7 @@
                   vm.hasPlaneTrips = false;
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
-                  if(vm.countBusSearch == 3){
+                  if(vm.countBusSearch == 4){
                         vm.searchingTripsBus = false;
                   }
                   processCountOrder();
@@ -2393,7 +2441,7 @@
             function processCountOrder () {
                   $('[data-toggle="tooltip"]').tooltip();
                   vm.countOrder = vm.countOrder + 1;
-                  if (vm.countOrder == 4) {
+                  if (vm.countOrder == 5) {
                         order('departure');
                         vm.countOrder = 0;
                         vm.searching = false;
