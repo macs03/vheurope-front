@@ -138,7 +138,7 @@
       $translateProvider.translations('es', translationsES);
 
       $translateProvider.preferredLanguage('es');
-      $translateProvider.useSanitizeValueStrategy('sanitize');
+      $translateProvider.useSanitizeValueStrategy();
       $translateProvider.useCookieStorage();
       $translateProvider.fallbackLanguage('es');
     }]);
