@@ -59,6 +59,8 @@
             vm.lowestDurationBus = 0;
             vm.lowestPriceTrain = 0;
             vm.lowestDurationTrain = 0;
+            vm.lowestPriceCar = 0;
+            vm.lowestDurationCar = 0;
             vm.searchingTripsPlane = false;
             vm.searchingTripsBus = false;
             vm.searchingTripsTrain = false;
@@ -919,6 +921,42 @@
                         vm.lowestPricePlane = tp[pos].price;
                         console.log('PRECIO MENOR EN AVION')
                         console.log(vm.lowestPricePlane);
+                    }
+
+                    //Filtro los viajes en carro
+                    var tc = vm.globalTrips.filter(function(el){
+                        return el.transportType == 'car';
+                    });
+
+                    if(tc.length > 0){
+                        console.log('SI HAY VIAJES DE CARRO');
+                        //Busco la duracion menor en carros
+                        menor = tc[0].durationMinutes;
+                        pos = 0;
+                        for(i=1;i<tc.length;i++){
+                            if(tc[i].durationMinutes < menor){
+                                menor=tc[i].durationMinutes;
+                                pos = i;
+                            }
+                        }
+
+                        vm.lowestDurationCar = tc[pos].durationMinutes;
+                        console.log('DURACION MENOR EN AVION')
+                        console.log(vm.lowestDurationPlane);
+
+                        //Busco el precio menor en aviones
+                        menor = tc[0].price;
+                        pos = 0;
+                        for(i=1;i<tc.length;i++){
+                            if(tc[i].price < menor){
+                                menor=tc[i].price;
+                                pos = i;
+                            }
+                        }
+
+                        vm.lowestPriceCar = tc[pos].price;
+                        console.log('PRECIO MENOR EN CARRO')
+                        console.log(vm.lowestPriceCar);
                     }
 
                     updatePercentageBar2();
