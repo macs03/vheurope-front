@@ -401,7 +401,9 @@
             "RECOVER_TEXT": "Please enter your email and soon we'll send you the steps to proceed to recover the password",
             "ERROR_LOGIN": "Check the email or password",
             "INF_RECOVER": "You have successfully reset your password, please check your email",
-            "GOOD": "Great!"
+            "GOOD": "Great!",
+            "EXIT": "Exit",
+            "PROFILE": "Profile"
           }
         };
     var translationsES = {
@@ -642,7 +644,9 @@
         "RECOVER_TEXT": "Por favor, ingresa tu correo electrónico y proximamente le enviaremos a esa dirección los pasos para proceder a recuperar la contraseña",
         "ERROR_LOGIN": "Revisa el email y/o contraseña",
         "INF_RECOVER": "Se ha restablecido correctamente tu contraseña, por favor revisa tu correo",
-        "GOOD": "¡Bien!"
+        "GOOD": "¡Bien!",
+        "EXIT": "Salir",
+        "PROFILE": "Perfil"
       }
     };
 
