@@ -667,6 +667,7 @@
                 var bus = 0;
                 var train= 0;
                 var plane= 0;
+                var car= 0;
                 var barList = [];
                 var mayor = 0;
                 var pos = 0;
@@ -689,10 +690,16 @@
                     plane = 120;
                 }
 
-                console.log(bus+'-'+train+'-'+plane);
-                console.log(vm.lowestDurationBus+'-'+vm.lowestDurationTrain+'-'+vm.lowestDurationPlane);
+                if(vm.lowestDurationCar > 0){
+                  car = vm.lowestDurationCar;
+                }else{
+                    car = 120;
+                }
 
-                barList = [bus,train,plane];
+                console.log(bus+'-'+train+'-'+plane+'-'+car);
+                console.log(vm.lowestDurationBus+'-'+vm.lowestDurationTrain+'-'+vm.lowestDurationPlane+'-'+vm.lowestDurationCar);
+
+                barList = [bus,train,plane,car];
                 mayor = barList[0];
                 pos = 0;
                 for(i=1;i<barList.length;i++){
@@ -706,18 +713,28 @@
                     vm.percentageTrain = 80;
                     vm.percentageBus = ((bus * 80)/train) < 11 ? 12 : ((bus * 80)/train);
                     vm.percentagePlane = ((plane * 80)/train) < 11 ? 12 : ((plane * 80)/train);
+                    vm.percentageCar = ((car * 80)/train) < 11 ? 12 : ((car * 80)/train);
                 }
                 //BUS
                 if(pos == 0){
                     vm.percentageBus = 80;
                     vm.percentageTrain = ((train * 80)/bus) < 11 ? 12 : ((train * 80)/bus);
                     vm.percentagePlane = ((plane * 80)/bus) < 11 ? 12 : ((plane * 80)/bus);
+                    vm.percentageCar = ((car * 80)/bus) < 11 ? 12 : ((car * 80)/bus);
                 }
                 //PLANE
                 if(pos == 2){
                     vm.percentagePlane = 80;
                     vm.percentageTrain = ((train * 80)/plane) < 11 ? 12 : ((train * 80)/plane);
                     vm.percentageBus = ((bus * 80)/plane) < 11 ? 12 : ((bus * 80)/plane);
+                    vm.percentageCar = ((car * 80)/plane) < 11 ? 12 : ((car * 80)/plane);
+                }
+                //CAR
+                if(pos == 3){
+                    vm.percentageCar = 80;
+                    vm.percentageBus = ((bus * 80)/car) < 11 ? 12 : ((bus * 80)/car);
+                    vm.percentagePlane = ((plane * 80)/car) < 11 ? 12 : ((plane * 80)/car);
+                    vm.percentageTrain = ((car * 80)/car) < 11 ? 12 : ((car * 80)/car);
                 }
             }
 
@@ -2290,12 +2307,8 @@
                               }
                               vm.isLoading = false;
                               vm.disabled = false;
-                              vm.isMixedTrips = data.isMixedTrips;
                               if(!vm.hasCarTrips){
                                   vm.hasCarTrips = data.hasCarTrips;
-                                  if(data.isMixedTrips){
-                                    vm.hasCarTrips = true;
-                                  }
                               }
                               $('.pikaday__display').prop('disabled', false);
 
@@ -2303,9 +2316,9 @@
                                 vm.allTrips.push(value);
                               });
 
-                              if (vm.hasBusTrips) {
+                              if (vm.hasCarTrips) {
                                     setDateFilterRange(data.maxPrice,data.minPrice);
-                                    setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                                    setMaxDurationAndMinDuration(data.maxDuration, "car", data.lowest);
                                     //setCompaniesAndSeatsReset(data.companies);
                                     vm.updateTripsType();
                               }
@@ -2536,6 +2549,13 @@
                   if (lowest.bus.duration && tipo == "bus") {
                         if (vm.globalMinDuration.durationMinutes > lowest.bus.durationMinutes || vm.globalMinDuration == "") {
                               vm.globalMinDuration = ({duration: lowest.bus.duration, durationMinutes: lowest.bus.durationMinutes});
+                        }
+                        vm.minDuration = vm.globalMinDuration.duration;
+                  }
+
+                  if (lowest.car.duration && tipo == "car") {
+                        if (vm.globalMinDuration.durationMinutes > lowest.car.durationMinutes || vm.globalMinDuration == "") {
+                              vm.globalMinDuration = ({duration: lowest.car.duration, durationMinutes: lowest.car.durationMinutes});
                         }
                         vm.minDuration = vm.globalMinDuration.duration;
                   }
