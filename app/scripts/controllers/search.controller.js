@@ -1292,9 +1292,17 @@
                 var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 var elementId2 = '#trip_details_mix_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 var elementId3 = '#trip_details_avanza_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId4 = '#trip_details_ida_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                //var elementId5 = '#trip_details_vuelta_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 $(elementId).slideToggle( "slow" );
                 $(elementId2).slideToggle( "slow" );
                 $(elementId3).slideToggle( "slow" );
+                $(elementId4).slideToggle( "slow" );
+                //$(elementId5).slideToggle( "slow" );
+            };
+            vm.tripDetailsVuelta = function($event){
+                var elementId5 = '#trip_details_vuelta_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                $(elementId5).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {

@@ -1137,7 +1137,7 @@
                             <div class="change-departure" ng-show="search.idIda_1 != 0 && search.selectDeparture" style="margin-bottom: .3em;">
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(2)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                             </div>
-                              <!-- PESTAÑAS DE RESULTADOS -->
+                              <!-- PESTAÑAS DE RESULTADOS IDA-->
                               <div class="row tabs-filter" >
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
@@ -1347,7 +1347,7 @@
                                                 <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{$index}}">
+                                        <div class="row" style="margin-top: 30px; display: none;" id="trip_details_ida_{{$index}}">
                                             <div class="timeline-centered">
                                                 <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
                                                     <div class="timeline-entry-inner">
@@ -1395,14 +1395,14 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 col-xs-12">
-                                                     <a href="{{ trip.redirect }}" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                                     <a ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.start*1000,trip.duration,trip.end*1000,trip.price,trip.type__name,trip.enterprise__name,trip.enterprise__image)" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                   </div>
                                 </div>
-
+                                <!-- END AVIONES -->
                                     <!--
                                     <div class="row result result-iv {{trip.id}}" id={{trip.id}}>
 
@@ -1472,7 +1472,7 @@
                             <div class="change-departure" ng-show="search.idVuelta_1 != 0" style="margin-bottom: .3em;">
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(3)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                             </div>
-                            <!-- PESTAÑAS DE RESULTADOS -->
+                            <!-- PESTAÑAS DE RESULTADOS VUELTA-->
                               <div class="row tabs-filter" >
 
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
@@ -1670,7 +1670,7 @@
                                                     </ul>
                                                   </div>
                                                 </div>
-                                                <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
+                                                <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetailsVuelta($event)"></i>
                                             </div>
 
                                             <div class="col-md-3 hidden-xs hidden-sm">
@@ -1679,11 +1679,11 @@
                                             </div>
 
                                             <div class="col-md-3 col-xs-4 col-sm-4">
-                                                <button data-trip-id="{{$index}}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                                <button data-trip-id="{{$index}}" ng-click="search.tripDetailsVuelta($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
                                                 <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                             </div>
                                         </div>
-                                        <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{$index}}">
+                                        <div class="row" style="margin-top: 30px; display: none;" id="trip_details_vuelta_{{$index}}">
                                             <div class="timeline-centered">
                                                 <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
                                                     <div class="timeline-entry-inner">
@@ -1738,6 +1738,7 @@
                                     </div>
                                   </div>
                                 </div>
+                                <!-- END AVIONES -->
                                     <!--
                                     <div class="row result result-iv" id={{trip.id}}>
 
