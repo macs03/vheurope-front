@@ -79,16 +79,24 @@ $selectize-scrollbar-radius: 3px;
         }
     }
 
-    .selectize-dropdown-content::-webkit-scrollbar-track {
-        border-radius: $selectize-scrollbar-radius;
-    }
+    .selectize-dropdown-content {
 
-    .selectize-dropdown-content::-webkit-scrollbar {
-        width: $selectize-scrollbar-width;
-    }
+        position: absolute;
+        top: 2px;
+        width: 150%;
+        background-color: inherit;
 
-    .selectize-dropdown-content::-webkit-scrollbar-thumb {
-        border-radius: $selectize-scrollbar-radius;
-        background-color: $selectize-scrollbar-color;
+        &::-webkit-scrollbar-track {
+            border-radius: $selectize-scrollbar-radius;
+        }
+
+        &::-webkit-scrollbar {
+            width: $selectize-scrollbar-width;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: $selectize-scrollbar-radius;
+            background-color: $selectize-scrollbar-color;
+        }
     }
 }

@@ -135,6 +135,40 @@
                 $('#select_passengers').val(vm.passengers);
             };
 
+            /**
+             * During the loading process for destination search
+             * @param  {Selectize} instance The Selectize instance called
+             * @return {null}
+             */
+            var loading = function(instance){
+                var input = instance.$control_input[0];
+                var selectizeInput = $(input).parent();
+                var loader = $("<i class='fa fa-spinner fa-spin fa-fw'></i>");
+                if($(selectizeInput).children("i.fa").length < 1){
+                    loader.css({
+                        "float": "right",
+                        "position": "absolute",
+                        "right": "1em",
+                        "top": $(selectizeInput).height() / 2 + "px"
+                    })
+                    $(selectizeInput).append(loader);
+                }
+            };
+
+            /**
+             * After the loading process for destination search
+             * @param  {instance} instance The Selectize instance called
+             * @return {null}
+             */
+            var loaded = function(instance){
+                var input = instance.$control_input[0];
+                var selectizeInput = $(input).parent();
+                var loader = $(selectizeInput).children("i.fa");
+                if(loader.length > 0){
+                    $(loader).remove();
+                }
+            };
+
         	vm.configOrigin = {
           		//create: true,
           		valueField: 'rt',
@@ -152,6 +186,8 @@
                     if (!query.length) return callback();
                     if (query.length >= 3){
                         vm.myOptionsOrigin = [];
+                        var selectizeInstance = this;
+                        loading(selectizeInstance);
                         locationsRtFactory
                         .getAll(query)
                         .then(function (data) {
@@ -160,10 +196,12 @@
                             vm.myOptionsOrigin = data;
                             //sessionStorageService.setLocations(data);
                             //sessionStorageService.setFlag(true);
+                            loaded(selectizeInstance);
                         })
                         .catch(function (err) {
                              callback();
                         });
+                        
                     }
                 }
         	};
@@ -184,6 +222,8 @@
                     if (!query.length) return callback();
                     //if (query.length >= 3){
                         vm.myOptionsDestination = [];
+                        var selectizeInstance = this;
+                        loading(selectizeInstance);
                         locationsRtFactory
                         .getAll(query)
                         .then(function (data) {
@@ -192,6 +232,7 @@
 
                             //sessionStorageService.setLocations(data);
                             //sessionStorageService.setFlag(true);
+                            loaded(selectizeInstance);
                         })
                         .catch(function (err) {
                              callback();
