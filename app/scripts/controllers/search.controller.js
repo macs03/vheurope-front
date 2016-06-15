@@ -1096,14 +1096,6 @@
                         } else {
                               vm.globalMixedTrips = [];
                         }
-                        if(data.companies.length > 0){
-                            angular.forEach(data.companies, function(value, key) {
-                                vm.globalCompanies.push(value);
-                                if (data.hasCarTrips || data.hasBusTrips || data.hasTrainTrips) {
-                                    setCompaniesAndSeatsReset(data.companies);
-                                }
-                            });
-                        }
                         if(data.typeServices.length > 0){
                               angular.forEach(data.typeServices, function(value, key) {
                               var exist = false;
@@ -1115,6 +1107,14 @@
                               if(!exist){
                                     vm.globalTypeServices.push(value);
                               }
+                            });
+                        }
+                        if(data.companies.length > 0){
+                            angular.forEach(data.companies, function(value, key) {
+                                vm.globalCompanies.push(value);
+                                if (data.hasCarTrips || data.hasBusTrips || data.hasTrainTrips) {
+                                    setCompaniesAndSeatsReset(data.companies);
+                                }
                             });
                         }
 
@@ -2485,7 +2485,7 @@
             }
 
             function catchTravelsFactory (err) {
-                  vm.searching = false;
+                  //vm.searching = false;
                   //vm.error = true;
                   //vm.msgError = err;
                   vm.disabled = false;
