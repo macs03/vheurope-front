@@ -18,9 +18,7 @@ $selectize-scrollbar-color: #555;
 $selectize-scrollbar-radius: 3px;
 
 
-// bower:scss
-@import "selectize-scss/src/selectize.scss";
-// endbower
+@import "../../bower_components/selectize-scss/src/selectize.scss";
 
 .selectize-control {
     &.multi {
