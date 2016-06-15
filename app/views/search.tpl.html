@@ -357,7 +357,7 @@
     <div class="container" ng-show="search.results">
         <div class="row container-responsive" id="ida-results">
             <!-- Start Filter -->
-            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.globalDirectReturnTrips.length > 0">
+            <div class="col-xs-12 col-md-3 no-margin no-padding" ng-hide="search.globalDirectReturnTrips.length > 0 || search.returnTripPlane">
                 <div class="filter-btn-content visible-xs">
                     <div class="row">
                         <div class="col-xs-7">
@@ -487,13 +487,13 @@
             <!-- End colums -->
 
 
-            
+
 
 
             <!-- Start Results -->
 
-            <div class="col-xs-12 col-md-9 conttainer-results" ng-class="{'col-md-12' : search.globalDirectReturnTrips.length > 0}">
-                
+            <div class="col-xs-12 col-md-9 conttainer-results" ng-class="{'col-md-12' : search.globalDirectReturnTrips.length > 0 || search.returnTripPlane}">
+
                 <h5 class="hidden-xs" ng-show="search.globalDirectDepartureTrips.length > 0 && search.globlaDirectReturnTrips.length == 0">
                   <span translate>SEARCH.TRIPS.ROUND</span>: {{search.trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                 </h5>
@@ -601,8 +601,8 @@
                 <!-- FIN FILTROS -->
 
                 <!-- PESTAÑAS DE RESULTADOS -->
-               
-                <div class="row tabs-filter" ng-show="search.globalDirectReturnTrips.length == 0 || search.isMixedTrips" >
+
+                <div class="row tabs-filter" ng-show="search.globalDirectReturnTrips.length == 0 || search.isMixedTrips || !search.returnTripPlane" >
                     <div class="col-md-3 np hidden-xs">
                         <div class="row chk-input" ng-class="{'visible-chk': search.showCombineTrips }" >
                             <div class="col-md-6">
@@ -633,7 +633,7 @@
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                         </div>
                     </div>
-                    <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasPlaneTrips">
+                    <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasPlaneTrips && !search.returnTripPlane">
                         <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" >
                             <i class="fa fa-plane fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
@@ -647,12 +647,12 @@
                     </div>
 
                 </div>
-                
+
                 <!-- END PESTAÑAS DE RESULTADOS -->
-                
+
                 <!-- SIN RESULTADOS -->
                 <!-- En el ng-show tenia && search.scraperTrips.tickets.length == 0 pero no me da ningun resultado esto -->
-                <div class="row" ng-show="search.globalDirectDepartureTrips.length == 0 && search.globalAlternativeTrips.length == 0 && !search.isMixedTrips && !search.hasPlaneTrips && !search.hasBusTrips && !search.hasTrainTrips && !search.hasCarTrips" >
+                <div class="row" ng-show="search.planesTrips.tickets.length == 0 && search.globalDirectDepartureTrips.length == 0 && search.globalAlternativeTrips.length == 0 && !search.isMixedTrips && !search.hasPlaneTrips && !search.hasBusTrips && !search.hasTrainTrips && !search.hasCarTrips" >
 
 
                     <div class="col-md-12">
@@ -668,17 +668,17 @@
 
                 <!-- BUSQUEDA SOLO IDA -->
 
-                <div id="single-results" ng-show="search.globalDirectReturnTrips.length == 0 || (search.hasPlaneTrips && search.globalDirectReturnTrips.length == 0)" ng-hide="search.combineTrips">
+                <div id="single-results" ng-show="search.globalDirectReturnTrips.length == 0 || (search.hasPlaneTrips && search.globalDirectReturnTrips.length == 0)" ng-hide="search.combineTrips || search.returnTripPlane">
                     <div class="" id="tramo-{{$index}}" ng-repeat="trips in search.globalDirectDepartureTrips" ng-init="outindex = $index">
                         <br/ ng-show="$index == 1">
                         <h5 class="hidden-xs" ng-show="search.globalDirectDepartureTrips.length > 1">
                             <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                         </h5>
-                        
+
                         <div class="change-departure" ng-show="search.idIda_1 != 0" style="margin-bottom: .3em;">
                             <a class="text-fucsia" style="cursor:pointer;" ng-click="search.resetFirstSetep(1)"><strong><span translate>Cambia billete del primer tramo</span></strong></a>
                         </div>
-                        
+
                         <div class="new-results" id="new-results-tickeables">
                             <div class="results list" id="trips_tickeables" >
 
@@ -895,10 +895,10 @@
                             </div>
                             </div>  <!-- end .results-->
                         </div>   <!-- end .new-results -->
-                    </div> 
+                    </div>
 
                     <!-- AVIONES -->
-                          <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus">
+                          <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus && !search.returnTripPlane">
                             <div class="results list" id="trips_tickeables" >
                                 <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                 <div class="row">
@@ -1147,7 +1147,7 @@
                                   </div>
 
                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                                      <div class="tab-filter active tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
+                                      <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                                       </div>
@@ -1395,7 +1395,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 col-xs-12">
-                                                     <a ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.start*1000,trip.duration,trip.end*1000,trip.price,trip.type__name,trip.enterprise__name,trip.enterprise__image)" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                                     <a ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.start*1000,trip.duration,trip.end*1000,trip.price,trip.type__name,trip.enterprise__name,trip.enterprise__image,trip.redirect)" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1483,7 +1483,7 @@
                                   </div>
 
                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
-                                      <div class="tab-filter active tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
+                                      <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                                       </div>
@@ -1595,7 +1595,7 @@
                             <!-- AVIONES -->
                                   <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus">
                                     <div class="results list" id="trips_tickeables" >
-                                        <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
+                                        <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar'}" id="{{$index}}" ng-repeat="trip in search.planesTripsReturn | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                         <div class="row">
                                             <div class="col-md-3 hidden-xs hidden-sm">
                                                 <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
@@ -1731,7 +1731,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 col-xs-12">
-                                                     <a href="{{ trip.redirect }}" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                                     <a href="{{search.roundPlaneRedirect}},{{trip.returnRedirect}}" target="_blank" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
                                                 </div>
                                             </div>
                                         </div>

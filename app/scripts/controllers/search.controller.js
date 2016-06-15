@@ -42,6 +42,7 @@
             vm.companies = [];
             vm.companiesReset = [];
             vm.minDuration = '';
+            vm.returnTripPlane = false;
             vm.showBus = true;
             vm.showTrain = false;
             vm.showPlane = false;
@@ -1354,10 +1355,16 @@
                 callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud");
                 callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
                 callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "blablacar");
-                    
+
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,1);
+                        if (params.returns != "") {
+                            vm.returnTripPlane = true;
+                            vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, params.returns, params.departure, vm.passengers, params.originCountryCode, params.destinationCountryCode,2)
+                        }else{
+                            vm.returnTripPlane = false;
+                        }
                     }else{
                         vm.searchingTripsPlane = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
@@ -1578,7 +1585,13 @@
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode,1)
+                        if (returnDateFormat != "") {
+                            vm.returnTripPlane = true;
+                            vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, returnDateFormat, departureDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode,2)
+                        }else{
+                            vm.returnTripPlane = false;
+                        }
                     }else{
                         vm.searchingTripsPlane = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
@@ -1795,7 +1808,13 @@
                 // sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
                 if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                  vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                  vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry,1)
+                  if (returnDate != "") {
+                      vm.returnTripPlane = true;
+                      vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, returnDate, departureDate, passengers, originCountry, destinationCountry,2)
+                  }else{
+                      vm.returnTripPlane = false;
+                  }
                 }else{
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
@@ -1860,7 +1879,11 @@
                 vm.destination = destination+", "+countryDestination;
             }
 
-            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect) {
+                if(redirect != null || redirect != undefined){
+                    var split = redirect.split('&');
+                    vm.roundPlaneRedirect = split[0];
+                }
                 vm.selectMixTrip = false;
                 vm.selectDeparture = !vm.selectDeparture;
                 if(!vm.selectDeparture){
@@ -2338,7 +2361,7 @@
                   }
             }
 
-            function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
+            function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, type) {
 
               vm.searchingTripsPlane = true; // Buscando aviones
               planesFactory
@@ -2351,7 +2374,11 @@
                                   planesFactory
                                       .getApiData(data.data)
                                       .then(function (data2) {
-                                          processPlanes(data2);
+                                        if (type === 1) {
+                                            processPlanes(data2);
+                                        }else{
+                                            processPlanesReturn(data2);
+                                        }
                                       })
                                       .catch(function (){
                                           catchPlanes();
@@ -2365,7 +2392,11 @@
                                                   planesFactory
                                                       .getApiData(data.data)
                                                       .then(function (data4) {
-                                                          processPlanes(data4);
+                                                          if (type === 1) {
+                                                              processPlanes(data4);
+                                                          }else{
+                                                              processPlanesReturn(data4);
+                                                          }
                                                       })
                                                       .catch(function (){
                                                           catchPlanes();
@@ -2379,7 +2410,11 @@
                                                                   planesFactory
                                                                       .getApiData(data.data)
                                                                       .then(function (data6) {
-                                                                          processPlanes(data6);
+                                                                          if (type === 1) {
+                                                                              processPlanes(data6);
+                                                                          }else{
+                                                                              processPlanesReturn(data6);
+                                                                          }
                                                                       })
                                                                       .catch(function (){
                                                                           catchPlanes();
@@ -2468,6 +2503,15 @@
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
                   vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
                   planesManager(data.tickets);
+            }
+
+            function processPlanesReturn (data) {
+                  vm.planesTripsReturn = [];
+                  angular.forEach(data.tickets, function(value, key) {
+                        var split = value.data.redirect.split('?token=');
+                        value.data.returnRedirect = split[1];
+                        vm.planesTripsReturn.push(value.data);
+                  });
             }
 
             function catchTravelsFactory (err) {
