@@ -2205,7 +2205,7 @@
                               saveOtherInfoInTrips(data);                   
 
                               vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 4){
+                              if(vm.countBusSearch == 3){
                                     vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                               }
                               vm.isLoading = false;
@@ -2228,7 +2228,7 @@
                           })
                           .catch(function(err){
                               vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 4){
+                              if(vm.countBusSearch == 3){
                                     vm.searchingTripsBus = false;
                               }
 
@@ -2237,7 +2237,7 @@
                   } else {
                         //No llamó a Busbud
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
+                        if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         $('.pikaday__display').prop('disabled', false);
@@ -2255,7 +2255,7 @@
                         saveOtherInfoInTrips(data);
 
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
+                        if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         vm.isLoading = false;
@@ -2283,7 +2283,7 @@
                     })
                     .catch(function(err){
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
+                        if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false;
                         }
 
@@ -2323,7 +2323,7 @@
                           })
                           .catch(function(err){
                               vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 4){
+                              if(vm.countBusSearch == 3){
                                     vm.searchingTripsCar = false;
                               }
 
@@ -2332,7 +2332,7 @@
                   } else {
                         //No llamó a blablacar
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
+                        if(vm.countBusSearch == 3){
                               vm.searchingTripsCar = false; // Ya buscó por todos los servicios de buses
                         }
                         $('.pikaday__display').prop('disabled', false);
@@ -2411,7 +2411,7 @@
                           })
                   } else {
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
+                        if(vm.countBusSearch == 3){
                               vm.searchingTripsBus = false;
                         }
                         vm.searchingTripsPlane = false;
@@ -2471,7 +2471,7 @@
                   vm.hasPlaneTrips = flagPlanes;
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
-                  if(vm.countBusSearch == 4){
+                  if(vm.countBusSearch == 3){
                         vm.searchingTripsBus = false;
                   }
                   vm.updateTripsType();
@@ -2498,7 +2498,7 @@
                   vm.hasPlaneTrips = false;
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
-                  if(vm.countBusSearch == 4){
+                  if(vm.countBusSearch == 3){
                         vm.searchingTripsBus = false;
                   }
                   processCountOrder();
