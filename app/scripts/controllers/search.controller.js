@@ -2301,10 +2301,7 @@
                               loadGlobal(data, false,false);
                               saveOtherInfoInTrips(data);
 
-                              vm.countBusSearch = vm.countBusSearch + 1;
-                              if(vm.countBusSearch == 4){
-                                    vm.searchingTripsCar = false; // Ya buscó por todos los servicios de buses
-                              }
+                              vm.searchingTripsCar = false; // Ya buscó los carros
                               vm.isLoading = false;
                               vm.disabled = false;
                               if(!vm.hasCarTrips){
