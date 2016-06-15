@@ -11,9 +11,9 @@
     angular.module('vhEurope')
         .factory('planesFactory', planesFactory);
 
-    planesFactory.$inject = ['$http', '$q', 'apiUrl', '$filter'];
+    planesFactory.$inject = ['$http', '$q', 'apiUrl', '$filter','apiRtUrl'];
 
-    function planesFactory($http, $q, apiUrl, $filter) {
+    function planesFactory($http, $q, apiUrl, $filter, apiRtUrl) {
         return {
             self: this,
             getFirstStep: getFirstStep,
@@ -43,7 +43,7 @@
             var promise = defered.promise;
             $http({
                     method: 'GET',
-                    url: 'https://api-rt.resertrip.com/tickets/',
+                    url: apiRtUrl+'tickets/',
                     params: {
                         origin: formatOrigin,
                         destination: formatDestination,

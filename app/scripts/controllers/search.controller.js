@@ -2331,83 +2331,74 @@
             }
 
             function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
-                  if (returnDate == "") {
-                      vm.searchingTripsPlane = true; // Buscabdo trenes
+
+              vm.searchingTripsPlane = true; // Buscando aviones
+              planesFactory
+                  .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                  .then(function (data) {
                       planesFactory
-                          .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
-                          .then(function (data) {
-                              planesFactory
-                                  .getApiStatus(data.status)
-                                  .then(function (data1) {
-                                      if (data1.progress != 0 && data1.results !=0) {
-                                          planesFactory
-                                              .getApiData(data.data)
-                                              .then(function (data2) {
-                                                  processPlanes(data2);
-                                              })
-                                              .catch(function (){
-                                                  catchPlanes();
-                                              })
-                                      }else{
-                                          $timeout(function () {
-                                              planesFactory
-                                                  .getApiStatus(data.status)
-                                                  .then(function (data3) {
-                                                      if (data3.progress != 0 && data3.results !=0) {
-                                                          planesFactory
-                                                              .getApiData(data.data)
-                                                              .then(function (data4) {
-                                                                  processPlanes(data4);
-                                                              })
-                                                              .catch(function (){
-                                                                  catchPlanes();
-                                                              })
-                                                      }else{
-                                                          $timeout(function () {
-                                                              planesFactory
-                                                                  .getApiStatus(data.status)
-                                                                  .then(function (data5) {
-                                                                      if (data5.progress != 0 && data5.results !=0) {
-                                                                          planesFactory
-                                                                              .getApiData(data.data)
-                                                                              .then(function (data6) {
-                                                                                  processPlanes(data6);
-                                                                              })
-                                                                              .catch(function (){
-                                                                                  catchPlanes();
-                                                                              })
-                                                                      }else{
+                          .getApiStatus(data.status)
+                          .then(function (data1) {
+                              if (data1.progress != 0 && data1.results !=0) {
+                                  planesFactory
+                                      .getApiData(data.data)
+                                      .then(function (data2) {
+                                          processPlanes(data2);
+                                      })
+                                      .catch(function (){
+                                          catchPlanes();
+                                      })
+                              }else{
+                                  $timeout(function () {
+                                      planesFactory
+                                          .getApiStatus(data.status)
+                                          .then(function (data3) {
+                                              if (data3.progress != 0 && data3.results !=0) {
+                                                  planesFactory
+                                                      .getApiData(data.data)
+                                                      .then(function (data4) {
+                                                          processPlanes(data4);
+                                                      })
+                                                      .catch(function (){
+                                                          catchPlanes();
+                                                      })
+                                              }else{
+                                                  $timeout(function () {
+                                                      planesFactory
+                                                          .getApiStatus(data.status)
+                                                          .then(function (data5) {
+                                                              if (data5.progress != 0 && data5.results !=0) {
+                                                                  planesFactory
+                                                                      .getApiData(data.data)
+                                                                      .then(function (data6) {
+                                                                          processPlanes(data6);
+                                                                      })
+                                                                      .catch(function (){
                                                                           catchPlanes();
-                                                                      }
-                                                                  })
-                                                                  .catch(function (){
-                                                                      catchPlanes();
-                                                                  })
-                                                          }, 5000);
-                                                      }
-                                                  })
-                                                  .catch(function (){
-                                                      catchPlanes();
-                                                  })
-                                          }, 5000);
-                                      }
-                                  })
-                                  .catch(function (){
-                                      catchPlanes();
-                                  })
+                                                                      })
+                                                              }else{
+                                                                  catchPlanes();
+                                                              }
+                                                          })
+                                                          .catch(function (){
+                                                              catchPlanes();
+                                                          })
+                                                  }, 5000);
+                                              }
+                                          })
+                                          .catch(function (){
+                                              catchPlanes();
+                                          })
+                                  }, 5000);
+                              }
                           })
                           .catch(function (){
                               catchPlanes();
                           })
-                  } else {
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 4){
-                              vm.searchingTripsBus = false;
-                        }
-                        vm.searchingTripsPlane = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        processCountOrder();
-                  }
+                  })
+                  .catch(function (){
+                      catchPlanes();
+                  })
 
             }
 
