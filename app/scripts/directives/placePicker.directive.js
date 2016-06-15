@@ -43,7 +43,7 @@
 
 
 
-     
+    
     // selectize classical placePicker
     .directive("placePicker", function() {
 
@@ -55,6 +55,7 @@
 
                 var selectizeConfig = {
                     //create: true,
+                    plugins: ['no_results'],
                     valueField: 'label',
                     labelField: 'label',
                     searchField: ['label'],
