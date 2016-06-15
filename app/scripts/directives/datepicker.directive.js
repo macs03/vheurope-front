@@ -61,6 +61,19 @@
 
                     var processChange = function (dateObject) {
                         var date = new Date(dateObject.value);
+
+                        if(attrs.id != "departureDate"){
+                            scope.returnObj = dateObject;
+                        } else {
+                            scope.departureDateValue = dateObject.value;
+                            if(scope.returnObj){
+                                scope.returnObj.pikaday.setMinDate(moment(scope.departureDateValue).toDate());
+                                if(dateObject.value > scope.returnObj.value){
+                                    scope.returnObj.setDate();
+                                }
+                            }
+                        }
+
                         scope.$apply(function (scope) {
                             // Change bound variable
                             modelAccessor.assign(scope, moment(dateObject.value).format(dateFormat));
@@ -82,6 +95,10 @@
                             firstDay: 1
                         }
                     });
+
+                    if(attrs.id != "departureDate"){
+                        scope.returnObj = dateObject;
+                    }
 
                     $(el).on("change-date", function(e, dateObject) {
                         processChange(dateObject);
