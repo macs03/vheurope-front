@@ -754,7 +754,7 @@
                     vm.percentageCar = 80;
                     vm.percentageBus = ((bus * 80)/car) < 11 ? 12 : ((bus * 80)/car);
                     vm.percentagePlane = ((plane * 80)/car) < 11 ? 12 : ((plane * 80)/car);
-                    vm.percentageTrain = ((car * 80)/car) < 11 ? 12 : ((car * 80)/car);
+                    vm.percentageTrain = ((train * 80)/car) < 11 ? 12 : ((train * 80)/car);
                 }
             }
 
