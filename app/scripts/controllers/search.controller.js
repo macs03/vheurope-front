@@ -45,6 +45,7 @@
             vm.showBus = true;
             vm.showTrain = false;
             vm.showPlane = false;
+            vm.showCar = false;
             vm.hasPlaneTrips = false;
             vm.hasCarTrips = false;
             vm.hasTrainTrips = false;
@@ -561,6 +562,16 @@
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
+
+                if( vm.hasCarTrips && !vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
+                    vm.showBus = false;
+                    vm.showTrain = false;
+                    vm.showPlane = false;
+                    vm.showCar = true;
+                    $('.tab-filter').removeClass('active');
+                    $('.tab_car').addClass('active');
+                }
+
             };
 
             var getTripsSteps = function(maxDuration, tripDuration){
