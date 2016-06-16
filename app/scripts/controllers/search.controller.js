@@ -767,7 +767,7 @@
 
                   if(tipo == 1){
                         if(trips != undefined && trips.length > 0){
-                              menor = trips[0].data.duration;
+                              menor = 99999999;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
                                     if(trips[i].data.duration < menor && trips[i].data.transportation == "airplane"){
@@ -786,7 +786,7 @@
                         }
                   }else{
                         if(trips != undefined && trips.length > 0){
-                              menor = trips[0].data.price;
+                              menor = 99999999;
                               pos = 0;
                               for(i=1;i<trips.length;i++){
                                     if(trips[i].data.price < menor  && trips[i].data.transportation == "airplane"){
