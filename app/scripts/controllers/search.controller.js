@@ -42,6 +42,7 @@
             vm.companies = [];
             vm.companiesReset = [];
             vm.minDuration = '';
+            vm.returnTripPlane = false;
             vm.showBus = true;
             vm.showTrain = false;
             vm.showPlane = false;
@@ -429,7 +430,7 @@
                     //  callback();
                 });
 
-            
+
             vm.dates = {
                 departureDate: '',
                 returnDate: '',
@@ -454,7 +455,7 @@
             }
 
             var showTripsType = function(tripType){
-                vm.combineTrips = false; 
+                vm.combineTrips = false;
                 $('.fa-trip-type').addClass('hidden');
 
                 switch(tripType) {
@@ -590,8 +591,8 @@
                 total == 0 ? total = 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
-               }   
-               return range;          
+               }
+               return range;
             }
 
             var getPlanesSteps = function(segments){
@@ -600,8 +601,8 @@
                 total > 1 ? total = total - 1 : total = total;
                 for(var i=1;i<=total;i++) {
                     range.push(i);
-               }   
-               return range;          
+               }
+               return range;
             }
 
             var updatePercentageBar = function(bus, train, plane){
@@ -621,7 +622,7 @@
                     if(bus == null) bus = 120;
                     if(train == null) train = 120;
                     if(plane == NaN) plane = 120;
-                    
+
                     barList = [bus,train,plane];
                     mayor = barList[0];
                     pos = 0;
@@ -653,8 +654,8 @@
                     if(vm.percentagePlane < 10){
                         vm.percentagePlane = 16;
                     }
-                    
-                    
+
+
                 }else{
                     if(bus == null) bus = 120;
                     if(train == null) train = 120;
@@ -761,7 +762,7 @@
             var getHourMinPlanes = function(minutes){
                 var realmin = minutes % 60
                 var hours = Math.floor(minutes / 60)
-                return hours+'hrs '+realmin+'min';          
+                return hours+'hrs '+realmin+'min';
             }
 
             var getLowestPlanes = function(trips, tipo){
@@ -868,7 +869,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         vm.lowestDurationTrain = tt[pos].durationMinutes;
                         console.log('DURACION MENOR EN TREN')
                         console.log(vm.lowestDurationTrain);
@@ -882,7 +883,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         vm.lowestPriceTrain = tt[pos].price;
                         console.log('PRECIO MENOR EN TREN')
                         console.log(vm.lowestPriceTrain);
@@ -904,7 +905,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         if (vm.lowestDurationBus > tb[pos].durationMinutes || vm.lowestDurationBus == 0) {
                               vm.lowestDurationBus = tb[pos].durationMinutes;
                         }
@@ -920,7 +921,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         vm.lowestPriceBus = tb[pos].price;
                         console.log('PRECIO MENOR EN TREN')
                         console.log(vm.lowestPriceBus);
@@ -942,7 +943,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         vm.lowestDurationPlane = tp[pos].durationMinutes;
                         console.log('DURACION MENOR EN AVION')
                         console.log(vm.lowestDurationPlane);
@@ -956,7 +957,7 @@
                                 pos = i;
                             }
                         }
-                        
+
                         vm.lowestPricePlane = tp[pos].price;
                         console.log('PRECIO MENOR EN AVION')
                         console.log(vm.lowestPricePlane);
@@ -1054,8 +1055,8 @@
                                 }
 
                                 angular.forEach(data.directDepartureTrips[0], function(value, key) {
-                                    vm.globalDirectDepartureTrips[0].push(value); 
-                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                    vm.globalDirectDepartureTrips[0].push(value);
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
 
@@ -1065,8 +1066,8 @@
                                 }
 
                                 angular.forEach(data.directDepartureTrips[1], function(value, key) {
-                                    vm.globalDirectDepartureTrips[1].push(value); 
-                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                    vm.globalDirectDepartureTrips[1].push(value);
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
                         }
@@ -1080,8 +1081,8 @@
                                 }
 
                                 angular.forEach(data.directReturnTrips[0], function(value, key) {
-                                    vm.globalDirectReturnTrips[0].push(value); 
-                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });    
+                                    vm.globalDirectReturnTrips[0].push(value);
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
 
@@ -1091,8 +1092,8 @@
                                 }
 
                                 angular.forEach(data.directReturnTrips[1], function(value, key) {
-                                    vm.globalDirectReturnTrips[1].push(value);  
-                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });   
+                                    vm.globalDirectReturnTrips[1].push(value);
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
                         }
@@ -1101,7 +1102,7 @@
                               vm.results = true;
 
                             angular.forEach(data.alternativeTrips, function(value, key) {
-                                vm.globalAlternativeTrips.push(value);    
+                                vm.globalAlternativeTrips.push(value);
                             });
                         }
                         if(!isMixed){
@@ -1110,7 +1111,7 @@
                                   vm.results = true;
 
                                   angular.forEach(data.mixedTrips, function(value, key) {
-                                      vm.globalMixedTrips.push(value);    
+                                      vm.globalMixedTrips.push(value);
                                   });
                               }
                         } else {
@@ -1138,14 +1139,14 @@
                             }
                         }
 
-                        
+
                     }else{
                         if(data.length > 0){
 
                               vm.results = true;
 
                             angular.forEach(data, function(value, key) {
-                                vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });    
+                                vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });
                             });
                         }
                     }
@@ -1289,29 +1290,29 @@
             vm.weather_progressbar.start();
 
             vm.updatePassengers = function(type, direction){
-                
+
                 if(direction == 'up' && vm.passengers < 7){
                     if(type=='adult'){
-                       vm.passengersAdult = vm.passengersAdult + 1;  
+                       vm.passengersAdult = vm.passengersAdult + 1;
                     }
                     if(type=='child'){
                         vm.passengersChild =  vm.passengersChild + 1;
-                    } 
+                    }
                     if(type=='baby'){
                         vm.passengersBaby = vm.passengersBaby + 1;
-                    } 
+                    }
                 }
 
                 if(direction == 'dwn'){
                     if(type=='adult' && vm.passengersAdult > 0){
-                       vm.passengersAdult = vm.passengersAdult - 1;  
+                       vm.passengersAdult = vm.passengersAdult - 1;
                     }
                     if(type=='child' && vm.passengersChild > 0){
                         vm.passengersChild =  vm.passengersChild - 1;
-                    } 
+                    }
                     if(type=='baby' && vm.passengersBaby > 0){
                         vm.passengersBaby = vm.passengersBaby - 1;
-                    } 
+                    }
                 }
                 vm.passengers =  parseInt(vm.passengersAdult)  + parseInt(vm.passengersChild) + parseInt(vm.passengersBaby);
                 $('#select_passengers').val(vm.passengers);
@@ -1329,9 +1330,17 @@
                 var elementId = '#trip_details_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 var elementId2 = '#trip_details_mix_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 var elementId3 = '#trip_details_avanza_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                var elementId4 = '#trip_details_ida_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                //var elementId5 = '#trip_details_vuelta_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
                 $(elementId).slideToggle( "slow" );
                 $(elementId2).slideToggle( "slow" );
                 $(elementId3).slideToggle( "slow" );
+                $(elementId4).slideToggle( "slow" );
+                //$(elementId5).slideToggle( "slow" );
+            };
+            vm.tripDetailsVuelta = function($event){
+                var elementId5 = '#trip_details_vuelta_'+jQuery(jQuery($event.target)[0]).attr('data-trip-id');
+                $(elementId5).slideToggle( "slow" );
             };
 
             if (screenSize.is('xs, sm')) {
@@ -1383,10 +1392,16 @@
                 callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "busbud");
                 callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "movelia");
                 callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,params.passengersAdult,params.passengersChild,params.passengersBaby, "blablacar");
-                    
+
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode);
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode,1);
+                        if (params.returns != "") {
+                            vm.returnTripPlane = true;
+                            vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, params.returns, params.departure, vm.passengers, params.originCountryCode, params.destinationCountryCode,2)
+                        }else{
+                            vm.returnTripPlane = false;
+                        }
                     }else{
                         vm.searchingTripsPlane = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
@@ -1467,7 +1482,7 @@
                     departureMonth = '0'+departureMonth;
                 }
                 var departureDateFormat = departureDay+'/'+departureMonth+'/'+departureYear;
-                
+
                 angular.forEach(vm.cnames_es, function(value, key) {
                     if(vm.cnames_es[key].name === $stateParams.originCountryCode){
                         vm.originCountry = vm.cnames_es[key].value;
@@ -1545,7 +1560,7 @@
                 }
 
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                  
+
                     if(vm.myOptionsOrigin[key].rt === originPlaneCity[0]){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
@@ -1569,17 +1584,17 @@
                         .getAll(originPlaneCity[0])
                         .then(function (data) {
                             if(data.length == 1){
-                              vm.originId = data[0].id  
+                              vm.originId = data[0].id
                             }else{
-                               vm.originId = originPlaneCity[0]; 
+                               vm.originId = originPlaneCity[0];
                             }
                             locationsRtFactory
                                 .getAll(destinationPlaneCity[0])
                                 .then(function (data) {
                                     if(data.length == 1){
-                                        vm.destinationId = data[0].id  
+                                        vm.destinationId = data[0].id
                                     }else{
-                                       vm.destinationId = destinationPlaneCity[0]; 
+                                       vm.destinationId = destinationPlaneCity[0];
                                     }
                                     console.log(vm.originId+'-'+vm.destinationId);
                                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
@@ -1607,7 +1622,13 @@
                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode)
+                        vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode,1)
+                        if (returnDateFormat != "") {
+                            vm.returnTripPlane = true;
+                            vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, returnDateFormat, departureDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode,2)
+                        }else{
+                            vm.returnTripPlane = false;
+                        }
                     }else{
                         vm.searchingTripsPlane = false;
                         vm.countBusSearch = vm.countBusSearch + 1;
@@ -1824,7 +1845,13 @@
                 // sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
                 if(destiniesPlanes.origin && destiniesPlanes.destination) {
-                  vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                  vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDate, returnDate, passengers, originCountry, destinationCountry,1)
+                  if (returnDate != "") {
+                      vm.returnTripPlane = true;
+                      vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, returnDate, departureDate, passengers, originCountry, destinationCountry,2)
+                  }else{
+                      vm.returnTripPlane = false;
+                  }
                 }else{
                   vm.searchingTripsPlane = false;
                   vm.countBusSearch = vm.countBusSearch + 1;
@@ -1889,7 +1916,11 @@
                 vm.destination = destination+", "+countryDestination;
             }
 
-            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo) {
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect) {
+                if(redirect != null || redirect != undefined){
+                    var split = redirect.split('&');
+                    vm.roundPlaneRedirect = split[0];
+                }
                 vm.selectMixTrip = false;
                 vm.selectDeparture = !vm.selectDeparture;
                 if(!vm.selectDeparture){
@@ -2040,12 +2071,12 @@
                 vm.planesCompanies = listCompaniesArr;
                 var arraySetSeats = Array.from(listSeats);
                 var listSeatsArr = [];
-                
+
                 for (var i = 0; i < arraySetSeats.length; i++) {
                     listSeatsArr.push({id: i, name:arraySetSeats[i]});
                 }
                 vm.planesSeats = listSeatsArr;
-                
+
                 for (var i = 0; i < vm.planesCompanies.length; i++) {
                     vm.companies.push(vm.planesCompanies[i].name);
                 }
@@ -2221,8 +2252,8 @@
                           .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                           .then(function(data){
 
-                              loadGlobal(data, false,false);                       
-                              saveOtherInfoInTrips(data);                   
+                              loadGlobal(data, false,false);
+                              saveOtherInfoInTrips(data);
 
                               vm.countBusSearch = vm.countBusSearch + 1;
                               if(vm.countBusSearch == 3){
@@ -2284,7 +2315,7 @@
                         if(!vm.hasBusTrips){
                             vm.hasBusTrips = data.hasBusTrips;
                             if(data.isMixedTrips){
-                              vm.hasBusTrips = true; 
+                              vm.hasBusTrips = true;
                             }
                         }
                         $('.pikaday__display').prop('disabled', false);
@@ -2360,84 +2391,87 @@
                   }
             }
 
-            function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry) {
-                  if (returnDate == "") {
-                      vm.searchingTripsPlane = true; // Buscabdo trenes
+            function callPlanes(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, type) {
+
+              vm.searchingTripsPlane = true; // Buscando aviones
+              planesFactory
+                  .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
+                  .then(function (data) {
                       planesFactory
-                          .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
-                          .then(function (data) {
-                              planesFactory
-                                  .getApiStatus(data.status)
-                                  .then(function (data1) {
-                                      if (data1.progress != 0 && data1.results !=0) {
-                                          planesFactory
-                                              .getApiData(data.data)
-                                              .then(function (data2) {
-                                                  processPlanes(data2);
-                                              })
-                                              .catch(function (){
-                                                  catchPlanes();
-                                              })
-                                      }else{
-                                          $timeout(function () {
-                                              planesFactory
-                                                  .getApiStatus(data.status)
-                                                  .then(function (data3) {
-                                                      if (data3.progress != 0 && data3.results !=0) {
-                                                          planesFactory
-                                                              .getApiData(data.data)
-                                                              .then(function (data4) {
-                                                                  processPlanes(data4);
-                                                              })
-                                                              .catch(function (){
-                                                                  catchPlanes();
-                                                              })
-                                                      }else{
-                                                          $timeout(function () {
-                                                              planesFactory
-                                                                  .getApiStatus(data.status)
-                                                                  .then(function (data5) {
-                                                                      if (data5.progress != 0 && data5.results !=0) {
-                                                                          planesFactory
-                                                                              .getApiData(data.data)
-                                                                              .then(function (data6) {
-                                                                                  processPlanes(data6);
-                                                                              })
-                                                                              .catch(function (){
-                                                                                  catchPlanes();
-                                                                              })
-                                                                      }else{
+                          .getApiStatus(data.status)
+                          .then(function (data1) {
+                              if (data1.progress != 0 && data1.results !=0) {
+                                  planesFactory
+                                      .getApiData(data.data)
+                                      .then(function (data2) {
+                                        if (type === 1) {
+                                            processPlanes(data2);
+                                        }else{
+                                            processPlanesReturn(data2);
+                                        }
+                                      })
+                                      .catch(function (){
+                                          catchPlanes();
+                                      })
+                              }else{
+                                  $timeout(function () {
+                                      planesFactory
+                                          .getApiStatus(data.status)
+                                          .then(function (data3) {
+                                              if (data3.progress != 0 && data3.results !=0) {
+                                                  planesFactory
+                                                      .getApiData(data.data)
+                                                      .then(function (data4) {
+                                                          if (type === 1) {
+                                                              processPlanes(data4);
+                                                          }else{
+                                                              processPlanesReturn(data4);
+                                                          }
+                                                      })
+                                                      .catch(function (){
+                                                          catchPlanes();
+                                                      })
+                                              }else{
+                                                  $timeout(function () {
+                                                      planesFactory
+                                                          .getApiStatus(data.status)
+                                                          .then(function (data5) {
+                                                              if (data5.progress != 0 && data5.results !=0) {
+                                                                  planesFactory
+                                                                      .getApiData(data.data)
+                                                                      .then(function (data6) {
+                                                                          if (type === 1) {
+                                                                              processPlanes(data6);
+                                                                          }else{
+                                                                              processPlanesReturn(data6);
+                                                                          }
+                                                                      })
+                                                                      .catch(function (){
                                                                           catchPlanes();
-                                                                      }
-                                                                  })
-                                                                  .catch(function (){
-                                                                      catchPlanes();
-                                                                  })
-                                                          }, 5000);
-                                                      }
-                                                  })
-                                                  .catch(function (){
-                                                      catchPlanes();
-                                                  })
-                                          }, 5000);
-                                      }
-                                  })
-                                  .catch(function (){
-                                      catchPlanes();
-                                  })
+                                                                      })
+                                                              }else{
+                                                                  catchPlanes();
+                                                              }
+                                                          })
+                                                          .catch(function (){
+                                                              catchPlanes();
+                                                          })
+                                                  }, 5000);
+                                              }
+                                          })
+                                          .catch(function (){
+                                              catchPlanes();
+                                          })
+                                  }, 5000);
+                              }
                           })
                           .catch(function (){
                               catchPlanes();
                           })
-                  } else {
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if(vm.countBusSearch == 3){
-                              vm.searchingTripsBus = false;
-                        }
-                        vm.searchingTripsPlane = false;
-                        $('.pikaday__display').prop('disabled', false);
-                        processCountOrder();
-                  }
+                  })
+                  .catch(function (){
+                      catchPlanes();
+                  })
 
             }
 
@@ -2499,6 +2533,15 @@
                   vm.lowestPricePlane = getLowestPlanes(data.tickets, 2);
                   vm.lowestDurationPlane = getLowestPlanes(data.tickets, 1);
                   planesManager(data.tickets);
+            }
+
+            function processPlanesReturn (data) {
+                  vm.planesTripsReturn = [];
+                  angular.forEach(data.tickets, function(value, key) {
+                        var split = value.data.redirect.split('?token=');
+                        value.data.returnRedirect = split[1];
+                        vm.planesTripsReturn.push(value.data);
+                  });
             }
 
             function catchTravelsFactory (err) {
@@ -2687,13 +2730,13 @@
             }
 
             function diffDays(f1,f2){
-                var aFecha1 = f1.split('/'); 
-                var aFecha2 = f2.split('/'); 
-                var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
-                var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+                var aFecha1 = f1.split('/');
+                var aFecha2 = f2.split('/');
+                var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
+                var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
                 var dif = fFecha2 - fFecha1;
-                var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
-                
+                var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+
                 return dias;
             }
 
