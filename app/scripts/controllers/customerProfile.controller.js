@@ -51,7 +51,6 @@
                     }
                 })
                 .catch(function(err) {
-                    console.log(err);
                     if (err == 401) {
                         $auth.logout()
                             .then(function() {
@@ -86,13 +85,11 @@
             customerInfoFactory
                 .postNewAvatar($scope.myCroppedImage)
                 .then(function (data) {
-                    console.log(data);
                     callCustomerInfo();
                     $('#crop-img').modal('hide');
                     vm.uploading = false;
                 })
                 .catch(function (err) {
-                    console.log(err);
                     vm.error = true;
                     vm.uploading = false;
                 })

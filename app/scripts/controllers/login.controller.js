@@ -36,8 +36,6 @@
                     $location.path("/customer-profile")
                 })
                 .catch(function(response) {
-                    // Si ha habido errores llegamos a esta parte
-                    console.log(response);
                     vm.error = true;
                 });
         }
@@ -55,7 +53,7 @@
                         vm.passChanged = true;
                     })
                     .catch(function (err) {
-                        console.log(err);
+                        vm.error = true;
                     })
                 $('#myModal').modal('hide');
             }

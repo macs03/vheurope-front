@@ -217,7 +217,6 @@
                     //sessionStorageService.setFlag(true);
                 })
                 .catch(function (err) {
-                    console.log(err);
                     //  callback();
                 });
             /*
@@ -242,7 +241,6 @@
         	vm.searchTrips = function () {
 
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
-                    console.log(value+key);
                     if(vm.myOptionsOrigin[key].rt === vm.origin){
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
@@ -272,7 +270,6 @@
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.originCity === vm.destinationCity || vm.originCity =="" || vm.destinationCity =="" ) {
-                    console.log("error cities");
                     vm.good = false;
                     cityError();
                 } else {
@@ -292,11 +289,6 @@
                         vm.returnDateUnix = new Date(newDate4).getTime();
 
                         if ( newDate1 <= newDate2) {
-                            console.log('IF');
-                            console.log(vm.originCity);
-                        	console.log(vm.destinationCity);
-                        	console.log('departure: '+vm.dates.departureDate);
-                            console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(vm.originCity,vm.originCountry, vm.destinationCity,vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers,vm.originCountryCode,vm.destinationCountryCode,vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             sessionStorageService.setPassengers(vm.passengersAdult,vm.passengersChild,vm.passengersBaby);
                             sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
@@ -304,20 +296,14 @@
                             $location.path ("/search/"+formatOrigin+"/"+vm.originCountryCode+"/"+formatDestination+"/"+vm.destinationCountryCode+"/"+vm.departureDateUnix+"/"+vm.returnDateUnix);
 
                         }else {
-                            console.log("error dates");
                             vm.good = false;
                             dateError();
                         }
                     }else{
-                        console.log('ELSE');
                         var date1 = vm.dates.departureDate;
                         var date2 = vm.dates.returnDate;
                         var vD1 = date1.split("/")
                         var vD2 = date2.split("/")
-                        console.log(vm.originCity);
-                    	console.log(vm.destinationCity);
-                    	console.log('departure: '+vm.dates.departureDate);
-                        console.log('returns: '+vm.dates.returnDate);
                         var newDate3 = new Date(vD1[2],vD1[1]-1,vD1[0]);
                         var newDate4 = new Date(vD2[2],vD2[1]-1,vD2[0]);
                         vm.departureDateUnix = new Date(newDate3).getTime();

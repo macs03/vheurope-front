@@ -39,7 +39,6 @@
                     $location.path("/customer-profile");
                 })
                 .catch(function(response) {
-                    console.log(response);
                     // Si ha habido errores, llegaremos a esta función
                 });
         }

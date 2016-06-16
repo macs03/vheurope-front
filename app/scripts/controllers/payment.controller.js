@@ -56,7 +56,6 @@
             vm.departureData = paymentData.departure;
             vm.returnData = paymentData.returns;
             vm.isRoundTrip = false;
-            console.log(vm.returnData);
             if (vm.returnData.length > 0){
                 if(vm.returnData[0].hasOwnProperty('company')){
                      vm.isRoundTrip = true;
@@ -72,11 +71,11 @@
             }
 
             vm.validatePromo = function(){
-                console.log('Agregar logica de validacion de promociones');
+                //console.log('Agregar logica de validacion de promociones');
             }; 
 
             vm.validatePayment = function(){
-                console.log('Agregar logica de validacion de pago');
+                //console.log('Agregar logica de validacion de pago');
             };
 
             function paying(name,lastname,dni,email,card,month,year,cvv) {
@@ -90,7 +89,6 @@
                         $location.path ("/success");
                     })
                     .catch(function(err){
-                        console.log(err);
                         vm.msgError = err;
                         vm.errorPayment = true;
                         paymentError();

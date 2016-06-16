@@ -289,7 +289,6 @@ angular
             .getAll($stateParams.idDeparture,$stateParams.idReturn)
             .then(function (data) {
                 vm.isLoading = false;
-                console.log(data);
                 vm.trips.isRoundTrip = data.isRoundTrip;
                 vm.trips.round = data.departure;
                 vm.trips.return = data.return;
@@ -297,8 +296,6 @@ angular
                 vm.ageCategories = data.ageCategories;
                 vm.genders = data.genders;
                 vm.docTypes = data.docTypes;
-                console.log(vm.trips.round);
-                console.log(vm.trips.return);
                 var title = "Resertrip "+data.departure[0].origin+"-"+data.departure[0].destination;
                 $rootScope.$broadcast('titleEvent', title);
                 vm.passengers = data.totalPeople;
@@ -721,7 +718,6 @@ angular
                         $location.path (url);
                     }, 500);
                 }, 12000);
-                console.log(err);
                 vm.msgError = err;
                 vm.errorSeat = true;
                 seatError();
@@ -741,16 +737,12 @@ angular
 
         var aux = 0
         vm.addSeat = function () {
-        	console.log('SEAT');
             var counter = 5;
             $rootScope.$broadcast('counterEvent', counter, true);
-  			console.log(vm.seatInSelection);
   			if(vm.seatInSelection.update != true){
                 //Eventos Google Analytics
                 $analytics.eventTrack('Select Seat', {  category: 'Seat', label: vm.seatInSelection.seatNumber });
-                console.log(vm.seatInSelection);
                 if(vm.seatInSelection.trip === 0){
-                    console.log("Departure");
                     if (vm.seatRound) {
                         vm.seatsSelectedDeparture2.push(angular.copy(vm.seatInSelection));
                     }else{
@@ -772,7 +764,6 @@ angular
                             vm.selectDepartureSeat = false;
                             vm.resetSeatInSelection();
                             if(vm.seatsSelectedDeparture.length == vm.passengers){
-                                console.log("seats full");
                                 vm.allSeats = true;
                             }else{
                                 vm.allSeats = false;
@@ -797,7 +788,6 @@ angular
                             }
                         }else{
                             if(vm.seatsSelectedDeparture.length == vm.passengers && vm.selectAgain  && vm.seatsSelectedReturn.length == vm.passengers){
-                                console.log("seats full");
                                 vm.allSeats = true;
                                 vm.seatReturn = true;
                             }
@@ -805,7 +795,6 @@ angular
                     }
                 }
                 if(vm.seatInSelection.trip === 1){
-                    console.log("return");
                     if (vm.seatReturn) {
                         vm.seatsSelectedReturn2.push(angular.copy(vm.seatInSelection));
                         vm.selectDepartureSeat = true;
@@ -825,7 +814,6 @@ angular
                     }else{
                         vm.selectDepartureSeat = true;
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
-                            console.log("seats full");
                             vm.allSeats = true;
                         }
                         vm.resetSeatInSelection();
@@ -844,15 +832,12 @@ angular
                         vm.seatInSelection.seatNumber = vm.returnSeats[vm.autoPassengers].number;
                         vm.seatsSelectedReturn.push(angular.copy(vm.seatInSelection));
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
-                            console.log("seats full");
                             vm.allSeats = true;
                         }
                     }
                 }
 			}else{
-                console.log("SEAT UPDATE");
                 vm.selectDepartureSeat = false;
-                console.log(vm.seatInSelection.trip);
                 if(vm.seatInSelection.trip === 0){
                     if($stateParams.idReturn == "-1"){
                         if (vm.trips.round.length == 2) {
@@ -869,7 +854,6 @@ angular
                         vm.resetSeatInSelection();
                         vm.selectDepartureSeat = true;
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
-                            console.log("full seats");
                             vm.allSeats = true;
                         }
                     }else{
@@ -904,16 +888,11 @@ angular
                             vm.selectDepartureSeat = false;
                         }
                         if(vm.seatsSelectedDeparture.length == vm.passengers){
-                                console.log("full seats");
                                 vm.allSeats = true;
                             }
                     }
                 }
             }
-            console.log("departure");
-            console.log(vm.seatsSelectedDeparture);
-            console.log("return");
-            console.log(vm.seatsSelectedReturn);
             if (vm.trips.round.automaticSeat) {
                 vm.autoPassengers --;
             }
@@ -926,15 +905,12 @@ angular
 		};
 
 		vm.releaseSeat = function (trip, floor, seatNumber, update,index, bus) {
-            console.log(seatNumber+'-'+trip);
             if(trip === 0){
-                console.log('IDA');
                 if (bus == 0) {
                     if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
                         vm.seatRound = false;
-                        console.log("reset");
                     }else{
                         vm.selectDepartureSeat = true;
                         vm.allSeats = false;
@@ -951,7 +927,6 @@ angular
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
                         vm.seatRound = true;
-                        console.log("reset");
                     }else{
                         vm.selectDepartureSeat = true;
                         vm.allSeats = false;
@@ -968,12 +943,10 @@ angular
                     vm.seatInSelection.update = false;
                 }
             }else{
-                console.log('VUELTA');
                 if (bus == 0) {
                     if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
-                        console.log("reset");
                         vm.seatReturn = false;
                     }else{
                         vm.selectDepartureSeat = false;
@@ -989,7 +962,6 @@ angular
                     if (vm.seatsSelectedDeparture.length === 0 && vm.seatsSelectedReturn.length === 0) {
                         vm.allSeats = false;
                         vm.selectDepartureSeat = true;
-                        console.log("reset");
                         vm.seatReturn = true;
                     }else{
                         vm.selectDepartureSeat = false;
@@ -1020,8 +992,6 @@ angular
 		vm.deleteSeat = function (trip, floor, seatNumber, update, index, bus) {
             //Eventos Google Analytics
             $analytics.eventTrack('Unselect Seat', {  category: 'Seat', label: seatNumber });
-            console.log(index);
-            console.log(bus);
             if (trip === 0) {
                 if (bus == 0) {
                     if(vm.seatsSelectedDeparture[index].trip === trip && vm.seatsSelectedDeparture[index].seatNumber === seatNumber) {
@@ -1031,7 +1001,7 @@ angular
                                 vm.seatsSelectedDeparture.splice(index, 1);
                                 vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                             }else{
-                                console.log("Do not delete");
+                                //Do not delete
                             }
                         }else{
                             vm.seatInSelection = vm.seatsSelectedDeparture[index];
@@ -1047,7 +1017,7 @@ angular
                                 vm.seatsSelectedDeparture2.splice(index, 1);
                                 vm.releaseSeat (trip, floor, seatNumber, update,index,bus);
                             }else{
-                                console.log("Do not delete");
+                                //Do not delete
                             }
                         }else{
                             vm.seatInSelection = vm.seatsSelectedDeparture2[index];
@@ -1065,7 +1035,7 @@ angular
                                 vm.seatsSelectedReturn.splice(index, 1);
                                 vm.releaseSeat (trip, floor, seatNumber, update,index, bus);
                             }else{
-                                console.log("Do no delete");
+                                //Do not delete
                             }
                         }else{
                             vm.seatInSelection = vm.seatsSelectedReturn[index];
@@ -1081,7 +1051,7 @@ angular
                                 vm.seatsSelectedReturn2.splice(index, 1);
                                 vm.releaseSeat (trip, floor, seatNumber, update,index);
                             }else{
-                                console.log("Do no delete");
+                                //Do not delete
                             }
                         }else{
                             vm.seatInSelection = vm.seatsSelectedReturn2[index];
@@ -1094,7 +1064,6 @@ angular
 		};
 
         function selectSeatAutomatic(trip,index) {
-            console.log("Automatic Seat");
             $analytics.eventTrack('Select Seat Automatic', {  category: 'Seat', label: 'Automatic Seats' });
             if (trip == 0) {
                 vm.seatInSelection.trip = trip;
@@ -1127,8 +1096,6 @@ angular
 			//seatNUmber = Numero de asiento
 			//trip => 0 = ida, 2= vuelta
 			//floor = Numero de piso
-            console.log(index);
-			console.log(item);
             vm.index = index;
 
 			if(item != null ){
@@ -1240,7 +1207,6 @@ angular
                     $location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                 })
                 .catch(function(err){
-                    console.log(err);
                     vm.msgErrorReserve = err;
                     vm.errorReserve = true;
                     reserveError();

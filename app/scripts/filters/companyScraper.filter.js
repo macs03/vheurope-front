@@ -16,8 +16,6 @@
       function companyScraperFilter() {
         return function(input, companies) {
             var salida = [];
-            // console.log('companies scraper');
-            // console.log(companies);
             angular.forEach(input, function(value,key) {
                 for (var i = 0; i < companies.length; i++) {
                     if (input[key].enterprise__name === companies[i] ) {
