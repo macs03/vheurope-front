@@ -500,6 +500,7 @@
                     vm.showCombineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -509,6 +510,7 @@
                     vm.showCombineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -517,6 +519,7 @@
                     vm.showBus = false;
                     vm.showTrain = true;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
                 }
@@ -525,6 +528,7 @@
                     vm.showBus = false;
                     vm.showTrain = false;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -533,6 +537,7 @@
                     vm.showBus = false;
                     vm.showTrain = false;
                     vm.showPlane = true;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_plane').addClass('active');
                 }
@@ -542,6 +547,7 @@
                     vm.showCombineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -550,6 +556,7 @@
                     vm.showBus = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     $('.tab-filter').removeClass('active');
                     $('.tab_bus').addClass('active');
                 }
@@ -558,6 +565,7 @@
                     vm.showBus = false;
                     vm.showTrain = true;
                     vm.showPlane = false;
+                    vm.showCar = false;
                     vm.showCombineTrips = true;
                     $('.tab-filter').removeClass('active');
                     $('.tab_train').addClass('active');
@@ -567,7 +575,8 @@
                     vm.showBus = false;
                     vm.showTrain = false;
                     vm.showPlane = false;
-                    vm.showCar = true;
+                    vm.showCar = vm.hasBusTrips ? false : true;
+                    vm.showCombineTrips = vm.isMixedTrips;
                     $('.tab-filter').removeClass('active');
                     $('.tab_car').addClass('active');
                 }
