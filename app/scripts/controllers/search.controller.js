@@ -1123,10 +1123,10 @@
                         if(data.companies.length > 0){
                             angular.forEach(data.companies, function(value, key) {
                                 vm.globalCompanies.push(value);
-                                if (data.hasCarTrips || data.hasBusTrips || data.hasTrainTrips) {
-                                    setCompaniesAndSeatsReset(data.companies);
-                                }
                             });
+                            if (data.hasCarTrips || data.hasBusTrips || data.hasTrainTrips) {
+                              setCompaniesAndSeatsReset(data.companies);
+                            }
                         }
 
                         
