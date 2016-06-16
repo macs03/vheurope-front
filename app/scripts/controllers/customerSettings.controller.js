@@ -48,7 +48,6 @@
                     }
                 })
                 .catch(function(err) {
-                    console.log(err);
                     if (err == 401) {
                         $auth.logout()
                             .then(function() {
@@ -65,11 +64,10 @@
             customerInfoFactory
                 .putNewData(vm.firstName,vm.lastName,vm.customerData.identificationNumber,vm.customerData.email,vm.customerData.address,vm.customerData.birthday,vm.customerData.phoneNumber, vm.customerData.contactName, vm.customerData.contactEmail, vm.customerData.contactPhoneNumber)
                 .then(function (data) {
-                    console.log(data);
                     vm.wellDoneData = true;
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    vm.error = true;
                 })
         }
 
@@ -85,11 +83,9 @@
             customerInfoFactory
                 .postNewPassword(vm.currentPassword, vm.newPassword, vm.newPasswordConfirm)
                 .then(function (data) {
-                    console.log(data);
                     vm.wellDonePassword = true;
                 })
                 .catch(function (err) {
-                    console.log(err);
                     vm.error = true;
                 })
         }
@@ -113,7 +109,6 @@
                         });
                 })
                 .catch(function (err) {
-                    console.log(err);
                     vm.error = true;
                 })
         }

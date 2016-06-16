@@ -426,7 +426,6 @@
                     //sessionStorageService.setFlag(true);
                 })
                 .catch(function (err) {
-                    console.log(err);
                     //  callback();
                 });
 
@@ -717,9 +716,6 @@
                     car = 120;
                 }
 
-                console.log(bus+'-'+train+'-'+plane+'-'+car);
-                console.log(vm.lowestDurationBus+'-'+vm.lowestDurationTrain+'-'+vm.lowestDurationPlane+'-'+vm.lowestDurationCar);
-
                 barList = [bus,train,plane,car];
                 mayor = barList[0];
                 pos = 0;
@@ -770,7 +766,6 @@
                   var pos = 0;
 
                   if(tipo == 1){
-                        //console.log(trips);
                         if(trips != undefined && trips.length > 0){
                               menor = trips[0].data.duration;
                               pos = 0;
@@ -790,7 +785,6 @@
                               return menor;
                         }
                   }else{
-                        //console.log(trips);
                         if(trips != undefined && trips.length > 0){
                               menor = trips[0].data.price;
                               pos = 0;
@@ -849,8 +843,6 @@
             var getLowest = function(){
                 var menor = 0;
                 var pos = 0;
-                console.log('GLOBAL EN LOWEST');
-                console.log(vm.globalTrips);
                 //BUSCO EL VIAJE MAS CORTO EN BUS
                 if(vm.globalTrips.length > 0){
                     //Filtro los viajes en tren
@@ -859,7 +851,6 @@
                     });
 
                     if(tt.length > 0){
-                        console.log('SI HAY VIAJES DE TREN');
                         //Busco la duracion menor en trenes
                         menor = tt[0].durationMinutes;
                         pos = 0;
@@ -871,8 +862,6 @@
                         }
 
                         vm.lowestDurationTrain = tt[pos].durationMinutes;
-                        console.log('DURACION MENOR EN TREN')
-                        console.log(vm.lowestDurationTrain);
 
                         //Busco el precio menor en trenes
                         menor = tt[0].price;
@@ -885,8 +874,6 @@
                         }
 
                         vm.lowestPriceTrain = tt[pos].price;
-                        console.log('PRECIO MENOR EN TREN')
-                        console.log(vm.lowestPriceTrain);
                     }
 
                     //Filtro los viajes en bus
@@ -895,7 +882,6 @@
                     });
 
                     if(tb.length > 0){
-                        console.log('SI HAY VIAJES DE BUS');
                         //Busco la duracion menor en trenes
                         menor = tb[0].durationMinutes;
                         pos = 0;
@@ -909,8 +895,6 @@
                         if (vm.lowestDurationBus > tb[pos].durationMinutes || vm.lowestDurationBus == 0) {
                               vm.lowestDurationBus = tb[pos].durationMinutes;
                         }
-                        console.log('DURACION MENOR EN BUS')
-                        console.log(vm.lowestDurationBus);
 
                         //Busco el precio menor en buses
                         menor = tb[0].price;
@@ -923,8 +907,6 @@
                         }
 
                         vm.lowestPriceBus = tb[pos].price;
-                        console.log('PRECIO MENOR EN TREN')
-                        console.log(vm.lowestPriceBus);
                     }
 
                     //Filtro los viajes en avion
@@ -933,7 +915,6 @@
                     });
 
                     if(tp.length > 0){
-                        console.log('SI HAY VIAJES DE AVION');
                         //Busco la duracion menor en trenes
                         menor = tp[0].durationMinutes;
                         pos = 0;
@@ -945,8 +926,6 @@
                         }
 
                         vm.lowestDurationPlane = tp[pos].durationMinutes;
-                        console.log('DURACION MENOR EN AVION')
-                        console.log(vm.lowestDurationPlane);
 
                         //Busco el precio menor en aviones
                         menor = tp[0].price;
@@ -959,8 +938,6 @@
                         }
 
                         vm.lowestPricePlane = tp[pos].price;
-                        console.log('PRECIO MENOR EN AVION')
-                        console.log(vm.lowestPricePlane);
                     }
 
                     //Filtro los viajes en carro
@@ -969,7 +946,6 @@
                     });
 
                     if(tc.length > 0){
-                        console.log('SI HAY VIAJES DE CARRO');
                         //Busco la duracion menor en carros
                         menor = tc[0].durationMinutes;
                         pos = 0;
@@ -981,8 +957,6 @@
                         }
 
                         vm.lowestDurationCar = tc[pos].durationMinutes;
-                        console.log('DURACION MENOR EN AVION')
-                        console.log(vm.lowestDurationPlane);
 
                         //Busco el precio menor en aviones
                         menor = tc[0].price;
@@ -995,8 +969,6 @@
                         }
 
                         vm.lowestPriceCar = tc[pos].price;
-                        console.log('PRECIO MENOR EN CARRO')
-                        console.log(vm.lowestPriceCar);
                     }
 
                     updatePercentageBar2();
@@ -1412,7 +1384,6 @@
                     }
 
             }else{
-                console.log('Por AQUI');
 
                 var origin = $stateParams.origin.split(",");
                 var destination = $stateParams.destination.split(",");
@@ -1596,7 +1567,6 @@
                                     }else{
                                        vm.destinationId = destinationPlaneCity[0];
                                     }
-                                    console.log(vm.originId+'-'+vm.destinationId);
                                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
                                     var destiniesPlanes = sessionStorageService.getIdForPlanes();
                                     if(destiniesPlanes.origin && destiniesPlanes.destination) {
@@ -1611,11 +1581,11 @@
                                     }
                                 })
                                 .catch(function (err) {
-                                    console.log('Error');
+                                    //Error
                                 });
                         })
                         .catch(function (err) {
-                            console.log('Error');
+                            //Error
                         });
                 }else{
                     sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
@@ -1673,7 +1643,6 @@
             vm.multipleChange = false;
             $scope.$watch('search.origin', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
                     vm.companies = [];
@@ -1688,7 +1657,6 @@
             }, true);
             $scope.$watch('search.destination', function(newVal, oldVal){
                 if (newVal != oldVal && newVal !== undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
                     vm.companies = [];
@@ -1699,7 +1667,6 @@
             }, true);
             $scope.$watch('search.dates.departureDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal !== undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
                     vm.companies = [];
@@ -1710,7 +1677,6 @@
             }, true);
             $scope.$watch('search.dates.returnDate', function(newVal, oldVal){
                 if (newVal != oldVal && newVal !== undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     if (oldVal != 'Invalid date') {
                         vm.seats = [];
                         vm.seatsReset = [];
@@ -1724,7 +1690,6 @@
 
             $scope.$watch('search.passengers', function(newVal, oldVal){
                 if (newVal != oldVal && newVal != undefined) {
-                    console.log('changed '+oldVal+" to "+newVal);
                     vm.seats = [];
                     vm.seatsReset = [];
                     vm.companies = [];
@@ -1767,7 +1732,6 @@
                 var origin = vm.origin.split(',');
                 var destination = vm.destination.split(',');
                 if (vm.origin === vm.destination || vm.origin == '' || vm.destination == '' ) {
-                    console.log("error cities");
                     vm.good = false;
                     cityError();
                 } else {
@@ -1775,8 +1739,6 @@
 
                     var origen = vm.originCity ? vm.originCity : origin[0];
                     var destino = vm.destinationCity ? vm.destinationCity : destination[0];
-
-                    console.log(origen + " - " + destino);
 
                     if (vm.dates.returnDate != '' && vm.dates.returnDate != 'Invalid date') {
                         var date1 = vm.dates.departureDate;
@@ -1794,7 +1756,6 @@
                             vm.good = true;
 
                         }else {
-                            console.log("error dates");
                             vm.good = false;
                             dateError();
                         }
@@ -1994,7 +1955,6 @@
                  urlTrainFactory
                     .getUrl(vm.departureId, id)
                     .then(function(data){
-                        //console.log(data);
                         if(data.url != null ){
                            window.open(data.url,'_blank');
                         }else{
@@ -2004,7 +1964,7 @@
                         }
                     })
                     .catch(function(err){
-                        console.log(err);
+                        //Error
                     })
             }
 

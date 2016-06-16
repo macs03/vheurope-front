@@ -47,7 +47,7 @@
                     vm.myOptions = data;
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    //console.log(err);
                 });
 
 
@@ -55,7 +55,6 @@
                 var origin = vm.origin.split(",");
                 var destination = vm.destination.split(",");
                 if (vm.origin === vm.destination || vm.origin =="" || vm.destination =="" ) {
-                    console.log("error cities");
                     vm.good = false;
                 } else {
                     if(vm.dates.returnDate=="Invalid date" || vm.dates.returnDate==undefined) vm.dates.returnDate=""
@@ -71,22 +70,13 @@
                         var newDate2 = new Date(vD2[2],vD2[1],vD2[0]);
 
                         if ( newDate1 <= newDate2) {
-                            console.log(vm.origin);
-                        	console.log(vm.destination);
-                        	console.log('departure: '+vm.dates.departureDate);
-                            console.log('returns: '+vm.dates.returnDate);
                             utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
                             vm.good = true;
 
                         }else {
-                            console.log("error dates");
                             vm.good = false;
                         }
                     }else{
-                        console.log(vm.origin);
-                    	console.log(vm.destination);
-                    	console.log('departure: '+vm.dates.departureDate);
-                        console.log('returns: '+vm.dates.returnDate);
                         utilityService.setData(origin[0],origin[1], destination[0],destination[1], vm.dates.departureDate, vm.dates.returnDate);
                         vm.good = true;
                     }

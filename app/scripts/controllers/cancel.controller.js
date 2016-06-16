@@ -33,12 +33,11 @@ angular
                 var dateDeparture = new Date(splitDeparture[2]+'/'+splitDeparture[1]+'/'+splitDeparture[0]);
                 var today = new Date();
                 if (dateDeparture.getTime() < today.getTime()) {
-                    console.log('no se puede anular');
                     vm.unableCancel = true;
                 }
             })
             .catch(function (err) {
-                console.log(err);
+                //console.log(err);
             });
 
         function cancelTrip(uuid) {
@@ -48,7 +47,7 @@ angular
                     vm.cancelOk = "OK";
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    //console.log(err);
                 });
         }
     }

@@ -30,7 +30,6 @@
             })
             .catch(function(err) {
                 vm.searching = false;
-                console.log(err);
                 if (err == 401) {
                     $auth.logout()
                         .then(function() {
