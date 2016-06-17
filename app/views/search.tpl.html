@@ -1135,21 +1135,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
                               <!-- PESTAÑAS DE RESULTADOS IDA-->
                               <div class="row tabs-filter" >
-                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3" ng-class="{'disable-box':!search.returnBusFlag}">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
-                                  <div class="col-md-2 col-xs-4 np-tab pl0">
+                                  <div class="col-md-2 col-xs-4 np-tab pl0" ng-class="{'disable-box':!search.returnTrainFlag}">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
-                                  <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 pl0" ng-class="{'disable-box':!search.returnPlaneFlag}">
                                       <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
@@ -1221,14 +1221,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                           </div>
                                         </div>
 
-                                        <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                        <a class="" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                        <a class="" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a class="" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                          <!-- BOTON PARA TREN-->
-                                        <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
 
@@ -1238,14 +1238,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
 
-                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
 
-                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <!-- BOTON PARA TREN-->
-                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+                                      <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
@@ -1392,7 +1392,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 col-xs-12">
-                                                     <a ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.start*1000,trip.duration,trip.end*1000,trip.price,trip.type__name,trip.enterprise__name,trip.enterprise__image,trip.redirect)" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
+                                                     <a ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.start*1000,trip.duration,trip.end*1000,trip.price,trip.type__name,trip.enterprise__name,trip.enterprise__image,trip.redirect,trip.transportation)" class="btn theme-fucsia pull-right" style="margin-right: 20px;" translate>SEARCH.TRIPS.BUTTON</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1472,21 +1472,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <!-- PESTAÑAS DE RESULTADOS VUELTA-->
                               <div class="row tabs-filter" >
 
-                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3">
+                                  <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3" ng-class="{'disable-box':!search.returnBusFlag}">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
                                           <i class="fa fa-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
-                                  <div class="col-md-2 col-xs-4 np-tab pl0">
+                                  <div class="col-md-2 col-xs-4 np-tab pl0" ng-class="{'disable-box':!search.returnTrainFlag}">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
                                           <i class="fa fa-train fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
-                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0">
+                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0" ng-class="{'disable-box':!search.returnPlaneFlag}">
                                       <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
                                           <i class="fa fa-plane fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>

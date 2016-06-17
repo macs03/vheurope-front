@@ -1877,7 +1877,34 @@
                 vm.destination = destination+", "+countryDestination;
             }
 
-            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect) {
+            vm.returnTrainFlag = true;
+            vm.returnBusFlag = true;
+            vm.returnPlaneFlag = true;
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect,transportType) {
+                vm.returnTrainFlag = true;
+                vm.returnBusFlag = true;
+                vm.returnPlaneFlag = true;
+                if (transportType != undefined && transportType != null && transportType != '') {
+                    switch (transportType) {
+                      case "train":
+                        vm.returnTrainFlag = true;
+                        vm.returnBusFlag = false;
+                        vm.returnPlaneFlag = false;
+                        break;
+                      case "bus":
+                        vm.returnTrainFlag = false;
+                        vm.returnBusFlag = true;
+                        vm.returnPlaneFlag = false;
+                        break;
+                      case "airplane":
+                        vm.returnTrainFlag = false;
+                        vm.returnBusFlag = false;
+                        vm.returnPlaneFlag = true;
+                        break;
+                      default:
+                        break;
+                    }
+                }
                 if(redirect != null || redirect != undefined){
                     var split = redirect.split('&');
                     vm.roundPlaneRedirect = split[0];
