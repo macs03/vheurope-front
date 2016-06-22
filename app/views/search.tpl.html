@@ -617,7 +617,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
 
                     </div> -->
-                    <div class="col-md-2 col-xs-3 np-tab pr5" ng-show="search.showCombineTrips" style="margin-left: .7em;">
+                    <div class="col-md-2 col-xs-3 np-tab pr5" ng-show="search.showCombineTrips" style="margin-left: .35em;">
                         <div class="tab-filter active tab_all" data-type="all" id="tab_all" ng-click="search.showTripsType('all')"  >
                             <i class="fa fa-random fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
@@ -684,7 +684,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="new-results" id="new-results-tickeables">
                             <div class="results list" id="trips_tickeables" >
 
-                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane', 'hidden-car': !search.showCar  && trip.transportType == 'car'}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue" >
+                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane', 'hidden-car': !search.showCar  && trip.transportType == 'car', 'remove-border-top-left': $index == 0}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue" >
                                  <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                                 <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
@@ -902,7 +902,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     <!-- AVIONES -->
                           <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus && !search.returnTripPlane">
                             <div class="results list" id="trips_tickeables" >
-                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar'}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
+                                <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar', 'remove-border-top-left': $index == 0}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
@@ -1800,7 +1800,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             <div id="mixed-results" ng-show="search.globalMixedTrips.length > 0">
                     <div class="new-results">
                         <div class="results list" id="trips_mixed" >
-                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus}">
+                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus, 'remove-border-top-left': $index == 0}">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <small class="text-muted smallest-font truncate">Varias empresas</small>
@@ -1930,7 +1930,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             <div class="allTrips" ng-show="search.combineTrips">
                 <div class="new-results" id="new-results-tickeables">
                     <div class="results list" id="trips_tickeables" >
-                        <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-repeat="trip in search.allTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue track by $index" >
+                        <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-repeat="trip in search.allTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue track by $index" ng-class="{'remove-border-top-left': $index == 0}">
                          <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                         <div class="row" >
                             <div class="col-md-3 hidden-xs hidden-sm">
