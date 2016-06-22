@@ -136,6 +136,7 @@
     app.config(['$translateProvider', function ($translateProvider) {
       $translateProvider.translations('en', translationsEN);
       $translateProvider.translations('es', translationsES);
+      $translateProvider.translations('fr', translationsFR);
 
       $translateProvider.preferredLanguage('es');
       $translateProvider.useSanitizeValueStrategy();
@@ -196,6 +197,7 @@
             "BLOG": "Blog",
             "SPANISH": "Spanish",
             "ENGLISH": "English",
+            "FRENCH": "French",
             "MESSAGE": "All your transportation options",
             "LANGUAGE": "Language"
           },
@@ -479,6 +481,7 @@
         "BLOG": "Blog",
         "SPANISH": "Español",
         "ENGLISH": "Inglés",
+        "FRENCH": "Francés",
         "MESSAGE": "Todas tus opciones de transporte",
         "LANGUAGE": "Idioma"
       },
@@ -728,6 +731,9 @@
         "UPDATE_TEXT2": "Las contraseñas no coinciden",
         "UPDATE_TEXT3": "Revisa la contraseña actual"
       }
+    };
+    var translationsFR = {
+        
     };
 
 })();

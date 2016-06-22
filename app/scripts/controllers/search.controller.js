@@ -463,6 +463,7 @@
                         vm.showPlane = false;
                         vm.showTrain = false;
                         vm.showCar = false;
+                        vm.combineTrips = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_bus').addClass('active');
                         break;
@@ -471,6 +472,7 @@
                         vm.showPlane = false;
                         vm.showTrain = true;
                         vm.showCar = false;
+                        vm.combineTrips = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_train').addClass('active');
                         break;
@@ -479,6 +481,7 @@
                         vm.showPlane = true;
                         vm.showTrain = false;
                         vm.showCar = false;
+                        vm.combineTrips = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_plane').addClass('active');
                         break;
@@ -487,8 +490,18 @@
                         vm.showPlane = false;
                         vm.showTrain = false;
                         vm.showCar = true;
+                        vm.combineTrips = false;
                         $('.tab-filter').removeClass('active');
                         $('.tab_car').addClass('active');
+                        break;
+                    case 'all':
+                        $('.tab-filter').removeClass('active');
+                        $('.tab_all').addClass('active');
+                        vm.showBus = false;
+                        vm.showPlane = false;
+                        vm.showTrain = false;
+                        vm.showCar = false;
+                        vm.combineTrips = true;
                         break;
                 }
             }
@@ -496,23 +509,25 @@
             var updateTripsType = function(){
 
                 if(vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
-                    vm.showBus = true;
+                    vm.showBus = false;
                     vm.showCombineTrips = true;
+                    vm.combineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
                     vm.showCar = false;
                     $('.tab-filter').removeClass('active');
-                    $('.tab_bus').addClass('active');
+                    $('.tab_all').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
-                    vm.showBus = true;
+                    vm.showBus = false;
                     vm.showCombineTrips = true;
+                    vm.combineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
                     vm.showCar = false;
                     $('.tab-filter').removeClass('active');
-                    $('.tab_bus').addClass('active');
+                    $('.tab_all').addClass('active');
                 }
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
@@ -543,13 +558,14 @@
                 }
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips){
-                    vm.showBus = true;
+                    vm.showBus = false;
                     vm.showCombineTrips = true;
+                    vm.combineTrips = true;
                     vm.showTrain = false;
                     vm.showPlane = false;
                     vm.showCar = false;
                     $('.tab-filter').removeClass('active');
-                    $('.tab_bus').addClass('active');
+                    $('.tab_all').addClass('active');
                 }
 
                 if(!vm.hasTrainTrips && vm.hasBusTrips && !vm.hasPlaneTrips){
@@ -563,12 +579,13 @@
 
                 if(vm.hasTrainTrips && !vm.hasBusTrips && vm.hasPlaneTrips){
                     vm.showBus = false;
-                    vm.showTrain = true;
+                    vm.showTrain = false;
                     vm.showPlane = false;
                     vm.showCar = false;
                     vm.showCombineTrips = true;
+                    vm.combineTrips = true;
                     $('.tab-filter').removeClass('active');
-                    $('.tab_train').addClass('active');
+                    $('.tab_all').addClass('active');
                 }
 
                 if( vm.hasCarTrips && !vm.hasTrainTrips && !vm.hasBusTrips && !vm.hasPlaneTrips){
@@ -1137,7 +1154,8 @@
                         vm.showPlane = true;
                         vm.showTrain = true;
                         $('.tab-filter').removeClass('active');
-                        $('.fa-trip-type').removeClass('hidden');
+                        // $('.fa-trip-type').removeClass('hidden');
+                        $('#tab_all').addClass('active');
 
                     }else{
                         $('.fa-trip-type').addClass('hidden');
@@ -1877,7 +1895,34 @@
                 vm.destination = destination+", "+countryDestination;
             }
 
-            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect) {
+            vm.returnTrainFlag = true;
+            vm.returnBusFlag = true;
+            vm.returnPlaneFlag = true;
+            function departureSelect(type,id,origin,destination,departure,duration,arrival,price,typeService,companyName,logo,redirect,transportType) {
+                vm.returnTrainFlag = true;
+                vm.returnBusFlag = true;
+                vm.returnPlaneFlag = true;
+                if (transportType != undefined && transportType != null && transportType != '') {
+                    switch (transportType) {
+                      case "train":
+                        vm.returnTrainFlag = true;
+                        vm.returnBusFlag = false;
+                        vm.returnPlaneFlag = false;
+                        break;
+                      case "bus":
+                        vm.returnTrainFlag = false;
+                        vm.returnBusFlag = true;
+                        vm.returnPlaneFlag = false;
+                        break;
+                      case "airplane":
+                        vm.returnTrainFlag = false;
+                        vm.returnBusFlag = false;
+                        vm.returnPlaneFlag = true;
+                        break;
+                      default:
+                        break;
+                    }
+                }
                 if(redirect != null || redirect != undefined){
                     var split = redirect.split('&');
                     vm.roundPlaneRedirect = split[0];
