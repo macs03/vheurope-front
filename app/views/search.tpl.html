@@ -1797,8 +1797,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                     </div>
             </div>
 
-            <div class="row  container-responsive" id="mixed-results" ng-show="search.globalMixedTrips.length > 0">
-                <div class="col-xs-12 col-md-12 " >
+            <div id="mixed-results" ng-show="search.globalMixedTrips.length > 0">
                     <div class="new-results">
                         <div class="results list" id="trips_mixed" >
                            <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus}">
@@ -1925,7 +1924,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
             <!-- start allTrips  -->
