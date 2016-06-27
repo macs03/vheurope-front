@@ -1184,7 +1184,6 @@
                     }
 
                     if(vm.globalTrips.length > 0 || isMixed){
-                        console.log("getLowest()");
                         getLowest();
                     }
 
