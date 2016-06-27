@@ -1056,8 +1056,7 @@
                 vm.planesCompanies = [];
 
             };
-
-            var loadGlobal = function(data, isMixed, isPlane){
+            var loadGlobal = function(data, isMixed, isPlane, type){
                 if(data != undefined){
 
                     if(isPlane  == false){
@@ -1158,13 +1157,17 @@
 
 
                     }else{
-                        if(data.length > 0){
-
+                        if(data.length > 0 && type == 1){
                               vm.results = true;
 
                             angular.forEach(data, function(value, key) {
                                 vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });
                             });
+                        }
+                        if( data.length > 0 && type == 2 && !vm.hasBusTrips && !vm.hasTrainTrips){
+                            vm.results = true;
+                            vm.globalDirectDepartureTrips.push([]);
+                            vm.globalDirectReturnTrips.push([]);
                         }
                     }
 
@@ -2554,7 +2557,7 @@
 
                         auxTrip = {};
                   });
-                  loadGlobal(vm.planesTrips, false, true);
+                  loadGlobal(vm.planesTrips, false, true,1);
                   processCountOrder();
                   vm.planesFlag = true;
                   vm.scraperFlag = false;
@@ -2578,6 +2581,7 @@
                         value.data.returnRedirect = split[1];
                         vm.planesTripsReturn.push(value.data);
                   });
+                loadGlobal(vm.planesTripsReturn, false, true,2);
             }
 
             function catchTravelsFactory (err) {
