@@ -1133,7 +1133,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <h5 class="hidden-xs" ng-show="search.globalDirectDepartureTrips.length > 1">
                                 <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                             </h5>
-                            <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}">
+                            <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}" ng-hide="search.showPlane">
                                 <span class="way" translate>SEARCH.TRIPS.ROUND</span>: {{trips.length}}  <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.departureDate | date: 'EEE, MMM dd' }}
                             </h5>
                             <div class="change-departure" ng-show="search.idIda_1 != 0 && search.selectDeparture" style="margin-bottom: .3em;">
@@ -1469,7 +1469,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <h5 class="hidden-xs" ng-show="search.globalDirectReturnTrips.length > 1">
                                 <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                             </h5>
-                            <h5 class="hidden-xs hidden-sm">
+                            <h5 class="hidden-xs hidden-sm" ng-hide="search.showPlane">
                                 <span class="way" translate>SEARCH.TRIPS.RETURN</span>: {{trips.length}} <span translate>SEARCH.TRIPS.RESULTS</span> {{search.trips.returnDate | date: 'EEE, MMM dd' }}
                             </h5>
                             <div class="change-departure" ng-show="search.idVuelta_1 != 0" style="margin-bottom: .3em;">
@@ -1607,7 +1607,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             </div>
 
                                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
-                                               <p class="pull-right">
+                                               <p>
                                                 <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
                                                 <br>
                                                 <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.origin }}</small>
@@ -1620,7 +1620,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             </div>
 
                                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
-                                               <p class="pull-right">
+                                               <p>
                                                 <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
                                                 <br>
                                                 <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destination }}</small>
