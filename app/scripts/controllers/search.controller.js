@@ -1084,7 +1084,7 @@
 
                                 angular.forEach(data.directDepartureTrips[0], function(value, key) {
                                     vm.globalDirectDepartureTrips[0].push(value);
-                                    if(!isMixed) vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
 
@@ -1095,7 +1095,7 @@
 
                                 angular.forEach(data.directDepartureTrips[1], function(value, key) {
                                     vm.globalDirectDepartureTrips[1].push(value);
-                                    if(!isMixed) vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
                         }
@@ -1110,7 +1110,7 @@
 
                                 angular.forEach(data.directReturnTrips[0], function(value, key) {
                                     vm.globalDirectReturnTrips[0].push(value);
-                                    if(!isMixed) vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
 
@@ -1121,7 +1121,7 @@
 
                                 angular.forEach(data.directReturnTrips[1], function(value, key) {
                                     vm.globalDirectReturnTrips[1].push(value);
-                                    if(!isMixed) vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
+                                    vm.globalTrips.push({transportType: value.transportType, durationMinutes: value.durationMinutes, price: value.price });
                                 });
                             }
                         }
@@ -1183,7 +1183,8 @@
                         }
                     }
 
-                    if(vm.globalTrips.length > 0){
+                    if(vm.globalTrips.length > 0 || isMixed){
+                        console.log("getLowest()");
                         getLowest();
                     }
 
