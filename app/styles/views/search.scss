@@ -32,7 +32,17 @@
 }
 
 .margin-tab{
-    margin-left: 0.35em;
+    margin-left: 0.35em !important;
+}
+
+.padding-tab{
+    margin-left: .35em !important;
+}
+
+@media (max-device-width: 640px){
+    .padding-tab{
+        margin-left: 0 !important;
+    }
 }
 
 .remove-border-top-left {

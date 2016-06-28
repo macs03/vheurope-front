@@ -51,6 +51,7 @@
             vm.hasCarTrips = false;
             vm.hasTrainTrips = false;
             vm.hasBusTrips = false;
+            vm.showBus2 = false;
             vm.combineTrips = false;
             vm.percentageBus = 0;
             vm.percentageTrain = 0;
@@ -626,6 +627,16 @@
                     $('.tab_car').addClass('active');
                 }
 
+                if(vm.showBus2 && vm.hasBusTrips){
+                  vm.showBus = true;
+                  vm.showPlane = false;
+                  vm.showTrain = false;
+                  vm.showCar = false;
+                  vm.combineTrips = false;
+                  $('.tab-filter').removeClass('active');
+                  $('.tab_bus').addClass('active');
+                }
+
             };
 
             var getTripsSteps = function(maxDuration, tripDuration){
@@ -1035,6 +1046,7 @@
                 vm.hasPlaneTrips = false;
                 vm.hasCarTrips = false;
                 vm.showBus = false;
+                vm.showBus2 = false;
                 vm.showCombineTrips = false;
                 vm.showTrain = false;
                 vm.showPlane = false;
@@ -1056,8 +1068,7 @@
                 vm.planesCompanies = [];
 
             };
-
-            var loadGlobal = function(data, isMixed, isPlane){
+            var loadGlobal = function(data, isMixed, isPlane, type){
                 if(data != undefined){
 
                     if(isPlane  == false){
@@ -1158,17 +1169,21 @@
 
 
                     }else{
-                        if(data.length > 0){
-
+                        if(data.length > 0 && type == 1){
                               vm.results = true;
 
                             angular.forEach(data, function(value, key) {
                                 vm.globalTrips.push({transportType: 'plane', durationMinutes: value.duration, price: value.price });
                             });
                         }
+                        if( data.length > 0 && type == 2 && !vm.hasBusTrips && !vm.hasTrainTrips){
+                            vm.results = true;
+                            vm.globalDirectDepartureTrips.push([]);
+                            vm.globalDirectReturnTrips.push([]);
+                        }
                     }
 
-                    if(vm.globalTrips.length > 0){
+                    if(vm.globalTrips.length > 0 || isMixed){
                         getLowest();
                     }
 
@@ -2163,21 +2178,28 @@
                 travelsFactory
                     .getMixedTrips(id)
                     .then(function (data) {
-
                         loadGlobal(data, true, false);
                         saveOtherInfoInTrips(data);
-
+                        vm.tripsMixed = false;
                         vm.searchingMix = false;
-                        vm.isMixedTrips = data.isMixedTrips
+                        vm.isMixedTrips = data.isMixedTrips;
                         vm.hasBusTrips = data.hasBusTrips;
+                        if(vm.hasBusTrips){
+                              vm.showBus2 = true;
+                        }else{
+                            if (vm.hasPlaneTrips) {
+                                loadGlobal(vm.planesTripsReturn, false, true,2);
+                            }
+                        }
 
                         setDateFilterRange(data.maxPrice,data.minPrice);
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        setCompaniesAndSeatsReset(data.companies);
+                        //setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
+                        vm.tripsMixed = false;
                     })
             }
 
@@ -2352,6 +2374,7 @@
                             vm.hasBusTrips = data.hasBusTrips;
                             if(data.isMixedTrips){
                               vm.hasBusTrips = true;
+                              vm.tripsMixed = true;
                             }
                         }
                         $('.pikaday__display').prop('disabled', false);
@@ -2554,7 +2577,7 @@
 
                         auxTrip = {};
                   });
-                  loadGlobal(vm.planesTrips, false, true);
+                  loadGlobal(vm.planesTrips, false, true,1);
                   processCountOrder();
                   vm.planesFlag = true;
                   vm.scraperFlag = false;
@@ -2578,6 +2601,7 @@
                         value.data.returnRedirect = split[1];
                         vm.planesTripsReturn.push(value.data);
                   });
+                loadGlobal(vm.planesTripsReturn, false, true,2);
             }
 
             function catchTravelsFactory (err) {
@@ -2649,11 +2673,13 @@
                         vm.minDuration = vm.globalMinDuration.duration;
                   }
 
-                  if (lowest.car.duration && tipo == "car") {
-                        if (vm.globalMinDuration.durationMinutes > lowest.car.durationMinutes || vm.globalMinDuration == "") {
-                              vm.globalMinDuration = ({duration: lowest.car.duration, durationMinutes: lowest.car.durationMinutes});
+                  if(lowest.car){
+                        if (lowest.car.duration && tipo == "car") {
+                              if (vm.globalMinDuration.durationMinutes > lowest.car.durationMinutes || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: lowest.car.duration, durationMinutes: lowest.car.durationMinutes});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
                         }
-                        vm.minDuration = vm.globalMinDuration.duration;
                   }
             }
 
