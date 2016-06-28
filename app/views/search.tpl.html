@@ -551,8 +551,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                         </div>
                     </div>
-                    <!--
-                    <div class="row time-resume-trip" ng-hide="search.globalDirectReturnTrips.length > 0">
+                    
+                    <div class="row time-resume-trip" ng-hide="search.globalDirectReturnTrips.length > 0 || !search.hasCarTrips">
                        <div class="col-md-2 time-resume-trip-price">
                            <i class="fa fa-car"></i>
                            <b ng-show="search.hasCarTrips">{{ search.lowestPriceCar| currency : '' }} €</b>
@@ -564,7 +564,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                            <span ng-show="!search.hasCarTrips && search.searchingTripsCar"> <img src="https://s3.eu-central-1.amazonaws.com/vheurope/495.gif" alt="Buscando" width="16" style="margin-right: 10px"> Buscando...</span>
                        </div>
                    </div>
-                   -->
+                   
 
                       </div> <!-- End .col-md-9 -->
 
@@ -1272,7 +1272,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                <p class="pull-right">
                                                 <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
                                                 <br>
-                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.origin }}</small>
+                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
                                               </p>
                                             </div>
 
@@ -1284,7 +1284,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                <p class="pull-right">
                                                 <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
                                                 <br>
-                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destination }}</small>
+                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.destination}}">{{ trip.destination }}</small>
                                               </p>
 
                                             
@@ -1610,7 +1610,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                <p>
                                                 <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
                                                 <br>
-                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.origin }}</small>
+                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
                                               </p>
                                               
                                             </div>
@@ -1623,7 +1623,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                <p>
                                                 <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
                                                 <br>
-                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destination }}</small>
+                                                <div class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="margin-top: -9px;" title="{{trip.destination}}">{{ trip.destination }}</div>
                                               </p>
                                             </div>
 

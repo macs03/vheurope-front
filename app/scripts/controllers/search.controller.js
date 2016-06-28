@@ -51,6 +51,7 @@
             vm.hasCarTrips = false;
             vm.hasTrainTrips = false;
             vm.hasBusTrips = false;
+            vm.showBus2 = false;
             vm.combineTrips = false;
             vm.percentageBus = 0;
             vm.percentageTrain = 0;
@@ -626,6 +627,16 @@
                     $('.tab_car').addClass('active');
                 }
 
+                if(vm.showBus2 && vm.hasBusTrips){
+                  vm.showBus = true;
+                  vm.showPlane = false;
+                  vm.showTrain = false;
+                  vm.showCar = false;
+                  vm.combineTrips = false;
+                  $('.tab-filter').removeClass('active');
+                  $('.tab_bus').addClass('active');
+                }
+
             };
 
             var getTripsSteps = function(maxDuration, tripDuration){
@@ -1035,6 +1046,7 @@
                 vm.hasPlaneTrips = false;
                 vm.hasCarTrips = false;
                 vm.showBus = false;
+                vm.showBus2 = false;
                 vm.showCombineTrips = false;
                 vm.showTrain = false;
                 vm.showPlane = false;
@@ -1171,7 +1183,7 @@
                         }
                     }
 
-                    if(vm.globalTrips.length > 0){
+                    if(vm.globalTrips.length > 0 || isMixed){
                         getLowest();
                     }
 
@@ -2171,12 +2183,15 @@
                         saveOtherInfoInTrips(data);
 
                         vm.searchingMix = false;
-                        vm.isMixedTrips = data.isMixedTrips
+                        vm.isMixedTrips = data.isMixedTrips;
                         vm.hasBusTrips = data.hasBusTrips;
+                        if(vm.hasBusTrips){
+                              vm.showBus2 = true;
+                        }
 
                         setDateFilterRange(data.maxPrice,data.minPrice);
                         setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        setCompaniesAndSeatsReset(data.companies);
+                        //setCompaniesAndSeatsReset(data.companies);
                         vm.updateTripsType();
                     })
                     .catch(function (err) {
@@ -2653,11 +2668,13 @@
                         vm.minDuration = vm.globalMinDuration.duration;
                   }
 
-                  if (lowest.car.duration && tipo == "car") {
-                        if (vm.globalMinDuration.durationMinutes > lowest.car.durationMinutes || vm.globalMinDuration == "") {
-                              vm.globalMinDuration = ({duration: lowest.car.duration, durationMinutes: lowest.car.durationMinutes});
+                  if(lowest.car){
+                        if (lowest.car.duration && tipo == "car") {
+                              if (vm.globalMinDuration.durationMinutes > lowest.car.durationMinutes || vm.globalMinDuration == "") {
+                                    vm.globalMinDuration = ({duration: lowest.car.duration, durationMinutes: lowest.car.durationMinutes});
+                              }
+                              vm.minDuration = vm.globalMinDuration.duration;
                         }
-                        vm.minDuration = vm.globalMinDuration.duration;
                   }
             }
 
