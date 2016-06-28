@@ -1053,7 +1053,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <h5 class="hidden-xs" ng-show="!search.selectDeparture">
                             <span class="way"><span translate>SEARCH.SELECTED_TRIP.TITLE_5</span></span>
                         </h5>
-                        <div class="new-results-selected" style="margin-bottom:2em;" ng-show="!search.selectDeparture && search.globalDirectDepartureTrips.length > 1">
+                        <div class="new-results-selected" style="margin-bottom:2em;" ng-show="!search.selectDeparture && search.globalDirectDepartureTrips.length > 1 && !search.showPlane">
                             <div class="results" id="selected-trip-container" >
                                 <div class="row result result-iv">
                                     <div class="col-md-5 col-xs-4 col-sm-4 c-departure nbt" style="border-bottom: 1px solid #bbb; height:70px;">
@@ -1128,9 +1128,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <a class="text-fucsia" style="cursor:pointer;" ng-click="search.departureSelect()"><strong><span translate>SEARCH.SELECTED_TRIP.TITLE_6</span></strong></a>
                             </div>
                         </div>
-                        <div class="" id="tramo-ida-{{$index}}" ng-repeat="trips in search.globalDirectDepartureTrips" ng-init="outindex = $index">
+                        <div class="" id="tramo-ida-{{$index}}" ng-repeat="trips in search.globalDirectDepartureTrips" ng-init="outindex = $index" ng-hide="$index == 1 && search.showPlane">
                             <br/ ng-show="$index == 1">
-                            <h5 class="hidden-xs" ng-show="search.globalDirectDepartureTrips.length > 1">
+                            <h5 class="hidden-xs" ng-show="search.globalDirectDepartureTrips.length > 1 && !search.showPlane">
                                 <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                             </h5>
                             <h5 class="hidden-xs hidden-sm" ng-class="{'disable-box':!search.selectDeparture}" ng-hide="search.showPlane">
@@ -1464,9 +1464,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <div class="results" id="selected-trip-container" >
                             </div>
                         </div>
-                        <div class="" id="tramo-vuelta-{{$index}}" ng-repeat="trips in search.globalDirectReturnTrips" ng-init="outindex = $index">
+                        <div class="" id="tramo-vuelta-{{$index}}" ng-repeat="trips in search.globalDirectReturnTrips" ng-init="outindex = $index" ng-hide="$index == 1 && search.showPlane">
                             <br/ ng-show="$index == 1">
-                            <h5 class="hidden-xs" ng-show="search.globalDirectReturnTrips.length > 1">
+                            <h5 class="hidden-xs" ng-show="search.globalDirectReturnTrips.length > 1 && !search.showPlane">
                                 <span translate>CANCEL.SECTION</span>: {{$index + 1}}
                             </h5>
                             <h5 class="hidden-xs hidden-sm" ng-hide="search.showPlane">
@@ -1503,7 +1503,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                               <!-- END PESTAÑAS DE RESULTADOS -->
                             <div class="new-results" >
                                 <div class="results list" >
-                                    <div class="row result nu result-iv" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips| orderBy: search.typeReturn : search.reverseReturn" >
+                                    <div class="row result nu result-iv" ng-hide="trip.transportType == 'ship' && search.showPlane"  data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane'}"  ng-repeat="trip in trips| orderBy: search.typeReturn : search.reverseReturn" >
                                  <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                                 <div class="row" >
                                     <div class="col-md-3 hidden-xs hidden-sm">
