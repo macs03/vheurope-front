@@ -2178,7 +2178,6 @@
                 travelsFactory
                     .getMixedTrips(id)
                     .then(function (data) {
-
                         loadGlobal(data, true, false);
                         saveOtherInfoInTrips(data);
 
@@ -2187,6 +2186,10 @@
                         vm.hasBusTrips = data.hasBusTrips;
                         if(vm.hasBusTrips){
                               vm.showBus2 = true;
+                        }else{
+                            if (vm.hasPlaneTrips) {
+                                loadGlobal(vm.planesTripsReturn, false, true,2);
+                            }
                         }
 
                         setDateFilterRange(data.maxPrice,data.minPrice);
