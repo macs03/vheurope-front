@@ -2180,7 +2180,7 @@
                     .then(function (data) {
                         loadGlobal(data, true, false);
                         saveOtherInfoInTrips(data);
-
+                        vm.tripsMixed = false;
                         vm.searchingMix = false;
                         vm.isMixedTrips = data.isMixedTrips;
                         vm.hasBusTrips = data.hasBusTrips;
@@ -2199,6 +2199,7 @@
                     })
                     .catch(function (err) {
                         vm.searchingMix = false;
+                        vm.tripsMixed = false;
                     })
             }
 
@@ -2373,6 +2374,7 @@
                             vm.hasBusTrips = data.hasBusTrips;
                             if(data.isMixedTrips){
                               vm.hasBusTrips = true;
+                              vm.tripsMixed = true;
                             }
                         }
                         $('.pikaday__display').prop('disabled', false);

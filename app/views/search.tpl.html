@@ -1046,7 +1046,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                           </div>
                         </div>
                     </div> <!-- end #single-results -->
-                <div class="row  container-responsive" id="ida-vuelta-results" ng-show="search.globalDirectReturnTrips.length > 0">
+                <div class="row  container-responsive" id="ida-vuelta-results" ng-show="search.globalDirectReturnTrips.length > 0 && !search.tripsMixed">
                     <h2 class="text-fucsia" ng-show="search.selectDeparture"><span translate>SEARCH.SELECTED_TRIP.TITLE_1</span>  <small class="text-fucsia"><span translate>SEARCH.SELECTED_TRIP.TITLE_2</span></small></h2>
                     <h2 class="text-fucsia" ng-show="!search.selectDeparture"><span translate>SEARCH.SELECTED_TRIP.TITLE_3</span>  <small class="text-fucsia"><span translate>SEARCH.SELECTED_TRIP.TITLE_4</span></small></h2>
                     <div class="col-xs-12 col-md-6 conttainer-results">
