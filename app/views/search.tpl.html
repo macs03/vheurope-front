@@ -1233,7 +1233,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                         <a class="" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
-                                         <!-- BOTON PARA TREN-->
+                                        <a class="" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a class="" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
+                                        <!-- BOTON PARA TREN-->
                                         <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
                                     </div>
@@ -1249,6 +1252,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                         <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,2,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':!search.selectMixTrip || search.dateIda_1 > trip.departure}" ng-click="search.departureSelect(2,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <!-- BOTON PARA TREN-->
                                       <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.departureSelect(1,trip.id,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo,'',trip.transportType)" translate>SEARCH.TRIPS.BUTTON</a>
@@ -1571,6 +1578,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                       <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="" ><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
+                                        <a class="" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+                                        <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="" ><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
+
                                       <!-- BOTON PARA TREN-->
                                       <a class="" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.id)"><i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg"></i></a>
 
@@ -1587,6 +1597,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                       <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right"  translate>SEARCH.TRIPS.BUTTON</a>
+
+                                        <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                        <a href="#/seat/{{search.departureId_1}}~{{search.departureId}}/{{search.returnId}}~{{trip.id}}" ng-show="outindex == 1 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'ship'" ng-class="{'disable-box':!search.selectMixTrip || search.dateVuelta_1 > trip.departure}" class="btn theme-blue-2 hidden-xs hidden-sm pull-right"  translate>SEARCH.TRIPS.BUTTON</a>
 
                                       <!-- BOTON PARA TREN-->
                                       <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'train'" ng-click="search.returnSelectTrain(trip.id)" translate>SEARCH.TRIPS.BUTTON</a>
