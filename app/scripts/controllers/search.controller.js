@@ -1965,6 +1965,11 @@
                         vm.returnBusFlag = false;
                         vm.returnPlaneFlag = true;
                         break;
+                      case "ship":
+                        vm.returnTrainFlag = false;
+                        vm.returnBusFlag = true;
+                        vm.returnPlaneFlag = false;
+                        break;
                       default:
                         break;
                     }
