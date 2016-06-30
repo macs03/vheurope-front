@@ -43,6 +43,7 @@
         vm.companiesReset = [];
         vm.minDuration = '';
         vm.returnTripPlane = false;
+        vm.alertText = ""
         vm.showBus = true;
         vm.showTrain = false;
         vm.showPlane = false;
@@ -2451,10 +2452,7 @@
                     processCountOrder();
 
                     if (data.alert != "") {
-                          alertify
-                                .delay(10000)
-                                .logPosition("top right")
-                                .log(data.alert);
+                        vm.alertText = data.alert
                     }
 
                 })
