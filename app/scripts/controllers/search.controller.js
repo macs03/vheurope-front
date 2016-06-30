@@ -2489,6 +2489,14 @@
                             vm.updateTripsType();
                         }
                         processCountOrder();
+
+                        if (data.alert != "") {
+                              alertify
+                                    .delay(10000)
+                                    .logPosition("top right")
+                                    .log(data.alert);
+                        }
+
                     })
                     .catch(function (err) {
                         vm.countBusSearch = vm.countBusSearch + 1;
