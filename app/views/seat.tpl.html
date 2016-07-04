@@ -490,6 +490,25 @@ input.ng-valid.ng-touched {
                     </div>
 
                 </div>
+
+                <div ng-show="seat.sourceSeat == 'BUSBUD'">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form-group">
+                                <label for="form_data_genders" translate>Sexo</label>
+                                <select name="form_data_genders" id="form_data_genders"  class="country" ng-model="seat.seatInSelection.genders" ng-options="genders.key as genders.value for genders in seat.genders" ng-init="seat.seatInSelection.genders='V'">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="form_group">
+                                <label for="form_data_bornDate" translate>Fecha de nacimiento</label>
+                               <input type="text" placeholder="DD/MM/YYYY" name="form_data_bornDate" id="form_data_bornDate" value=""  class="email" ng-required="seat.sourceSeat == 'BUSBUD'" maxlength="100" ng-model="seat.seatInSelection.bornDate" ui-mask="99/99/9999" model-view-value="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <button  ng-switch on="seat.seatInSelection.update" type="submit" class="btn btn-block theme-green btn-lg" id="save-passenger-data" style="margin-top: 25px;" >

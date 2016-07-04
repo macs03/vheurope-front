@@ -29,6 +29,7 @@ angular
         vm.reserve = reserve;
         vm.errorSeat = false;
         vm.errorReserve = false;
+        vm.sourceSeat = ""
         vm.cnames_es = [
         { name: 'ABW', value:'Aruba' },
         { name: 'AFG', value:'Afganistan' },
@@ -292,6 +293,7 @@ angular
                 vm.trips.isRoundTrip = data.isRoundTrip;
                 vm.trips.round = data.departure;
                 vm.trips.return = data.return;
+                vm.sourceSeat = data.source;
                 vm.hasBoat = data.hasBoat;
                 vm.ageCategories = data.ageCategories;
                 vm.genders = data.genders;
