@@ -2364,54 +2364,44 @@
         }
 
         function callBusbud(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            if (returns == "") {//false
-                vm.searchingTripsBus = true; // Buscando buses
-                travelsFactory
-                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                    .then(function (data) {
+            vm.searchingTripsBus = true; // Buscando buses
+            travelsFactory
+                .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                .then(function (data) {
 
-                        loadGlobal(data, false, false);
-                        saveOtherInfoInTrips(data);
+                    loadGlobal(data, false, false);
+                    saveOtherInfoInTrips(data);
 
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 3) {
-                            vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
-                        }
-                        vm.isLoading = false;
-                        vm.disabled = false;
-                        if (!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
-                        $('.pikaday__display').prop('disabled', false);
+                    vm.countBusSearch = vm.countBusSearch + 1;
+                    if (vm.countBusSearch == 3) {
+                        vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                    }
+                    vm.isLoading = false;
+                    vm.disabled = false;
+                    if (!vm.hasBusTrips)
+                        vm.hasBusTrips = data.hasBusTrips;
+                    $('.pikaday__display').prop('disabled', false);
 
-                        angular.forEach(data.directDepartureTrips[0], function (value, key) {
-                            vm.allTrips.push(value);
-                        });
+                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                        vm.allTrips.push(value);
+                    });
 
-                        if (vm.hasBusTrips) {
-                            setDateFilterRange(data.maxPrice, data.minPrice);
-                            setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                            //setCompaniesAndSeatsReset(data.companies);
-                            vm.updateTripsType();
-                        }
-                        processCountOrder();
-                    })
-                    .catch(function (err) {
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 3) {
-                            vm.searchingTripsBus = false;
-                        }
+                    if (vm.hasBusTrips) {
+                        setDateFilterRange(data.maxPrice, data.minPrice);
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                        //setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
+                    }
+                    processCountOrder();
+                })
+                .catch(function (err) {
+                    vm.countBusSearch = vm.countBusSearch + 1;
+                    if (vm.countBusSearch == 3) {
+                        vm.searchingTripsBus = false;
+                    }
 
-                        catchTravelsFactory(err);
-                    })
-            } else {
-                //No llamó a Busbud
-                vm.countBusSearch = vm.countBusSearch + 1;
-                if (vm.countBusSearch == 3) {
-                    vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
-                }
-                $('.pikaday__display').prop('disabled', false);
-                processCountOrder();
-            }
+                    catchTravelsFactory(err);
+                })
         }
 
         function callMovelia(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
