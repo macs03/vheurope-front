@@ -52,7 +52,9 @@
                             documentId : passengersDataDeparture[key].dni,
                             name : passengersDataDeparture[key].name,
                             surname : passengersDataDeparture[key].lastname,
-                            documentType : passengersDataDeparture[key].document
+                            documentType : passengersDataDeparture[key].document,
+                            nationality : passengersDataDeparture[key].country,
+                            phoneContact : passengersDataDeparture[key].phone
                         });
                     }
                 });
@@ -98,7 +100,9 @@
                             documentId : passengersDataDeparture[key].dni,
                             name : passengersDataDeparture[key].name,
                             surname : passengersDataDeparture[key].lastname,
-                            documentType : passengersDataDeparture[key].document
+                            documentType : passengersDataDeparture[key].document,
+                            nationality : passengersDataDeparture[key].country,
+                            phoneContact : passengersDataDeparture[key].phone
                         });
                     }
                 });
