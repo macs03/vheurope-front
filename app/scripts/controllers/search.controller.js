@@ -2364,7 +2364,7 @@
         }
 
         function callBusbud(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            if (false) {//returns == "" Esta es la condición que debe ir
+            if (returns == "") {//false
                 vm.searchingTripsBus = true; // Buscando buses
                 travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
