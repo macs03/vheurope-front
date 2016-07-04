@@ -54,7 +54,9 @@
                             surname : passengersDataDeparture[key].lastname,
                             documentType : passengersDataDeparture[key].document,
                             nationality : passengersDataDeparture[key].country,
-                            phoneContact : passengersDataDeparture[key].phone
+                            phoneContact : passengersDataDeparture[key].phone,
+                            birthDate : passengersDataDeparture[key].bornDate,
+                            gender : passengersDataDeparture[key].genders
                         });
                     }
                 });
@@ -102,7 +104,9 @@
                             surname : passengersDataDeparture[key].lastname,
                             documentType : passengersDataDeparture[key].document,
                             nationality : passengersDataDeparture[key].country,
-                            phoneContact : passengersDataDeparture[key].phone
+                            phoneContact : passengersDataDeparture[key].phone,
+                            birthDate : passengersDataDeparture[key].bornDate,
+                            gender : passengersDataDeparture[key].genders
                         });
                     }
                 });
