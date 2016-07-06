@@ -1471,10 +1471,6 @@
                 }
             } else {
                 vm.searchingTripsPlane = false;
-                vm.countBusSearch = vm.countBusSearch + 1;
-                if (vm.countBusSearch == 3) {
-                    vm.searchingTripsBus = false;
-                }
                 processCountOrder();
             }
 
@@ -1679,10 +1675,6 @@
                                     vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, 1)
                                 } else {
                                     vm.searchingTripsPlane = false;
-                                    vm.countBusSearch = vm.countBusSearch + 1;
-                                    if (vm.countBusSearch == 3) {
-                                        vm.searchingTripsBus = false;
-                                    }
                                     processCountOrder();
                                 }
                             })
@@ -1707,10 +1699,6 @@
                     }
                 } else {
                     vm.searchingTripsPlane = false;
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 3) {
-                        vm.searchingTripsBus = false;
-                    }
                     processCountOrder();
                 }
             }
@@ -1930,10 +1918,6 @@
                 }
             } else {
                 vm.searchingTripsPlane = false;
-                vm.countBusSearch = vm.countBusSearch + 1;
-                if (vm.countBusSearch == 3) {
-                    vm.searchingTripsBus = false;
-                }
                 processCountOrder();
             }
 
@@ -2488,19 +2472,13 @@
 
                     })
                     .catch(function (err) {
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 3) {
-                            vm.searchingTripsCar = false;
-                        }
+                        vm.searchingTripsCar = false;
 
                         catchTravelsFactory(err);
                     })
             } else {
                 //No llamó a blablacar
-                vm.countBusSearch = vm.countBusSearch + 1;
-                if (vm.countBusSearch == 3) {
-                    vm.searchingTripsCar = false; // Ya buscó por todos los servicios de buses
-                }
+                vm.searchingTripsCar = false;
                 $('.pikaday__display').prop('disabled', false);
                 processCountOrder();
             }
