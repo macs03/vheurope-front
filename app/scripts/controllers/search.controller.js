@@ -17,6 +17,13 @@
     function SearchController(locationsFactory, locationsRtFactory, travelsFactory, planesFactory, urlTrainFactory, weatherFactory, utilityService, $scope, $interval, $stateParams, $timeout, $rootScope, sessionStorageService, scraperFactory, ngProgressFactory, $analytics, screenSize) {
 
         var vm = this;
+        var device = navigator.userAgent;
+        var es_ie = navigator.userAgent.indexOf("MSIE") > -1 ;
+        if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {
+            vm.mobile = true;
+        } else {
+            vm.mobile = false;
+        }
         vm.searchMobile = false;
         vm.searchTrip = searchTrip;
         vm.searching = false;
@@ -1922,58 +1929,66 @@
             }
 
         }
-
-        var listCompanies = new Set();
+        if(!vm.mobile) {
+            var listCompanies = new Set();
+        }
 
         function companyFilter(company, long) {
-            if (company.checked) {
-                vm.company = company.name;
-                if (vm.companies.length === long) {
-                    vm.companies = [];
-                    listCompanies.add(company.name);
-                    vm.companies = Array.from(listCompanies);
-                } else {
-                    listCompanies.add(company.name);
-                    vm.companies = Array.from(listCompanies);
-                }
-            } else {
-                for (var i = vm.companies.length; i--;) {
-                    if (vm.companies[i] === company.name) {
-                        vm.companies.splice(i, 1);
-                        listCompanies = new Set(vm.companies);
+            if (!vm.mobile) {
+                if (company.checked) {
+                    vm.company = company.name;
+                    if (vm.companies.length === long) {
+                        vm.companies = [];
+                        listCompanies.add(company.name);
+                        vm.companies = Array.from(listCompanies);
+                    } else {
+                        listCompanies.add(company.name);
+                        vm.companies = Array.from(listCompanies);
                     }
-                }
-                if (vm.companies.length === 0) {
-                    vm.companies = vm.companiesReset;
+                } else {
+                    for (var i = vm.companies.length; i--;) {
+                        if (vm.companies[i] === company.name) {
+                            vm.companies.splice(i, 1);
+                            listCompanies = new Set(vm.companies);
+                        }
+                    }
+                    if (vm.companies.length === 0) {
+                        vm.companies = vm.companiesReset;
+                    }
                 }
             }
         }
 
-        var listSeats = new Set();
+        if (!vm.mobile) {
+            var listSeats = new Set();
+        }
 
         function seatFilter(seat, long) {
-            if (seat.checked) {
-                vm.seat = seat.name;
-                if (vm.seats.length === long) {
-                    vm.seats = [];
-                    listSeats.add(seat.name);
-                    vm.seats = Array.from(listSeats);
-                } else {
-                    listSeats.add(seat.name);
-                    vm.seats = Array.from(listSeats);
-                }
-            } else {
-                for (var i = vm.seats.length; i--;) {
-                    if (vm.seats[i] === seat.name) {
-                        vm.seats.splice(i, 1);
-                        listSeats = new Set(vm.seats);
+            if (!vm.mobile) {
+                if (seat.checked) {
+                    vm.seat = seat.name;
+                    if (vm.seats.length === long) {
+                        vm.seats = [];
+                        listSeats.add(seat.name);
+                        vm.seats = Array.from(listSeats);
+                    } else {
+                        listSeats.add(seat.name);
+                        vm.seats = Array.from(listSeats);
                     }
-                }
-                if (vm.seats.length === 0) {
-                    vm.seats = vm.seatsReset;
+                } else {
+                    for (var i = vm.seats.length; i--;) {
+                        if (vm.seats[i] === seat.name) {
+                            vm.seats.splice(i, 1);
+                            listSeats = new Set(vm.seats);
+                        }
+                    }
+                    if (vm.seats.length === 0) {
+                        vm.seats = vm.seatsReset;
+                    }
                 }
             }
         }
+
 
         function alternativeSearch(origin, countryOrigin, destination, countryDestination) {
             vm.origin = origin + ", " + countryOrigin;
@@ -2143,14 +2158,18 @@
         function planesManager(planes) {
             var companies = {};
             var seats = {};
-            var listCompanies = new Set();
-            var listSeats = new Set();
+            if (!vm.mobile) {
+                var listCompanies = new Set();
+                var listSeats = new Set();
+            }
             var top = 0;
             angular.forEach(planes, function (value, key) {
                 companies = planes[key].data.enterprise__name;
-                listCompanies.add(companies);
                 seats = planes[key].data.type__name;
-                listSeats.add(seats);
+                if (!vm.mobile) {
+                    listCompanies.add(companies);
+                    listSeats.add(seats);
+                }
                 if (top < planes[key].data.price) {
                     top = planes[key].data.price;
                 }
@@ -2158,24 +2177,27 @@
             if (top > vm.maxPrice) {
                 setDateFilterRange(top, vm.minPrice);
             }
-            var arraySetCompanies = Array.from(listCompanies);
-            var listCompaniesArr = [];
-            for (var i = 0; i < arraySetCompanies.length; i++) {
-                listCompaniesArr.push({id: i, name: arraySetCompanies[i]});
-            }
-            vm.planesCompanies = listCompaniesArr;
-            var arraySetSeats = Array.from(listSeats);
-            var listSeatsArr = [];
+            if (!vm.mobile) {
+                var arraySetCompanies = Array.from(listCompanies);
+                var listCompaniesArr = [];
+                for (var i = 0; i < arraySetCompanies.length; i++) {
+                    listCompaniesArr.push({id: i, name: arraySetCompanies[i]});
+                }
+                vm.planesCompanies = listCompaniesArr;
+                var arraySetSeats = Array.from(listSeats);
+                var listSeatsArr = [];
 
-            for (var i = 0; i < arraySetSeats.length; i++) {
-                listSeatsArr.push({id: i, name: arraySetSeats[i]});
-            }
-            vm.planesSeats = listSeatsArr;
+                for (var i = 0; i < arraySetSeats.length; i++) {
+                    listSeatsArr.push({id: i, name: arraySetSeats[i]});
+                }
+                vm.planesSeats = listSeatsArr;
 
-            for (var i = 0; i < vm.planesCompanies.length; i++) {
-                vm.companies.push(vm.planesCompanies[i].name);
+                for (var i = 0; i < vm.planesCompanies.length; i++) {
+                    vm.companies.push(vm.planesCompanies[i].name);
+                }
+                vm.companiesReset = vm.companies;
             }
-            vm.companiesReset = vm.companies;
+
 
             // Para actualizar el globalTypeServices con los resultados de las de aviones
             angular.forEach(vm.planesSeats, function (value, key) {
@@ -2189,13 +2211,14 @@
                     vm.globalTypeServices.push({id: value.id, name: value.name});
                 }
             });
-
-            var setSeats = new Set(); // Para los de los otros servicios
-            for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                setSeats.add(vm.globalTypeServices[i].name)
+            if (!vm.mobile) {
+                var setSeats = new Set(); // Para los de los otros servicios
+                for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                    setSeats.add(vm.globalTypeServices[i].name)
+                }
+                vm.seats = Array.from(setSeats);
+                vm.seatsReset = vm.seats;
             }
-            vm.seats = Array.from(setSeats);
-            vm.seatsReset = vm.seats;
 
         }
 
@@ -2673,17 +2696,19 @@
         }
 
         function setCompaniesAndSeatsReset(companies) {
-            var setSeats = new Set();
-            for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                setSeats.add(vm.globalTypeServices[i].name)
-            }
-            vm.seats = Array.from(setSeats);
-            vm.seatsReset = vm.seats;
+            if (!vm.mobile) {
+                var setSeats = new Set();
+                for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                    setSeats.add(vm.globalTypeServices[i].name)
+                }
+                vm.seats = Array.from(setSeats);
+                vm.seatsReset = vm.seats;
 
-            for (var i = 0; i < companies.length; i++) {
-                vm.companies.push(companies[i].name)
+                for (var i = 0; i < companies.length; i++) {
+                    vm.companies.push(companies[i].name)
+                }
+                vm.companiesReset = vm.companies;
             }
-            vm.companiesReset = vm.companies;
         }
 
         function setMaxDurationAndMinDuration(maxDuration, tipo, lowest) {
