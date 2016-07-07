@@ -897,7 +897,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 </div>
                             </div>
                                 <!--single result mobile for now-->
-                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane', 'hidden-car': !search.showCar  && trip.transportType == 'car', 'remove-border-top-left': $index == 0}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture" >
+                                <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane', 'hidden-car': !search.showCar  && trip.transportType == 'car', 'remove-border-top-left': $index == 0}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture" ng-hide="!search.mobile">
                                     <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                                     <div class="row" >
                                         <div class="col-md-3 hidden-xs hidden-sm">
@@ -1262,7 +1262,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <!--aviones mobile for now-->
                     <div class="new-results" id="new-results-tickeables" ng-show="search.planesFlag && !search.combineTrips && !search.showBus && !search.returnTripPlane">
                         <div class="results list" id="trips_tickeables" >
-                            <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar', 'remove-border-top-left': $index == 0}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture" >
+                            <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar', 'remove-border-top-left': $index == 0}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture" ng-hide="!search.mobile">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
