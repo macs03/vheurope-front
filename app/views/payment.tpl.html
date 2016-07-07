@@ -198,7 +198,14 @@ hr.add-passenger:hover:after {
     padding: 10px;
 }
 
-.trip-container-title .price {
+.trip-container-title-modal {
+    border-top: 1px solid #dedede;
+    padding: 10px;
+    margin-top: 1em;
+}
+
+.trip-container-title .price,
+.trip-container-title-modal .price {
     color: #29abe5;
     float: right;
     font-size: 1.4em;
@@ -256,6 +263,16 @@ input.ng-valid.ng-touched {
 
 #passages_link {
     display: none;
+}
+
+.modal-trips-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.modal-trips-content .trip-container{
+    width: 59%;
 }
 
 </style>
@@ -362,7 +379,7 @@ input.ng-valid.ng-touched {
                                 <div class="col-xs-12 col-md-12 text-center">
                                     <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
                                     <br>
-                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.email,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
+                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.showConfirmModal()" translate>PAYMENT.PAY.BUTTON</button>
                                 </div>
                             </div>
                     </div>
@@ -573,6 +590,133 @@ input.ng-valid.ng-touched {
                </div>
              </div>
            </div>
+        </div>
+
+        <!--modal confirmar pago-->
+        <div class="modal fade" id="confirm-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
+             data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom: 1px solid #E5E5E4 !important;">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2>Por favor, verifique sus datos de viaje.</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-content no-padding">
+                            <div class="modal-trips-content">
+                                <div class="trip-container" translate>
+                                    PAYMENT.PURCHASE.ROUND
+                                </div>
+                                <div class="trip-container odd" ng-repeat="departure in payment.departureData">
+                                    <h5 ng-show="payment.departureData.length > 1">
+                                        <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-md-1 hidden-xs">
+                                            <i class="fa fa-bus"></i>
+                                        </div>
+                                        <div class="col-md-8 col-xs-6">
+                                            <p class="smallest-font">
+                                                <b>{{ departure.origin }} - {{ departure.destination }}</b>
+                                                <span class="text-muted date"> {{ departure.date }}</span>
+                                            </p>
+                                            <p class="small-font hidden-xs">
+                                                <small class="text-muted">{{ departure.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 visible-xs">
+                                            <p class="smallest-font pull-right"><span class="text-muted"> {{ departure.date }}</span></p>
+                                        </div>
+                                        <div class="col-xs-4 visible-xs">
+                                            <p class="small-font">
+                                                <small class="text-muted">{{ departure.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 visible-xs text-center">
+                                            <p class="smallest-font pull-right">{{ departure.time }} hrs.</p>
+                                        </div>
+                                        <div class="col-xs-4 col-md-3 hidden-xs">
+                                            <p class="smallest-font pull-right hidden-xs">{{ departure.time }} hrs.</p>
+                                            <p class="smallest-font pull-right">{{ departure.typeService }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="trip-container" translate ng-show="payment.isRoundTrip">
+                                PAYMENT.PURCHASE.RETURN
+                            </div>
+                            <div class="trip-container odd" ng-show="payment.isRoundTrip" ng-repeat="return in payment.returnData">
+                                <h5 ng-show="payment.returnData.length > 1">
+                                    <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
+                                </h5>
+                                <div class="row">
+                                    <div class="col-md-1 hidden-xs">
+                                        <i class="fa fa-bus"></i>
+                                    </div>
+                                    <div class="col-md-8 col-xs-6">
+                                        <p class="smallest-font">
+                                            <b>{{ return.origin }} - {{ return.destination }}</b>
+                                            <span class="text-muted date"> {{ return.date }}</span>
+                                        </p>
+                                        <p class="small-font hidden-xs">
+                                            <small class="text-muted">{{ return.company }}</small>
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6 visible-xs">
+                                        <p class="smallest-font pull-right"><span class="text-muted"> {{ return.date }}</span></p>
+                                    </div>
+                                    <div class="col-xs-4 visible-xs">
+                                        <p class="small-font">
+                                            <small class="text-muted">{{ return.company }}</small>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 visible-xs text-center">
+                                        <p class="smallest-font pull-right">{{ return.time }} hrs.</p>
+                                    </div>
+                                    <div class="col-xs-4 col-md-3 hidden-xs">
+                                        <p class="smallest-font pull-right hidden-xs">{{ return.time }} hrs.</p>
+                                        <p class="smallest-font pull-right">{{ return.typeService }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trip-container-title-modal">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTOTAL</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalWithDiscount | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font" translate>PAYMENT.PURCHASE.FEES</p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalFee | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font" ><strong translate>PAYMENT.PURCHASE.TOTAL</strong></p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalPayment | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.email,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
