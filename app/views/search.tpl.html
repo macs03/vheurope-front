@@ -513,7 +513,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                 <div class="time-resumen-trips hidden-xs hidden-sm" ng-show="search.hasTrainTrips || search.hasBusTrips || search.hasPlaneTrips || search.hasCarTrips">
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="row time-resume-trip" ng-hide="search.isMixedTrips">
+                        <div class="row time-resume-trip" ng-hide="search.isMixedTrips && search.lowestPriceBus <= 0">
                           <div class="col-md-2 time-resume-trip-price">
                               <i class="fa fa-bus"></i>
                               <b ng-show="search.hasBusTrips">{{ search.lowestPriceBus | currency : '' }} €</b>
