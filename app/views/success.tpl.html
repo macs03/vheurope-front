@@ -256,7 +256,7 @@
 	                            <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
 	                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price  | currency : '' }} &euro;</span></span>
 	                            </div>
-                                <div class="col-md-2 col-xs-4" ng-hide="{{seat.pdfUrl === ''}}">
+                                <div class="col-md-2 col-xs-4" ng-show="{{seat.hasPdf}}">
                                    <a ng-href="{{seat.pdfUrl}}" target="_blank" class="btn theme-blue btn-lg row-btn" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank"> TICKET <i class="fa fa-download"></i></a>
                                </div>
 	                        </div>
@@ -332,7 +332,7 @@
                                        <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
                                            <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
                                        </div>
-                                       <div class="col-md-2 col-xs-4" ng-hide="{{seat.pdfUrl === ''}}">
+                                       <div class="col-md-2 col-xs-4" ng-show="{{seat.hasPdf}}">
                                            <a ng-href="{{seat.pdfUrl}}" target="_blank" class="btn  theme-blue btn-lg" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank"> TICKET <i class="fa fa-download"></i></a>
                                        </div>
                            </div>
