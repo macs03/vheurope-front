@@ -1069,8 +1069,8 @@ angular
             $analytics.eventTrack('Select Seat Automatic', {  category: 'Seat', label: 'Automatic Seats' });
             if (trip == 0) {
                 vm.seatInSelection.trip = trip;
-                vm.seatInSelection.price = vm.trips.round.priceFloorOne;
-                vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
+                vm.seatInSelection.price = vm.trips.round[0].priceFloorOne;
+                vm.seatInSelection.tripId = vm.trips.round[0].tripIdFloorOne;
                 vm.seatInSelection.seatLabel = vm.roundSeats[vm.autoPassengers].label;
                 vm.seatInSelection.seatNumber = vm.roundSeats[vm.autoPassengers].number;
                 if (index == 0) {
@@ -1084,8 +1084,8 @@ angular
                 }
             }else{
                 vm.seatInSelection.trip = trip;
-                vm.seatInSelection.price = vm.trips.round.priceFloorOne;
-                vm.seatInSelection.tripId = vm.trips.round.tripIdFloorOne;
+                vm.seatInSelection.price = vm.trips.round[0].priceFloorOne;
+                vm.seatInSelection.tripId = vm.trips.round[0].tripIdFloorOne;
                 vm.seatInSelection.seatLabel = vm.returnSeats[vm.autoPassengers].label;
                 vm.seatInSelection.seatNumber = vm.returnSeats[vm.autoPassengers].number;
                 vm.addSeat();
