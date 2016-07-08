@@ -316,7 +316,7 @@
 							<div class="sub-header" ng-show="return != ''">
                                <p translate>SUCCESS.RETURN.TICKETS.TITLE</p>
                            </div>
-						   <div class="row ticket list" ng-show="return != ''" ng-repeat="seat in return.seats">
+						   <div class="row ticket list last" ng-show="return != ''" ng-repeat="seat in return.seats">
                                        <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
                                            <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
                                        </div>
@@ -333,7 +333,7 @@
                                            <span class="smallest-font"><span translate>SUCCESS.RETURN.TICKETS.PRICE</span> <span class="vh-blue">{{seat.price | currency : '' }} &euro;</span></span>
                                        </div>
                                        <div class="col-md-2 col-xs-4" ng-show="{{seat.hasPdf}}">
-                                           <a ng-href="{{seat.pdfUrl}}" target="_blank" class="btn  theme-blue btn-lg" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank"> TICKET <i class="fa fa-download"></i></a>
+                                           <a ng-href="{{seat.pdfUrl}}" target="_blank" class="btn theme-blue btn-lg row-btn" data-tooltip aria-haspopup="true"  title="Descarga tu voucher para obtener tu código de reserva. <b>Importante:</b> En el terminal deberás mostrar este código en las boleterias para obtener tu pasaje. Recomendamos llegar con 25 minutos de anticipación." target="_blank"> TICKET <i class="fa fa-download"></i></a>
                                        </div>
                            </div>
 						</div>
