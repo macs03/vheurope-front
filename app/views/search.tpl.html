@@ -2179,7 +2179,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
             <div id="mixed-results" ng-show="search.globalMixedTrips.length > 0">
                     <div class="new-results">
                         <div class="results list" id="trips_mixed" >
-                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus, 'remove-border-top-left': $index == 0}">
+                           <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus && !search.combineTrips, 'remove-border-top-left': $index == 0}">
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small hidden-xs hidden-sm" ><br>
@@ -2195,7 +2195,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-xs-4 col-sm-4  visible-xs visible-sm  text-center">
-                                        <p class="approximate-time text-muted smallest-font">4hrs 15min.</p>
+                                        <p class="approximate-time text-muted smallest-font">Dif. Horarios</p>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -2216,9 +2216,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
                                 </div>
                                 <div class="row">
+
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
-                                        <small class="text-muted" style="margin-left: 25px;">2 Escalas</small>
+                                        <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small" >
                                     </div>
+                                    
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
                                         <ul class="timeline hidden-xs hidden-sm">
                                             <li class="li complete">
@@ -2241,9 +2243,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <i class="fa fa-2x pull-right text-theme-blue fa-trip-type {{ search.mixedTripIcon(0, trip.mixedType) }}"   style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
-                                    <div class="col-md-3 col-xs-4 col-sm-4">
-                                        <button data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right">Ver más</button>
-                                        <strong class="price hidden-md hidden-lg">18.57 €</strong>
+                                    <div class="col-md-3 col-xs-4 col-sm-4 hidden-xs hidden-sm">
+                                        <button data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 pull-right">Ver más</button>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
+                                        <small class="text-muted" style="margin-left: 25px;">2 Escalas</small>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 30px; display: none;" id="trip_details_{{ trip.id }}">
@@ -2251,15 +2255,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <article class="timeline-entry right-aligned">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>Jue, Abril 22</span>
+                                                    <span></span>
                                                 </time>
                                                 <div class="timeline-icon bg-theme-blue">
                                                     <i class="fa {{ search.mixedTripIcon(0, trip.mixedType) }}"></i>
                                                 </div>
                                                 <div class="timeline-label">
-                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <h2 class="capitalize">{{trip.originT1 }}</h2>
                                                     <p>
-                                                        <b>{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT1 }}</b>
+                                                        <b class="capitalize">{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT1 }}</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -2268,15 +2272,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <article class="timeline-entry right-aligned">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>Jue, Abril 22</span>
+                                                    <span></span>
                                                 </time>
                                                 <div class="timeline-icon">
                                                     <i class="fa {{ search.mixedTripIcon(1, trip.mixedType) }}"></i>
                                                 </div>
                                                 <div class="timeline-label">
-                                                    <h2>{{trip.originT1 }}</h2>
+                                                    <h2 class="capitalize">{{trip.originT1 }}</h2>
                                                     <p>
-                                                         <b>{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b>{{trip.destinationT2 }}</b>
+                                                         <b class="capitalize">{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT2 }}</b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -2284,12 +2288,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <article class="timeline-entry begin">
                                             <div class="timeline-entry-inner">
                                                 <time class="timeline-time" datetime="2014-01-10T03:45">
-                                                    <span>Jue, Abril 23</span>
+                                                    <span></span>
                                                 </time>
                                                 <div class="timeline-icon">
                                                 </div>
                                                 <div class="timeline-label">
-                                                    <h2>{{trip.destinationT2 }}</h2>
+                                                    <h2 class="capitalize">{{trip.destinationT2 }}</h2>
                                                 </div>
 
                                             </div>
