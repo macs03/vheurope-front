@@ -59,6 +59,7 @@
         vm.hasCarTrips = false;
         vm.hasTrainTrips = false;
         vm.hasBusTrips = false;
+        vm.hasOtherBus = false;
         vm.showBus2 = false;
         vm.combineTrips = false;
         vm.percentageBus = 0;
@@ -1050,6 +1051,7 @@
             vm.globalTypeServices = [];
             vm.globalMinDuration = "";
             vm.hasBusTrips = false;
+            vm.hasOtherBus = false;
             vm.hasTrainTrips = false;
             vm.hasPlaneTrips = false;
             vm.hasCarTrips = false;
@@ -2250,7 +2252,13 @@
                     vm.tripsMixed = false;
                     vm.searchingMix = false;
                     vm.isMixedTrips = data.isMixedTrips;
-                    vm.hasBusTrips = data.hasBusTrips;
+
+                    if(vm.hasOtherBus){
+                        vm.hasBusTrips = true;
+                    } else {
+                        vm.hasBusTrips = data.hasBusTrips;
+                    }
+
                     if (vm.hasBusTrips) {
                         vm.showBus2 = true;
                     } else {
@@ -2387,6 +2395,8 @@
                     vm.disabled = false;
                     if (!vm.hasBusTrips)
                         vm.hasBusTrips = data.hasBusTrips;
+                    if (!vm.hasOtherBus)
+                        vm.hasOtherBus = data.hasBusTrips; 
                     $('.pikaday__display').prop('disabled', false);
 
                     angular.forEach(data.directDepartureTrips[0], function (value, key) {
@@ -2627,6 +2637,7 @@
                         vm.globalDirectDepartureTrips[0].push(auxTrip);
                     }
                     vm.hasBusTrips = true;
+                    vm.hasOtherBus = true;
                     flagBus = true;
                 } else {
                     flagPlanes = true;
@@ -2692,6 +2703,7 @@
                 vm.countOrder = 0;
                 vm.searching = false;
                 vm.results = true; //para quitar el modal del clima
+                $('.pikaday__display').prop('disabled', false);
             }
         }
 
