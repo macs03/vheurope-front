@@ -505,6 +505,7 @@
                     $('.tab_car').addClass('active');
                     break;
                 case 'all':
+                    $('.fa-trip-type').removeClass('hidden');
                     $('.tab-filter').removeClass('active');
                     $('.tab_all').addClass('active');
                     vm.showBus = false;
@@ -1219,43 +1220,6 @@
 
             }
         };
-
-        $scope.$watch('search.combineTrips', function (newVal, oldVal) {
-            if (newVal != oldVal && newVal != undefined) {
-                if (newVal === true) {
-                    vm.showBus = true;
-                    vm.showPlane = true;
-                    vm.showTrain = true;
-                    if ($stateParams.returnDate == "NaN" && !vm.returnTripPlane) {
-                        $('.tab-filter').removeClass('active');
-                        $('.tab_all').addClass('active');
-                    } else {
-                        $('.fa-trip-type').removeClass('hidden');
-                    }
-
-                } else {
-                    $('.fa-trip-type').addClass('hidden');
-                    ;
-                    if (vm.hasBusTrips) {
-                        vm.showBus = true;
-                        vm.showPlane = false;
-                        vm.showTrain = false;
-                        $('#tab_bus').addClass('active');
-                    } else if (vm.hasTrainTrips) {
-                        vm.showBus = false;
-                        vm.showPlane = false;
-                        vm.showTrain = true;
-                        $('#tab_train').addClass('active');
-
-                    } else {
-                        vm.showBus = false;
-                        vm.showPlane = true;
-                        vm.showTrain = false;
-                        $('#tab_plane').addClass('active');
-                    }
-                }
-            }
-        }, true);
 
         vm.toUTCDate = toUTCDate;
         vm.millisToUTCDate = millisToUTCDate;
