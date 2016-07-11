@@ -50,6 +50,9 @@ angular
         vm.returnData = successData.returnData;
         vm.totalFee = successData.totalFee
         vm.pdf = apiUrl;
+
+        $('.modal-backdrop').hide();
+
         $rootScope.$broadcast('counterEvent', 1, false);
     }
 
