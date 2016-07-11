@@ -2183,14 +2183,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <div class="row">
                                     <div class="col-md-3 hidden-xs hidden-sm">
                                         <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small hidden-xs hidden-sm" ><br>
-                                        <small class="text-muted smallest-font truncate">Varias empresas</small>
+                                        <!-- <small class="text-muted smallest-font truncate">Varias empresas</small> -->
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{trip.originT1 }}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{trip.originT1 }}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize">{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT1 }}</b></small>
                                       </p>
                                     </div>
 
@@ -2202,7 +2202,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                        <p class="pull-right">
                                         <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{ trip.destinationT2 }}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destinationT2 }}</small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize">{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT2 }}</b></small>
                                       </p>
                                     </div>
 
@@ -2222,6 +2222,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
                                     
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
+                                        <small class="text-muted smallest-font truncate hidden-xs hidden-sm" style="margin-right: 35px;">Varias empresas</small>
                                         <ul class="timeline hidden-xs hidden-sm">
                                             <li class="li complete">
                                                 <div class="timestamp"></div>
