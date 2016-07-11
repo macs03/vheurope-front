@@ -2250,7 +2250,7 @@
                     vm.tripsMixed = false;
                     vm.searchingMix = false;
                     vm.isMixedTrips = data.isMixedTrips;
-                    vm.hasBusTrips = vm.hasBusTrips ? vm.hasBusTrips : data.hasBusTrips;
+                    vm.hasBusTrips = data.hasBusTrips;
                     if (vm.hasBusTrips) {
                         vm.showBus2 = true;
                     } else {
