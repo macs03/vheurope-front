@@ -87,6 +87,7 @@
                         //$location.path ("/payment/"+$stateParams.idDeparture+"/"+$stateParams.idReturn);
                         utilityService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData);
                         sessionStorageService.setSuccessData(data.customer,data.customerEmail,data.providerName,data.purchaseId,data.total,data.departureData,data.returnData,data.totalFee);
+                        $('#confirm-payment').modal('hide');
                         $location.path ("/success");
                     })
                     .catch(function(err){
