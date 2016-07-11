@@ -2464,7 +2464,7 @@
         }
 
         function callBlablacar(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            if (false) {//returns == "" Esta es la condición que debe ir
+            if (returns == "") {
                 vm.searchingTripsCar = true; // Buscando buses
                 travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
