@@ -26,6 +26,7 @@
                 code: ''
             };
             vm.paying = paying;
+            vm.showConfirmModal = showConfirmModal;
             vm.trips = {};
             vm.trips.round = {
                 origin: 'Barcelona', 
@@ -89,6 +90,7 @@
                         $location.path ("/success");
                     })
                     .catch(function(err){
+                        $('#confirm-payment').modal('hide');
                         vm.msgError = err;
                         vm.errorPayment = true;
                         paymentError();
@@ -98,6 +100,15 @@
             function paymentError() {
                 if(vm.errorPayment){
                     $('#error-payment').modal('show');
+                }
+            }
+
+            function showConfirmModal() {
+                if (vm.pay.name != undefined && vm.pay.lastname != undefined && vm.pay.dni != undefined && vm.pay.email != undefined && vm.pay.card != undefined && vm.pay.month != undefined && vm.pay.year != undefined && vm.pay.cvv != undefined ) {
+                    $('#confirm-payment').modal('show');
+                }else{
+                    alertify.logPosition("bottom left");
+                    alertify.log("Revise los campos del formulario de pago");
                 }
             }
 
