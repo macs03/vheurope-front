@@ -129,6 +129,10 @@
                     controller: "CustomerSettingsController",
                     controllerAs: "csettings"
              })
+              .state("pdf-info", {
+                url: "/pdf-info",
+                templateUrl: 'views/pdf-info.tpl.html',
+              })
      });
 
 
@@ -446,6 +450,11 @@
             "UPDATE_TEXT1": "Updated information",
             "UPDATE_TEXT2": "Passwords don't match",
             "UPDATE_TEXT3": "Check the current password"
+          },
+          "PDF": {
+            "TITLE" : "Sorry, something went wrong",
+            "SUB-TITLE" : "Right now it is not possible to download the PDF of your ticket, please try again or later.",
+            "DESCRIPTION" : "To try again remember do it from your email or from the view of Successful Purchase."
           }
         };
     var translationsES = {
@@ -730,6 +739,11 @@
         "UPDATE_TEXT1": "Información actualizada",
         "UPDATE_TEXT2": "Las contraseñas no coinciden",
         "UPDATE_TEXT3": "Revisa la contraseña actual"
+      },
+      "PDF": {
+        "TITLE" : "Lo sentimos, algo salió mal",
+        "SUB-TITLE": "En estos momentos no es posible descargar el PDF de su billete, por favor inténtelo de nuevo o más tarde.",
+        "DESCRIPTION": "Para volver a intentarlo recuerde hacerlo desde su correo electrónico o desde la vista de Compra Exitosa."
       }
     };
     var translationsFR = {
@@ -1014,6 +1028,11 @@
             "UPDATE_TEXT1": "Information mise à jour",
             "UPDATE_TEXT2": "Les mots de passe ne correspondent pas",
             "UPDATE_TEXT3": "Vérifier le mot de passe actuel"
+        },
+        "PDF": {
+          "TITLE" : "Désolé, quelque chose a mal tourné",
+          "SUB-TITLE" : "À l'heure actuelle, il est impossible de télécharger le PDF de votre billet, s'il vous plaît essayer à nouveau ou plus tard.",
+          "DESCRIPTION": "Pour essayer de nouveau rappeler de le faire à partir de votre e-mail ou de la vue de l'achat réussie."
         }
     };
 
