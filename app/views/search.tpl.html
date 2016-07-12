@@ -2181,16 +2181,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="results list" id="trips_mixed" >
                            <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus && !search.combineTrips, 'remove-border-top-left': $index == 0}">
                                 <div class="row">
-                                    <div class="col-md-3 hidden-xs hidden-sm">
+                                    <div class="col-md-2 hidden-xs hidden-sm">
                                         <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small hidden-xs hidden-sm" ><br>
-                                        <!-- <small class="text-muted smallest-font truncate">Varias empresas</small> -->
                                     </div>
 
-                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                    <div class="col-md-4 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{trip.originT1 }}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize">{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT1 }}</b></small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize ">{{trip.originT1 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize ">{{trip.destinationT1 }}</b></small>
                                       </p>
                                     </div>
 
@@ -2198,15 +2197,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <p class="approximate-time text-muted smallest-font">Dif. Horarios</p>
                                     </div>
 
-                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
+                                    <div class="col-md-4 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{ trip.destinationT2 }}</small>
                                         <br>
-                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize">{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize">{{trip.destinationT2 }}</b></small>
+                                        <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><b class="capitalize ">{{trip.originT2 }}</b> <i class="fa fa-angle-right"></i> <b class="capitalize ">{{trip.destinationT2 }}</b></small>
                                       </p>
                                     </div>
 
-                                    <div class="col-md-3 text-center hidden-xs hidden-sm">
+                                    <div class="col-md-2 text-center hidden-xs hidden-sm">
                                       <p class="pull-right">
                                           
                                           <span class="pull-right type-service">
