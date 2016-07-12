@@ -52,6 +52,7 @@ angular
         vm.pdf = apiUrl;
 
         $('.modal-backdrop').hide();
+        $('body').removeClass('modal-open');
 
         $rootScope.$broadcast('counterEvent', 1, false);
     }
