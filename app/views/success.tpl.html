@@ -159,7 +159,7 @@
         }
 
         .logo_small {
-            max-width: 35px;
+            
         }
 
     </style>
@@ -244,13 +244,13 @@
 	                            <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
 	                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.DNI</span> <span class="vh-blue">{{seat.dni}}</span></span>
 	                            </div>
-	                            <div class="col-md-2 col-xs-4" style="margin-top: 5px;">
+	                            <div class="col-xs-4" style="margin-top: 5px;" ng-class="{'col-md-2':seat.hasPdf , 'col-md-3': !seat.hasPdf }">
 	                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.NAME</span> <span class="vh-blue">{{seat.name}}</span></span>
 	                            </div>
 	                            <div class="col-md-2 col-xs-4" style="margin-top: 5px;">
 	                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.SEAT</span> <span class="vh-blue">{{seat.seatNumber}}</span></span>
 	                            </div>
-	                            <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
+	                            <div class="hidden-xs" style="margin-top: 5px;" ng-class="{'col-md-2':seat.hasPdf , 'col-md-3': !seat.hasPdf }">
 	                                <span class="smallest-font"><span translate>SUCCESS.ROUND.TICKETS.CODE</span> <span class="vh-blue">{{seat.code}}</span></span>
 	                            </div>
 	                            <div class="col-md-2 hidden-xs" style="margin-top: 5px;">
