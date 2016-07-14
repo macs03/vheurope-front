@@ -1896,62 +1896,53 @@
             }
 
         }
-        if(!vm.mobile) {
-            var listCompanies = new Set();
-        }
 
+        var listCompanies = [];
         function companyFilter(company, long) {
-            if (!vm.mobile) {
-                if (company.checked) {
-                    vm.company = company.name;
-                    if (vm.companies.length === long) {
-                        vm.companies = [];
-                        listCompanies.add(company.name);
-                        vm.companies = Array.from(listCompanies);
-                    } else {
-                        listCompanies.add(company.name);
-                        vm.companies = Array.from(listCompanies);
-                    }
+            if (company.checked) {
+                vm.company = company.name;
+                if (vm.companies.length === long) {
+                    vm.companies = [];
+                    listCompanies.push(company.name);
+                    vm.companies = _.uniq(listCompanies);
                 } else {
-                    for (var i = vm.companies.length; i--;) {
-                        if (vm.companies[i] === company.name) {
-                            vm.companies.splice(i, 1);
-                            listCompanies = new Set(vm.companies);
-                        }
+                    listCompanies.push(company.name);
+                    vm.companies = _.uniq(listCompanies);
+                }
+            } else {
+                for (var i = vm.companies.length; i--;) {
+                    if (vm.companies[i] === company.name) {
+                        vm.companies.splice(i, 1);
+                        listCompanies = vm.companies;
                     }
-                    if (vm.companies.length === 0) {
-                        vm.companies = vm.companiesReset;
-                    }
+                }
+                if (vm.companies.length === 0) {
+                    vm.companies = vm.companiesReset;
                 }
             }
         }
 
-        if (!vm.mobile) {
-            var listSeats = new Set();
-        }
-
+        var listSeats = [];
         function seatFilter(seat, long) {
-            if (!vm.mobile) {
-                if (seat.checked) {
-                    vm.seat = seat.name;
-                    if (vm.seats.length === long) {
-                        vm.seats = [];
-                        listSeats.add(seat.name);
-                        vm.seats = Array.from(listSeats);
-                    } else {
-                        listSeats.add(seat.name);
-                        vm.seats = Array.from(listSeats);
-                    }
+            if (seat.checked) {
+                vm.seat = seat.name;
+                if (vm.seats.length === long) {
+                    vm.seats = [];
+                    listSeats.push(seat.name);
+                    vm.seats = _.uniq(listSeats)
                 } else {
-                    for (var i = vm.seats.length; i--;) {
-                        if (vm.seats[i] === seat.name) {
-                            vm.seats.splice(i, 1);
-                            listSeats = new Set(vm.seats);
-                        }
+                    listSeats.push(seat.name);
+                    vm.seats = _.uniq(listSeats)
+                }
+            } else {
+                for (var i = vm.seats.length; i--;) {
+                    if (vm.seats[i] === seat.name) {
+                        vm.seats.splice(i, 1);
+                        listSeats = vm.seats;
                     }
-                    if (vm.seats.length === 0) {
-                        vm.seats = vm.seatsReset;
-                    }
+                }
+                if (vm.seats.length === 0) {
+                    vm.seats = vm.seatsReset;
                 }
             }
         }
@@ -2125,18 +2116,14 @@
         function planesManager(planes) {
             var companies = {};
             var seats = {};
-            if (!vm.mobile) {
-                var listCompanies = new Set();
-                var listSeats = new Set();
-            }
+            var listCompanies = [];
+            var listSeats = [];
             var top = 0;
             angular.forEach(planes, function (value, key) {
                 companies = planes[key].data.enterprise__name;
                 seats = planes[key].data.type__name;
-                if (!vm.mobile) {
-                    listCompanies.add(companies);
-                    listSeats.add(seats);
-                }
+                listCompanies.push(companies);
+                listSeats.push(seats);
                 if (top < planes[key].data.price) {
                     top = planes[key].data.price;
                 }
@@ -2144,26 +2131,26 @@
             if (top > vm.maxPrice) {
                 setDateFilterRange(top, vm.minPrice);
             }
-            if (!vm.mobile) {
-                var arraySetCompanies = Array.from(listCompanies);
-                var listCompaniesArr = [];
-                for (var i = 0; i < arraySetCompanies.length; i++) {
-                    listCompaniesArr.push({id: i, name: arraySetCompanies[i]});
-                }
-                vm.planesCompanies = listCompaniesArr;
-                var arraySetSeats = Array.from(listSeats);
-                var listSeatsArr = [];
 
-                for (var i = 0; i < arraySetSeats.length; i++) {
-                    listSeatsArr.push({id: i, name: arraySetSeats[i]});
-                }
-                vm.planesSeats = listSeatsArr;
-
-                for (var i = 0; i < vm.planesCompanies.length; i++) {
-                    vm.companies.push(vm.planesCompanies[i].name);
-                }
-                vm.companiesReset = vm.companies;
+            var arraySetCompanies = _.uniq(listCompanies);
+            var listCompaniesArr = [];
+            for (var i = 0; i < arraySetCompanies.length; i++) {
+                listCompaniesArr.push({id: i, name: arraySetCompanies[i]});
             }
+            vm.planesCompanies = listCompaniesArr;
+            // var arraySetSeats = Array.from(listSeats);
+            var arraySetSeats = _.uniq(listSeats);
+            var listSeatsArr = [];
+
+            for (var i = 0; i < arraySetSeats.length; i++) {
+                listSeatsArr.push({id: i, name: arraySetSeats[i]});
+            }
+            vm.planesSeats = listSeatsArr;
+
+            for (var i = 0; i < vm.planesCompanies.length; i++) {
+                vm.companies.push(vm.planesCompanies[i].name);
+            }
+            vm.companiesReset = vm.companies;
 
 
             // Para actualizar el globalTypeServices con los resultados de las de aviones
@@ -2178,15 +2165,12 @@
                     vm.globalTypeServices.push({id: value.id, name: value.name});
                 }
             });
-            if (!vm.mobile) {
-                var setSeats = new Set(); // Para los de los otros servicios
-                for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                    setSeats.add(vm.globalTypeServices[i].name)
-                }
-                vm.seats = Array.from(setSeats);
-                vm.seatsReset = vm.seats;
+            var setSeats = [];
+            for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                setSeats.push(vm.globalTypeServices[i].name);
             }
-
+            vm.seats = _.uniq(setSeats);
+            vm.seatsReset = vm.seats;
         }
 
         function nextDay() {
@@ -2361,7 +2345,7 @@
                     if (!vm.hasBusTrips)
                         vm.hasBusTrips = data.hasBusTrips;
                     if (!vm.hasOtherBus)
-                        vm.hasOtherBus = data.hasBusTrips; 
+                        vm.hasOtherBus = data.hasBusTrips;
                     $('.pikaday__display').prop('disabled', false);
 
                     angular.forEach(data.directDepartureTrips[0], function (value, key) {
@@ -2673,19 +2657,17 @@
         }
 
         function setCompaniesAndSeatsReset(companies) {
-            if (!vm.mobile) {
-                var setSeats = new Set();
-                for (var i = 0; i < vm.globalTypeServices.length; i++) {
-                    setSeats.add(vm.globalTypeServices[i].name)
-                }
-                vm.seats = Array.from(setSeats);
-                vm.seatsReset = vm.seats;
-
-                for (var i = 0; i < companies.length; i++) {
-                    vm.companies.push(companies[i].name)
-                }
-                vm.companiesReset = vm.companies;
+            var setSeats = [];
+            for (var i = 0; i < vm.globalTypeServices.length; i++) {
+                setSeats.push(vm.globalTypeServices[i].name);
             }
+            vm.seats = _.uniq(setSeats);
+            vm.seatsReset = vm.seats;
+
+            for (var i = 0; i < companies.length; i++) {
+                vm.companies.push(companies[i].name)
+            }
+            vm.companiesReset = vm.companies;
         }
 
         function setMaxDurationAndMinDuration(maxDuration, tipo, lowest) {
