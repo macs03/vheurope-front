@@ -1051,6 +1051,7 @@
             vm.globalMixedTrips = [];
             vm.globalTypeServices = [];
             vm.globalMinDuration = "";
+            vm.searching = true;
             vm.hasBusTrips = false;
             vm.hasOtherBus = false;
             vm.hasTrainTrips = false;
