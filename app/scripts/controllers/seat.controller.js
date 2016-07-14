@@ -381,10 +381,10 @@ angular
                     }
                 });
 
-                if(vm.trips.round[0].size === 2){
+                if(vm.trips.round[0].automaticSeat){
 
                     sc2 = $('#seat-map-2-'+0).seatCharts({
-                        map: vm.trips.round[i].seatMap,
+                        map: vm.trips.round[0].seatMap,
                         seats: {
                             a: {
                                 price   : 99.99,
@@ -425,7 +425,7 @@ angular
                     $.each(vm.trips.round[0].unavailableSeats, function(index, item){
                         sc.status(item.toString(), 'unavailable');
                     });
-                    if(vm.trips.round[0].size === 2){
+                    if(vm.trips.round[0].automaticSeat){
                         $.each(vm.trips.round[0].unavailableSeats, function(index, item){
                             sc2.status(item.toString(), 'unavailable');
                         });
@@ -563,10 +563,9 @@ angular
                         }
                     });
 
-                    if(vm.trips.return[0].size === 2){
-
-                        sc6 = $('#seat-map-4'+0).seatCharts({
-                            map: vm.trips.round[0].seatMap,
+                    if(vm.trips.return[0].automaticSeat){
+                        sc6 = $('#seat-map-4-'+0).seatCharts({
+                            map: vm.trips.return[0].seatMap,
                             seats: {
                                 a: {
                                     price   : 99.99,
@@ -606,7 +605,7 @@ angular
                         $.each(vm.trips.return[0].unavailableSeats, function(index, item){
                             sc5.status(item.toString(), 'unavailable');
                         });
-                        if(vm.trips.return[0].size === 2){
+                        if(vm.trips.return[0].automaticSeat){
                             $.each(vm.trips.return[0].unavailableSeats, function(index, item){
                                 sc6.status(item.toString(), 'unavailable');
                             });
@@ -655,7 +654,7 @@ angular
                         if(vm.trips.return[1].size === 2){
 
                             sc8 = $('#seat-map-4'+1).seatCharts({
-                                map: vm.trips.round[1].seatMap,
+                                map: vm.trips.return[1].seatMap,
                                 seats: {
                                     a: {
                                         price   : 99.99,
