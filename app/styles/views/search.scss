@@ -205,10 +205,10 @@ select {
 }
 
 .contrast-title h3 {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
     font-size: .95em;
     padding: 0 4px;
-    font-weight: normal;
+    font-weight: 100;
     text-align: left;
 }
 
@@ -305,15 +305,15 @@ select {
     padding: 8px;
 }
 .filter-header h3 {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Ubuntu', sans-serif !important;
     margin-bottom: 0px;
     margin-top: 2px;
-    font-size: .95em;
+    font-size: 1.05em;
     text-transform: uppercase;
     color: #333;
-    font-weight: bold;
+    font-weight: 200;
 }
-.filter-header span { 
+.filter-header span {
     margin-top: -2px;
     color: #999;
     font-weight: bold;
