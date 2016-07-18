@@ -1318,13 +1318,13 @@ button.theme-search,
 .status h4 { font-weight: 600 }
 .status:before {
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     background-color: #58585A;
     border-radius: 25px;
     border: 1px solid #ddd;
     position: absolute;
-    top: -6px;
+    top: -4px;
     left: 42%;
     transition: all 200ms ease-in;
 }
