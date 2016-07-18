@@ -197,11 +197,11 @@ select {
 }
 
 .contrast-title {
-    border-top: 1px solid #979797;
+    border-top: .3px solid rgba(151, 151, 151, 0.5);
     color: #444444;
     height: 40px;
     border-radius: 0;
-    margin: 0 5px;
+    padding: 0 5px;
 }
 
 .contrast-title h3 {
