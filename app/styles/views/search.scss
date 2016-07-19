@@ -1675,3 +1675,12 @@ input.chk-toggle-round + label:after {
 input.chk-toggle-round:checked + label:before { background-color: #8ce196 }
 input.chk-toggle-round:checked + label:after { margin-left: 30px }
 .text-theme-green { color: #72cb4c !important }
+
+.company-logo-name{
+    display: flex;
+    align-items: center;
+}
+
+.company-logo-name small{
+    margin-left: 2em;
+}

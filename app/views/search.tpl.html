@@ -692,8 +692,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-class="{'hidden-train': !search.showTrain  && trip.transportType == 'train', 'hidden-bus': !search.showBus  && trip.transportType == 'bus', 'hidden-plane': !search.showPlane  && trip.transportType == 'plane', 'hidden-car': !search.showCar  && trip.transportType == 'car', 'remove-border-top-left': $index == 0}"  ng-repeat="trip in trips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue" >
                                  <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                                 <div class="row" >
-                                    <div class="col-md-3 hidden-xs hidden-sm">
-                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
+                                    <div class="col-md-3 hidden-xs hidden-sm company-logo-name">
+                                        <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm">
                                         <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
                                     </div>
 
@@ -837,7 +837,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             <span class=" hidden-xs hidden-sm">{{trip.duration}}.</span>
                                         </div>
                                         -->
-                                        <div class="row hidden-xs hidden-sm">
+                                        <div class="row hidden-xs hidden-sm" style="margin-top: 1em;">
                                           <div class="col-md-3">
                                             <small class="text-muted-dark">
                                               {{trip.duration}}
@@ -909,8 +909,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             <div class="results list" id="trips_tickeables" >
                                 <div class="row result nu" data-type="plane" ng-class="{'hidden-plane': !search.showPlane  && trip.transportation == 'airplane', 'hidden-bus': !search.showBus  && trip.transportation == 'bus', 'hidden-car': !search.showCar  && trip.companyName == 'Blablacar', 'remove-border-top-left': $index == 0}" id="{{$index}}" ng-repeat="trip in search.planesTrips | orderBy:search.typeDeparturePlanes:search.reverseDeparture | companyScraperFilter:search.companies | seatScraperFilter:search.seats | priceScraperFilter: search.priceSlider.price" >
                                 <div class="row">
-                                    <div class="col-md-3 hidden-xs hidden-sm">
-                                        <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" ><br>
+                                    <div class="col-md-3 hidden-xs hidden-sm company-logo-name">
+                                        <img ng-src="{{ trip.enterprise__image }}" title="{{ trip.enterprise__name }}" class="logo_small hidden-xs hidden-sm" >
                                         <small class="text-muted smallest-font truncate">{{ trip.enterprise__name }}</small>
                                     </div>
 
@@ -958,7 +958,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
 
-                                        <div class="row hidden-xs hidden-sm">
+                                        <div class="row hidden-xs hidden-sm" style="margin-top: 1em;">
                                           <div class="col-md-3">
                                             <small class="text-muted-dark">
                                               {{ search.getHourMinPlanes(trip.duration) }}
@@ -1821,11 +1821,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="results list" id="trips_mixed" >
                            <div class="row result nu" data-type="bus" ng-repeat="trip in search.globalMixedTrips | orderBy:search.typeDeparture:search.reverseDeparture" ng-class="{'hidden-bus': !search.showBus && !search.combineTrips, 'remove-border-top-left': $index == 0}">
                                 <div class="row">
-                                    <div class="col-md-2 hidden-xs hidden-sm">
-                                        <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small hidden-xs hidden-sm" ><br>
+                                    <div class="col-md-3 hidden-xs hidden-sm company-logo-name">
+                                        <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small hidden-xs hidden-sm" >
+                                        <small class="text-muted smallest-font truncate hidden-xs hidden-sm" style="margin-right: 35px;">Varias empresas</small>
                                     </div>
 
-                                    <div class="col-md-4 col-xs-4 col-sm-4 tacm">
+                                    <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                        <p class="pull-right">
                                         <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{trip.originT1 }}</small>
                                         <br>
@@ -1859,9 +1860,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                         <img src="https://cdn.api-rt.resertrip.com/multi-buses.png" title="Varias empresas" class="logo_small" >
                                     </div>
-                                    
+
                                     <div class="col-md-6 col-xs-4 col-sm-4 tacm">
-                                        <small class="text-muted smallest-font truncate hidden-xs hidden-sm" style="margin-right: 35px;">Varias empresas</small>
                                         <ul class="timeline hidden-xs hidden-sm">
                                             <li class="li complete">
                                                 <div class="timestamp"></div>
@@ -1957,8 +1957,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                         <div class="row result nu" data-type="{{ trip.transportType }}" id={{trip.id}} ng-repeat="trip in search.allTrips | orderBy:search.typeDeparture:search.reverseDeparture | companyFilter:search.companies | seatFilter:search.seats | priceFilter: search.priceSlider.price | hourFilter : search.hourSlider.minValue : search.hourSlider.maxValue track by $index" ng-class="{'remove-border-top-left': $index == 0}">
                          <div class="ribbon-wrapper" ng-show="trip.hasPromotion == true"><div class="ribbon">PROMO</div></div>
                         <div class="row" >
-                            <div class="col-md-3 hidden-xs hidden-sm">
-                                <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm"><br>
+                            <div class="col-md-3 hidden-xs hidden-sm company-logo-name">
+                                <img ng-src={{trip.logo}} title="{{trip.companyName}}" class="logo_small hidden-xs hidden-sm">
                                 <p class="truncate"><small class="text-muted smallest-font">{{trip.companyName}}</small></p>
                             </div>
 
@@ -2004,7 +2004,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 </small>
                             </div>
                             <div class="col-md-6 col-xs-4 col-sm-4 tacm">
-                                <div class="row hidden-xs hidden-sm">
+                                <div class="row hidden-xs hidden-sm" style="margin-top: 1em;">
                                   <div class="col-md-3">
                                     <small class="text-muted-dark">
                                       {{ search.getHourMinPlanes(trip.durationMinutes) }}
@@ -2031,7 +2031,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
                             </div>
                             <div class="col-md-3 hidden-xs hidden-sm">
-                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
                                 <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.typeService }}</small>
                             </div>
                             <div class="col-md-3 col-xs-4 col-sm-4">
@@ -2103,7 +2103,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     <span class=" hidden-xs hidden-sm">{{trip.duration}}.</span>
                                 </div>
                                 -->
-                                <div class="row hidden-xs hidden-sm">
+                                <div class="row hidden-xs hidden-sm" style="margin-top: 1em;">
                                   <div class="col-md-3">
                                     <small class="text-muted-dark">
                                       {{trip.duration}}
@@ -2145,7 +2145,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
 
                             <div class="col-md-3 hidden-xs hidden-sm">
-                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'fa-car': trip.transportType == 'car', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'fa-car': trip.transportType == 'car', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
                             </div>
 
                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
