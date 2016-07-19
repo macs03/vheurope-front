@@ -991,7 +991,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4">
-                                        <button data-trip-id="{{$index}}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                        <button id="button-plane-{{$index}}" data-trip-id="{{$index}}" ng-click="search.tripDetails($event,$index,true,false)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                        <i id="arrow-plane-{{$index}}" class="fa fa-chevron-circle-up fa-2x text-theme-green" data-trip-id="{{$index}}" ng-click="search.tripDetails($event,$index,false,false)" style="margin: .3em 4em; display: none"></i>
                                         <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                                     </div>
                                 </div>
@@ -1364,7 +1365,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         </div>
                                         <div class="row" style="margin-top: 30px; display: none;" id="trip_details_ida_{{$index}}">
                                             <div class="timeline-centered">
-                                                <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
+                                                <article class="timeline-entry right-aligned round" ng-repeat="segment in trip.segments">
                                                     <div class="timeline-entry-inner">
                                                         <time class="timeline-time" datetime="2014-01-10T03:45">
                                                             <span>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</span>
@@ -1392,7 +1393,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                     </div>
                                                 </article>
 
-                                                <article class="timeline-entry begin">
+                                                <article class="timeline-entry begin round">
                                                     <div class="timeline-entry-inner">
                                                         <time class="timeline-time" datetime="2014-01-10T03:45">
                                                             <span>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</span>
@@ -1707,7 +1708,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         </div>
                                         <div class="row" style="margin-top: 30px; display: none;" id="trip_details_vuelta_{{$index}}">
                                             <div class="timeline-centered">
-                                                <article class="timeline-entry right-aligned" ng-repeat="segment in trip.segments">
+                                                <article class="timeline-entry right-aligned round" ng-repeat="segment in trip.segments">
                                                     <div class="timeline-entry-inner">
                                                         <time class="timeline-time" datetime="2014-01-10T03:45">
                                                             <span>{{ search.millisToUTCDate(segment.start*1000) | date:'HH:mm'}}</span>
@@ -1735,7 +1736,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                     </div>
                                                 </article>
 
-                                                <article class="timeline-entry begin">
+                                                <article class="timeline-entry begin round">
                                                     <div class="timeline-entry-inner">
                                                         <time class="timeline-time" datetime="2014-01-10T03:45">
                                                             <span>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</span>
@@ -2034,8 +2035,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
                                 <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.typeService }}</small>
                             </div>
-                            <div class="col-md-3 col-xs-4 col-sm-4">
-                                <button data-trip-id="{{$index}}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                            <div class="col-md-3 col-xs-4 col-sm-4" style="text-align: center;">
+                                <button id="button-{{$index}}" data-trip-id="{{$index}}" ng-click="search.tripDetails($event,$index,true,true)" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>Elegir</button>
+                                <i id="arrow-{{$index}}" class="fa fa-chevron-circle-up fa-2x text-theme-green" data-trip-id="{{$index}}" ng-click="search.tripDetails($event,$index,false,true)" style="margin: .3em 4em; display: none"></i>
                                 <strong class="price hidden-md hidden-lg">{{trip.price | currency : '' }} €</strong>
                             </div>
                         </div>
