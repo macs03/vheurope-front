@@ -519,7 +519,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                       <div class="col-md-12">
                         <div class="row time-resume-trip" ng-hide="search.isMixedTrips && search.lowestPriceBus <= 0">
                           <div class="col-md-2 time-resume-trip-price">
-                              <i class="fa fa-bus"></i>
+                              <i class="icon-bus"></i>
                               <b ng-show="search.hasBusTrips">{{ search.lowestPriceBus | currency : '' }} €</b>
                               <b ng-show="!search.hasBusTrips && !search.searchingTripsBus">N/A</b>
                           </div>
@@ -533,7 +533,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                      <div class="row time-resume-trip">
                         <div class="col-md-2 time-resume-trip-price">
-                            <i class="fa fa-train"></i>
+                            <i class="icon-tren"></i>
                             <b ng-show="search.hasTrainTrips">{{ search.lowestPriceTrain | currency : '' }} €</b>
                             <b ng-show="!search.hasTrainTrips && !search.searchingTripsTrain">N/A</b>
                         </div>
@@ -546,7 +546,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                      <div class="row time-resume-trip">
                         <div class="col-md-2 time-resume-trip-price">
-                            <i class="fa fa-plane"></i>
+                            <i class="icon-avion"></i>
                             <b ng-show="search.hasPlaneTrips">{{ search.lowestPricePlane | currency : '' }} €</b>
                             <b ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane">N/A</b>
                         </div>
@@ -623,31 +623,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                     </div> -->
                     <div class="col-md-2 col-xs-3 np-tab pr5 padding-tab" ng-show="search.showCombineTrips">
-                        <div class="tab-filter active tab_all" data-type="all" id="tab_all" ng-click="search.showTripsType('all')"  >
+                        <div class="tab-filter active tab_all" data-type="all" id="tab_all" ng-click="search.showTripsType('all')"  style="padding: 12.5px 10px;">
                             <i class="fa fa-random fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5" ng-show="search.hasBusTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')"  >
-                            <i class="fa fa-bus fa-2x"></i>
+                        <div class="tab-filter tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')"  style="padding: 11px 10px;">
+                            <i class="icon-bus fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pl0" ng-show="search.hasTrainTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" >
-                            <i class="fa fa-train fa-2x"></i>
+                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" style="padding: 11px 10px;">
+                            <i class="icon-tren fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasPlaneTrips && !search.returnTripPlane" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" >
-                            <i class="fa fa-plane fa-2x"></i>
+                        <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" style="padding: 11px 10px;">
+                            <i class="icon-avion fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasCarTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_car" data-type="car" id="tab_car" ng-click="search.showTripsType('car')" >
+                        <div class="tab-filter tab_car" data-type="car" id="tab_car" ng-click="search.showTripsType('car')" style="padding: 12.5px 10px;">
                             <i class="fa fa-car fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceCar | currency : '' }} €</small></span>
                         </div>
@@ -766,7 +766,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                         <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
                                     </div>
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-avion': trip.transportType == 'airplane', 'icon-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                         <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.typeService }}</small>
                                     </div>
                                     <div class="col-md-3 col-xs-4 col-sm-4">
@@ -783,7 +783,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                     <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
                                                 </time>
                                                 <div class="timeline-icon bg-theme-blue">
-                                                    <i class="fa fa-plane"></i>
+                                                    <i class="icon-avion icon-o-small"></i>
                                                 </div>
                                                 <div class="timeline-label">
                                                     <h2>{{ segment.origin }}</h2>
@@ -876,7 +876,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-bus': trip.transportType == 'bus','icon-tren': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -986,7 +986,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-3 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportation == 'airplane', 'fa-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-avion': trip.transportation == 'airplane', 'icon-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                         <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.type__name }}</small>
                                     </div>
 
@@ -1005,7 +1005,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                     <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
                                                 </time>
                                                 <div class="timeline-icon bg-theme-blue">
-                                                    <i class="fa fa-plane"></i>
+                                                    <i class="icon-avion icon-o-small"></i>
                                                 </div>
                                                 <div class="timeline-label">
                                                     <h2>{{ segment.origin }}</h2>
@@ -1149,21 +1149,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                               <div class="row tabs-filter" >
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3" ng-class="{'disable-box':!search.returnBusFlag}">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
-                                          <i class="fa fa-bus fa-2x"></i>
+                                          <i class="fa icon-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
                                   <div class="col-md-2 col-xs-4 np-tab pl0" ng-class="{'disable-box':!search.returnTrainFlag}">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
-                                          <i class="fa fa-train fa-2x"></i>
+                                          <i class="fa icon-tren fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
                                   <div class="col-md-2 col-xs-4 np-tab pr5 pl0" ng-class="{'disable-box':!search.returnPlaneFlag}">
                                       <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
-                                          <i class="fa fa-plane fa-2x"></i>
+                                          <i class="fa icon-avion fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                                       </div>
                                   </div>
@@ -1248,7 +1248,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-2 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-bus': trip.transportType == 'bus','icon-tren': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -1354,7 +1354,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             </div>
 
                                             <div class="col-md-3 hidden-xs hidden-sm">
-                                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportation == 'airplane', 'fa-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-avion': trip.transportation == 'airplane', 'icon-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                                 <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.type__name }}</small>
                                             </div>
 
@@ -1372,7 +1372,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                             <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
                                                         </time>
                                                         <div class="timeline-icon bg-theme-blue">
-                                                            <i class="fa fa-plane"></i>
+                                                            <i class="icon-avion icon-o-small"></i>
                                                         </div>
                                                         <div class="timeline-label">
                                                             <h2>{{ segment.origin }}</h2>
@@ -1493,21 +1493,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
 
                                   <div class="col-md-2 col-xs-4 np-tab pr5 col-md-offset-3" ng-class="{'disable-box':!search.returnBusFlag}">
                                       <div class="tab-filter active tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" ng-show="search.hasBusTrips">
-                                          <i class="fa fa-bus fa-2x"></i>
+                                          <i class="fa icon-bus fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
                                   <div class="col-md-2 col-xs-4 np-tab pl0" ng-class="{'disable-box':!search.returnTrainFlag}">
                                       <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" ng-show="search.hasTrainTrips">
-                                          <i class="fa fa-train fa-2x"></i>
+                                          <i class="fa icon-tren fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                                       </div>
                                   </div>
 
                                    <div class="col-md-2 col-xs-4 np-tab pr5 pl0" ng-class="{'disable-box':!search.returnPlaneFlag}">
                                       <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" ng-show="search.hasPlaneTrips">
-                                          <i class="fa fa-plane fa-2x"></i>
+                                          <i class="fa icon-avion fa-2x"></i>
                                           <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                                       </div>
                                   </div>
@@ -1593,7 +1593,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                     </div>
 
                                     <div class="col-md-2 hidden-xs hidden-sm">
-                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                        <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-bus': trip.transportType == 'bus','icon-tren': trip.transportType == 'train', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
@@ -1697,7 +1697,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             </div>
 
                                             <div class="col-md-3 hidden-xs hidden-sm">
-                                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportation == 'airplane', 'fa-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
+                                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-avion': trip.transportation == 'airplane', 'icon-bus': trip.transportation == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 10px;"></i>
                                                 <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.type__name }}</small>
                                             </div>
 
@@ -1715,7 +1715,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                                             <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
                                                         </time>
                                                         <div class="timeline-icon bg-theme-blue">
-                                                            <i class="fa fa-plane"></i>
+                                                            <i class="icon-avion icon-o-small"></i>
                                                         </div>
                                                         <div class="timeline-label">
                                                             <h2>{{ segment.origin }}</h2>
@@ -2032,7 +2032,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                 <i class="fa fa-chevron-circle-down fa-2x text-theme-green hidden-md hidden-lg " data-trip-id="{{$index}}" ng-click="search.tripDetails($event)"></i>
                             </div>
                             <div class="col-md-3 hidden-xs hidden-sm">
-                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-plane': trip.transportType == 'airplane', 'fa-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
+                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-avion': trip.transportType == 'airplane', 'icon-bus': trip.transportType == 'bus', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
                                 <small class="text-muted smallest-font pull-right hidden-lg hidden-md" style="margin-top: 20px;">{{ trip.typeService }}</small>
                             </div>
                             <div class="col-md-3 col-xs-4 col-sm-4" style="text-align: center;">
@@ -2050,7 +2050,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                                             <span>{{ search.millisToUTCDate(segment.start*1000) | date:'EEE, dd MMM'}}</span>
                                         </time>
                                         <div class="timeline-icon bg-theme-blue">
-                                            <i class="fa fa-plane"></i>
+                                            <i class="icon-avion icon-o-small"></i>
                                         </div>
                                         <div class="timeline-label">
                                             <h2>{{ segment.origin }}</h2>
@@ -2147,7 +2147,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', end
                             </div>
 
                             <div class="col-md-3 hidden-xs hidden-sm">
-                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'fa-bus': trip.transportType == 'bus','fa-train': trip.transportType == 'train', 'fa-car': trip.transportType == 'car', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
+                                <i class="fa fa-2x pull-right text-theme-blue fa-trip-type" ng-class="{'icon-bus': trip.transportType == 'bus','icon-tren': trip.transportType == 'train', 'fa-car': trip.transportType == 'car', 'hidden': !search.combineTrips}" style="margin-left: 20px;margin-top: 5px;"></i>
                             </div>
 
                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
