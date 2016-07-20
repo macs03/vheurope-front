@@ -519,7 +519,7 @@
         "SORT": {
           "ORDER_BY": "Ordenar por:",
           "COMPANY": "Empresas",
-          "HORARY": "Horario de Salida",
+          "HORARY": "Más Temprano",
           "PRICE": "El más Barato",
           "DURATION": "El más rápido"
         },

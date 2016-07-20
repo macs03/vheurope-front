@@ -369,11 +369,14 @@ select {
 
 .header-results .bt, .header-results .br, .header-results .bb, .header-results .bl {
     background: #fff;
-    color: #29abe5;
+    color: #727273;
     font-weight: normal;
     font-family: 'Ubuntu', sans-serif;
     padding-top: 6px;
     text-align: center;
+    margin: 0 .2em;
+    border-radius: 2px;
+    border: 1px solid rgba(114, 114, 115, 0.3);
 }
 
 // .header-results .sort:hover {
@@ -381,22 +384,22 @@ select {
 // }
 
 .header-results .sort.active {
-    background: #6DCDF6;
-    color: #fff
+    background: #e1e1e0;
+    color: #139dd9;
 }
 
 .header-results .bt {
-    border-top: 1px solid #00A4EB;
+    //border-top: 1px solid #00A4EB;
 
 }
 .header-results .br{
-    border-right: 1px solid #00A4EB;
+    //border-right: 1px solid #00A4EB;
 }
 .header-results .bb {
-    border-bottom: 1px solid #00A4EB;
+    //border-bottom: 1px solid #00A4EB;
 }
 .header-results .bl {
-    border-left: 1px solid #00A4EB;
+    //border-left: 1px solid #00A4EB;
 }
 .new-results .results { padding: 0px 10px 0px 10px }
 .new-results .results .result , .new-results-selected .results .result {
@@ -479,13 +482,14 @@ select {
 .sort:hover,
 .sort-horary:hover {
     text-decoration: none;
-    background-color: transparent;
+    color: #139dd9;
+    background-color: #e1e1e0;
 }
 .sort:focus,
 .sort-horary:focus { outline: none }
 .sort:after,
 .sort-horary:after {
-    color: #fff;
+    color: #139dd9;
     font-size: .8555332rem;
 }
 .sort.asc,

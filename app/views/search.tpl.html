@@ -591,23 +591,29 @@
                 <!-- FILTROS -->
                 <div class="row header-results hidden-xs hidden-sm" ng-show="(search.hasTrainTrips || search.hasBusTrips || search.hasPlaneTrips) && search.globalAlternativeTrips.length == 0">
 
-                    <div class="col-md-3 sort sort-trips bl bt bb" ng-class="{active:search.type === 'departure'}" data-sort="departure" ng-click="search.order('departure')">
-                        <span translate>SEARCH.SORT.HORARY</span>
-                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'departure'"></span>
-                    </div>
-                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'price'}" data-sort="price" ng-click="search.order('price')">
-                        <span translate>SEARCH.SORT.PRICE</span>
-                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
-                    </div>
-                    <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'durationMinutes'}" data-sort="company" ng-click="search.order('durationMinutes')">
-                        <span style="margin-left:6px;" translate>SEARCH.SORT.DURATION</span>
-                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'durationMinutes'"></span>
+                    <div class="col-md-9 pull-right">
+                        <div class="col-md-3" style="width: 22%;margin-top: 4px;">
+                            <span>Ordernar por </span>
+                        </div>
+
+                        <div class="col-md-3 sort sort-trips bl bt bb" ng-class="{active:search.type === 'departure'}" data-sort="departure" ng-click="search.order('departure')">
+                            <span translate>SEARCH.SORT.HORARY</span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'departure'"></span>
+                        </div>
+                        <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'price'}" data-sort="price" ng-click="search.order('price')">
+                            <span translate>SEARCH.SORT.PRICE</span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'price'"></span>
+                        </div>
+                        <div class="col-md-3  sort sort-trips bl bt bb" ng-class="{active:search.type === 'durationMinutes'}" data-sort="company" ng-click="search.order('durationMinutes')">
+                            <span style="margin-left:6px;" translate>SEARCH.SORT.DURATION</span>
+                            <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'durationMinutes'"></span>
+                        </div>
                     </div>
 
-                    <div class="col-md-3  sort sort-trips bl bt bb br" ng-class="{active:search.type === 'companyName'}" data-sort="company" ng-click="search.order('companyName')">
-                        <span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>
-                        <span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>
-                    </div>
+                    <!--<div class="col-md-3  sort sort-trips bl bt bb br" ng-class="{active:search.type === 'companyName'}" data-sort="company" ng-click="search.order('companyName')">-->
+                        <!--<span style="margin-left:6px;" translate>SEARCH.SORT.COMPANY</span>-->
+                        <!--<span class="sort" ng-class="{desc:search.reverse,asc:!search.reverse}" ng-show="search.type === 'companyName'"></span>-->
+                    <!--</div>-->
                 </div> <!-- end .row -->
 
                 <!-- FIN FILTROS -->
