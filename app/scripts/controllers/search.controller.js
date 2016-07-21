@@ -1358,14 +1358,24 @@
         vm.searchMobile = screenSize.on('xs, sm', function (isMatch) {
             vm.searchMobile = !isMatch;
         });
-        vm.tripDetails = function ($event,id,flag,all) {
+        vm.tripDetails = function ($event,id,flag,all,mix) {
             if (all) {
-                if (flag) {
-                    $('#button-'+id).hide();
-                    $('#arrow-'+id).show();
+                if (mix) {
+                    if (flag) {
+                        $('#button-mix-'+id).hide();
+                        $('#arrow-mix-'+id).show();
+                    } else {
+                        $('#button-mix-'+id).show();
+                        $('#arrow-mix-'+id).hide();
+                    }
                 }else{
-                    $('#button-'+id).show();
-                    $('#arrow-'+id).hide();
+                    if (flag) {
+                        $('#button-'+id).hide();
+                        $('#arrow-'+id).show();
+                    }else{
+                        $('#button-'+id).show();
+                        $('#arrow-'+id).hide();
+                    }
                 }
             }else{
                 if (flag) {

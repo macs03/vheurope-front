@@ -1902,7 +1902,8 @@
                                     </div>
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 hidden-xs hidden-sm">
-                                        <button data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event)" class="btn theme-blue-2 pull-right">Ver más</button>
+                                        <button id="button-mix-{{$index}}" data-trip-id="{{ trip.id }}" ng-click="search.tripDetails($event,$index,true,true,true)" class="btn theme-blue-2 pull-right">Ver más</button>
+                                        <i id="arrow-mix-{{$index}}" class="fa fa-chevron-circle-up fa-2x text-theme-green" data-trip-id="{{trip.id}}" ng-click="search.tripDetails($event,$index,false,true,true)" style="margin: .3em 4em; display: none"></i>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 hidden-md hidden-lg">
                                         <small class="text-muted" style="margin-left: 25px;">2 Escalas</small>
