@@ -459,7 +459,7 @@
         var mixedTripIcon = function (tripSection, typeTrip) {
             if (tripSection <= 1 && tripSection >= 0) {
                 var sections = typeTrip.split('_');
-                return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
+                return sections[tripSection] === 'bus' ? 'icon-bus' : 'fa-ship';
             }
         }
 
