@@ -748,7 +748,7 @@
     };
     var translationsFR = {
         "MAIN": {
-            "TITLE": "VOYAGER INTELIGENT AVEC RESERTRIP",
+            "TITLE": "VOYAGEZ INTELIGENT AVEC RESERTRIP",
             "SUBTITLE": "Comparer et acheter",
             "BUS": "Bus",
             "TRAIN": "Train",
