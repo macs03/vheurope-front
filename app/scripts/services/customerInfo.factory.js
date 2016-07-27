@@ -11,9 +11,9 @@
     angular.module('vhEurope')
         .factory('customerInfoFactory', customerInfoFactory);
 
-    customerInfoFactory.$inject = ['$http', '$q', 'apiUrl'];
+    customerInfoFactory.$inject = ['$http', '$q', 'apiUrl', 'utilityService'];
 
-    function customerInfoFactory($http, $q, apiUrl) {
+    function customerInfoFactory($http, $q, apiUrl, utilityService) {
         return {
             getAll: getAll,
             putNewData: putNewData,
@@ -129,7 +129,7 @@
             var promise = defered.promise;
             $http({
                     method: 'DELETE',
-                    url: apiUrl + 'customer/user'
+                    url: apiUrl + 'customer/user?lang=' + utilityService.getLang()
                 })
                 .success(function(data) {
                     defered.resolve(data);
@@ -167,7 +167,8 @@
                     method: 'PUT',
                     url: apiUrl + 'resetPassword',
                     data: {
-                        email: email
+                        email: email,
+                        lang: utilityService.getLang()
                     }
                 })
                 .success(function(data) {

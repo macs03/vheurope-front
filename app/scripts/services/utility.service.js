@@ -51,7 +51,10 @@
             payer : {},
             setSearch : setSearch,
             getSearch : getSearch,
-            url : ""
+            url : "",
+            lang : "es",
+            setLang : setLang,
+            getLang : getLang, 
         }
         var origin = ""
         function getData(){
@@ -148,6 +151,14 @@
             return {
                 url : self.url
             }
+        }
+
+        function setLang(lang) {
+            self.lang = lang;
+        }
+
+        function getLang() {
+            return self.lang
         }
 
       }

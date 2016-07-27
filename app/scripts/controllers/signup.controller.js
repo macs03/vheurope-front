@@ -12,9 +12,9 @@
         .module('vhEurope')
         .controller('SignUpController', SignUpController);
 
-    SignUpController.$inject = ['$scope', '$auth', '$location', '$rootScope'];
+    SignUpController.$inject = ['$scope', '$auth', '$location', '$rootScope', 'utilityService'];
 
-    function SignUpController($scope, $auth, $location, $rootScope) {
+    function SignUpController($scope, $auth, $location, $rootScope, utilityService) {
         var vm = this;
         vm.confirm = confirm;
         vm.passwordConfirmed = true;
@@ -27,7 +27,8 @@
                     firstName: vm.name,
                     email: vm.email,
                     password: vm.password,
-                    passwordRepeat: vm.confirmPassword
+                    passwordRepeat: vm.confirmPassword,
+                    lang: utilityService.getLang()
                 })
                 .then(function(data) {
                     // Si se ha registrado correctamente,
