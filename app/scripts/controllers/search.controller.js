@@ -459,7 +459,7 @@
         var mixedTripIcon = function (tripSection, typeTrip) {
             if (tripSection <= 1 && tripSection >= 0) {
                 var sections = typeTrip.split('_');
-                return sections[tripSection] === 'bus' ? 'fa-bus' : 'fa-ship';
+                return sections[tripSection] === 'bus' ? 'icon-bus' : 'fa-ship';
             }
         }
 
@@ -1358,8 +1358,34 @@
         vm.searchMobile = screenSize.on('xs, sm', function (isMatch) {
             vm.searchMobile = !isMatch;
         });
-
-        vm.tripDetails = function ($event) {
+        vm.tripDetails = function ($event,id,flag,all,mix) {
+            if (all) {
+                if (mix) {
+                    if (flag) {
+                        $('#button-mix-'+id).hide();
+                        $('#arrow-mix-'+id).show();
+                    } else {
+                        $('#button-mix-'+id).show();
+                        $('#arrow-mix-'+id).hide();
+                    }
+                }else{
+                    if (flag) {
+                        $('#button-'+id).hide();
+                        $('#arrow-'+id).show();
+                    }else{
+                        $('#button-'+id).show();
+                        $('#arrow-'+id).hide();
+                    }
+                }
+            }else{
+                if (flag) {
+                    $('#button-plane-'+id).hide();
+                    $('#arrow-plane-'+id).show();
+                }else{
+                    $('#button-plane-'+id).show();
+                    $('#arrow-plane-'+id).hide();
+                }
+            }
             var elementId = '#trip_details_' + jQuery(jQuery($event.target)[0]).attr('data-trip-id');
             var elementId2 = '#trip_details_mix_' + jQuery(jQuery($event.target)[0]).attr('data-trip-id');
             var elementId3 = '#trip_details_avanza_' + jQuery(jQuery($event.target)[0]).attr('data-trip-id');

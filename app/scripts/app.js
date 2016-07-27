@@ -228,7 +228,7 @@
             "LOADING_MESSAGE": "Loading results...",
             "NO_DEPARTURES": "No departures",
             "SORT": {
-              "ORDER_BY": "Order by:",
+              "ORDER_BY": "Order by",
               "COMPANY": "Companies",
               "HORARY": "Departure Time",
               "PRICE": "The cheapest",
@@ -517,9 +517,9 @@
         "LOADING_MESSAGE": "Cargando resultados...",
         "NO_DEPARTURES": "No hay salidas",
         "SORT": {
-          "ORDER_BY": "Ordenar por:",
+          "ORDER_BY": "Ordenar por",
           "COMPANY": "Empresas",
-          "HORARY": "Horario de Salida",
+          "HORARY": "Más Temprano",
           "PRICE": "El más Barato",
           "DURATION": "El más rápido"
         },
@@ -806,7 +806,7 @@
             "LOADING_MESSAGE": "Chargement de résultats en cours...",
             "NO_DEPARTURES": "Aucun départ",
             "SORT": {
-                "ORDER_BY": "Classement par:",
+                "ORDER_BY": "Classement par",
                 "COMPANY": "Sociétés",
                 "HORARY": "Heure de départ",
                 "PRICE": "Le moins cher",
