@@ -38,7 +38,7 @@
             $http({
                     //cache: flag,
                     method: 'GET',
-                    url: apiUrl + 'customer'
+                    url: apiUrl + 'customer?lang=' + utilityService.getLang()
                 })
                 .success(function(data) {
                     defered.resolve(data);
