@@ -62,10 +62,10 @@
         vm.hasOtherBus = false;
         vm.showBus2 = false;
         vm.combineTrips = false;
-        vm.percentageBus = 0;
-        vm.percentageTrain = 0;
+        vm.percentageBus = 20;
+        vm.percentageTrain = 20;
         vm.percentagePlane = 20;
-        vm.percentageCar = 0;
+        vm.percentageCar = 20;
         vm.lowestPricePlane = 0;
         vm.lowestDurationPlane = 0;
         vm.lowestPriceBus = 0;
