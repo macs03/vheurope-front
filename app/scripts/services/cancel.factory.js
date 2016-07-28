@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('cancelFactory', cancelFactory);
 
-      cancelFactory.$inject =['$http','$q','apiUrl'];
+      cancelFactory.$inject =['$http','$q','apiUrl','utilityService'];
 
-      function cancelFactory($http,$q,apiUrl) {
+      function cancelFactory($http,$q,apiUrl,utilityService) {
         return {
             getAll: getAll
         }
@@ -23,7 +23,7 @@
             var promise = defered.promise;
             $http({
                     method:'POST',
-                    url: apiUrl + 'cancelTrip/'+uuid,
+                    url: apiUrl + 'cancelTrip/'+uuid+'?lang='+utilityService.getLang(),
                     skipAuthorization: true
                 })
                 .success(function(data) {
