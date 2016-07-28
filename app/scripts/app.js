@@ -185,7 +185,8 @@
             "CHOOSE_ORIGIN": "Choose your origin",
             "CHOOSE_DESTINATION": "Choose your destination",
             "RETURN": "Return",
-            "COOKIES_MESSAGE": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies."
+            "COOKIES_MESSAGE": "This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies.",
+            "SEARCH": "Search"
           },
           "TIME":{
             "TITLE": "Your time has run out",
@@ -474,7 +475,8 @@
         "CHOOSE_ORIGIN": "Elige tu origen",
         "CHOOSE_DESTINATION": "Elige tu destino",
         "RETURN": "Vuelta",
-        "COOKIES_MESSAGE": "Este portal, al igual que la mayoría de portales en Internet, usa cookies para mejorar la experiencia del usuario. Continuar en la página supone aceptar el uso de estas cookies."
+        "COOKIES_MESSAGE": "Este portal, al igual que la mayoría de portales en Internet, usa cookies para mejorar la experiencia del usuario. Continuar en la página supone aceptar el uso de estas cookies.",
+        "SEARCH": "Buscar"
       },
       "TIME":{
         "TITLE": "Tu tiempo se ha agotado",
@@ -763,7 +765,8 @@
             "CHOOSE_ORIGIN": "Choisir votre départ",
             "CHOOSE_DESTINATION": "Choisir votre arrivée",
             "RETURN": "Retour",
-            "COOKIES_MESSAGE": "Ce site utilise des cookies. En continuant à naviguer sur le site, vous acceptez notre utilisation des cookies."
+            "COOKIES_MESSAGE": "Ce site utilise des cookies. En continuant à naviguer sur le site, vous acceptez notre utilisation des cookies.",
+            "SEARCH": "Chercher"
         },
         "TIME":{
             "TITLE": "Votre temps est écoulé",
