@@ -60,6 +60,12 @@
     padding: 4px !important;
     min-height: 36px !important;
     max-height: 36px !important;
+    -webkit-border-top-left-radius: 4px !important;
+    -webkit-border-bottom-left-radius: 4px !important;
+    -moz-border-radius-topleft: 4px !important;
+    -moz-border-radius-bottomleft: 4px !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
 
     input {
         margin-top: -5px !important;
@@ -72,11 +78,20 @@
 	}
 }
 
+.dropdown-active{
+    background: #f1f1f1 !important;
+}
+
+#select_passengers:focus {
+    background: #f1f1f1 !important;
+}
+
 .destination-search {
     background: #fff;
-    border: none;
+    border: 2px solid #c1c1c1 !important;
     min-height: 50px;
-    max-height: 50px;
+    max-height: 52px;
+    border-radius: 4px;
 
     .switcheroo {
         position: absolute;
@@ -90,6 +105,10 @@
         background-image: url(https://s3-sa-east-1.amazonaws.com/voyhoy-content/switch.png);
         z-index: 10;
     }
+    
+    .fa {
+        color: #29ABE5
+    }
 }
 
 .np { padding: 0 !important }
@@ -98,11 +117,12 @@
 
 .vh-calendar {
     position: absolute;
-    top: 40%;
+    top: 36%;
     right: 10px;
     color: #999;
     -webkit-transition: opacity .5s;
     transition: opacity .5s;
+    color: #29ABE5;
 }
 
 .clear-calendar {
@@ -113,14 +133,25 @@
 }
 
 .btn-search {
-    min-height: 50px;
+    max-height: 48px;
+    min-height: 48px;
     border-radius: 0;
     border: 0;
     padding: 14px 12px;
-    background: #f3424c;
+    background: #29ABE5;
+    width: 101%;
+    font-size: .9em;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 2px;  
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-bottomright: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    color: white;
 
     &:hover{
-    	background: #ed0000;
+    	background: #a4d5ea;
+        color: white;
     }
 }
 

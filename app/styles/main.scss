@@ -141,6 +141,10 @@ rzslider .rz-pointer.rz-active:after{
   cursor: pointer !important;
 }
 
+.pikaday__display.pikaday__display--pikaday:focus {
+  background: #f1f1f1 !important;
+}
+
 .cookie-message {
   min-height: 40px;
   position:fixed;

@@ -299,7 +299,7 @@
                                                     <!-- <selectize config='search.myConfigOrigin' options='search.myOptionsOrigin' ng-model="search.origin"></selectize> -->
                                                     <!-- <span class="fa fa-times clear-field vh-calendar" ng-show="search.destination"></span> -->
                                                 </div>
-                                                <div class="switcheroo hidden-xs hidden-sm" ng-click="search.switcher()"></div>
+                                                <!--<div class="switcheroo hidden-xs hidden-sm" ng-click="search.switcher()"></div>-->
                                                 <div class="col-md-3 col-xs-12  np">
                                                     <place-picker config='search.myConfigDestination' options='search.myOptionsDestination' ng-model="search.destination" ng-disabled="search.disabled"></place-picker>
                                                     <!-- <selectize config='search.myConfigDestination' options='search.myOptionsDestination' ng-model="search.destination"></selectize> -->
@@ -308,11 +308,11 @@
                                                 </div>
                                                 <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
                                                    <vhdatepicker id="departureDate" class="form-departure" ng-model="search.dates.departureDate" data-set-date="false" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY" data-departure-date="{{search.dates.departureDate}}" ng-disabled="search.disabled"></vhdatepicker>
-                                                    <span ng-click="search.openDepartureCalendar()" class="fa fa-calendar departure-calendar vh-calendar" style="cursor:pointer;"></span>
+                                                    <span ng-click="search.openDepartureCalendar()" class="fa fa-calendar-check-o departure-calendar vh-calendar" style="cursor:pointer;"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
                                                     <vhdatepicker id="returnDate" class="form-return" ng-model="search.dates.returnDate" data-min-date="{{ search.dates.minDate }}"  data-placeholder="Vuelta" data-date-format="DD/MM/YYYY" data-return-date="{{search.dates.returnDate}}" ng-disabled="search.disabled"></vhdatepicker>
-                                                    <span ng-click="search.openReturnCalendar()" class="fa fa-calendar return-calendar vh-calendar" style="cursor:pointer;"></span>
+                                                    <span ng-click="search.openReturnCalendar()" class="fa fa-calendar-check-o return-calendar vh-calendar" style="cursor:pointer;"></span>
                                                 </div>
                                                 <div class="col-md-2 col-xs-12 np">
                                                     <input type="text" id="select_passengers" ng-model="search.passengers">
