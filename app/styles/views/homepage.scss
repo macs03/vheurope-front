@@ -272,6 +272,11 @@ ul.pasajes li a {
     color: #666;
 }
 
+.div-pasajes {
+    display: flex;
+    justify-content: center;
+}
+
 .bus h3 {
     font-family: "Ubuntu", sans-serif;
     color: #666;

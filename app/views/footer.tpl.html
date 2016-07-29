@@ -1,28 +1,28 @@
-<div class="bus row-fluid hidden-xs" style="background: #fff; padding-top: 40px;">
+<div class="bus row-fluid hidden-xs" style="background: #F1F1F1; padding-top: 40px; padding-bottom: 30px;">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12 div-pasajes">
                 <ul class="list-unstyled pasajes">
                     <li ng-repeat="pl in footer.popular_links | limitTo:6 | limitTo:-6">
                         <a href="{{ pl.href }}" target="_blank">{{ pl.origin }} <span translate>POPULAR_TRIPS.TO</span> {{ pl.destination }}</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12 div-pasajes">
                 <ul class="list-unstyled pasajes">
                     <li ng-repeat="pl in footer.popular_links | limitTo:12 | limitTo:-6">
                         <a href="{{ pl.href }}" target="_blank">{{ pl.origin }} <span translate>POPULAR_TRIPS.TO</span> {{ pl.destination }}</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12 div-pasajes">
                 <ul class="list-unstyled pasajes">
                     <li ng-repeat="pl in footer.popular_links | limitTo:18 | limitTo:-6">
                         <a href="{{ pl.href }}" target="_blank">{{ pl.origin }} <span translate>POPULAR_TRIPS.TO</span> {{ pl.destination }}</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12 div-pasajes">
                 <ul class="list-unstyled pasajes">
                     <li ng-repeat="pl in footer.popular_links | limitTo:26 | limitTo:-6">
                         <a href="{{ pl.href }}" target="_blank">{{ pl.origin }} <span translate>POPULAR_TRIPS.TO</span> {{ pl.destination }}</a>
