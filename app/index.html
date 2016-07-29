@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="vhEurope" ng-controller="indexController">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title ng-bind="pageTitle">Resertrip Viaja inteligente</title>
     <meta name="description" content="Compara y compra billetes de tren, bus y avión. Ponemos a tu disposición todas las opciones de transporte para que encuentres la mejor oferta. ¡Viaja inteligente!">
@@ -27,14 +28,15 @@
     <!-- Google Fonts Import -->
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  </head>
-  <body>
+</head>
+
+<body>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="initial fade-in-out" ng-hide="initial"  >
+    <div class="initial fade-in-out" ng-hide="initial">
         <div class="welcome">
             <img src="images/resertrip.png" alt="" height="80">
             <p>
@@ -46,145 +48,150 @@
                 Dicho de la forma más sencilla, queremos ayudarte a viajar de A a B en un par de clicks.
             </p>
             <ul class="list-unstyled list-inline">
-                <li><i class="fa fa-bus loading-page"></i></li>
-                <li><i class="fa fa-plane loading-page"></i></li>
-                <li><i class="fa fa-train loading-page"></i></li>
+                <li><i class="fa icon-bus loading-page"></i></li>
+                <li><i class="fa icon-avion loading-page"></i></li>
+                <li><i class="fa icon-tren loading-page"></i></li>
                 <li><i class="fa fa-ship loading-page"></i></li>
                 <li><i class="fa fa-car loading-page"></i></li>
             </ul>
         </div>
     </div>
     <div class="header-nav">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/"><img src="images/resertrip.png" alt="" height="40" style="margin-top: -10px;"></a>
-          </div>
-          <div class="counter" ng-show="showCLock === true">
-              <span ng-cloak>{{counter}}:{{seconds}}</span>
-          </div>
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <p class="text-muted hidden-xs hidden-sm" style="margin-top: 20px;" translate>NAVBAR.MESSAGE</p>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="hidden-xs hidden-sm" id="passages_link"><a href="#/" translate>NAVBAR.PASSAGES</a></li>
-                <ul class="nav navbar-nav navbar-right" ng-show="!login">
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_login_title" translate> SESSION.SIGNIN <span class="caret"></span>
+                    <a class="navbar-brand" href="#/"><img src="images/resertrip.png" alt="" height="40" style="margin-top: -10px;"></a>
+                </div>
+                <div class="counter" ng-show="showCLock === true">
+                    <span ng-cloak>{{counter}}:{{seconds}}</span>
+                </div>
+                <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <p class="text-muted hidden-xs hidden-sm" style="margin-top: 20px;" translate>NAVBAR.MESSAGE</p>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden-xs hidden-sm" id="passages_link"><a href="#/" translate>NAVBAR.PASSAGES</a></li>
+                        <ul class="nav navbar-nav navbar-right" ng-show="!login">
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_login_title" translate> SESSION.SIGNIN <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" id="switch_login">
-                            <li><a href="#/login"><span translate>SESSION.LOGIN</span></a></li>
-                            <li><a href="#/signup" ><span translate>SESSION.REGISTER</span></a></li>
+                                <ul class="dropdown-menu" id="switch_login">
+                                    <li><a href="#/login"><span translate>SESSION.LOGIN</span></a></li>
+                                    <li><a href="#/signup"><span translate>SESSION.REGISTER</span></a></li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" ng-show="login">
-                    <li class="dropdown">
-                        <a ng-show="!avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-letters-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> {{initials | uppercase}} </a>
-                        <a ng-show="avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-img-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> <img ng-src="{{avatar}}" alt="foto de perfil" /> </a>
-                        <ul class="dropdown-menu" id="switch_logout">
-                            <li><a href="#/logout"><span translate>SESSION.EXIT</span></a></li>
-                            <li><a href="#/customer-profile" ><span translate>SESSION.PROFILE</span></a></li>
+                        <ul class="nav navbar-nav navbar-right" ng-show="login">
+                            <li class="dropdown">
+                                <a ng-show="!avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-letters-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> {{initials | uppercase}} </a>
+                                <a ng-show="avatarFlag" href="javascript:void(0)" class="dropdown-toggle header-img-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_logout_title"> <img ng-src="{{avatar}}" alt="foto de perfil" /> </a>
+                                <ul class="dropdown-menu" id="switch_logout">
+                                    <li><a href="#/logout"><span translate>SESSION.EXIT</span></a></li>
+                                    <li><a href="#/customer-profile"><span translate>SESSION.PROFILE</span></a></li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>   
-            </ul>
-            <switch-language-directive></switch-language-directive>
-          </div>
+                    </ul>
+                    <switch-language-directive></switch-language-directive>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="time-complete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
-       data-keyboard="false">
-       <div class="modal-dialog modal-lg" role="document">
-         <div class="modal-content" style="background-color: #F2DEDD !important;">
-           <div class="modal-header">
-               <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-               <h4 translate>TIME.TITLE</h4>
-           </div>
-           <div class="modal-body">
-               <p translate>TIME.MESSAGE</p>
-           </div>
-         </div>
-       </div>
+    <div class="modal fade" id="time-complete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="background-color: #F2DEDD !important;">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 translate>TIME.TITLE</h4>
+                </div>
+                <div class="modal-body">
+                    <p translate>TIME.MESSAGE</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div ui-view></div>
 
-<br><br>
-<!-- FOOTER AQUI -->
-<vhfooter-directive></vhfooter-directive>
+    <br><br>
+    <!-- FOOTER AQUI -->
+    <vhfooter-directive></vhfooter-directive>
 
 
-<div class="bus  hidden-xs row-fluid" style="background: #fff; padding-top: 40px; padding-bottom: 40px;">
-    <div class="row" style="margin: 0 !important">
-        <div class="col-md-12 text-center">
-            <ul class="list-inline social-links">
-                <li>
-                    <a href="https://twitter.com/resertrip" target="_blank">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.facebook.com/resertrip" target="_blank">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" target="_blank">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            </ul>
+    <div class="bus  hidden-xs row-fluid" style="background: #393939;">
+        <!--<div class="row" style="margin: 0 !important">
+            <div class="col-md-12 text-center">
+                
+            </div>
+        </div>-->
+
+        <div class="row" style="margin: 0 !important">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline footer-links">
+                    <li><a href="/#/about-us" translate>FOOTER.ABOUTUS_LABEL</a></li>
+                    <li><a href="http://www.resertrip.com/blog" target="_blank">Blog</a></li>
+                    <li><a href="/#/legal-text" translate>FOOTER.LEGAL_TEXT</a></li>
+                    <li><a href="/#/privacy-policy" translate>FOOTER.PRIVACITY</a></li>
+                    <li><a href="/#/terms" translate>FOOTER.TERMS</a></li>
+                    <li><a href="/#/cookies-policy" translate>FOOTER.COOKIES</a></li>
+                    <li>
+                        <ul class="list-inline social-links">
+                            <li>
+                                <a href="https://twitter.com/resertrip" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/resertrip" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
-    <div class="row" style="margin: 0 !important">
-        <div class="col-md-12 text-center">
-            <ul class="list-inline footer-links">
-                <li><a href="/#/about-us" translate>FOOTER.ABOUTUS_LABEL</a></li>
-                <li><a href="http://www.resertrip.com/blog"  target="_blank">Blog</a></li>
-                <li><a href="/#/legal-text" translate>FOOTER.LEGAL_TEXT</a></li>
-                <li><a href="/#/privacy-policy" translate>FOOTER.PRIVACITY</a></li>
-                <li><a href="/#/terms" translate>FOOTER.TERMS</a></li>
-                <li><a href="/#/cookies-policy" translate>FOOTER.COOKIES</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-77338635-1']);
-          //_gaq.push(['_trackPageview']);
-          _gaq.push(['_setDomainName', 'none']);
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77338635-1']);
+        //_gaq.push(['_trackPageview']);
+        _gaq.push(['_setDomainName', 'none']);
 
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
     </script>
 
 
@@ -230,55 +237,56 @@
     <script src="https://s3.eu-central-1.amazonaws.com/vheurope/jquery.seat-charts.min.js"></script>
     <script src="https://s3.eu-central-1.amazonaws.com/vheurope/jquery.cookieBar.min.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/constants.js"></script>
-        <script src="scripts/directives/gmap.directive.js"></script>
-        <script src="scripts/directives/footer.directive.js"></script>
-        <script src="scripts/directives/datepicker.directive.js"></script>
-        <script src="scripts/directives/placePicker.directive.js"></script>
-        <script src="scripts/directives/switchLanguage.directive.js"></script>
-        <script src="scripts/directives/profileMenu.directive.js"></script>
-        <script src="scripts/directives/password.directive.js"></script>
-        <script src="scripts/services/locations.factory.js"></script>
-        <script src="scripts/services/locations.rt.factory.js"></script>
-        <script src="scripts/services/travels.factory.js"></script>
-        <script src="scripts/services/urlTrain.factory.js"></script>
-        <script src="scripts/services/planes.factory.js"></script>
-        <script src="scripts/services/seats.factory.js"></script>
-        <script src="scripts/services/reserve.factory.js"></script>
-        <script src="scripts/services/payment.factory.js"></script>
-        <script src="scripts/services/paymentOrder.factory.js"></script>
-        <script src="scripts/services/cancel.factory.js"></script>
-        <script src="scripts/services/scraper.factory.js"></script>
-        <script src="scripts/services/utility.service.js"></script>
-        <script src="scripts/services/sessionStorage.service.js"></script>
-        <script src="scripts/services/weather.factory.js"></script>
-        <script src="scripts/services/customerInfo.factory.js"></script>
-        <script src="scripts/services/logout.factory.js"></script>
-        <script src="scripts/filters/price.filter.js"></script>
-        <script src="scripts/filters/hour.filter.js"></script>
-        <script src="scripts/filters/seat.filter.js"></script>
-        <script src="scripts/filters/company.filter.js"></script>
-        <script src="scripts/filters/companyScraper.filter.js"></script>
-        <script src="scripts/filters/seatScraper.filter.js"></script>
-        <script src="scripts/filters/priceScraper.filter.js"></script>
-        <script src="scripts/controllers/index.controller.js"></script>
-        <script src="scripts/controllers/main.controller.js"></script>
-        <script src="scripts/controllers/switchLanguage.controller.js"></script>
-        <script src="scripts/controllers/search.controller.js"></script>
-        <script src="scripts/controllers/seat.controller.js"></script>
-        <script src="scripts/controllers/payment.controller.js"></script>
-        <script src="scripts/controllers/success.controller.js"></script>
-        <script src="scripts/controllers/cancel.controller.js"></script>
-        <script src="scripts/controllers/footer.controller.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/login.controller.js"></script>
-        <script src="scripts/controllers/signup.controller.js"></script>
-        <script src="scripts/controllers/logout.controller.js"></script>
-        <script src="scripts/controllers/customerProfile.controller.js"></script>
-        <script src="scripts/controllers/customerPurchases.controller.js"></script>
-        <script src="scripts/controllers/customerSettings.controller.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/directives/gmap.directive.js"></script>
+    <script src="scripts/directives/footer.directive.js"></script>
+    <script src="scripts/directives/datepicker.directive.js"></script>
+    <script src="scripts/directives/placePicker.directive.js"></script>
+    <script src="scripts/directives/switchLanguage.directive.js"></script>
+    <script src="scripts/directives/profileMenu.directive.js"></script>
+    <script src="scripts/directives/password.directive.js"></script>
+    <script src="scripts/services/locations.factory.js"></script>
+    <script src="scripts/services/locations.rt.factory.js"></script>
+    <script src="scripts/services/travels.factory.js"></script>
+    <script src="scripts/services/urlTrain.factory.js"></script>
+    <script src="scripts/services/planes.factory.js"></script>
+    <script src="scripts/services/seats.factory.js"></script>
+    <script src="scripts/services/reserve.factory.js"></script>
+    <script src="scripts/services/payment.factory.js"></script>
+    <script src="scripts/services/paymentOrder.factory.js"></script>
+    <script src="scripts/services/cancel.factory.js"></script>
+    <script src="scripts/services/scraper.factory.js"></script>
+    <script src="scripts/services/utility.service.js"></script>
+    <script src="scripts/services/sessionStorage.service.js"></script>
+    <script src="scripts/services/weather.factory.js"></script>
+    <script src="scripts/services/customerInfo.factory.js"></script>
+    <script src="scripts/services/logout.factory.js"></script>
+    <script src="scripts/filters/price.filter.js"></script>
+    <script src="scripts/filters/hour.filter.js"></script>
+    <script src="scripts/filters/seat.filter.js"></script>
+    <script src="scripts/filters/company.filter.js"></script>
+    <script src="scripts/filters/companyScraper.filter.js"></script>
+    <script src="scripts/filters/seatScraper.filter.js"></script>
+    <script src="scripts/filters/priceScraper.filter.js"></script>
+    <script src="scripts/controllers/index.controller.js"></script>
+    <script src="scripts/controllers/main.controller.js"></script>
+    <script src="scripts/controllers/switchLanguage.controller.js"></script>
+    <script src="scripts/controllers/search.controller.js"></script>
+    <script src="scripts/controllers/seat.controller.js"></script>
+    <script src="scripts/controllers/payment.controller.js"></script>
+    <script src="scripts/controllers/success.controller.js"></script>
+    <script src="scripts/controllers/cancel.controller.js"></script>
+    <script src="scripts/controllers/footer.controller.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/login.controller.js"></script>
+    <script src="scripts/controllers/signup.controller.js"></script>
+    <script src="scripts/controllers/logout.controller.js"></script>
+    <script src="scripts/controllers/customerProfile.controller.js"></script>
+    <script src="scripts/controllers/customerPurchases.controller.js"></script>
+    <script src="scripts/controllers/customerSettings.controller.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>

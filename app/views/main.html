@@ -1,4 +1,5 @@
 <style>
+
 </style>
 <div id="popover-bg"></div>
 <div class="popover-select-passengers">
@@ -25,7 +26,7 @@
                     <i class="fa fa-minus"></i>
                 </button>
             </span>
-            <input type="text" class="text-center"  size="2" ng-model="main.passengersChild">
+            <input type="text" class="text-center" size="2" ng-model="main.passengersChild">
             <span class="input-group-btn">
                 <button class="btn btn-default btn-xs" data-dir="up" ng-click="main.updatePassengers('child', 'up')">
                     <i class="fa fa-plus"></i>
@@ -58,67 +59,69 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12"></div>
-                    <div id="search-form-wrapper">
-                        <h1 translate>MAIN.TITLE</h1>
-                        <div class="row hidden-xs text-center">
-                            <div class="col-md-4 col-md-offset-1"><h2 class="hidden-xs" translate>MAIN.SUBTITLE</h2></div>
-                            <div class="col-md-6">
-                                <ul class="list-inline list-unstyled" style="margin-top: 14px;color: #fff;">
-                                    <li>
-                                       <i class="fa fa-bus fa-2x"></i><br><small translate>MAIN.BUS</small>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-plus"></i><br><small>&nbsp;</small>
-                                    </li>
-                                    <li><i class="fa fa-plane fa-2x"></i><br><small translate>MAIN.PLANE</small></li>
-                                    <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
-                                    <li><i class="fa fa-train fa-2x"></i><br><small translate>MAIN.TRAIN</small></li>
-                                    <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
-                                    <li><i class="fa fa-ship fa-2x"></i><br><small translate>MAIN.FERRY</small></li>
-                                    <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
-                                    <li><i class="fa fa-car fa-2x"></i><br><small translate>MAIN.CAR</small></li>
-                                </ul>
-                            </div>
-                           
+                <div id="search-form-wrapper">
+                    <h1 translate>MAIN.TITLE</h1>
+                    <div class="row hidden-xs text-center">
+                        <div class="col-md-4 col-md-offset-1">
+                            <h2 class="hidden-xs" translate>MAIN.SUBTITLE</h2></div>
+                        <div class="col-md-6">
+                            <ul class="list-inline list-unstyled" style="margin-top: 14px;color: #fff;">
+                                <li>
+                                    <i class="fa icon-bus fa-2x"></i><br><small translate>MAIN.BUS</small>
+                                </li>
+                                <li>
+                                    <i class="fa fa-plus"></i><br><small>&nbsp;</small>
+                                </li>
+                                <li><i class="fa icon-avion fa-2x"></i><br><small translate>MAIN.PLANE</small></li>
+                                <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
+                                <li><i class="fa icon-tren fa-2x"></i><br><small translate>MAIN.TRAIN</small></li>
+                                <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
+                                <li><i class="fa fa-ship fa-2x"></i><br><small translate>MAIN.FERRY</small></li>
+                                <li><i class="fa fa-plus"></i><br><small>&nbsp;</small></li>
+                                <li><i class="fa fa-car fa-2x"></i><br><small translate>MAIN.CAR</small></li>
+                            </ul>
                         </div>
-                        <form role="form" class="mt24">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 ">
-                                    <div class="row destination-search">
-                                        <div class="col-md-3 col-xs-12 np">
-                                            <place-picker config='main.configOrigin' options='main.myOptionsOrigin' ng-model="main.origin"></place-picker>
-                                            <!-- <selectize config='main.configOrigin' options='main.myOptionsOrigin' ng-model="main.origin"></selectize> -->
-                                        </div>
-                                        <!--<div class="switcheroo hidden-xs" ng-click="main.switcher()"></div>-->
-                                        <div class="col-md-3 col-xs-12  np">
-                                            <place-picker config='main.configDestination' options='main.myOptionsDestination' ng-model="main.destination"></place-picker>
-                                            <!-- <selectize config='main.configDestination' options='main.myOptionsDestination' ng-model="main.destination"></selectize> -->
-                                        </div>
-                                        <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
-                                           <vhdatepicker class="form-departure" id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
-                                            <span ng-click="main.openDepartureCalendar()" class="fa fa-calendar-check-o departure-calendar vh-calendar" style="cursor:pointer;"></span>
-                                        </div>
-                                        <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
-                                            <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}"  data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
-                                            <span ng-click="main.openReturnCalendar()" class="fa fa-calendar-check-o return-calendar vh-calendar" style="cursor:pointer;"></span>
-                                        </div>
-                                        <div class="col-md-1 col-xs-12 np">
-                                            <input type="text" id="select_passengers" ng-model="main.passengers">
-                                            <span class="fa fa-users vh-calendar" style="margin-right: 15px;cursor:pointer;"></span>
-                                        </div>
-                                        <div class="col-md-1 col-xs-12 np">
-                                            <a class="btn btn-block btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" translate>MAIN.SEARCH</a>
-                                            <a class="btn btn-block btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" translate>MAIN.SEARCH</a>
-                                        </div>
-                                    </div> <!-- end .row -->
-                                </div> <!-- End Destination Search -->
-                            </div>
-                         </form>
 
-                         <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
-                            data-keyboard="false">
-                            <div class="modal-dialog modal-lg" role="document">
-                              <div class="modal-content" style="background-color: #F2DEDD !important;">
+                    </div>
+                    <form role="form" class="mt24">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 ">
+                                <div class="row destination-search">
+                                    <div class="col-md-3 col-xs-12 np">
+                                        <place-picker config='main.configOrigin' options='main.myOptionsOrigin' ng-model="main.origin"></place-picker>
+                                        <!-- <selectize config='main.configOrigin' options='main.myOptionsOrigin' ng-model="main.origin"></selectize> -->
+                                    </div>
+                                    <div class="switcheroo hidden-xs" ng-click="main.switcher()"></div>
+                                    <div class="col-md-3 col-xs-12  np">
+                                        <place-picker config='main.configDestination' options='main.myOptionsDestination' ng-model="main.destination"></place-picker>
+                                        <!-- <selectize config='main.configDestination' options='main.myOptionsDestination' ng-model="main.destination"></selectize> -->
+                                    </div>
+                                    <div class="col-md-2 col-xs-6  np nbrr" style="border-right: 1px solid #c1c1c1;">
+                                        <vhdatepicker class="form-departure" id="departureDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                                        <span ng-click="main.openDepartureCalendar()" class="fa fa-calendar-check-o departure-calendar vh-calendar" style="cursor:pointer;"></span>
+                                    </div>
+                                    <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
+                                        <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                                        <span ng-click="main.openReturnCalendar()" class="fa fa-calendar-check-o return-calendar vh-calendar" style="cursor:pointer;"></span>
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 np">
+                                        <input type="text" id="select_passengers" ng-model="main.passengers">
+                                        <span class="fa fa-users vh-calendar" style="margin-right: 15px;cursor:pointer;"></span>
+                                    </div>
+                                    <div class="col-md-1 col-xs-12 np">
+                                        <a class="btn btn-block btn-search hidden-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" translate>MAIN.SEARCH</a>
+                                        <a class="btn btn-block btn-search visible-xs" ng-click="main.searchTrips()" ng-mousedown="main.changeDate()" translate>MAIN.SEARCH</a>
+                                    </div>
+                                </div>
+                                <!-- end .row -->
+                            </div>
+                            <!-- End Destination Search -->
+                        </div>
+                    </form>
+
+                    <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content" style="background-color: #F2DEDD !important;">
                                 <div class="modal-header">
                                     <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                                     <h2>Error</h2>
@@ -128,13 +131,12 @@
                                         Revise su seleccion de ciudades
                                     </p>
                                 </div>
-                              </div>
                             </div>
-                         </div>
-                         <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
-                            data-keyboard="false">
-                            <div class="modal-dialog modal-lg" role="document">
-                              <div class="modal-content" style="background-color: #F2DEDD !important;">
+                        </div>
+                    </div>
+                    <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content" style="background-color: #F2DEDD !important;">
                                 <div class="modal-header">
                                     <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                                     <h2>Error</h2>
@@ -144,11 +146,11 @@
                                         Revise su seleccion de fechas
                                     </p>
                                 </div>
-                              </div>
                             </div>
-                         </div>
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -158,16 +160,16 @@
     <div class="row-fluid ">
         <div ng-repeat="ps in main.popular_searches" class="col-md-3 col-sm-6 col-xs-12">
             <a ng-click="main.quickSearch(ps.origin, ps.destination, ps.id)">
-            <div class="popular-trip">
-                <figure>
-                    <vhdatepicker id="departureDate-quick-{{ps.id}}" class="quickDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}"  data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
-                    <img class="img-destinny" ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
-                    <figcaption>
-                        <h3>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h3>
-                        <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
-                    </figcaption>
-                </figure>
-            </div>
+                <div class="popular-trip">
+                    <figure>
+                        <vhdatepicker id="departureDate-quick-{{ps.id}}" class="quickDate" ng-model="main.dates.departureDate" data-set-date="true" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Ida" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                        <img class="img-destinny" ng-src="{{ ps.image }}" alt="Pasajes de bus a Santiago" title="Comprar pasajes de bus a Santiago, Chile" />
+                        <figcaption>
+                            <h3>{{ ps.origin }}&nbsp; <i class="fa fa-chevron-circle-right"></i> &nbsp; {{ ps.destination }}</h3>
+                            <span><small translate>POPULAR_TRIPS.FROM</small> {{ ps.price | currency:"&euro;"}}</span>
+                        </figcaption>
+                    </figure>
+                </div>
             </a>
         </div>
     </div>
@@ -179,7 +181,7 @@
             <div class="col-md-8">
                 <div class="container-text">
                     <h3 translate>MAIN.CTA_BUY</h3>
-                    <h3  class="mobile" translate>MAIN.CTA_PHONE</h3>
+                    <h3 class="mobile" translate>MAIN.CTA_PHONE</h3>
                 </div>
             </div>
             <div class="col-md-4">
@@ -193,305 +195,305 @@
     </div>
 </div>
 
- <div class="bus row-fluid hidden-xs">
-            <div class="container">
-                <h3 translate>MAIN.BUS_COMPANIES</h3>
-                <div class="row wow fadeInDown">
+<div class="bus row-fluid hidden-xs">
+    <div class="container">
+        <h3 translate>MAIN.BUS_COMPANIES</h3>
+        <div class="row wow fadeInDown">
 
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/casado.jpg" alt="Bio Bio Empresa de Buses Chile" title="Bio Bio Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                  
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/agreda.jpg" alt="Bio Bio Empresa de Buses Chile" title="Bio Bio Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alarsa.jpg" alt="Cidher   Empresa de Buses Chile" title="Cidher Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alcoyana.jpg" alt="Ciktur Empresa de Buses Chile" title="Ciktur Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/almeria.jpg" alt="ETM Empresa de Buses Chile" title="ETM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alsa.jpg" alt="Jac Empresa de Buses Chile" title="Jac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/casado.jpg" alt="Bio Bio Empresa de Buses Chile" title="Bio Bio Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
-                <br>
-                <div class="row wow fadeInDown">
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alu.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/arriva.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/atr.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/aucasa.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/baraza.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/burundesa.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                <br>
+            </div>
 
-                <div class="row wow fadeInDown">
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/comes.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/conda.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/daibus.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/dainco.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/damas.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/edsa.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/agreda.jpg" alt="Bio Bio Empresa de Buses Chile" title="Bio Bio Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
-                <br>
-
-                <div class="row wow fadeInDown">
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/eix.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/enatcar.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/frs.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/heras.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/intercar.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/julia.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alarsa.jpg" alt="Cidher   Empresa de Buses Chile" title="Cidher Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
-                <br>
-
-                <div class="row wow fadeInDown">
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/linebus.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/linecar.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lopez.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lopezsl.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lycar.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/mgarcia.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alcoyana.jpg" alt="Ciktur Empresa de Buses Chile" title="Ciktur Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
-                <br>   
-
-                <div class="row wow fadeInDown">
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/saiz.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/soto.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/subus.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/thp.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/touring.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 text-center">
-                        <div class="logo-container">
-                        <a href="#" target="_blank" class="bw">
-                            <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/urena.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
-                        </a>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/almeria.jpg" alt="ETM Empresa de Buses Chile" title="ETM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p><small class="pull-right" translate>MAIN.MUCH_MORE</small></p>
-                    </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alsa.jpg" alt="Jac Empresa de Buses Chile" title="Jac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
                 </div>
             </div>
         </div>
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "Organization",
-                "name": "Resertrip",
-                "url": "http://www.resertrip.com",
-                "logo": "http://busbud-pubweb-assets.global.ssl.fastly.net/images/2784feb.largeicon.png", 
-                "sameAs": [
-                    "https://www.facebook.com/resertrip", 
-                    "https://twitter.com/resertrip", 
-                    "https://plus.google.com/u/2/106846995516516157967/",
-                    "https://instagram.com/resertrip/",
-                ]
-            }
-        </script>
+        <br>
+        <div class="row wow fadeInDown">
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/alu.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/arriva.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/atr.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/aucasa.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/baraza.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/burundesa.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row wow fadeInDown">
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/comes.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/conda.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/daibus.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/dainco.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/damas.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/edsa.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row wow fadeInDown">
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/eix.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/enatcar.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/frs.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/heras.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/intercar.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/julia.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row wow fadeInDown">
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/linebus.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/linecar.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lopez.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lopezsl.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/lycar.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/mgarcia.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row wow fadeInDown">
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/saiz.jpg" alt="JM Empresa de Buses Chile" title="JM Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/soto.jpg" alt="Libac Empresa de Buses Chile" title="Libac Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/subus.jpg" alt="Los Conquistadores Empresa de Buses Chile" title="Los Conquistadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/thp.jpg" alt="Los Corsarios Empresa de Buses Chile" title="Los Corsarios Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/touring.jpg" alt="Los Libertadores Empresa de Buses Chile" title="Los Libertadores Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="logo-container">
+                    <a href="#" target="_blank" class="bw">
+                        <img src="https://s3.eu-central-1.amazonaws.com/vheurope/home/logos/urena.jpg" alt="Romani Empresa de Buses Chile" title="Romani Empresa de Buses Chile | Pasajes de Buses" class="img-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <p><small class="pull-right" translate>MAIN.MUCH_MORE</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Resertrip",
+        "url": "http://www.resertrip.com",
+        "logo": "http://busbud-pubweb-assets.global.ssl.fastly.net/images/2784feb.largeicon.png",
+        "sameAs": [
+            "https://www.facebook.com/resertrip",
+            "https://twitter.com/resertrip",
+            "https://plus.google.com/u/2/106846995516516157967/",
+            "https://instagram.com/resertrip/",
+        ]
+    }
+</script>

@@ -1,7 +1,7 @@
-body { 
+body {
     background: #F1F1F1;
     font-family: 'Ubuntu', sans-serif;
- }
+}
 
 .header-home.chile {
     background: #fff;
@@ -46,7 +46,9 @@ body {
     box-shadow: none;
 }
 
-#cta .container-text { padding: 80px 20px }
+#cta .container-text {
+    padding: 80px 20px
+}
 
 #cta .container-text h3 {
     font-size: 40px;
@@ -56,7 +58,7 @@ body {
     font-weight: lighter;
 }
 
-#cta .container-text h3.mobile{
+#cta .container-text h3.mobile {
     font-size: 120px;
     text-align: right;
     font-weight: bolder;
@@ -65,7 +67,9 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.toast { opacity: 1 !important }
+.toast {
+    opacity: 1 !important
+}
 
 #popular-trips {
     padding: 20px;
@@ -79,7 +83,6 @@ body {
     display: block;
     color: #666;
     text-align: left;
-
 }
 
 .popular-trip {
@@ -115,8 +118,8 @@ body {
 .popular-trip figure img {
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
-    -webkit-transform: translate3d(0,0,300px);
-    transform: translate3d(0,0,300px);
+    -webkit-transform: translate3d(0, 0, 300px);
+    transform: translate3d(0, 0, 300px);
 }
 
 .popular-trip figure {
@@ -125,8 +128,8 @@ body {
 }
 
 .popular-trip figure:hover img {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .popular-trip figure figcaption {
@@ -138,10 +141,12 @@ body {
 }
 
 .popular-trip figure figcaption::before,
-.popular-trip figure figcaption::after { pointer-events: none }
+.popular-trip figure figcaption::after {
+    pointer-events: none
+}
 
 .popular-trip figure figcaption,
-.popular-trip figure figcaption > a {
+.popular-trip figure figcaption> a {
     position: absolute;
     top: 120px;
     left: 0;
@@ -149,11 +154,13 @@ body {
     height: 60px;
 }
 
+
 /* ===[ Anchor will cover the whole item by default ]=== */
+
 
 /* ===[ For some effects it will show as a button ]=== */
 
-.popular-trip figure figcaption > a {
+.popular-trip figure figcaption> a {
     z-index: 1000;
     text-indent: 200%;
     white-space: nowrap;
@@ -161,7 +168,7 @@ body {
     opacity: 0;
 }
 
-.quickDate + .pikaday__display{
+.quickDate+ .pikaday__display {
     position: absolute;
     z-index: 2;
     top: 0%;
@@ -180,13 +187,13 @@ body {
     width: 100%;
     margin-top: 3px !important;
     text-align: center;
-    margin-bottom: 6px !important; 
+    margin-bottom: 6px !important;
     color: #666;
 }
 
 .popular-trip figure h2 i {
-   margin-right: 5px;
-   margin-left: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .popular-trip span {
@@ -195,27 +202,43 @@ body {
     font-weight: bolder;
     text-align: center;
     display: block;
-
 }
 
-.popular-trip span small { font-weight: lighter }
+.popular-trip span small {
+    font-weight: lighter
+}
 
 .popular-trip figure h2,
-.popular-trip figure p { margin: 0 }
+.popular-trip figure p {
+    margin: 0
+}
 
 .img-logo {
     max-width: 100px;
     text-align: center;
 }
 
+ul.social-links {
+    margin-left: 2em;
+}
+
 ul.social-links li {
     font-size: 20px;
     margin: 40px 0 20px 0;
+    padding: 0 !important;
 }
 
 ul.social-links li a {
     font-family: "Ubuntu", sans-serif;
     color: #333;
+}
+
+ul.social-links i.fa-circle {
+    color: #CFCFCF;
+}
+
+ul.social-links i.fa-inverse {
+    color: #393939;
 }
 
 ul.social-links li a:hover {
@@ -225,14 +248,14 @@ ul.social-links li a:hover {
 
 ul.footer-links li {
     text-align: center;
-    border-right: 1px solid #999;
     margin-right: 10px;
     padding-right: 20px;
 }
 
-ul.footer-links li a, ul.footer-links li span {
+ul.footer-links li a,
+ul.footer-links li span {
     font-family: "Ubuntu", sans-serif !important;
-    color: #666;
+    color: #CFCFCF !important;
 }
 
 ul.footer-links li a:hover {
@@ -240,7 +263,9 @@ ul.footer-links li a:hover {
     text-decoration: none;
 }
 
-ul.footer-links li:last-child { border-right: none }
+ul.footer-links li:last-child {
+    border-right: none
+}
 
 ul.pasajes li a {
     font-family: "Ubuntu", sans-serif;
@@ -255,11 +280,17 @@ ul.pasajes li a {
     text-align: left;
 }
 
-*:focus { outline: 0 }
+*:focus {
+    outline: 0
+}
 
-.header.header-home { height: 100vh !important }
+.header.header-home {
+    height: 100vh !important
+}
 
-.home-mask-white { height: 100% }
+.home-mask-white {
+    height: 100%
+}
 
 .type-text {
     position: absolute;
@@ -269,8 +300,9 @@ ul.pasajes li a {
     font-size: 18px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
-
-    a { text-decoration: none }
+    a {
+        text-decoration: none
+    }
 }
 
 .header {
@@ -284,47 +316,52 @@ ul.pasajes li a {
     overflow: hidden;
 }
 
-.logo-container{
+.logo-container {
     max-width: 100%;
     min-height: 75px;
     background: #fff;
     text-align: center !important;
     vertical-align: middle;
 }
-@media (min-width: 769px) { 
-    .bus h2 { font-size: 35px !important }
+
+@media (min-width: 769px) {
+    .bus h2 {
+        font-size: 35px !important
+    }
 }
 
-@media (max-width: 768px) { 
-    .bus h2 { font-size: 30px !important }
+@media (max-width: 768px) {
+    .bus h2 {
+        font-size: 30px !important
+    }
 }
 
-
-@media (max-width: 450px) { 
-    .bus h2 { font-size: 24px !important }
-
+@media (max-width: 450px) {
+    .bus h2 {
+        font-size: 24px !important
+    }
     .home-mask-white {
         height: 100%;
         background: none;
     }
 }
 
-@media (max-width: 320px) { 
-    .bus h2 { font-size: 22px !important }
-
+@media (max-width: 320px) {
+    .bus h2 {
+        font-size: 22px !important
+    }
     .home-mask-white {
         height: 100%;
         background: none;
     }
 }
 
-@media only screen and (max-width: 40em) { 
+@media only screen and (max-width: 40em) {
     .vh-calendar {
         right: 20px !important;
     }
-
     .selectize-control.single .selectize-input {
-        border: 1px solid  #d0d0d0 !important;
+        border: 1px solid #d0d0d0 !important;
         margin-bottom: 5px;
     }
     .destination-search {
@@ -333,24 +370,26 @@ ul.pasajes li a {
     }
 }
 
-@media only screen and (max-width: 768px) { 
+@media only screen and (max-width: 768px) {
     .selectize-control.single .selectize-input {
-        border: 1px solid  #d0d0d0 !important;
+        border: 1px solid #d0d0d0 !important;
         margin-bottom: 5px;
-
     }
     .destination-search {
         background: transparent !important;
         border: 0 !important;
-
     }
 }
+
 
 /* ===[ Medium devices (desktops, 992px and up) ]=== */
-@media (min-width: 992px) { 
+
+@media (min-width: 992px) {
     .chile,
     .colombia,
-    .peru { height: 800px }
+    .peru {
+        height: 800px
+    }
 }
 
 .loading-page {
@@ -360,10 +399,10 @@ ul.pasajes li a {
 }
 
 .fade-in-out {
-  transition: 1s linear all;  
-  opacity: 1;
+    transition: 1s linear all;
+    opacity: 1;
 }
 
 .fade-in-out.ng-hide {
-  opacity: 0;
+    opacity: 0;
 }
