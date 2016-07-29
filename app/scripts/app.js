@@ -339,7 +339,9 @@
         "FEES": "Service Fee",
         "TOTAL": "TOTAL",
         "ROUND": "Trip",
-        "RETURN": "Return"
+        "RETURN": "Return",
+        "PROCESS": "Your purchase is in process, please wait a few seconds",
+        "TRAVEL_DETAIL": "Please check your travel details."
       },
       "PROMOTION": {
         "LABEL": "VOUCHER PROMOTION",
@@ -630,7 +632,9 @@
         "FEES": "Coste de gestión",
         "TOTAL": "TOTAL",
         "ROUND": "Ida",
-        "RETURN": "Vuelta"
+        "RETURN": "Vuelta",
+        "PROCESS": "Se esta procesando su compra, por favor espere",
+        "TRAVEL_DETAIL": "Por favor, verifique sus datos de viaje."
       },
       "PROMOTION": {
         "LABEL": "CUPON DE PROMOCIÓN",
@@ -921,7 +925,9 @@
         "FEES": "Frais de service",
         "TOTAL": "TOTAL",
         "ROUND": "Voyage",
-        "RETURN": "Retour"
+        "RETURN": "Retour",
+        "PROCESS": "Votre achat est en cours, s'il vous plaît attendre quelques secondes",
+        "TRAVEL_DETAIL": "S'il vous plaît vérifier les détails de votre voyage."
       },
       "PROMOTION": {
         "LABEL": "BON DE RÉDUCTION",
