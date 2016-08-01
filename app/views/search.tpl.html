@@ -1656,7 +1656,9 @@
 
                                                 <div class="col-md-3 col-xs-4 col-sm-4 tacm">
 
-                                                    <a href="#/seat/{{search.departureId}}/{{trip.id}}" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus'" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+                                                    <a href="#/seat/{{search.departureId}}/{{trip.id}}" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus' && trip.url == null" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
+
+                                                    <a href="{{ trip.url }}" target="_blank" ng-show="search.globalDirectDepartureTrips.length == 1 && trip.transportType == 'bus' && trip.url.length > 0" class="btn theme-blue-2 hidden-xs hidden-sm pull-right" translate>SEARCH.TRIPS.BUTTON</a>
 
                                                     <a class="btn theme-blue-2 hidden-xs hidden-sm pull-right" ng-show="outindex == 0 && search.globalDirectDepartureTrips.length > 1 && trip.transportType == 'bus'" ng-class="{'disable-box':search.selectMixTrip}" ng-click="search.firstStep(trip.id,3,trip.origin,trip.destination,trip.departure,trip.duration,trip.arrival,trip.price,trip.typeService,trip.companyName,trip.logo)"
                                                         translate>SEARCH.TRIPS.BUTTON</a>
