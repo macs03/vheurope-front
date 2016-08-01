@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     /**
@@ -18,7 +18,7 @@
 
         var vm = this;
         var device = navigator.userAgent;
-        var es_ie = navigator.userAgent.indexOf("MSIE") > -1 ;
+        var es_ie = navigator.userAgent.indexOf("MSIE") > -1;
         if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {
             vm.mobile = true;
         } else {
@@ -88,256 +88,751 @@
         vm.planesCompanies = [];
         vm.globalTypeServices = [];
         vm.globalMinDuration = "";
-        vm.cnames_es = [
-            {name: 'AW', value: 'Aruba'},
-            {name: 'AF', value: 'Afganistan'},
-            {name: 'AO', value: 'Angola'},
-            {name: 'AI', value: 'Anguilla'},
-            {name: 'AX', value: 'Islas Aland'},
-            {name: 'AL', value: 'Albania'},
-            {name: 'AD', value: 'Andorra'},
-            {name: 'AE', value: 'Emiratos Arabes Unidos'},
-            {name: 'AR', value: 'Argentina'},
-            {name: 'AM', value: 'Armenia'},
-            {name: 'AS', value: 'Samoa Americana'},
-            {name: 'ATA', value: 'Antartica'},
-            {name: 'ATF', value: 'Territorios Franceses del Sur'},
-            {name: 'AG', value: 'Antigua y Barbuda'},
-            {name: 'AU', value: 'Australia'},
-            {name: 'AT', value: 'Austria'},
-            {name: 'AZ', value: 'Azerbaiyán'},
-            {name: 'BI', value: 'Burundi'},
-            {name: 'BE', value: 'Belgica'},
-            {name: 'BJ', value: 'Benin'},
-            {name: 'BQ', value: 'Bonaire, San Eustaquio y Saba'},
-            {name: 'BF', value: 'Burkina Faso'},
-            {name: 'BD', value: 'Bangladesh'},
-            {name: 'BG', value: 'Bulgaria'},
-            {name: 'BHR', value: 'Bahrein'},
-            {name: 'BS', value: 'Bahamas'},
-            {name: 'BA', value: 'Bosnia y Herzegovina'},
-            {name: 'BL', value: 'San Bartolomé'},
-            {name: 'BY', value: 'Bielorrusia'},
-            {name: 'BZ', value: 'Belice'},
-            {name: 'BM', value: 'Bermuda'},
-            {name: 'BO', value: 'Bolivia, Estado Plurinacional de'},
-            {name: 'BR', value: 'Brasil'},
-            {name: 'BB', value: 'Barbados'},
-            {name: 'BN', value: 'Brunei Darussalam'},
-            {name: 'BTN', value: 'Bhután'},
-            {name: 'BT', value: 'Isla Bouvet'},
-            {name: 'BW', value: 'Botswana'},
-            {name: 'CF', value: 'República Centroafricana'},
-            {name: 'CA', value: 'Canadá'},
-            {name: 'CC', value: 'Islas Cocos (Keeling)'},
-            {name: 'CH', value: 'Suiza'},
-            {name: 'CL', value: 'Chile'},
-            {name: 'CN', value: 'China'},
-            {name: 'CIV', value: 'Côte d\'Ivoire'},
-            {name: 'CM', value: 'Camerún'},
-            {name: 'CD', value: 'Congo, la República Democrática del'},
-            {name: 'CG', value: 'Congo'},
-            {name: 'CK', value: 'Islas Cook'},
-            {name: 'CO', value: 'Colombia'},
-            {name: 'KM', value: 'Comoras'},
-            {name: 'CV', value: 'Cabo Verde'},
-            {name: 'CR', value: 'Costa Rica'},
-            {name: 'CU', value: 'Cuba'},
-            {name: 'CW', value: 'Curazao'},
-            {name: 'CX', value: 'Islas Navidad'},
-            {name: 'KY', value: 'Islas Caimán'},
-            {name: 'CY', value: 'Chipre'},
-            {name: 'CZ', value: 'República Checa'},
-            {name: 'DE', value: 'Alemania'},
-            {name: 'DJI', value: 'Djibouti'},
-            {name: 'DM', value: 'Dominica'},
-            {name: 'DK', value: 'Dinamarca'},
-            {name: 'DO', value: 'República Dominicana'},
-            {name: 'DZ', value: 'Argelia'},
-            {name: 'EC', value: 'Ecuador'},
-            {name: 'EG', value: 'Egipto'},
-            {name: 'ER', value: 'Eritrea'},
-            {name: 'EH', value: 'Sahara Occidental'},
-            {name: 'ES', value: 'España'},
-            {name: 'EE', value: 'Estonia'},
-            {name: 'ET', value: 'Etiopía'},
-            {name: 'FI', value: 'Finlandia'},
-            {name: 'FJ', value: 'Fiji'},
-            {name: 'FK', value: 'Islas Malvinas (Falkland)'},
-            {name: 'FR', value: 'Francia'},
-            {name: 'FO', value: 'Islas Feroe'},
-            {name: 'FM', value: 'Micronesia, Estados Federados de'},
-            {name: 'GA', value: 'Gabón'},
-            {name: 'GB', value: 'Reino Unido'},
-            {name: 'GE', value: 'Georgia'},
-            {name: 'GG', value: 'Guernsey'},
-            {name: 'GA', value: 'Ghana'},
-            {name: 'GI', value: 'Gibralta'},
-            {name: 'GN', value: 'Guinea'},
-            {name: 'GP', value: 'Guadalupe'},
-            {name: 'GM', value: 'Gambia'},
-            {name: 'GW', value: 'Guinea-Bissau'},
-            {name: 'GQ', value: 'Guinea Ecuatorial'},
-            {name: 'GR', value: 'Grecia'},
-            {name: 'GD', value: 'Granada'},
-            {name: 'GL', value: 'Groenlandia'},
-            {name: 'GT', value: 'Guatemala'},
-            {name: 'GF', value: 'Guayana Francesa'},
-            {name: 'GU', value: 'Guam'},
-            {name: 'GY', value: 'Guyana'},
-            {name: 'HK', value: 'Hong Kong'},
-            {name: 'HM', value: 'Islas Heard Island and McDonald'},
-            {name: 'HN', value: 'Honduras'},
-            {name: 'HR', value: 'Croacia'},
-            {name: 'HT', value: 'Haití'},
-            {name: 'HU', value: 'Hungria'},
-            {name: 'ID', value: 'Indonesia'},
-            {name: 'IM', value: 'Isla de Man'},
-            {name: 'IN', value: 'India'},
-            {name: 'IO', value: 'Territorio Británico del Océano Índico'},
-            {name: 'IE', value: 'Irlanda'},
-            {name: 'IR', value: 'Irán, República Islámica de'},
-            {name: 'IQ', value: 'Irak'},
-            {name: 'IS', value: 'Islandia'},
-            {name: 'IL', value: 'Israel'},
-            {name: 'IT', value: 'Italia'},
-            {name: 'JM', value: 'Jamaica'},
-            {name: 'JE', value: 'Jersey'},
-            {name: 'JO', value: 'Jordan'},
-            {name: 'JP', value: 'Japón'},
-            {name: 'KZ', value: 'Kazajstán'},
-            {name: 'KE', value: 'Kenia'},
-            {name: 'KG', value: 'Kirguistán'},
-            {name: 'KH', value: 'Camboya'},
-            {name: 'KI', value: 'Kiribati'},
-            {name: 'KNA', value: 'Saint Kitts and Nevis'},
-            {name: 'KR', value: 'Corea del Sur'},
-            {name: 'KW', value: 'Kuwait'},
-            {name: 'LAO', value: 'Lao People\'s República Democrática'},
-            {name: 'LB', value: 'Líbano'},
-            {name: 'LR', value: 'Liberia'},
-            {name: 'LBY', value: 'Jamahiriya Árabe Libia'},
-            {name: 'LC', value: 'Santa Lucia'},
-            {name: 'LIE', value: 'Liechtenstein'},
-            {name: 'LK', value: 'Sri Lanka'},
-            {name: 'LS', value: 'Lesotho'},
-            {name: 'LT', value: 'Lituania'},
-            {name: 'LU', value: 'Luxemburgo'},
-            {name: 'LV', value: 'Letonia'},
-            {name: 'MO', value: 'Macao'},
-            {name: 'MF', value: 'San Martín (parte francesa)'},
-            {name: 'MA', value: 'Marruecos'},
-            {name: 'MC', value: 'Monaco'},
-            {name: 'MD', value: 'Moldova, República de'},
-            {name: 'MG', value: 'Madagascar'},
-            {name: 'MV', value: 'Maldivas'},
-            {name: 'MX', value: 'México'},
-            {name: 'MH', value: 'Islas Marshal'},
-            {name: 'MK', value: 'Macedonia, la ex República Yugoslava de'},
-            {name: 'ML', value: 'Mali'},
-            {name: 'MT', value: 'Malta'},
-            {name: 'MM', value: 'Myanmar'},
-            {name: 'ME', value: 'Montenegro'},
-            {name: 'MN', value: 'Mongolia'},
-            {name: 'MP', value: 'Islas Marianas del Norte'},
-            {name: 'MZ', value: 'Mozambique'},
-            {name: 'MR', value: 'Mauritania'},
-            {name: 'MS', value: 'Montserrat'},
-            {name: 'MQ', value: 'Martinica'},
-            {name: 'MU', value: 'Mauricio'},
-            {name: 'MWI', value: 'Malawi'},
-            {name: 'MY', value: 'Malasia'},
-            {name: 'YT', value: 'Mayotte'},
-            {name: 'NA', value: 'Namibia'},
-            {name: 'NC', value: 'Nueva Caledonia'},
-            {name: 'NE', value: 'Niger'},
-            {name: 'NF', value: 'Islas Norfolk'},
-            {name: 'NG', value: 'Nigeria'},
-            {name: 'NI', value: 'Nicaragua'},
-            {name: 'NU', value: 'Niue'},
-            {name: 'NL', value: 'Paises Bajos'},
-            {name: 'NO', value: 'Noruega'},
-            {name: 'NP', value: 'Nepal'},
-            {name: 'NR', value: 'Nauru'},
-            {name: 'NZ', value: 'Nueva Zelanda'},
-            {name: 'OM', value: 'Omán'},
-            {name: 'PK', value: 'Pakistán'},
-            {name: 'PA', value: 'Panamá'},
-            {name: 'PN', value: 'Pitcairn'},
-            {name: 'PE', value: 'Perú'},
-            {name: 'PH', value: 'Filipinas'},
-            {name: 'PW', value: 'Palau'},
-            {name: 'PG', value: 'Papúa Nueva Guinea'},
-            {name: 'PL', value: 'Polonia'},
-            {name: 'PR', value: 'Puerto Rico'},
-            {name: 'KP', value: 'Corea Democrática Popular de la República'},
-            {name: 'PT', value: 'Portugal'},
-            {name: 'PY', value: 'Paraguay'},
-            {name: 'PS', value: 'Palestina, Territorio Ocupado'},
-            {name: 'PF', value: 'Polinesia Francesa'},
-            {name: 'QA', value: 'Qatar'},
-            {name: 'RE', value: 'Reunión'},
-            {name: 'RO', value: 'Rumanía'},
-            {name: 'RU', value: 'Rusia'},
-            {name: 'RW', value: 'Ruanda'},
-            {name: 'SA', value: 'Arabia Saudita'},
-            {name: 'SD', value: 'Sudán'},
-            {name: 'SN', value: 'Senegal'},
-            {name: 'SG', value: 'Singapur'},
-            {name: 'GS', value: 'Georgia del Sur y las Islas Sandwich del Sur'},
-            {name: 'SH', value: 'Santa Helena, Ascensión y Tristán da Cunha'},
-            {name: 'SJ', value: 'Svalbard y Jan Mayen'},
-            {name: 'SB', value: 'Islas Sálomon'},
-            {name: 'SL', value: 'Sierra Leona'},
-            {name: 'SV', value: 'El Salvador'},
-            {name: 'SM', value: 'San Marino'},
-            {name: 'SO', value: 'Somalia'},
-            {name: 'PM', value: 'San Pedro y Miquelón'},
-            {name: 'RS', value: 'Serbia'},
-            {name: 'ST', value: 'Santo Tomé y Príncipe'},
-            {name: 'SR', value: 'Surinam'},
-            {name: 'SK', value: 'Eslovaquia'},
-            {name: 'SI', value: 'Eslovenia'},
-            {name: 'SE', value: 'Suecia'},
-            {name: 'SWZ', value: 'Swazilandia'},
-            {name: 'SXM', value: 'Saint Maarten (parte neerlandesa)'},
-            {name: 'SYC', value: 'Seychelles'},
-            {name: 'SY', value: 'Siria'},
-            {name: 'TC', value: 'Islas Turcas y Caicos'},
-            {name: 'TD', value: 'Chad'},
-            {name: 'TG', value: 'Togo'},
-            {name: 'TH', value: 'Tailandia'},
-            {name: 'TJ', value: 'Tayikistán'},
-            {name: 'TK', value: 'Tokelau'},
-            {name: 'TM', value: 'Turkmenistán'},
-            {name: 'TL', value: 'Timor-Leste'},
-            {name: 'TO', value: 'Tonga'},
-            {name: 'TT', value: 'Trinidad y Tobago'},
-            {name: 'TN', value: 'Túnez'},
-            {name: 'TR', value: 'Turquía'},
-            {name: 'TV', value: 'Tuvalu'},
-            {name: 'TW', value: 'Taiwán, Provincia de China'},
-            {name: 'TZ', value: 'Tanzania, República Unida de'},
-            {name: 'UG', value: 'Uganda'},
-            {name: 'UA', value: 'Ucrania'},
-            {name: 'UMI', value: 'Estados Unidos Islas menores alejadas'},
-            {name: 'UY', value: 'Uruguay'},
-            {name: 'US', value: 'Estados Unidos'},
-            {name: 'UZ', value: 'Uzbekistán'},
-            {name: 'VA', value: 'Santa Sede (Ciudad del Vaticano)'},
-            {name: 'VC', value: 'San Vicente y las Granadinas'},
-            {name: 'VE', value: 'Venezuela, República Bolivariana de'},
-            {name: 'VG', value: 'Islars Virgenes, Británicas'},
-            {name: 'VI', value: 'Islas Virgenes,, U.S.'},
-            {name: 'VM', value: 'Viet Nam'},
-            {name: 'VU', value: 'Vanuatu'},
-            {name: 'WF', value: 'Wallis and Futuna'},
-            {name: 'WS', value: 'Samoa'},
-            {name: 'YE', value: 'Yemen'},
-            {name: 'ZA', value: 'Sudáfrica'},
-            {name: 'ZM', value: 'Zambia'},
-            {name: 'ZW', value: 'Zimbabwe '}
-        ];
+        vm.cnames_es = [{
+            name: 'AW',
+            value: 'Aruba'
+        }, {
+            name: 'AF',
+            value: 'Afganistan'
+        }, {
+            name: 'AO',
+            value: 'Angola'
+        }, {
+            name: 'AI',
+            value: 'Anguilla'
+        }, {
+            name: 'AX',
+            value: 'Islas Aland'
+        }, {
+            name: 'AL',
+            value: 'Albania'
+        }, {
+            name: 'AD',
+            value: 'Andorra'
+        }, {
+            name: 'AE',
+            value: 'Emiratos Arabes Unidos'
+        }, {
+            name: 'AR',
+            value: 'Argentina'
+        }, {
+            name: 'AM',
+            value: 'Armenia'
+        }, {
+            name: 'AS',
+            value: 'Samoa Americana'
+        }, {
+            name: 'ATA',
+            value: 'Antartica'
+        }, {
+            name: 'ATF',
+            value: 'Territorios Franceses del Sur'
+        }, {
+            name: 'AG',
+            value: 'Antigua y Barbuda'
+        }, {
+            name: 'AU',
+            value: 'Australia'
+        }, {
+            name: 'AT',
+            value: 'Austria'
+        }, {
+            name: 'AZ',
+            value: 'Azerbaiyán'
+        }, {
+            name: 'BI',
+            value: 'Burundi'
+        }, {
+            name: 'BE',
+            value: 'Belgica'
+        }, {
+            name: 'BJ',
+            value: 'Benin'
+        }, {
+            name: 'BQ',
+            value: 'Bonaire, San Eustaquio y Saba'
+        }, {
+            name: 'BF',
+            value: 'Burkina Faso'
+        }, {
+            name: 'BD',
+            value: 'Bangladesh'
+        }, {
+            name: 'BG',
+            value: 'Bulgaria'
+        }, {
+            name: 'BHR',
+            value: 'Bahrein'
+        }, {
+            name: 'BS',
+            value: 'Bahamas'
+        }, {
+            name: 'BA',
+            value: 'Bosnia y Herzegovina'
+        }, {
+            name: 'BL',
+            value: 'San Bartolomé'
+        }, {
+            name: 'BY',
+            value: 'Bielorrusia'
+        }, {
+            name: 'BZ',
+            value: 'Belice'
+        }, {
+            name: 'BM',
+            value: 'Bermuda'
+        }, {
+            name: 'BO',
+            value: 'Bolivia, Estado Plurinacional de'
+        }, {
+            name: 'BR',
+            value: 'Brasil'
+        }, {
+            name: 'BB',
+            value: 'Barbados'
+        }, {
+            name: 'BN',
+            value: 'Brunei Darussalam'
+        }, {
+            name: 'BTN',
+            value: 'Bhután'
+        }, {
+            name: 'BT',
+            value: 'Isla Bouvet'
+        }, {
+            name: 'BW',
+            value: 'Botswana'
+        }, {
+            name: 'CF',
+            value: 'República Centroafricana'
+        }, {
+            name: 'CA',
+            value: 'Canadá'
+        }, {
+            name: 'CC',
+            value: 'Islas Cocos (Keeling)'
+        }, {
+            name: 'CH',
+            value: 'Suiza'
+        }, {
+            name: 'CL',
+            value: 'Chile'
+        }, {
+            name: 'CN',
+            value: 'China'
+        }, {
+            name: 'CIV',
+            value: 'Côte d\'Ivoire'
+        }, {
+            name: 'CM',
+            value: 'Camerún'
+        }, {
+            name: 'CD',
+            value: 'Congo, la República Democrática del'
+        }, {
+            name: 'CG',
+            value: 'Congo'
+        }, {
+            name: 'CK',
+            value: 'Islas Cook'
+        }, {
+            name: 'CO',
+            value: 'Colombia'
+        }, {
+            name: 'KM',
+            value: 'Comoras'
+        }, {
+            name: 'CV',
+            value: 'Cabo Verde'
+        }, {
+            name: 'CR',
+            value: 'Costa Rica'
+        }, {
+            name: 'CU',
+            value: 'Cuba'
+        }, {
+            name: 'CW',
+            value: 'Curazao'
+        }, {
+            name: 'CX',
+            value: 'Islas Navidad'
+        }, {
+            name: 'KY',
+            value: 'Islas Caimán'
+        }, {
+            name: 'CY',
+            value: 'Chipre'
+        }, {
+            name: 'CZ',
+            value: 'República Checa'
+        }, {
+            name: 'DE',
+            value: 'Alemania'
+        }, {
+            name: 'DJI',
+            value: 'Djibouti'
+        }, {
+            name: 'DM',
+            value: 'Dominica'
+        }, {
+            name: 'DK',
+            value: 'Dinamarca'
+        }, {
+            name: 'DO',
+            value: 'República Dominicana'
+        }, {
+            name: 'DZ',
+            value: 'Argelia'
+        }, {
+            name: 'EC',
+            value: 'Ecuador'
+        }, {
+            name: 'EG',
+            value: 'Egipto'
+        }, {
+            name: 'ER',
+            value: 'Eritrea'
+        }, {
+            name: 'EH',
+            value: 'Sahara Occidental'
+        }, {
+            name: 'ES',
+            value: 'España'
+        }, {
+            name: 'EE',
+            value: 'Estonia'
+        }, {
+            name: 'ET',
+            value: 'Etiopía'
+        }, {
+            name: 'FI',
+            value: 'Finlandia'
+        }, {
+            name: 'FJ',
+            value: 'Fiji'
+        }, {
+            name: 'FK',
+            value: 'Islas Malvinas (Falkland)'
+        }, {
+            name: 'FR',
+            value: 'Francia'
+        }, {
+            name: 'FO',
+            value: 'Islas Feroe'
+        }, {
+            name: 'FM',
+            value: 'Micronesia, Estados Federados de'
+        }, {
+            name: 'GA',
+            value: 'Gabón'
+        }, {
+            name: 'GB',
+            value: 'Reino Unido'
+        }, {
+            name: 'GE',
+            value: 'Georgia'
+        }, {
+            name: 'GG',
+            value: 'Guernsey'
+        }, {
+            name: 'GA',
+            value: 'Ghana'
+        }, {
+            name: 'GI',
+            value: 'Gibralta'
+        }, {
+            name: 'GN',
+            value: 'Guinea'
+        }, {
+            name: 'GP',
+            value: 'Guadalupe'
+        }, {
+            name: 'GM',
+            value: 'Gambia'
+        }, {
+            name: 'GW',
+            value: 'Guinea-Bissau'
+        }, {
+            name: 'GQ',
+            value: 'Guinea Ecuatorial'
+        }, {
+            name: 'GR',
+            value: 'Grecia'
+        }, {
+            name: 'GD',
+            value: 'Granada'
+        }, {
+            name: 'GL',
+            value: 'Groenlandia'
+        }, {
+            name: 'GT',
+            value: 'Guatemala'
+        }, {
+            name: 'GF',
+            value: 'Guayana Francesa'
+        }, {
+            name: 'GU',
+            value: 'Guam'
+        }, {
+            name: 'GY',
+            value: 'Guyana'
+        }, {
+            name: 'HK',
+            value: 'Hong Kong'
+        }, {
+            name: 'HM',
+            value: 'Islas Heard Island and McDonald'
+        }, {
+            name: 'HN',
+            value: 'Honduras'
+        }, {
+            name: 'HR',
+            value: 'Croacia'
+        }, {
+            name: 'HT',
+            value: 'Haití'
+        }, {
+            name: 'HU',
+            value: 'Hungria'
+        }, {
+            name: 'ID',
+            value: 'Indonesia'
+        }, {
+            name: 'IM',
+            value: 'Isla de Man'
+        }, {
+            name: 'IN',
+            value: 'India'
+        }, {
+            name: 'IO',
+            value: 'Territorio Británico del Océano Índico'
+        }, {
+            name: 'IE',
+            value: 'Irlanda'
+        }, {
+            name: 'IR',
+            value: 'Irán, República Islámica de'
+        }, {
+            name: 'IQ',
+            value: 'Irak'
+        }, {
+            name: 'IS',
+            value: 'Islandia'
+        }, {
+            name: 'IL',
+            value: 'Israel'
+        }, {
+            name: 'IT',
+            value: 'Italia'
+        }, {
+            name: 'JM',
+            value: 'Jamaica'
+        }, {
+            name: 'JE',
+            value: 'Jersey'
+        }, {
+            name: 'JO',
+            value: 'Jordan'
+        }, {
+            name: 'JP',
+            value: 'Japón'
+        }, {
+            name: 'KZ',
+            value: 'Kazajstán'
+        }, {
+            name: 'KE',
+            value: 'Kenia'
+        }, {
+            name: 'KG',
+            value: 'Kirguistán'
+        }, {
+            name: 'KH',
+            value: 'Camboya'
+        }, {
+            name: 'KI',
+            value: 'Kiribati'
+        }, {
+            name: 'KNA',
+            value: 'Saint Kitts and Nevis'
+        }, {
+            name: 'KR',
+            value: 'Corea del Sur'
+        }, {
+            name: 'KW',
+            value: 'Kuwait'
+        }, {
+            name: 'LAO',
+            value: 'Lao People\'s República Democrática'
+        }, {
+            name: 'LB',
+            value: 'Líbano'
+        }, {
+            name: 'LR',
+            value: 'Liberia'
+        }, {
+            name: 'LBY',
+            value: 'Jamahiriya Árabe Libia'
+        }, {
+            name: 'LC',
+            value: 'Santa Lucia'
+        }, {
+            name: 'LIE',
+            value: 'Liechtenstein'
+        }, {
+            name: 'LK',
+            value: 'Sri Lanka'
+        }, {
+            name: 'LS',
+            value: 'Lesotho'
+        }, {
+            name: 'LT',
+            value: 'Lituania'
+        }, {
+            name: 'LU',
+            value: 'Luxemburgo'
+        }, {
+            name: 'LV',
+            value: 'Letonia'
+        }, {
+            name: 'MO',
+            value: 'Macao'
+        }, {
+            name: 'MF',
+            value: 'San Martín (parte francesa)'
+        }, {
+            name: 'MA',
+            value: 'Marruecos'
+        }, {
+            name: 'MC',
+            value: 'Monaco'
+        }, {
+            name: 'MD',
+            value: 'Moldova, República de'
+        }, {
+            name: 'MG',
+            value: 'Madagascar'
+        }, {
+            name: 'MV',
+            value: 'Maldivas'
+        }, {
+            name: 'MX',
+            value: 'México'
+        }, {
+            name: 'MH',
+            value: 'Islas Marshal'
+        }, {
+            name: 'MK',
+            value: 'Macedonia, la ex República Yugoslava de'
+        }, {
+            name: 'ML',
+            value: 'Mali'
+        }, {
+            name: 'MT',
+            value: 'Malta'
+        }, {
+            name: 'MM',
+            value: 'Myanmar'
+        }, {
+            name: 'ME',
+            value: 'Montenegro'
+        }, {
+            name: 'MN',
+            value: 'Mongolia'
+        }, {
+            name: 'MP',
+            value: 'Islas Marianas del Norte'
+        }, {
+            name: 'MZ',
+            value: 'Mozambique'
+        }, {
+            name: 'MR',
+            value: 'Mauritania'
+        }, {
+            name: 'MS',
+            value: 'Montserrat'
+        }, {
+            name: 'MQ',
+            value: 'Martinica'
+        }, {
+            name: 'MU',
+            value: 'Mauricio'
+        }, {
+            name: 'MWI',
+            value: 'Malawi'
+        }, {
+            name: 'MY',
+            value: 'Malasia'
+        }, {
+            name: 'YT',
+            value: 'Mayotte'
+        }, {
+            name: 'NA',
+            value: 'Namibia'
+        }, {
+            name: 'NC',
+            value: 'Nueva Caledonia'
+        }, {
+            name: 'NE',
+            value: 'Niger'
+        }, {
+            name: 'NF',
+            value: 'Islas Norfolk'
+        }, {
+            name: 'NG',
+            value: 'Nigeria'
+        }, {
+            name: 'NI',
+            value: 'Nicaragua'
+        }, {
+            name: 'NU',
+            value: 'Niue'
+        }, {
+            name: 'NL',
+            value: 'Paises Bajos'
+        }, {
+            name: 'NO',
+            value: 'Noruega'
+        }, {
+            name: 'NP',
+            value: 'Nepal'
+        }, {
+            name: 'NR',
+            value: 'Nauru'
+        }, {
+            name: 'NZ',
+            value: 'Nueva Zelanda'
+        }, {
+            name: 'OM',
+            value: 'Omán'
+        }, {
+            name: 'PK',
+            value: 'Pakistán'
+        }, {
+            name: 'PA',
+            value: 'Panamá'
+        }, {
+            name: 'PN',
+            value: 'Pitcairn'
+        }, {
+            name: 'PE',
+            value: 'Perú'
+        }, {
+            name: 'PH',
+            value: 'Filipinas'
+        }, {
+            name: 'PW',
+            value: 'Palau'
+        }, {
+            name: 'PG',
+            value: 'Papúa Nueva Guinea'
+        }, {
+            name: 'PL',
+            value: 'Polonia'
+        }, {
+            name: 'PR',
+            value: 'Puerto Rico'
+        }, {
+            name: 'KP',
+            value: 'Corea Democrática Popular de la República'
+        }, {
+            name: 'PT',
+            value: 'Portugal'
+        }, {
+            name: 'PY',
+            value: 'Paraguay'
+        }, {
+            name: 'PS',
+            value: 'Palestina, Territorio Ocupado'
+        }, {
+            name: 'PF',
+            value: 'Polinesia Francesa'
+        }, {
+            name: 'QA',
+            value: 'Qatar'
+        }, {
+            name: 'RE',
+            value: 'Reunión'
+        }, {
+            name: 'RO',
+            value: 'Rumanía'
+        }, {
+            name: 'RU',
+            value: 'Rusia'
+        }, {
+            name: 'RW',
+            value: 'Ruanda'
+        }, {
+            name: 'SA',
+            value: 'Arabia Saudita'
+        }, {
+            name: 'SD',
+            value: 'Sudán'
+        }, {
+            name: 'SN',
+            value: 'Senegal'
+        }, {
+            name: 'SG',
+            value: 'Singapur'
+        }, {
+            name: 'GS',
+            value: 'Georgia del Sur y las Islas Sandwich del Sur'
+        }, {
+            name: 'SH',
+            value: 'Santa Helena, Ascensión y Tristán da Cunha'
+        }, {
+            name: 'SJ',
+            value: 'Svalbard y Jan Mayen'
+        }, {
+            name: 'SB',
+            value: 'Islas Sálomon'
+        }, {
+            name: 'SL',
+            value: 'Sierra Leona'
+        }, {
+            name: 'SV',
+            value: 'El Salvador'
+        }, {
+            name: 'SM',
+            value: 'San Marino'
+        }, {
+            name: 'SO',
+            value: 'Somalia'
+        }, {
+            name: 'PM',
+            value: 'San Pedro y Miquelón'
+        }, {
+            name: 'RS',
+            value: 'Serbia'
+        }, {
+            name: 'ST',
+            value: 'Santo Tomé y Príncipe'
+        }, {
+            name: 'SR',
+            value: 'Surinam'
+        }, {
+            name: 'SK',
+            value: 'Eslovaquia'
+        }, {
+            name: 'SI',
+            value: 'Eslovenia'
+        }, {
+            name: 'SE',
+            value: 'Suecia'
+        }, {
+            name: 'SWZ',
+            value: 'Swazilandia'
+        }, {
+            name: 'SXM',
+            value: 'Saint Maarten (parte neerlandesa)'
+        }, {
+            name: 'SYC',
+            value: 'Seychelles'
+        }, {
+            name: 'SY',
+            value: 'Siria'
+        }, {
+            name: 'TC',
+            value: 'Islas Turcas y Caicos'
+        }, {
+            name: 'TD',
+            value: 'Chad'
+        }, {
+            name: 'TG',
+            value: 'Togo'
+        }, {
+            name: 'TH',
+            value: 'Tailandia'
+        }, {
+            name: 'TJ',
+            value: 'Tayikistán'
+        }, {
+            name: 'TK',
+            value: 'Tokelau'
+        }, {
+            name: 'TM',
+            value: 'Turkmenistán'
+        }, {
+            name: 'TL',
+            value: 'Timor-Leste'
+        }, {
+            name: 'TO',
+            value: 'Tonga'
+        }, {
+            name: 'TT',
+            value: 'Trinidad y Tobago'
+        }, {
+            name: 'TN',
+            value: 'Túnez'
+        }, {
+            name: 'TR',
+            value: 'Turquía'
+        }, {
+            name: 'TV',
+            value: 'Tuvalu'
+        }, {
+            name: 'TW',
+            value: 'Taiwán, Provincia de China'
+        }, {
+            name: 'TZ',
+            value: 'Tanzania, República Unida de'
+        }, {
+            name: 'UG',
+            value: 'Uganda'
+        }, {
+            name: 'UA',
+            value: 'Ucrania'
+        }, {
+            name: 'UMI',
+            value: 'Estados Unidos Islas menores alejadas'
+        }, {
+            name: 'UY',
+            value: 'Uruguay'
+        }, {
+            name: 'US',
+            value: 'Estados Unidos'
+        }, {
+            name: 'UZ',
+            value: 'Uzbekistán'
+        }, {
+            name: 'VA',
+            value: 'Santa Sede (Ciudad del Vaticano)'
+        }, {
+            name: 'VC',
+            value: 'San Vicente y las Granadinas'
+        }, {
+            name: 'VE',
+            value: 'Venezuela, República Bolivariana de'
+        }, {
+            name: 'VG',
+            value: 'Islars Virgenes, Británicas'
+        }, {
+            name: 'VI',
+            value: 'Islas Virgenes,, U.S.'
+        }, {
+            name: 'VM',
+            value: 'Viet Nam'
+        }, {
+            name: 'VU',
+            value: 'Vanuatu'
+        }, {
+            name: 'WF',
+            value: 'Wallis and Futuna'
+        }, {
+            name: 'WS',
+            value: 'Samoa'
+        }, {
+            name: 'YE',
+            value: 'Yemen'
+        }, {
+            name: 'ZA',
+            value: 'Sudáfrica'
+        }, {
+            name: 'ZM',
+            value: 'Zambia'
+        }, {
+            name: 'ZW',
+            value: 'Zimbabwe '
+        }];
 
         vm.weather_progressbar = ngProgressFactory.createInstance();
         vm.weather_progressbar.setHeight('6px');
@@ -370,24 +865,24 @@
             delimiter: '|',
             openOnFocus: true,
             placeholder: 'Elige tu origen',
-            onInitialize: function (selectize) {
+            onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
             maxItems: 1,
             preload: true,
-            load: function (query, callback) {
+            load: function(query, callback) {
                 if (!query.length) return callback();
                 vm.myOptionsOrigin = [];
                 locationsRtFactory
                     .getAll(query)
-                    .then(function (data) {
+                    .then(function(data) {
 
                         callback(data);
                         vm.myOptionsOrigin = data;
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         callback();
                     });
             }
@@ -400,23 +895,23 @@
             searchField: ['label'],
             delimiter: '|',
             placeholder: 'Elige tu destino',
-            onInitialize: function (selectize) {
+            onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
             maxItems: 1,
             preload: true,
-            load: function (query, callback) {
+            load: function(query, callback) {
                 if (!query.length) return callback();
                 vm.myOptionsDestination = [];
                 locationsRtFactory
                     .getAll(query)
-                    .then(function (data) {
+                    .then(function(data) {
                         callback(data);
                         vm.myOptionsDestination = data;
                         //sessionStorageService.setLocations(data);
                         //sessionStorageService.setFlag(true);
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         callback();
                     });
             }
@@ -424,18 +919,22 @@
 
         locationsRtFactory
             .getNearly()
-            .then(function (data) {
+            .then(function(data) {
                 // callback(data.items);
                 vm.myOptionsOrigin = data;
                 vm.myOptionsDestination = data;
-                var dataInitialOrigin = {label: vm.origin};
-                var dataInitialDestination = {label: vm.destination};
+                var dataInitialOrigin = {
+                    label: vm.origin
+                };
+                var dataInitialDestination = {
+                    label: vm.destination
+                };
                 vm.myOptionsOrigin.push(dataInitialOrigin);
                 vm.myOptionsDestination.push(dataInitialDestination);
                 //sessionStorageService.setLocations(data);
                 //sessionStorageService.setFlag(true);
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 //  callback();
             });
 
@@ -447,23 +946,23 @@
             maxDate: moment().add(365, 'days').format('MM-DD-YYYY')
         };
 
-        var toUTCDate = function (date) {
+        var toUTCDate = function(date) {
             var _utc = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
             return _utc;
         };
 
-        var millisToUTCDate = function (millis) {
+        var millisToUTCDate = function(millis) {
             return toUTCDate(new Date(millis));
         };
 
-        var mixedTripIcon = function (tripSection, typeTrip) {
+        var mixedTripIcon = function(tripSection, typeTrip) {
             if (tripSection <= 1 && tripSection >= 0) {
                 var sections = typeTrip.split('_');
                 return sections[tripSection] === 'bus' ? 'icon-bus' : 'fa-ship';
             }
         }
 
-        var showTripsType = function (tripType) {
+        var showTripsType = function(tripType) {
             vm.combineTrips = false;
             $('.fa-trip-type').addClass('hidden');
 
@@ -517,7 +1016,7 @@
             }
         }
 
-        var updateTripsType = function () {
+        var updateTripsType = function() {
 
             if (vm.hasTrainTrips && vm.hasBusTrips && vm.hasPlaneTrips) {
                 vm.showBus = false;
@@ -649,7 +1148,7 @@
 
         };
 
-        var getTripsSteps = function (maxDuration, tripDuration) {
+        var getTripsSteps = function(maxDuration, tripDuration) {
             var step = Math.floor(maxDuration / 4);
             var total = Math.floor(tripDuration / step);
             var range = [];
@@ -660,7 +1159,7 @@
             return range;
         }
 
-        var getPlanesSteps = function (segments) {
+        var getPlanesSteps = function(segments) {
             var total = Math.floor(segments);
             var range = [];
             total > 1 ? total = total - 1 : total = total;
@@ -670,7 +1169,7 @@
             return range;
         }
 
-        var updatePercentageBar = function (bus, train, plane) {
+        var updatePercentageBar = function(bus, train, plane) {
             var bus = bus;
             var train = train;
             var plane = plane;
@@ -699,19 +1198,19 @@
                 }
                 // TRAIN
                 if (pos == 1) {
-                    vm.percentageTrain = 80;
+                    vm.percentageTrain = 70;
                     vm.percentageBus = ((bus * 80) / train) < 11 ? 12 : ((bus * 80) / train);
                     vm.percentagePlane = ((plane * 80) / train) < 11 ? 12 : ((plane * 80) / train);
                 }
                 //BUS
                 if (pos == 0) {
-                    vm.percentageBus = 80;
+                    vm.percentageBus = 70;
                     vm.percentageTrain = ((train * 80) / bus) < 11 ? 12 : ((train * 80) / bus);
                     vm.percentagePlane = ((plane * 80) / bus) < 11 ? 12 : ((plane * 80) / bus);
                 }
                 //PLANE
                 if (pos == 2) {
-                    vm.percentagePlane = 80;
+                    vm.percentagePlane = 70;
                     vm.percentageTrain = ((train * 80) / plane) < 11 ? 12 : ((train * 80) / plane);
                     vm.percentageBus = ((bus * 80) / plane) < 11 ? 12 : ((bus * 80) / plane);
                 }
@@ -737,19 +1236,19 @@
                 }
                 // TRAIN
                 if (pos == 1) {
-                    vm.percentageTrain = 80;
+                    vm.percentageTrain = 70;
                     vm.percentageBus = ((bus * 80) / train) < 11 ? 12 : ((bus * 80) / train);
                 }
                 //BUS
                 if (pos == 0) {
-                    vm.percentageBus = 80;
+                    vm.percentageBus = 70;
                     vm.percentageTrain = ((train * 80) / bus) < 11 ? 12 : ((train * 80) / bus);
                 }
                 vm.percentagePlane = 16;
             }
         }
 
-        var updatePercentageBar2 = function () {
+        var updatePercentageBar2 = function() {
             var bus = 0;
             var train = 0;
             var plane = 0;
@@ -793,41 +1292,41 @@
             }
             // TRAIN
             if (pos == 1) {
-                vm.percentageTrain = 80;
+                vm.percentageTrain = 70;
                 vm.percentageBus = ((bus * 80) / train) < 11 ? 12 : ((bus * 80) / train);
                 vm.percentagePlane = ((plane * 80) / train) < 11 ? 12 : ((plane * 80) / train);
                 vm.percentageCar = ((car * 80) / train) < 11 ? 12 : ((car * 80) / train);
             }
             //BUS
             if (pos == 0) {
-                vm.percentageBus = 80;
+                vm.percentageBus = 70;
                 vm.percentageTrain = ((train * 80) / bus) < 11 ? 12 : ((train * 80) / bus);
                 vm.percentagePlane = ((plane * 80) / bus) < 11 ? 12 : ((plane * 80) / bus);
                 vm.percentageCar = ((car * 80) / bus) < 11 ? 12 : ((car * 80) / bus);
             }
             //PLANE
             if (pos == 2) {
-                vm.percentagePlane = 80;
+                vm.percentagePlane = 70;
                 vm.percentageTrain = ((train * 80) / plane) < 11 ? 12 : ((train * 80) / plane);
                 vm.percentageBus = ((bus * 80) / plane) < 11 ? 12 : ((bus * 80) / plane);
                 vm.percentageCar = ((car * 80) / plane) < 11 ? 12 : ((car * 80) / plane);
             }
             //CAR
             if (pos == 3) {
-                vm.percentageCar = 80;
+                vm.percentageCar = 70;
                 vm.percentageBus = ((bus * 80) / car) < 11 ? 12 : ((bus * 80) / car);
                 vm.percentagePlane = ((plane * 80) / car) < 11 ? 12 : ((plane * 80) / car);
                 vm.percentageTrain = ((train * 80) / car) < 11 ? 12 : ((train * 80) / car);
             }
         }
 
-        var getHourMinPlanes = function (minutes) {
+        var getHourMinPlanes = function(minutes) {
             var realmin = minutes % 60
             var hours = Math.floor(minutes / 60)
             return hours + 'hrs ' + realmin + 'min';
         }
 
-        var getLowestPlanes = function (trips, tipo) {
+        var getLowestPlanes = function(trips, tipo) {
             var menor = 0;
             var pos = 0;
 
@@ -844,7 +1343,10 @@
 
                     //Para agregar a la duración menor
                     if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
-                        vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                        vm.globalMinDuration = ({
+                            duration: getHourMinPlanes(menor),
+                            durationMinutes: menor
+                        });
                     }
                     vm.minDuration = vm.globalMinDuration.duration;
 
@@ -884,7 +1386,10 @@
 
                 //Para agregar a la duración menor
                 if (vm.globalMinDuration.durationMinutes > menor || vm.globalMinDuration == "") {
-                    vm.globalMinDuration = ({duration: getHourMinPlanes(menor), durationMinutes: menor});
+                    vm.globalMinDuration = ({
+                        duration: getHourMinPlanes(menor),
+                        durationMinutes: menor
+                    });
                 }
                 vm.minDuration = vm.globalMinDuration.duration;
 
@@ -906,13 +1411,13 @@
             }
         }
 
-        var getLowest = function () {
+        var getLowest = function() {
             var menor = 0;
             var pos = 0;
             //BUSCO EL VIAJE MAS CORTO EN BUS
             if (vm.globalTrips.length > 0) {
                 //Filtro los viajes en tren
-                var tt = vm.globalTrips.filter(function (el) {
+                var tt = vm.globalTrips.filter(function(el) {
                     return el.transportType == 'train';
                 });
 
@@ -943,7 +1448,7 @@
                 }
 
                 //Filtro los viajes en bus
-                var tb = vm.globalTrips.filter(function (el) {
+                var tb = vm.globalTrips.filter(function(el) {
                     return el.transportType == 'bus';
                 });
 
@@ -976,7 +1481,7 @@
                 }
 
                 //Filtro los viajes en avion
-                var tp = vm.globalTrips.filter(function (el) {
+                var tp = vm.globalTrips.filter(function(el) {
                     return el.transportType == 'plane';
                 });
 
@@ -1007,7 +1512,7 @@
                 }
 
                 //Filtro los viajes en carro
-                var tc = vm.globalTrips.filter(function (el) {
+                var tc = vm.globalTrips.filter(function(el) {
                     return el.transportType == 'car';
                 });
 
@@ -1042,7 +1547,7 @@
             }
         };
 
-        var resetGlobal = function () {
+        var resetGlobal = function() {
             vm.globalDirectDepartureTrips = [];
             vm.globalDirectReturnTrips = [];
             vm.globalTrips = [];
@@ -1069,7 +1574,7 @@
                 price: 0,
                 options: {
                     showSelectionBar: true,
-                    translate: function (value) {
+                    translate: function(value) {
                         return '€' + value;
                     },
                     floor: 0,
@@ -1080,7 +1585,7 @@
             vm.planesCompanies = [];
 
         };
-        var loadGlobal = function (data, isMixed, isPlane, type) {
+        var loadGlobal = function(data, isMixed, isPlane, type) {
             if (data != undefined) {
 
                 if (isPlane == false) {
@@ -1094,7 +1599,7 @@
                                 vm.globalDirectDepartureTrips.push([]);
                             }
 
-                            angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                            angular.forEach(data.directDepartureTrips[0], function(value, key) {
                                 vm.globalDirectDepartureTrips[0].push(value);
                                 vm.globalTrips.push({
                                     transportType: value.transportType,
@@ -1109,7 +1614,7 @@
                                 vm.globalDirectDepartureTrips.push([]);
                             }
 
-                            angular.forEach(data.directDepartureTrips[1], function (value, key) {
+                            angular.forEach(data.directDepartureTrips[1], function(value, key) {
                                 vm.globalDirectDepartureTrips[1].push(value);
                                 vm.globalTrips.push({
                                     transportType: value.transportType,
@@ -1128,7 +1633,7 @@
                                 vm.globalDirectReturnTrips.push([]);
                             }
 
-                            angular.forEach(data.directReturnTrips[0], function (value, key) {
+                            angular.forEach(data.directReturnTrips[0], function(value, key) {
                                 vm.globalDirectReturnTrips[0].push(value);
                                 vm.globalTrips.push({
                                     transportType: value.transportType,
@@ -1143,7 +1648,7 @@
                                 vm.globalDirectReturnTrips.push([]);
                             }
 
-                            angular.forEach(data.directReturnTrips[1], function (value, key) {
+                            angular.forEach(data.directReturnTrips[1], function(value, key) {
                                 vm.globalDirectReturnTrips[1].push(value);
                                 vm.globalTrips.push({
                                     transportType: value.transportType,
@@ -1157,7 +1662,7 @@
 
                         vm.results = true;
 
-                        angular.forEach(data.alternativeTrips, function (value, key) {
+                        angular.forEach(data.alternativeTrips, function(value, key) {
                             vm.globalAlternativeTrips.push(value);
                         });
                     }
@@ -1166,7 +1671,7 @@
 
                             vm.results = true;
 
-                            angular.forEach(data.mixedTrips, function (value, key) {
+                            angular.forEach(data.mixedTrips, function(value, key) {
                                 vm.globalMixedTrips.push(value);
                             });
                         }
@@ -1174,7 +1679,7 @@
                         vm.globalMixedTrips = [];
                     }
                     if (data.typeServices.length > 0) {
-                        angular.forEach(data.typeServices, function (value, key) {
+                        angular.forEach(data.typeServices, function(value, key) {
                             var exist = false;
                             for (var i = 0; i < vm.globalTypeServices.length; i++) {
                                 if (vm.globalTypeServices[i].name == value.name) {
@@ -1187,7 +1692,7 @@
                         });
                     }
                     if (data.companies.length > 0) {
-                        angular.forEach(data.companies, function (value, key) {
+                        angular.forEach(data.companies, function(value, key) {
                             vm.globalCompanies.push(value);
                         });
                         if (data.hasCarTrips || data.hasBusTrips || data.hasTrainTrips) {
@@ -1200,7 +1705,7 @@
                     if (data.length > 0 && type == 1) {
                         vm.results = true;
 
-                        angular.forEach(data, function (value, key) {
+                        angular.forEach(data, function(value, key) {
                             vm.globalTrips.push({
                                 transportType: 'plane',
                                 durationMinutes: value.duration,
@@ -1238,7 +1743,7 @@
         vm.updatePercentageBar2 = updatePercentageBar2();
 
 
-        var durationFormatted = function (duration) {
+        var durationFormatted = function(duration) {
             return Math.floor(duration / 60) + " hrs " + (duration % 60) + " min"
         };
 
@@ -1254,7 +1759,7 @@
                     price: maxprice + 1,
                     options: {
                         showSelectionBar: true,
-                        translate: function (value) {
+                        translate: function(value) {
                             return value + ' €';
                         },
                         floor: 0,
@@ -1270,7 +1775,7 @@
             options: {
                 floor: 0,
                 ceil: 23,
-                translate: function (value, sliderId, label) {
+                translate: function(value, sliderId, label) {
                     switch (label) {
                         case 'model':
                             return value + ':00';
@@ -1322,7 +1827,7 @@
         vm.weather_progressbar.reset();
         vm.weather_progressbar.start();
 
-        vm.updatePassengers = function (type, direction) {
+        vm.updatePassengers = function(type, direction) {
 
             if (direction == 'up' && vm.passengers < 7) {
                 if (type == 'adult') {
@@ -1351,39 +1856,39 @@
             $('#select_passengers').val(vm.passengers);
         };
 
-        vm.updateSearchMobile = function () {
+        vm.updateSearchMobile = function() {
             vm.searchMobile = !vm.searchMobile;
         };
 
-        vm.searchMobile = screenSize.on('xs, sm', function (isMatch) {
+        vm.searchMobile = screenSize.on('xs, sm', function(isMatch) {
             vm.searchMobile = !isMatch;
         });
-        vm.tripDetails = function ($event,id,flag,all,mix) {
+        vm.tripDetails = function($event, id, flag, all, mix) {
             if (all) {
                 if (mix) {
                     if (flag) {
-                        $('#button-mix-'+id).hide();
-                        $('#arrow-mix-'+id).show();
+                        $('#button-mix-' + id).hide();
+                        $('#arrow-mix-' + id).show();
                     } else {
-                        $('#button-mix-'+id).show();
-                        $('#arrow-mix-'+id).hide();
+                        $('#button-mix-' + id).show();
+                        $('#arrow-mix-' + id).hide();
                     }
-                }else{
+                } else {
                     if (flag) {
-                        $('#button-'+id).hide();
-                        $('#arrow-'+id).show();
-                    }else{
-                        $('#button-'+id).show();
-                        $('#arrow-'+id).hide();
+                        $('#button-' + id).hide();
+                        $('#arrow-' + id).show();
+                    } else {
+                        $('#button-' + id).show();
+                        $('#arrow-' + id).hide();
                     }
                 }
-            }else{
+            } else {
                 if (flag) {
-                    $('#button-plane-'+id).hide();
-                    $('#arrow-plane-'+id).show();
-                }else{
-                    $('#button-plane-'+id).show();
-                    $('#arrow-plane-'+id).hide();
+                    $('#button-plane-' + id).hide();
+                    $('#arrow-plane-' + id).show();
+                } else {
+                    $('#button-plane-' + id).show();
+                    $('#arrow-plane-' + id).hide();
                 }
             }
             var elementId = '#trip_details_' + jQuery(jQuery($event.target)[0]).attr('data-trip-id');
@@ -1397,7 +1902,7 @@
             $(elementId4).slideToggle("slow");
             //$(elementId5).slideToggle( "slow" );
         };
-        vm.tripDetailsVuelta = function ($event) {
+        vm.tripDetailsVuelta = function($event) {
             var elementId5 = '#trip_details_vuelta_' + jQuery(jQuery($event.target)[0]).attr('data-trip-id');
             $(elementId5).slideToggle("slow");
         };
@@ -1427,24 +1932,42 @@
             vm.searching = true;
             vm.error = false;
             vm.disabled = true;
-            setTimeout(function () {
+            setTimeout(function() {
                 $('.pikaday__display').prop('disabled', true);
             }, 100);
 
             //Eventos Google Analytics
-            $analytics.eventTrack('Origin City', {category: 'Search', label: params.origin});
-            $analytics.eventTrack('Destination City', {category: 'Search', label: params.destination});
-            $analytics.eventTrack('Origin Country', {category: 'Search', label: params.originCountryCode});
-            $analytics.eventTrack('Destination Country', {category: 'Search', label: params.destinationCountryCode});
+            $analytics.eventTrack('Origin City', {
+                category: 'Search',
+                label: params.origin
+            });
+            $analytics.eventTrack('Destination City', {
+                category: 'Search',
+                label: params.destination
+            });
+            $analytics.eventTrack('Origin Country', {
+                category: 'Search',
+                label: params.originCountryCode
+            });
+            $analytics.eventTrack('Destination Country', {
+                category: 'Search',
+                label: params.destinationCountryCode
+            });
             $analytics.eventTrack('Number Passengers', {
                 category: 'Search',
                 label: 'Total Passengers',
                 value: params.passengers
             });
             if ((params.returns).length == 0) {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'One Way'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'One Way'
+                });
             } else {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'Round Trip'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'Round Trip'
+                });
                 $analytics.eventTrack('Diff Days', {
                     category: 'Search',
                     label: 'Diff Days',
@@ -1496,7 +2019,8 @@
                 'Pisuena_-_B.Guzmazan', 'Villaverde_De_La_Pena', 'Castaneo', 'Codonera', 'La_Buniza', 'Villafane', 'Fernan_Nunes', 'Canete_La_Real', 'Campo_De_Santibanez', 'Socobio_(Castaneda)',
                 'Santibanes_De_Valdeiglesias', 'Villamonio', 'Ventas_De_Canizar', 'Codonera', 'Dona_Maria', 'El_Madrono', 'Dona_Mencia', 'Fuentes_De_Onoro', 'Alto_San_Mateo_-_Maono', 'V.Castanos',
                 'Canos_De_Meca', 'Quintanaostono', 'Banos_De_Montemayor', 'Martin_Monos_De_Las_Posadas', 'Armuna_Al', 'Cabronana', 'Albunuelas', 'Puente_De_Tuna', 'Arenas_De_Iguna', 'Oruna_De_Pielagos',
-                'Cabanuelas'];
+                'Cabanuelas'
+            ];
 
             for (var i = 0; i < specialLocations.length; i++) {
                 if ($stateParams.origin == specialLocations[i]) {
@@ -1545,7 +2069,7 @@
             }
             var departureDateFormat = departureDay + '/' + departureMonth + '/' + departureYear;
 
-            angular.forEach(vm.cnames_es, function (value, key) {
+            angular.forEach(vm.cnames_es, function(value, key) {
                 if (vm.cnames_es[key].name === $stateParams.originCountryCode) {
                     vm.originCountry = vm.cnames_es[key].value;
                 }
@@ -1577,7 +2101,7 @@
             vm.searching = true;
             vm.error = false;
             vm.disabled = true;
-            setTimeout(function () {
+            setTimeout(function() {
                 $('.pikaday__display').prop('disabled', true);
             }, 100);
 
@@ -1590,9 +2114,18 @@
             vm.weather_progressbar.start();
 
             //Eventos Google Analytics
-            $analytics.eventTrack('Origin City', {category: 'Search', label: formatOrigin});
-            $analytics.eventTrack('Destination City', {category: 'Search', label: formatDestination});
-            $analytics.eventTrack('Origin Country', {category: 'Search', label: $stateParams.originCountryCode});
+            $analytics.eventTrack('Origin City', {
+                category: 'Search',
+                label: formatOrigin
+            });
+            $analytics.eventTrack('Destination City', {
+                category: 'Search',
+                label: formatDestination
+            });
+            $analytics.eventTrack('Origin Country', {
+                category: 'Search',
+                label: $stateParams.originCountryCode
+            });
             $analytics.eventTrack('Destination Country', {
                 category: 'Search',
                 label: $stateParams.destinationCountryCode
@@ -1603,9 +2136,15 @@
                 value: vm.passengers
             });
             if ((returnDateFormat).length == 0) {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'One Way'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'One Way'
+                });
             } else {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'Round Trip'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'Round Trip'
+                });
                 $analytics.eventTrack('Diff Days', {
                     category: 'Search',
                     label: 'Diff Days',
@@ -1632,7 +2171,7 @@
                 destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
             }
 
-            angular.forEach(vm.myOptionsOrigin, function (value, key) {
+            angular.forEach(vm.myOptionsOrigin, function(value, key) {
 
                 if (vm.myOptionsOrigin[key].rt === originPlaneCity[0]) {
                     vm.originCity = vm.myOptionsOrigin[key].rt;
@@ -1642,7 +2181,7 @@
                 }
             });
 
-            angular.forEach(vm.myOptionsDestination, function (value, key) {
+            angular.forEach(vm.myOptionsDestination, function(value, key) {
                 if (vm.myOptionsDestination[key].rt === destinationPlaneCity[0]) {
                     vm.destinationCity = vm.myOptionsDestination[key].rt;
                     vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
@@ -1655,7 +2194,7 @@
 
                 locationsRtFactory
                     .getAll(originPlaneCity[0])
-                    .then(function (data) {
+                    .then(function(data) {
                         if (data.length == 1) {
                             vm.originId = data[0].id
                         } else {
@@ -1663,7 +2202,7 @@
                         }
                         locationsRtFactory
                             .getAll(destinationPlaneCity[0])
-                            .then(function (data) {
+                            .then(function(data) {
                                 if (data.length == 1) {
                                     vm.destinationId = data[0].id
                                 } else {
@@ -1678,11 +2217,11 @@
                                     processCountOrder();
                                 }
                             })
-                            .catch(function (err) {
+                            .catch(function(err) {
                                 //Error
                             });
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         //Error
                     });
             } else {
@@ -1736,7 +2275,7 @@
         }
 
         vm.multipleChange = false;
-        $scope.$watch('search.origin', function (newVal, oldVal) {
+        $scope.$watch('search.origin', function(newVal, oldVal) {
             if (newVal != oldVal && newVal != undefined) {
                 vm.seats = [];
                 vm.seatsReset = [];
@@ -1750,7 +2289,7 @@
                 }
             }
         }, true);
-        $scope.$watch('search.destination', function (newVal, oldVal) {
+        $scope.$watch('search.destination', function(newVal, oldVal) {
             if (newVal != oldVal && newVal !== undefined) {
                 vm.seats = [];
                 vm.seatsReset = [];
@@ -1760,7 +2299,7 @@
                 searchTrip('city');
             }
         }, true);
-        $scope.$watch('search.dates.departureDate', function (newVal, oldVal) {
+        $scope.$watch('search.dates.departureDate', function(newVal, oldVal) {
             if (newVal != oldVal && newVal !== undefined) {
                 vm.seats = [];
                 vm.seatsReset = [];
@@ -1770,7 +2309,7 @@
                 searchTrip('date');
             }
         }, true);
-        $scope.$watch('search.dates.returnDate', function (newVal, oldVal) {
+        $scope.$watch('search.dates.returnDate', function(newVal, oldVal) {
             if (newVal != oldVal && newVal !== undefined) {
                 if (oldVal != 'Invalid date') {
                     vm.seats = [];
@@ -1783,7 +2322,7 @@
             }
         }, true);
 
-        $scope.$watch('search.passengers', function (newVal, oldVal) {
+        $scope.$watch('search.passengers', function(newVal, oldVal) {
             if (newVal != oldVal && newVal != undefined) {
                 vm.seats = [];
                 vm.seatsReset = [];
@@ -1804,7 +2343,7 @@
                 destinationPlaneCity[0] = destinationPlaneCity[0].replace(acentos.charAt(i), original.charAt(i));
             }
             if (changeType == 'city') {
-                angular.forEach(vm.myOptionsOrigin, function (value, key) {
+                angular.forEach(vm.myOptionsOrigin, function(value, key) {
                     if (vm.myOptionsOrigin[key].name === vm.origin) {
                         vm.originCity = vm.myOptionsOrigin[key].rt;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
@@ -1813,7 +2352,7 @@
                     }
                 });
 
-                angular.forEach(vm.myOptionsDestination, function (value, key) {
+                angular.forEach(vm.myOptionsDestination, function(value, key) {
                     if (vm.myOptionsDestination[key].name === vm.destination) {
                         vm.destinationCity = vm.myOptionsDestination[key].rt;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
@@ -1878,19 +2417,37 @@
             $rootScope.$broadcast('titleEvent', title);
 
             //Eventos Google Analytics
-            $analytics.eventTrack('Origin City', {category: 'Search', label: origin});
-            $analytics.eventTrack('Destination City', {category: 'Search', label: destination});
-            $analytics.eventTrack('Origin Country', {category: 'Search', label: originCountry});
-            $analytics.eventTrack('Destination Country', {category: 'Search', label: destinationCountry});
+            $analytics.eventTrack('Origin City', {
+                category: 'Search',
+                label: origin
+            });
+            $analytics.eventTrack('Destination City', {
+                category: 'Search',
+                label: destination
+            });
+            $analytics.eventTrack('Origin Country', {
+                category: 'Search',
+                label: originCountry
+            });
+            $analytics.eventTrack('Destination Country', {
+                category: 'Search',
+                label: destinationCountry
+            });
             $analytics.eventTrack('Number Passengers', {
                 category: 'Search',
                 label: 'Total Passengers',
                 value: vm.passengers
             });
             if ((returnDate).length == 0) {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'One Way'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'One Way'
+                });
             } else {
-                $analytics.eventTrack('Trip Type', {category: 'Search', label: 'Round Trip'});
+                $analytics.eventTrack('Trip Type', {
+                    category: 'Search',
+                    label: 'Round Trip'
+                });
                 $analytics.eventTrack('Diff Days', {
                     category: 'Search',
                     label: 'Diff Days',
@@ -1924,6 +2481,7 @@
         }
 
         var listCompanies = [];
+
         function companyFilter(company, long) {
             if (company.checked) {
                 vm.company = company.name;
@@ -1949,6 +2507,7 @@
         }
 
         var listSeats = [];
+
         function seatFilter(seat, long) {
             if (seat.checked) {
                 vm.seat = seat.name;
@@ -1982,6 +2541,7 @@
         vm.returnTrainFlag = true;
         vm.returnBusFlag = true;
         vm.returnPlaneFlag = true;
+
         function departureSelect(type, id, origin, destination, departure, duration, arrival, price, typeService, companyName, logo, redirect, transportType) {
             vm.returnTrainFlag = true;
             vm.returnBusFlag = true;
@@ -2038,11 +2598,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('.' + vm.idIda_1).hover(function () {
+                $('.' + vm.idIda_1).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2051,11 +2611,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('.' + vm.departureId).hover(function () {
+                $('.' + vm.departureId).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2064,11 +2624,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('#' + vm.idVuelta_1).hover(function () {
+                $('#' + vm.idVuelta_1).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2088,7 +2648,7 @@
         function returnSelectTrain(id) {
             urlTrainFactory
                 .getUrl(vm.departureId, id)
-                .then(function (data) {
+                .then(function(data) {
                     if (data.url != null) {
                         window.open(data.url, '_blank');
                     } else {
@@ -2097,7 +2657,7 @@
                         alertify.log("No es posible utilizar esa combinacion de viajes");
                     }
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     //Error
                 })
         }
@@ -2145,7 +2705,7 @@
             var listCompanies = [];
             var listSeats = [];
             var top = 0;
-            angular.forEach(planes, function (value, key) {
+            angular.forEach(planes, function(value, key) {
                 companies = planes[key].data.enterprise__name;
                 seats = planes[key].data.type__name;
                 listCompanies.push(companies);
@@ -2161,7 +2721,10 @@
             var arraySetCompanies = _.uniq(listCompanies);
             var listCompaniesArr = [];
             for (var i = 0; i < arraySetCompanies.length; i++) {
-                listCompaniesArr.push({id: i, name: arraySetCompanies[i]});
+                listCompaniesArr.push({
+                    id: i,
+                    name: arraySetCompanies[i]
+                });
             }
             vm.planesCompanies = listCompaniesArr;
             // var arraySetSeats = Array.from(listSeats);
@@ -2169,7 +2732,10 @@
             var listSeatsArr = [];
 
             for (var i = 0; i < arraySetSeats.length; i++) {
-                listSeatsArr.push({id: i, name: arraySetSeats[i]});
+                listSeatsArr.push({
+                    id: i,
+                    name: arraySetSeats[i]
+                });
             }
             vm.planesSeats = listSeatsArr;
 
@@ -2180,7 +2746,7 @@
 
 
             // Para actualizar el globalTypeServices con los resultados de las de aviones
-            angular.forEach(vm.planesSeats, function (value, key) {
+            angular.forEach(vm.planesSeats, function(value, key) {
                 var exist = false;
                 for (var i = 0; i < vm.globalTypeServices.length; i++) {
                     if (vm.globalTypeServices[i].name == value.name) {
@@ -2188,7 +2754,10 @@
                     }
                 }
                 if (!exist) {
-                    vm.globalTypeServices.push({id: value.id, name: value.name});
+                    vm.globalTypeServices.push({
+                        id: value.id,
+                        name: value.name
+                    });
                 }
             });
             var setSeats = [];
@@ -2221,14 +2790,14 @@
             vm.searchingMix = true;
             travelsFactory
                 .getMixedTrips(id)
-                .then(function (data) {
+                .then(function(data) {
                     loadGlobal(data, true, false);
                     saveOtherInfoInTrips(data);
                     vm.tripsMixed = false;
                     vm.searchingMix = false;
                     vm.isMixedTrips = data.isMixedTrips;
 
-                    if(vm.hasOtherBus){
+                    if (vm.hasOtherBus) {
                         vm.hasBusTrips = true;
                     } else {
                         vm.hasBusTrips = data.hasBusTrips;
@@ -2247,7 +2816,7 @@
                     //setCompaniesAndSeatsReset(data.companies);
                     vm.updateTripsType();
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.searchingMix = false;
                     vm.tripsMixed = false;
                 })
@@ -2257,6 +2826,7 @@
         vm.idIda_1 = 0;
         vm.idVuelta_1 = 0;
         vm.dateIda_1 = 0;
+
         function firstStep(id_1, type, origin, destination, departure, duration, arrival, price, typeService, companyName, logo) {
             var date = new Date(parseInt(arrival))
             var minutes = date.getUTCMinutes() + 50;
@@ -2323,7 +2893,7 @@
             vm.searchingTripsTrain = true; // Buscando trenes
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                .then(function (data) {
+                .then(function(data) {
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2334,7 +2904,7 @@
                     vm.hasTrainTrips = data.hasTrainTrips;
                     $('.pikaday__display').prop('disabled', false);
 
-                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                    angular.forEach(data.directDepartureTrips[0], function(value, key) {
                         vm.allTrips.push(value);
                     });
 
@@ -2346,7 +2916,7 @@
                     }
                     processCountOrder();
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.searchingTripsTrain = false;
 
                     catchTravelsFactory(err);
@@ -2357,7 +2927,7 @@
             vm.searchingTripsBus = true; // Buscando buses
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                .then(function (data) {
+                .then(function(data) {
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2374,7 +2944,7 @@
                         vm.hasOtherBus = data.hasBusTrips;
                     $('.pikaday__display').prop('disabled', false);
 
-                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                    angular.forEach(data.directDepartureTrips[0], function(value, key) {
                         vm.allTrips.push(value);
                     });
 
@@ -2386,7 +2956,7 @@
                     }
                     processCountOrder();
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
                     if (vm.countBusSearch == 3) {
                         vm.searchingTripsBus = false;
@@ -2400,7 +2970,7 @@
             vm.searchingTripsBus = true; // Buscando buses
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                .then(function (data) {
+                .then(function(data) {
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2421,7 +2991,7 @@
                     }
                     $('.pikaday__display').prop('disabled', false);
 
-                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                    angular.forEach(data.directDepartureTrips[0], function(value, key) {
                         vm.allTrips.push(value);
                     });
 
@@ -2438,7 +3008,7 @@
                     }
 
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
                     if (vm.countBusSearch == 3) {
                         vm.searchingTripsBus = false;
@@ -2453,7 +3023,7 @@
                 vm.searchingTripsCar = true; // Buscando buses
                 travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                    .then(function (data) {
+                    .then(function(data) {
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -2466,7 +3036,7 @@
                         }
                         $('.pikaday__display').prop('disabled', false);
 
-                        angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
                             vm.allTrips.push(value);
                         });
 
@@ -2479,7 +3049,7 @@
                         processCountOrder();
 
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         vm.searchingTripsCar = false;
 
                         catchTravelsFactory(err);
@@ -2497,80 +3067,80 @@
             vm.searchingTripsPlane = true; // Buscando aviones
             planesFactory
                 .getFirstStep(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry)
-                .then(function (data) {
+                .then(function(data) {
                     planesFactory
                         .getApiStatus(data.status)
-                        .then(function (data1) {
+                        .then(function(data1) {
                             if (data1.progress != 0 && data1.results != 0) {
                                 planesFactory
                                     .getApiData(data.data)
-                                    .then(function (data2) {
+                                    .then(function(data2) {
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
                                             processPlanesReturn(data2);
                                         }
                                     })
-                                    .catch(function () {
+                                    .catch(function() {
                                         catchPlanes();
                                     })
                             } else {
-                                $timeout(function () {
+                                $timeout(function() {
                                     planesFactory
                                         .getApiStatus(data.status)
-                                        .then(function (data3) {
+                                        .then(function(data3) {
                                             if (data3.progress != 0 && data3.results != 0) {
                                                 planesFactory
                                                     .getApiData(data.data)
-                                                    .then(function (data4) {
+                                                    .then(function(data4) {
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
                                                             processPlanesReturn(data4);
                                                         }
                                                     })
-                                                    .catch(function () {
+                                                    .catch(function() {
                                                         catchPlanes();
                                                     })
                                             } else {
-                                                $timeout(function () {
+                                                $timeout(function() {
                                                     planesFactory
                                                         .getApiStatus(data.status)
-                                                        .then(function (data5) {
+                                                        .then(function(data5) {
                                                             if (data5.progress != 0 && data5.results != 0) {
                                                                 planesFactory
                                                                     .getApiData(data.data)
-                                                                    .then(function (data6) {
+                                                                    .then(function(data6) {
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {
                                                                             processPlanesReturn(data6);
                                                                         }
                                                                     })
-                                                                    .catch(function () {
+                                                                    .catch(function() {
                                                                         catchPlanes();
                                                                     })
                                                             } else {
                                                                 catchPlanes();
                                                             }
                                                         })
-                                                        .catch(function () {
+                                                        .catch(function() {
                                                             catchPlanes();
                                                         })
                                                 }, 5000);
                                             }
                                         })
-                                        .catch(function () {
+                                        .catch(function() {
                                             catchPlanes();
                                         })
                                 }, 5000);
                             }
                         })
-                        .catch(function () {
+                        .catch(function() {
                             catchPlanes();
                         })
                 })
-                .catch(function () {
+                .catch(function() {
                     catchPlanes();
                 })
 
@@ -2588,7 +3158,7 @@
             var auxTrip = {};
             var flagPlanes = false;
             var flagBus = false;
-            angular.forEach(data.tickets, function (value, key) {
+            angular.forEach(data.tickets, function(value, key) {
                 vm.planesTrips.push(value.data);
                 auxTrip.arrival = value.data.end * 1000;
                 auxTrip.companyName = value.data.enterprise__name;
@@ -2639,7 +3209,7 @@
 
         function processPlanesReturn(data) {
             vm.planesTripsReturn = [];
-            angular.forEach(data.tickets, function (value, key) {
+            angular.forEach(data.tickets, function(value, key) {
                 var split = value.data.redirect.split('?token=');
                 value.data.returnRedirect = split[1];
                 vm.planesTripsReturn.push(value.data);
@@ -2772,11 +3342,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('#' + vm.idIda_1).hover(function () {
+                $('#' + vm.idIda_1).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2792,11 +3362,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('.' + vm.idIda_1).hover(function () {
+                $('.' + vm.idIda_1).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2812,11 +3382,11 @@
                     "border": "none",
                     "box-shadow": "none"
                 });
-                $('#' + vm.idVuelta_1).hover(function () {
+                $('#' + vm.idVuelta_1).hover(function() {
                     $(this).css({
                         "box-shadow": "2px 6px 12px 0px rgba(135, 133, 135, 0.5)"
                     })
-                }, function () {
+                }, function() {
                     $(this).css({
                         "box-shadow": "none"
                     });
@@ -2855,24 +3425,24 @@
             return dias;
         }
 
-        $('.btn-filters').on('click', function () {
+        $('.btn-filters').on('click', function() {
             $('#filters-container').toggleClass('hidden-xs');
         });
 
-        $('#select_passengers').on('click', function () {
+        $('#select_passengers').on('click', function() {
             var offset = $(this).offset();
             $('.popover-select-passengers').attr('style', 'display: block;top:' + (offset.top + 55) + 'px;left:' + (offset.left) + 'px;');
             $('.popover-select-passengers').toggleClass('open');
             $('#popover-bg').attr('style', 'display: block;opacity:0');
         });
-        $('#select_passengers').siblings('span').on('click', function () {
+        $('#select_passengers').siblings('span').on('click', function() {
             var offset = $('#select_passengers').offset();
             $('.popover-select-passengers').attr('style', 'display: block;top:' + (offset.top + 55) + 'px;left:' + (offset.left) + 'px;');
             $('.popover-select-passengers').toggleClass('open');
             $('#popover-bg').attr('style', 'display: block;opacity:0');
         });
 
-        $('#popover-bg').on('click', function () {
+        $('#popover-bg').on('click', function() {
             $('.popover-select-passengers').attr('style', 'display: none;');
             $('#popover-bg').attr('style', 'display: none;opacity:0');
         });
