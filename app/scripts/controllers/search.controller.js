@@ -1979,10 +1979,22 @@
             resetGlobal();
 
             callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "logitravel");
-            callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "busbud");
-            callDeinbus(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "deinbus");
-            callEurolines(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "eurolines");
-            callBerlinlinienbus(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "berlinlinienbus");
+            callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "busbud");
+            if (params.returns == "") {
+                callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "deinbus");
+            } else {
+                //No llamó a deinbus
+                vm.countBusSearch = vm.countBusSearch + 1;
+                if (vm.countBusSearch == 6) {
+                    vm.searchingTripsBus = false;
+                }
+
+                vm.searchingTripsCar = false;
+                $('.pikaday__display').prop('disabled', false);
+                processCountOrder();
+            }
+            callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "eurolines");
+            callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "berlinlinienbus");
             callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "movelia");
             callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "blablacar");
 
@@ -2159,10 +2171,22 @@
             resetGlobal();
 
             callLogitravel(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
-            callBusbud(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
-            callDeinbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
-            callEurolines(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
-            callBerlinlinienbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
+            callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+            if (returnDateFormat == "") {
+                callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
+            } else {
+                //No llamó a deinbus
+                vm.countBusSearch = vm.countBusSearch + 1;
+                if (vm.countBusSearch == 6) {
+                    vm.searchingTripsBus = false;
+                }
+
+                vm.searchingTripsCar = false;
+                $('.pikaday__display').prop('disabled', false);
+                processCountOrder();
+            }
+            callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
+            callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
             callMovelia(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2465,10 +2489,22 @@
             resetGlobal();
 
             callLogitravel(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel")
-            callBusbud(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
-            callDeinbus(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
-            callEurolines(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
-            callBerlinlinienbus(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
+            callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+            if (returnDate == "") {
+                callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
+            } else {
+                //No llamó a deinbus
+                vm.countBusSearch = vm.countBusSearch + 1;
+                if (vm.countBusSearch == 6) {
+                    vm.searchingTripsBus = false;
+                }
+
+                vm.searchingTripsCar = false;
+                $('.pikaday__display').prop('disabled', false);
+                processCountOrder();
+            }
+            callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
+            callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
             callMovelia(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2932,148 +2968,7 @@
                 })
         }
 
-        function callBusbud(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            vm.searchingTripsBus = true; // Buscando buses
-            travelsFactory
-                .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                .then(function(data) {
-
-                    loadGlobal(data, false, false);
-                    saveOtherInfoInTrips(data);
-
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
-                        vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
-                    }
-                    vm.isLoading = false;
-                    vm.disabled = false;
-                    if (!vm.hasBusTrips)
-                        vm.hasBusTrips = data.hasBusTrips;
-                    if (!vm.hasOtherBus)
-                        vm.hasOtherBus = data.hasBusTrips;
-                    $('.pikaday__display').prop('disabled', false);
-
-                    angular.forEach(data.directDepartureTrips[0], function(value, key) {
-                        vm.allTrips.push(value);
-                    });
-
-                    if (vm.hasBusTrips) {
-                        setDateFilterRange(data.maxPrice, data.minPrice);
-                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        //setCompaniesAndSeatsReset(data.companies);
-                        vm.updateTripsType();
-                    }
-                    processCountOrder();
-                })
-                .catch(function(err) {
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
-                        vm.searchingTripsBus = false;
-                    }
-
-                    catchTravelsFactory(err);
-                })
-        }
-
-        function callDeinbus(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            if (returns == "") {
-                vm.searchingTripsBus = true; // Buscando buses
-                travelsFactory
-                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                    .then(function (data) {
-
-                        loadGlobal(data, false, false);
-                        saveOtherInfoInTrips(data);
-
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 6) {
-                            vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
-                        }
-                        vm.isLoading = false;
-                        vm.disabled = false;
-                        if (!vm.hasBusTrips)
-                            vm.hasBusTrips = data.hasBusTrips;
-                        if (!vm.hasOtherBus)
-                            vm.hasOtherBus = data.hasBusTrips;
-                        $('.pikaday__display').prop('disabled', false);
-
-                        angular.forEach(data.directDepartureTrips[0], function (value, key) {
-                            vm.allTrips.push(value);
-                        });
-
-                        if (vm.hasBusTrips) {
-                            setDateFilterRange(data.maxPrice, data.minPrice);
-                            setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                            //setCompaniesAndSeatsReset(data.companies);
-                            vm.updateTripsType();
-                        }
-                        processCountOrder();
-                    })
-                    .catch(function (err) {
-                        vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 6) {
-                            vm.searchingTripsBus = false;
-                        }
-
-                        catchTravelsFactory(err);
-                    })
-                } else {
-                    //No llamó a deinbus
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
-                        vm.searchingTripsBus = false;
-                    }
-
-                    vm.searchingTripsCar = false;
-                    $('.pikaday__display').prop('disabled', false);
-                    processCountOrder();
-                }
-        }
-
-        function callEurolines(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
-            vm.searchingTripsBus = true; // Buscando buses
-            travelsFactory
-                .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
-                .then(function (data) {
-
-                    loadGlobal(data, false, false);
-                    saveOtherInfoInTrips(data);
-
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
-                        vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
-                    }
-                    vm.isLoading = false;
-                    vm.disabled = false;
-                    if (!vm.hasBusTrips)
-                        vm.hasBusTrips = data.hasBusTrips;
-                    if (!vm.hasOtherBus)
-                        vm.hasOtherBus = data.hasBusTrips;
-                    $('.pikaday__display').prop('disabled', false);
-
-                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
-                        vm.allTrips.push(value);
-                    });
-
-                    if (vm.hasBusTrips) {
-                        setDateFilterRange(data.maxPrice, data.minPrice);
-                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
-                        //setCompaniesAndSeatsReset(data.companies);
-                        vm.updateTripsType();
-                    }
-                    processCountOrder();
-                })
-                .catch(function (err) {
-                    vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
-                        vm.searchingTripsBus = false;
-                    }
-
-                    catchTravelsFactory(err);
-                })
-        }
-
-        function callBerlinlinienbus(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+        function callOtherBusTrips(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
             vm.searchingTripsBus = true; // Buscando buses
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
