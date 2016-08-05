@@ -1982,6 +1982,7 @@
             callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "busbud");
             callDeinbus(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "deinbus");
             callEurolines(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "eurolines");
+            callBerlinlinienbus(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "berlinlinienbus");
             callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "movelia");
             callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "blablacar");
 
@@ -2161,6 +2162,7 @@
             callBusbud(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
             callDeinbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
             callEurolines(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
+            callBerlinlinienbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
             callMovelia(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2466,6 +2468,7 @@
             callBusbud(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
             callDeinbus(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
             callEurolines(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
+            callBerlinlinienbus(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
             callMovelia(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2939,7 +2942,7 @@
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -2964,7 +2967,7 @@
                 })
                 .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -2983,7 +2986,7 @@
                         saveOtherInfoInTrips(data);
 
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 5) {
+                        if (vm.countBusSearch == 6) {
                             vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                         }
                         vm.isLoading = false;
@@ -3008,7 +3011,7 @@
                     })
                     .catch(function (err) {
                         vm.countBusSearch = vm.countBusSearch + 1;
-                        if (vm.countBusSearch == 5) {
+                        if (vm.countBusSearch == 6) {
                             vm.searchingTripsBus = false;
                         }
 
@@ -3017,7 +3020,7 @@
                 } else {
                     //No llamó a deinbus
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3037,7 +3040,7 @@
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -3062,7 +3065,50 @@
                 })
                 .catch(function (err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
+                        vm.searchingTripsBus = false;
+                    }
+
+                    catchTravelsFactory(err);
+                })
+        }
+
+        function callBerlinlinienbus(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+            vm.searchingTripsBus = true; // Buscando buses
+            travelsFactory
+                .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                .then(function (data) {
+
+                    loadGlobal(data, false, false);
+                    saveOtherInfoInTrips(data);
+
+                    vm.countBusSearch = vm.countBusSearch + 1;
+                    if (vm.countBusSearch == 6) {
+                        vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                    }
+                    vm.isLoading = false;
+                    vm.disabled = false;
+                    if (!vm.hasBusTrips)
+                        vm.hasBusTrips = data.hasBusTrips;
+                    if (!vm.hasOtherBus)
+                        vm.hasOtherBus = data.hasBusTrips;
+                    $('.pikaday__display').prop('disabled', false);
+
+                    angular.forEach(data.directDepartureTrips[0], function (value, key) {
+                        vm.allTrips.push(value);
+                    });
+
+                    if (vm.hasBusTrips) {
+                        setDateFilterRange(data.maxPrice, data.minPrice);
+                        setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                        //setCompaniesAndSeatsReset(data.companies);
+                        vm.updateTripsType();
+                    }
+                    processCountOrder();
+                })
+                .catch(function (err) {
+                    vm.countBusSearch = vm.countBusSearch + 1;
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3080,7 +3126,7 @@
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -3114,7 +3160,7 @@
                 })
                 .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 5) {
+                    if (vm.countBusSearch == 6) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3301,7 +3347,7 @@
             vm.hasPlaneTrips = flagPlanes;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 5) {
+            if (vm.countBusSearch == 6) {
                 vm.searchingTripsBus = false;
             }
             vm.updateTripsType();
@@ -3338,7 +3384,7 @@
             vm.hasPlaneTrips = false;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 5) {
+            if (vm.countBusSearch == 6) {
                 vm.searchingTripsBus = false;
             }
             processCountOrder();
@@ -3347,7 +3393,7 @@
         function processCountOrder() {
             $('[data-toggle="tooltip"]').tooltip();
             vm.countOrder = vm.countOrder + 1;
-            if (vm.countOrder == 7) {
+            if (vm.countOrder == 8) {
                 order('departure');
                 vm.countOrder = 0;
                 vm.searching = false;
