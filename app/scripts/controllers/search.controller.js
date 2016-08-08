@@ -24,6 +24,10 @@
         } else {
             vm.mobile = false;
         }
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.searchMobile = false;
         vm.searchTrip = searchTrip;
         vm.searching = false;
