@@ -377,6 +377,7 @@ select {
     margin: 0 .2em;
     border-radius: 2px;
     border: 1px solid rgba(114, 114, 115, 0.3);
+    font-size: .8em
 }
 
 // .header-results .sort:hover {
@@ -385,7 +386,7 @@ select {
 
 .header-results .sort.active {
     background: #e1e1e0;
-    color: #139dd9;
+    color: #29aae3;
 }
 
 .header-results .bt {
