@@ -1323,7 +1323,7 @@
         var getHourMinPlanes = function(minutes) {
             var realmin = minutes % 60
             var hours = Math.floor(minutes / 60)
-            return hours + 'hrs ' + realmin + 'min';
+            return hours + 'h ' + realmin + 'm';
         }
 
         var getLowestPlanes = function(trips, tipo) {
