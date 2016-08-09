@@ -2902,6 +2902,11 @@
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
 
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 1000);
+
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
