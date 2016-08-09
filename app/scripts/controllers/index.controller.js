@@ -20,6 +20,7 @@
         $scope.showCLock = false;
         $scope.completeTime = false;
         $scope.searchView = false;
+        $scope.footer = true;
         $scope.initials = localStorage.getItem("resertrip_initials");
         $scope.avatar = localStorage.getItem("resertrip_avatar");
         if ($scope.avatar != null) {
@@ -32,6 +33,11 @@
             $scope.searchView = flag;
         }
         $scope.$on('viewEvent', changeView)
+
+        function footer(ev, flag) {
+            $scope.footer = flag;
+        }
+        $scope.$on('footerEvent', footer)
 
         function changeTitle(ev, title) {
             $scope.pageTitle = title;

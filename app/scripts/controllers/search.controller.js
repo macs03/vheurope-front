@@ -28,6 +28,9 @@
         var searchView = true;
         $rootScope.$broadcast('viewEvent', searchView);
 
+        var footer = false;
+        $rootScope.$broadcast('footerEvent', footer);
+
         vm.searchMobile = false;
         vm.searchTrip = searchTrip;
         vm.searching = false;
@@ -2933,6 +2936,11 @@
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
 
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 1000);
+
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
@@ -2975,6 +2983,11 @@
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
+
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 1000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3029,6 +3042,11 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data) {
 
+                        $timeout(function() {
+                            var footer = true;
+                            $rootScope.$broadcast('footerEvent', footer);
+                        }, 1000);
+
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
 
@@ -3079,6 +3097,10 @@
                                 planesFactory
                                     .getApiData(data.data)
                                     .then(function(data2) {
+                                        $timeout(function() {
+                                            var footer = true;
+                                            $rootScope.$broadcast('footerEvent', footer);
+                                        }, 1000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3097,6 +3119,10 @@
                                                 planesFactory
                                                     .getApiData(data.data)
                                                     .then(function(data4) {
+                                                        $timeout(function() {
+                                                            var footer = true;
+                                                            $rootScope.$broadcast('footerEvent', footer);
+                                                        }, 1000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3115,6 +3141,10 @@
                                                                 planesFactory
                                                                     .getApiData(data.data)
                                                                     .then(function(data6) {
+                                                                        $timeout(function() {
+                                                                            var footer = true;
+                                                                            $rootScope.$broadcast('footerEvent', footer);
+                                                                        }, 1000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {
