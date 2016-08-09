@@ -2905,7 +2905,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 1000);
+                    }, 3000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2944,7 +2944,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 1000);
+                    }, 3000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2992,7 +2992,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 1000);
+                    }, 3000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3050,7 +3050,7 @@
                         $timeout(function() {
                             var footer = true;
                             $rootScope.$broadcast('footerEvent', footer);
-                        }, 1000);
+                        }, 3000);
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -3105,7 +3105,7 @@
                                         $timeout(function() {
                                             var footer = true;
                                             $rootScope.$broadcast('footerEvent', footer);
-                                        }, 1000);
+                                        }, 3000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3127,7 +3127,7 @@
                                                         $timeout(function() {
                                                             var footer = true;
                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                        }, 1000);
+                                                        }, 3000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3149,7 +3149,7 @@
                                                                         $timeout(function() {
                                                                             var footer = true;
                                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                                        }, 1000);
+                                                                        }, 3000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {
