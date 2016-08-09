@@ -123,10 +123,10 @@
     <div ui-view></div>
 
     <!-- FOOTER AQUI -->
-    <vhfooter-directive></vhfooter-directive>
+    <vhfooter-directive ng-hide="searchView"></vhfooter-directive>
 
 
-    <div class="bus  hidden-xs row-fluid" style="background: #393939;">
+    <div class="bus  hidden-xs row-fluid" style="background: #393939;" ng-show="footer">
         <!--<div class="row" style="margin: 0 !important">
             <div class="col-md-12 text-center">
                 

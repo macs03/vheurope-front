@@ -24,6 +24,13 @@
         } else {
             vm.mobile = false;
         }
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
+        var footer = false;
+        $rootScope.$broadcast('footerEvent', footer);
+
         vm.searchMobile = false;
         vm.searchTrip = searchTrip;
         vm.searching = false;
@@ -1323,7 +1330,7 @@
         var getHourMinPlanes = function(minutes) {
             var realmin = minutes % 60
             var hours = Math.floor(minutes / 60)
-            return hours + 'hrs ' + realmin + 'min';
+            return hours + 'h ' + realmin + 'm';
         }
 
         var getLowestPlanes = function(trips, tipo) {
@@ -2898,6 +2905,11 @@
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
 
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 3000);
+
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
@@ -2931,6 +2943,11 @@
             travelsFactory
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
+
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 3000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3026,6 +3043,11 @@
                 .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                 .then(function(data) {
 
+                    $timeout(function() {
+                        var footer = true;
+                        $rootScope.$broadcast('footerEvent', footer);
+                    }, 3000);
+
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
@@ -3079,6 +3101,11 @@
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data) {
 
+                        $timeout(function() {
+                            var footer = true;
+                            $rootScope.$broadcast('footerEvent', footer);
+                        }, 3000);
+
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
 
@@ -3129,6 +3156,10 @@
                                 planesFactory
                                     .getApiData(data.data)
                                     .then(function(data2) {
+                                        $timeout(function() {
+                                            var footer = true;
+                                            $rootScope.$broadcast('footerEvent', footer);
+                                        }, 3000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3147,6 +3178,10 @@
                                                 planesFactory
                                                     .getApiData(data.data)
                                                     .then(function(data4) {
+                                                        $timeout(function() {
+                                                            var footer = true;
+                                                            $rootScope.$broadcast('footerEvent', footer);
+                                                        }, 3000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3165,6 +3200,10 @@
                                                                 planesFactory
                                                                     .getApiData(data.data)
                                                                     .then(function(data6) {
+                                                                        $timeout(function() {
+                                                                            var footer = true;
+                                                                            $rootScope.$broadcast('footerEvent', footer);
+                                                                        }, 3000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {

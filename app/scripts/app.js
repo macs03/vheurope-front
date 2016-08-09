@@ -234,9 +234,9 @@
             "SORT": {
                 "ORDER_BY": "Order by",
                 "COMPANY": "Companies",
-                "HORARY": "Departure Time",
-                "PRICE": "The cheapest",
-                "DURATION": "The fastest"
+                "HORARY": "DEPARTURE TIME",
+                "PRICE": "CHEAPEST",
+                "DURATION": "FASTEST"
             },
             "FILTERS": {
                 "MAP_TITLE": "TRIP INFORMATION",
@@ -529,9 +529,9 @@
             "SORT": {
                 "ORDER_BY": "Ordenar por",
                 "COMPANY": "Empresas",
-                "HORARY": "Más Temprano",
-                "PRICE": "El más Barato",
-                "DURATION": "El más rápido"
+                "HORARY": "MAS TEMPRANO",
+                "PRICE": "MAS BARATO",
+                "DURATION": "MAS RAPIDO"
             },
             "FILTERS": {
                 "MAP_TITLE": "INFORMACIÓN DEL VIAJE",
@@ -824,9 +824,9 @@
             "SORT": {
                 "ORDER_BY": "Classement par",
                 "COMPANY": "Sociétés",
-                "HORARY": "Heure de départ",
-                "PRICE": "Le moins cher",
-                "DURATION": "Le plus rapide"
+                "HORARY": "HEURE DE DÉPART",
+                "PRICE": "MOINS CHER",
+                "DURATION": "PLUS RAPIDE"
             },
             "FILTERS": {
                 "MAP_TITLE": "TINFORMATIONS SUR LE TRAJET",

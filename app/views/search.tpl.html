@@ -656,31 +656,31 @@
 
                     </div> -->
                     <div class="col-md-2 col-xs-3 np-tab pr5 padding-tab" ng-show="search.showCombineTrips">
-                        <div class="tab-filter active tab_all" data-type="all" id="tab_all" ng-click="search.showTripsType('all')" style="padding: 12.5px 10px;">
+                        <div class="tab-filter active tab_all" data-type="all" id="tab_all" ng-click="search.showTripsType('all')" style="display:flex;justify-content:center;align-items:center;">
                             <i class="fa fa-random fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5" ng-show="search.hasBusTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" style="padding: 11px 10px;">
-                            <i class="icon-bus fa-2x"></i>
+                        <div class="tab-filter tab_bus" data-type="bus" id="tab_bus" ng-click="search.showTripsType('bus')" style="display:flex;justify-content:center;align-items:center;">
+                            <i class="icon-bus" style="font-size:1.8em;"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceBus | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pl0" ng-show="search.hasTrainTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" style="padding: 11px 10px;">
+                        <div class="tab-filter tab_train" data-type="train" id="tab_train" ng-click="search.showTripsType('train')" style="display:flex;justify-content:center;align-items:center;">
                             <i class="icon-tren fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceTrain | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasPlaneTrips && !search.returnTripPlane" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" style="padding: 11px 10px;">
+                        <div class="tab-filter tab_plane" data-type="plane" id="tab_plane" ng-click="search.showTripsType('plane')" style="display:flex;justify-content:center;align-items:center;">
                             <i class="icon-avion fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPricePlane | currency : '' }} €</small></span>
                         </div>
                     </div>
                     <div class="col-md-2 col-xs-3 np-tab pr5 pl0" ng-show="search.hasCarTrips" ng-class="{'margin-tab':!search.showCombineTrips}">
-                        <div class="tab-filter tab_car" data-type="car" id="tab_car" ng-click="search.showTripsType('car')" style="padding: 12.5px 10px;">
+                        <div class="tab-filter tab_car" data-type="car" id="tab_car" ng-click="search.showTripsType('car')" style="display:flex;justify-content:center;align-items:center;">
                             <i class="fa fa-car fa-2x"></i>
                             <span class="text-muted hidden-md hidden-lg"><small>DESDE {{ search.lowestPriceCar | currency : '' }} €</small></span>
                         </div>
@@ -736,7 +736,7 @@
                                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                                 <p class="vh-pull-right">
                                                     <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
-                                                    <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
+                                                    <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                                     <br>
                                                     <div data-toggle="tooltip" data-placement="top" title="{{trip.origin}}" class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals truncate">{{trip.origin}}</div>
                                                 </p>
@@ -749,7 +749,7 @@
                                             <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                                 <p class="vh-pull-right">
                                                     <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
-                                                    <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
+                                                    <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                                     <br>
                                                     <div data-toggle="tooltip" data-placement="top" title="{{trip.destination}}" class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals truncate">{{trip.destination}}</div>
                                                 </p>
@@ -879,7 +879,7 @@
                                               {{trip.duration}}
                                             </small>
                                                     </div>
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9" style="margin-left: -8%;">
                                                         <ul class="timeline hidden-xs hidden-sm">
 
                                                             <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
@@ -958,7 +958,7 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                         <p class="pull-right">
                                             <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{ trip.origin }}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{ trip.origin }}</small>
                                             <br>
                                             <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.origin }}</small>
                                         </p>
@@ -971,7 +971,7 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                         <p class="pull-right">
                                             <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{ trip.destination }}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{ trip.destination }}</small>
                                             <br>
                                             <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals">{{ trip.destination }}</small>
                                         </p>
@@ -1005,7 +1005,7 @@
                                               {{ search.getHourMinPlanes(trip.duration) }}
                                             </small>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-9" style="margin-left: -12%;">
                                                 <ul class="timeline hidden-xs hidden-sm">
 
                                                     <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.segments.length)">
@@ -1228,7 +1228,7 @@
                                                     <p class="vh-pull-right">
                                                         <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                                         <br>
-                                                        <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
+                                                        <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                                     </p>
                                                 </div>
 
@@ -1240,7 +1240,7 @@
                                                     <p class="vh-pull-right">
                                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                                         <br>
-                                                        <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
+                                                        <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                                     </p>
                                                 </div>
 
@@ -1337,7 +1337,7 @@
                                                             <p class="pull-right">
                                                                 <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
                                                                 <br>
-                                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
+                                                                <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
                                                             </p>
                                                         </div>
 
@@ -1349,7 +1349,7 @@
                                                             <p class="pull-right">
                                                                 <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
                                                                 <br>
-                                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.destination}}">{{ trip.destination }}</small>
+                                                                <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.destination}}">{{ trip.destination }}</small>
                                                             </p>
 
 
@@ -1584,7 +1584,7 @@
                                                     <p class="vh-pull-right">
                                                         <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
                                                         <br>
-                                                        <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
+                                                        <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                                     </p>
 
                                                 </div>
@@ -1597,7 +1597,7 @@
                                                     <p class="vh-pull-right">
                                                         <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
                                                         <br>
-                                                        <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
+                                                        <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                                     </p>
                                                 </div>
 
@@ -1693,7 +1693,7 @@
                                                             <p>
                                                                 <strong>{{ search.millisToUTCDate(trip.start*1000) | date:'HH:mm'}}</strong>
                                                                 <br>
-                                                                <small class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
+                                                                <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" title="{{trip.origin}}">{{ trip.origin }}</small>
                                                             </p>
 
                                                         </div>
@@ -1706,7 +1706,7 @@
                                                             <p>
                                                                 <strong>{{ search.millisToUTCDate(trip.end*1000) | date:'HH:mm'}}</strong>
                                                                 <br>
-                                                                <div class="text-muted-dark smallest-font hidden-xs hidden-sm capitalize terminals" style="margin-top: -9px;" title="{{trip.destination}}">{{ trip.destination }}</div>
+                                                                <div class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals" style="margin-top: -9px;" title="{{trip.destination}}">{{ trip.destination }}</div>
                                                             </p>
                                                         </div>
 
@@ -1892,7 +1892,7 @@
 
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                         <p class="pull-right">
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{trip.originT1 }}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic capitalize">{{trip.originT1 }}</small>
                                             <br>
                                             <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><strong class="capitalize ">{{trip.originT1 }}</strong> <i class="fa fa-angle-right"></i> <strong class="capitalize ">{{trip.destinationT1 }}</strong></small>
                                         </p>
@@ -1904,7 +1904,7 @@
 
                                     <div class="col-md-4 col-xs-4 col-sm-4 tacm">
                                         <p class="pull-left">
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic capitalize">{{ trip.destinationT2 }}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic capitalize">{{ trip.destinationT2 }}</small>
                                             <br>
                                             <small class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals"><strong class="capitalize ">{{trip.originT2 }}</strong> <i class="fa fa-angle-right"></i> <strong class="capitalize ">{{trip.destinationT2 }}</strong></small>
                                         </p>
@@ -2032,7 +2032,7 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                         <p class="vh-pull-right">
                                             <strong>{{ search.millisToUTCDate(trip.departure) | date:'HH:mm'}}</strong>
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.origin}}</small>
                                             <br>
                                             <div data-toggle="tooltip" data-placement="top" title="{{trip.origin}}" class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals truncate">{{trip.origin}}</div>
                                         </p>
@@ -2045,7 +2045,7 @@
                                     <div class="col-md-3 col-xs-4 col-sm-4 tacm">
                                         <p class="vh-pull-right">
                                             <strong>{{ search.millisToUTCDate(trip.arrival) | date:'HH:mm'}}</strong>
-                                            <small class="smallest-font text-muted-dark hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
+                                            <small class="smallest-font text-muted hidden-xs hidden-sm italic">{{search.trips.destination}}</small>
                                             <br>
                                             <div data-toggle="tooltip" data-placement="top" title="{{trip.destination}}" class="text-muted smallest-font hidden-xs hidden-sm capitalize terminals truncate">{{trip.destination}}</div>
                                         </p>
@@ -2077,7 +2077,7 @@
                                       {{ search.getHourMinPlanes(trip.durationMinutes) }}
                                     </small>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-9" style="margin-left:-12%;">
                                                 <ul class="timeline hidden-xs hidden-sm">
 
                                                     <li class="li complete" ng-repeat="n in search.getPlanesSteps(trip.segments.length)">
@@ -2177,7 +2177,7 @@
                                       {{trip.duration}}
                                     </small>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-9" style="margin-left: -8%;">
                                                 <ul class="timeline hidden-xs hidden-sm">
 
                                                     <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
