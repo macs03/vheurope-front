@@ -879,7 +879,7 @@
                                               {{trip.duration}}
                                             </small>
                                                     </div>
-                                                    <div class="col-md-9" style="margin-left: -8%;">
+                                                    <div class="col-md-9" style="margin-left: -12%;">
                                                         <ul class="timeline hidden-xs hidden-sm">
 
                                                             <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
@@ -2177,7 +2177,7 @@
                                       {{trip.duration}}
                                     </small>
                                             </div>
-                                            <div class="col-md-9" style="margin-left: -8%;">
+                                            <div class="col-md-9" style="margin-left: -12%;">
                                                 <ul class="timeline hidden-xs hidden-sm">
 
                                                     <li class="li complete" ng-repeat="n in search.getTripsSteps(search.trips.maxDuration, trip.durationMinutes) ">
@@ -2373,82 +2373,82 @@
                         <h5 class="hidden-xs hidden-sm">
                         Viajes Alternativos: {{search.globalAlternativeTrips.length}} resultados <span class="capitalize trip-date"></span>
                     </h5> -->
-                        <div class="new-results" ng-repeat="trip in search.globalAlternativeTrips">
-                            <div class="results list">
-                                <div class="row result result-iv">
+                    <div class="new-results" ng-repeat="trip in search.globalAlternativeTrips">
+                        <div class="results list">
+                            <div class="row result result-iv">
 
-                                    <div class="col-md-5 col-xs-4 alternativeBox">
-                                        <span class="nowrap text-fucsia">{{trip.origin}}</span>
-                                    </div>
+                                <div class="col-md-5 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.origin}}</span>
+                                </div>
 
-                                    <div class="col-md-4 col-xs-4 alternativeBox">
-                                        <span class="nowrap text-fucsia">{{trip.destination}}</span>
-                                    </div>
+                                <div class="col-md-4 col-xs-4 alternativeBox">
+                                    <span class="nowrap text-fucsia">{{trip.destination}}</span>
+                                </div>
 
-                                    <div class="col-xs-4 nbt visible-xs">
-                                        <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
-                                    </div>
+                                <div class="col-xs-4 nbt visible-xs">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
+                                </div>
 
-                                    <div class="col-md-3 nbt hidden-xs alternativeBox">
-                                        <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
-                                        <span class="hidden sort-price">${trip.price | currency : '' }</span>
-                                        <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
-                                        <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
-                                    </div>
+                                <div class="col-md-3 nbt hidden-xs alternativeBox">
+                                    <a class="btn btn-block theme-fucsia-iv addTicket-button" ng-click="search.alternativeSearch(trip.origin,trip.countryOrigin,trip.destination,trip.countryDestination)">SELECCIONAR</a>
+                                    <span class="hidden sort-price">${trip.price | currency : '' }</span>
+                                    <span class="hidden sort-departure">${trip.departureTime.getTime()/1000}</span>
+                                    <span class="hidden sort-company">${trip.companyRoute.company.name}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end columns results -->
+        </div>
+        <!-- end columns results -->
 
-            <!-- Modal -->
-            <div class="modal fade" id="error-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content" style="background-color: #F2DEDD !important;">
-                        <div class="modal-header">
-                            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                            <h2>Error</h2>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                {{search.msgError}}
-                            </p>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="error-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color: #F2DEDD !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2>Error</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            {{search.msgError}}
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content" style="background-color: #F2DEDD !important;">
-                        <div class="modal-header">
-                            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                            <h2>Error</h2>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Revise su seleccion de ciudades
-                            </p>
-                        </div>
+        </div>
+        <div class="modal fade" id="error-cities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color: #F2DEDD !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2>Error</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Revise su seleccion de ciudades
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content" style="background-color: #F2DEDD !important;">
-                        <div class="modal-header">
-                            <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                            <h2>Error</h2>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Revise su seleccion de fechas
-                            </p>
-                        </div>
+        </div>
+        <div class="modal fade" id="error-date" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color: #F2DEDD !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2>Error</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Revise su seleccion de fechas
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
