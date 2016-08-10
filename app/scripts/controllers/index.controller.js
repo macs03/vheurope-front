@@ -29,6 +29,8 @@
             $scope.avatarFlag = false;
         }
 
+        utilityService.getCountry();
+
         function changeView(ev, flag) {
             $scope.searchView = flag;
         }

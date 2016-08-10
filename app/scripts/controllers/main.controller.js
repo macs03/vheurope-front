@@ -31,6 +31,14 @@
         var searchView = false;
         $rootScope.$broadcast('viewEvent', searchView);
 
+        var country = utilityService.getCountry();
+
+        if (country == 'fr') {
+            console.log('Francia');
+        } else if (country == 'es') {
+            console.log('España');
+        }
+
         vm.popular_searches.push({
             id: 0,
             origin: 'Madrid',
