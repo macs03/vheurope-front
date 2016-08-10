@@ -2908,7 +2908,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2947,7 +2947,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2992,6 +2992,11 @@
                 travelsFactory
                     .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
                     .then(function(data) {
+
+                        $timeout(function() {
+                            var footer = true;
+                            $rootScope.$broadcast('footerEvent', footer);
+                        }, 5000);
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -3046,7 +3051,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3104,7 +3109,7 @@
                         $timeout(function() {
                             var footer = true;
                             $rootScope.$broadcast('footerEvent', footer);
-                        }, 3000);
+                        }, 5000);
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -3159,7 +3164,7 @@
                                         $timeout(function() {
                                             var footer = true;
                                             $rootScope.$broadcast('footerEvent', footer);
-                                        }, 3000);
+                                        }, 5000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3181,7 +3186,7 @@
                                                         $timeout(function() {
                                                             var footer = true;
                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                        }, 3000);
+                                                        }, 5000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3203,7 +3208,7 @@
                                                                         $timeout(function() {
                                                                             var footer = true;
                                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                                        }, 3000);
+                                                                        }, 5000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {
