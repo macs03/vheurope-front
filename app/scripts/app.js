@@ -256,7 +256,9 @@
                 "RESULTS": "results",
                 "BUTTON": "BUY",
                 "DIRECT": "Direct",
-                "SCALE": "Scale"
+                "SCALE": "Scale",
+                "SEVERAL": "Several Companies",
+                "SEEMORE": "See more"
             },
             "WEATHER": {
                 "TITLE_1": "We are looking for the best deals. Please wait.",
@@ -556,7 +558,9 @@
                 "RESULTS": "resultados",
                 "BUTTON": "COMPRAR",
                 "DIRECT": "Directo",
-                "SCALE": "Escalas"
+                "SCALE": "Escalas",
+                "SEVERAL": "Varias Empresas",
+                "SEEMORE": "Ver más"
             },
             "WEATHER": {
                 "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",
@@ -856,7 +860,9 @@
                 "RESULTS": "Résultats",
                 "BUTTON": "ACHETER",
                 "DIRECT": "Direct",
-                "SCALE": "Échelle"
+                "SCALE": "Échelle",
+                "SEVERAL": "Plusieurs sociétés",
+                "SEEMORE": "Voir plus"
             },
             "WEATHER": {
                 "TITLE_1": "Nous recherchons les meilleurs offres. Veuillez attendre.",
