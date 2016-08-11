@@ -254,7 +254,9 @@
                 "DEPARTURE": "Departure",
                 "RETURN": "Return",
                 "RESULTS": "results",
-                "BUTTON": "BUY"
+                "BUTTON": "BUY",
+                "DIRECT": "Direct",
+                "SCALE": "Scale"
             },
             "WEATHER": {
                 "TITLE_1": "We are looking for the best deals. Please wait.",
@@ -276,6 +278,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARE TICKETS",
                 "MESSAGE": "These prices are not guaranteed."
+            },
+            "PLANES": {
+                "BUTTON": "Select"
             }
         },
         "SEATS": {
@@ -549,7 +554,9 @@
                 "DEPARTURE": "Ida",
                 "RETURN": "Vuelta",
                 "RESULTS": "resultados",
-                "BUTTON": "COMPRAR"
+                "BUTTON": "COMPRAR",
+                "DIRECT": "Directo",
+                "SCALE": "Escalas"
             },
             "WEATHER": {
                 "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",
@@ -571,6 +578,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARA BILLETES",
                 "MESSAGE": "Estos precios no estan garantizados."
+            },
+            "PLANES": {
+                "BUTTON": "Elegir"
             }
         },
         "SEATS": {
@@ -844,7 +854,9 @@
                 "DEPARTURE": "Départ",
                 "RETURN": "Retour",
                 "RESULTS": "Résultats",
-                "BUTTON": "ACHETER"
+                "BUTTON": "ACHETER",
+                "DIRECT": "Direct",
+                "SCALE": "Échelle"
             },
             "WEATHER": {
                 "TITLE_1": "Nous recherchons les meilleurs offres. Veuillez attendre.",
@@ -866,6 +878,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARER BILLETS",
                 "MESSAGE": "Ces prix ne sont pas guarantis."
+            },
+            "PLANES": {
+                "BUTTON": "Choisir"
             }
         },
         "SEATS": {
