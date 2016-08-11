@@ -318,7 +318,11 @@
             "FORM_EMAIL_PLACEHOLDER": "Email",
             "FORM_BTN_SELECT": "Select",
             "FORM_BTN_UPDATE": "Update",
-            "REDIRECT": "Soon you will be redirected to the search page automatically"
+            "REDIRECT": "Soon you will be redirected to the search page automatically",
+            "AUTOMATICS": "Automatics Seats",
+            "ADDPASSENGER": "Add Passenger",
+            "FORM_SEX": "Sex",
+            "FORM_BORN": "Date of Birth"
         },
         "PAYMENT": {
             "INFORMATION": {
@@ -620,7 +624,11 @@
             "FORM_EMAIL_PLACEHOLDER": "Correo electronico",
             "FORM_BTN_SELECT": "Seleccionar",
             "FORM_BTN_UPDATE": "Actualizar",
-            "REDIRECT": "En breve seras redireccionado a la página de búsqueda automáticamente"
+            "REDIRECT": "En breve seras redireccionado a la página de búsqueda automáticamente",
+            "AUTOMATICS": "Asientos Automaticos",
+            "ADDPASSENGER": "Añadir Pasajero",
+            "FORM_SEX": "Sexo",
+            "FORM_BORN": "Fecha de Nacimiento"
         },
         "PAYMENT": {
             "INFORMATION": {
@@ -922,7 +930,11 @@
             "FORM_EMAIL_PLACEHOLDER": "E-mail",
             "FORM_BTN_SELECT": "Choisir",
             "FORM_BTN_UPDATE": "Mettre à jour",
-            "REDIRECT": "Bientôt vous serez automatiquement redirigé vers la page de recherche"
+            "REDIRECT": "Bientôt vous serez automatiquement redirigé vers la page de recherche",
+            "AUTOMATICS": "Sièges Automatiques",
+            "ADDPASSENGER": "Ajouter Passagers",
+            "FORM_SEX": "Sexe",
+            "FORM_BORN": "Date de naissance"
         },
         "PAYMENT": {
             "INFORMATION": {
