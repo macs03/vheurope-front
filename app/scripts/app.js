@@ -254,7 +254,11 @@
                 "DEPARTURE": "Departure",
                 "RETURN": "Return",
                 "RESULTS": "results",
-                "BUTTON": "BUY"
+                "BUTTON": "BUY",
+                "DIRECT": "Direct",
+                "SCALE": "Scale",
+                "SEVERAL": "Several Companies",
+                "SEEMORE": "See more"
             },
             "WEATHER": {
                 "TITLE_1": "We are looking for the best deals. Please wait.",
@@ -276,6 +280,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARE TICKETS",
                 "MESSAGE": "These prices are not guaranteed."
+            },
+            "PLANES": {
+                "BUTTON": "Select"
             }
         },
         "SEATS": {
@@ -311,7 +318,11 @@
             "FORM_EMAIL_PLACEHOLDER": "Email",
             "FORM_BTN_SELECT": "Select",
             "FORM_BTN_UPDATE": "Update",
-            "REDIRECT": "Soon you will be redirected to the search page automatically"
+            "REDIRECT": "Soon you will be redirected to the search page automatically",
+            "AUTOMATICS": "Automatics Seats",
+            "ADDPASSENGER": "Add Passenger",
+            "FORM_SEX": "Sex",
+            "FORM_BORN": "Date of Birth"
         },
         "PAYMENT": {
             "INFORMATION": {
@@ -549,7 +560,11 @@
                 "DEPARTURE": "Ida",
                 "RETURN": "Vuelta",
                 "RESULTS": "resultados",
-                "BUTTON": "COMPRAR"
+                "BUTTON": "COMPRAR",
+                "DIRECT": "Directo",
+                "SCALE": "Escalas",
+                "SEVERAL": "Varias Empresas",
+                "SEEMORE": "Ver más"
             },
             "WEATHER": {
                 "TITLE_1": "Estamos buscando las mejores ofertas. Por favor espere.",
@@ -571,6 +586,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARA BILLETES",
                 "MESSAGE": "Estos precios no estan garantizados."
+            },
+            "PLANES": {
+                "BUTTON": "Elegir"
             }
         },
         "SEATS": {
@@ -606,7 +624,11 @@
             "FORM_EMAIL_PLACEHOLDER": "Correo electronico",
             "FORM_BTN_SELECT": "Seleccionar",
             "FORM_BTN_UPDATE": "Actualizar",
-            "REDIRECT": "En breve seras redireccionado a la página de búsqueda automáticamente"
+            "REDIRECT": "En breve seras redireccionado a la página de búsqueda automáticamente",
+            "AUTOMATICS": "Asientos Automaticos",
+            "ADDPASSENGER": "Añadir Pasajero",
+            "FORM_SEX": "Sexo",
+            "FORM_BORN": "Fecha de Nacimiento"
         },
         "PAYMENT": {
             "INFORMATION": {
@@ -844,7 +866,11 @@
                 "DEPARTURE": "Départ",
                 "RETURN": "Retour",
                 "RESULTS": "Résultats",
-                "BUTTON": "ACHETER"
+                "BUTTON": "ACHETER",
+                "DIRECT": "Direct",
+                "SCALE": "Échelle",
+                "SEVERAL": "Plusieurs sociétés",
+                "SEEMORE": "Voir plus"
             },
             "WEATHER": {
                 "TITLE_1": "Nous recherchons les meilleurs offres. Veuillez attendre.",
@@ -866,6 +892,9 @@
             "SCRAPER": {
                 "TITLE": "COMPARER BILLETS",
                 "MESSAGE": "Ces prix ne sont pas guarantis."
+            },
+            "PLANES": {
+                "BUTTON": "Choisir"
             }
         },
         "SEATS": {
@@ -901,7 +930,11 @@
             "FORM_EMAIL_PLACEHOLDER": "E-mail",
             "FORM_BTN_SELECT": "Choisir",
             "FORM_BTN_UPDATE": "Mettre à jour",
-            "REDIRECT": "Bientôt vous serez automatiquement redirigé vers la page de recherche"
+            "REDIRECT": "Bientôt vous serez automatiquement redirigé vers la page de recherche",
+            "AUTOMATICS": "Sièges Automatiques",
+            "ADDPASSENGER": "Ajouter Passagers",
+            "FORM_SEX": "Sexe",
+            "FORM_BORN": "Date de naissance"
         },
         "PAYMENT": {
             "INFORMATION": {
