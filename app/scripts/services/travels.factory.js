@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('travelsFactory', travelsFactory);
 
-      travelsFactory.$inject =['$http','$q','$filter','apiUrl'];
+      travelsFactory.$inject =['$http','$q','$filter','apiUrl','utilityService'];
 
-      function travelsFactory($http,$q,$filter,apiUrl) {
+      function travelsFactory($http,$q,$filter,apiUrl,utilityService) {
         return {
             getAll: getAll,
             skipAccents: skipAccents,
@@ -39,7 +39,8 @@
                         adultPassengersNumber : passengersAdult,
                         childPassengersNumber : passengersChild,
                         babyPassengersNumber : passengersBaby,
-                        source: source
+                        source: source,
+                        lang : utilityService.getLang()
                     },
                     skipAuthorization: true
                 })

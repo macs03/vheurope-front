@@ -770,7 +770,7 @@
             "FIND_PASSAGES": "Trouver votre billet de bus en France",
             "CTA_BUY": "Acheter directement au travers de votre",
             "CTA_PHONE": "MOBILE",
-            "CTA_POSSIBILITY": "TOUTES LES POSSIBILITES DE PARCOURS",
+            "CTA_POSSIBILITY": "TOUTES LES POSSIBILITES DE TRANSPORT",
             "CTA_PLACE": "en un seul endroit",
             "BUS_COMPANIES": "Sociétés de bus en France",
             "MUCH_MORE": "Et beaucoup d'autres.",

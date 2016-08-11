@@ -1985,10 +1985,10 @@
             //Reseteo los arrays basicos
             resetGlobal();
 
-            callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "logitravel");
             callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "busbud");
             if (params.returns == "") {
                 callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "deinbus");
+                callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "flixbus");
             } else {
                 //No llamó a deinbus
                 vm.countBusSearch = vm.countBusSearch + 1;
@@ -2002,6 +2002,8 @@
             }
             callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "eurolines");
             callOtherBusTrips(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "berlinlinienbus");
+            
+            callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "logitravel");
             callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "movelia");
             callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "blablacar");
 
@@ -2177,13 +2179,13 @@
             //Reseteo los arrays basicos
             resetGlobal();
 
-            callLogitravel(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
             callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
             if (returnDateFormat == "") {
                 callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
+                callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
             } else {
                 //No llamó a deinbus
-                vm.countBusSearch = vm.countBusSearch + 1;
+                vm.countBusSearch = vm.countBusSearch + 2;
                 if (vm.countBusSearch == 6) {
                     vm.searchingTripsBus = false;
                 }
@@ -2194,6 +2196,8 @@
             }
             callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
             callOtherBusTrips(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
+            
+            callLogitravel(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
             callMovelia(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2495,13 +2499,13 @@
             //Reseteo los arrays basicos
             resetGlobal();
 
-            callLogitravel(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel")
             callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
             if (returnDate == "") {
                 callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "deinbus");
+                callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
             } else {
                 //No llamó a deinbus
-                vm.countBusSearch = vm.countBusSearch + 1;
+                vm.countBusSearch = vm.countBusSearch + 2;
                 if (vm.countBusSearch == 6) {
                     vm.searchingTripsBus = false;
                 }
@@ -2512,6 +2516,8 @@
             }
             callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "eurolines");
             callOtherBusTrips(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "berlinlinienbus");
+            
+            callLogitravel(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel")
             callMovelia(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2950,7 +2956,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2989,7 +2995,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3028,6 +3034,7 @@
                 })
         }
 
+
         function callMovelia(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
             vm.searchingTripsBus = true; // Buscando buses
             travelsFactory
@@ -3037,7 +3044,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -3095,7 +3102,7 @@
                         $timeout(function() {
                             var footer = true;
                             $rootScope.$broadcast('footerEvent', footer);
-                        }, 3000);
+                        }, 5000);
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -3150,7 +3157,7 @@
                                         $timeout(function() {
                                             var footer = true;
                                             $rootScope.$broadcast('footerEvent', footer);
-                                        }, 3000);
+                                        }, 5000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3172,7 +3179,7 @@
                                                         $timeout(function() {
                                                             var footer = true;
                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                        }, 3000);
+                                                        }, 5000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3194,7 +3201,7 @@
                                                                         $timeout(function() {
                                                                             var footer = true;
                                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                                        }, 3000);
+                                                                        }, 5000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {

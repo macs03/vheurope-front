@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('paymentFactory', paymentFactory);
 
-      paymentFactory.$inject =['$http','$q','apiUrl'];
+      paymentFactory.$inject =['$http','$q','apiUrl','utilityService'];
 
-      function paymentFactory($http,$q,apiUrl) {
+      function paymentFactory($http,$q,apiUrl,utilityService) {
         return {
             getAll: getAll
         }
@@ -41,7 +41,8 @@
                         email : email,
                         card : card,
                         expirationDate : expirationDate,
-                        cvv : cvv
+                        cvv : cvv,
+                        lang : utilityService.getLang()
                     },
                     skipAuthorization: true
                 })
