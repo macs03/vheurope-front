@@ -1992,7 +1992,7 @@
             } else {
                 //No llamó a deinbus
                 vm.countBusSearch = vm.countBusSearch + 1;
-                if (vm.countBusSearch == 6) {
+                if (vm.countBusSearch == 7) {
                     vm.searchingTripsBus = false;
                 }
 
@@ -2186,7 +2186,7 @@
             } else {
                 //No llamó a deinbus
                 vm.countBusSearch = vm.countBusSearch + 2;
-                if (vm.countBusSearch == 6) {
+                if (vm.countBusSearch == 7) {
                     vm.searchingTripsBus = false;
                 }
 
@@ -2506,7 +2506,7 @@
             } else {
                 //No llamó a deinbus
                 vm.countBusSearch = vm.countBusSearch + 2;
-                if (vm.countBusSearch == 6) {
+                if (vm.countBusSearch == 7) {
                     vm.searchingTripsBus = false;
                 }
 
@@ -3001,7 +3001,7 @@
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
+                    if (vm.countBusSearch == 7) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -3026,7 +3026,7 @@
                 })
                 .catch(function (err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
+                    if (vm.countBusSearch == 7) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3050,7 +3050,7 @@
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
+                    if (vm.countBusSearch == 7) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -3084,7 +3084,7 @@
                 })
                 .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 6) {
+                    if (vm.countBusSearch == 7) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3288,7 +3288,7 @@
             vm.hasPlaneTrips = flagPlanes;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 6) {
+            if (vm.countBusSearch == 7) {
                 vm.searchingTripsBus = false;
             }
             vm.updateTripsType();
@@ -3325,7 +3325,7 @@
             vm.hasPlaneTrips = false;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 6) {
+            if (vm.countBusSearch == 7) {
                 vm.searchingTripsBus = false;
             }
             processCountOrder();
@@ -3334,7 +3334,7 @@
         function processCountOrder() {
             $('[data-toggle="tooltip"]').tooltip();
             vm.countOrder = vm.countOrder + 1;
-            if (vm.countOrder == 8) {
+            if (vm.countOrder == 9) {
                 order('departure');
                 vm.countOrder = 0;
                 vm.searching = false;
