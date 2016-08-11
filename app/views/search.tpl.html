@@ -104,6 +104,10 @@
         font-size: .85em;
     }
     
+    .search-div {
+        width: 70% !important;
+    }
+
     .time-resumen-trips .time-resume-trip-time.no-trips {
         color: #666;
         text-align: center;
@@ -538,7 +542,7 @@
                                         <i class="icon-bus"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
+                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasBusTrips,'search-div':!search.hasBusTrips}" style="width: {{ search.percentageBus  }}%;">
                                     <span ng-show="search.hasBusTrips">{{ search.getHourMinPlanes(search.lowestDurationBus) }}</span>
                                     <span class="pull-left" ng-show="!search.hasBusTrips && !search.searchingTripsBus && search.alertText == ''" translate>SEARCH.NO_DEPARTURES</span>
                                     <span class="pull-left" ng-show="!search.hasBusTrips && !search.searchingTripsBus && search.alertText != ''">{{search.alertText}}</span>
@@ -555,7 +559,7 @@
                                         <i class="icon-tren"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
+                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasTrainTrips,'search-div':!search.hasTrainTrips}" style="width: {{ search.percentageTrain  }}%;">
                                     <span ng-show="search.hasTrainTrips">{{ search.getHourMinPlanes(search.lowestDurationTrain) }}</span>
                                     <span class="pull-left" ng-show="!search.hasTrainTrips && !search.searchingTripsTrain" translate>SEARCH.NO_DEPARTURES</span>
                                     <span ng-show="!search.hasTrainTrips && search.searchingTripsTrain"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="margin-right: 10px; font-size: 1.2em"></i> <span translate> SEARCH.SEARCHING</span>...
@@ -571,7 +575,7 @@
                                         <i class="icon-avion"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
+                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasPlaneTrips,'search-div':!search.hasPlaneTrips}" style="width:{{ search.percentagePlane }}%;">
                                     <span ng-show="search.hasPlaneTrips">{{ search.getHourMinPlanes(search.lowestDurationPlane) }}</span>
                                     <span class="pull-left" ng-show="!search.hasPlaneTrips && !search.searchingTripsPlane" translate>SEARCH.NO_DEPARTURES</span>
                                     <span ng-show="!search.hasPlaneTrips && search.searchingTripsPlane"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="margin-right: 10px; font-size: 1.2em"></i> <span translate> SEARCH.SEARCHING</span>...
@@ -587,7 +591,7 @@
                                         <i class="fa fa-car"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasCarTrips}" style="width:{{ search.percentageCar }}%;">
+                                <div class="col-md-10 time-resume-trip-time" ng-class="{'no-trips':!search.hasCarTrips,'search-div':!search.hasCarTrips}" style="width:{{ search.percentageCar }}%;">
                                     <span ng-show="search.hasCarTrips">{{ search.getHourMinPlanes(search.lowestDurationCar) }}</span>
                                     <span class="pull-left" ng-show="!search.hasCarTrips && !search.searchingTripsCar" translate>SEARCH.NO_DEPARTURES</span>
                                     <span ng-show="!search.hasCarTrips && search.searchingTripsCar"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="margin-right: 10px; font-size: 1.2em"></i> <span translate> SEARCH.SEARCHING</span>...
