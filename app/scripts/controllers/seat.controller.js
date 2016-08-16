@@ -35,12 +35,34 @@
         vm.errorReserve = false;
         vm.sourceSeat = ""
 
-        if (utilityService.getLang() == 'es') {
-            vm.cnames_es = countryService.country_es();
-        } else if (utilityService.getLang() == 'en') {
-            vm.cnames_es = countryService.country_en();
+        function changeLang(ev, lang) {
+            if (lang == 'es') {
+                vm.cnames_es = countryService.country_es();
+            } else if (lang == 'en') {
+                vm.cnames_es = countryService.country_en();
+            } else {
+                vm.cnames_es = countryService.country_fr();
+            }
+        }
+        $scope.$on('langEvent', changeLang)
+
+        var languageSession = sessionStorageService.getLanguage();
+        if (languageSession == null) {
+            if (utilityService.getLang() == 'es') {
+                vm.cnames_es = countryService.country_es();
+            } else if (utilityService.getLang() == 'en') {
+                vm.cnames_es = countryService.country_en();
+            } else {
+                vm.cnames_es = countryService.country_fr();
+            }
         } else {
-            vm.cnames_es = countryService.country_fr();
+            if (languageSession == 'es') {
+                vm.cnames_es = countryService.country_es();
+            } else if (languageSession == 'en') {
+                vm.cnames_es = countryService.country_en();
+            } else {
+                vm.cnames_es = countryService.country_fr();
+            }
         }
 
         vm.selectDepartureSeat = true;
