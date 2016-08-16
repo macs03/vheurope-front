@@ -17,6 +17,10 @@
     function SeatController(travelsFactory, utilityService, countryService, seatsFactory, reserveFactory, $scope, $interval, $stateParams, $location, $rootScope, sessionStorageService, $timeout, $analytics) {
         var vm = this;
         var sc, sc2, sc3, sc4, sc5, sc6, sc7, sc8;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.seatsSelectedDeparture = [];
         vm.seatsSelectedDeparture2 = [];
         vm.seatsSelectedReturn = [];

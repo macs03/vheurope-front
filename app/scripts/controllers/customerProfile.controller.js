@@ -16,6 +16,10 @@
 
     function CustomerProfileController($scope, $location, customerInfoFactory, $rootScope, $auth) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.callCustomerInfo = callCustomerInfo;
         vm.customerData = null;
         vm.loadImage = false;
@@ -84,12 +88,12 @@
             vm.loadImage = false;
             customerInfoFactory
                 .postNewAvatar($scope.myCroppedImage)
-                .then(function (data) {
+                .then(function(data) {
                     callCustomerInfo();
                     $('#crop-img').modal('hide');
                     vm.uploading = false;
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.error = true;
                     vm.uploading = false;
                 })

@@ -16,6 +16,10 @@
 
     function CustomerPurchasesController($scope, $location, customerInfoFactory, $auth, $rootScope) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")

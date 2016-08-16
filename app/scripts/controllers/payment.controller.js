@@ -17,6 +17,10 @@
     function PaymentController($scope, utilityService, paymentFactory, $stateParams, $location, $rootScope, sessionStorageService) {
 
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         // La informacion de inicializacion debe ser obtenida a traves de un servicio
         vm.pay = {
             total: 23000
