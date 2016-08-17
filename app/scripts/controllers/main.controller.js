@@ -33,17 +33,14 @@
 
         function changeLang(ev, lang) {
             if (lang == 'es') {
-                console.log('español');
                 vm.retorno = 'Vuelta';
                 vm.city_origin = 'Elige tu origen';
                 vm.city_destination = 'Elige tu destino';
             } else if (lang == 'en') {
-                console.log('ingles');
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
                 vm.city_destination = 'Chosse your destination';
             } else {
-                console.log('frances');
                 vm.retorno = 'Retour';
                 vm.city_origin = 'choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
