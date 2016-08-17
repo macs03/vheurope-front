@@ -863,6 +863,56 @@
 
         vm.switcher = switcher;
 
+        function changeLang(ev, lang) {
+            if (lang == 'es') {
+                console.log('español');
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (lang == 'en') {
+                console.log('ingles');
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                console.log('frances');
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
+        $scope.$on('langEvent', changeLang)
+
+        var languageSession = sessionStorageService.getLanguage();
+        if (languageSession == null) {
+            if (utilityService.getLang() == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (utilityService.getLang() == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        } else {
+            if (languageSession == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (languageSession == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
 
         vm.myConfigOrigin = {
             //create: true,
@@ -871,7 +921,7 @@
             searchField: ['label'],
             delimiter: '|',
             openOnFocus: true,
-            placeholder: 'Elige tu origen',
+            placeholder: vm.city_origin,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
@@ -901,7 +951,7 @@
             labelField: 'label',
             searchField: ['label'],
             delimiter: '|',
-            placeholder: 'Elige tu destino',
+            placeholder: vm.city_destination,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },

@@ -31,6 +31,57 @@
         var searchView = false;
         $rootScope.$broadcast('viewEvent', searchView);
 
+        function changeLang(ev, lang) {
+            if (lang == 'es') {
+                console.log('español');
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (lang == 'en') {
+                console.log('ingles');
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                console.log('frances');
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
+        $scope.$on('langEvent', changeLang)
+
+        var languageSession = sessionStorageService.getLanguage();
+        if (languageSession == null) {
+            if (utilityService.getLang() == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (utilityService.getLang() == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        } else {
+            if (languageSession == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (languageSession == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
+
         vm.popular_searches.push({
             id: 0,
             origin: 'Madrid',
@@ -145,7 +196,7 @@
             searchField: ['name'],
             delimiter: '|',
             openOnFocus: true,
-            placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu origen' : 'Choose your origin',
+            placeholder: vm.city_origin,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
@@ -177,7 +228,7 @@
             labelField: 'name',
             searchField: ['name'],
             delimiter: '|',
-            placeholder: $scope.selectedLanguage == 'es' ? 'Elige tu destino' : 'Choose your destination',
+            placeholder: vm.city_destination,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },

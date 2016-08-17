@@ -104,7 +104,7 @@
                                         <span ng-click="main.openDepartureCalendar()" class="fa fa-calendar-check-o departure-calendar vh-calendar" style="cursor:pointer;"></span>
                                     </div>
                                     <div class="col-md-2 col-xs-6 np nbrr" style="border-right: 1px solid #c1c1c1;">
-                                        <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="Vuelta" data-date-format="DD/MM/YYYY"></vhdatepicker>
+                                        <vhdatepicker class="form-return" id="returnDate" ng-model="main.dates.returnDate" data-min-date="{{ main.dates.minDate }}" data-max-date="{{ main.dates.maxDate }}" data-placeholder="{{main.retorno}}" data-date-format="DD/MM/YYYY"></vhdatepicker>
                                         <span ng-click="main.openReturnCalendar()" class="fa fa-calendar-check-o return-calendar vh-calendar" style="cursor:pointer;"></span>
                                     </div>
                                     <div class="col-md-1 col-xs-12 np">
