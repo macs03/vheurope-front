@@ -206,7 +206,11 @@
             "ENGLISH": "English",
             "FRENCH": "French",
             "MESSAGE": "All your transportation options",
-            "LANGUAGE": "Language"
+            "LANGUAGE": "Language",
+            "COUNTRY": "COUNTRY",
+            "SPAIN": "Spain",
+            "FRANCE": "France",
+            "LANG": "LANGUAGE"
         },
         "FOOTER": {
             "TERMS": "General Conditions",
@@ -512,7 +516,11 @@
             "ENGLISH": "Inglés",
             "FRENCH": "Francés",
             "MESSAGE": "Todas tus opciones de transporte",
-            "LANGUAGE": "Idioma"
+            "LANGUAGE": "Idioma",
+            "COUNTRY": "PAIS",
+            "SPAIN": "España",
+            "FRANCE": "Francia",
+            "LANG": "IDIOMA"
         },
         "FOOTER": {
             "TERMS": "Condiciones Generales",
@@ -818,7 +826,11 @@
             "ENGLISH": "Anglais",
             "FRENCH": "Français",
             "MESSAGE": "Toutes vos options de transport",
-            "LANGUAGE": "Langue"
+            "LANGUAGE": "Langue",
+            "COUNTRY": "PAYS",
+            "SPAIN": "Espagne",
+            "FRANCE": "France",
+            "LANG": "LANGUE"
         },
         "FOOTER": {
             "TERMS": "Conditions Générales",
