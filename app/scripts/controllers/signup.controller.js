@@ -16,6 +16,10 @@
 
     function SignUpController($scope, $auth, $location, $rootScope, utilityService) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.confirm = confirm;
         vm.passwordConfirmed = true;
         var token = localStorage.getItem("resertrip_token");
@@ -47,7 +51,7 @@
         function confirm() {
             if (vm.password === vm.confirmPassword) {
                 vm.passwordConfirmed = true;
-            }else{
+            } else {
                 vm.passwordConfirmed = false;
             }
         }

@@ -11,9 +11,9 @@
     angular.module('vhEurope')
       .factory('seatsFactory', seatsFactory);
 
-      seatsFactory.$inject =['$http','$q','apiUrl'];
+      seatsFactory.$inject =['$http','$q','apiUrl','utilityService'];
 
-      function seatsFactory($http,$q,apiUrl) {
+      function seatsFactory($http,$q,apiUrl,utilityService) {
         return {
             getAll: getAll
         }
@@ -33,6 +33,7 @@
                     data: {
                         idIda:idDeparture,
                         idVuelta:returnId,
+                        lang : utilityService.getLang()
                     },
                     skipAuthorization: true
                 })

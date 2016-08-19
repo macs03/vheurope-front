@@ -863,6 +863,53 @@
 
         vm.switcher = switcher;
 
+        function changeLang(ev, lang) {
+            if (lang == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (lang == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
+        $scope.$on('langEvent', changeLang)
+
+        var languageSession = sessionStorageService.getLanguage();
+        if (languageSession == null) {
+            if (utilityService.getLang() == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (utilityService.getLang() == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        } else {
+            if (languageSession == 'es') {
+                vm.retorno = 'Vuelta';
+                vm.city_origin = 'Elige tu origen';
+                vm.city_destination = 'Elige tu destino';
+            } else if (languageSession == 'en') {
+                vm.retorno = 'Return';
+                vm.city_origin = 'Choose your origin';
+                vm.city_destination = 'Chosse your destination';
+            } else {
+                vm.retorno = 'Retour';
+                vm.city_origin = 'choisissez votre origine';
+                vm.city_destination = 'Choisissez votre destination';
+            }
+        }
 
         vm.myConfigOrigin = {
             //create: true,
@@ -871,7 +918,7 @@
             searchField: ['label'],
             delimiter: '|',
             openOnFocus: true,
-            placeholder: 'Elige tu origen',
+            placeholder: vm.city_origin,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
@@ -901,7 +948,7 @@
             labelField: 'label',
             searchField: ['label'],
             delimiter: '|',
-            placeholder: 'Elige tu destino',
+            placeholder: vm.city_destination,
             onInitialize: function(selectize) {
                 // receives the selectize object as an argument
             },
@@ -1987,6 +2034,7 @@
 
             callLogitravel(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "logitravel");
             callBusbud(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "busbud");
+            callFlixbus(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "flixbus");
             callMovelia(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "movelia");
             callBlablacar(params.origin, params.destination, params.departure, params.returns, params.passengers, params.originCountryCode, params.destinationCountryCode, params.passengersAdult, params.passengersChild, params.passengersBaby, "blablacar");
 
@@ -2164,6 +2212,7 @@
 
             callLogitravel(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
             callBusbud(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+            callFlixbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
             callMovelia(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2467,6 +2516,7 @@
 
             callLogitravel(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel")
             callBusbud(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+            callFlixbus(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
             callMovelia(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
             callBlablacar(origin, destination, departureDate, returnDate, passengers, originCountry, destinationCountry, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
@@ -2905,7 +2955,7 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
@@ -2944,13 +2994,13 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 3) {
+                    if (vm.countBusSearch == 4) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -2975,12 +3025,68 @@
                 })
                 .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 3) {
+                    if (vm.countBusSearch == 4) {
                         vm.searchingTripsBus = false;
                     }
 
                     catchTravelsFactory(err);
                 })
+        }
+
+        function callFlixbus(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
+            if (returns == "") {
+                vm.searchingTripsBus = true; // Buscando buses
+                travelsFactory
+                    .getAll(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source)
+                    .then(function(data) {
+
+                        $timeout(function() {
+                            var footer = true;
+                            $rootScope.$broadcast('footerEvent', footer);
+                        }, 5000);
+
+                        loadGlobal(data, false, false);
+                        saveOtherInfoInTrips(data);
+
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if (vm.countBusSearch == 4) {
+                            vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
+                        }
+                        vm.isLoading = false;
+                        vm.disabled = false;
+                        if (!vm.hasBusTrips)
+                            vm.hasBusTrips = data.hasBusTrips;
+                        if (!vm.hasOtherBus)
+                            vm.hasOtherBus = data.hasBusTrips;
+                        $('.pikaday__display').prop('disabled', false);
+
+                        angular.forEach(data.directDepartureTrips[0], function(value, key) {
+                            vm.allTrips.push(value);
+                        });
+
+                        if (vm.hasBusTrips) {
+                            setDateFilterRange(data.maxPrice, data.minPrice);
+                            setMaxDurationAndMinDuration(data.maxDuration, "bus", data.lowest);
+                            //setCompaniesAndSeatsReset(data.companies);
+                            vm.updateTripsType();
+                        }
+                        processCountOrder();
+                    })
+                    .catch(function(err) {
+                        vm.countBusSearch = vm.countBusSearch + 1;
+                        if (vm.countBusSearch == 4) {
+                            vm.searchingTripsBus = false;
+                        }
+
+                        catchTravelsFactory(err);
+                    })
+            } else {
+                vm.countBusSearch = vm.countBusSearch + 1;
+                if (vm.countBusSearch == 4) {
+                    vm.searchingTripsBus = false;
+                }
+                processCountOrder();
+            }
         }
 
         function callMovelia(origin, destination, departure, returns, passengers, originCountryCode, destinationCountryCode, passengersAdult, passengersChild, passengersBaby, source) {
@@ -2992,13 +3098,13 @@
                     $timeout(function() {
                         var footer = true;
                         $rootScope.$broadcast('footerEvent', footer);
-                    }, 3000);
+                    }, 5000);
 
                     loadGlobal(data, false, false);
                     saveOtherInfoInTrips(data);
 
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 3) {
+                    if (vm.countBusSearch == 4) {
                         vm.searchingTripsBus = false; // Ya buscó por todos los servicios de buses
                     }
                     vm.isLoading = false;
@@ -3032,7 +3138,7 @@
                 })
                 .catch(function(err) {
                     vm.countBusSearch = vm.countBusSearch + 1;
-                    if (vm.countBusSearch == 3) {
+                    if (vm.countBusSearch == 4) {
                         vm.searchingTripsBus = false;
                     }
 
@@ -3050,7 +3156,7 @@
                         $timeout(function() {
                             var footer = true;
                             $rootScope.$broadcast('footerEvent', footer);
-                        }, 3000);
+                        }, 5000);
 
                         loadGlobal(data, false, false);
                         saveOtherInfoInTrips(data);
@@ -3105,7 +3211,7 @@
                                         $timeout(function() {
                                             var footer = true;
                                             $rootScope.$broadcast('footerEvent', footer);
-                                        }, 3000);
+                                        }, 5000);
                                         if (type === 1) {
                                             processPlanes(data2);
                                         } else {
@@ -3127,7 +3233,7 @@
                                                         $timeout(function() {
                                                             var footer = true;
                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                        }, 3000);
+                                                        }, 5000);
                                                         if (type === 1) {
                                                             processPlanes(data4);
                                                         } else {
@@ -3149,7 +3255,7 @@
                                                                         $timeout(function() {
                                                                             var footer = true;
                                                                             $rootScope.$broadcast('footerEvent', footer);
-                                                                        }, 3000);
+                                                                        }, 5000);
                                                                         if (type === 1) {
                                                                             processPlanes(data6);
                                                                         } else {
@@ -3236,7 +3342,7 @@
             vm.hasPlaneTrips = flagPlanes;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 3) {
+            if (vm.countBusSearch == 4) {
                 vm.searchingTripsBus = false;
             }
             vm.updateTripsType();
@@ -3273,7 +3379,7 @@
             vm.hasPlaneTrips = false;
             vm.searchingTripsPlane = false;
             vm.countBusSearch = vm.countBusSearch + 1;
-            if (vm.countBusSearch == 3) {
+            if (vm.countBusSearch == 4) {
                 vm.searchingTripsBus = false;
             }
             processCountOrder();
@@ -3282,7 +3388,7 @@
         function processCountOrder() {
             $('[data-toggle="tooltip"]').tooltip();
             vm.countOrder = vm.countOrder + 1;
-            if (vm.countOrder == 5) {
+            if (vm.countOrder == 6) {
                 order('departure');
                 vm.countOrder = 0;
                 vm.searching = false;

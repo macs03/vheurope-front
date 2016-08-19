@@ -11,6 +11,7 @@
     angular.module('vhEurope')
         .factory('utilityService', utilityService);
 
+
     utilityService.$inject = ['$translate', '$location'];
 
     function utilityService($translate, $location) {
@@ -160,6 +161,9 @@
         }
 
         function getLang() {
+            if (self.lang == undefined) {
+                self.lang = 'es';
+            }
             return self.lang
         }
 
@@ -186,6 +190,5 @@
             }
             return lang
         }
-
     }
 })();
