@@ -3,6 +3,10 @@
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_language_title" style="padding-top:1.5em;font-weight: 300;min-height:63px;" translate> NAVBAR.LANGUAGE <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" id="switch_language">
+            <li style="border-bottom: 1px solid #f5f5f5;padding: .3em;"><span style="padding:3px 20px;">PAIS</span></li>
+            <li ng-class="{active: selectedCountry == 'es'}"><a ng-click="changeCountry('es')"><span translate>España</span></a></li>
+            <li ng-class="{active: selectedCountry == 'fr'}"><a ng-click="changeCountry('fr')"><span translate>Francia</span></a></li>
+            <li style="border-top: 1px solid #f5f5f5;border-bottom: 1px solid #f5f5f5;padding: .3em;"><span style="padding:3px 20px;">IDIOMA</span></li>
             <li ng-class="{active: selectedLanguage == 'es'}"><a ng-click="changeLanguage('es')"><span translate>NAVBAR.SPANISH</span></a></li>
             <li ng-class="{active: selectedLanguage == 'en'}"><a ng-click="changeLanguage('en')"><span translate>NAVBAR.ENGLISH</span></a></li>
             <li ng-class="{active: selectedLanguage == 'fr'}"><a ng-click="changeLanguage('fr')"><span translate>NAVBAR.FRENCH</span></a></li>
