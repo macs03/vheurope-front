@@ -22,6 +22,11 @@
         $scope.changeCountry = function(country) {
             $scope.selectedCountry = country;
             $rootScope.$broadcast('countryEvent', country);
+            $translate.use(country);
+            $scope.selectedLanguage = country;
+            utilityService.setLang(country);
+            sessionStorageService.setLanguage(country);
+            $rootScope.$broadcast('langEvent', country);
         }
 
         $scope.changeLanguage = function(langKey) {
