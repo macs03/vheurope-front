@@ -20,7 +20,8 @@
         $scope.selectedCountry = utilityService.getCountry()
 
         $scope.changeCountry = function(country) {
-            console.log('cambiando pais ' + country);
+            $scope.selectedCountry = country;
+            $rootScope.$broadcast('countryEvent', country);
         }
 
         $scope.changeLanguage = function(langKey) {

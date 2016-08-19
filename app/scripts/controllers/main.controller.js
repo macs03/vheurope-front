@@ -35,10 +35,19 @@
         var country = utilityService.getCountry();
 
         if (country == 'fr') {
-            console.log('Francia');
+            console.log('se carga el sitio Francia');
         } else if (country == 'es') {
-            console.log('España');
+            console.log('se carga el sitio España');
         }
+
+        function changeCountry(ev, country) {
+            if (country == "es") {
+                console.log('se carga el sitio con cosas de españa')
+            } else if (country == 'fr') {
+                console.log('se carga el sitio con cosas de francia')
+            }
+        }
+        $scope.$on('countryEvent', changeCountry)
 
         function changeLang(ev, lang) {
             if (lang == 'es') {
