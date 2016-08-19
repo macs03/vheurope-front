@@ -3,13 +3,13 @@
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="switch_language_title" style="padding-top:1.5em;font-weight: 300;min-height:63px;" translate> NAVBAR.LANGUAGE <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" id="switch_language">
-            <li style="border-bottom: 1px solid #f5f5f5;padding: .3em;"><span style="padding:3px 20px;">PAIS</span></li>
-            <li ng-class="{active: selectedCountry == 'es'}"><a ng-click="changeCountry('es')"><span translate>España</span></a></li>
-            <li ng-class="{active: selectedCountry == 'fr'}"><a ng-click="changeCountry('fr')"><span translate>Francia</span></a></li>
-            <li style="border-top: 1px solid #f5f5f5;border-bottom: 1px solid #f5f5f5;padding: .3em;"><span style="padding:3px 20px;">IDIOMA</span></li>
-            <li ng-class="{active: selectedLanguage == 'es'}"><a ng-click="changeLanguage('es')"><span translate>NAVBAR.SPANISH</span></a></li>
-            <li ng-class="{active: selectedLanguage == 'en'}"><a ng-click="changeLanguage('en')"><span translate>NAVBAR.ENGLISH</span></a></li>
-            <li ng-class="{active: selectedLanguage == 'fr'}"><a ng-click="changeLanguage('fr')"><span translate>NAVBAR.FRENCH</span></a></li>
+            <li class="country-label"><span>PAIS</span></li>
+            <li ng-class="{active: selectedCountry == 'es'}"><a ng-click="changeCountry('es')" ng-class="{gray: selectedCountry != 'es'}"><span translate>España</span> <img src="../images/countries/flag-es.png" alt="bandera españa"></a></li>
+            <li ng-class="{active: selectedCountry == 'fr'}"><a ng-click="changeCountry('fr')" ng-class="{gray: selectedCountry != 'fr'}"><span translate>Francia</span> <img src="../images/countries/flag-fr.png" alt="bandera francia"></a></li>
+            <li class="lang-label"><span>IDIOMA</span></li>
+            <li ng-class="{active: selectedLanguage == 'es'}"><a ng-click="changeLanguage('es')" ng-class="{gray: selectedLanguage != 'es'}"><span translate>NAVBAR.SPANISH</span><img src="../images/countries/flag-es.png" alt="bandera españa"></a></li>
+            <li ng-class="{active: selectedLanguage == 'en'}"><a ng-click="changeLanguage('en')" ng-class="{gray: selectedLanguage != 'en'}"><span translate>NAVBAR.ENGLISH</span><img src="../images/countries/flag-uk.png" alt="bandera reino unido"></a></li>
+            <li ng-class="{active: selectedLanguage == 'fr'}"><a ng-click="changeLanguage('fr')" ng-class="{gray: selectedLanguage != 'fr'}"><span translate>NAVBAR.FRENCH</span><img src="../images/countries/flag-fr.png" alt="bandera francia"></a></li>
         </ul>
     </li>
 </ul>
