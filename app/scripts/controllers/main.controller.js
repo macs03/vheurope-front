@@ -33,6 +33,39 @@
         var searchView = false;
         $rootScope.$broadcast('viewEvent', searchView);
 
+        var bg_images = [];
+        var bg_images_es = [
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/barcelona_desde_arriba.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/ciudad_barcelona.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/cordoba.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/costa_brava_catalonia.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espana.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espania.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/girona.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/madrid.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla_andalusia.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/velika.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/vlc.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/1.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/2.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/3.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/5.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/6.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/7.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/8.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/9.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/10.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/11.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/12.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/13.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/14.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/15.jpg"
+        ];
+
+        var bg_images_fr = [
+            "../images/Paris.jpg"
+        ];
 
         var country = utilityService.getCountry();
 
@@ -41,18 +74,24 @@
         if (country == 'fr') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_fr;
+            bg_images = bg_images_fr;
         } else if (country == 'es') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_es;
+            bg_images = bg_images_es;
         }
 
         function changeCountry(ev, country) {
             if (country == "es") {
                 vm.countrySelected = country;
                 vm.popular_searches = vm.popular_searches_es;
+                bg_images = bg_images_es;
+                $('.header-home.spain').attr('style', 'background: url(' + bg_images[Math.floor((Math.random() * 25) + 1)] + ') no-repeat center center fixed; background-size: cover;');
             } else if (country == 'fr') {
                 vm.countrySelected = country;
                 vm.popular_searches = vm.popular_searches_fr;
+                bg_images = bg_images_fr;
+                $('.header-home.spain').attr('style', 'background: url(' + bg_images[0] + ') no-repeat center center fixed; background-size: cover;');
             }
         }
         $scope.$on('countryEvent', changeCountry)
@@ -527,35 +566,6 @@
         function openDepartureCalendar() {
             $('#departureDate').siblings('input').click();
         }
-
-        var bg_images = [
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/barcelona_desde_arriba.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/ciudad_barcelona.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/cordoba.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/costa_brava_catalonia.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espana.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/espania.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/girona.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/madrid.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/sevilla_andalusia.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/velika.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/vlc.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/1.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/2.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/3.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/5.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/6.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/7.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/8.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/9.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/10.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/11.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/12.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/13.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/14.jpg",
-            "https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bg/15.jpg"
-        ];
 
         $('.header-home.spain').attr('style', 'background: url(' + bg_images[Math.floor((Math.random() * 25) + 1)] + ') no-repeat center center fixed; background-size: cover;');
         $('.cookie-message').cookieBar();
