@@ -20,6 +20,8 @@
         var vm = this;
         var params = utilityService.getData();
         vm.popular_searches = [];
+        vm.popular_searches_es = [];
+        vm.popular_searches_fr = [];
         vm.today = String(new Date().getTime() / 1000).replace('.', '');
         $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
         var title = "Compra Billetes de Autobús, Tren y Avión en España | Resertrip ";
@@ -39,18 +41,22 @@
         if (country == 'fr') {
             console.log('se carga el sitio Francia');
             vm.countrySelected = country;
+            vm.popular_searches = vm.popular_searches_fr;
         } else if (country == 'es') {
             console.log('se carga el sitio España');
             vm.countrySelected = country;
+            vm.popular_searches = vm.popular_searches_es;
         }
 
         function changeCountry(ev, country) {
             if (country == "es") {
                 console.log('se carga el sitio con cosas de españa')
                 vm.countrySelected = country;
+                vm.popular_searches = vm.popular_searches_es;
             } else if (country == 'fr') {
                 console.log('se carga el sitio con cosas de francia')
                 vm.countrySelected = country;
+                vm.popular_searches = vm.popular_searches_fr;
             }
         }
         $scope.$on('countryEvent', changeCountry)
@@ -104,7 +110,7 @@
 
         }
 
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 0,
             origin: 'Madrid',
             destination: 'Barcelona',
@@ -112,7 +118,7 @@
             price: '32.41',
             href: "/#/search/Madrid/ES/Barcelona/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 1,
             origin: 'Madrid',
             destination: 'Bilbao',
@@ -120,7 +126,7 @@
             price: '31.27',
             href: "/#/search/Madrid/ES/Bilbao/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 2,
             origin: 'Barcelona',
             destination: 'Madrid',
@@ -128,7 +134,7 @@
             price: '32.41',
             href: "/#/search/Barcelona/ES/Madrid/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 3,
             origin: 'Sevilla',
             destination: 'Malaga',
@@ -136,7 +142,7 @@
             price: '18.57',
             href: "/#/search/Sevilla/ES/Malaga/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 4,
             origin: 'Madrid',
             destination: 'Salamanca',
@@ -144,7 +150,7 @@
             price: '32.41',
             href: "/#/search/Madrid/ES/Salamanca/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 5,
             origin: 'Malaga',
             destination: 'Sevilla',
@@ -152,7 +158,7 @@
             price: '18.57',
             href: "/#/search/Malaga/ES/Sevilla/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 6,
             origin: 'Barcelona',
             destination: 'Valencia',
@@ -160,13 +166,78 @@
             price: '29.16',
             href: "/#/search/Barcelona/ES/Valencia/ES/" + vm.today + "/NaN"
         });
-        vm.popular_searches.push({
+        vm.popular_searches_es.push({
             id: 7,
             origin: 'Barcelona',
             destination: 'Zaragoza',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
             price: '15.77',
             href: "/#/search/Barcelona/ES/Zaragoza/ES/" + vm.today + "/NaN"
+        });
+
+        vm.popular_searches_fr.push({
+            id: 0,
+            origin: 'Lille',
+            destination: 'Paris',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
+            price: '32.41',
+            href: "/#/search/Lille/FR/Paris/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 1,
+            origin: 'Paris',
+            destination: 'Bruxelles',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
+            price: '31.27',
+            href: "/#/search/Paris/FR/Bruxelles/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 2,
+            origin: 'Lyon',
+            destination: 'Paris',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
+            price: '32.41',
+            href: "/#/search/Lyon/FR/Paris/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 3,
+            origin: 'Toulouse',
+            destination: 'Paris',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
+            price: '18.57',
+            href: "/#/search/Toulouse/FR/Paris/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 4,
+            origin: 'Paris',
+            destination: 'Lyon',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
+            price: '32.41',
+            href: "/#/search/Paris/FR/Lyon/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 5,
+            origin: 'Paris',
+            destination: 'Lille',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
+            price: '18.57',
+            href: "/#/search/Paris/FR/Lille/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 6,
+            origin: 'Paris',
+            destination: 'Toulouse',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
+            price: '29.16',
+            href: "/#/search/Paris/FR/Toulouse/FR/" + vm.today + "/NaN"
+        });
+        vm.popular_searches_fr.push({
+            id: 7,
+            origin: 'Bordeaux',
+            destination: 'Paris',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
+            price: '15.77',
+            href: "/#/search/Bordeaux/FR/Paris/FR/" + vm.today + "/NaN"
         });
 
         vm.origin = params.origin + "," + params.countryOrigin;
