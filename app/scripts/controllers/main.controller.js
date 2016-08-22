@@ -34,17 +34,23 @@
 
         var country = utilityService.getCountry();
 
+        vm.countrySelected;
+
         if (country == 'fr') {
             console.log('se carga el sitio Francia');
+            vm.countrySelected = country;
         } else if (country == 'es') {
             console.log('se carga el sitio España');
+            vm.countrySelected = country;
         }
 
         function changeCountry(ev, country) {
             if (country == "es") {
                 console.log('se carga el sitio con cosas de españa')
+                vm.countrySelected = country;
             } else if (country == 'fr') {
                 console.log('se carga el sitio con cosas de francia')
+                vm.countrySelected = country;
             }
         }
         $scope.$on('countryEvent', changeCountry)
