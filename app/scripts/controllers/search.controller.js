@@ -2405,6 +2405,7 @@
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
                         vm.originId = vm.myOptionsOrigin[key].id;
+                        vm.originRT = vm.myOptionsOrigin[key].rt;
                     }
                 });
 
@@ -2414,6 +2415,7 @@
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
                         vm.destinationId = vm.myOptionsDestination[key].id;
+                        vm.destinationRT = vm.myOptionsDestination[key].rt;
                     }
                 });
                 sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
@@ -2442,7 +2444,7 @@
                         vm.weather_progressbar.reset();
                         vm.weather_progressbar.start();
 
-                        callSearch(origen, destino, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode);
+                        callSearch(vm.originRT, vm.destinationRT, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode);
                         vm.good = true;
 
                     } else {
@@ -2452,8 +2454,7 @@
                 } else {
                     vm.weather_progressbar.reset();
                     vm.weather_progressbar.start();
-
-                    callSearch(origen, destino, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode);
+                    callSearch(vm.originRT, vm.destinationRT, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode);
                     vm.good = true;
                 }
             }
