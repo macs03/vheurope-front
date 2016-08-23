@@ -230,7 +230,7 @@
             id: 0,
             origin: 'Lille',
             destination: 'Paris',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '32.41',
             href: "/#/search/Lille/FR/Paris/FR/" + vm.today + "/NaN"
         });
@@ -238,7 +238,7 @@
             id: 1,
             origin: 'Paris',
             destination: 'Bruxelles',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Bruxelles.jpg',
             price: '31.27',
             href: "/#/search/Paris/FR/Bruxelles/FR/" + vm.today + "/NaN"
         });
@@ -246,7 +246,7 @@
             id: 2,
             origin: 'Lyon',
             destination: 'Paris',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '32.41',
             href: "/#/search/Lyon/FR/Paris/FR/" + vm.today + "/NaN"
         });
@@ -254,7 +254,7 @@
             id: 3,
             origin: 'Toulouse',
             destination: 'Paris',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '18.57',
             href: "/#/search/Toulouse/FR/Paris/FR/" + vm.today + "/NaN"
         });
@@ -262,7 +262,7 @@
             id: 4,
             origin: 'Paris',
             destination: 'Lyon',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lyon.jpg',
             price: '32.41',
             href: "/#/search/Paris/FR/Lyon/FR/" + vm.today + "/NaN"
         });
@@ -270,7 +270,7 @@
             id: 5,
             origin: 'Paris',
             destination: 'Lille',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lille.jpg',
             price: '18.57',
             href: "/#/search/Paris/FR/Lille/FR/" + vm.today + "/NaN"
         });
@@ -278,7 +278,7 @@
             id: 6,
             origin: 'Paris',
             destination: 'Toulouse',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Toulouse.jpg',
             price: '29.16',
             href: "/#/search/Paris/FR/Toulouse/FR/" + vm.today + "/NaN"
         });
@@ -286,7 +286,7 @@
             id: 7,
             origin: 'Bordeaux',
             destination: 'Paris',
-            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
+            image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '15.77',
             href: "/#/search/Bordeaux/FR/Paris/FR/" + vm.today + "/NaN"
         });
