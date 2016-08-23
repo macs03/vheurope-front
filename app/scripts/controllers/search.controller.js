@@ -1864,9 +1864,9 @@
 
 
         var params = utilityService.getData();
-        vm.origin = params.origin + ', ' + params.countryOrigin;
+        vm.origin = params.origin /* + ', ' + params.countryOrigin*/ ;
         vm.originCountryCode = params.originCountryCode;
-        vm.destination = params.destination + ', ' + params.countryDestination;
+        vm.destination = params.destination /*+ ', ' + params.countryDestination*/ ;
         vm.destinationCountryCode = params.destinationCountryCode;
         vm.dates.departureDate = params.departure;
         vm.dates.returnDate = params.returns;
@@ -2133,9 +2133,9 @@
                 }
             });
 
-            vm.origin = formatOrigin + ', ' + vm.originCountry;
+            vm.origin = formatOrigin /*+ ', ' + vm.originCountry*/ ;
             vm.originCountryCode = $stateParams.originCountryCode;
-            vm.destination = formatDestination + ', ' + vm.destinationCountry;
+            vm.destination = formatDestination /*+ ', ' + vm.destinationCountry*/ ;
             vm.destinationCountryCode = $stateParams.destinationCountryCode;
             vm.dates.departureDate = departureDateFormat;
             vm.dates.returnDate = returnDateFormat;
@@ -2230,7 +2230,7 @@
             angular.forEach(vm.myOptionsOrigin, function(value, key) {
 
                 if (vm.myOptionsOrigin[key].rt === originPlaneCity[0]) {
-                    vm.originCity = vm.myOptionsOrigin[key].rt;
+                    vm.originCity = vm.myOptionsOrigin[key].name;
                     vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                     vm.originCountry = vm.myOptionsOrigin[key].country;
                     vm.originId = vm.myOptionsOrigin[key].id;
@@ -2239,7 +2239,7 @@
 
             angular.forEach(vm.myOptionsDestination, function(value, key) {
                 if (vm.myOptionsDestination[key].rt === destinationPlaneCity[0]) {
-                    vm.destinationCity = vm.myOptionsDestination[key].rt;
+                    vm.destinationCity = vm.myOptionsDestination[key].name;
                     vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                     vm.destinationCountry = vm.myOptionsDestination[key].country;
                     vm.destinationId = vm.myOptionsDestination[key].id;
@@ -2401,7 +2401,7 @@
             if (changeType == 'city') {
                 angular.forEach(vm.myOptionsOrigin, function(value, key) {
                     if (vm.myOptionsOrigin[key].name === vm.origin) {
-                        vm.originCity = vm.myOptionsOrigin[key].rt;
+                        vm.originCity = vm.myOptionsOrigin[key].name;
                         vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                         vm.originCountry = vm.myOptionsOrigin[key].country;
                         vm.originId = vm.myOptionsOrigin[key].id;
@@ -2410,7 +2410,7 @@
 
                 angular.forEach(vm.myOptionsDestination, function(value, key) {
                     if (vm.myOptionsDestination[key].name === vm.destination) {
-                        vm.destinationCity = vm.myOptionsDestination[key].rt;
+                        vm.destinationCity = vm.myOptionsDestination[key].name;
                         vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                         vm.destinationCountry = vm.myOptionsDestination[key].country;
                         vm.destinationId = vm.myOptionsDestination[key].id;

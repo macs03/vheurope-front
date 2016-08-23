@@ -440,20 +440,22 @@
 
             angular.forEach(vm.myOptionsOrigin, function(value, key) {
                 if (vm.myOptionsOrigin[key].rt === vm.origin) {
-                    vm.originCity = vm.myOptionsOrigin[key].rt;
+                    vm.originCity = vm.myOptionsOrigin[key].name;
                     vm.originCountryCode = vm.myOptionsOrigin[key].countryCode;
                     vm.originCountry = vm.myOptionsOrigin[key].country;
                     vm.originId = vm.myOptionsOrigin[key].id;
+                    vm.originRT = vm.myOptionsOrigin[key].rt;
                 }
             });
 
             angular.forEach(vm.myOptionsDestination, function(value, key) {
 
                 if (vm.myOptionsDestination[key].rt === vm.destination) {
-                    vm.destinationCity = vm.myOptionsDestination[key].rt;
+                    vm.destinationCity = vm.myOptionsDestination[key].name;
                     vm.destinationCountryCode = vm.myOptionsDestination[key].countryCode;
                     vm.destinationCountry = vm.myOptionsDestination[key].country;
                     vm.destinationId = vm.myOptionsDestination[key].id;
+                    vm.destinationRT = vm.myOptionsDestination[key].rt;
                 }
             });
 
