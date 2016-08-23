@@ -32,7 +32,9 @@
             setIdForPlanes: setIdForPlanes,
             getIdForPlanes: getIdForPlanes,
             setLanguage: setLanguage,
-            getLanguage: getLanguage
+            getLanguage: getLanguage,
+            setCountry: setCountry,
+            getCountry: getCountry
         }
 
         function setUrl(url) {
@@ -140,6 +142,15 @@
 
         function getLanguage() {
             var data = JSON.parse(localStorageService.get("lang"));
+            return data;
+        }
+
+        function setCountry(country) {
+            localStorageService.set('country', JSON.stringify(country));
+        }
+
+        function getCountry() {
+            var data = JSON.parse(localStorageService.get("country"));
             return data;
         }
 

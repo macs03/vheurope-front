@@ -77,17 +77,18 @@
         ];
 
         var country = utilityService.getCountry();
+        var countryLS = sessionStorageService.getCountry();
 
-        vm.countrySelected;
-
-        if (country == 'fr') {
+        if (country == 'fr' || countryLS == 'fr') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_fr;
             bg_images = bg_images_fr;
-        } else if (country == 'es') {
+            $translate.use('fr');
+        } else if (country == 'es' || countryLS == 'es') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_es;
             bg_images = bg_images_es;
+            $translate.use('es');
         }
 
         function changeCountry(ev, country) {
@@ -128,28 +129,34 @@
                 vm.retorno = 'Vuelta';
                 vm.city_origin = 'Elige tu origen';
                 vm.city_destination = 'Elige tu destino';
+                $translate.use('es');
             } else if (utilityService.getLang() == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
                 vm.city_destination = 'Chosse your destination';
+                $translate.use('en');
             } else {
                 vm.retorno = 'Retour';
                 vm.city_origin = 'choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
+                $translate.use('fr');
             }
         } else {
             if (languageSession == 'es') {
                 vm.retorno = 'Vuelta';
                 vm.city_origin = 'Elige tu origen';
                 vm.city_destination = 'Elige tu destino';
+                $translate.use('es');
             } else if (languageSession == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
                 vm.city_destination = 'Chosse your destination';
+                $translate.use('en');
             } else {
                 vm.retorno = 'Retour';
                 vm.city_origin = 'choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
+                $translate.use('fr');
             }
 
         }
