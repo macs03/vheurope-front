@@ -29,6 +29,8 @@
             passengersAdult: "",
             passengersChild: "",
             passengersBaby: "",
+            originRT: "",
+            destinationRT: "",
             getData: getData,
             setData: setData,
             setPaymentData: setPaymentData,
@@ -73,11 +75,13 @@
                 destinationCountryCode: self.destinationCountryCode,
                 passengersAdult: self.passengersAdult,
                 passengersChild: self.passengersChild,
-                passengersBaby: self.passengersBaby
+                passengersBaby: self.passengersBaby,
+                originRT: self.originRT,
+                destinationRT: self.destinationRT
             }
         }
 
-        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry, passengersAdult, passengersChild, passengersBaby) {
+        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry, passengersAdult, passengersChild, passengersBaby, originRT, destinatioRT) {
             self.origin = origin;
             self.countryOrigin = countryOrigin,
                 self.destination = destination,
@@ -90,6 +94,8 @@
             self.passengersAdult = passengersAdult;
             self.passengersChild = passengersChild;
             self.passengersBaby = passengersBaby;
+            self.originRT = originRT;
+            self.destinationRT = destinatioRT;
         }
 
         function setPaymentData(idIda, idVuelta, totalWithDiscount, totalFee, totalPayment, departure, returns) {

@@ -489,7 +489,7 @@
                     vm.returnDateUnix = new Date(newDate4).getTime();
 
                     if (newDate1 <= newDate2) {
-                        utilityService.setData(vm.originCity, vm.originCountry, vm.destinationCity, vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby);
+                        utilityService.setData(vm.originCity, vm.originCountry, vm.destinationCity, vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, vm.originRT, vm.destinationRT);
                         sessionStorageService.setPassengers(vm.passengersAdult, vm.passengersChild, vm.passengersBaby);
                         sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                         vm.good = true;
@@ -508,7 +508,7 @@
                     var newDate4 = new Date(vD2[2], vD2[1] - 1, vD2[0]);
                     vm.departureDateUnix = new Date(newDate3).getTime();
                     vm.returnDateUnix = new Date(newDate4).getTime();
-                    utilityService.setData(vm.originCity, vm.originCountry, vm.destinationCity, vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby);
+                    utilityService.setData(vm.originCity, vm.originCountry, vm.destinationCity, vm.destinationCountry, vm.dates.departureDate, vm.dates.returnDate, vm.passengers, vm.originCountryCode, vm.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, vm.originRT, vm.destinationRT);
                     sessionStorageService.setPassengers(vm.passengersAdult, vm.passengersChild, vm.passengersBaby);
                     sessionStorageService.setLocations(vm.myOptionsOrigin.concat(vm.myOptionsDestination));
                     vm.good = true;
