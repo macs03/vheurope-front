@@ -64,7 +64,16 @@
         ];
 
         var bg_images_fr = [
-            "../images/Paris.jpg"
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/Loire.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/Paris-2.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/Paris.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/cannes.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/colmar.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/hotel-paris.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/mersailles.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/paris-4.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/south-france.jpg",
+            "https://s3.eu-central-1.amazonaws.com/vheurope/home/background/france/versailles.jpg"
         ];
 
         var country = utilityService.getCountry();
@@ -91,7 +100,7 @@
                 vm.countrySelected = country;
                 vm.popular_searches = vm.popular_searches_fr;
                 bg_images = bg_images_fr;
-                $('.header-home.spain').attr('style', 'background: url(' + bg_images[0] + ') no-repeat center center fixed; background-size: cover;');
+                $('.header-home.spain').attr('style', 'background: url(' + bg_images[Math.floor((Math.random() * 9) + 1)] + ') no-repeat center center fixed; background-size: cover;');
             }
         }
         $scope.$on('countryEvent', changeCountry)
