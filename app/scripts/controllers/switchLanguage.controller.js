@@ -16,6 +16,9 @@
 
     function switchLanguageController($scope, $translate, $cookieStore, utilityService, sessionStorageService, $rootScope) {
 
+        sessionStorageService.setCountry('es');
+        sessionStorageService.setLanguage('es');
+
         $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
         $scope.selectedCountry = utilityService.getCountry()
 

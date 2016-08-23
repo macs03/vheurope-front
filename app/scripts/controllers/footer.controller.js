@@ -26,7 +26,6 @@
         var country = utilityService.getCountry();
 
         if (country == 'fr') {
-            console.log('Francia');
             vm.popular_links = vm.popular_links_fr;
         } else if (country == 'es') {
             vm.popular_links = vm.popular_links_es;
