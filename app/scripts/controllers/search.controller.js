@@ -1864,9 +1864,9 @@
 
 
         var params = utilityService.getData();
-        vm.origin = params.origin /* + ', ' + params.countryOrigin*/ ;
+        vm.origin = params.origin + ', ' + params.countryOrigin;
         vm.originCountryCode = params.originCountryCode;
-        vm.destination = params.destination /*+ ', ' + params.countryDestination*/ ;
+        vm.destination = params.destination + ', ' + params.countryDestination;
         vm.destinationCountryCode = params.destinationCountryCode;
         vm.dates.departureDate = params.departure;
         vm.dates.returnDate = params.returns;
@@ -2133,9 +2133,9 @@
                 }
             });
 
-            vm.origin = formatOrigin /*+ ', ' + vm.originCountry*/ ;
+            vm.origin = formatOrigin + ', ' + vm.originCountry;
             vm.originCountryCode = $stateParams.originCountryCode;
-            vm.destination = formatDestination /*+ ', ' + vm.destinationCountry*/ ;
+            vm.destination = formatDestination + ', ' + vm.destinationCountry;
             vm.destinationCountryCode = $stateParams.destinationCountryCode;
             vm.dates.departureDate = departureDateFormat;
             vm.dates.returnDate = returnDateFormat;
