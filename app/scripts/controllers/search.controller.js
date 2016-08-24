@@ -2210,11 +2210,6 @@
             //Reseteo los arrays basicos
             resetGlobal();
 
-            callLogitravel(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
-            callBusbud(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
-            callFlixbus(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
-            callMovelia(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
-            callBlablacar(formatOrigin, formatDestination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
 
             var originPlaneCity = vm.origin.split(',');
             var destinationPlaneCity = vm.destination.split(',');
@@ -2253,6 +2248,7 @@
                     .then(function(data) {
                         if (data.length == 1) {
                             vm.originId = data[0].id
+                            vm.originRT = data[0].rt
                         } else {
                             vm.originId = originPlaneCity[0];
                         }
@@ -2261,6 +2257,7 @@
                             .then(function(data) {
                                 if (data.length == 1) {
                                     vm.destinationId = data[0].id
+                                    vm.destinationRT = data[0].rt;
                                 } else {
                                     vm.destinationId = destinationPlaneCity[0];
                                 }
@@ -2268,6 +2265,11 @@
                                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
                                 if (destiniesPlanes.origin && destiniesPlanes.destination) {
                                     vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, 1)
+                                    callLogitravel(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
+                                    callBusbud(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+                                    callFlixbus(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
+                                    callMovelia(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
+                                    callBlablacar(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
                                 } else {
                                     vm.searchingTripsPlane = false;
                                     processCountOrder();
