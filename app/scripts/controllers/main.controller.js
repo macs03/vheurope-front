@@ -463,12 +463,13 @@
 
             var formatOrigin;
             var formatDestination;
-            formatOrigin = vm.originCity.replace(/\s/g, '_');
-            formatOrigin = formatOrigin.replace(/ñ/g, 'n');
-            formatDestination = vm.destinationCity.replace(/\s/g, '_');
-            formatDestination = formatDestination.replace(/ñ/g, 'n');
-            var origin = vm.origin.split(",");
-            var destination = vm.destination.split(",");
+            var origin = vm.originCity.split(",");
+            var destination = vm.destinationCity.split(",");
+            formatOrigin = origin[0].replace(/\s/g, '_');
+            formatOrigin = skipAccents(formatOrigin);
+            formatDestination = destination[0].replace(/\s/g, '_');
+            formatDestination = skipAccents(formatDestination);
+
             if (vm.originCity === vm.destinationCity || vm.originCity == "" || vm.destinationCity == "") {
                 vm.good = false;
                 cityError();
@@ -587,5 +588,16 @@
 
         $('.header-home.spain').attr('style', 'background: url(' + bg_images[Math.floor((Math.random() * 25) + 1)] + ') no-repeat center center fixed; background-size: cover;');
         $('.cookie-message').cookieBar();
+
+        function skipAccents(text) {
+            var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+            var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+            for (var i = 0; i < acentos.length; i++) {
+                text = text.replace(acentos.charAt(i), original.charAt(i));
+            }
+
+            return text;
+        }
+
     }
 })();
