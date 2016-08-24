@@ -167,7 +167,8 @@
             destination: 'Barcelona',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/barcelona.jpg',
             price: '32.41',
-            href: "/#/search/Madrid/ES/Barcelona/ES/" + vm.today + "/NaN"
+            href: "/#/search/Madrid/ES/Barcelona/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 1,
@@ -175,7 +176,8 @@
             destination: 'Bilbao',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/bilbao.png',
             price: '31.27',
-            href: "/#/search/Madrid/ES/Bilbao/ES/" + vm.today + "/NaN"
+            href: "/#/search/Madrid/ES/Bilbao/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 2,
@@ -183,7 +185,8 @@
             destination: 'Madrid',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/madrid.jpg',
             price: '32.41',
-            href: "/#/search/Barcelona/ES/Madrid/ES/" + vm.today + "/NaN"
+            href: "/#/search/Barcelona/ES/Madrid/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 3,
@@ -191,7 +194,8 @@
             destination: 'Malaga',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/malaga.png',
             price: '18.57',
-            href: "/#/search/Sevilla/ES/Malaga/ES/" + vm.today + "/NaN"
+            href: "/#/search/Sevilla/ES/Malaga/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 4,
@@ -199,7 +203,8 @@
             destination: 'Salamanca',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/salamanca.png',
             price: '32.41',
-            href: "/#/search/Madrid/ES/Salamanca/ES/" + vm.today + "/NaN"
+            href: "/#/search/Madrid/ES/Salamanca/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 5,
@@ -207,7 +212,8 @@
             destination: 'Sevilla',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/sevilla.png',
             price: '18.57',
-            href: "/#/search/Malaga/ES/Sevilla/ES/" + vm.today + "/NaN"
+            href: "/#/search/Malaga/ES/Sevilla/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 6,
@@ -215,7 +221,8 @@
             destination: 'Valencia',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/valencia.png',
             price: '29.16',
-            href: "/#/search/Barcelona/ES/Valencia/ES/" + vm.today + "/NaN"
+            href: "/#/search/Barcelona/ES/Valencia/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
         vm.popular_searches_es.push({
             id: 7,
@@ -223,7 +230,8 @@
             destination: 'Zaragoza',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/new-home/zaragoza.png',
             price: '15.77',
-            href: "/#/search/Barcelona/ES/Zaragoza/ES/" + vm.today + "/NaN"
+            href: "/#/search/Barcelona/ES/Zaragoza/ES/" + vm.today + "/NaN",
+            country: "ES"
         });
 
         vm.popular_searches_fr.push({
@@ -232,7 +240,8 @@
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '32.41',
-            href: "/#/search/Lille/FR/Paris/FR/" + vm.today + "/NaN"
+            href: "/#/search/Lille/FR/Paris/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 1,
@@ -240,7 +249,8 @@
             destination: 'Bruxelles',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Bruxelles.jpg',
             price: '31.27',
-            href: "/#/search/Paris/FR/Bruxelles/FR/" + vm.today + "/NaN"
+            href: "/#/search/Paris/FR/Bruxelles/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 2,
@@ -248,7 +258,8 @@
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '32.41',
-            href: "/#/search/Lyon/FR/Paris/FR/" + vm.today + "/NaN"
+            href: "/#/search/Lyon/FR/Paris/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 3,
@@ -256,7 +267,8 @@
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '18.57',
-            href: "/#/search/Toulouse/FR/Paris/FR/" + vm.today + "/NaN"
+            href: "/#/search/Toulouse/FR/Paris/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 4,
@@ -264,7 +276,8 @@
             destination: 'Lyon',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lyon.jpg',
             price: '32.41',
-            href: "/#/search/Paris/FR/Lyon/FR/" + vm.today + "/NaN"
+            href: "/#/search/Paris/FR/Lyon/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 5,
@@ -272,7 +285,8 @@
             destination: 'Lille',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lille.jpg',
             price: '18.57',
-            href: "/#/search/Paris/FR/Lille/FR/" + vm.today + "/NaN"
+            href: "/#/search/Paris/FR/Lille/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 6,
@@ -280,7 +294,8 @@
             destination: 'Toulouse',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Toulouse.jpg',
             price: '29.16',
-            href: "/#/search/Paris/FR/Toulouse/FR/" + vm.today + "/NaN"
+            href: "/#/search/Paris/FR/Toulouse/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
         vm.popular_searches_fr.push({
             id: 7,
@@ -288,7 +303,8 @@
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
             price: '15.77',
-            href: "/#/search/Bordeaux/FR/Paris/FR/" + vm.today + "/NaN"
+            href: "/#/search/Bordeaux/FR/Paris/FR/" + vm.today + "/NaN",
+            country: "FR"
         });
 
         vm.origin = params.origin + "," + params.countryOrigin;
@@ -459,7 +475,7 @@
                 }
             });
 
-            sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+            sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId, vm.originRT, vm.destinationRT);
 
             var formatOrigin;
             var formatDestination;
@@ -534,11 +550,11 @@
             }
         }
 
-        function quickSearch(origin, destination, id) {
+        function quickSearch(origin, destination, id, country) {
             sessionStorageService.setPassengers(1, 0, 0);
             $('#departureDate-quick-' + id).change(function() {
                 var departureDate = $('#departureDate-quick-' + id).val();
-                $location.path("/search/" + origin + "/ES/" + destination + "/ES/" + departureDate + "/NaN");
+                $location.path("/search/" + origin + "/" + country + "/" + destination + "/" + country + "/" + departureDate + "/NaN");
             })
         }
 

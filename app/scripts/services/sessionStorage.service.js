@@ -123,10 +123,12 @@
             return data;
         }
 
-        function setIdForPlanes(origin, destination) {
+        function setIdForPlanes(origin, destination, rtOrigin, rtDestination) {
             var destinies = {
                 origin: origin,
-                destination: destination
+                destination: destination,
+                rtOrigin: rtOrigin,
+                rtDestination: rtDestination,
             }
             localStorageService.set('destinies', JSON.stringify(destinies));
         }

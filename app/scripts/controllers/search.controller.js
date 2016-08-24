@@ -1864,9 +1864,9 @@
 
 
         var params = utilityService.getData();
-        vm.origin = params.origin + ', ' + params.countryOrigin;
+        vm.origin = params.origin /*+ ', ' + params.countryOrigin*/ ;
         vm.originCountryCode = params.originCountryCode;
-        vm.destination = params.destination + ', ' + params.countryDestination;
+        vm.destination = params.destination /*+ ', ' + params.countryDestination*/ ;
         vm.destinationCountryCode = params.destinationCountryCode;
         vm.dates.departureDate = params.departure;
         vm.dates.returnDate = params.returns;
@@ -2283,11 +2283,16 @@
                         //Error
                     });
             } else {
-                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
+                sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId, vm.originRT, vm.destinationRT);
                 var destiniesPlanes = sessionStorageService.getIdForPlanes();
 
                 if (destiniesPlanes.origin && destiniesPlanes.destination) {
                     vm.callPlanes(destiniesPlanes.origin, destiniesPlanes.destination, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, 1)
+                    callLogitravel(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "logitravel");
+                    callBusbud(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "busbud");
+                    callFlixbus(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "flixbus");
+                    callMovelia(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "movelia");
+                    callBlablacar(vm.originRT, vm.destinationRT, departureDateFormat, returnDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, vm.passengersAdult, vm.passengersChild, vm.passengersBaby, "blablacar");
                     if (returnDateFormat != "") {
                         vm.returnTripPlane = true;
                         vm.callPlanes(destiniesPlanes.destination, destiniesPlanes.origin, returnDateFormat, departureDateFormat, vm.passengers, $stateParams.originCountryCode, $stateParams.destinationCountryCode, 2)
