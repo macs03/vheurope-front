@@ -2241,6 +2241,31 @@
                 }
             });
 
+            function cleanAccents(work) {
+                var theCity = work.split(',');
+                var acentos = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
+                var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
+                for (var i = 0; i < acentos.length; i++) {
+                    theCity[0] = theCity[0].replace(acentos.charAt(i), original.charAt(i));
+                }
+                return theCity[0];
+            }
+
+            function findCorrectRoute(options, myOption) {
+
+                var cleanCity;
+                var rtOfCity;
+
+                angular.forEach(options, function(value, key) {
+                    cleanCity = cleanAccents(options[key].name);
+                    if (cleanCity === myOption) {
+                        rtOfCity = options[key].rt;
+                    }
+                });
+
+                return rtOfCity;
+            }
+
             if (vm.originId == undefined) {
 
                 locationsRtFactory
@@ -2250,6 +2275,7 @@
                             vm.originId = data[0].id
                             vm.originRT = data[0].rt
                         } else {
+                            vm.originRT = findCorrectRoute(data, originPlaneCity[0]);
                             vm.originId = originPlaneCity[0];
                         }
                         locationsRtFactory
@@ -2259,6 +2285,7 @@
                                     vm.destinationId = data[0].id
                                     vm.destinationRT = data[0].rt;
                                 } else {
+                                    vm.destinationRT = findCorrectRoute(data, originPlaneCity[0]);
                                     vm.destinationId = destinationPlaneCity[0];
                                 }
                                 sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
