@@ -880,7 +880,7 @@
                 "RESULTS": "Résultats",
                 "BUTTON": "ACHETER",
                 "DIRECT": "Direct",
-                "SCALE": "Échelle",
+                "SCALE": "Escale",
                 "SEVERAL": "Plusieurs sociétés",
                 "SEEMORE": "Voir plus"
             },
