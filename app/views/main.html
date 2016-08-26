@@ -159,7 +159,7 @@
 </div>
 
 <div class="container hidden-xs" id="popular-trips">
-    <h2 translate>MAIN.FIND_PASSAGES</h2>
+    <h2><span translate>MAIN.FIND_PASSAGES</span>{{main.countryLang}}</h2>
     <div class="row-fluid ">
         <div ng-repeat="ps in main.popular_searches" class="col-md-3 col-sm-6 col-xs-12">
             <a ng-click="main.quickSearch(ps.origin, ps.destination, ps.id, ps.country)">

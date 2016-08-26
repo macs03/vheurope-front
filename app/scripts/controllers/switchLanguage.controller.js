@@ -29,6 +29,7 @@
             $scope.selectedLanguage = country;
             utilityService.setLang(country);
             sessionStorageService.setCountry(country);
+            sessionStorageService.setLanguage(country);
             $rootScope.$broadcast('langEvent', country);
         }
 

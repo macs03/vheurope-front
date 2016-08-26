@@ -78,17 +78,53 @@
 
         var country = utilityService.getCountry();
         var countryLS = sessionStorageService.getCountry();
+        var languageSession = sessionStorageService.getLanguage();
+        vm.countryLang = "";
 
         if (country == 'fr' || countryLS == 'fr') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_fr;
             bg_images = bg_images_fr;
-            $translate.use('fr');
+            if (languageSession === 'es') {
+                vm.countryLang = "Francia";
+            } else if (languageSession === 'fr') {
+                vm.countryLang = "France";
+            } else {
+                vm.countryLang = "France";
+            }
         } else if (country == 'es' || countryLS == 'es') {
             vm.countrySelected = country;
             vm.popular_searches = vm.popular_searches_es;
             bg_images = bg_images_es;
-            $translate.use('es');
+            if (languageSession === 'es') {
+                vm.countryLang = "España";
+            } else if (languageSession === 'fr') {
+                vm.countryLang = "Espagne";
+            } else {
+                vm.countryLang = "Spain";
+            }
+        }
+
+        function changeCountryAndLanguaje() {
+            var countryCode = sessionStorageService.getCountry();
+            var langCode = sessionStorageService.getLanguage();
+            if (countryCode == "fr") {
+                if (langCode == "es") {
+                    vm.countryLang = "Francia";
+                } else if (langCode == "fr") {
+                    vm.countryLang = "France";
+                } else {
+                    vm.countryLang = "France";
+                }
+            } else if (countryCode == "es") {
+                if (langCode == "es") {
+                    vm.countryLang = "España";
+                } else if (langCode == "fr") {
+                    vm.countryLang = "Espagne";
+                } else {
+                    vm.countryLang = "Spain";
+                }
+            }
         }
 
         function changeCountry(ev, country) {
@@ -120,6 +156,7 @@
                 vm.city_origin = 'choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
             }
+            changeCountryAndLanguaje();
         }
         $scope.$on('langEvent', changeLang)
 
