@@ -2251,14 +2251,12 @@
                 return theCity[0];
             }
 
-            function findCorrectRoute(options, myOption) {
-
+            function findCorrectRoute(options, myOption, myOptionCountry) {
                 var cleanCity;
                 var rtOfCity;
-
                 angular.forEach(options, function(value, key) {
                     cleanCity = cleanAccents(options[key].name);
-                    if (cleanCity === myOption) {
+                    if (cleanCity === myOption && options[key].countryCode === myOptionCountry) {
                         rtOfCity = options[key].rt;
                     }
                 });
@@ -2275,7 +2273,7 @@
                             vm.originId = data[0].id
                             vm.originRT = data[0].rt
                         } else {
-                            vm.originRT = findCorrectRoute(data, originPlaneCity[0]);
+                            vm.originRT = findCorrectRoute(data, originPlaneCity[0], $stateParams.originCountryCode);
                             vm.originId = originPlaneCity[0];
                         }
                         locationsRtFactory
@@ -2285,7 +2283,7 @@
                                     vm.destinationId = data[0].id
                                     vm.destinationRT = data[0].rt;
                                 } else {
-                                    vm.destinationRT = findCorrectRoute(data, originPlaneCity[0]);
+                                    vm.destinationRT = findCorrectRoute(data, destinationPlaneCity[0], $stateParams.destinationCountryCode);
                                     vm.destinationId = destinationPlaneCity[0];
                                 }
                                 sessionStorageService.setIdForPlanes(vm.originId, vm.destinationId);
