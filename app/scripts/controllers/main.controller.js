@@ -276,7 +276,7 @@
             origin: 'Lille',
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
-            price: '32.41',
+            price: '5.00',
             href: "/#/search/Lille/FR/Paris/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -285,7 +285,7 @@
             origin: 'Paris',
             destination: 'Bruxelles',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Bruxelles.jpg',
-            price: '31.27',
+            price: '15.00',
             href: "/#/search/Paris/FR/Bruxelles/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -294,7 +294,7 @@
             origin: 'Lyon',
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
-            price: '32.41',
+            price: '15.00',
             href: "/#/search/Lyon/FR/Paris/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -303,7 +303,7 @@
             origin: 'Toulouse',
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
-            price: '18.57',
+            price: '19.00',
             href: "/#/search/Toulouse/FR/Paris/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -312,7 +312,7 @@
             origin: 'Paris',
             destination: 'Lyon',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lyon.jpg',
-            price: '32.41',
+            price: '15.00',
             href: "/#/search/Paris/FR/Lyon/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -321,7 +321,7 @@
             origin: 'Paris',
             destination: 'Lille',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Lille.jpg',
-            price: '18.57',
+            price: '5.00',
             href: "/#/search/Paris/FR/Lille/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -330,7 +330,7 @@
             origin: 'Paris',
             destination: 'Toulouse',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Toulouse.jpg',
-            price: '29.16',
+            price: '19.00',
             href: "/#/search/Paris/FR/Toulouse/FR/" + vm.today + "/NaN",
             country: "FR"
         });
@@ -339,7 +339,7 @@
             origin: 'Bordeaux',
             destination: 'Paris',
             image: 'https://s3.eu-central-1.amazonaws.com/vheurope/home/popular_trips/france/Paris.jpg',
-            price: '15.77',
+            price: '25.00',
             href: "/#/search/Bordeaux/FR/Paris/FR/" + vm.today + "/NaN",
             country: "FR"
         });
