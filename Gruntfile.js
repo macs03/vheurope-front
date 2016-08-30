@@ -25,6 +25,8 @@ module.exports = function(grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-aws');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -466,6 +468,19 @@ module.exports = function(grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    //upload files to S3
+    s3: {
+      options: {
+        accessKeyId: "AKIAI5R67MKQSDRHA6QA",
+        secretAccessKey: "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",
+        bucket: "test-deploy-rt"
+      },
+      build: {
+        cwd: "dist/",
+        src: "**"
+      }
     }
   });
 
@@ -515,6 +530,10 @@ module.exports = function(grunt) {
     'filerev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    's3'
   ]);
 
   grunt.registerTask('default', [
