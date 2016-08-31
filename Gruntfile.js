@@ -544,11 +544,11 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(target) {
     console.log("Deploy -- " + target)
     if (target === "sandbox") {
-      aws.bucket = "test-deploy-sandbox";
+      aws.bucket = "sandbox.resertrip.com";
       grunt.log.writeln('Bucket: ' + aws.bucket)
       grunt.task.run(['s3']);
     } else if (target === "production") {
-      aws.bucket = "test-deploy-production";
+      aws.bucket = "www.resertrip.com";
       grunt.log.writeln('Bucket: ' + aws.bucket)
       grunt.task.run(['s3']);
     }
