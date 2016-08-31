@@ -1,263 +1,318 @@
 <style>
-    body { background: #f1f1f1 }
-
-.hidden { display: none }
-
-#blog,
-#busology,
-#passages,
-.width-ingresar { display: none }
-
-#clock-container { margin-right: 20em }
-
-input[type='radio'] { margin-top: 30px }
-
-.logo-pay {
-    margin-top: 10px;
-    max-height: 35px;
-    cursor: pointer;
-}
-
-.option-pay {
-    border: 1px solid #dedede;
-    padding: 10px;
-    min-height: 170px;
-}
-
-.option-pay  p {
-    color: #29abe5;
-    text-align: center;
-}
-
-.text-justify { text-align: justify }
-
-button.theme-green,
-.btn.theme-green {
-    background: #00A837;
-    border: 0;
-    color: #fff;
-    transition: background-color 300ms ease-out;
-    text-transform: uppercase;
-    padding: 2px auto !important;
-    margin-bottom: 20px;
-}
-
-button.theme-green:hover,
-.btn.theme-green:hover { background: #1AC634 }
-
-button.theme-blue,
-.btn.theme-blue {
-    background: #29abe5;
-    border: 0;
-    color: #fff;
-    transition: background-color 300ms ease-out;
-    text-transform: uppercase;
-    padding: 2px auto !important;
-    margin-bottom: 20px;
-    border-radius: 0 !important;
-}
-
-button.theme-blue:hover,
-.btn.theme-blue:hover { background: #55b6e0 }
-
-@media only screen and (max-width: 40em) { 
-    .option-pay { border-right: none }
-
-    .date { display: none !important }
-}
-
-.green { color: #32F01F }
-
-.alert {
-    padding: 13px;
-    background-color: rgba(255, 254, 171, 1);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.error {
-    padding: 13px;
-    background-color: rgba(255, 171, 171, 1);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.text-capitalize { text-transform: capitalize }
-
-.input-error { border: 1px solid red !important }
-
-.pl0 { padding-left: 0 !important }
-
-.pr0 { padding-right: 0 !important }
-
-.box {
-    border-color: #f1f1f1;
-    min-height: 20px;
-    position: relative;
-    min-height: 20px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-}
-
-.box .box-header {
-    color: #333 !important;
-    line-height: 35px;
-    font-size: 12px;
-    background: #f1f1f1;
-    height: 35px;
-    padding: 0 0 0 10px;
-    margin: 0;
-}
-
-.box .box-header.open i.show-down:before {
-    font-family: 'FontAwesome';
-    content: "\f077";
-}
-
-.box .box-footer {
-    font-family: 'Ubuntu', sans-serif;
-    color: #333333 !important;
-    line-height: 35px;
-    font-size: 12px;
-    background: #fff;
-    height: 35px;
-    padding: 0 0 0 10px;
-    margin: 0;
-}
-
-.box .box-header .title {
-    font-size: 12px;
-    font-weight: bolder;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-    float: left;
-    max-height: 35px;
-    color: #333 !important;
-}
-
-.box .box-header h3 {
-    line-height: 35px;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.box .box-header .title i {
-    background: #29aae3;
-    color: #fff;
-    padding: 10px 0;
-    width: 32px;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    margin: 0px 0px -20px -10px;
-    font-size: 14px;
-}
-
-.box .box-content {
-    font-family: 'Ubuntu', sans-serif;
-    padding: 20px 20px 20px 20px;
-    overflow: hidden;
-    background: #fff;
-}
-
-.box .box-content p { margin-bottom: 5px }
-
-.box .box-content.inversed {
-    background: #29aae3;
-    color: #fff;
-}
-
-
-hr.add-passenger {
-    padding: 0;
-    text-align: center;
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-
-hr.add-passenger:after {
-    font-family: 'FontAwesome';
-    content: "\f055";
-    display: inline-block;
-    position: relative;
-    top: -0.7em;
-    font-size: 1.5em;
-    padding: 0 0.25em;
-    background: white;
-    color: #29abe5;
-}
-
-hr.add-passenger:hover:after {
-    color: #555;
-    cursor: pointer;
-}
-
-.trip-container-title {
-    border-bottom: 1px solid #dedede;
-    padding: 10px;
-}
-
-.trip-container-title .price {
-    color: #29abe5;
-    float: right;
-    font-size: 1.4em;
-    font-weight: bolder;
-}
-
-.trip-container { padding: 10px 10px }
-
-.trip-container p { line-height: 12px }
-
-.trip-container.odd {
-    background: #f1f1f1;
-    padding: 16px 10px !important;
-}
-
-.no-padding { padding: 0 }
-
-.text-blue { color: #29abe5 }
-
-#promoCode,
-#validate-prom { margin-bottom: 0 }
-
- input[type="text"] {
+    body {
+        background: #f1f1f1
+    }
+    
+    .hidden {
+        display: none
+    }
+    
+    #blog,
+    #busology,
+    #passages,
+    .width-ingresar {
+        display: none
+    }
+    
+    #clock-container {
+        margin-right: 20em
+    }
+    
+    input[type='radio'] {
+        margin-top: 30px
+    }
+    
+    .logo-pay {
+        margin-top: 10px;
+        max-height: 35px;
+        cursor: pointer;
+    }
+    
+    .option-pay {
+        border: 1px solid #dedede;
+        padding: 10px;
+        min-height: 170px;
+    }
+    
+    .option-pay p {
+        color: #29abe5;
+        text-align: center;
+    }
+    
+    .text-justify {
+        text-align: justify
+    }
+    
+    button.theme-green,
+    .btn.theme-green {
+        background: #00A837;
+        border: 0;
+        color: #fff;
+        transition: background-color 300ms ease-out;
+        text-transform: uppercase;
+        padding: 2px auto !important;
+        margin-bottom: 20px;
+    }
+    
+    button.theme-green:hover,
+    .btn.theme-green:hover {
+        background: #1AC634
+    }
+    
+    button.theme-blue,
+    .btn.theme-blue {
+        background: #29abe5;
+        border: 0;
+        color: #fff;
+        transition: background-color 300ms ease-out;
+        text-transform: uppercase;
+        padding: 2px auto !important;
+        margin-bottom: 20px;
+        border-radius: 0 !important;
+    }
+    
+    button.theme-blue:hover,
+    .btn.theme-blue:hover {
+        background: #55b6e0
+    }
+    
+    @media only screen and (max-width: 40em) {
+        .option-pay {
+            border-right: none
+        }
+        .date {
+            display: none !important
+        }
+    }
+    
+    .green {
+        color: #32F01F
+    }
+    
+    .alert {
+        padding: 13px;
+        background-color: rgba(255, 254, 171, 1);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .error {
+        padding: 13px;
+        background-color: rgba(255, 171, 171, 1);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .text-capitalize {
+        text-transform: capitalize
+    }
+    
+    .input-error {
+        border: 1px solid red !important
+    }
+    
+    .pl0 {
+        padding-left: 0 !important
+    }
+    
+    .pr0 {
+        padding-right: 0 !important
+    }
+    
+    .box {
+        border-color: #f1f1f1;
+        min-height: 20px;
+        position: relative;
+        min-height: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffff;
+    }
+    
+    .box .box-header {
+        color: #333 !important;
+        line-height: 35px;
+        font-size: 12px;
+        background: #f1f1f1;
+        height: 35px;
+        padding: 0 0 0 10px;
+        margin: 0;
+    }
+    
+    .box .box-header.open i.show-down:before {
+        font-family: 'FontAwesome';
+        content: "\f077";
+    }
+    
+    .box .box-footer {
+        font-family: 'Ubuntu', sans-serif;
+        color: #333333 !important;
+        line-height: 35px;
+        font-size: 12px;
+        background: #fff;
+        height: 35px;
+        padding: 0 0 0 10px;
+        margin: 0;
+    }
+    
+    .box .box-header .title {
+        font-size: 12px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        float: left;
+        max-height: 35px;
+        color: #333 !important;
+    }
+    
+    .box .box-header h3 {
+        line-height: 35px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .box .box-header .title i {
+        background: #29aae3;
+        color: #fff;
+        padding: 10px 0;
+        width: 32px;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        margin: 0px 0px -20px -10px;
+        font-size: 14px;
+    }
+    
+    .box .box-content {
+        font-family: 'Ubuntu', sans-serif;
+        padding: 20px 20px 20px 20px;
+        overflow: hidden;
+        background: #fff;
+    }
+    
+    .box .box-content p {
+        margin-bottom: 5px
+    }
+    
+    .box .box-content.inversed {
+        background: #29aae3;
+        color: #fff;
+    }
+    
+    hr.add-passenger {
+        padding: 0;
+        text-align: center;
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+    
+    hr.add-passenger:after {
+        font-family: 'FontAwesome';
+        content: "\f055";
+        display: inline-block;
+        position: relative;
+        top: -0.7em;
+        font-size: 1.5em;
+        padding: 0 0.25em;
+        background: white;
+        color: #29abe5;
+    }
+    
+    hr.add-passenger:hover:after {
+        color: #555;
+        cursor: pointer;
+    }
+    
+    .trip-container-title {
+        border-bottom: 1px solid #dedede;
+        padding: 10px;
+    }
+    
+    .trip-container-title-modal {
+        border-top: 1px solid #dedede;
+        padding: 10px;
+        margin-top: 1em;
+    }
+    
+    .trip-container-title .price,
+    .trip-container-title-modal .price {
+        color: #29abe5;
+        float: right;
+        font-size: 1.4em;
+        font-weight: bolder;
+    }
+    
+    .trip-container {
+        padding: 10px 10px
+    }
+    
+    .trip-container p {
+        line-height: 12px
+    }
+    
+    .trip-container.odd {
+        background: #f1f1f1;
+        padding: 16px 10px !important;
+    }
+    
+    .no-padding {
+        padding: 0
+    }
+    
+    .text-blue {
+        color: #29abe5
+    }
+    
+    #promoCode,
+    #validate-prom {
+        margin-bottom: 0
+    }
+    
+    input[type="text"] {
         border-radius: 0px !important;
         min-height: 48px !important;
         border: 1px solid #d0d0d0;
-}
-
-input[type="email"] {
-       border-radius: 0px !important;
-       min-height: 48px !important;
-       border: 1px solid #d0d0d0;
-       width: 99%;
-       padding-left: 10px;
-}
-
-select {
-    height: 48px !important;
-    min-height: 48px !important;
-    background-color: transparent;
-    width: 99% !important;
-    border: 1px solid #d0d0d0;
-    border-radius: 0px !important;
-
-
-}
-
-input.ng-invalid.ng-touched {
-    border: 1px solid #FA787E;
-  }
-
-input.ng-valid.ng-touched {
-    border: 1px solid #78FA89;
-}
-
-#passages_link {
-    display: none;
-}
-
+    }
+    
+    input[type="email"] {
+        border-radius: 0px !important;
+        min-height: 48px !important;
+        border: 1px solid #d0d0d0;
+        width: 99%;
+        padding-left: 10px;
+    }
+    
+    select {
+        height: 48px !important;
+        min-height: 48px !important;
+        background-color: transparent;
+        width: 99% !important;
+        border: 1px solid #d0d0d0;
+        border-radius: 0px !important;
+    }
+    
+    input.ng-invalid.ng-touched {
+        border: 1px solid #FA787E;
+    }
+    
+    input.ng-valid.ng-touched {
+        border: 1px solid #78FA89;
+    }
+    
+    #passages_link {
+        display: none;
+    }
+    
+    .modal-trips-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .modal-trips-content .trip-container {
+        width: 59%;
+    }
 </style>
 <div class="container">
     <br>
@@ -274,13 +329,13 @@ input.ng-valid.ng-touched {
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_name" translate>PAYMENT.INFORMATION.FORM_NAME</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_NAME' |translate }}" required name="form_payment_name" id="form_payment_name" value="" class="name"  ng-model="payment.pay.name" title="Ingresa tu nombre" />
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_NAME' |translate }}" required name="form_payment_name" id="form_payment_name" value="" class="name" ng-model="payment.pay.name" title="Ingresa tu nombre" />
                                 </div>
                             </div>
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_lastname" translate>PAYMENT.INFORMATION.FORM_LASTNAME</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_LASTNAME' | translate }}" required name="form_payment_lastname" id="form_payment_lastname" value="" class="lastname"  ng-model="payment.pay.lastname"  title="Ingresa tu apellido"/>
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_LASTNAME' | translate }}" required name="form_payment_lastname" id="form_payment_lastname" value="" class="lastname" ng-model="payment.pay.lastname" title="Ingresa tu apellido" />
                                 </div>
                             </div>
                         </div>
@@ -288,13 +343,13 @@ input.ng-valid.ng-touched {
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_dni" translate>PAYMENT.INFORMATION.FORM_DNI</label>
-                                    <input type="text" placeholder="DNI" required name="form_payment_dni" id="form_payment_dni" value="" class="email"  ng-model="payment.pay.dni" title="Ingresa tu dni" />
+                                    <input type="text" placeholder="DNI" required name="form_payment_dni" id="form_payment_dni" value="" class="email" ng-model="payment.pay.dni" title="Ingresa tu dni" />
                                 </div>
                             </div>
                             <div class="col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_email" translate>PAYMENT.INFORMATION.FORM_EMAIL</label>
-                                    <input type="email" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL_PLACEHOLDER' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email"  ng-model="payment.pay.email" title="Ingresa tu email" />
+                                    <input type="email" placeholder="{{ 'PAYMENT.INFORMATION.FORM_EMAIL_PLACEHOLDER' | translate }}" required name="form_payment_email" id="form_payment_email" value="" class="email" ng-model="payment.pay.email" title="Ingresa tu email" />
                                 </div>
                             </div>
                         </div>
@@ -302,7 +357,8 @@ input.ng-valid.ng-touched {
                             <div class="col-md-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_card" translate>PAYMENT.INFORMATION.FORM_CREDIT_CARD</label>
-                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_CREDIT_CARD_PLACEHOLDER' | translate }}" required name="form_payment_card" id="form_payment_card" value="" class="email"  ng-model="payment.pay.card" title="Ingresa tu numero de tarjeta" maxlength="16" minlength="16"/>
+                                    <input type="text" placeholder="{{ 'PAYMENT.INFORMATION.FORM_CREDIT_CARD_PLACEHOLDER' | translate }}" required name="form_payment_card" id="form_payment_card" value="" class="email" ng-model="payment.pay.card" title="Ingresa tu numero de tarjeta" maxlength="16"
+                                        minlength="16" />
                                 </div>
                             </div>
                         </div>
@@ -329,7 +385,7 @@ input.ng-valid.ng-touched {
                             <div class="col-md-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_year" translate>PAYMENT.INFORMATION.FORM_YEAR</label>
-                                    <select name="form_payment_year" id="form_payment_year" required  class="country" ng-model="payment.pay.year">
+                                    <select name="form_payment_year" id="form_payment_year" required class="country" ng-model="payment.pay.year">
                                         <option value="2016" selected>2016</option>
                                         <option value="2017">2017</option>
                                         <option value="2018">2018</option>
@@ -346,30 +402,31 @@ input.ng-valid.ng-touched {
                             <div class="col-md-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="form_payment_cvv" translate>PAYMENT.INFORMATION.FORM_CVV</label>
-                                    <input type="text" placeholder="CVV" required name="form_payment_cvv" id="form_payment_cvv" value="" class="email"  ng-model="payment.pay.cvv" title="CVV" maxlength="3"/>
+                                    <input type="text" placeholder="CVV" required name="form_payment_cvv" id="form_payment_cvv" value="" class="email" ng-model="payment.pay.cvv" title="CVV" maxlength="3" />
                                 </div>
                             </div>
                         </div>
-                          <br>  
-                           <input class="" id="notification"  type="checkbox" checked name="notifications" ng-model="payment.pay.notifications">
-                            <label for="notification" translate>
+                        <br>
+                        <input class="" id="notification" type="checkbox" checked name="notifications" ng-model="payment.pay.notifications">
+                        <label for="notification" translate>
                                 PAYMENT.INFORMATION.FORM_NOTIFICATIONS
                             </label>
-                            <br>
-                            <br>
-                              
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 text-center">
-                                    <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
-                                    <br>
-                                    <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.email,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
-                                </div>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 text-center">
+                                <p class="smallest-font"><span translate>PAYMENT.PAY.TERMS</span> <a href="#" target="_blank" title="Términos y condiciones" translate>PAYMENT.PAY.TERMS_LINK</a>.</p>
+                                <br>
+                                <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.showConfirmModal()" translate>PAYMENT.PAY.BUTTON</button>
                             </div>
+                        </div>
                     </div>
                     <div class="box-footer hidden-xs">
-                           
+
                     </div>
-                </div> <!--  End box-->
+                </div>
+                <!--  End box-->
                 <!--
                 <div class="box">
                         <div class="box-header">
@@ -421,8 +478,9 @@ input.ng-valid.ng-touched {
                     -->
 
             </form>
-            
-        </div> <!-- End col-7 -->
+
+        </div>
+        <!-- End col-7 -->
 
         <div class="col-xs-12 col-md-5">
             <div class="box">
@@ -439,7 +497,7 @@ input.ng-valid.ng-touched {
                             <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalWithDiscount | currency : '' }} €</span>
                             </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-md-8">
@@ -448,16 +506,16 @@ input.ng-valid.ng-touched {
                             <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalFee | currency : '' }} €</span>
                             </div>
-                           
+
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-md-8">
-                                <p class="smallest-font" ><strong translate>PAYMENT.PURCHASE.TOTAL</strong></p>
+                                <p class="smallest-font"><strong translate>PAYMENT.PURCHASE.TOTAL</strong></p>
                             </div>
                             <div class="col-md-4 col-xs-6">
                                 <span class="price">{{payment.totalPayment | currency : '' }} €</span>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="trip-container" translate>
@@ -558,21 +616,151 @@ input.ng-valid.ng-touched {
         </div>
 
         <!-- modal -->
-        <div class="modal fade" id="error-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static"
-           data-keyboard="false">
-           <div class="modal-dialog modal-lg" role="document">
-             <div class="modal-content" style="background-color: #F2DEDD !important;">
-               <div class="modal-header">
-                   <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                   <h2>Error</h2>
-               </div>
-               <div class="modal-body">
-                   <p>
-                       {{payment.msgError}}
-                   </p>
-               </div>
-             </div>
-           </div>
+        <div class="modal fade" id="error-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color: #F2DEDD !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2>Error</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            {{payment.msgError}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--modal confirmar pago-->
+        <div class="modal fade" id="confirm-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom: 1px solid #E5E5E4 !important;">
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2 translate>PAYMENT.PURCHASE.TRAVEL_DETAIL</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-content no-padding">
+                            <div class="modal-trips-content" ng-class="{'disable-box':payment.isPaying}">
+                                <div class="trip-container" translate>
+                                    PAYMENT.PURCHASE.ROUND
+                                </div>
+                                <div class="trip-container odd" ng-repeat="departure in payment.departureData">
+                                    <h5 ng-show="payment.departureData.length > 1">
+                                        <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-md-1 hidden-xs">
+                                            <i class="fa fa-bus"></i>
+                                        </div>
+                                        <div class="col-md-8 col-xs-6">
+                                            <p class="smallest-font">
+                                                <b>{{ departure.origin }} - {{ departure.destination }}</b>
+                                                <span class="text-muted date"> {{ departure.date }}</span>
+                                            </p>
+                                            <p class="small-font hidden-xs">
+                                                <small class="text-muted">{{ departure.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 visible-xs">
+                                            <p class="smallest-font pull-right"><span class="text-muted"> {{ departure.date }}</span></p>
+                                        </div>
+                                        <div class="col-xs-4 visible-xs">
+                                            <p class="small-font">
+                                                <small class="text-muted">{{ departure.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 visible-xs text-center">
+                                            <p class="smallest-font pull-right">{{ departure.time }} hrs.</p>
+                                        </div>
+                                        <div class="col-xs-4 col-md-3 hidden-xs">
+                                            <p class="smallest-font pull-right hidden-xs">{{ departure.time }} hrs.</p>
+                                            <p class="smallest-font pull-right">{{ departure.typeService }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="trip-container" translate ng-show="payment.isRoundTrip">
+                                    PAYMENT.PURCHASE.RETURN
+                                </div>
+                                <div class="trip-container odd" ng-show="payment.isRoundTrip" ng-repeat="return in payment.returnData">
+                                    <h5 ng-show="payment.returnData.length > 1">
+                                    <strong translate>CANCEL.SECTION</strong> {{$index + 1}}
+                                </h5>
+                                    <div class="row">
+                                        <div class="col-md-1 hidden-xs">
+                                            <i class="fa fa-bus"></i>
+                                        </div>
+                                        <div class="col-md-8 col-xs-6">
+                                            <p class="smallest-font">
+                                                <b>{{ return.origin }} - {{ return.destination }}</b>
+                                                <span class="text-muted date"> {{ return.date }}</span>
+                                            </p>
+                                            <p class="small-font hidden-xs">
+                                                <small class="text-muted">{{ return.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 visible-xs">
+                                            <p class="smallest-font pull-right"><span class="text-muted"> {{ return.date }}</span></p>
+                                        </div>
+                                        <div class="col-xs-4 visible-xs">
+                                            <p class="small-font">
+                                                <small class="text-muted">{{ return.company }}</small>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 visible-xs text-center">
+                                            <p class="smallest-font pull-right">{{ return.time }} hrs.</p>
+                                        </div>
+                                        <div class="col-xs-4 col-md-3 hidden-xs">
+                                            <p class="smallest-font pull-right hidden-xs">{{ return.time }} hrs.</p>
+                                            <p class="smallest-font pull-right">{{ return.typeService }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="trip-container-title-modal" ng-class="{'disable-box':payment.isPaying}">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font" translate>PAYMENT.PURCHASE.SUBTOTAL</p>
+                                    </div>
+
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalWithDiscount | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font" translate>PAYMENT.PURCHASE.FEES</p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalFee | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-8">
+                                        <p class="smallest-font"><strong translate>PAYMENT.PURCHASE.TOTAL</strong></p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <span class="price">{{payment.totalPayment | currency : '' }} €</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="trip-container-title-modal" ng-show="payment.isPaying" style="text-align: center; padding-top:1.5em;">
+                                <span><img src="https://cdn.api.voyhoy.com/loader.gif" width="60" height="60" alt="Pagando pasajes ..." /></span>
+                                <p style="text-align: center;font-size: 1.5em;font-weight: bold;padding: 1em 0 0 0;"><span translate>PAYMENT.PURCHASE.PROCESS</span>...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" ng-class="{'disable-box':payment.isPaying}">
+                        <button class="btn btn-lg theme-green btn-pay btn-block" type="submit" ng-click="payment.paying(payment.pay.name,payment.pay.lastname,payment.pay.dni,payment.pay.email,payment.pay.card,payment.pay.month,payment.pay.year,payment.pay.cvv)" translate>PAYMENT.PAY.BUTTON</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

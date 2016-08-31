@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     /**
@@ -12,18 +12,38 @@
         .module('vhEurope')
         .controller('switchLanguageController', switchLanguageController)
 
-        switchLanguageController.$inject =['$scope','$translate','$cookieStore'];
+    switchLanguageController.$inject = ['$scope', '$translate', '$cookieStore', 'utilityService', 'sessionStorageService', '$rootScope'];
 
-        function switchLanguageController ($scope,$translate,$cookieStore) {
+    function switchLanguageController($scope, $translate, $cookieStore, utilityService, sessionStorageService, $rootScope) {
 
-            $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
-            $scope.changeLanguage = function (langKey) {
-                $translate.use(langKey);
-                $scope.selectedLanguage = langKey;
-            };
+        sessionStorageService.setCountry('es');
+        sessionStorageService.setLanguage('es');
+
+        $scope.selectedLanguage = $cookieStore.get('NG_TRANSLATE_LANG_KEY');
+        $scope.selectedCountry = utilityService.getCountry()
+
+        $scope.changeCountry = function(country) {
+            $scope.selectedCountry = country;
+            $rootScope.$broadcast('countryEvent', country);
+            $translate.use(country);
+            $scope.selectedLanguage = country;
+            utilityService.setLang(country);
+            sessionStorageService.setCountry(country);
+            sessionStorageService.setLanguage(country);
+            $rootScope.$broadcast('langEvent', country);
         }
 
-        
-            
-        
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            $scope.selectedLanguage = langKey;
+            utilityService.setLang(langKey);
+            sessionStorageService.setLanguage(langKey);
+            $rootScope.$broadcast('langEvent', langKey);
+
+        };
+    }
+
+
+
+
 })();

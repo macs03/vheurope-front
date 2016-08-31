@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     /**
@@ -9,52 +9,60 @@
      * Service in the vhEurope.
      */
     angular.module('vhEurope')
-      .factory('utilityService', utilityService);
+        .factory('utilityService', utilityService);
 
-      utilityService.$inject =[];
 
-      function utilityService() {
+    utilityService.$inject = ['$translate', '$location'];
+
+    function utilityService($translate, $location) {
         return {
             self: this,
             origin: "",
-            originCountryCode : "",
-            countryOrigin:"",
+            originCountryCode: "",
+            countryOrigin: "",
             destination: "",
             destinationCountryCode: "",
-            countryDestination:"",
+            countryDestination: "",
             departure: "",
             returns: "",
             passengers: "",
             passengersAdult: "",
             passengersChild: "",
             passengersBaby: "",
+            originRT: "",
+            destinationRT: "",
             getData: getData,
             setData: setData,
             setPaymentData: setPaymentData,
-            getPaymentData : getPaymentData,
-            objDeparture : {},
+            getPaymentData: getPaymentData,
+            objDeparture: {},
             objReturn: {},
-            idIda : "",
+            idIda: "",
             idVuelta: "",
-            totalPayment : "",
-            setSuccessData : setSuccessData,
-            getSuccessData : getSuccessData,
-            customer : "",
-            customerEmail : "",
-            providerName : "",
-            purchaseId : "",
-            total : "",
+            totalPayment: "",
+            setSuccessData: setSuccessData,
+            getSuccessData: getSuccessData,
+            customer: "",
+            customerEmail: "",
+            providerName: "",
+            purchaseId: "",
+            total: "",
             objDepartureSuccess: {},
             objReturnSuccess: {},
-            setPayer : setPayer,
-            getPayer : getPayer,
-            payer : {},
-            setSearch : setSearch,
-            getSearch : getSearch,
-            url : ""
+            setPayer: setPayer,
+            getPayer: getPayer,
+            payer: {},
+            setSearch: setSearch,
+            getSearch: getSearch,
+            url: "",
+            lang: "es",
+            setLang: setLang,
+            getLang: getLang,
+            getCountry: getCountry
         }
         var origin = ""
-        function getData(){
+
+        function getData() {
             return {
                 origin: self.origin,
                 countryOrigin: self.countryOrigin,
@@ -63,20 +71,22 @@
                 departure: self.departure,
                 returns: self.returns,
                 passengers: self.passengers,
-                originCountryCode : self.originCountryCode,
-                destinationCountryCode : self.destinationCountryCode,
+                originCountryCode: self.originCountryCode,
+                destinationCountryCode: self.destinationCountryCode,
                 passengersAdult: self.passengersAdult,
                 passengersChild: self.passengersChild,
-                passengersBaby: self.passengersBaby
+                passengersBaby: self.passengersBaby,
+                originRT: self.originRT,
+                destinationRT: self.destinationRT
             }
         }
 
-        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry,passengersAdult,passengersChild,passengersBaby){
+        function setData(origin, countryOrigin, destination, countryDestination, departure, returns, passengers, originCountry, destinationCountry, passengersAdult, passengersChild, passengersBaby, originRT, destinatioRT) {
             self.origin = origin;
             self.countryOrigin = countryOrigin,
-            self.destination = destination,
-            self.countryDestination = countryDestination,
-            self.departure = departure;
+                self.destination = destination,
+                self.countryDestination = countryDestination,
+                self.departure = departure;
             self.returns = returns;
             self.passengers = passengers;
             self.originCountryCode = originCountry;
@@ -84,9 +94,11 @@
             self.passengersAdult = passengersAdult;
             self.passengersChild = passengersChild;
             self.passengersBaby = passengersBaby;
+            self.originRT = originRT;
+            self.destinationRT = destinatioRT;
         }
 
-        function setPaymentData(idIda,idVuelta,totalWithDiscount,totalFee,totalPayment,departure, returns) {
+        function setPaymentData(idIda, idVuelta, totalWithDiscount, totalFee, totalPayment, departure, returns) {
             self.idIda = idIda;
             self.idVuelta = idVuelta;
             self.totalWithDiscount = totalWithDiscount;
@@ -96,15 +108,15 @@
             self.objReturn = returns;
         }
 
-        function getPaymentData(){
+        function getPaymentData() {
             return {
-                idIda : self.idIda,
+                idIda: self.idIda,
                 idVuelta: self.idVuelta,
                 totalWithDiscount: self.totalWithDiscount,
                 totalFee: self.totalFee,
-                totalPayment : self.totalPayment,
-                departure : self.objDeparture,
-                returns : self.objReturn
+                totalPayment: self.totalPayment,
+                departure: self.objDeparture,
+                returns: self.objReturn
             }
         }
 
@@ -120,13 +132,13 @@
 
         function getSuccessData() {
             return {
-                customer : self.customer,
+                customer: self.customer,
                 customerEmail: self.customerEmail,
                 providerName: self.providerName,
                 purchaseId: self.purchaseId,
                 total: self.total,
                 departure: self.objDepartureSuccess,
-                returns : self.objReturnSuccess
+                returns: self.objReturnSuccess
             }
         }
 
@@ -136,7 +148,7 @@
 
         function getPayer() {
             return {
-                payer : self.payer
+                payer: self.payer
             }
         }
 
@@ -146,9 +158,43 @@
 
         function getSearch() {
             return {
-                url : self.url
+                url: self.url
             }
         }
 
-      }
+        function setLang(lang) {
+            self.lang = lang;
+        }
+
+        function getLang() {
+            if (self.lang == undefined) {
+                self.lang = 'es';
+            }
+            return self.lang
+        }
+
+        function getCountry() {
+            var path = $location.absUrl();
+            //var path = 'www.resertrip.fr/#/';
+            //var path = 'www.resertrip.es/#/';
+            //var path = 'www.resertrip.com/#/';
+            var lang = 'es';
+
+            var split1 = path.split('/');
+            var split2 = split1[0].split('.')
+            var location = split2[2];
+
+            if (location == 'fr') {
+                $translate.use('fr');
+                lang = 'fr';
+            } else if (location == 'es') {
+                $translate.use('es');
+                lang = 'es';
+            } else {
+                $translate.use('es');
+                lang = 'es';
+            }
+            return lang
+        }
+    }
 })();

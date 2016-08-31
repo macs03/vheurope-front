@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     /**
@@ -9,49 +9,53 @@
      * Service in the vhEurope.
      */
     angular.module('vhEurope')
-      .factory('sessionStorageService', sessionStorageService);
+        .factory('sessionStorageService', sessionStorageService);
 
-      sessionStorageService.$inject =['localStorageService'];
+    sessionStorageService.$inject = ['localStorageService'];
 
-      function sessionStorageService(localStorageService) {
+    function sessionStorageService(localStorageService) {
         return {
-            setUrl : setUrl,
-            getUrl : getUrl,
-            setPayment : setPayment,
-            getPayment : getPayment,
-            setPayer : setPayer,
-            getPayer : getPayer,
-            setSuccessData : setSuccessData,
-            getSuccessData : getSuccessData,
-            setLocations : setLocations,
-            getLocations : getLocations,
-            setFlag : setFlag,
-            getFlag : getFlag,
-            setPassengers : setPassengers,
-            getPassengers : getPassengers,
-            setIdForPlanes : setIdForPlanes,
-            getIdForPlanes : getIdForPlanes
+            setUrl: setUrl,
+            getUrl: getUrl,
+            setPayment: setPayment,
+            getPayment: getPayment,
+            setPayer: setPayer,
+            getPayer: getPayer,
+            setSuccessData: setSuccessData,
+            getSuccessData: getSuccessData,
+            setLocations: setLocations,
+            getLocations: getLocations,
+            setFlag: setFlag,
+            getFlag: getFlag,
+            setPassengers: setPassengers,
+            getPassengers: getPassengers,
+            setIdForPlanes: setIdForPlanes,
+            getIdForPlanes: getIdForPlanes,
+            setLanguage: setLanguage,
+            getLanguage: getLanguage,
+            setCountry: setCountry,
+            getCountry: getCountry
         }
 
         function setUrl(url) {
-            localStorageService.set('url',url);
+            localStorageService.set('url', url);
         }
 
         function getUrl() {
             return localStorageService.get('url')
         }
 
-        function setPayment(idIda,idVuelta,totalPrice, totalFee, totalPayment, departure,returns) {
+        function setPayment(idIda, idVuelta, totalPrice, totalFee, totalPayment, departure, returns) {
             var payment = {
-                idDeparture : idIda,
+                idDeparture: idIda,
                 idReturn: idVuelta,
-                totalPrice : totalPrice,
-                totalFee : totalFee,
-                totalPayment : totalPayment,
-                departure : departure,
-                returns : returns
+                totalPrice: totalPrice,
+                totalFee: totalFee,
+                totalPayment: totalPayment,
+                departure: departure,
+                returns: returns
             };
-            localStorageService.set('payment',JSON.stringify(payment));
+            localStorageService.set('payment', JSON.stringify(payment));
         }
 
         function getPayment() {
@@ -60,7 +64,7 @@
         }
 
         function setPayer(payer) {
-            localStorageService.set('payer',JSON.stringify(payer));
+            localStorageService.set('payer', JSON.stringify(payer));
         }
 
         function getPayer() {
@@ -68,18 +72,18 @@
             return data;
         }
 
-        function setSuccessData(customer,customerEmail,providerName,purchaseId,total,departureData,returnData,totalFee) {
+        function setSuccessData(customer, customerEmail, providerName, purchaseId, total, departureData, returnData, totalFee) {
             var success = {
-                customer : customer,
-                customerEmail : customerEmail,
-                providerName : providerName,
-                purchaseId : purchaseId,
-                total : total,
-                departureData : departureData,
-                returnData : returnData,
-                totalFee : totalFee
+                customer: customer,
+                customerEmail: customerEmail,
+                providerName: providerName,
+                purchaseId: purchaseId,
+                total: total,
+                departureData: departureData,
+                returnData: returnData,
+                totalFee: totalFee
             };
-            localStorageService.set('success',JSON.stringify(success));
+            localStorageService.set('success', JSON.stringify(success));
         }
 
         function getSuccessData() {
@@ -88,7 +92,7 @@
         }
 
         function setLocations(locations) {
-            localStorageService.set('locations',JSON.stringify(locations));
+            localStorageService.set('locations', JSON.stringify(locations));
         }
 
         function getLocations() {
@@ -97,7 +101,7 @@
         }
 
         function setFlag(flag) {
-            localStorageService.set('flag',JSON.stringify(flag));
+            localStorageService.set('flag', JSON.stringify(flag));
         }
 
         function getFlag() {
@@ -105,13 +109,13 @@
             return data;
         }
 
-        function setPassengers(adults,children,babies) {
+        function setPassengers(adults, children, babies) {
             var passengers = {
-                passengersAdult : adults,
-                passengersChild : children,
-                passengersBaby : babies
+                passengersAdult: adults,
+                passengersChild: children,
+                passengersBaby: babies
             }
-            localStorageService.set('passengers',JSON.stringify(passengers));
+            localStorageService.set('passengers', JSON.stringify(passengers));
         }
 
         function getPassengers() {
@@ -119,12 +123,14 @@
             return data;
         }
 
-        function setIdForPlanes(origin, destination) {
+        function setIdForPlanes(origin, destination, rtOrigin, rtDestination) {
             var destinies = {
-                origin : origin,
-                destination : destination
+                origin: origin,
+                destination: destination,
+                rtOrigin: rtOrigin,
+                rtDestination: rtDestination,
             }
-            localStorageService.set('destinies',JSON.stringify(destinies));
+            localStorageService.set('destinies', JSON.stringify(destinies));
         }
 
         function getIdForPlanes() {
@@ -132,5 +138,23 @@
             return data;
         }
 
-      }
+        function setLanguage(language) {
+            localStorageService.set('lang', JSON.stringify(language));
+        }
+
+        function getLanguage() {
+            var data = JSON.parse(localStorageService.get("lang"));
+            return data;
+        }
+
+        function setCountry(country) {
+            localStorageService.set('country', JSON.stringify(country));
+        }
+
+        function getCountry() {
+            var data = JSON.parse(localStorageService.get("country"));
+            return data;
+        }
+
+    }
 })();

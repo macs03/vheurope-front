@@ -12,10 +12,14 @@
         .module('vhEurope')
         .controller('SignUpController', SignUpController);
 
-    SignUpController.$inject = ['$scope', '$auth', '$location', '$rootScope'];
+    SignUpController.$inject = ['$scope', '$auth', '$location', '$rootScope', 'utilityService'];
 
-    function SignUpController($scope, $auth, $location, $rootScope) {
+    function SignUpController($scope, $auth, $location, $rootScope, utilityService) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.confirm = confirm;
         vm.passwordConfirmed = true;
         var token = localStorage.getItem("resertrip_token");
@@ -27,7 +31,8 @@
                     firstName: vm.name,
                     email: vm.email,
                     password: vm.password,
-                    passwordRepeat: vm.confirmPassword
+                    passwordRepeat: vm.confirmPassword,
+                    lang: utilityService.getLang()
                 })
                 .then(function(data) {
                     // Si se ha registrado correctamente,
@@ -46,7 +51,7 @@
         function confirm() {
             if (vm.password === vm.confirmPassword) {
                 vm.passwordConfirmed = true;
-            }else{
+            } else {
                 vm.passwordConfirmed = false;
             }
         }

@@ -16,6 +16,10 @@
 
     function LoginController($scope, $auth, $location, $rootScope, customerInfoFactory) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         vm.reset = reset;
         vm.passChanged = false;
         vm.resetPassword = resetPassword;
@@ -49,10 +53,10 @@
             if (vm.email) {
                 customerInfoFactory
                     .resetPassword(vm.email)
-                    .then(function (data) {
+                    .then(function(data) {
                         vm.passChanged = true;
                     })
-                    .catch(function (err) {
+                    .catch(function(err) {
                         vm.error = true;
                     })
                 $('#myModal').modal('hide');

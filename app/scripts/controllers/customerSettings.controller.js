@@ -16,10 +16,14 @@
 
     function CustomerSettingsController($scope, $location, customerInfoFactory, $auth, $rootScope) {
         var vm = this;
+
+        var searchView = true;
+        $rootScope.$broadcast('viewEvent', searchView);
+
         var token = localStorage.getItem("resertrip_token");
         if (token == null) {
             $location.path("/login")
-        }else {
+        } else {
             callCustomerInfo();
         }
 
@@ -42,7 +46,7 @@
                     var name = data.fullName.split(",");
                     if (name.length == 1) {
                         vm.firstName = name[0];
-                    }else {
+                    } else {
                         vm.firstName = name[1];
                         vm.lastName = name[0];
                     }
@@ -62,11 +66,11 @@
 
         function updateData() {
             customerInfoFactory
-                .putNewData(vm.firstName,vm.lastName,vm.customerData.identificationNumber,vm.customerData.email,vm.customerData.address,vm.customerData.birthday,vm.customerData.phoneNumber, vm.customerData.contactName, vm.customerData.contactEmail, vm.customerData.contactPhoneNumber)
-                .then(function (data) {
+                .putNewData(vm.firstName, vm.lastName, vm.customerData.identificationNumber, vm.customerData.email, vm.customerData.address, vm.customerData.birthday, vm.customerData.phoneNumber, vm.customerData.contactName, vm.customerData.contactEmail, vm.customerData.contactPhoneNumber)
+                .then(function(data) {
                     vm.wellDoneData = true;
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.error = true;
                 })
         }
@@ -74,7 +78,7 @@
         function confirm() {
             if (vm.newPassword === vm.newPasswordConfirm) {
                 vm.passwordConfirmed = true;
-            }else{
+            } else {
                 vm.passwordConfirmed = false;
             }
         }
@@ -82,10 +86,10 @@
         function changePassword() {
             customerInfoFactory
                 .postNewPassword(vm.currentPassword, vm.newPassword, vm.newPasswordConfirm)
-                .then(function (data) {
+                .then(function(data) {
                     vm.wellDonePassword = true;
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.error = true;
                 })
         }
@@ -99,7 +103,7 @@
         function deleteUser() {
             customerInfoFactory
                 .deleteUser(token)
-                .then(function (data) {
+                .then(function(data) {
                     $auth.logout()
                         .then(function() {
                             // Desconectamos al usuario y lo redirijimos
@@ -108,7 +112,7 @@
                             $location.path("/")
                         });
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     vm.error = true;
                 })
         }
