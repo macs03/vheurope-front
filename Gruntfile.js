@@ -25,6 +25,12 @@ module.exports = function(grunt) {
     dist: 'dist'
   };
 
+  var aws = {
+    accessKeyId: "AKIAI5R67MKQSDRHA6QA",
+    secretAccessKey: "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",
+    bucket: ''
+  }
+
   grunt.loadNpmTasks('grunt-aws');
 
   // Define the configuration for all the tasks
@@ -32,6 +38,9 @@ module.exports = function(grunt) {
 
     // Project settings
     yeoman: appConfig,
+
+    //amazon credentials
+    aws: aws,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -473,9 +482,9 @@ module.exports = function(grunt) {
     //upload files to S3
     s3: {
       options: {
-        accessKeyId: "AKIAI5R67MKQSDRHA6QA",
-        secretAccessKey: "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",
-        bucket: "test-deploy-rt"
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        bucket: "<%= aws.bucket %>"
       },
       build: {
         cwd: "dist/",
@@ -532,9 +541,18 @@ module.exports = function(grunt) {
     'htmlmin'
   ]);
 
-  grunt.registerTask('deploy', [
-    's3'
-  ]);
+  grunt.registerTask('deploy', function(target) {
+    console.log("Deploy -- " + target)
+    if (target === "sandbox") {
+      aws.bucket = "test-deploy-sandbox";
+      grunt.log.writeln('Bucket: ' + aws.bucket)
+      grunt.task.run(['s3']);
+    } else if (target === "production") {
+      aws.bucket = "test-deploy-production";
+      grunt.log.writeln('Bucket: ' + aws.bucket)
+      grunt.task.run(['s3']);
+    }
+  });
 
   grunt.registerTask('default', [
     'newer:jshint',
