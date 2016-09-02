@@ -25,13 +25,13 @@
 
             $http({
                     method:'GET',
-                    url: 'https://api.voyhoy.com/destinations/info/?language=es&q='+$city+'&country='+$country_code,
+                    url: 'https://1z07lak8v0.execute-api.us-east-1.amazonaws.com/v1/destinations/info/?language=es&q='+$city+'&country='+$country_code,
                     skipAuthorization: true
                 })
             .success(function(data) {
               if (data) {
 
-                if (data.success == true) {
+                //if (data.success == true) {
                   //var sunrise = new Date(data.sys.sunrise * 1000);
                   //var sunset = new Date(data.sys.sunset * 1000);
                   //weather.description = data.weather[0].description;
@@ -44,13 +44,13 @@
                   //weather.humidity = data.main.humidity;
                   //weather.wind = data.wind.speed;
 
-                  weather.description = data.data.weather__description;
-                  weather.temp.current = data.data.temperature;
-                  weather.humidity = data.data.humidity;
-                  weather.clouds = data.data.clouds;
-                  weather.wind = data.data.wind__spped;
+                  weather.description = data.weather__description;
+                  weather.temp.current = data.temperature;
+                  weather.humidity = data.humidity;
+                  weather.clouds = data.clouds;
+                  weather.wind = data.wind__spped;
                   var prefix = 'wi wi-';
-                  var code = data.data.weather__id;
+                  var code = data.weather__id;
                   var icon = weatherIcons[code].icon;
 
                   // If we are not in the ranges mentioned above, add a day/night prefix.
@@ -61,7 +61,7 @@
                   // Finally tack on the prefix.
                   icon = prefix + icon;
                   weather.icon = icon;
-                }
+               // }
             }
           });
         return weather;
