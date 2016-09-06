@@ -1876,10 +1876,13 @@
         vm.passengersAdult = parseInt(params.passengersAdult);
         vm.passengersChild = parseInt(params.passengersChild);
         vm.passengersBaby = parseInt(params.passengersBaby);
-
+        if(params.destination != undefined){
         vm.weather = weatherFactory.getWeather(params.destination, 'es');
-        vm.weather_progressbar.reset();
-        vm.weather_progressbar.start();
+            vm.weather = weatherFactory.getWeather(params.destination, 'es');
+            vm.weather_progressbar.reset();
+            vm.weather_progressbar.start();
+        }
+        
 
         vm.updatePassengers = function(type, direction) {
 
