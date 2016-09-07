@@ -1877,8 +1877,7 @@
         vm.passengersChild = parseInt(params.passengersChild);
         vm.passengersBaby = parseInt(params.passengersBaby);
         if(params.destination != undefined){
-        vm.weather = weatherFactory.getWeather(params.destination, 'es');
-            vm.weather = weatherFactory.getWeather(params.destination, 'es');
+            vm.weather = weatherFactory.getWeather(params.destination, vm.destinationCountryCode);
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
         }
@@ -2167,7 +2166,7 @@
             var description = "Compra billetes de autobús online con Resertrip. Elige entre docenas de empresa y encuentra el mejor precio. Planear tu viaje nunca ha sido tan fácil.";
             $rootScope.$broadcast('titleEvent', title);
             $rootScope.$broadcast('descriptionEvent', description);
-            vm.weather = weatherFactory.getWeather($stateParams.destination, 'es');
+            vm.weather = weatherFactory.getWeather($stateParams.destination, $stateParams.destinationCountryCode);
             vm.weather_progressbar.reset();
             vm.weather_progressbar.start();
 

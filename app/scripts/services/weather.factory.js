@@ -25,7 +25,7 @@
 
             $http({
                     method:'GET',
-                    url: 'https://1z07lak8v0.execute-api.us-east-1.amazonaws.com/v1/destinations/info/?language=es&q='+$city+'&country='+$country_code,
+                    url: 'https://api.voyhoy.com/v1/destinations/info/?language=es&q='+$city+'&country='+$country_code,
                     skipAuthorization: true
                 })
             .success(function(data) {
