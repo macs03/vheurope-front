@@ -1604,7 +1604,7 @@ button.theme-search,
 
 }
 
-.tabs-filter .tab-filter i { color: #A8A9AD }
+.tabs-filter .tab-filter i { color: #A8A9AD; display: block !important; }
 .tabs-filter .tab-filter span { display: block }
 .tabs-filter .tab-filter:hover { background-color: #d1d1d1 }
 .tabs-filter .tab-filter.active { background-color: #fff }
