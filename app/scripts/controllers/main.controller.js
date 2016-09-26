@@ -150,10 +150,10 @@
             } else if (lang == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
-                vm.city_destination = 'Chosse your destination';
+                vm.city_destination = 'Choose your destination';
             } else {
                 vm.retorno = 'Retour';
-                vm.city_origin = 'choisissez votre origine';
+                vm.city_origin = 'Choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
             }
             changeCountryAndLanguaje();
@@ -170,11 +170,11 @@
             } else if (utilityService.getLang() == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
-                vm.city_destination = 'Chosse your destination';
+                vm.city_destination = 'Choose your destination';
                 $translate.use('en');
             } else {
                 vm.retorno = 'Retour';
-                vm.city_origin = 'choisissez votre origine';
+                vm.city_origin = 'Choisissez votre origine';
                 vm.city_destination = 'Choisissez votre destination';
                 $translate.use('fr');
             }

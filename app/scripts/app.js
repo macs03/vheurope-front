@@ -804,8 +804,8 @@
             "CTA_PLACE": "en un seul endroit",
             "BUS_COMPANIES": "Nos Partenaires",
             "MUCH_MORE": "Et beaucoup d'autres.",
-            "CHOOSE_ORIGIN": "Choisir votre départ",
-            "CHOOSE_DESTINATION": "Choisir votre arrivée",
+            "CHOOSE_ORIGIN": "Choisissez votre départ",
+            "CHOOSE_DESTINATION": "Choisissez votre arrivée",
             "RETURN": "Retour",
             "COOKIES_MESSAGE": "Ce site utilise des cookies. En continuant à naviguer sur le site, vous acceptez notre utilisation des cookies.",
             "SEARCH": "Chercher"
