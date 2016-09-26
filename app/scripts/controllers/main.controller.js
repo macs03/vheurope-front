@@ -170,7 +170,7 @@
             } else if (utilityService.getLang() == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
-                vm.city_destination = 'Chosse your destination';
+                vm.city_destination = 'Choose your destination';
                 $translate.use('en');
             } else {
                 vm.retorno = 'Retour';
@@ -187,7 +187,7 @@
             } else if (languageSession == 'en') {
                 vm.retorno = 'Return';
                 vm.city_origin = 'Choose your origin';
-                vm.city_destination = 'Chosse your destination';
+                vm.city_destination = 'Choose your destination';
                 $translate.use('en');
             } else {
                 vm.retorno = 'Retour';

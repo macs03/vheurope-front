@@ -45,7 +45,7 @@
 
      
     // selectize classical placePicker
-    .directive("placePicker", function() {
+    .directive("placePicker", function(sessionStorageService) {
 
         return {
             restrict: 'EA',
@@ -146,6 +146,46 @@
                     scope.$watchCollection('options', setSelectizeOptions);
                     scope.$watch('ngModel', setSelectizeValue);
                     scope.$watch('ngDisabled', toggle);
+
+                    scope.$on('langEvent',function(){
+                        var languageSession = sessionStorageService.getLanguage();
+                        var retorno, city_destination, city_origin;
+                        if (languageSession == null) {
+                            if (utilityService.getLang() == 'es') {
+                                retorno = 'Vuelta';
+                                city_origin = 'Elige tu origen';
+                                city_destination = 'Elige tu destino';
+                            } else if (utilityService.getLang() == 'en') {
+                                retorno = 'Return';
+                                city_origin = 'Choose your origin';
+                                city_destination = 'Choose your destination';
+                            } else {
+                                retorno = 'Retour';
+                                city_origin = 'Choisissez votre origine';
+                                city_destination = 'Choisissez votre destination';
+                            }
+                        } else {
+                            if (languageSession == 'es') {
+                                retorno = 'Vuelta';
+                                city_origin = 'Elige tu origen';
+                                city_destination = 'Elige tu destino';
+                            } else if (languageSession == 'en') {
+                                retorno = 'Return';
+                                city_origin = 'Choose your origin';
+                                city_destination = 'Choose your destination';
+                            } else {
+                                retorno = 'Retour';
+                                city_origin = 'Choisissez votre origine';
+                                city_destination = 'Choisissez votre destination';
+                            }
+                        }
+                        var inputOrigin = angular.element("place-picker[ng-model*='origin']").parent().find("input");
+                        var inputDestination = angular.element("place-picker[ng-model*='destination']").parent().find("input");
+                        var inputReturn = angular.element("input.pikaday__display").parent().find("input#returnDate").next();
+                        angular.element(inputOrigin).prop("placeholder", city_origin).css("width","auto");
+                        angular.element(inputDestination).prop("placeholder", city_destination).css("width","auto");
+                        angular.element(inputReturn).prop("placeholder", retorno);
+                    });
                 };
 
                 element.selectize(settings);
