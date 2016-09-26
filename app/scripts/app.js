@@ -894,9 +894,9 @@
                 "FIND_NEXT_DAY": "Trouver des billets pour le lendemain"
             },
             "SELECTED_TRIP": {
-                "TITLE_1": "Choisir votre aller",
+                "TITLE_1": "Choisissez votre aller",
                 "TITLE_2": "avant de choisir votre retour",
-                "TITLE_3": "Choisir votre retour",
+                "TITLE_3": "Choisissez votre retour",
                 "TITLE_4": "pour sélectionner votre siège",
                 "TITLE_5": "Votre billet sélectionné",
                 "TITLE_6": "Changer de billet"
